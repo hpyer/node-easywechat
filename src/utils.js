@@ -12,7 +12,13 @@ const randomString = function (len = 16) {
   return str;
 }
 
+const buildApiUrl = async function (instance, baseUrl) {
+  let access_token = await instance.access_token.getToken();
+  return baseUrl + '?access_token=' + access_token;
+}
+
 export default {
   getTimestamp,
-  randomString
+  randomString,
+  buildApiUrl
 }

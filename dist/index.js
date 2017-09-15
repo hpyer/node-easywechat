@@ -58,6 +58,28 @@ EasyWechat$1.prototype.requestGet = (url) => {
   });
 };
 
+EasyWechat$1.prototype.requestPost = (url, data = null) => {
+  return new Promise((resolve, reject) => {
+    request({
+      method: 'POST',
+      uri: url,
+      json: data
+    }, function (error, response, body) {
+      if (error) {
+        reject(error);
+      }
+      else {
+        try {
+          resolve(body);
+        }
+        catch (e) {
+          reject(e);
+        }
+      }
+    });
+  });
+};
+
 EasyWechat$1.prototype.$plugins = [];
 EasyWechat$1.registPlugin = (name, plugin) => {
   EasyWechat$1.prototype[name] = plugin;
@@ -180,9 +202,15 @@ const randomString = function (len = 16) {
   return str;
 };
 
+const buildApiUrl = function (instance, baseUrl) {return __async(function*(){
+  let access_token = yield instance.access_token.getToken();
+  return baseUrl + '?access_token=' + access_token;
+}())};
+
 var utils = {
   getTimestamp,
-  randomString
+  randomString,
+  buildApiUrl
 };
 
 class CacheDriver {
@@ -363,9 +391,175 @@ var jssdk = {
   config
 };
 
+const URL_NOTICE_SEND = 'https://api.weixin.qq.com/cgi-bin/message/template/send';
+const URL_NOTICE_GET_INDUSTRY = 'https://api.weixin.qq.com/cgi-bin/template/get_industry';
+const URL_NOTICE_SET_INDUSTRY = 'https://api.weixin.qq.com/cgi-bin/template/api_set_industry';
+const URL_NOTICE_ADD_TEMPLATE = 'https://api.weixin.qq.com/cgi-bin/template/api_add_template';
+const URL_NOTICE_GET_PRIVATE_TEMPLATES = 'https://api.weixin.qq.com/cgi-bin/template/get_all_private_template';
+const URL_NOTICE_DELETE_PRIVATE_TEMPLATES = 'https://api.weixin.qq.com/cgi-bin/template/del_private_template';
+
+var $instance$4;
+
+const init$4 = function (instance) {
+  $instance$4 = instance;
+
+  $notice_message = new NoticeMessage;
+};
+
+class NoticeMessage {
+  constructor () {
+    this.reset();
+  }
+}
+
+NoticeMessage.prototype.reset = function () {
+  this.touser = '';
+  this.template_id = '';
+  this.url = '';
+  this.miniprogram = {};
+  this.data = [];
+};
+
+let $notice_message = null;
+
+const to = function (touser) {
+  $notice_message.touser = touser;
+  return this;
+};
+
+const uses = function (template_id) {
+  $notice_message.template_id = template_id;
+  return this;
+};
+
+const url = function (url) {
+  $notice_message.url = url;
+  return this;
+};
+
+const data = function (data) {
+  $notice_message.data = formatData(data);
+  return this;
+};
+
+const formatData = function (data) {
+  let newData = {};
+  for (let k in data) {
+    let v = data[k];
+    if (typeof v == 'object') {
+      if (typeof v.length != 'undefined') {
+        newData[k] = {
+          value: v[0],
+          color: v[1]
+        };
+      }
+      else {
+        newData[k] = v;
+      }
+    }
+    else {
+      newData[k] = {
+        value: v
+      };
+    }
+  }
+  return newData;
+};
+
+const send = function (message = null) {return __async(function*(){
+  if (message) {
+    if (message.data) {
+      message.data = formatData(message.data);
+    }
+  } else {
+    message = {};
+  }
+  message = merge({}, $notice_message, message);
+  $notice_message.reset();
+
+  let url = yield utils.buildApiUrl($instance$4, URL_NOTICE_SEND);
+
+  return yield $instance$4.requestPost(url, message);
+}())};
+
+const getIndustry = function () {return __async(function*(){
+  let url = yield utils.buildApiUrl($instance$4, URL_NOTICE_GET_INDUSTRY);
+
+  return yield $instance$4.requestPost(url);
+}())};
+
+const setIndustry = function (industry_id1, industry_id2) {return __async(function*(){
+  let url = yield utils.buildApiUrl($instance$4, URL_NOTICE_SET_INDUSTRY);
+  let data = {
+    industry_id1: industry_id1,
+    industry_id2: industry_id2
+  };
+  return yield $instance$4.requestPost(url, data);
+}())};
+
+const addTemplate = function (template_id_short) {return __async(function*(){
+  let url = yield utils.buildApiUrl($instance$4, URL_NOTICE_ADD_TEMPLATE);
+  let data = {
+    template_id_short: template_id_short
+  };
+  return yield $instance$4.requestPost(url, data);
+}())};
+
+const getPrivateTemplates = function () {return __async(function*(){
+  let url = yield utils.buildApiUrl($instance$4, URL_NOTICE_GET_PRIVATE_TEMPLATES);
+
+  return yield $instance$4.requestPost(url);
+}())};
+
+const deletePrivateTemplate = function (template_id) {return __async(function*(){
+  let url = yield utils.buildApiUrl($instance$4, URL_NOTICE_DELETE_PRIVATE_TEMPLATES);
+  let data = {
+    template_id: template_id
+  };
+  return yield $instance$4.requestPost(url, data);
+}())};
+
+var notice = {
+  init: init$4,
+  to,
+  withTo: to,
+  andTo: to,
+  receiver: to,
+  withReceiver: to,
+  andhReceiver: to,
+  uses,
+  withUses: uses,
+  andUses: uses,
+  template: uses,
+  withTemplate: uses,
+  andTemplate: uses,
+  templateId: uses,
+  withTemplateId: uses,
+  andTemplateId: uses,
+  url,
+  withUrl: url,
+  andUrl: url,
+  link: url,
+  withLink: url,
+  andLink: url,
+  linkTo: url,
+  withLinkTo: url,
+  andLinkTo: url,
+  data,
+  withData: data,
+  andData: data,
+  send,
+  getIndustry,
+  setIndustry,
+  addTemplate,
+  getPrivateTemplates,
+  deletePrivateTemplate
+};
+
 EasyWechat$1.registPlugin('oauth', oauth);
 EasyWechat$1.registPlugin('cache', cache);
 EasyWechat$1.registPlugin('access_token', access_token);
 EasyWechat$1.registPlugin('jssdk', jssdk);
+EasyWechat$1.registPlugin('notice', notice);
 
 module.exports = EasyWechat$1;

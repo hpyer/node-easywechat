@@ -47,6 +47,28 @@ EasyWechat.prototype.requestGet = (url) => {
   });
 };
 
+EasyWechat.prototype.requestPost = (url, data = null) => {
+  return new Promise((resolve, reject) => {
+    request({
+      method: 'POST',
+      uri: url,
+      json: data
+    }, function (error, response, body) {
+      if (error) {
+        reject(error)
+      }
+      else {
+        try {
+          resolve(body);
+        }
+        catch (e) {
+          reject(e)
+        }
+      }
+    });
+  });
+};
+
 EasyWechat.prototype.$plugins = [];
 EasyWechat.registPlugin = (name, plugin) => {
   EasyWechat.prototype[name] = plugin;
