@@ -44,14 +44,15 @@ async function _build (config) {
     let { code, map } = await bundle.generate(config);
 
     let minified = uglify.minify(code, {
+      mangle: {
+        toplevel: true,
+        properties: true
+      },
       output: {
         ascii_only: true
-      },
-      compress: {
-        pure_funcs: ['makeMap']
       }
     }).code
-    // code = config.banner + minified
+    code = config.banner + minified
     return write(config.file, code, true)
   }
   catch (e) {
