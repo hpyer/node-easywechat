@@ -71,3 +71,15 @@ export class AppServerKoa2 extends AppServer {
     this.$ctx.body = content;
   }
 }
+
+export class AppServerExpress extends AppServer {
+  constructor (req, res) {
+    super(req, res);
+  }
+
+  sendResponse (content, options = {}) {
+    if (!this.$res) return false;
+    options = this._initResponseOptions(options);
+    this.$res.status(options.status).set(options.headers).send(content);
+  }
+}

@@ -2,7 +2,7 @@
 import merge from 'merge';
 import request from 'request';
 import Url from 'url';
-import {AppServer, AppServerKoa2} from './app_server'
+import * as AppServers from './app_server'
 
 const defaultConfig = {
   appKey: '',
@@ -26,8 +26,16 @@ class EasyWechat {
     });
   }
 
+  setAppServerDefault (req, res) {
+    this.$config.app = new AppServers.AppServer(req, res);
+  }
+
   setAppServerKoa2 (ctx) {
-    this.$config.app = new AppServerKoa2(ctx);
+    this.$config.app = new AppServers.AppServerKoa2(ctx);
+  }
+
+  setAppServerExpress (req, res) {
+    this.$config.app = new AppServers.AppServerExpress(req, res);
   }
 }
 
@@ -90,7 +98,5 @@ EasyWechat.registPlugin = (name, plugin) => {
   EasyWechat.prototype[name] = plugin;
   EasyWechat.prototype.$plugins.push(name);
 };
-
-EasyWechat.AppServer = AppServer;
 
 export default EasyWechat;
