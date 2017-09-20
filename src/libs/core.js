@@ -43,11 +43,26 @@ EasyWechat.prototype.requestGet = (url) => {
       else {
         try {
           body = JSON.parse(body);
-          resolve(body);
         }
-        catch (e) {
-          reject(e)
-        }
+        catch (e) {}
+        resolve(body);
+      }
+    });
+  });
+};
+
+EasyWechat.prototype.requestFile = (url) => {
+  return new Promise((resolve, reject) => {
+    request({
+      method: 'GET',
+      uri: url,
+      encoding: 'binary'
+    }, function (error, response, body) {
+      if (error) {
+        reject(error)
+      }
+      else {
+        resolve(body);
       }
     });
   });
@@ -64,12 +79,7 @@ EasyWechat.prototype.requestPost = (url, data = null) => {
         reject(error)
       }
       else {
-        try {
-          resolve(body);
-        }
-        catch (e) {
-          reject(e)
-        }
+        resolve(body);
       }
     });
   });
