@@ -45,8 +45,7 @@ async function _build (config) {
 
     let minified = uglify.minify(code, {
       mangle: {
-        toplevel: true,
-        properties: true
+        toplevel: true
       },
       output: {
         ascii_only: true

@@ -24,14 +24,14 @@ const builds = [
 ];
 
 function genConfig (opts) {
+  let external = Object.keys(require('../package.json').dependencies);
+  external.push('url');
   const config = {
     input: resolve('src/index.js'),
-    external: Object.keys(require('../package.json').dependencies),
+    external: external,
     plugins: [
       commonjs(),
-      noderesolve({
-        preferBuiltins: true
-      }),
+      noderesolve(),
       rollupAsync()
     ],
 
