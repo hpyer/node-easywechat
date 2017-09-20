@@ -6,6 +6,10 @@
   "scripts": {
     "build": "node build/build.js"
   },
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:hpyer/node-easywechat.git"
+  },
   "keywords": [
     "weixin",
     "wechat"
