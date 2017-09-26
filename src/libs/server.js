@@ -45,10 +45,11 @@ const serve = async function () {
     let xml = await app.getBody();
     $server_message = await parseMessage(xml);
     if ($server_handler && typeof $server_handler == 'function') {
-      let result = $server_handler($server_message);
+      let result = await $server_handler($server_message);
 
       if (!result) {
-        result = 'SUCCESS';
+        app.sendResponse('SUCCESS');
+        return
       }
       let response = null;
       if (typeof result == 'string') {
