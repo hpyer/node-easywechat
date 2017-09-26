@@ -1,7 +1,6 @@
 
 import merge from 'merge';
 import request from 'request';
-import Url from 'url';
 import * as AppServers from './app_server'
 
 const defaultConfig = {
