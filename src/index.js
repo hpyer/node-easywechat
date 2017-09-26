@@ -7,6 +7,7 @@ import jssdk from './libs/jssdk';
 import server from './libs/server';
 import notice from './libs/notice';
 import qrcode from './libs/qrcode';
+import user from './libs/user';
 
 EasyWechat.registPlugin('oauth', oauth);
 EasyWechat.registPlugin('cache', cache);
@@ -15,5 +16,6 @@ EasyWechat.registPlugin('jssdk', jssdk);
 EasyWechat.registPlugin('server', server);
 EasyWechat.registPlugin('notice', notice);
 EasyWechat.registPlugin('qrcode', qrcode);
+EasyWechat.registPlugin('user', user);
 
 export default EasyWechat;
