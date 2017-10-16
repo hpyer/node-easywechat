@@ -63,7 +63,9 @@ var $user = null;
 
 const user = async function (code) {
   await fetchAccessToken(code);
-  await fetchUserInfo();
+  if ($instance.$config.oauth.scope != 'snsapi_base') {
+    await fetchUserInfo();
+  }
   return $user;
 };
 
@@ -91,6 +93,10 @@ const fetchUserInfo = async function () {
   let url = URL_USER_INFO + '?' + qs.stringify(params);
 
   let response = await $instance.requestGet(url);
+  if (response.errcode) {
+    console.log('oauth.fetchUserInfo()', response);
+    return false;
+  }
   $user.id = response.openid;
   $user.nickname = response.nickname;
   $user.name = response.nickname;
