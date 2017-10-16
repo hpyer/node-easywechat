@@ -1,5 +1,5 @@
 /*!
- * EasyWechat.js v1.1.0
+ * EasyWechat.js v1.1.1
  * (c) 2017-2017 Hpyer
  * Released under the MIT License.
  */
