@@ -59,14 +59,12 @@ const redirect = function (state = '') {
   return url + '?' + qs.stringify(params) + '#wechat_redirect';
 };
 
-var $user = null;
-
 const user = async function (code) {
-  await fetchAccessToken(code);
+  let user = await fetchAccessToken(code);
   if ($instance.$config.oauth.scope != 'snsapi_base') {
-    await fetchUserInfo();
+    user = await fetchUserInfo(user);
   }
-  return $user;
+  return user;
 };
 
 const fetchAccessToken = async function (code) {
@@ -79,15 +77,16 @@ const fetchAccessToken = async function (code) {
   let url = URL_ACCESS_TOKEN + '?' + qs.stringify(params);
 
   let response = await $instance.requestGet(url);
-  if (!$user) $user = new User;
-  $user.id = response.openid;
-  $user.token = response;
+  let user = new User;
+  user.id = response.openid;
+  user.token = response;
+  return user;
 };
 
-const fetchUserInfo = async function () {
+const fetchUserInfo = async function (user) {
   let params = {
-    access_token: $user.token.access_token,
-    openid: $user.id,
+    access_token: user.token.access_token,
+    openid: user.id,
     lang: 'zh_CN'
   };
   let url = URL_USER_INFO + '?' + qs.stringify(params);
@@ -97,11 +96,12 @@ const fetchUserInfo = async function () {
     console.log('oauth.fetchUserInfo()', response);
     return false;
   }
-  $user.id = response.openid;
-  $user.nickname = response.nickname;
-  $user.name = response.nickname;
-  $user.avatar = response.headimgurl;
-  $user.original = response;
+  user.id = response.openid;
+  user.nickname = response.nickname;
+  user.name = response.nickname;
+  user.avatar = response.headimgurl;
+  user.original = response;
+  return user;
 };
 
 export default {
