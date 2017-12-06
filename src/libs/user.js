@@ -7,6 +7,17 @@ const URL_USER_BLACKLIST = 'https://api.weixin.qq.com/cgi-bin/tags/members/getbl
 const URL_USER_BLACKLIST_BLOCK = 'https://api.weixin.qq.com/cgi-bin/tags/members/batchblacklist';
 const URL_USER_BLACKLIST_UNBLOCK = 'https://api.weixin.qq.com/cgi-bin/tags/members/batchunblacklist';
 
+class User {
+  constructor () {
+    this.id = ''
+    this.nickname = ''
+    this.name = ''
+    this.avatar = ''
+    this.original = {}
+    this.token = {}
+  }
+};
+
 var $instance;
 
 const init = function (instance) {
@@ -16,7 +27,14 @@ const init = function (instance) {
 const get = async function (openid, lang = 'zh_CN') {
   let accessToken = await $instance.access_token.getToken();
   let url = URL_USER_GET + '?access_token=' + accessToken + '&openid=' + openid + '&lang=' + lang;
-  return await $instance.requestGet(url);
+  let response = await $instance.requestGet(url);
+  let user = new User;
+  user.id = response.openid;
+  user.nickname = response.nickname;
+  user.name = response.nickname;
+  user.avatar = response.headimgurl;
+  user.original = response;
+  return user;
 };
 
 const batchGet = async function (user_list) {
