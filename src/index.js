@@ -8,6 +8,7 @@ import server from './libs/server';
 import notice from './libs/notice';
 import qrcode from './libs/qrcode';
 import user from './libs/user';
+import * as messages from './libs/message';
 
 EasyWechat.registPlugin('oauth', oauth);
 EasyWechat.registPlugin('cache', cache);
@@ -17,5 +18,9 @@ EasyWechat.registPlugin('server', server);
 EasyWechat.registPlugin('notice', notice);
 EasyWechat.registPlugin('qrcode', qrcode);
 EasyWechat.registPlugin('user', user);
+
+for (let k in messages) {
+  EasyWechat[k] = messages[k];
+}
 
 export default EasyWechat;

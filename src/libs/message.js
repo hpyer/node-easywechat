@@ -125,7 +125,7 @@ export class Music extends Raw {
       Description: options.description || '',
       MusicUrl: options.music_url || '',
       HQMusicUrl: options.hq_music_url || '',
-      ThumbMediaId: options.thumb_MediaId || ''
+      ThumbMediaId: options.thumb_media_id || ''
     };
   }
 
