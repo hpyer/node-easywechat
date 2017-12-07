@@ -9,6 +9,7 @@ import notice from './libs/notice';
 import qrcode from './libs/qrcode';
 import user from './libs/user';
 import menu from './libs/menu';
+import url from './libs/url';
 import * as messages from './libs/message';
 
 EasyWechat.registPlugin('oauth', oauth);
@@ -20,6 +21,7 @@ EasyWechat.registPlugin('notice', notice);
 EasyWechat.registPlugin('qrcode', qrcode);
 EasyWechat.registPlugin('user', user);
 EasyWechat.registPlugin('menu', menu);
+EasyWechat.registPlugin('url', url);
 
 for (let k in messages) {
   EasyWechat[k] = messages[k];
