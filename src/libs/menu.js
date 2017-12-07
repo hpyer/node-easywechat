@@ -13,13 +13,13 @@ const init = function (instance) {
 const all = async function () {
   let accessToken = await $instance.access_token.getToken();
   let url = URL_MENU_GET_ALL + '?access_token=' + accessToken;
-  return await $instance.requestPost(url, data);
+  return await $instance.requestPost(url);
 };
 
 const current = async function () {
   let accessToken = await $instance.access_token.getToken();
   let url = URL_MENU_GET_CURRENT + '?access_token=' + accessToken;
-  return await $instance.requestPost(url, data);
+  return await $instance.requestPost(url);
 };
 
 const add = async function (buttons) {
@@ -33,7 +33,7 @@ const add = async function (buttons) {
 
 const destroy = async function () {
   let url = URL_MENU_DELETE + '?access_token=' + accessToken;
-  return await $instance.requestFile(url);
+  return await $instance.requestPost(url);
 };
 
 export default {
