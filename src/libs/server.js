@@ -47,7 +47,7 @@ const serve = async function () {
     if ($server_handler && typeof $server_handler == 'function') {
       let result = await $server_handler($server_message);
 
-      if (!result || result.toUpperCase() == 'SUCCESS') {
+      if (!result || (typeof result == 'string' && result.toUpperCase() == 'SUCCESS')) {
         app.sendResponse('SUCCESS');
         return
       }
