@@ -17,8 +17,36 @@ const buildApiUrl = async function (instance, baseUrl) {
   return baseUrl + '?access_token=' + access_token;
 }
 
+// 复制对象方法
+const cloneObj = function (oldObj) {
+  if (!oldObj) return oldObj;
+  if (typeof(oldObj) != 'object') return oldObj;
+  let newObj = new Object();
+  for (let k in oldObj) {
+    newObj[k] = cloneObj(oldObj[k]);
+  }
+  return newObj;
+}
+
+// 扩展对象
+const extendObj = function () {
+  let args = arguments;
+  if (args.length == 0) return null;
+  let temp = cloneObj(args[0]);
+  if (args.length == 1) return temp;
+  for (let i=1; i<args.length; i++) {
+    if (!args[i] || typeof(args[i]) != 'object') continue;
+    for (let k in args[i]) {
+      temp[k] = args[i][k];
+    }
+  }
+  return temp;
+}
+
 export default {
   getTimestamp,
   randomString,
-  buildApiUrl
+  buildApiUrl,
+  cloneObj,
+  extendObj
 }

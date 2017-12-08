@@ -10,9 +10,7 @@ var $instance;
 const init = function (instance) {
   $instance = instance;
 
-  $instance.$config.jssdk = $instance.$config.jssdk || {};
-  $instance.$config.jssdk.cache_id = $instance.$config.jssdk.cache_id || 'NODE_EASYWECHAT_JSSKD_TICKET';
-  $instance.$config.jssdk.buffer_time = $instance.$config.jssdk.buffer_time || 60;
+  $instance.$config.jssdk_cache_key = $instance.$config.jssdk_cache_key || 'NODE_EASYWECHAT_JSSKD_TICKET';
 };
 
 var $url = '';
@@ -33,11 +31,14 @@ const fetchJsapiTicket = async function () {
 };
 
 const config = async function (APIs, debug = false, json = true) {
-  let jssdkTicket = $instance.$config.cache.fetch($instance.$config.jssdk.cache_id);
-  if (!$instance.$config.cache.contains($instance.$config.jssdk.cache_id, $instance.$config.jssdk.buffer_time)) {
+  let jssdkTicket = null;
+  if (!$instance.$config.cache.contains($instance.$config.jssdk_cache_key)) {
     let res = await fetchJsapiTicket();
-    $instance.$config.cache.save($instance.$config.jssdk.cache_id, res.ticket, res.expires_in);
+    $instance.$config.cache.save($instance.$config.jssdk_cache_key, res.ticket, res.expires_in);
     jssdkTicket = res.ticket;
+  }
+  else {
+    jssdkTicket = $instance.$config.cache.fetch($instance.$config.jssdk_cache_key);
   }
 
   let url = $url;

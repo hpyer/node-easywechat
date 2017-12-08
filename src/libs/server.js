@@ -1,5 +1,5 @@
 
-import {Text} from './message';
+import {Text} from './messages';
 import utils from '../utils';
 import sha1 from 'sha1';
 import {parseString} from 'xml2js';

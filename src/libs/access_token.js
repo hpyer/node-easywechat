@@ -8,9 +8,7 @@ var $instance;
 const init = function (instance) {
   $instance = instance;
 
-  $instance.$config.access_token = $instance.$config.access_token || {};
-  $instance.$config.access_token.cache_id = $instance.$config.access_token.cache_id || 'NODE_EASYWECHAT_ACCESS_TOKEN';
-  $instance.$config.access_token.buffer_time = $instance.$config.access_token.buffer_time || 60;
+  $instance.$config.access_token_cache_key = $instance.$config.access_token_cache_key || 'NODE_EASYWECHAT_ACCESS_TOKEN';
 };
 
 const fetchAccessToken = async function () {
@@ -25,17 +23,20 @@ const fetchAccessToken = async function () {
 };
 
 const getToken = async function (force = false) {
-  let accessToken = $instance.$config.cache.fetch($instance.$config.access_token.cache_id);
-  if (force || !$instance.$config.cache.contains($instance.$config.access_token.cache_id, $instance.$config.access_token.buffer_time)) {
+  let accessToken = null;
+  if (force || !$instance.$config.cache.contains($instance.$config.access_token_cache_key)) {
     let res = await fetchAccessToken();
     setToken(res.access_token, res.expires_in);
     accessToken = res.access_token;
+  }
+  else {
+    accessToken = $instance.$config.cache.fetch($instance.$config.access_token_cache_key);
   }
   return accessToken;
 };
 
 const setToken = function (access_token, expires_in = 7200) {
-  $instance.$config.cache.save($instance.$config.access_token.cache_id, access_token, expires_in);
+  $instance.$config.cache.save($instance.$config.access_token_cache_key, access_token, expires_in);
 };
 
 export default {

@@ -10,7 +10,6 @@ import qrcode from './libs/qrcode';
 import user from './libs/user';
 import menu from './libs/menu';
 import url from './libs/url';
-import * as messages from './libs/message';
 
 EasyWechat.registPlugin('oauth', oauth);
 EasyWechat.registPlugin('cache', cache);
@@ -23,8 +22,16 @@ EasyWechat.registPlugin('user', user);
 EasyWechat.registPlugin('menu', menu);
 EasyWechat.registPlugin('url', url);
 
+import * as caches from './libs/caches';
+EasyWechat.Cache = {};
+for (let k in caches) {
+  EasyWechat.Cache[k] = caches[k];
+}
+
+import * as messages from './libs/messages';
+EasyWechat.Message = {};
 for (let k in messages) {
-  EasyWechat[k] = messages[k];
+  EasyWechat.Message[k] = messages[k];
 }
 
 export default EasyWechat;

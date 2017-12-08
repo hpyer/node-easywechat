@@ -26,6 +26,8 @@ const builds = [
 function genConfig (opts) {
   let external = Object.keys(require('../package.json').dependencies);
   external.push('url');
+  external.push('fs');
+  external.push('path');
   const config = {
     input: resolve('src/index.js'),
     external: external,
