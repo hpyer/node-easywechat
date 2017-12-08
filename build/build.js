@@ -43,15 +43,15 @@ async function _build (config) {
     const bundle = await rollup.rollup(config);
     let { code, map } = await bundle.generate(config);
 
-    let minified = uglify.minify(code, {
-      mangle: {
-        toplevel: true
-      },
-      output: {
-        ascii_only: true
-      }
-    }).code
-    code = config.banner + minified
+    // let minified = uglify.minify(code, {
+    //   mangle: {
+    //     toplevel: true
+    //   },
+    //   output: {
+    //     ascii_only: true
+    //   }
+    // }).code
+    // code = config.banner + minified
     return write(config.file, code, true)
   }
   catch (e) {
