@@ -1,5 +1,5 @@
 
-import EasyWechat from './libs/core';
+import Core from './libs/core';
 import oauth from './libs/oauth';
 import cache from './libs/cache';
 import access_token from './libs/access_token';
@@ -11,27 +11,27 @@ import user from './libs/user';
 import menu from './libs/menu';
 import url from './libs/url';
 
-EasyWechat.registPlugin('oauth', oauth);
-EasyWechat.registPlugin('cache', cache);
-EasyWechat.registPlugin('access_token', access_token);
-EasyWechat.registPlugin('jssdk', jssdk);
-EasyWechat.registPlugin('server', server);
-EasyWechat.registPlugin('notice', notice);
-EasyWechat.registPlugin('qrcode', qrcode);
-EasyWechat.registPlugin('user', user);
-EasyWechat.registPlugin('menu', menu);
-EasyWechat.registPlugin('url', url);
+Core.EasyWechat.registPlugin('oauth', oauth);
+Core.EasyWechat.registPlugin('cache', cache);
+Core.EasyWechat.registPlugin('access_token', access_token);
+Core.EasyWechat.registPlugin('jssdk', jssdk);
+Core.EasyWechat.registPlugin('server', server);
+Core.EasyWechat.registPlugin('notice', notice);
+Core.EasyWechat.registPlugin('qrcode', qrcode);
+Core.EasyWechat.registPlugin('user', user);
+Core.EasyWechat.registPlugin('menu', menu);
+Core.EasyWechat.registPlugin('url', url);
 
 import * as caches from './libs/caches';
-EasyWechat.Cache = {};
+Core.EasyWechat.Cache = {};
 for (let k in caches) {
-  EasyWechat.Cache[k] = caches[k];
+  Core.EasyWechat.Cache[k] = caches[k];
 }
 
 import * as messages from './libs/messages';
-EasyWechat.Message = {};
+Core.EasyWechat.Message = {};
 for (let k in messages) {
-  EasyWechat.Message[k] = messages[k];
+  Core.EasyWechat.Message[k] = messages[k];
 }
 
-export default EasyWechat;
+export default Core.EasyWechat;

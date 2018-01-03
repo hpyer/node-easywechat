@@ -1,4 +1,6 @@
 
+import Core from './core';
+
 const URL_USER_GET = 'https://api.weixin.qq.com/cgi-bin/user/info';
 const URL_USER_BATCHGET = 'https://api.weixin.qq.com/cgi-bin/user/info/batchget';
 const URL_USER_LISTS = 'https://api.weixin.qq.com/cgi-bin/user/get';
@@ -18,16 +20,14 @@ class User {
   }
 };
 
-var $instance;
-
 const init = function (instance) {
-  $instance = instance;
 };
 
 const get = async function (openid, lang = 'zh_CN') {
-  let accessToken = await $instance.access_token.getToken();
-  let url = URL_USER_GET + '?access_token=' + accessToken + '&openid=' + openid + '&lang=' + lang;
-  let response = await $instance.requestGet(url);
+  let instance = Core.getInstance();
+  let url = await instance.buildApiUrl(URL_USER_GET);
+  url += '&openid=' + openid + '&lang=' + lang;
+  let response = await instance.requestGet(url);
   let user = new User;
   user.id = response.openid;
   user.nickname = response.nickname;
@@ -38,58 +38,58 @@ const get = async function (openid, lang = 'zh_CN') {
 };
 
 const batchGet = async function (user_list) {
+  let instance = Core.getInstance();
   let data = {
     user_list
   };
-  let accessToken = await $instance.access_token.getToken();
-  let url = URL_USER_BATCHGET + '?access_token=' + accessToken;
-  return await $instance.requestPost(url, data);
+  let url = await instance.buildApiUrl(URL_USER_BATCHGET);
+  return await instance.requestPost(url, data);
 };
 
 const lists = async function (next_openid = null) {
-  let accessToken = await $instance.access_token.getToken();
-  let url = URL_USER_LISTS + '?access_token=' + accessToken;
+  let instance = Core.getInstance();
+  let url = await instance.buildApiUrl(URL_USER_LISTS);
   if (next_openid) {
     url += '&next_openid=' + next_openid
   }
-  return await $instance.requestGet(url);
+  return await instance.requestGet(url);
 };
 
 const remark = async function (openid, remark) {
+  let instance = Core.getInstance();
   let data = {
     openid, remark
   };
-  let accessToken = await $instance.access_token.getToken();
-  let url = URL_USER_REMARK + '?access_token=' + accessToken;
-  return await $instance.requestPost(url);
+  let url = await instance.buildApiUrl(URL_USER_REMARK);
+  return await instance.requestPost(url);
 };
 
 const blacklist = async function (begin_openid) {
+  let instance = Core.getInstance();
   let data = {};
   if (begin_openid) {
     data.begin_openid = begin_openid;
   }
-  let accessToken = await $instance.access_token.getToken();
-  let url = URL_USER_BLACKLIST + '?access_token=' + accessToken;
-  return await $instance.requestPost(url, data);
+  let url = await instance.buildApiUrl(URL_USER_BLACKLIST);
+  return await instance.requestPost(url, data);
 };
 
 const batchBlock = async function (openid_list) {
+  let instance = Core.getInstance();
   let data = {
     openid_list
   };
-  let accessToken = await $instance.access_token.getToken();
-  let url = URL_USER_BLACKLIST_BLOCK + '?access_token=' + accessToken;
-  return await $instance.requestPost(url, data);
+  let url = await instance.buildApiUrl(URL_USER_BLACKLIST_BLOCK);
+  return await instance.requestPost(url, data);
 };
 
 const batchUnblock = async function (openid_list) {
+  let instance = Core.getInstance();
   let data = {
     openid_list
   };
-  let accessToken = await $instance.access_token.getToken();
-  let url = URL_USER_BLACKLIST_UNBLOCK + '?access_token=' + accessToken;
-  return await $instance.requestPost(url, data);
+  let url = await instance.buildApiUrl(URL_USER_BLACKLIST_UNBLOCK);
+  return await instance.requestPost(url, data);
 };
 
 const block = async function (openid) {

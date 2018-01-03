@@ -28,6 +28,7 @@ function genConfig (opts) {
   external.push('url');
   external.push('fs');
   external.push('path');
+  external.push('$EasyWechatInstance');
   const config = {
     input: resolve('src/index.js'),
     external: external,

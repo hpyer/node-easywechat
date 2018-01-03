@@ -12,12 +12,6 @@ const randomString = function (len = 16) {
   return str;
 }
 
-const buildApiUrl = async function (instance, baseUrl) {
-  let access_token = await instance.access_token.getToken();
-  return baseUrl + '?access_token=' + access_token;
-}
-
-// 复制对象方法
 const cloneObj = function (oldObj) {
   if (!oldObj) return oldObj;
   if (typeof(oldObj) != 'object') return oldObj;
@@ -28,7 +22,6 @@ const cloneObj = function (oldObj) {
   return newObj;
 }
 
-// 扩展对象
 const extendObj = function () {
   let args = arguments;
   if (args.length == 0) return null;
@@ -46,7 +39,6 @@ const extendObj = function () {
 export default {
   getTimestamp,
   randomString,
-  buildApiUrl,
   cloneObj,
   extendObj
 }

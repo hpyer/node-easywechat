@@ -4,11 +4,15 @@ import fs from 'fs';
 import path from 'path';
 
 export class CacheInterface {
+  constructor () {
+    this.$options = {};
+  }
+
   fetch (id) {
     return null;
   }
 
-  contains (id, buffer_time = 0) {
+  contains (id) {
     return true;
   }
 
@@ -23,6 +27,7 @@ export class CacheInterface {
 
 export class MemoryCache extends CacheInterface {
   constructor () {
+    super();
     this.$datas = {};
   }
 
@@ -52,6 +57,7 @@ export class MemoryCache extends CacheInterface {
 
 export class FileCache extends CacheInterface {
   constructor (options) {
+    super();
     let defaultOptions = {
       path: '',
       dirMode: 0o777,
@@ -61,27 +67,30 @@ export class FileCache extends CacheInterface {
     this.$options = utils.extendObj(defaultOptions, options);
     this.$options.path = path.resolve(this.$options.path);
     try {
-      fs.mkdirSync(this.$options.path, this.$options.dirMode);
+      fs.accessSync(this.$options.path, fs.constants.R_OK & fs.constants.W_OK);
     }
     catch (e) {
-      console.log('无法创建缓存目录：' + this.$options.path, e);
+      try {
+        fs.mkdirSync(this.$options.path, this.$options.dirMode);
+      }
+      catch (e) {
+        console.log('无法创建缓存目录：' + this.$options.path, e);
+      }
     }
   }
 
   getCacheFile (id) {
-    return this.$options.dir + id + this.$options.ext;
+    return this.$options.path + '/' + id + this.$options.ext;
   }
 
   fetch (id) {
     let content = null;
     let file = this.getCacheFile(id);
     try {
-      let fd = fs.openSync(file);
-      let dataItem = JSON.parse(fs.readFileSync(fd, {
+      let dataItem = JSON.parse(fs.readFileSync(file, {
         encoding: 'utf-8',
         flag: 'r'
       }));
-      fs.closeSync(fd);
 
       if (dataItem.lifeTime > 0 && dataItem.lifeTime < utils.getTimestamp()) {
         content = null;
@@ -97,7 +106,7 @@ export class FileCache extends CacheInterface {
     return content;
   }
 
-  contains (id, buffer_time = 0) {
+  contains (id) {
     let file = this.getCacheFile(id);
     try {
       fs.accessSync(file, fs.constants.R_OK & fs.constants.W_OK);
@@ -115,7 +124,7 @@ export class FileCache extends CacheInterface {
         data,
         lifeTime: lifeTime > 0 ? lifeTime + utils.getTimestamp() : 0
       };
-      fs.writeFileSync(file, JSON.stringify(dataTime), {
+      fs.writeFileSync(file, JSON.stringify(dataItem), {
         mode: this.$options.fileMode,
         encoding: 'utf-8',
         flag: 'w'

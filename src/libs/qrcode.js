@@ -1,11 +1,10 @@
 
+import Core from './core';
+
 const URL_QRCODE_CREATE = 'https://api.weixin.qq.com/cgi-bin/qrcode/create';
 const URL_QRCODE_FETCH = 'https://mp.weixin.qq.com/cgi-bin/showqrcode';
 
-var $instance;
-
 const init = function (instance) {
-  $instance = instance;
 };
 
 const temporary = async function (scene, expireSeconds = null) {
@@ -25,9 +24,9 @@ const temporary = async function (scene, expireSeconds = null) {
     action_name,
     action_info: {scene}
   };
-  let accessToken = await $instance.access_token.getToken();
-  let url = URL_QRCODE_CREATE + '?access_token=' + accessToken;
-  return await $instance.requestPost(url, data);
+  let instance = Core.getInstance();
+  let url = await instance.buildApiUrl(URL_QRCODE_CREATE);
+  return await instance.requestPost(url, data);
 };
 
 const forever = async function (scene) {
@@ -44,14 +43,15 @@ const forever = async function (scene) {
     action_name,
     action_info: {scene}
   };
-  let accessToken = await $instance.access_token.getToken();
-  let url = URL_QRCODE_CREATE + '?access_token=' + accessToken;
-  return await $instance.requestPost(url, data);
+  let instance = Core.getInstance();
+  let url = await instance.buildApiUrl(URL_QRCODE_CREATE);
+  return await instance.requestPost(url, data);
 };
 
 const url = async function (ticket) {
   let url = URL_QRCODE_FETCH + '?ticket=' + ticket;
-  return await $instance.requestFile(url);
+  let instance = Core.getInstance();
+  return await instance.requestFile(url);
 };
 
 export default {

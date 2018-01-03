@@ -1,12 +1,14 @@
 
 import merge from 'merge';
 import request from 'request';
-import * as AppServers from './app_server'
+import * as AppServers from './app_server';
 
 const defaultConfig = {
   appKey: '',
   appSecret: ''
 };
+
+var EasyWechatInstance = null;
 
 class EasyWechat {
   constructor (config = {}) {
@@ -20,6 +22,7 @@ class EasyWechat {
       return;
     }
 
+    EasyWechatInstance = this;
     this.$plugins.forEach((name) => {
       this[name].init(this);
     });
@@ -92,10 +95,20 @@ EasyWechat.prototype.requestPost = (url, data = null) => {
   });
 };
 
+EasyWechat.prototype.buildApiUrl = async (baseUrl) => {
+  let access_token = await EasyWechatInstance.access_token.getToken();
+  return baseUrl + '?access_token=' + access_token;
+};
+
 EasyWechat.prototype.$plugins = [];
 EasyWechat.registPlugin = (name, plugin) => {
   EasyWechat.prototype[name] = plugin;
   EasyWechat.prototype.$plugins.push(name);
 };
 
-export default EasyWechat;
+export default {
+  EasyWechat,
+  getInstance () {
+    return EasyWechatInstance;
+  }
+};

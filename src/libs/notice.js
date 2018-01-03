@@ -1,6 +1,7 @@
 
 import utils from '../utils';
 import merge from 'merge';
+import Core from './core';
 
 const URL_NOTICE_SEND = 'https://api.weixin.qq.com/cgi-bin/message/template/send';
 const URL_NOTICE_GET_INDUSTRY = 'https://api.weixin.qq.com/cgi-bin/template/get_industry';
@@ -9,11 +10,7 @@ const URL_NOTICE_ADD_TEMPLATE = 'https://api.weixin.qq.com/cgi-bin/template/api_
 const URL_NOTICE_GET_PRIVATE_TEMPLATES = 'https://api.weixin.qq.com/cgi-bin/template/get_all_private_template';
 const URL_NOTICE_DELETE_PRIVATE_TEMPLATES = 'https://api.weixin.qq.com/cgi-bin/template/del_private_template';
 
-var $instance;
-
 const init = function (instance) {
-  $instance = instance;
-
   $notice_message = new NoticeMessage;
 };
 
@@ -97,46 +94,49 @@ const send = async function (message = null) {
     return;
   }
 
-  let url = await utils.buildApiUrl($instance, URL_NOTICE_SEND);
-
-  return await $instance.requestPost(url, message);
+  let instance = Core.getInstance();
+  let url = await instance.buildApiUrl(URL_NOTICE_SEND);
+  return await instance.requestPost(url, message);
 };
 
 const getIndustry = async function () {
-  let url = await utils.buildApiUrl($instance, URL_NOTICE_GET_INDUSTRY);
-
-  return await $instance.requestPost(url);
+  let instance = Core.getInstance();
+  let url = await instance.buildApiUrl(URL_NOTICE_GET_INDUSTRY);
+  return await instance.requestPost(url);
 };
 
 const setIndustry = async function (industry_id1, industry_id2) {
-  let url = await utils.buildApiUrl($instance, URL_NOTICE_SET_INDUSTRY);
+  let instance = Core.getInstance();
+  let url = await instance.buildApiUrl(URL_NOTICE_SET_INDUSTRY);
   let data = {
     industry_id1: industry_id1,
     industry_id2: industry_id2
   }
-  return await $instance.requestPost(url, data);
+  return await instance.requestPost(url, data);
 };
 
 const addTemplate = async function (template_id_short) {
-  let url = await utils.buildApiUrl($instance, URL_NOTICE_ADD_TEMPLATE);
+  let instance = Core.getInstance();
+  let url = await instance.buildApiUrl(URL_NOTICE_ADD_TEMPLATE);
   let data = {
     template_id_short: template_id_short
   }
-  return await $instance.requestPost(url, data);
+  return await instance.requestPost(url, data);
 };
 
 const getPrivateTemplates = async function () {
-  let url = await utils.buildApiUrl($instance, URL_NOTICE_GET_PRIVATE_TEMPLATES);
-
-  return await $instance.requestPost(url);
+  let instance = Core.getInstance();
+  let url = await instance.buildApiUrl(URL_NOTICE_GET_PRIVATE_TEMPLATES);
+  return await instance.requestPost(url);
 };
 
 const deletePrivateTemplate = async function (template_id) {
-  let url = await utils.buildApiUrl($instance, URL_NOTICE_DELETE_PRIVATE_TEMPLATES);
+  let instance = Core.getInstance();
+  let url = await instance.buildApiUrl(URL_NOTICE_DELETE_PRIVATE_TEMPLATES);
   let data = {
     template_id: template_id
   }
-  return await $instance.requestPost(url, data);
+  return await instance.requestPost(url, data);
 };
 
 export default {

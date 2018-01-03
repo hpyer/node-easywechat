@@ -1,6 +1,6 @@
 /*!
- * EasyWechat.js v1.3.2
- * (c) 2017-2017 Hpyer
+ * EasyWechat.js v1.3.3
+ * (c) 2017-2018 Hpyer
  * Released under the MIT License.
  */
 
@@ -108,7 +108,9 @@ const defaultConfig = {
   appSecret: ''
 };
 
-class EasyWechat$1 {
+var EasyWechatInstance = null;
+
+class EasyWechat {
   constructor (config = {}) {
     this.$config = merge({}, defaultConfig, config);
     if (!this.$config.appKey) {
@@ -120,6 +122,7 @@ class EasyWechat$1 {
       return;
     }
 
+    EasyWechatInstance = this;
     this.$plugins.forEach((name) => {
       this[name].init(this);
     });
@@ -138,7 +141,7 @@ class EasyWechat$1 {
   }
 }
 
-EasyWechat$1.prototype.requestGet = (url) => {
+EasyWechat.prototype.requestGet = (url) => {
   return new Promise((resolve, reject) => {
     request({
       method: 'GET',
@@ -158,7 +161,7 @@ EasyWechat$1.prototype.requestGet = (url) => {
   });
 };
 
-EasyWechat$1.prototype.requestFile = (url) => {
+EasyWechat.prototype.requestFile = (url) => {
   return new Promise((resolve, reject) => {
     request({
       method: 'GET',
@@ -175,7 +178,7 @@ EasyWechat$1.prototype.requestFile = (url) => {
   });
 };
 
-EasyWechat$1.prototype.requestPost = (url, data = null) => {
+EasyWechat.prototype.requestPost = (url, data = null) => {
   return new Promise((resolve, reject) => {
     request({
       method: 'POST',
@@ -192,10 +195,22 @@ EasyWechat$1.prototype.requestPost = (url, data = null) => {
   });
 };
 
-EasyWechat$1.prototype.$plugins = [];
-EasyWechat$1.registPlugin = (name, plugin) => {
-  EasyWechat$1.prototype[name] = plugin;
-  EasyWechat$1.prototype.$plugins.push(name);
+EasyWechat.prototype.buildApiUrl = (baseUrl) => __async(function*(){
+  let access_token = yield EasyWechatInstance.access_token.getToken();
+  return baseUrl + '?access_token=' + access_token;
+}());
+
+EasyWechat.prototype.$plugins = [];
+EasyWechat.registPlugin = (name, plugin) => {
+  EasyWechat.prototype[name] = plugin;
+  EasyWechat.prototype.$plugins.push(name);
+};
+
+var Core = {
+  EasyWechat,
+  getInstance () {
+    return EasyWechatInstance;
+  }
 };
 
 const URL_MP = 'https://open.weixin.qq.com/connect/oauth2/authorize';
@@ -214,38 +229,36 @@ class User {
   }
 }
 
-var $instance;
-
 const init = function (instance) {
-  $instance = instance;
 };
 
 const redirect = function (state = '') {
-  if (!$instance.$config.oauth) return '';
-  if (!$instance.$config.oauth.scope) {
+  let instance = Core.getInstance();
+  if (!instance.$config.oauth) return '';
+  if (!instance.$config.oauth.scope) {
     throw new Error('未填写授权scope');
     return '';
   }
-  if (!$instance.$config.oauth.redirect) {
+  if (!instance.$config.oauth.redirect) {
     throw new Error('未填写授权回调地址');
     return '';
   }
-  let redirect_uri = $instance.$config.oauth.redirect;
+  let redirect_uri = instance.$config.oauth.redirect;
   if (redirect_uri.substr(0, 7) != 'http://' && redirect_uri.substr(0, 8) != 'https://') {
     throw new Error('请填写完整的回调地址，以“http://”或“https://”开头');
     return '';
   }
 
   let url = URL_MP;
-  if ($instance.$config.oauth.scope == 'snsapi_login') {
+  if (instance.$config.oauth.scope == 'snsapi_login') {
     url = URL_OP;
   }
 
   let params = {
-    appid: $instance.$config.appKey,
+    appid: instance.$config.appKey,
     redirect_uri: redirect_uri,
     response_type: 'code',
-    scope: $instance.$config.oauth.scope
+    scope: instance.$config.oauth.scope
   };
   if (state) {
     params.state = state;
@@ -256,22 +269,24 @@ const redirect = function (state = '') {
 
 const user = function (code) {return __async(function*(){
   let user = yield fetchAccessToken(code);
-  if ($instance.$config.oauth.scope != 'snsapi_base') {
+  let instance = Core.getInstance();
+  if (instance.$config.oauth.scope != 'snsapi_base') {
     user = yield fetchUserInfo(user);
   }
   return user;
 }())};
 
 const fetchAccessToken = function (code) {return __async(function*(){
+  let instance = Core.getInstance();
   let params = {
-    appid: $instance.$config.appKey,
-    secret: $instance.$config.appSecret,
+    appid: instance.$config.appKey,
+    secret: instance.$config.appSecret,
     code: code,
     grant_type: 'authorization_code'
   };
   let url = URL_ACCESS_TOKEN + '?' + qs.stringify(params);
 
-  let response = yield $instance.requestGet(url);
+  let response = yield instance.requestGet(url);
   let user = new User;
   user.id = response.openid;
   user.token = response;
@@ -286,7 +301,8 @@ const fetchUserInfo = function (user) {return __async(function*(){
   };
   let url = URL_USER_INFO + '?' + qs.stringify(params);
 
-  let response = yield $instance.requestGet(url);
+  let instance = Core.getInstance();
+  let response = yield instance.requestGet(url);
   if (response.errcode) {
     console.log('oauth.fetchUserInfo()', response);
     return false;
@@ -318,12 +334,6 @@ const randomString = function (len = 16) {
   return str;
 };
 
-const buildApiUrl = function (instance, baseUrl) {return __async(function*(){
-  let access_token = yield instance.access_token.getToken();
-  return baseUrl + '?access_token=' + access_token;
-}())};
-
-// 复制对象方法
 const cloneObj = function (oldObj) {
   if (!oldObj) return oldObj;
   if (typeof(oldObj) != 'object') return oldObj;
@@ -334,7 +344,6 @@ const cloneObj = function (oldObj) {
   return newObj;
 };
 
-// 扩展对象
 const extendObj = function () {
   let args = arguments;
   if (args.length == 0) return null;
@@ -352,17 +361,20 @@ const extendObj = function () {
 var utils = {
   getTimestamp,
   randomString,
-  buildApiUrl,
   cloneObj,
   extendObj
 };
 
 class CacheInterface {
+  constructor () {
+    this.$options = {};
+  }
+
   fetch (id) {
     return null;
   }
 
-  contains (id, buffer_time = 0) {
+  contains (id) {
     return true;
   }
 
@@ -377,6 +389,7 @@ class CacheInterface {
 
 class MemoryCache extends CacheInterface {
   constructor () {
+    super();
     this.$datas = {};
   }
 
@@ -406,6 +419,7 @@ class MemoryCache extends CacheInterface {
 
 class FileCache extends CacheInterface {
   constructor (options) {
+    super();
     let defaultOptions = {
       path: '',
       dirMode: 0o777,
@@ -415,27 +429,30 @@ class FileCache extends CacheInterface {
     this.$options = utils.extendObj(defaultOptions, options);
     this.$options.path = path.resolve(this.$options.path);
     try {
-      fs.mkdirSync(this.$options.path, this.$options.dirMode);
+      fs.accessSync(this.$options.path, fs.constants.R_OK & fs.constants.W_OK);
     }
     catch (e) {
-      console.log('无法创建缓存目录：' + this.$options.path, e);
+      try {
+        fs.mkdirSync(this.$options.path, this.$options.dirMode);
+      }
+      catch (e) {
+        console.log('无法创建缓存目录：' + this.$options.path, e);
+      }
     }
   }
 
   getCacheFile (id) {
-    return this.$options.dir + id + this.$options.ext;
+    return this.$options.path + '/' + id + this.$options.ext;
   }
 
   fetch (id) {
     let content = null;
     let file = this.getCacheFile(id);
     try {
-      let fd = fs.openSync(file);
-      let dataItem = JSON.parse(fs.readFileSync(fd, {
+      let dataItem = JSON.parse(fs.readFileSync(file, {
         encoding: 'utf-8',
         flag: 'r'
       }));
-      fs.closeSync(fd);
 
       if (dataItem.lifeTime > 0 && dataItem.lifeTime < utils.getTimestamp()) {
         content = null;
@@ -451,7 +468,7 @@ class FileCache extends CacheInterface {
     return content;
   }
 
-  contains (id, buffer_time = 0) {
+  contains (id) {
     let file = this.getCacheFile(id);
     try {
       fs.accessSync(file, fs.constants.R_OK & fs.constants.W_OK);
@@ -469,7 +486,7 @@ class FileCache extends CacheInterface {
         data,
         lifeTime: lifeTime > 0 ? lifeTime + utils.getTimestamp() : 0
       };
-      fs.writeFileSync(file, JSON.stringify(dataTime), {
+      fs.writeFileSync(file, JSON.stringify(dataItem), {
         mode: this.$options.fileMode,
         encoding: 'utf-8',
         flag: 'w'
@@ -502,19 +519,15 @@ var caches = Object.freeze({
 	FileCache: FileCache
 });
 
-var $instance$1;
-
 const init$1 = function (instance) {
-  $instance$1 = instance;
-
-  if (!$instance$1.$config.cache) {
-    switch ($instance$1.$config.cache_driver) {
+  if (!instance.$config.cache) {
+    switch (instance.$config.cache_driver) {
       case 'file':
-        $instance$1.$config.cache = new FileCache($instance$1.$config.cache_options);
+        instance.$config.cache = new FileCache(instance.$config.cache_options);
         break;
       case 'memory':
       default:
-        $instance$1.$config.cache = new MemoryCache;
+        instance.$config.cache = new MemoryCache;
     }
   }
 };
@@ -527,7 +540,7 @@ const setCache = function (cache) {
     && typeof cache.save == 'function'
     && typeof cache.delete == 'function'
   ) {
-    $instance$1.$config.cache = cache;
+    Core.getInstance().$config.cache = cache;
   }
 };
 
@@ -538,40 +551,40 @@ var cache = {
 
 const URL_ACCESS_TOKEN$1 = 'https://api.weixin.qq.com/cgi-bin/token';
 
-var $instance$2;
-
 const init$2 = function (instance) {
-  $instance$2 = instance;
-
-  $instance$2.$config.access_token_cache_key = $instance$2.$config.access_token_cache_key || 'NODE_EASYWECHAT_ACCESS_TOKEN';
+  instance.$config.access_token_cache_key = instance.$config.access_token_cache_key || 'NODE_EASYWECHAT_ACCESS_TOKEN';
 };
 
 const fetchAccessToken$1 = function () {return __async(function*(){
+  let instance = Core.getInstance();
   let params = {
-    appid: $instance$2.$config.appKey,
-    secret: $instance$2.$config.appSecret,
+    appid: instance.$config.appKey,
+    secret: instance.$config.appSecret,
     grant_type: 'client_credential'
   };
   let url = URL_ACCESS_TOKEN$1 + '?' + qs.stringify(params);
 
-  return yield $instance$2.requestGet(url);
+  return yield instance.requestGet(url);
 }())};
 
 const getToken = function (force = false) {return __async(function*(){
   let accessToken = null;
-  if (force || !$instance$2.$config.cache.contains($instance$2.$config.access_token_cache_key)) {
+  let instance = Core.getInstance();
+  if (force || !instance.$config.cache.contains(instance.$config.access_token_cache_key)) {
     let res = yield fetchAccessToken$1();
     setToken(res.access_token, res.expires_in);
     accessToken = res.access_token;
   }
   else {
-    accessToken = $instance$2.$config.cache.fetch($instance$2.$config.access_token_cache_key);
+    accessToken = instance.$config.cache.fetch(instance.$config.access_token_cache_key);
   }
   return accessToken;
 }())};
 
 const setToken = function (access_token, expires_in = 7200) {
-  $instance$2.$config.cache.save($instance$2.$config.access_token_cache_key, access_token, expires_in);
+  let instance = Core.getInstance();
+  console.log('写入AccessToken: ', instance.$config.access_token_cache_key, access_token, expires_in);
+  instance.$config.cache.save(instance.$config.access_token_cache_key, access_token, expires_in);
 };
 
 var access_token = {
@@ -582,12 +595,8 @@ var access_token = {
 
 const URL_JSAPI_TICKET = 'https://api.weixin.qq.com/cgi-bin/ticket/getticket';
 
-var $instance$3;
-
 const init$3 = function (instance) {
-  $instance$3 = instance;
-
-  $instance$3.$config.jssdk_cache_key = $instance$3.$config.jssdk_cache_key || 'NODE_EASYWECHAT_JSSKD_TICKET';
+  instance.$config.jssdk_cache_key = instance.$config.jssdk_cache_key || 'NODE_EASYWECHAT_JSSKD_TICKET';
 };
 
 var $url = '';
@@ -597,25 +606,28 @@ const setUrl = function (url) {
 };
 
 const fetchJsapiTicket = function () {return __async(function*(){
-  let accessToken = yield $instance$3.access_token.getToken();
+  let instance = Core.getInstance();
+  let accessToken = yield instance.access_token.getToken();
   let params = {
     access_token: accessToken,
     type: 'jsapi'
   };
   let url = URL_JSAPI_TICKET + '?' + qs.stringify(params);
 
-  return yield $instance$3.requestGet(url);
+  return yield instance.requestGet(url);
 }())};
 
 const config = function (APIs, debug = false, json = true) {return __async(function*(){
+  let instance = Core.getInstance();
   let jssdkTicket = null;
-  if (!$instance$3.$config.cache.contains($instance$3.$config.jssdk_cache_key)) {
+  if (!instance.$config.cache.contains(instance.$config.jssdk_cache_key)) {
     let res = yield fetchJsapiTicket();
-    $instance$3.$config.cache.save($instance$3.$config.jssdk_cache_key, res.ticket, res.expires_in);
+    console.log('写入JSSDK: ', instance.$config.jssdk_cache_key, res.ticket, res.expires_in);
+    instance.$config.cache.save(instance.$config.jssdk_cache_key, res.ticket, res.expires_in);
     jssdkTicket = res.ticket;
   }
   else {
-    jssdkTicket = $instance$3.$config.cache.fetch($instance$3.$config.jssdk_cache_key);
+    jssdkTicket = instance.$config.cache.fetch(instance.$config.jssdk_cache_key);
   }
 
   let url = $url;
@@ -631,7 +643,7 @@ const config = function (APIs, debug = false, json = true) {return __async(funct
 
   let config = {
     debug,
-    appId: $instance$3.$config.appKey,
+    appId: instance.$config.appKey,
     timestamp,
     nonceStr: noncestr,
     signature,
@@ -639,7 +651,7 @@ const config = function (APIs, debug = false, json = true) {return __async(funct
     jsApiList: APIs
   };
 
-  // 使用完清空设置的url
+  /* 使用完清空设置的url */
   $url = '';
 
   return json ? JSON.stringify(config) : config;
@@ -857,11 +869,7 @@ var messages = Object.freeze({
 	News: News
 });
 
-var $instance$4;
-
 const init$4 = function (instance) {
-  $instance$4 = instance;
-
   $server_handler = function () {};
 };
 
@@ -874,7 +882,8 @@ const setMessageHandler = function (handler) {
 };
 
 const serve = function () {return __async(function*(){
-  let app = $instance$4.$config.app;
+  let instance = Core.getInstance();
+  let app = instance.$config.app;
   if (!app) {
     throw new Error('未在配置文件中设置应用服务器');
     return;
@@ -885,7 +894,7 @@ const serve = function () {return __async(function*(){
       app.sendResponse('Hello node-easywechat');
       return;
     }
-    let hash_data = [query.nonce, query.timestamp, $instance$4.$config.token].sort();
+    let hash_data = [query.nonce, query.timestamp, instance.$config.token].sort();
     let hash = sha1(hash_data.join(''));
     if (hash === query.signature) {
       app.sendResponse(query.echostr);
@@ -963,11 +972,7 @@ const URL_NOTICE_ADD_TEMPLATE = 'https://api.weixin.qq.com/cgi-bin/template/api_
 const URL_NOTICE_GET_PRIVATE_TEMPLATES = 'https://api.weixin.qq.com/cgi-bin/template/get_all_private_template';
 const URL_NOTICE_DELETE_PRIVATE_TEMPLATES = 'https://api.weixin.qq.com/cgi-bin/template/del_private_template';
 
-var $instance$5;
-
 const init$5 = function (instance) {
-  $instance$5 = instance;
-
   $notice_message = new NoticeMessage;
 };
 
@@ -1051,46 +1056,49 @@ const send = function (message = null) {return __async(function*(){
     return;
   }
 
-  let url = yield utils.buildApiUrl($instance$5, URL_NOTICE_SEND);
-
-  return yield $instance$5.requestPost(url, message);
+  let instance = Core.getInstance();
+  let url = yield instance.buildApiUrl(URL_NOTICE_SEND);
+  return yield instance.requestPost(url, message);
 }())};
 
 const getIndustry = function () {return __async(function*(){
-  let url = yield utils.buildApiUrl($instance$5, URL_NOTICE_GET_INDUSTRY);
-
-  return yield $instance$5.requestPost(url);
+  let instance = Core.getInstance();
+  let url = yield instance.buildApiUrl(URL_NOTICE_GET_INDUSTRY);
+  return yield instance.requestPost(url);
 }())};
 
 const setIndustry = function (industry_id1, industry_id2) {return __async(function*(){
-  let url = yield utils.buildApiUrl($instance$5, URL_NOTICE_SET_INDUSTRY);
+  let instance = Core.getInstance();
+  let url = yield instance.buildApiUrl(URL_NOTICE_SET_INDUSTRY);
   let data = {
     industry_id1: industry_id1,
     industry_id2: industry_id2
   };
-  return yield $instance$5.requestPost(url, data);
+  return yield instance.requestPost(url, data);
 }())};
 
 const addTemplate = function (template_id_short) {return __async(function*(){
-  let url = yield utils.buildApiUrl($instance$5, URL_NOTICE_ADD_TEMPLATE);
+  let instance = Core.getInstance();
+  let url = yield instance.buildApiUrl(URL_NOTICE_ADD_TEMPLATE);
   let data = {
     template_id_short: template_id_short
   };
-  return yield $instance$5.requestPost(url, data);
+  return yield instance.requestPost(url, data);
 }())};
 
 const getPrivateTemplates = function () {return __async(function*(){
-  let url = yield utils.buildApiUrl($instance$5, URL_NOTICE_GET_PRIVATE_TEMPLATES);
-
-  return yield $instance$5.requestPost(url);
+  let instance = Core.getInstance();
+  let url = yield instance.buildApiUrl(URL_NOTICE_GET_PRIVATE_TEMPLATES);
+  return yield instance.requestPost(url);
 }())};
 
 const deletePrivateTemplate = function (template_id) {return __async(function*(){
-  let url = yield utils.buildApiUrl($instance$5, URL_NOTICE_DELETE_PRIVATE_TEMPLATES);
+  let instance = Core.getInstance();
+  let url = yield instance.buildApiUrl(URL_NOTICE_DELETE_PRIVATE_TEMPLATES);
   let data = {
     template_id: template_id
   };
-  return yield $instance$5.requestPost(url, data);
+  return yield instance.requestPost(url, data);
 }())};
 
 var notice = {
@@ -1133,10 +1141,7 @@ var notice = {
 const URL_QRCODE_CREATE = 'https://api.weixin.qq.com/cgi-bin/qrcode/create';
 const URL_QRCODE_FETCH = 'https://mp.weixin.qq.com/cgi-bin/showqrcode';
 
-var $instance$6;
-
 const init$6 = function (instance) {
-  $instance$6 = instance;
 };
 
 const temporary = function (scene, expireSeconds = null) {return __async(function*(){
@@ -1156,9 +1161,9 @@ const temporary = function (scene, expireSeconds = null) {return __async(functio
     action_name,
     action_info: {scene}
   };
-  let accessToken = yield $instance$6.access_token.getToken();
-  let url = URL_QRCODE_CREATE + '?access_token=' + accessToken;
-  return yield $instance$6.requestPost(url, data);
+  let instance = Core.getInstance();
+  let url = yield instance.buildApiUrl(URL_QRCODE_CREATE);
+  return yield instance.requestPost(url, data);
 }())};
 
 const forever = function (scene) {return __async(function*(){
@@ -1175,14 +1180,15 @@ const forever = function (scene) {return __async(function*(){
     action_name,
     action_info: {scene}
   };
-  let accessToken = yield $instance$6.access_token.getToken();
-  let url = URL_QRCODE_CREATE + '?access_token=' + accessToken;
-  return yield $instance$6.requestPost(url, data);
+  let instance = Core.getInstance();
+  let url = yield instance.buildApiUrl(URL_QRCODE_CREATE);
+  return yield instance.requestPost(url, data);
 }())};
 
 const url$1 = function (ticket) {return __async(function*(){
   let url = URL_QRCODE_FETCH + '?ticket=' + ticket;
-  return yield $instance$6.requestFile(url);
+  let instance = Core.getInstance();
+  return yield instance.requestFile(url);
 }())};
 
 var qrcode = {
@@ -1211,16 +1217,14 @@ class User$1 {
   }
 }
 
-var $instance$7;
-
 const init$7 = function (instance) {
-  $instance$7 = instance;
 };
 
 const get = function (openid, lang = 'zh_CN') {return __async(function*(){
-  let accessToken = yield $instance$7.access_token.getToken();
-  let url = URL_USER_GET + '?access_token=' + accessToken + '&openid=' + openid + '&lang=' + lang;
-  let response = yield $instance$7.requestGet(url);
+  let instance = Core.getInstance();
+  let url = yield instance.buildApiUrl(URL_USER_GET);
+  url += '&openid=' + openid + '&lang=' + lang;
+  let response = yield instance.requestGet(url);
   let user = new User$1;
   user.id = response.openid;
   user.nickname = response.nickname;
@@ -1231,55 +1235,55 @@ const get = function (openid, lang = 'zh_CN') {return __async(function*(){
 }())};
 
 const batchGet = function (user_list) {return __async(function*(){
+  let instance = Core.getInstance();
   let data = {
     user_list
   };
-  let accessToken = yield $instance$7.access_token.getToken();
-  let url = URL_USER_BATCHGET + '?access_token=' + accessToken;
-  return yield $instance$7.requestPost(url, data);
+  let url = yield instance.buildApiUrl(URL_USER_BATCHGET);
+  return yield instance.requestPost(url, data);
 }())};
 
 const lists = function (next_openid = null) {return __async(function*(){
-  let accessToken = yield $instance$7.access_token.getToken();
-  let url = URL_USER_LISTS + '?access_token=' + accessToken;
+  let instance = Core.getInstance();
+  let url = yield instance.buildApiUrl(URL_USER_LISTS);
   if (next_openid) {
     url += '&next_openid=' + next_openid;
   }
-  return yield $instance$7.requestGet(url);
+  return yield instance.requestGet(url);
 }())};
 
 const remark = function (openid, remark) {return __async(function*(){
-  let accessToken = yield $instance$7.access_token.getToken();
-  let url = URL_USER_REMARK + '?access_token=' + accessToken;
-  return yield $instance$7.requestPost(url);
+  let instance = Core.getInstance();
+  let url = yield instance.buildApiUrl(URL_USER_REMARK);
+  return yield instance.requestPost(url);
 }())};
 
 const blacklist = function (begin_openid) {return __async(function*(){
+  let instance = Core.getInstance();
   let data = {};
   if (begin_openid) {
     data.begin_openid = begin_openid;
   }
-  let accessToken = yield $instance$7.access_token.getToken();
-  let url = URL_USER_BLACKLIST + '?access_token=' + accessToken;
-  return yield $instance$7.requestPost(url, data);
+  let url = yield instance.buildApiUrl(URL_USER_BLACKLIST);
+  return yield instance.requestPost(url, data);
 }())};
 
 const batchBlock = function (openid_list) {return __async(function*(){
+  let instance = Core.getInstance();
   let data = {
     openid_list
   };
-  let accessToken = yield $instance$7.access_token.getToken();
-  let url = URL_USER_BLACKLIST_BLOCK + '?access_token=' + accessToken;
-  return yield $instance$7.requestPost(url, data);
+  let url = yield instance.buildApiUrl(URL_USER_BLACKLIST_BLOCK);
+  return yield instance.requestPost(url, data);
 }())};
 
 const batchUnblock = function (openid_list) {return __async(function*(){
+  let instance = Core.getInstance();
   let data = {
     openid_list
   };
-  let accessToken = yield $instance$7.access_token.getToken();
-  let url = URL_USER_BLACKLIST_UNBLOCK + '?access_token=' + accessToken;
-  return yield $instance$7.requestPost(url, data);
+  let url = yield instance.buildApiUrl(URL_USER_BLACKLIST_UNBLOCK);
+  return yield instance.requestPost(url, data);
 }())};
 
 const block = function (openid) {return __async(function*(){
@@ -1308,36 +1312,34 @@ const URL_MENU_GET_CURRENT = 'https://api.weixin.qq.com/cgi-bin/get_current_self
 const URL_MENU_CREATE = 'https://api.weixin.qq.com/cgi-bin/menu/create';
 const URL_MENU_DELETE = 'https://api.weixin.qq.com/cgi-bin/menu/delete';
 
-var $instance$8;
-
 const init$8 = function (instance) {
-  $instance$8 = instance;
 };
 
 const all = function () {return __async(function*(){
-  let accessToken = yield $instance$8.access_token.getToken();
-  let url = URL_MENU_GET_ALL + '?access_token=' + accessToken;
-  return yield $instance$8.requestPost(url);
+  let instance = Core.getInstance();
+  let url = yield instance.buildApiUrl(URL_MENU_GET_ALL);
+  return yield instance.requestPost(url);
 }())};
 
 const current = function () {return __async(function*(){
-  let accessToken = yield $instance$8.access_token.getToken();
-  let url = URL_MENU_GET_CURRENT + '?access_token=' + accessToken;
-  return yield $instance$8.requestPost(url);
+  let instance = Core.getInstance();
+  let url = yield instance.buildApiUrl(URL_MENU_GET_CURRENT);
+  return yield instance.requestPost(url);
 }())};
 
 const add = function (buttons) {return __async(function*(){
   let data = {
     button: buttons
   };
-  let accessToken = yield $instance$8.access_token.getToken();
-  let url = URL_MENU_CREATE + '?access_token=' + accessToken;
-  return yield $instance$8.requestPost(url, data);
+    let instance = Core.getInstance();
+  let url = yield instance.buildApiUrl(URL_MENU_CREATE);
+  return yield instance.requestPost(url, data);
 }())};
 
 const destroy = function () {return __async(function*(){
-  let url = URL_MENU_DELETE + '?access_token=' + accessToken;
-  return yield $instance$8.requestPost(url);
+  let instance = Core.getInstance();
+  let url = yield instance.buildApiUrl(URL_MENU_DELETE);
+  return yield instance.requestPost(url);
 }())};
 
 var menu = {
@@ -1350,10 +1352,7 @@ var menu = {
 
 const URL_SHORTURL = 'https://api.weixin.qq.com/cgi-bin/shorturl';
 
-var $instance$9;
-
 const init$9 = function (instance) {
-  $instance$9 = instance;
 };
 
 const shorten = function (long_url) {return __async(function*(){
@@ -1361,9 +1360,9 @@ const shorten = function (long_url) {return __async(function*(){
     action: 'long2short',
     long_url
   };
-  let accessToken = yield $instance$9.access_token.getToken();
-  let url = URL_SHORTURL + '?access_token=' + accessToken;
-  return yield $instance$9.requestPost(url, data);
+  let instance = Core.getInstance();
+  let url = yield instance.buildApiUrl(URL_SHORTURL);
+  return yield instance.requestPost(url, data);
 }())};
 
 var url$2 = {
@@ -1371,25 +1370,27 @@ var url$2 = {
   shorten
 };
 
-EasyWechat$1.registPlugin('oauth', oauth);
-EasyWechat$1.registPlugin('cache', cache);
-EasyWechat$1.registPlugin('access_token', access_token);
-EasyWechat$1.registPlugin('jssdk', jssdk);
-EasyWechat$1.registPlugin('server', server);
-EasyWechat$1.registPlugin('notice', notice);
-EasyWechat$1.registPlugin('qrcode', qrcode);
-EasyWechat$1.registPlugin('user', user$1);
-EasyWechat$1.registPlugin('menu', menu);
-EasyWechat$1.registPlugin('url', url$2);
+Core.EasyWechat.registPlugin('oauth', oauth);
+Core.EasyWechat.registPlugin('cache', cache);
+Core.EasyWechat.registPlugin('access_token', access_token);
+Core.EasyWechat.registPlugin('jssdk', jssdk);
+Core.EasyWechat.registPlugin('server', server);
+Core.EasyWechat.registPlugin('notice', notice);
+Core.EasyWechat.registPlugin('qrcode', qrcode);
+Core.EasyWechat.registPlugin('user', user$1);
+Core.EasyWechat.registPlugin('menu', menu);
+Core.EasyWechat.registPlugin('url', url$2);
 
-EasyWechat$1.Cache = {};
+Core.EasyWechat.Cache = {};
 for (let k in caches) {
-  EasyWechat$1.Cache[k] = caches[k];
+  Core.EasyWechat.Cache[k] = caches[k];
 }
 
-EasyWechat$1.Message = {};
+Core.EasyWechat.Message = {};
 for (let k in messages) {
-  EasyWechat$1.Message[k] = messages[k];
+  Core.EasyWechat.Message[k] = messages[k];
 }
 
-module.exports = EasyWechat$1;
+var index = Core.EasyWechat;
+
+module.exports = index;

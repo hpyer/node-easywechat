@@ -1,6 +1,6 @@
 {
   "name": "node-easywechat",
-  "version": "1.3.2",
+  "version": "1.3.3",
   "description": "EasyWechat SDK for Node.js (NOT OFFICIAL)",
   "main": "dist/index.js",
   "scripts": {

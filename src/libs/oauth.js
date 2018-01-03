@@ -1,5 +1,6 @@
 
 import qs from 'qs';
+import Core from './core';
 
 const scopes = ['snsapi_base', 'snsapi_userinfo', 'snsapi_login'];
 
@@ -19,38 +20,36 @@ class User {
   }
 };
 
-var $instance;
-
 const init = function (instance) {
-  $instance = instance;
 };
 
 const redirect = function (state = '') {
-  if (!$instance.$config.oauth) return '';
-  if (!$instance.$config.oauth.scope) {
+  let instance = Core.getInstance();
+  if (!instance.$config.oauth) return '';
+  if (!instance.$config.oauth.scope) {
     throw new Error('未填写授权scope');
     return '';
   }
-  if (!$instance.$config.oauth.redirect) {
+  if (!instance.$config.oauth.redirect) {
     throw new Error('未填写授权回调地址');
     return '';
   }
-  let redirect_uri = $instance.$config.oauth.redirect;
+  let redirect_uri = instance.$config.oauth.redirect;
   if (redirect_uri.substr(0, 7) != 'http://' && redirect_uri.substr(0, 8) != 'https://') {
     throw new Error('请填写完整的回调地址，以“http://”或“https://”开头');
     return '';
   }
 
   let url = URL_MP;
-  if ($instance.$config.oauth.scope == 'snsapi_login') {
+  if (instance.$config.oauth.scope == 'snsapi_login') {
     url = URL_OP;
   }
 
   let params = {
-    appid: $instance.$config.appKey,
+    appid: instance.$config.appKey,
     redirect_uri: redirect_uri,
     response_type: 'code',
-    scope: $instance.$config.oauth.scope
+    scope: instance.$config.oauth.scope
   }
   if (state) {
     params.state = state;
@@ -61,22 +60,24 @@ const redirect = function (state = '') {
 
 const user = async function (code) {
   let user = await fetchAccessToken(code);
-  if ($instance.$config.oauth.scope != 'snsapi_base') {
+  let instance = Core.getInstance();
+  if (instance.$config.oauth.scope != 'snsapi_base') {
     user = await fetchUserInfo(user);
   }
   return user;
 };
 
 const fetchAccessToken = async function (code) {
+  let instance = Core.getInstance();
   let params = {
-    appid: $instance.$config.appKey,
-    secret: $instance.$config.appSecret,
+    appid: instance.$config.appKey,
+    secret: instance.$config.appSecret,
     code: code,
     grant_type: 'authorization_code'
   };
   let url = URL_ACCESS_TOKEN + '?' + qs.stringify(params);
 
-  let response = await $instance.requestGet(url);
+  let response = await instance.requestGet(url);
   let user = new User;
   user.id = response.openid;
   user.token = response;
@@ -91,7 +92,8 @@ const fetchUserInfo = async function (user) {
   };
   let url = URL_USER_INFO + '?' + qs.stringify(params);
 
-  let response = await $instance.requestGet(url);
+  let instance = Core.getInstance();
+  let response = await instance.requestGet(url);
   if (response.errcode) {
     console.log('oauth.fetchUserInfo()', response);
     return false;

@@ -1,20 +1,17 @@
 
 import utils from '../utils';
 import {MemoryCache, FileCache} from './caches';
-
-var $instance;
+import Core from './core';
 
 const init = function (instance) {
-  $instance = instance;
-
-  if (!$instance.$config.cache) {
-    switch ($instance.$config.cache_driver) {
+  if (!instance.$config.cache) {
+    switch (instance.$config.cache_driver) {
       case 'file':
-        $instance.$config.cache = new FileCache($instance.$config.cache_options);
+        instance.$config.cache = new FileCache(instance.$config.cache_options);
         break;
       case 'memory':
       default:
-        $instance.$config.cache = new MemoryCache;
+        instance.$config.cache = new MemoryCache;
     }
   }
 };
@@ -27,7 +24,7 @@ const setCache = function (cache) {
     && typeof cache.save == 'function'
     && typeof cache.delete == 'function'
   ) {
-    $instance.$config.cache = cache
+    Core.getInstance().$config.cache = cache
   }
 };
 

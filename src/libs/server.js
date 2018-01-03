@@ -3,12 +3,9 @@ import {Text} from './messages';
 import utils from '../utils';
 import sha1 from 'sha1';
 import {parseString} from 'xml2js';
-
-var $instance;
+import Core from './core';
 
 const init = function (instance) {
-  $instance = instance;
-
   $server_handler = function () {};
 };
 
@@ -21,7 +18,8 @@ const setMessageHandler = function (handler) {
 };
 
 const serve = async function () {
-  let app = $instance.$config.app;
+  let instance = Core.getInstance();
+  let app = instance.$config.app;
   if (!app) {
     throw new Error('未在配置文件中设置应用服务器');
     return;
@@ -32,7 +30,7 @@ const serve = async function () {
       app.sendResponse('Hello node-easywechat');
       return;
     }
-    let hash_data = [query.nonce, query.timestamp, $instance.$config.token].sort();
+    let hash_data = [query.nonce, query.timestamp, instance.$config.token].sort();
     let hash = sha1(hash_data.join(''));
     if (hash === query.signature) {
       app.sendResponse(query.echostr);
