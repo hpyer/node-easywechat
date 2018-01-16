@@ -32,7 +32,10 @@ export class MemoryCache extends CacheInterface {
   }
 
   fetch (id) {
-    return this.contains(id) ? this.$datas[id].data : null;
+    if (!this.contains(id) || (this.$datas[id].lifeTime > 0 && this.$datas[id].lifeTime < utils.getTimestamp())) {
+      return null;
+    }
+    return this.$datas[id].data;
   }
 
   contains (id) {

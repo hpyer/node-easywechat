@@ -30,15 +30,12 @@ const fetchJsapiTicket = async function () {
 
 const config = async function (APIs, debug = false, json = true) {
   let instance = Core.getInstance();
-  let jssdkTicket = null;
-  if (!instance.$config.cache.contains(instance.$config.jssdk_cache_key)) {
+  let jssdkTicket = instance.$config.cache.fetch(instance.$config.jssdk_cache_key);
+  if (!jssdkTicket) {
     let res = await fetchJsapiTicket();
     console.log('写入JSSDK: ', instance.$config.jssdk_cache_key, res.ticket, res.expires_in)
     instance.$config.cache.save(instance.$config.jssdk_cache_key, res.ticket, res.expires_in);
     jssdkTicket = res.ticket;
-  }
-  else {
-    jssdkTicket = instance.$config.cache.fetch(instance.$config.jssdk_cache_key);
   }
 
   let url = $url;

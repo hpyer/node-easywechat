@@ -21,15 +21,12 @@ const fetchAccessToken = async function () {
 };
 
 const getToken = async function (force = false) {
-  let accessToken = null;
   let instance = Core.getInstance();
-  if (force || !instance.$config.cache.contains(instance.$config.access_token_cache_key)) {
+  let accessToken = instance.$config.cache.fetch(instance.$config.access_token_cache_key);
+  if (force || !accessToken) {
     let res = await fetchAccessToken();
     setToken(res.access_token, res.expires_in);
     accessToken = res.access_token;
-  }
-  else {
-    accessToken = instance.$config.cache.fetch(instance.$config.access_token_cache_key);
   }
   return accessToken;
 };
