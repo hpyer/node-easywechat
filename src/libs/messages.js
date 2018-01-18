@@ -51,6 +51,20 @@ export class Raw {
   }
 };
 
+export class Encrypt extends Raw {
+  constructor (options) {
+    super('');
+    this.dataParams.Encrypt = options.encrypt || '';
+    this.dataParams.MsgSignature = options.sign || '';
+    this.dataParams.TimeStamp = options.timestamp || getTimestamp();
+    this.dataParams.Nonce = options.nonce || '';
+  }
+
+  content (v) {
+    this.dataParams.Content = v
+  }
+};
+
 export class Text extends Raw {
   constructor (options) {
     super('');

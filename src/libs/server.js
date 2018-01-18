@@ -1,7 +1,8 @@
 
-import {Text} from './messages';
+import {Text, Encrypt} from './messages';
 import WechatCrypto from 'wechat-crypto';
 import {parseString} from 'xml2js';
+import {sha1, getTimestamp} from '../utils';
 import Core from './core';
 
 const init = function (instance) {
@@ -23,14 +24,24 @@ const serve = async function () {
     throw new Error('未在配置文件中设置应用服务器');
     return;
   }
-  let crypto = new WechatCrypto(instance.$config.token, instance.$config.aesKey, instance.$config.appKey);
+  let crypto = null;
+  if (instance.$config.aesKey) {
+    crypto = new WechatCrypto(instance.$config.token, instance.$config.aesKey, instance.$config.appKey);
+  }
   if (app.getMethod() == 'GET') {
     let query = app.getQuery();
     if (!query.signature || !query.echostr || !query.timestamp || !query.nonce) {
       app.sendResponse('Hello node-easywechat');
       return;
     }
-    let hash = crypto.getSignature(query.timestamp, query.nonce, query.encrypt);
+    let hash;
+    if (crypto) {
+      hash = crypto.getSignature(query.timestamp || '', query.nonce || '', query.encrypt || '');
+    }
+    else {
+      var hash_data = [instance.$config.token, query.timestamp || '', query.nonce || '', query.encrypt || ''].sort();
+      hash = sha1(hash_data.join(''));
+    }
     if (hash === query.signature) {
       app.sendResponse(query.echostr);
     }
@@ -60,14 +71,25 @@ const serve = async function () {
         response.setAttribute('ToUserName', $server_message.FromUserName);
         response.setAttribute('FromUserName', $server_message.ToUserName);
         let data = response.getData();
-        console.log('server.send()', data);
+        console.log('server.send().original', data);
+        if (crypto) {
+          data = crypto.encrypt(data);
+          response = new Encrypt({
+            encrypt: data,
+            sign: '',
+            timestamp: getTimestamp(),
+            nonce: ''
+          });
+          data = response.getData();
+          console.log('server.send().encrypt', data);
+        }
         app.sendResponse(data);
       }
     }
   }
 };
 
-const parseMessage = async function (xml, crypto) {
+const parseMessage = async function (xml, crypto = null) {
   return new Promise((resolve, reject) => {
     parseString(xml, async (err, result) => {
       if (err) {
@@ -79,7 +101,7 @@ const parseMessage = async function (xml, crypto) {
           for (let k in result.xml) {
             message[k] = result.xml[k][0];
           }
-          if (message.Encrypt) {
+          if (message.Encrypt && crypto) {
             let decrypted = crypto.decrypt(message.Encrypt);
             console.log('decrypted', decrypted);
             message = await parseMessage(decrypted.message);
