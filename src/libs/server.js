@@ -76,7 +76,7 @@ const serve = async function () {
           data = crypto.encrypt(data);
           let timestamp = getTimestamp();
           let nonce = randomString();
-          sign = crypto.getSignature(timestamp, nonce, data);
+          let sign = crypto.getSignature(timestamp, nonce, data);
           response = new Encrypt({
             encrypt: data,
             sign,
