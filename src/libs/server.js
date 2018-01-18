@@ -2,7 +2,7 @@
 import {Text, Encrypt} from './messages';
 import WechatCrypto from 'wechat-crypto';
 import {parseString} from 'xml2js';
-import {sha1, getTimestamp} from '../utils';
+import {sha1, getTimestamp, randomString} from '../utils';
 import Core from './core';
 
 const init = function (instance) {
@@ -34,15 +34,15 @@ const serve = async function () {
       app.sendResponse('Hello node-easywechat');
       return;
     }
-    let hash;
+    let sign;
     if (crypto) {
-      hash = crypto.getSignature(query.timestamp || '', query.nonce || '', query.encrypt || '');
+      sign = crypto.getSignature(query.timestamp || '', query.nonce || '', query.encrypt || '');
     }
     else {
-      var hash_data = [instance.$config.token, query.timestamp || '', query.nonce || '', query.encrypt || ''].sort();
-      hash = sha1(hash_data.join(''));
+      var sign_data = [instance.$config.token, query.timestamp || '', query.nonce || '', query.encrypt || ''].sort();
+      sign = sha1(sign_data.join(''));
     }
-    if (hash === query.signature) {
+    if (sign === query.signature) {
       app.sendResponse(query.echostr);
     }
     else {
@@ -74,11 +74,14 @@ const serve = async function () {
         console.log('server.send().original', data);
         if (crypto) {
           data = crypto.encrypt(data);
+          let timestamp = getTimestamp();
+          let nonce = randomString();
+          sign = crypto.getSignature(timestamp, nonce, data);
           response = new Encrypt({
             encrypt: data,
-            sign: '',
-            timestamp: getTimestamp(),
-            nonce: ''
+            sign,
+            timestamp,
+            nonce
           });
           data = response.getData();
           console.log('server.send().encrypt', data);
