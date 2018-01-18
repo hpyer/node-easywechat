@@ -3,6 +3,7 @@ import {Text} from './messages';
 import utils from '../utils';
 import sha1 from 'crypto-js/sha1';
 import aes from 'crypto-js/aes';
+import enc from 'crypto-js/enc';
 import {parseString} from 'xml2js';
 import Core from './core';
 
@@ -82,7 +83,8 @@ const parseMessage = async function (xml, aesKey) {
             message[k] = result.xml[k][0];
           }
           if (message.Encrypt && aesKey) {
-            let decrypted = aes.decrypt(message.Encrypt, aesKey);
+            let bytes = aes.decrypt(message.Encrypt, aesKey);
+            let decrypted = bytes.toString(enc.Utf8);
             console.log('decrypted', decrypted);
           }
         }
