@@ -82,7 +82,7 @@ const parseMessage = async function (xml, aesKey) {
           }
           if (message.Encrypt && aesKey) {
             let bytes = crypto.AES.decrypt(message.Encrypt, aesKey);
-            let decrypted = bytes.toString(crypto.enc.Utf8);
+            let decrypted = bytes.toString();
             console.log('decrypted', decrypted);
           }
         }
