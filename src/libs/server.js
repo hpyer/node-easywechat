@@ -72,7 +72,7 @@ const serve = async function () {
         response.setAttribute('FromUserName', $server_message.ToUserName);
         let data = response.getData();
         console.log('server.send().original', data);
-        if (crypto) {
+        if (crypto && $server_message._isEncrypt) {
           data = crypto.encrypt(data);
           let timestamp = getTimestamp();
           let nonce = randomString();
@@ -104,10 +104,12 @@ const parseMessage = async function (xml, crypto = null) {
           for (let k in result.xml) {
             message[k] = result.xml[k][0];
           }
+          message._isEncrypt = false;
           if (message.Encrypt && crypto) {
             let decrypted = crypto.decrypt(message.Encrypt);
             console.log('decrypted', decrypted);
             message = await parseMessage(decrypted.message);
+            message._isEncrypt = true;
           }
         }
         resolve(message);
