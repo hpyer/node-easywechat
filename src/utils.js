@@ -1,9 +1,9 @@
 
-const getTimestamp = function () {
+export const getTimestamp = function () {
   return parseInt((new Date()).getTime() / 1000);
 }
 
-const randomString = function (len = 16) {
+export const randomString = function (len = 16) {
   let chars = 'ABCDEFGHJKMNPQRSTWXYZabcdefhijkmnprstwxyz2345678';
   let str = '';
   for (let i = 0; i < len; i++) {
@@ -12,7 +12,7 @@ const randomString = function (len = 16) {
   return str;
 }
 
-const cloneObj = function (oldObj) {
+export const cloneObj = function (oldObj) {
   if (!oldObj) return oldObj;
   if (typeof(oldObj) != 'object') return oldObj;
   let newObj = new Object();
@@ -22,7 +22,7 @@ const cloneObj = function (oldObj) {
   return newObj;
 }
 
-const extendObj = function () {
+export const extendObj = function () {
   let args = arguments;
   if (args.length == 0) return null;
   let temp = cloneObj(args[0]);
@@ -36,9 +36,8 @@ const extendObj = function () {
   return temp;
 }
 
-export default {
-  getTimestamp,
-  randomString,
-  cloneObj,
-  extendObj
+export const sha1 = function (str) {
+  let sha1 = require('crypto').createHash('sha1');
+  sha1.update(str);
+  return sha1.digest('hex');
 }

@@ -1,7 +1,6 @@
 
 import {Text} from './messages';
-import utils from '../utils';
-import crypto from 'crypto-js';
+import WechatCrypto from 'wechat-crypto';
 import {parseString} from 'xml2js';
 import Core from './core';
 
@@ -24,14 +23,14 @@ const serve = async function () {
     throw new Error('未在配置文件中设置应用服务器');
     return;
   }
+  let crypto = new WechatCrypto(instance.$config.token, instance.$config.aesKey, instance.$config.appKey);
   if (app.getMethod() == 'GET') {
     let query = app.getQuery();
     if (!query.signature || !query.echostr || !query.timestamp || !query.nonce) {
       app.sendResponse('Hello node-easywechat');
       return;
     }
-    let hash_data = [query.nonce, query.timestamp, instance.$config.token].sort();
-    let hash = crypto.SHA1(hash_data.join(''));
+    let hash = crypto.getSignature(query.timestamp, query.nonce, query.encrypt);
     if (hash === query.signature) {
       app.sendResponse(query.echostr);
     }
@@ -41,7 +40,7 @@ const serve = async function () {
   }
   else {
     let xml = await app.getBody();
-    $server_message = await parseMessage(xml, instance.$config.aesKey);
+    $server_message = await parseMessage(xml, crypto);
     if ($server_handler && typeof $server_handler == 'function') {
       let result = await $server_handler($server_message);
 
@@ -68,7 +67,7 @@ const serve = async function () {
   }
 };
 
-const parseMessage = async function (xml, aesKey) {
+const parseMessage = async function (xml, crypto) {
   return new Promise((resolve, reject) => {
     parseString(xml, (err, result) => {
       if (err) {
@@ -80,9 +79,8 @@ const parseMessage = async function (xml, aesKey) {
           for (let k in result.xml) {
             message[k] = result.xml[k][0];
           }
-          if (message.Encrypt && aesKey) {
-            let bytes = crypto.AES.decrypt(message.Encrypt, aesKey);
-            let decrypted = bytes.toString();
+          if (message.Encrypt) {
+            let decrypted = crypto.decrypt(message.Encrypt);
             console.log('decrypted', decrypted);
           }
         }

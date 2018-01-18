@@ -1,7 +1,6 @@
 
-import utils from '../utils';
+import {randomString, getTimestamp, sha1} from '../utils';
 import qs from 'qs';
-import sha1 from 'crypto-js/sha1';
 import Core from './core';
 
 const URL_JSAPI_TICKET = 'https://api.weixin.qq.com/cgi-bin/ticket/getticket';
@@ -40,8 +39,8 @@ const config = async function (APIs, debug = false, json = true) {
 
   let url = $url;
 
-  let noncestr = utils.randomString();
-  let timestamp = utils.getTimestamp();
+  let noncestr = randomString();
+  let timestamp = getTimestamp();
   let signature = makeSignature({
     jsapi_ticket: jssdkTicket,
     noncestr,

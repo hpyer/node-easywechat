@@ -1,5 +1,5 @@
 
-import utils from '../utils';
+import {getTimestamp, extendObj} from '../utils';
 import fs from 'fs';
 import path from 'path';
 
@@ -32,7 +32,7 @@ export class MemoryCache extends CacheInterface {
   }
 
   fetch (id) {
-    if (!this.contains(id) || (this.$datas[id].lifeTime > 0 && this.$datas[id].lifeTime < utils.getTimestamp())) {
+    if (!this.contains(id) || (this.$datas[id].lifeTime > 0 && this.$datas[id].lifeTime < getTimestamp())) {
       return null;
     }
     return this.$datas[id].data;
@@ -46,7 +46,7 @@ export class MemoryCache extends CacheInterface {
   save (id, data = null, lifeTime = 0) {
     let dataItem = {
       data,
-      lifeTime: lifeTime > 0 ? lifeTime + utils.getTimestamp() : 0
+      lifeTime: lifeTime > 0 ? lifeTime + getTimestamp() : 0
     }
     this.$datas[id] = dataItem;
     return true;
@@ -67,7 +67,7 @@ export class FileCache extends CacheInterface {
       fileMode: 0o666,
       ext: '.cache'
     };
-    this.$options = utils.extendObj(defaultOptions, options);
+    this.$options = extendObj(defaultOptions, options);
     this.$options.path = path.resolve(this.$options.path);
     try {
       fs.accessSync(this.$options.path, fs.constants.R_OK & fs.constants.W_OK);
@@ -95,7 +95,7 @@ export class FileCache extends CacheInterface {
         flag: 'r'
       }));
 
-      if (dataItem.lifeTime > 0 && dataItem.lifeTime < utils.getTimestamp()) {
+      if (dataItem.lifeTime > 0 && dataItem.lifeTime < getTimestamp()) {
         content = null;
       }
       else {
@@ -125,7 +125,7 @@ export class FileCache extends CacheInterface {
     try {
       let dataItem = {
         data,
-        lifeTime: lifeTime > 0 ? lifeTime + utils.getTimestamp() : 0
+        lifeTime: lifeTime > 0 ? lifeTime + getTimestamp() : 0
       };
       fs.writeFileSync(file, JSON.stringify(dataItem), {
         mode: this.$options.fileMode,

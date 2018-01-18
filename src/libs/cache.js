@@ -1,5 +1,4 @@
 
-import utils from '../utils';
 import {MemoryCache, FileCache} from './caches';
 import Core from './core';
 

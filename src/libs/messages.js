@@ -1,12 +1,12 @@
 
-import utils from '../utils';
+import {getTimestamp} from '../utils';
 
 export class Raw {
   constructor (data) {
     this.dataParams = {
       ToUserName: '',
       FromUserName: '',
-      CreateTime: utils.getTimestamp(),
+      CreateTime: getTimestamp(),
       MsgType: ''
     };
     this.json = null;

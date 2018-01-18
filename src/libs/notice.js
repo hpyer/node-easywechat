@@ -1,5 +1,4 @@
 
-import utils from '../utils';
 import merge from 'merge';
 import Core from './core';
 
