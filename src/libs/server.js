@@ -69,7 +69,7 @@ const serve = async function () {
 
 const parseMessage = async function (xml, crypto) {
   return new Promise((resolve, reject) => {
-    parseString(xml, (err, result) => {
+    parseString(xml, async (err, result) => {
       if (err) {
         reject(err);
       } else {
@@ -82,6 +82,7 @@ const parseMessage = async function (xml, crypto) {
           if (message.Encrypt) {
             let decrypted = crypto.decrypt(message.Encrypt);
             console.log('decrypted', decrypted);
+            message = await parseMessage(decrypted.message);
           }
         }
         resolve(message);
