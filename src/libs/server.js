@@ -42,7 +42,7 @@ const serve = async function () {
   }
   else {
     let xml = await app.getBody();
-    $server_message = await parseMessage(xml);
+    $server_message = await parseMessage(xml, instance.$config.aesKey);
     if ($server_handler && typeof $server_handler == 'function') {
       let result = await $server_handler($server_message);
 
@@ -69,7 +69,7 @@ const serve = async function () {
   }
 };
 
-const parseMessage = async function (xml) {
+const parseMessage = async function (xml, aesKey) {
   return new Promise((resolve, reject) => {
     parseString(xml, (err, result) => {
       if (err) {
@@ -81,8 +81,8 @@ const parseMessage = async function (xml) {
           for (let k in result.xml) {
             message[k] = result.xml[k][0];
           }
-          if (message.Encrypt && instance.$config.aesKey) {
-            let decrypted = aes.decrypt(message.Encrypt, instance.$config.aesKey);
+          if (message.Encrypt && aesKey) {
+            let decrypted = aes.decrypt(message.Encrypt, aesKey);
             console.log('decrypted', decrypted);
           }
         }
