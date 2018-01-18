@@ -54,6 +54,7 @@ export class Raw {
 export class Encrypt extends Raw {
   constructor (options) {
     super('');
+    this.dataParams = {};
     this.dataParams.Encrypt = options.encrypt || '';
     this.dataParams.MsgSignature = options.sign || '';
     this.dataParams.TimeStamp = options.timestamp || getTimestamp();
