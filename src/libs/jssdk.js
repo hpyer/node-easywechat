@@ -1,7 +1,7 @@
 
 import utils from '../utils';
 import qs from 'qs';
-import sha1 from 'sha1';
+import sha1 from 'crypto-js/sha1';
 import Core from './core';
 
 const URL_JSAPI_TICKET = 'https://api.weixin.qq.com/cgi-bin/ticket/getticket';

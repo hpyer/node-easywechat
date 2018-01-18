@@ -1,7 +1,8 @@
 
 import {Text} from './messages';
 import utils from '../utils';
-import sha1 from 'sha1';
+import sha1 from 'crypto-js/sha1';
+import aes from 'crypto-js/aes';
 import {parseString} from 'xml2js';
 import Core from './core';
 
@@ -79,6 +80,10 @@ const parseMessage = async function (xml) {
           message = {}
           for (let k in result.xml) {
             message[k] = result.xml[k][0];
+          }
+          if (message.Encrypt && instance.$config.aesKey) {
+            let decrypted = aes.decrypt(message.Encrypt, instance.$config.aesKey);
+            console.log('decrypted', decrypted);
           }
         }
         resolve(message);
