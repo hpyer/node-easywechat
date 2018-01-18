@@ -1,9 +1,7 @@
 
 import {Text} from './messages';
 import utils from '../utils';
-import sha1 from 'crypto-js/sha1';
-import aes from 'crypto-js/aes';
-import enc from 'crypto-js/enc';
+import crypto from 'crypto-js';
 import {parseString} from 'xml2js';
 import Core from './core';
 
@@ -33,7 +31,7 @@ const serve = async function () {
       return;
     }
     let hash_data = [query.nonce, query.timestamp, instance.$config.token].sort();
-    let hash = sha1(hash_data.join(''));
+    let hash = crypto.SHA1(hash_data.join(''));
     if (hash === query.signature) {
       app.sendResponse(query.echostr);
     }
@@ -83,8 +81,8 @@ const parseMessage = async function (xml, aesKey) {
             message[k] = result.xml[k][0];
           }
           if (message.Encrypt && aesKey) {
-            let bytes = aes.decrypt(message.Encrypt, aesKey);
-            let decrypted = bytes.toString(enc.Utf8);
+            let bytes = crypto.AES.decrypt(message.Encrypt, aesKey);
+            let decrypted = bytes.toString(crypto.enc.Utf8);
             console.log('decrypted', decrypted);
           }
         }
