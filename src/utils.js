@@ -2,7 +2,7 @@
 export const log = function () {
   let args = arguments;
   args[0] = 'NodeEasywechat: ' + args[0];
-  return console.log.call(null, arguments);
+  return console.log.apply(null, arguments);
 }
 
 export const getTimestamp = function () {
