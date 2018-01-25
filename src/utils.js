@@ -1,6 +1,8 @@
 
-export const log = function (message) {
-  return console.log('NodeEasywechat: ' + message);
+export const log = function () {
+  let args = arguments;
+  args[0] = 'NodeEasywechat: ' + args[0];
+  return console.log.call(null, arguments);
 }
 
 export const getTimestamp = function () {

@@ -109,9 +109,10 @@ const parseMessage = async function (xml, crypto = null) {
             message[k] = result.xml[k][0];
           }
           message._isEncrypt = false;
+          log('parseMessage.original', message);
           if (message.Encrypt && crypto) {
             let decrypted = crypto.decrypt(message.Encrypt);
-            log('decrypted', decrypted);
+            log('parseMessage.decrypted', decrypted);
             message = await parseMessage(decrypted.message);
             message._isEncrypt = true;
           }
