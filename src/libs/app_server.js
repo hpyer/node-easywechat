@@ -1,6 +1,7 @@
 
 import Body from 'body';
 import Url from 'url';
+import {log} from '../utils';
 
 export class AppServer {
   constructor (req, res) {
@@ -30,7 +31,7 @@ export class AppServer {
       });
     })
     .catch((err) => {
-      console.log('app_server._readBody()', err);
+      log('app_server._readBody()', err);
     });
   }
 

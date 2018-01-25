@@ -1,6 +1,7 @@
 
 import qs from 'qs';
 import Core from './core';
+import {log} from '../utils';
 
 const URL_ACCESS_TOKEN = 'https://api.weixin.qq.com/cgi-bin/token';
 
@@ -33,7 +34,7 @@ const getToken = async function (force = false) {
 
 const setToken = function (access_token, expires_in = 7200) {
   let instance = Core.getInstance();
-  console.log('写入AccessToken: ', instance.$config.access_token_cache_key, access_token, expires_in)
+  log('write AccessToken: ', instance.$config.access_token_cache_key, access_token, expires_in)
   instance.$config.cache.save(instance.$config.access_token_cache_key, access_token, expires_in);
 };
 

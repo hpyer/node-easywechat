@@ -2,7 +2,7 @@
 import {Text, Encrypt} from './messages';
 import WechatCrypto from 'wechat-crypto';
 import {parseString} from 'xml2js';
-import {sha1, getTimestamp, randomString, isString, isArray, getAvailableNews} from '../utils';
+import {log, sha1, getTimestamp, randomString, isString, isArray, getAvailableNews} from '../utils';
 import Core from './core';
 
 const init = function (instance) {
@@ -62,6 +62,7 @@ const serve = async function () {
       let response = null;
       if (isString(result)) {
         response = new Text({content: result});
+        log('test::', response);
       }
       if (isArray(result)) {
         response = getAvailableNews(result);
@@ -74,7 +75,7 @@ const serve = async function () {
         response.setAttribute('ToUserName', $server_message.FromUserName);
         response.setAttribute('FromUserName', $server_message.ToUserName);
         let data = response.getData();
-        console.log('server.send().original', data);
+        log('server.send().original', data);
         if (crypto && $server_message._isEncrypt) {
           data = crypto.encrypt(data);
           let timestamp = getTimestamp();
@@ -87,7 +88,7 @@ const serve = async function () {
             nonce
           });
           data = response.getData();
-          console.log('server.send().encrypt', data);
+          log('server.send().encrypt', data);
         }
         app.sendResponse(data);
       }
@@ -110,7 +111,7 @@ const parseMessage = async function (xml, crypto = null) {
           message._isEncrypt = false;
           if (message.Encrypt && crypto) {
             let decrypted = crypto.decrypt(message.Encrypt);
-            console.log('decrypted', decrypted);
+            log('decrypted', decrypted);
             message = await parseMessage(decrypted.message);
             message._isEncrypt = true;
           }
@@ -120,7 +121,7 @@ const parseMessage = async function (xml, crypto = null) {
     })
   })
   .catch((err) => {
-    console.log('server.parseMessage()', err)
+    log('server.parseMessage()', err)
   });
 };
 

@@ -1,5 +1,5 @@
 
-import {getTimestamp, extendObj} from '../utils';
+import {log, getTimestamp, extendObj} from '../utils';
 import fs from 'fs';
 import path from 'path';
 
@@ -77,7 +77,7 @@ export class FileCache extends CacheInterface {
         fs.mkdirSync(this.$options.path, this.$options.dirMode);
       }
       catch (e) {
-        console.log('无法创建缓存目录：' + this.$options.path, e);
+        log('无法创建缓存目录：' + this.$options.path, e);
       }
     }
   }
@@ -103,7 +103,7 @@ export class FileCache extends CacheInterface {
       }
     }
     catch (e) {
-      console.log('无法读取缓存文件：' + file, e);
+      log('无法读取缓存文件：' + file, e);
       content = null;
     }
     return content;
@@ -134,7 +134,7 @@ export class FileCache extends CacheInterface {
       })
     }
     catch (e) {
-      console.log('无法写入缓存文件：' + file, e);
+      log('无法写入缓存文件：' + file, e);
       return false;
     }
     return true;
@@ -146,7 +146,7 @@ export class FileCache extends CacheInterface {
       fs.unlinkSync(file);
     }
     catch (e) {
-      console.log('无法删除缓存文件：' + file, e);
+      log('无法删除缓存文件：' + file, e);
       return false;
     }
     return true;

@@ -1,4 +1,8 @@
 
+export const log = function (message) {
+  return console.log('NodeEasywechat: ' + message);
+}
+
 export const getTimestamp = function () {
   return parseInt((new Date()).getTime() / 1000);
 }

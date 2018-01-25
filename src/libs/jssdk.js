@@ -1,5 +1,5 @@
 
-import {randomString, getTimestamp, sha1} from '../utils';
+import {log, randomString, getTimestamp, sha1} from '../utils';
 import qs from 'qs';
 import Core from './core';
 
@@ -32,7 +32,7 @@ const config = async function (APIs, debug = false, json = true) {
   let jssdkTicket = instance.$config.cache.fetch(instance.$config.jssdk_cache_key);
   if (!jssdkTicket) {
     let res = await fetchJsapiTicket();
-    console.log('写入JSSDK: ', instance.$config.jssdk_cache_key, res.ticket, res.expires_in)
+    log('write JSSDK: ', instance.$config.jssdk_cache_key, res.ticket, res.expires_in)
     instance.$config.cache.save(instance.$config.jssdk_cache_key, res.ticket, res.expires_in);
     jssdkTicket = res.ticket;
   }

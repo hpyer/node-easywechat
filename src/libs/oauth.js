@@ -1,6 +1,7 @@
 
 import qs from 'qs';
 import Core from './core';
+import {log} from '../utils';
 
 const scopes = ['snsapi_base', 'snsapi_userinfo', 'snsapi_login'];
 
@@ -95,7 +96,7 @@ const fetchUserInfo = async function (user) {
   let instance = Core.getInstance();
   let response = await instance.requestGet(url);
   if (response.errcode) {
-    console.log('oauth.fetchUserInfo()', response);
+    log('oauth.fetchUserInfo()', response);
     return false;
   }
   user.id = response.openid;
