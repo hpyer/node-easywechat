@@ -1,5 +1,5 @@
 
-import {getTimestamp} from '../utils';
+import {getTimestamp, isString, isArray} from '../utils';
 
 export class Raw {
   constructor (data) {
@@ -32,11 +32,18 @@ export class Raw {
     if (typeof v == 'object') {
       let data = '';
       for (let k in v) {
-        data += `<${k}>${this._formatData(v[k])}</${k}>`
+        if (isArray(v[k])) {
+          for (let i=0; i<v[k].length; i++) {
+            data += `<${k}>${this._formatData(v[k][i])}</${k}>`
+          }
+        }
+        else {
+          data += `<${k}>${this._formatData(v[k])}</${k}>`
+        }
       }
       return data;
     }
-    if (typeof v == 'string') {
+    if (isString(v)) {
       return '<![CDATA[' + v + ']]>';
     }
     else {
