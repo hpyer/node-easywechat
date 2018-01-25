@@ -41,3 +41,27 @@ export const sha1 = function (str) {
   sha1.update(str);
   return sha1.digest('hex');
 }
+
+export const isString = data => {
+  return Object.prototype.toString.call(data) == '[object String]';
+}
+
+export const isArray = data => {
+  return Object.prototype.toString.call(data) == '[object Array]';
+}
+
+export const getAvailableNews = function (arr) {
+  let list = [];
+  let response = null;
+  for (let i in arr) {
+    if (arr[i].dataParams.MsgType == 'news') {
+      response = arr[i];
+      list.push(arr[i].dataParams.Articles.item);
+    }
+  }
+  if (list.length > 0 && response) {
+    response.dataParams.ArticleCount = list.length;
+    response.dataParams.Articles.item = list;
+  }
+  return response;
+}

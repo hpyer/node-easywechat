@@ -2,7 +2,7 @@
 import {Text, Encrypt} from './messages';
 import WechatCrypto from 'wechat-crypto';
 import {parseString} from 'xml2js';
-import {sha1, getTimestamp, randomString} from '../utils';
+import {sha1, getTimestamp, randomString, isString, isArray, getAvailableNews} from '../utils';
 import Core from './core';
 
 const init = function (instance) {
@@ -55,13 +55,16 @@ const serve = async function () {
     if ($server_handler && typeof $server_handler == 'function') {
       let result = await $server_handler($server_message);
 
-      if (!result || (typeof result == 'string' && result.toUpperCase() == 'SUCCESS')) {
+      if (!result || (isString(result) && result.toUpperCase() == 'SUCCESS')) {
         app.sendResponse('SUCCESS');
-        return
+        return;
       }
       let response = null;
-      if (typeof result == 'string') {
+      if (isString(result)) {
         response = new Text({content: result});
+      }
+      if (isArray(result)) {
+        response = getAvailableNews(result);
       }
       else {
         response = result;
