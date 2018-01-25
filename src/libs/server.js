@@ -62,9 +62,8 @@ const serve = async function () {
       let response = null;
       if (isString(result)) {
         response = new Text({content: result});
-        log('test::', response);
       }
-      if (isArray(result)) {
+      else if (isArray(result)) {
         response = getAvailableNews(result);
       }
       else {
