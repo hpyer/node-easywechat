@@ -100,7 +100,8 @@ const parseMessage = async function (xml, crypto = null) {
     parseString(xml, async (err, result) => {
       if (err) {
         reject(err);
-      } else {
+      }
+      else {
         let message
         if (result && result.xml) {
           message = {}
@@ -112,7 +113,12 @@ const parseMessage = async function (xml, crypto = null) {
             let decrypted = crypto.decrypt(message.Encrypt);
             log('parseMessage.decrypted', decrypted);
             message = await parseMessage(decrypted.message);
-            message._isEncrypt = true;
+            if (!message) {
+              throw new Error('无法解密消息，请确认 AppId、Token、AESKey 等是否正确');
+            }
+            else {
+              message._isEncrypt = true;
+            }
           }
         }
         resolve(message);
