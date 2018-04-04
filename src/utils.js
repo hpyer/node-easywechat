@@ -72,8 +72,9 @@ export const makeSignature = function (params, type = 'sha1', key = '') {
     case 'md5':
       sign = createHash(paramsString, type);
       break;
+    case 'hmac-sha256':
     case 'hmac_sha256':
-      type = type.replace('hamc_', '');
+      type = type.replace('hmac-', '').replace('hmac_', '');
       sign = createHmac(paramsString, type, key);
       break;
   }
