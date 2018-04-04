@@ -66,6 +66,7 @@ export const makeSignature = function (params, type = 'sha1', key = '') {
     paramsString += '&key=' + key;
   }
   let sign = '';
+  type = type.toLowerCase();
   switch (type) {
     case 'sha1':
     case 'md5':

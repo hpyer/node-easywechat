@@ -1,6 +1,6 @@
 
 import Core from './core';
-import {log, randomString, isNumber, isString, isObject, makeSignature} from '../utils';
+import {log, randomString, getTimestamp, isNumber, isString, isObject, makeSignature} from '../utils';
 import {parseString} from 'xml2js';
 
 const URL_ORDER = 'https://api.mch.weixin.qq.com/pay/unifiedorder';
@@ -127,8 +127,46 @@ const parseMessage = async function (xml) {
   });
 };
 
+const configForPayment = async function (prepare_id, to_json = true) {
+  let nonceStr = randomString(16);
+  let timeStamp = getTimestamp();
+  let signType = 'HMAC-SHA256';
+  let config = {
+    appId: instance.$config.appKey,
+    timeStamp: timeStamp,
+    nonceStr: nonceStr,
+    package: 'prepay_id=' + prepare_id
+  };
+  config.paySign = makeSignature(config, signType, instance.$config.appSecret);
+  config.signType = signType;
+  if (to_json) {
+    config = JSON.stringify(config);
+  }
+  return config;
+};
+
+const configForJSSDKPayment = async function (prepare_id, to_json = true) {
+  let nonceStr = randomString(16);
+  let timeStamp = getTimestamp();
+  let signType = 'MD5';
+  let config = {
+    appId: instance.$config.appKey,
+    timestamp: timeStamp,
+    nonceStr: nonceStr,
+    package: 'prepay_id=' + prepare_id
+  };
+  config.paySign = makeSignature(config, signType, instance.$config.appSecret);
+  config.signType = signType;
+  if (to_json) {
+    config = JSON.stringify(config);
+  }
+  return config;
+};
+
 export default {
   init,
   prepare,
-  handleNotify
+  handleNotify,
+  configForPayment,
+  configForJSSDKPayment
 };
