@@ -30,7 +30,7 @@ const prepare = async function (order) {
   let paymentConfig = instance.$config.payment;
   let data = {
     appid: instance.$config.appKey,
-    mch_id: paymentConfig.merchant_id,
+    mch_id: paymentConfig.merchantId,
     device_info: order.device_info || 'WEB',
     nonce_str: randomString(16),
     body: order.body,
