@@ -48,10 +48,11 @@ const prepare = async function (order) {
     product_id: order.product_id || '',
     limit_pay: order.limit_pay || '',
     openid: order.openid || '',
-    scene_info: order.scene_info || '',
-    sign_type: order.sign_type || 'md5'
+    scene_info: order.scene_info || ''
   };
-  data.sign = makeSignature(data, data.sign_type, paymentConfig.key);
+  let sign_type = order.sign_type || 'HMAC-SHA256';
+  data.sign = makeSignature(data, sign_type, paymentConfig.key);
+  data.sign_type = sign_type;
 
   let xml = toXml(data);
   let result = await instance.requestPost(URL_ORDER, xml);
