@@ -48,11 +48,10 @@ const prepare = async function (order) {
     product_id: order.product_id || '',
     limit_pay: order.limit_pay || '',
     openid: order.openid || '',
-    scene_info: order.scene_info || ''
+    scene_info: order.scene_info || '',
+    sign_type: order.sign_type || 'HMAC-SHA256'
   };
-  let sign_type = order.sign_type || 'HMAC-SHA256';
-  data.sign = makeSignature(data, sign_type, paymentConfig.key);
-  data.sign_type = sign_type;
+  data.sign = makeSignature(data, data.sign_type, paymentConfig.key);
 
   let xml = toXml(data);
   let result = await instance.requestPost(URL_ORDER, xml);
@@ -136,10 +135,10 @@ const configForPayment = async function (prepare_id, to_json = true) {
     appId: instance.$config.appKey,
     timeStamp: timeStamp,
     nonceStr: nonceStr,
-    package: 'prepay_id=' + prepare_id
+    package: 'prepay_id=' + prepare_id,
+    signType: signType
   };
   config.paySign = makeSignature(config, signType, instance.$config.appSecret);
-  config.signType = signType;
   if (to_json) {
     config = JSON.stringify(config);
   }
@@ -154,10 +153,10 @@ const configForJSSDKPayment = async function (prepare_id, to_json = true) {
     appId: instance.$config.appKey,
     timestamp: timeStamp,
     nonceStr: nonceStr,
-    package: 'prepay_id=' + prepare_id
+    package: 'prepay_id=' + prepare_id,
+    signType: signType
   };
   config.paySign = makeSignature(config, signType, instance.$config.appSecret);
-  config.signType = signType;
   if (to_json) {
     config = JSON.stringify(config);
   }
