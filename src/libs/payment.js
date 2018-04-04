@@ -51,7 +51,7 @@ const prepare = async function (order) {
     scene_info: order.scene_info || '',
     sign_type: order.sign_type || 'md5'
   };
-  data.sign = makeSignature(data, data.sign_type, paymentConfig.key);
+  data.sign = makeSignature(data, data.sign_type, instance.$config.appSecret);
 
   let xml = toXml(data);
   let result = await instance.requestPost(URL_ORDER, xml);
@@ -62,7 +62,6 @@ const prepare = async function (order) {
 const handleNotify = async function (handler) {
   let instance = Core.getInstance();
   let app = instance.$config.app;
-  let paymentConfig = instance.$config.payment;
   if (!app) {
     throw new Error('未在配置文件中设置应用服务器');
     return;
@@ -82,7 +81,7 @@ const handleNotify = async function (handler) {
   }
 
   // 验证签名
-  let check_sign = makeSignature(notice, notice.sign_type, paymentConfig.key);
+  let check_sign = makeSignature(notice, notice.sign_type, instance.$config.appSecret);
   if (check_sign !== notice.sign) {
     log('payment.handleNotify(): invalid_sign', check_sign, notice.sign);
     response.return_code = 'FAIL';
