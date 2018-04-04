@@ -11,6 +11,7 @@ const init = function (instance) {
 const toXml = function (data) {
   let xml = '<xml>';
   for (let k in data) {
+    if (!data[k]) continue;
     if (isNumber(data[k])) {
       xml += `<${k}>${data[k]}</${k}>`;
     }
@@ -49,12 +50,13 @@ const prepare = async function (order) {
     limit_pay: order.limit_pay || '',
     openid: order.openid || '',
     scene_info: order.scene_info || '',
-    sign_type: order.sign_type || 'HMAC-SHA256'
+    sign_type: order.sign_type || 'MD5'
   };
   data.sign = makeSignature(data, data.sign_type, paymentConfig.key);
 
   let xml = toXml(data);
   let result = await instance.requestPost(URL_ORDER, xml);
+  result = await parseMessage(result);
   log('payment.prepare(): ', data, result);
   return result;
 };
@@ -127,10 +129,11 @@ const parseMessage = async function (xml) {
   });
 };
 
-const configForPayment = async function (prepare_id, to_json = true) {
+const configForPayment = function (prepare_id, to_json = true) {
+  let instance = Core.getInstance();
   let nonceStr = randomString(16);
   let timeStamp = getTimestamp();
-  let signType = 'HMAC-SHA256';
+  let signType = 'MD5';
   let config = {
     appId: instance.$config.appKey,
     timeStamp: timeStamp,
@@ -145,7 +148,8 @@ const configForPayment = async function (prepare_id, to_json = true) {
   return config;
 };
 
-const configForJSSDKPayment = async function (prepare_id, to_json = true) {
+const configForJSSDKPayment = function (prepare_id, to_json = true) {
+  let instance = Core.getInstance();
   let nonceStr = randomString(16);
   let timeStamp = getTimestamp();
   let signType = 'MD5';

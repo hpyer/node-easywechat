@@ -58,7 +58,7 @@ export const makeSignature = function (params, type = 'sha1', key = '') {
   let keys = Object.keys(params);
   keys = keys.sort();
   for (let i=0; i<keys.length; i++) {
-    if (keys[i] == 'sign') continue;
+    if (keys[i] == 'sign' || !params[keys[i]]) continue;
     paramsString += sparator + keys[i] + '=' + params[keys[i]];
     sparator = '&';
   }
@@ -74,11 +74,11 @@ export const makeSignature = function (params, type = 'sha1', key = '') {
       break;
     case 'hmac-sha256':
     case 'hmac_sha256':
-      type = type.replace('hmac-', '').replace('hmac_', '');
-      sign = createHmac(paramsString, type, key);
+      type = type.replace(/^hmac[\-|_]/i, '');
+      sign = createHmac(paramsString, key, type);
       break;
   }
-  return sign;
+  return sign.toUpperCase();
 }
 
 
