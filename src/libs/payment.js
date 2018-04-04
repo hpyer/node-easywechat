@@ -43,7 +43,7 @@ const prepare = async function (order) {
     time_start: order.time_start || '',
     time_expire: order.time_expire || '',
     goods_tag: order.goods_tag || '',
-    notify_url: order.notify_url || paymentConfig.notify_url,
+    notify_url: order.notify_url || paymentConfig.notifyUrl,
     trade_type: order.trade_type || 'JSAPI',
     product_id: order.product_id || '',
     limit_pay: order.limit_pay || '',
@@ -51,7 +51,7 @@ const prepare = async function (order) {
     scene_info: order.scene_info || '',
     sign_type: order.sign_type || 'md5'
   };
-  data.sign = makeSignature(data, data.sign_type, instance.$config.appSecret);
+  data.sign = makeSignature(data, data.sign_type, paymentConfig.key);
 
   let xml = toXml(data);
   let result = await instance.requestPost(URL_ORDER, xml);
@@ -66,6 +66,7 @@ const handleNotify = async function (handler) {
     throw new Error('未在配置文件中设置应用服务器');
     return;
   }
+  let paymentConfig = instance.$config.payment;
   let xml = await app.getBody();
   let notice = await parseMessage(xml);
   let response = {
@@ -81,7 +82,7 @@ const handleNotify = async function (handler) {
   }
 
   // 验证签名
-  let check_sign = makeSignature(notice, notice.sign_type, instance.$config.appSecret);
+  let check_sign = makeSignature(notice, notice.sign_type, paymentConfig.key);
   if (check_sign !== notice.sign) {
     log('payment.handleNotify(): invalid_sign', check_sign, notice.sign);
     response.return_code = 'FAIL';
