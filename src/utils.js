@@ -42,11 +42,43 @@ export const extendObj = function () {
   return temp;
 }
 
-export const sha1 = function (str) {
-  let sha1 = require('crypto').createHash('sha1');
-  sha1.update(str);
-  return sha1.digest('hex');
+const crypto = require('crypto');
+
+export const createHash = function (str, type = 'sha1') {
+  return crypto.createHash(type).update(str).digest('hex');
 }
+
+export const createHmac = function (str, key, type = 'sha256') {
+  return crypto.createHmac('sha256', key).update(str).digest('hex');
+}
+
+export const makeSignature = function (params, type = 'sha1', key = '') {
+  let paramsString = '';
+  let sparator = '';
+  let keys = Object.keys(params);
+  keys = keys.sort();
+  for (let i=0; i<keys.length; i++) {
+    if (keys[i] == 'sign') continue;
+    paramsString += sparator + keys[i] + '=' + params[keys[i]];
+    sparator = '&';
+  }
+  if (key) {
+    paramsString += '&key=' + key;
+  }
+  let sign = '';
+  switch (type) {
+    case 'sha1':
+    case 'md5':
+      sign = createHash(paramsString, type);
+      break;
+    case 'hmac_sha256':
+      type = type.replace('hamc_', '');
+      sign = createHmac(paramsString, type, key);
+      break;
+  }
+  return sign;
+}
+
 
 export const isString = data => {
   return Object.prototype.toString.call(data) == '[object String]';
@@ -56,18 +88,10 @@ export const isArray = data => {
   return Object.prototype.toString.call(data) == '[object Array]';
 }
 
-export const getAvailableNews = function (arr) {
-  let list = [];
-  let response = null;
-  for (let i in arr) {
-    if (arr[i].dataParams.MsgType == 'news') {
-      response = arr[i];
-      list.push(arr[i].dataParams.Articles.item);
-    }
-  }
-  if (list.length > 0 && response) {
-    response.dataParams.ArticleCount = list.length;
-    response.dataParams.Articles.item = list;
-  }
-  return response;
+export const isNumber = data => {
+  return Object.prototype.toString.call(data) == '[object Number]';
+}
+
+export const isObject = data => {
+  return Object.prototype.toString.call(data) == '[object Object]';
 }

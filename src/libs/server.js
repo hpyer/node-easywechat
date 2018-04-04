@@ -2,7 +2,7 @@
 import {Text, Encrypt} from './messages';
 import WechatCrypto from 'wechat-crypto';
 import {parseString} from 'xml2js';
-import {log, sha1, getTimestamp, randomString, isString, isArray, getAvailableNews} from '../utils';
+import {log, createHash, getTimestamp, randomString, isString, isArray} from '../utils';
 import Core from './core';
 
 const init = function (instance) {
@@ -16,6 +16,22 @@ const setMessageHandler = function (handler) {
   if (typeof handler != 'function') handler = function () {};
   $server_handler = handler;
 };
+
+const getAvailableNews = function (arr) {
+  let list = [];
+  let response = null;
+  for (let i in arr) {
+    if (arr[i].dataParams.MsgType == 'news') {
+      response = arr[i];
+      list.push(arr[i].dataParams.Articles.item);
+    }
+  }
+  if (list.length > 0 && response) {
+    response.dataParams.ArticleCount = list.length;
+    response.dataParams.Articles.item = list;
+  }
+  return response;
+}
 
 const serve = async function () {
   let instance = Core.getInstance();
@@ -40,7 +56,7 @@ const serve = async function () {
     }
     else {
       var sign_data = [instance.$config.token, query.timestamp || '', query.nonce || '', query.encrypt || ''].sort();
-      sign = sha1(sign_data.join(''));
+      sign = createHash(sign_data.join(''), 'sha1');
     }
     if (sign === query.signature) {
       app.sendResponse(query.echostr);

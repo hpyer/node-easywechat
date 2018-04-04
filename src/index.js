@@ -10,6 +10,7 @@ import qrcode from './libs/qrcode';
 import user from './libs/user';
 import menu from './libs/menu';
 import url from './libs/url';
+import payment from './libs/payment';
 
 Core.EasyWechat.registPlugin('oauth', oauth);
 Core.EasyWechat.registPlugin('cache', cache);
@@ -21,6 +22,7 @@ Core.EasyWechat.registPlugin('qrcode', qrcode);
 Core.EasyWechat.registPlugin('user', user);
 Core.EasyWechat.registPlugin('menu', menu);
 Core.EasyWechat.registPlugin('url', url);
+Core.EasyWechat.registPlugin('payment', payment);
 
 import * as caches from './libs/caches';
 Core.EasyWechat.Cache = {};

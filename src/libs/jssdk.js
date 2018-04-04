@@ -1,5 +1,5 @@
 
-import {log, randomString, getTimestamp, sha1} from '../utils';
+import {log, randomString, getTimestamp, makeSignature} from '../utils';
 import qs from 'qs';
 import Core from './core';
 
@@ -63,16 +63,6 @@ const config = async function (APIs, debug = false, json = true) {
 
   return json ? JSON.stringify(config) : config;
 };
-
-const makeSignature = function (params) {
-  let paramsString = '';
-  let sparator = '';
-  for (let k in params) {
-    paramsString += sparator + k + '=' + params[k];
-    sparator = '&';
-  }
-  return sha1(paramsString);
-}
 
 export default {
   init,
