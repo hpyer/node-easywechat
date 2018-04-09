@@ -57,7 +57,7 @@ const prepare = async function (order) {
   let xml = toXml(data);
   let result = await instance.requestPost(URL_ORDER, xml);
   result = await parseMessage(result);
-  log('payment.prepare(): ', data, result);
+  log('payment.prepare(): ', data, xml, result);
   return result;
 };
 
@@ -75,16 +75,16 @@ const handleNotify = async function (handler) {
     return_code: '',
     return_msg: ''
   };
+  log('payment.handleNotify():', notice);
 
   if (notice.return_code !== 'SUCCESS') {
-    log('payment.handleNotify(): invalid_sign', notice);
     response.return_code = 'SUCCESS';
     response.return_msg = 'return_code异常';
     return app.sendResponse(toXml(response));
   }
 
   // 验证签名
-  let check_sign = makeSignature(notice, notice.sign_type, paymentConfig.key);
+  let check_sign = makeSignature(notice, 'MD5', paymentConfig.key);
   if (check_sign !== notice.sign) {
     log('payment.handleNotify(): invalid_sign', check_sign, notice.sign);
     response.return_code = 'FAIL';
@@ -93,7 +93,13 @@ const handleNotify = async function (handler) {
   }
 
   // 业务处理
-  let result = await handler(notice, notice.result_code === 'SUCCESS');
+  let result = false;
+  try {
+    result = await handler(notice, notice.result_code === 'SUCCESS');
+  }
+  catch (e) {
+    result = false;
+  }
   if (result === true) {
     response.return_code = 'SUCCESS';
     response.return_msg = '';
@@ -106,9 +112,9 @@ const handleNotify = async function (handler) {
   app.sendResponse(toXml(response));
 };
 
-const parseMessage = async function (xml) {
+const parseMessage = function (xml) {
   return new Promise((resolve, reject) => {
-    parseString(xml, async (err, result) => {
+    parseString(xml, (err, result) => {
       if (err) {
         reject(err);
       }
@@ -129,38 +135,36 @@ const parseMessage = async function (xml) {
   });
 };
 
-const configForPayment = function (prepare_id, to_json = true) {
+const configForPayment = function (prepare_id, to_json = false) {
   let instance = Core.getInstance();
-  let nonceStr = randomString(16);
-  let timeStamp = getTimestamp();
   let signType = 'MD5';
   let config = {
     appId: instance.$config.appKey,
-    timeStamp: timeStamp,
-    nonceStr: nonceStr,
+    timeStamp: getTimestamp() + '',
+    nonceStr: randomString(16),
     package: 'prepay_id=' + prepare_id,
     signType: signType
   };
-  config.paySign = makeSignature(config, signType, instance.$config.appSecret);
+  config.paySign = makeSignature(config, signType, instance.$config.payment.key);
+  log('payment.configForPayment()', config);
   if (to_json) {
     config = JSON.stringify(config);
   }
   return config;
 };
 
-const configForJSSDKPayment = function (prepare_id, to_json = true) {
+const configForJSSDKPayment = function (prepare_id, to_json = false) {
   let instance = Core.getInstance();
-  let nonceStr = randomString(16);
-  let timeStamp = getTimestamp();
   let signType = 'MD5';
   let config = {
     appId: instance.$config.appKey,
-    timestamp: timeStamp,
-    nonceStr: nonceStr,
+    timeStamp: getTimestamp(),
+    nonceStr: randomString(16),
     package: 'prepay_id=' + prepare_id,
     signType: signType
   };
-  config.paySign = makeSignature(config, signType, instance.$config.appSecret);
+  config.paySign = makeSignature(config, signType, instance.$config.payment.key);
+  log('payment.configForJSSDKPayment()', config);
   if (to_json) {
     config = JSON.stringify(config);
   }

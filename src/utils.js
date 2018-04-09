@@ -78,7 +78,7 @@ export const makeSignature = function (params, type = 'sha1', key = '') {
       sign = createHmac(paramsString, key, type);
       break;
   }
-  return sign.toUpperCase();
+  return (sign + '').toUpperCase();
 }
 
 
