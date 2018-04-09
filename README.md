@@ -54,6 +54,16 @@
     scope: 'snsapi_userinfo',
     // 网页授权回调地址，完整的URL
     redirect: 'http://node-easywechat.hpyer.cn/wxlogin/callback'
+  },
+
+  // 支付
+  payment: {
+    // 商户号
+    merchant_id: 'your-mch-id',
+    // 签名密钥
+    key: 'key-for-signature',
+    // 默认回调地址，也可以在下单时单独设置来覆盖它，完整URL，不带参数
+    notify_url: '默认的订单回调地址'
   }
 }
 ```
