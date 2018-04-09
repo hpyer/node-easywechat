@@ -156,14 +156,18 @@ const configForPayment = function (prepare_id, to_json = false) {
 const configForJSSDKPayment = function (prepare_id, to_json = false) {
   let instance = Core.getInstance();
   let signType = 'MD5';
+  let timestamp = getTimestamp();
   let config = {
     appId: instance.$config.appKey,
-    timeStamp: getTimestamp(),
+    timeStamp: timestamp,
     nonceStr: randomString(16),
     package: 'prepay_id=' + prepare_id,
     signType: signType
   };
   config.paySign = makeSignature(config, signType, instance.$config.payment.key);
+  delete config.appId;
+  delete config.timeStamp;
+  config.timestamp = timestamp;
   log('payment.configForJSSDKPayment()', config);
   if (to_json) {
     config = JSON.stringify(config);
