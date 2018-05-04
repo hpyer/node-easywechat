@@ -9,7 +9,7 @@ const init = function (instance) {
 
 const temporary = async function (scene, expireSeconds = null) {
   expireSeconds = parseInt(expireSeconds);
-  if (expireSeconds <= 0 || expireSeconds > 604800) expireSeconds = 604800;
+  if (expireSeconds <= 0 || expireSeconds > 2592000) expireSeconds = 2592000;
   let action_name = '';
   if (typeof scene == 'string') {
     scene = {scene_str: scene};

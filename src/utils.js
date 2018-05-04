@@ -49,7 +49,7 @@ export const createHash = function (str, type = 'sha1') {
 }
 
 export const createHmac = function (str, key, type = 'sha256') {
-  return crypto.createHmac('sha256', key).update(str).digest('hex');
+  return crypto.createHmac(type, key).update(str).digest('hex');
 }
 
 export const makeSignature = function (params, type = 'sha1', key = '') {
