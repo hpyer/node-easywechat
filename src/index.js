@@ -11,6 +11,8 @@ import user from './libs/user';
 import menu from './libs/menu';
 import url from './libs/url';
 import payment from './libs/payment';
+import material_temporary from './libs/material_temporary';
+import material from './libs/material';
 
 Core.EasyWechat.registPlugin('oauth', oauth);
 Core.EasyWechat.registPlugin('cache', cache);
@@ -23,6 +25,8 @@ Core.EasyWechat.registPlugin('user', user);
 Core.EasyWechat.registPlugin('menu', menu);
 Core.EasyWechat.registPlugin('url', url);
 Core.EasyWechat.registPlugin('payment', payment);
+Core.EasyWechat.registPlugin('material_temporary', material_temporary);
+Core.EasyWechat.registPlugin('material', material);
 
 import * as caches from './libs/caches';
 Core.EasyWechat.Cache = {};

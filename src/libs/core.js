@@ -48,7 +48,7 @@ EasyWechat.prototype.requestGet = (url) => {
       uri: url
     }, function (error, response, body) {
       if (error) {
-        reject(error)
+        reject(error);
       }
       else {
         try {
@@ -69,7 +69,30 @@ EasyWechat.prototype.requestFile = (url) => {
       encoding: 'binary'
     }, function (error, response, body) {
       if (error) {
-        reject(error)
+        reject(error);
+      }
+      else {
+        try {
+          let buffer = new Buffer(body, 'binary');
+          body = JSON.parse(buffer.toString());
+        }
+        catch (e) {}
+        resolve(body);
+      }
+    });
+  });
+};
+
+EasyWechat.prototype.requestPost = (url, data = null, json = true) => {
+  return new Promise((resolve, reject) => {
+    request({
+      method: 'POST',
+      uri: url,
+      json: json,
+      body: data
+    }, function (error, response, body) {
+      if (error) {
+        reject(error);
       }
       else {
         resolve(body);
@@ -78,17 +101,21 @@ EasyWechat.prototype.requestFile = (url) => {
   });
 };
 
-EasyWechat.prototype.requestPost = (url, data = null) => {
+EasyWechat.prototype.requestForm = (url, data = null) => {
   return new Promise((resolve, reject) => {
     request({
       method: 'POST',
       uri: url,
-      json: data
+      formData: data
     }, function (error, response, body) {
       if (error) {
-        reject(error)
+        reject(error);
       }
       else {
+        try {
+          body = JSON.parse(body);
+        }
+        catch (e) {}
         resolve(body);
       }
     });
