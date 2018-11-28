@@ -27,15 +27,22 @@ const fetchJsapiTicket = async function () {
   return await instance.requestGet(url);
 };
 
-const config = async function (APIs, debug = false, json = true) {
+const getTicket = async function (force = false) {
   let instance = Core.getInstance();
   let jssdkTicket = instance.$config.cache.fetch(instance.$config.jssdk_cache_key);
-  if (!jssdkTicket) {
+  if (force || !jssdkTicket) {
     let res = await fetchJsapiTicket();
     log('write JSSDK: ', instance.$config.jssdk_cache_key, res.ticket, res.expires_in)
     instance.$config.cache.save(instance.$config.jssdk_cache_key, res.ticket, res.expires_in);
     jssdkTicket = res.ticket;
   }
+
+  return jssdkTicket;
+};
+
+const config = async function (APIs, debug = false, json = true) {
+  let instance = Core.getInstance();
+  let jssdkTicket = getTicket();
 
   let url = $url;
 
@@ -67,5 +74,6 @@ const config = async function (APIs, debug = false, json = true) {
 export default {
   init,
   setUrl,
+  getTicket,
   config
 };
