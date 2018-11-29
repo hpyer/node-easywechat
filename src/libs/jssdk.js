@@ -42,7 +42,7 @@ const getTicket = async function (force = false) {
 
 const config = async function (APIs, debug = false, json = true) {
   let instance = Core.getInstance();
-  let jssdkTicket = getTicket();
+  let jssdkTicket = await getTicket();
 
   let url = $url;
 
