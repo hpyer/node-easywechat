@@ -29,11 +29,11 @@ const fetchJsapiTicket = async function () {
 
 const getTicket = async function (force = false) {
   let instance = Core.getInstance();
-  let jssdkTicket = instance.$config.cache.fetch(instance.$config.jssdk_cache_key);
+  let jssdkTicket = await instance.$config.cache.fetch(instance.$config.jssdk_cache_key);
   if (force || !jssdkTicket) {
     let res = await fetchJsapiTicket();
     log('write JSSDK: ', instance.$config.jssdk_cache_key, res.ticket, res.expires_in)
-    instance.$config.cache.save(instance.$config.jssdk_cache_key, res.ticket, res.expires_in);
+    await instance.$config.cache.save(instance.$config.jssdk_cache_key, res.ticket, res.expires_in);
     jssdkTicket = res.ticket;
   }
 

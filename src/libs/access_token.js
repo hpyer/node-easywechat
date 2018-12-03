@@ -23,19 +23,19 @@ const fetchAccessToken = async function () {
 
 const getToken = async function (force = false) {
   let instance = Core.getInstance();
-  let accessToken = instance.$config.cache.fetch(instance.$config.access_token_cache_key);
+  let accessToken = await instance.$config.cache.fetch(instance.$config.access_token_cache_key);
   if (force || !accessToken) {
     let res = await fetchAccessToken();
-    setToken(res.access_token, res.expires_in);
+    await setToken(res.access_token, res.expires_in);
     accessToken = res.access_token;
   }
   return accessToken;
 };
 
-const setToken = function (access_token, expires_in = 7200) {
+const setToken = async function (access_token, expires_in = 7200) {
   let instance = Core.getInstance();
   log('write AccessToken: ', instance.$config.access_token_cache_key, access_token, expires_in)
-  instance.$config.cache.save(instance.$config.access_token_cache_key, access_token, expires_in);
+  await instance.$config.cache.save(instance.$config.access_token_cache_key, access_token, expires_in);
 };
 
 export default {

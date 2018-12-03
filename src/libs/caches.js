@@ -8,19 +8,19 @@ export class CacheInterface {
     this.$options = {};
   }
 
-  fetch (id) {
+  async fetch (id) {
     return null;
   }
 
-  contains (id) {
+  async contains (id) {
     return true;
   }
 
-  save (id, data = null, lifeTime = 0) {
+  async save (id, data = null, lifeTime = 0) {
     return true;
   }
 
-  delete (id) {
+  async delete (id) {
     return true;
   }
 }
@@ -31,19 +31,19 @@ export class MemoryCache extends CacheInterface {
     this.$datas = {};
   }
 
-  fetch (id) {
+  async fetch (id) {
     if (!this.contains(id) || (this.$datas[id].lifeTime > 0 && this.$datas[id].lifeTime < getTimestamp())) {
       return null;
     }
     return this.$datas[id].data;
   }
 
-  contains (id) {
+  async contains (id) {
     if (typeof this.$datas[id] != 'object') return false;
     return true;
   }
 
-  save (id, data = null, lifeTime = 0) {
+  async save (id, data = null, lifeTime = 0) {
     let dataItem = {
       data,
       lifeTime: lifeTime > 0 ? lifeTime + getTimestamp() : 0
@@ -52,7 +52,7 @@ export class MemoryCache extends CacheInterface {
     return true;
   }
 
-  delete (id) {
+  async delete (id) {
     delete this.$datas[id];
     return true;
   }
@@ -86,7 +86,7 @@ export class FileCache extends CacheInterface {
     return this.$options.path + '/' + id + this.$options.ext;
   }
 
-  fetch (id) {
+  async fetch (id) {
     let content = null;
     let file = this.getCacheFile(id);
     try {
@@ -109,7 +109,7 @@ export class FileCache extends CacheInterface {
     return content;
   }
 
-  contains (id) {
+  async contains (id) {
     let file = this.getCacheFile(id);
     try {
       fs.accessSync(file, fs.constants.R_OK & fs.constants.W_OK);
@@ -120,7 +120,7 @@ export class FileCache extends CacheInterface {
     return true;
   }
 
-  save (id, data = null, lifeTime = 0) {
+  async save (id, data = null, lifeTime = 0) {
     let file = this.getCacheFile(id);
     try {
       let dataItem = {
@@ -140,7 +140,7 @@ export class FileCache extends CacheInterface {
     return true;
   }
 
-  delete (id) {
+  async delete (id) {
     let file = this.getCacheFile(id);
     try {
       fs.unlinkSync(file);
