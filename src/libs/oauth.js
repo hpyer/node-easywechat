@@ -97,7 +97,7 @@ const fetchUserInfo = async function (user) {
   let response = await instance.requestGet(url);
   if (response.errcode) {
     log('oauth.fetchUserInfo()', response);
-    return false;
+    return user;
   }
   user.id = response.openid;
   user.nickname = response.nickname;
