@@ -2,7 +2,7 @@
 import qs from 'qs';
 import Core from './core';
 import {log} from '../utils';
-import crypto from '.crypto';
+const crypto = require('crypto');
 
 const URL_CODE_TO_SESSION = 'https://api.weixin.qq.com/sns/jscode2session';
 
