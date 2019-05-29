@@ -64,6 +64,14 @@
     key: 'key-for-signature',
     // 默认回调地址，也可以在下单时单独设置来覆盖它，完整URL，不带参数
     notify_url: '默认的订单回调地址'
+  },
+
+  // 小程序
+  mini_program: {
+    // appId
+    app_id: 'your-mch-id',
+    // appSecret
+    secret: 'key-for-signature'
   }
 }
 ```

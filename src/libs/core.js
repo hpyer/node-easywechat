@@ -73,7 +73,7 @@ EasyWechat.prototype.requestFile = (url) => {
       }
       else {
         try {
-          let buffer = new Buffer(body, 'binary');
+          let buffer = Buffer.from(body, 'binary');
           body = JSON.parse(buffer.toString());
         }
         catch (e) {}
