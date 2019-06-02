@@ -4,24 +4,43 @@ import Core from './core';
 import {log} from '../utils';
 const crypto = require('crypto');
 
-const URL_CODE_TO_SESSION = 'https://api.weixin.qq.com/sns/jscode2session';
+const URL_MP_CODE_TO_SESSION = 'https://api.weixin.qq.com/sns/jscode2session';
+const URL_MP_ACCESS_TOKEN = 'https://api.weixin.qq.com/cgi-bin/token';
 
 const init = function (instance) {
 };
 
-const sns = {
+const auth = {
   getSessionKey: async function (code) {
     let instance = Core.getInstance();
     let params = {
-      appid: instance.$config.mini_program.app_id,
-      secret: instance.$config.mini_program.secret,
+      appid: instance.$config.mini_program.appId,
+      secret: instance.$config.mini_program.appSecret,
       js_code: code,
       grant_type: 'authorization_code'
     };
-    let url = URL_CODE_TO_SESSION + '?' + qs.stringify(params);
+    let url = URL_MP_CODE_TO_SESSION + '?' + qs.stringify(params);
 
     let response = await instance.requestGet(url);
     return response;
+  },
+  getAccessToken: async function (force = false) {
+    let instance = Core.getInstance();
+    let accessToken = await instance.$config.cache.fetch(instance.$config.mini_program.access_token_cache_key);
+    if (force || !accessToken) {
+      let params = {
+        appid: instance.$config.mini_program.appId,
+        secret: instance.$config.mini_program.appSecret,
+        grant_type: 'client_credential'
+      };
+      let url = URL_MP_ACCESS_TOKEN + '?' + qs.stringify(params);
+
+      let res = await instance.requestGet(url);
+      log('write AccessToken: ', instance.$config.mini_program.access_token_cache_key, res.access_token, res.expires_in)
+      await instance.$config.cache.save(instance.$config.mini_program.access_token_cache_key, res.access_token, res.expires_in);
+      accessToken = res.access_token;
+    }
+    return accessToken;
   }
 };
 
@@ -45,7 +64,7 @@ const encryptor = {
       decoded = JSON.parse(decoded);
 
       let instance = Core.getInstance();
-      if (decoded.watermark.appid !== instance.$config.mini_program.app_id) {
+      if (decoded.watermark.appid !== instance.$config.mini_program.appId) {
         throw new Error('Invaild AppId');
       }
     }
@@ -60,6 +79,6 @@ const encryptor = {
 
 export default {
   init,
-  redirect,
-  user
+  auth,
+  encryptor
 };

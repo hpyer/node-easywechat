@@ -69,9 +69,9 @@
   // 小程序
   mini_program: {
     // appId
-    app_id: 'your-mch-id',
+    appId: 'your-app-id',
     // appSecret
-    secret: 'key-for-signature'
+    appSecret: 'your-app-secret'
   }
 }
 ```

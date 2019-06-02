@@ -13,11 +13,11 @@ var EasyWechatInstance = null;
 class EasyWechat {
   constructor (config = {}) {
     this.$config = merge({}, defaultConfig, config);
-    if (!this.$config.appKey) {
+    if (!this.$config.appKey && !this.$config.mini_program.appId) {
       throw new Error('未填写appKey');
       return;
     }
-    if (!this.$config.appSecret) {
+    if (!this.$config.appSecret && !this.$config.mini_program.appSecret) {
       throw new Error('未填写appSecret');
       return;
     }
