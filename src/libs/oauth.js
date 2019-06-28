@@ -69,7 +69,7 @@ const fetchAccessToken = async function (code) {
     code: code,
     grant_type: 'authorization_code'
   };
-  let url = this.BASE_API + 'sns/oauth2/access_token?' + qs.stringify(params);
+  let url = instance.BASE_API + 'sns/oauth2/access_token?' + qs.stringify(params);
 
   let response = await instance.requestGet(url);
   let user = new User;
@@ -84,9 +84,9 @@ const fetchUserInfo = async function (user) {
     openid: user.id,
     lang: 'zh_CN'
   };
-  let url = this.BASE_API + 'sns/userinfo?' + qs.stringify(params);
-
   let instance = Core.getInstance();
+  let url = instance.BASE_API + 'sns/userinfo?' + qs.stringify(params);
+
   let response = await instance.requestGet(url);
   if (response.errcode) {
     log('oauth.fetchUserInfo()', response);

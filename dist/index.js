@@ -1,5 +1,5 @@
 /*!
- * EasyWechat.js v1.7.0
+ * EasyWechat.js v1.7.4
  * (c) 2017-2019 Hpyer
  * Released under the MIT License.
  */
@@ -409,14 +409,14 @@ const fetchAccessToken = function (code) {return __async(function*(){
     code: code,
     grant_type: 'authorization_code'
   };
-  let url = this.BASE_API + 'sns/oauth2/access_token?' + qs.stringify(params);
+  let url = instance.BASE_API + 'sns/oauth2/access_token?' + qs.stringify(params);
 
   let response = yield instance.requestGet(url);
   let user = new User;
   user.id = response.openid;
   user.token = response;
   return user;
-}.call(this))};
+}())};
 
 const fetchUserInfo = function (user) {return __async(function*(){
   let params = {
@@ -424,9 +424,9 @@ const fetchUserInfo = function (user) {return __async(function*(){
     openid: user.id,
     lang: 'zh_CN'
   };
-  let url = this.BASE_API + 'sns/userinfo?' + qs.stringify(params);
-
   let instance = Core.getInstance();
+  let url = instance.BASE_API + 'sns/userinfo?' + qs.stringify(params);
+
   let response = yield instance.requestGet(url);
   if (response.errcode) {
     log('oauth.fetchUserInfo()', response);
@@ -438,7 +438,7 @@ const fetchUserInfo = function (user) {return __async(function*(){
   user.avatar = response.headimgurl;
   user.original = response;
   return user;
-}.call(this))};
+}())};
 
 var oauth = {
   init,
@@ -644,10 +644,10 @@ const fetchAccessToken$1 = function () {return __async(function*(){
     secret: instance.$config.appSecret,
     grant_type: 'client_credential'
   };
-  let url = this.BASE_API + 'cgi-bin/token?' + qs.stringify(params);
+  let url = instance.BASE_API + 'cgi-bin/token?' + qs.stringify(params);
 
   return yield instance.requestGet(url);
-}.call(this))};
+}())};
 
 const getToken = function (force = false) {return __async(function*(){
   let instance = Core.getInstance();
@@ -689,10 +689,10 @@ const fetchJsapiTicket = function () {return __async(function*(){
     access_token: accessToken,
     type: 'jsapi'
   };
-  let url = this.BASE_API + 'cgi-bin/ticket/getticket?' + qs.stringify(params);
+  let url = instance.BASE_API + 'cgi-bin/ticket/getticket?' + qs.stringify(params);
 
   return yield instance.requestGet(url);
-}.call(this))};
+}())};
 
 const getTicket = function (force = false) {return __async(function*(){
   let instance = Core.getInstance();
@@ -1999,11 +1999,11 @@ const auth = {
       js_code: code,
       grant_type: 'authorization_code'
     };
-    let url = this.BASE_API + 'sns/jscode2session?' + qs.stringify(params);
+    let url = instance.BASE_API + 'sns/jscode2session?' + qs.stringify(params);
 
     let response = yield instance.requestGet(url);
     return response;
-  }.call(this))},
+  }())},
   getAccessToken: function (force = false) {return __async(function*(){
     let instance = Core.getInstance();
     let accessToken = yield instance.$config.cache.fetch(instance.$config.mini_program.access_token_cache_key);
@@ -2013,7 +2013,7 @@ const auth = {
         secret: instance.$config.mini_program.appSecret,
         grant_type: 'client_credential'
       };
-      let url = this.BASE_API + 'cgi-bin/token?' + qs.stringify(params);
+      let url = instance.BASE_API + 'cgi-bin/token?' + qs.stringify(params);
 
       let res = yield instance.requestGet(url);
       log('write AccessToken: ', instance.$config.mini_program.access_token_cache_key, res.access_token, res.expires_in);
@@ -2021,7 +2021,7 @@ const auth = {
       accessToken = res.access_token;
     }
     return accessToken;
-  }.call(this))}
+  }())}
 };
 
 const encryptor = {
@@ -2119,6 +2119,17 @@ const userTags = function (openId) {return __async(function*(){
   return response;
 }())};
 
+const usersOfTag = function (tagId, nextOpenId = '') {return __async(function*(){
+  let instance = Core.getInstance();
+  let url = yield instance.buildApiUrl('user/tag/get');
+  let data = {
+    tagid: tagId,
+    next_openid: nextOpenId
+  };
+  let response = yield instance.requestPost(url, data);
+  return response;
+}())};
+
 const batchTagUsers = function (openIds, tagId) {return __async(function*(){
   let instance = Core.getInstance();
   let url = yield instance.buildApiUrl('tags/members/batchtagging');
@@ -2148,7 +2159,7 @@ var user_tag = {
   update,
   delete: del,
   userTags,
-  userOfTags,
+  usersOfTag,
   batchTagUsers,
   batchUntagUsers
 };

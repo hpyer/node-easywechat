@@ -20,7 +20,7 @@ const fetchJsapiTicket = async function () {
     access_token: accessToken,
     type: 'jsapi'
   };
-  let url = this.BASE_API + 'cgi-bin/ticket/getticket?' + qs.stringify(params);
+  let url = instance.BASE_API + 'cgi-bin/ticket/getticket?' + qs.stringify(params);
 
   return await instance.requestGet(url);
 };
