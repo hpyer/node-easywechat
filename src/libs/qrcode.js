@@ -1,9 +1,6 @@
 
 import Core from './core';
 
-const URL_QRCODE_CREATE = 'https://api.weixin.qq.com/cgi-bin/qrcode/create';
-const URL_QRCODE_FETCH = 'https://mp.weixin.qq.com/cgi-bin/showqrcode';
-
 const init = function (instance) {
 };
 
@@ -25,7 +22,7 @@ const temporary = async function (scene, expireSeconds = null) {
     action_info: {scene}
   };
   let instance = Core.getInstance();
-  let url = await instance.buildApiUrl(URL_QRCODE_CREATE);
+  let url = await instance.buildApiUrl('qrcode/create');
   return await instance.requestPost(url, data);
 };
 
@@ -44,12 +41,12 @@ const forever = async function (scene) {
     action_info: {scene}
   };
   let instance = Core.getInstance();
-  let url = await instance.buildApiUrl(URL_QRCODE_CREATE);
+  let url = await instance.buildApiUrl('qrcode/create');
   return await instance.requestPost(url, data);
 };
 
 const url = async function (ticket) {
-  let url = URL_QRCODE_FETCH + '?ticket=' + ticket;
+  let url = 'https://mp.weixin.qq.com/cgi-bin/showqrcode?ticket=' + ticket;
   let instance = Core.getInstance();
   return await instance.requestFile(url);
 };

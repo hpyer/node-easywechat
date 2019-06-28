@@ -3,15 +3,12 @@ import fs from 'fs';
 import Core from './core';
 import {log, isObject} from '../utils';
 
-const URL_MEDIA_TEMP = 'https://api.weixin.qq.com/cgi-bin/media/get';
-const URL_MEDIA_UPLOAD = 'https://api.weixin.qq.com/cgi-bin/media/upload';
-
 const init = function (instance) {
 };
 
 const getStream = async function (mediaId) {
   let instance = Core.getInstance();
-  let url = await instance.buildApiUrl(URL_MEDIA_TEMP) + '&media_id=' + mediaId;
+  let url = await instance.buildApiUrl('media/get') + '&media_id=' + mediaId;
   let res;
   try {
     res = await instance.requestFile(url);
@@ -48,7 +45,7 @@ const download = async function (mediaId, path, fileName = '') {
 
 const upload = async function (file, type = 'image', extra = null) {
   let instance = Core.getInstance();
-  let url = await instance.buildApiUrl(URL_MEDIA_UPLOAD) + '&type=' + type;
+  let url = await instance.buildApiUrl('media/upload') + '&type=' + type;
   let res;
   try {
     let formData = {media: fs.createReadStream(file)};

@@ -3,21 +3,12 @@ import fs from 'fs';
 import Core from './core';
 import {log, extendObj, isObject} from '../utils';
 
-const URL_MATERIAL_GET = 'https://api.weixin.qq.com/cgi-bin/material/get_material';
-const URL_MATERIAL_ADD = 'https://api.weixin.qq.com/cgi-bin/material/add_material';
-const URL_MATERIAL_DELETE = 'https://api.weixin.qq.com/cgi-bin/material/del_material';
-const URL_MATERIAL_LIST = 'https://api.weixin.qq.com/cgi-bin/material/batchget_material';
-const URL_MATERIAL_STATS = 'https://api.weixin.qq.com/cgi-bin/material/get_materialcount';
-const URL_MATERIAL_ADD_ARTICLE = 'https://api.weixin.qq.com/cgi-bin/material/add_news';
-const URL_MATERIAL_UPDATE_ARTICLE = 'https://api.weixin.qq.com/cgi-bin/material/update_news';
-const URL_MATERIAL_UPLOAD_ARTICLE_IMAGE = 'https://api.weixin.qq.com/cgi-bin/media/uploadimg';
-
 const init = function (instance) {
 };
 
 const getMaterial = async function (mediaId) {
   let instance = Core.getInstance();
-  let url = await instance.buildApiUrl(URL_MATERIAL_GET) + '&media_id=' + mediaId;
+  let url = await instance.buildApiUrl('material/get_material') + '&media_id=' + mediaId;
   let res;
   try {
     res = await instance.requestFile(url);
@@ -49,7 +40,7 @@ const download = async function (mediaId, path, fileName = '') {
 
 const upload = async function (file, type = 'image', extra = null) {
   let instance = Core.getInstance();
-  let url = await instance.buildApiUrl(URL_MATERIAL_ADD) + '&type=' + type;
+  let url = await instance.buildApiUrl('material/add_material') + '&type=' + type;
   let res;
   try {
     let formData = {media: fs.createReadStream(file)};
@@ -90,7 +81,7 @@ const uploadThumb = async function (file) {
 
 const deleteMaterial = async function (mediaId) {
   let instance = Core.getInstance();
-  let url = await instance.buildApiUrl(URL_MATERIAL_DELETE);
+  let url = await instance.buildApiUrl('material/del_material');
   let res;
   try {
     res = await instance.requestPost(url, {mediaId: mediaId});
@@ -108,7 +99,7 @@ const deleteMaterial = async function (mediaId) {
 
 const lists = async function (type, offset = 0, count = 20) {
   let instance = Core.getInstance();
-  let url = await instance.buildApiUrl(URL_MATERIAL_LIST);
+  let url = await instance.buildApiUrl('material/batchget_material');
   let res;
   try {
     res = await instance.requestPost(url, {
@@ -130,7 +121,7 @@ const lists = async function (type, offset = 0, count = 20) {
 
 const stats = async function () {
   let instance = Core.getInstance();
-  let url = await instance.buildApiUrl(URL_MATERIAL_STATS);
+  let url = await instance.buildApiUrl('material/get_materialcount');
   let res;
   try {
     res = await instance.requestGet(url);
@@ -150,7 +141,7 @@ const uploadArticle = async function (article) {
   if (isObject(article)) article = [article];
 
   let instance = Core.getInstance();
-  let url = await instance.buildApiUrl(URL_MATERIAL_ADD_ARTICLE);
+  let url = await instance.buildApiUrl('material/add_news');
   let res;
   try {
     res = await instance.requestPost(url, {
@@ -170,7 +161,7 @@ const uploadArticle = async function (article) {
 
 const uploadArticleImage = async function (file) {
   let instance = Core.getInstance();
-  let url = await instance.buildApiUrl(URL_MATERIAL_UPLOAD_ARTICLE_IMAGE);
+  let url = await instance.buildApiUrl('media/uploadimg');
   let res;
   try {
     let formData = {media: fs.createReadStream(file)};
@@ -191,7 +182,7 @@ const updateArticle = async function (mediaId, article, index = 0) {
   if (isObject(article)) article = [article];
 
   let instance = Core.getInstance();
-  let url = await instance.buildApiUrl(URL_MATERIAL_UPDATE_ARTICLE);
+  let url = await instance.buildApiUrl('material/update_news');
   let res;
   try {
     res = await instance.requestPost(url, {

@@ -3,8 +3,6 @@ import Core from './core';
 import {log, randomString, getTimestamp, isNumber, isString, isObject, makeSignature} from '../utils';
 import {parseString} from 'xml2js';
 
-const URL_ORDER = 'https://api.mch.weixin.qq.com/pay/unifiedorder';
-
 const init = function (instance) {
 };
 
@@ -55,7 +53,7 @@ const prepare = async function (order) {
   data.sign = makeSignature(data, data.sign_type, paymentConfig.key);
 
   let xml = toXml(data);
-  let result = await instance.requestPost(URL_ORDER, xml);
+  let result = await instance.requestPost('https://api.mch.weixin.qq.com/pay/unifiedorder', xml);
   result = await parseMessage(result);
   log('payment.prepare(): ', data, xml, result);
   return result;

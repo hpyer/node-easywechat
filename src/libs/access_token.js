@@ -3,8 +3,6 @@ import qs from 'qs';
 import Core from './core';
 import {log} from '../utils';
 
-const URL_ACCESS_TOKEN = 'https://api.weixin.qq.com/cgi-bin/token';
-
 const init = function (instance) {
   instance.$config.access_token_cache_key = instance.$config.access_token_cache_key || 'NODE_EASYWECHAT_ACCESS_TOKEN';
 };
@@ -16,7 +14,7 @@ const fetchAccessToken = async function () {
     secret: instance.$config.appSecret,
     grant_type: 'client_credential'
   };
-  let url = URL_ACCESS_TOKEN + '?' + qs.stringify(params);
+  let url = this.BASE_API + 'cgi-bin/token?' + qs.stringify(params);
 
   return await instance.requestGet(url);
 };

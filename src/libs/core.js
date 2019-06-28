@@ -3,6 +3,8 @@ import merge from 'merge';
 import request from 'request';
 import * as AppServers from './app_server';
 
+const BASE_API = 'https://api.weixin.qq.com/';
+
 const defaultConfig = {
   appKey: '',
   appSecret: ''
@@ -21,6 +23,8 @@ class EasyWechat {
       throw new Error('未填写appSecret');
       return;
     }
+
+    this.BASE_API = BASE_API;
 
     EasyWechatInstance = this;
     this.$plugins.forEach((name) => {
@@ -122,9 +126,9 @@ EasyWechat.prototype.requestForm = (url, data = null) => {
   });
 };
 
-EasyWechat.prototype.buildApiUrl = async (baseUrl) => {
+EasyWechat.prototype.buildApiUrl = async (api) => {
   let access_token = await EasyWechatInstance.access_token.getToken();
-  return baseUrl + '?access_token=' + access_token;
+  return BASE_API + 'cgi-bin/' + api + '?access_token=' + access_token;
 };
 
 EasyWechat.prototype.$plugins = [];

@@ -4,9 +4,6 @@ import Core from './core';
 import {log} from '../utils';
 const crypto = require('crypto');
 
-const URL_MP_CODE_TO_SESSION = 'https://api.weixin.qq.com/sns/jscode2session';
-const URL_MP_ACCESS_TOKEN = 'https://api.weixin.qq.com/cgi-bin/token';
-
 const init = function (instance) {
 };
 
@@ -19,7 +16,7 @@ const auth = {
       js_code: code,
       grant_type: 'authorization_code'
     };
-    let url = URL_MP_CODE_TO_SESSION + '?' + qs.stringify(params);
+    let url = this.BASE_API + 'sns/jscode2session?' + qs.stringify(params);
 
     let response = await instance.requestGet(url);
     return response;
@@ -33,7 +30,7 @@ const auth = {
         secret: instance.$config.mini_program.appSecret,
         grant_type: 'client_credential'
       };
-      let url = URL_MP_ACCESS_TOKEN + '?' + qs.stringify(params);
+      let url = this.BASE_API + 'cgi-bin/token?' + qs.stringify(params);
 
       let res = await instance.requestGet(url);
       log('write AccessToken: ', instance.$config.mini_program.access_token_cache_key, res.access_token, res.expires_in)

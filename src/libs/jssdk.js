@@ -3,8 +3,6 @@ import {log, randomString, getTimestamp, makeSignature} from '../utils';
 import qs from 'qs';
 import Core from './core';
 
-const URL_JSAPI_TICKET = 'https://api.weixin.qq.com/cgi-bin/ticket/getticket';
-
 const init = function (instance) {
   instance.$config.jssdk_cache_key = instance.$config.jssdk_cache_key || 'NODE_EASYWECHAT_JSSKD_TICKET';
 };
@@ -22,7 +20,7 @@ const fetchJsapiTicket = async function () {
     access_token: accessToken,
     type: 'jsapi'
   };
-  let url = URL_JSAPI_TICKET + '?' + qs.stringify(params);
+  let url = this.BASE_API + 'cgi-bin/ticket/getticket?' + qs.stringify(params);
 
   return await instance.requestGet(url);
 };

@@ -1,14 +1,6 @@
 
 import Core from './core';
 
-const URL_USER_GET = 'https://api.weixin.qq.com/cgi-bin/user/info';
-const URL_USER_BATCHGET = 'https://api.weixin.qq.com/cgi-bin/user/info/batchget';
-const URL_USER_LISTS = 'https://api.weixin.qq.com/cgi-bin/user/get';
-const URL_USER_REMARK = 'https://api.weixin.qq.com/cgi-bin/user/info/updateremark';
-const URL_USER_BLACKLIST = 'https://api.weixin.qq.com/cgi-bin/tags/members/getblacklist';
-const URL_USER_BLACKLIST_BLOCK = 'https://api.weixin.qq.com/cgi-bin/tags/members/batchblacklist';
-const URL_USER_BLACKLIST_UNBLOCK = 'https://api.weixin.qq.com/cgi-bin/tags/members/batchunblacklist';
-
 class User {
   constructor () {
     this.id = ''
@@ -25,7 +17,7 @@ const init = function (instance) {
 
 const get = async function (openid, lang = 'zh_CN') {
   let instance = Core.getInstance();
-  let url = await instance.buildApiUrl(URL_USER_GET);
+  let url = await instance.buildApiUrl('user/info');
   url += '&openid=' + openid + '&lang=' + lang;
   let response = await instance.requestGet(url);
   let user = new User;
@@ -42,13 +34,13 @@ const batchGet = async function (user_list) {
   let data = {
     user_list
   };
-  let url = await instance.buildApiUrl(URL_USER_BATCHGET);
+  let url = await instance.buildApiUrl('user/info/batchget');
   return await instance.requestPost(url, data);
 };
 
 const lists = async function (next_openid = null) {
   let instance = Core.getInstance();
-  let url = await instance.buildApiUrl(URL_USER_LISTS);
+  let url = await instance.buildApiUrl('user/get');
   if (next_openid) {
     url += '&next_openid=' + next_openid
   }
@@ -60,7 +52,7 @@ const remark = async function (openid, remark) {
   let data = {
     openid, remark
   };
-  let url = await instance.buildApiUrl(URL_USER_REMARK);
+  let url = await instance.buildApiUrl('user/info/updateremark');
   return await instance.requestPost(url);
 };
 
@@ -70,7 +62,7 @@ const blacklist = async function (begin_openid) {
   if (begin_openid) {
     data.begin_openid = begin_openid;
   }
-  let url = await instance.buildApiUrl(URL_USER_BLACKLIST);
+  let url = await instance.buildApiUrl('tags/members/getblacklist');
   return await instance.requestPost(url, data);
 };
 
@@ -79,7 +71,7 @@ const batchBlock = async function (openid_list) {
   let data = {
     openid_list
   };
-  let url = await instance.buildApiUrl(URL_USER_BLACKLIST_BLOCK);
+  let url = await instance.buildApiUrl('tags/members/batchblacklist');
   return await instance.requestPost(url, data);
 };
 
@@ -88,7 +80,7 @@ const batchUnblock = async function (openid_list) {
   let data = {
     openid_list
   };
-  let url = await instance.buildApiUrl(URL_USER_BLACKLIST_UNBLOCK);
+  let url = await instance.buildApiUrl('tags/members/batchunblacklist');
   return await instance.requestPost(url, data);
 };
 

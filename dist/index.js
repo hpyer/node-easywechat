@@ -1,6 +1,2184 @@
 /*!
- * EasyWechat.js v1.6.1
+ * EasyWechat.js v1.7.0
  * (c) 2017-2019 Hpyer
  * Released under the MIT License.
  */
-"use strict";function e(e){return e&&"object"==typeof e&&"default"in e?e.default:e}function t(e){return new Promise(function(t,n){function i(a,c){try{var s=e[c?"throw":"next"](a)}catch(e){return void n(e)}s.done?t(s.value):Promise.resolve(s.value).then(i,r)}function r(e){i(e,1)}i()})}var n=e(require("merge")),i=e(require("request")),r=e(require("body")),a=e(require("url")),c=e(require("qs")),s=e(require("fs")),o=e(require("path")),u=e(require("wechat-crypto")),l=require("xml2js");const d=function(){let e=arguments;return e[0]="NodeEasywechat: "+e[0],console.log.apply(null,arguments)},p=function(){return parseInt((new Date).getTime()/1e3)},f=function(e=16){let t="ABCDEFGHJKMNPQRSTWXYZabcdefhijkmnprstwxyz2345678",n="";for(let i=0;i<e;i++)n+=t.charAt(Math.floor(Math.random()*t.length));return n},y=function(e){if(!e)return e;if("object"!=typeof e)return e;let t=new Object;for(let n in e)t[n]=y(e[n]);return t},g=function(){let e=arguments;if(0==e.length)return null;let t=y(e[0]);if(1==e.length)return t;for(let n=1;n<e.length;n++)if(e[n]&&"object"==typeof e[n])for(let i in e[n])t[i]=e[n][i];return t},m=require("crypto"),h=function(e,t="sha1"){return m.createHash(t).update(e).digest("hex")},_=function(e,t,n="sha256"){return m.createHmac(n,t).update(e).digest("hex")},b=function(e,t="sha1",n=""){let i="",r="",a=Object.keys(e);a=a.sort();for(let t=0;t<a.length;t++)"sign"!=a[t]&&e[a[t]]&&(i+=r+a[t]+"="+e[a[t]],r="&");n&&(i+="&key="+n);let c="";switch(t=t.toLowerCase()){case"sha1":case"md5":c=h(i,t);break;case"hmac-sha256":case"hmac_sha256":t=t.replace(/^hmac[\-|_]/i,""),c=_(i,n,t)}return(c+"").toUpperCase()},q=e=>"[object String]"==Object.prototype.toString.call(e),I=e=>"[object Array]"==Object.prototype.toString.call(e),$=e=>"[object Number]"==Object.prototype.toString.call(e),S=e=>"[object Object]"==Object.prototype.toString.call(e);class w{constructor(e,t){this.$req=e,this.$res=t}getMethod(){return this.$req?this.$req.method:{}}getQuery(){return this.$req?a.parse(this.$req.url,!0).query:{}}_readBody(){return new Promise((e,t)=>{r(this.$req,(n,i)=>{n?t(n):e(i)})}).catch(e=>{d("app_server._readBody()",e)})}getBody(){return t(function*(){return this.$req?yield this._readBody():""}.call(this))}_initResponseOptions(e={}){return e.status=e.status||200,e.contentType=e.contentType||"text/html",e.headers=e.headers||{},e.headers["Content-Type"]=e.contentType,e}sendResponse(e,t={}){if(!this.$res)return!1;t=this._initResponseOptions(t),this.$res.writeHead(t.status,t.headers),this.$res.end(e)}}class k extends w{constructor(e){super(e.req,e.res),this.$ctx=e}sendResponse(e,t={}){if(!this.$ctx)return!1;t=this._initResponseOptions(t),this.$ctx.status=t.status;for(let e in t.headers)this.$ctx.set(e,t.headers[e]);this.$ctx.body=e}}class P extends w{constructor(e,t){super(e,t)}sendResponse(e,t={}){if(!this.$res)return!1;t=this._initResponseOptions(t),this.$res.status(t.status).set(t.headers).send(e)}}const A={appKey:"",appSecret:""};var E=null;class U{constructor(e={}){if(this.$config=n({},A,e),!this.$config.appKey&&!this.$config.mini_program.appId)throw new Error("\u672a\u586b\u5199appKey");if(!this.$config.appSecret&&!this.$config.mini_program.appSecret)throw new Error("\u672a\u586b\u5199appSecret");E=this,this.$plugins.forEach(e=>{this[e].init(this)})}setAppServerDefault(e,t){this.$config.app=new w(e,t)}setAppServerKoa2(e){this.$config.app=new k(e)}setAppServerExpress(e,t){this.$config.app=new P(e,t)}}U.prototype.requestGet=(e=>new Promise((t,n)=>{i({method:"GET",uri:e},function(e,i,r){if(e)n(e);else{try{r=JSON.parse(r)}catch(e){}t(r)}})})),U.prototype.requestFile=(e=>new Promise((t,n)=>{i({method:"GET",uri:e,encoding:"binary"},function(e,i,r){if(e)n(e);else{try{let e=Buffer.from(r,"binary");r=JSON.parse(e.toString())}catch(e){}t(r)}})})),U.prototype.requestPost=((e,t=null,n=!0)=>new Promise((r,a)=>{i({method:"POST",uri:e,json:n,body:t},function(e,t,n){e?a(e):r(n)})})),U.prototype.requestForm=((e,t=null)=>new Promise((n,r)=>{i({method:"POST",uri:e,formData:t},function(e,t,i){if(e)r(e);else{try{i=JSON.parse(i)}catch(e){}n(i)}})})),U.prototype.buildApiUrl=(e=>t(function*(){let t=yield E.access_token.getToken();return e+"?access_token="+t}())),U.prototype.$plugins=[],U.registPlugin=((e,t)=>{U.prototype[e]=t,U.prototype.$plugins.push(e)});var x={EasyWechat:U,getInstance:()=>E};const v="https://open.weixin.qq.com/connect/oauth2/authorize",T="https://open.weixin.qq.com/connect/qrconnect",M="https://api.weixin.qq.com/sns/oauth2/access_token",C="https://api.weixin.qq.com/sns/userinfo";class N{constructor(){this.id="",this.nickname="",this.name="",this.avatar="",this.original={},this.token={}}}const j=function(e){},D=function(e=""){let t=x.getInstance();if(!t.$config.oauth)return"";if(!t.$config.oauth.scope)throw new Error("\u672a\u586b\u5199\u6388\u6743scope");if(!t.$config.oauth.redirect)throw new Error("\u672a\u586b\u5199\u6388\u6743\u56de\u8c03\u5730\u5740");let n=t.$config.oauth.redirect;if("http://"!=n.substr(0,7)&&"https://"!=n.substr(0,8))throw new Error("\u8bf7\u586b\u5199\u5b8c\u6574\u7684\u56de\u8c03\u5730\u5740\uff0c\u4ee5\u201chttp://\u201d\u6216\u201chttps://\u201d\u5f00\u5934");let i=v;"snsapi_login"==t.$config.oauth.scope&&(i=T);let r={appid:t.$config.appKey,redirect_uri:n,response_type:"code",scope:t.$config.oauth.scope};return e&&(r.state=e),i+"?"+c.stringify(r)+"#wechat_redirect"},R=function(e){return t(function*(){let t=yield O(e);return"snsapi_base"!=x.getInstance().$config.oauth.scope&&(t=yield F(t)),t}())},O=function(e){return t(function*(){let t=x.getInstance(),n={appid:t.$config.appKey,secret:t.$config.appSecret,code:e,grant_type:"authorization_code"},i=M+"?"+c.stringify(n),r=yield t.requestGet(i),a=new N;return a.id=r.openid,a.token=r,a}())},F=function(e){return t(function*(){let t={access_token:e.token.access_token,openid:e.id,lang:"zh_CN"},n=C+"?"+c.stringify(t),i=yield x.getInstance().requestGet(n);return i.errcode?(d("oauth.fetchUserInfo()",i),e):(e.id=i.openid,e.nickname=i.nickname,e.name=i.nickname,e.avatar=i.headimgurl,e.original=i,e)}())};var K={init:function(e){},redirect:function(e=""){let t=x.getInstance();if(!t.$config.oauth)return"";if(!t.$config.oauth.scope)throw new Error("\u672a\u586b\u5199\u6388\u6743scope");if(!t.$config.oauth.redirect)throw new Error("\u672a\u586b\u5199\u6388\u6743\u56de\u8c03\u5730\u5740");let n=t.$config.oauth.redirect;if("http://"!=n.substr(0,7)&&"https://"!=n.substr(0,8))throw new Error("\u8bf7\u586b\u5199\u5b8c\u6574\u7684\u56de\u8c03\u5730\u5740\uff0c\u4ee5\u201chttp://\u201d\u6216\u201chttps://\u201d\u5f00\u5934");let i=v;"snsapi_login"==t.$config.oauth.scope&&(i=T);let r={appid:t.$config.appKey,redirect_uri:n,response_type:"code",scope:t.$config.oauth.scope};return e&&(r.state=e),i+"?"+c.stringify(r)+"#wechat_redirect"},user:function(e){return t(function*(){let t=yield O(e);return"snsapi_base"!=x.getInstance().$config.oauth.scope&&(t=yield F(t)),t}())}};class W{constructor(){this.$options={}}fetch(e){return t(null)}contains(e){return t(!0)}save(e,n=null,i=0){return t(!0)}delete(e){return t(!0)}}class J extends W{constructor(){super(),this.$datas={}}fetch(e){return t(function*(){return!this.contains(e)||this.$datas[e].lifeTime>0&&this.$datas[e].lifeTime<p()?null:this.$datas[e].data}.call(this))}contains(e){return t(function*(){return"object"==typeof this.$datas[e]}.call(this))}save(e,n=null,i=0){return t(function*(){let t={data:n,lifeTime:i>0?i+p():0};return this.$datas[e]=t,!0}.call(this))}delete(e){return t(function*(){return delete this.$datas[e],!0}.call(this))}}class G extends W{constructor(e){super();let t={path:"",dirMode:511,fileMode:438,ext:".cache"};this.$options=g(t,e),this.$options.path=o.resolve(this.$options.path);try{s.accessSync(this.$options.path,s.constants.R_OK&s.constants.W_OK)}catch(e){try{s.mkdirSync(this.$options.path,this.$options.dirMode)}catch(e){d("\u65e0\u6cd5\u521b\u5efa\u7f13\u5b58\u76ee\u5f55\uff1a"+this.$options.path,e)}}}getCacheFile(e){return this.$options.path+"/"+e+this.$options.ext}fetch(e){return t(function*(){let t=null,n=this.getCacheFile(e);try{let e=JSON.parse(s.readFileSync(n,{encoding:"utf-8",flag:"r"}));t=e.lifeTime>0&&e.lifeTime<p()?null:e.data}catch(e){d("\u65e0\u6cd5\u8bfb\u53d6\u7f13\u5b58\u6587\u4ef6\uff1a"+n,e),t=null}return t}.call(this))}contains(e){return t(function*(){let t=this.getCacheFile(e);try{s.accessSync(t,s.constants.R_OK&s.constants.W_OK)}catch(e){return!1}return!0}.call(this))}save(e,n=null,i=0){return t(function*(){let t=this.getCacheFile(e);try{let e={data:n,lifeTime:i>0?i+p():0};s.writeFileSync(t,JSON.stringify(e),{mode:this.$options.fileMode,encoding:"utf-8",flag:"w"})}catch(e){return d("\u65e0\u6cd5\u5199\u5165\u7f13\u5b58\u6587\u4ef6\uff1a"+t,e),!1}return!0}.call(this))}delete(e){return t(function*(){let t=this.getCacheFile(e);try{s.unlinkSync(t)}catch(e){return d("\u65e0\u6cd5\u5220\u9664\u7f13\u5b58\u6587\u4ef6\uff1a"+t,e),!1}return!0}.call(this))}}var B=Object.freeze({CacheInterface:W,MemoryCache:J,FileCache:G});const L=function(e){if(!e.$config.cache)switch(e.$config.cache_driver){case"file":e.$config.cache=new G(e.$config.cache_options);break;case"memory":default:e.$config.cache=new J}},Q=function(e){e&&"function"==typeof e.fetch&&"function"==typeof e.contains&&"function"==typeof e.save&&"function"==typeof e.delete&&(x.getInstance().$config.cache=e)};var H={init:function(e){if(!e.$config.cache)switch(e.$config.cache_driver){case"file":e.$config.cache=new G(e.$config.cache_options);break;case"memory":default:e.$config.cache=new J}},setCache:function(e){e&&"function"==typeof e.fetch&&"function"==typeof e.contains&&"function"==typeof e.save&&"function"==typeof e.delete&&(x.getInstance().$config.cache=e)}};const V="https://api.weixin.qq.com/cgi-bin/token",z=function(e){e.$config.access_token_cache_key=e.$config.access_token_cache_key||"NODE_EASYWECHAT_ACCESS_TOKEN"},Y=function(){return t(function*(){let e=x.getInstance(),t={appid:e.$config.appKey,secret:e.$config.appSecret,grant_type:"client_credential"},n=V+"?"+c.stringify(t);return yield e.requestGet(n)}())},X=function(e=!1){return t(function*(){let t=x.getInstance(),n=yield t.$config.cache.fetch(t.$config.access_token_cache_key);if(e||!n){let e=yield Y();yield Z(e.access_token,e.expires_in),n=e.access_token}return n}())},Z=function(e,n=7200){return t(function*(){let t=x.getInstance();d("write AccessToken: ",t.$config.access_token_cache_key,e,n),yield t.$config.cache.save(t.$config.access_token_cache_key,e,n)}())};var ee={init:function(e){e.$config.access_token_cache_key=e.$config.access_token_cache_key||"NODE_EASYWECHAT_ACCESS_TOKEN"},getToken:function(e=!1){return t(function*(){let t=x.getInstance(),n=yield t.$config.cache.fetch(t.$config.access_token_cache_key);if(e||!n){let e=yield Y();yield Z(e.access_token,e.expires_in),n=e.access_token}return n}())},setToken:Z};const te="https://api.weixin.qq.com/cgi-bin/ticket/getticket",ne=function(e){e.$config.jssdk_cache_key=e.$config.jssdk_cache_key||"NODE_EASYWECHAT_JSSKD_TICKET"};var ie="";const re=function(e){ie=e},ae=function(){return t(function*(){let e=x.getInstance(),t={access_token:yield e.access_token.getToken(),type:"jsapi"},n=te+"?"+c.stringify(t);return yield e.requestGet(n)}())},ce=function(e=!1){return t(function*(){let t=x.getInstance(),n=yield t.$config.cache.fetch(t.$config.jssdk_cache_key);if(e||!n){let e=yield ae();d("write JSSDK: ",t.$config.jssdk_cache_key,e.ticket,e.expires_in),yield t.$config.cache.save(t.$config.jssdk_cache_key,e.ticket,e.expires_in),n=e.ticket}return n}())},se=function(e,n=!1,i=!0){return t(function*(){let t=x.getInstance(),r=yield ce(),a=ie,c=f(),s=p(),o=b({jsapi_ticket:r,noncestr:c,timestamp:s,url:a}),u={debug:n,appId:t.$config.appKey,timestamp:s,nonceStr:c,signature:o,url:a,jsApiList:e};return ie="",i?JSON.stringify(u):u}())};var oe={init:function(e){e.$config.jssdk_cache_key=e.$config.jssdk_cache_key||"NODE_EASYWECHAT_JSSKD_TICKET"},setUrl:function(e){ie=e},getTicket:ce,config:function(e,n=!1,i=!0){return t(function*(){let t=x.getInstance(),r=yield ce(),a=ie,c=f(),s=p(),o=b({jsapi_ticket:r,noncestr:c,timestamp:s,url:a}),u={debug:n,appId:t.$config.appKey,timestamp:s,nonceStr:c,signature:o,url:a,jsApiList:e};return ie="",i?JSON.stringify(u):u}())}};class ue{constructor(e){this.dataParams={ToUserName:"",FromUserName:"",CreateTime:p(),MsgType:""},this.json=null,this.data="","object"==typeof e?this.json=e:this.data=e}setAttribute(e,t){this.dataParams[e]=t}formatData(){return"<xml>"+this._formatData(this.dataParams)+"</xml>"}_formatData(e){if("object"==typeof e){let t="";for(let n in e)if(I(e[n]))for(let i=0;i<e[n].length;i++)t+=`<${n}>${this._formatData(e[n][i])}</${n}>`;else t+=`<${n}>${this._formatData(e[n])}</${n}>`;return t}return q(e)?"<![CDATA["+e+"]]>":e}getData(){return this.json?JSON.stringify(this.json):(this.data||(this.data=this.formatData()),this.data)}}class le extends ue{constructor(e){super(""),this.dataParams={},this.dataParams.Encrypt=e.encrypt||"",this.dataParams.MsgSignature=e.sign||"",this.dataParams.TimeStamp=e.timestamp||p(),this.dataParams.Nonce=e.nonce||""}content(e){this.dataParams.Content=e}}class de extends ue{constructor(e){super(""),this.dataParams.MsgType="text",this.dataParams.Content=e.content||""}content(e){this.dataParams.Content=e}}class pe extends ue{constructor(e){super(""),this.dataParams.MsgType="image",this.dataParams.Image={MediaId:e.media_id||""}}mediaId(e){this.dataParams.Image.MediaId=e}}class fe extends ue{constructor(e){super(""),this.dataParams.MsgType="voice",this.dataParams.Voice={MediaId:e.media_id||""}}mediaId(e){this.dataParams.Voice.MediaId=e}}class ye extends ue{constructor(e){super(""),this.dataParams.MsgType="video",this.dataParams.Video={MediaId:e.media_id||"",Title:e.title||"",Description:e.description||""}}mediaId(e){this.dataParams.Video.MediaId=e}title(e){this.dataParams.Video.Title=e}description(e){this.dataParams.Video.Description=e}}class ge extends ue{constructor(e){super(""),this.dataParams.MsgType="music",this.dataParams.Music={MediaId:e.media_id||"",Title:e.title||"",Description:e.description||"",MusicUrl:e.music_url||"",HQMusicUrl:e.hq_music_url||"",ThumbMediaId:e.thumb_media_id||""}}mediaId(e){this.dataParams.Music.MediaId=e}title(e){this.dataParams.Music.Title=e}description(e){this.dataParams.Music.Description=e}musicUrl(e){this.dataParams.Music.MusicUrl=e}hqMusicurl(e){this.dataParams.Music.HQMusicUrl=e}thumbMediaId(e){this.dataParams.Music.ThumbMediaId=e}}class me extends ue{constructor(e){super(""),this.dataParams.MsgType="news",this.dataParams.ArticleCount=1,this.dataParams.Articles={item:{Title:e.title||"",Description:e.description||"",Url:e.url||"",PicUrl:e.image||""}}}title(e){this.dataParams.Articles.item.Title=e}description(e){this.dataParams.Articles.item.Description=e}url(e){this.dataParams.Articles.item.Url=e}picUrl(e){this.dataParams.Articles.item.PicUrl=e}}var he=Object.freeze({Raw:ue,Encrypt:le,Text:de,Image:pe,Voice:fe,Video:ye,Music:ge,News:me});const _e=function(e){be=function(){}};let be,qe;const Ie=function(e){"function"!=typeof e&&(e=function(){}),be=e},$e=function(e){let t=[],n=null;for(let i in e)"news"==e[i].dataParams.MsgType&&(n=e[i],t.push(e[i].dataParams.Articles.item));return t.length>0&&n&&(n.dataParams.ArticleCount=t.length,n.dataParams.Articles.item=t),n},Se=function(){return t(function*(){let e=x.getInstance(),t=e.$config.app;if(!t)throw new Error("\u672a\u5728\u914d\u7f6e\u6587\u4ef6\u4e2d\u8bbe\u7f6e\u5e94\u7528\u670d\u52a1\u5668");let n=null;if(e.$config.aesKey&&(n=new u(e.$config.token,e.$config.aesKey,e.$config.appKey)),"GET"==t.getMethod()){let r=t.getQuery();if(!(r.signature&&r.echostr&&r.timestamp&&r.nonce))return void t.sendResponse("Hello node-easywechat");let a;if(n)a=n.getSignature(r.timestamp||"",r.nonce||"",r.encrypt||"");else{var i=[e.$config.token,r.timestamp||"",r.nonce||"",r.encrypt||""].sort();a=h(i.join(""),"sha1")}a===r.signature?t.sendResponse(r.echostr):t.sendResponse("fail")}else{let e=yield t.getBody();if(qe=yield we(e,n),be&&"function"==typeof be){let e=yield be(qe);if(!e||q(e)&&"SUCCESS"==e.toUpperCase())return void t.sendResponse("SUCCESS");let i=null;if((i=q(e)?new de({content:e}):I(e)?$e(e):e)&&"object"==typeof i){i.setAttribute("ToUserName",qe.FromUserName),i.setAttribute("FromUserName",qe.ToUserName);let e=i.getData();if(d("server.send().original",e),n&&qe._isEncrypt){e=n.encrypt(e);let t=p(),r=f(),a=n.getSignature(t,r,e);e=(i=new le({encrypt:e,sign:a,timestamp:t,nonce:r})).getData(),d("server.send().encrypt",e)}t.sendResponse(e)}}}}())},we=function(e,n=null){return t(function*(){return new Promise((i,r)=>{l.parseString(e,(e,a)=>t(function*(){if(e)r(e);else{let e;if(a&&a.xml){e={};for(let t in a.xml)e[t]=a.xml[t][0];if(e._isEncrypt=!1,e.Encrypt&&n){let t=n.decrypt(e.Encrypt);if(d("parseMessage.decrypted",t),!(e=yield we(t.message)))throw new Error("\u65e0\u6cd5\u89e3\u5bc6\u6d88\u606f\uff0c\u8bf7\u786e\u8ba4 AppId\u3001Token\u3001AESKey \u7b49\u662f\u5426\u6b63\u786e");e._isEncrypt=!0}}i(e)}}()))}).catch(e=>{d("server.parseMessage()",e)})}())},ke=function(){return qe};var Pe={init:function(e){be=function(){}},setMessageHandler:function(e){"function"!=typeof e&&(e=function(){}),be=e},serve:function(){return t(function*(){let e=x.getInstance(),t=e.$config.app;if(!t)throw new Error("\u672a\u5728\u914d\u7f6e\u6587\u4ef6\u4e2d\u8bbe\u7f6e\u5e94\u7528\u670d\u52a1\u5668");let n=null;if(e.$config.aesKey&&(n=new u(e.$config.token,e.$config.aesKey,e.$config.appKey)),"GET"==t.getMethod()){let r=t.getQuery();if(!(r.signature&&r.echostr&&r.timestamp&&r.nonce))return void t.sendResponse("Hello node-easywechat");let a;if(n)a=n.getSignature(r.timestamp||"",r.nonce||"",r.encrypt||"");else{var i=[e.$config.token,r.timestamp||"",r.nonce||"",r.encrypt||""].sort();a=h(i.join(""),"sha1")}a===r.signature?t.sendResponse(r.echostr):t.sendResponse("fail")}else{let e=yield t.getBody();if(qe=yield we(e,n),be&&"function"==typeof be){let e=yield be(qe);if(!e||q(e)&&"SUCCESS"==e.toUpperCase())return void t.sendResponse("SUCCESS");let i=null;if((i=q(e)?new de({content:e}):I(e)?$e(e):e)&&"object"==typeof i){i.setAttribute("ToUserName",qe.FromUserName),i.setAttribute("FromUserName",qe.ToUserName);let e=i.getData();if(d("server.send().original",e),n&&qe._isEncrypt){e=n.encrypt(e);let t=p(),r=f(),a=n.getSignature(t,r,e);e=(i=new le({encrypt:e,sign:a,timestamp:t,nonce:r})).getData(),d("server.send().encrypt",e)}t.sendResponse(e)}}}}())},getMessage:function(){return qe}};const Ae="https://api.weixin.qq.com/cgi-bin/message/template/send",Ee="https://api.weixin.qq.com/cgi-bin/template/get_industry",Ue="https://api.weixin.qq.com/cgi-bin/template/api_set_industry",xe="https://api.weixin.qq.com/cgi-bin/template/api_add_template",ve="https://api.weixin.qq.com/cgi-bin/template/get_all_private_template",Te="https://api.weixin.qq.com/cgi-bin/template/del_private_template",Me=function(e){Ne=new Ce};class Ce{constructor(){this.reset()}}Ce.prototype.reset=function(){this.touser="",this.template_id="",this.url="",this.miniprogram={},this.data=[]};let Ne=null;const je=function(e){return Ne.touser=e,this},De=function(e){return Ne.template_id=e,this},Re=function(e){return Ne.url=e,this},Oe=function(e){return Ne.data=Fe(e),this},Fe=function(e){let t={};for(let n in e){let i=e[n];"object"==typeof i?void 0!==i.length?t[n]={value:i[0],color:i[1]}:t[n]=i:t[n]={value:i}}return t},Ke=function(e=null){return t(function*(){if(e?e.data&&(e.data=Fe(e.data)):e={},e=n({},Ne,e),Ne.reset(),!e.touser)throw new Error("\u7528\u6237openid\u4e3a\u7a7a");if(!e.template_id)throw new Error("\u6a21\u677fid\u4e3a\u7a7a");let t=x.getInstance(),i=yield t.buildApiUrl(Ae);return yield t.requestPost(i,e)}())},We=function(){return t(function*(){let e=x.getInstance(),t=yield e.buildApiUrl(Ee);return yield e.requestPost(t)}())},Je=function(e,n){return t(function*(){let t=x.getInstance(),i=yield t.buildApiUrl(Ue),r={industry_id1:e,industry_id2:n};return yield t.requestPost(i,r)}())},Ge=function(e){return t(function*(){let t=x.getInstance(),n=yield t.buildApiUrl(xe),i={template_id_short:e};return yield t.requestPost(n,i)}())},Be=function(){return t(function*(){let e=x.getInstance(),t=yield e.buildApiUrl(ve);return yield e.requestPost(t)}())},Le=function(e){return t(function*(){let t=x.getInstance(),n=yield t.buildApiUrl(Te),i={template_id:e};return yield t.requestPost(n,i)}())};var Qe={init:function(e){Ne=new Ce},to:je,withTo:je,andTo:je,receiver:je,withReceiver:je,andhReceiver:je,uses:De,withUses:De,andUses:De,template:De,withTemplate:De,andTemplate:De,templateId:De,withTemplateId:De,andTemplateId:De,url:Re,withUrl:Re,andUrl:Re,link:Re,withLink:Re,andLink:Re,linkTo:Re,withLinkTo:Re,andLinkTo:Re,data:Oe,withData:Oe,andData:Oe,send:function(e=null){return t(function*(){if(e?e.data&&(e.data=Fe(e.data)):e={},e=n({},Ne,e),Ne.reset(),!e.touser)throw new Error("\u7528\u6237openid\u4e3a\u7a7a");if(!e.template_id)throw new Error("\u6a21\u677fid\u4e3a\u7a7a");let t=x.getInstance(),i=yield t.buildApiUrl(Ae);return yield t.requestPost(i,e)}())},getIndustry:function(){return t(function*(){let e=x.getInstance(),t=yield e.buildApiUrl(Ee);return yield e.requestPost(t)}())},setIndustry:function(e,n){return t(function*(){let t=x.getInstance(),i=yield t.buildApiUrl(Ue),r={industry_id1:e,industry_id2:n};return yield t.requestPost(i,r)}())},addTemplate:function(e){return t(function*(){let t=x.getInstance(),n=yield t.buildApiUrl(xe),i={template_id_short:e};return yield t.requestPost(n,i)}())},getPrivateTemplates:function(){return t(function*(){let e=x.getInstance(),t=yield e.buildApiUrl(ve);return yield e.requestPost(t)}())},deletePrivateTemplate:function(e){return t(function*(){let t=x.getInstance(),n=yield t.buildApiUrl(Te),i={template_id:e};return yield t.requestPost(n,i)}())}};const He="https://api.weixin.qq.com/cgi-bin/qrcode/create",Ve="https://mp.weixin.qq.com/cgi-bin/showqrcode",ze=function(e){},Ye=function(e,n=null){return t(function*(){((n=parseInt(n))<=0||n>2592e3)&&(n=2592e3);let t="";"string"==typeof e?(e={scene_str:e},t="QR_STR_SCENE"):(e={scene_id:e},t="QR_SCENE");let i={expire_seconds:n,action_name:t,action_info:{scene:e}},r=x.getInstance(),a=yield r.buildApiUrl(He);return yield r.requestPost(a,i)}())},Xe=function(e){return t(function*(){let t="";"string"==typeof e?(e={scene_str:e},t="QR_LIMIT_STR_SCENE"):(e={scene_id:e},t="QR_LIMIT_SCENE");let n={action_name:t,action_info:{scene:e}},i=x.getInstance(),r=yield i.buildApiUrl(He);return yield i.requestPost(r,n)}())},Ze=function(e){return t(function*(){let t=Ve+"?ticket="+e;return yield x.getInstance().requestFile(t)}())};var et={init:function(e){},temporary:function(e,n=null){return t(function*(){((n=parseInt(n))<=0||n>2592e3)&&(n=2592e3);let t="";"string"==typeof e?(e={scene_str:e},t="QR_STR_SCENE"):(e={scene_id:e},t="QR_SCENE");let i={expire_seconds:n,action_name:t,action_info:{scene:e}},r=x.getInstance(),a=yield r.buildApiUrl(He);return yield r.requestPost(a,i)}())},forever:function(e){return t(function*(){let t="";"string"==typeof e?(e={scene_str:e},t="QR_LIMIT_STR_SCENE"):(e={scene_id:e},t="QR_LIMIT_SCENE");let n={action_name:t,action_info:{scene:e}},i=x.getInstance(),r=yield i.buildApiUrl(He);return yield i.requestPost(r,n)}())},url:function(e){return t(function*(){let t=Ve+"?ticket="+e;return yield x.getInstance().requestFile(t)}())}};const tt="https://api.weixin.qq.com/cgi-bin/user/info",nt="https://api.weixin.qq.com/cgi-bin/user/info/batchget",it="https://api.weixin.qq.com/cgi-bin/user/get",rt="https://api.weixin.qq.com/cgi-bin/user/info/updateremark",at="https://api.weixin.qq.com/cgi-bin/tags/members/getblacklist",ct="https://api.weixin.qq.com/cgi-bin/tags/members/batchblacklist",st="https://api.weixin.qq.com/cgi-bin/tags/members/batchunblacklist";class ot{constructor(){this.id="",this.nickname="",this.name="",this.avatar="",this.original={},this.token={}}}const ut=function(e){},lt=function(e,n="zh_CN"){return t(function*(){let t=x.getInstance(),i=yield t.buildApiUrl(tt);i+="&openid="+e+"&lang="+n;let r=yield t.requestGet(i),a=new ot;return a.id=r.openid,a.nickname=r.nickname,a.name=r.nickname,a.avatar=r.headimgurl,a.original=r,a}())},dt=function(e){return t(function*(){let t=x.getInstance(),n={user_list:e},i=yield t.buildApiUrl(nt);return yield t.requestPost(i,n)}())},pt=function(e=null){return t(function*(){let t=x.getInstance(),n=yield t.buildApiUrl(it);return e&&(n+="&next_openid="+e),yield t.requestGet(n)}())},ft=function(e,n){return t(function*(){let e=x.getInstance(),t=yield e.buildApiUrl(rt);return yield e.requestPost(t)}())},yt=function(e){return t(function*(){let t=x.getInstance(),n={};e&&(n.begin_openid=e);let i=yield t.buildApiUrl(at);return yield t.requestPost(i,n)}())},gt=function(e){return t(function*(){let t=x.getInstance(),n={openid_list:e},i=yield t.buildApiUrl(ct);return yield t.requestPost(i,n)}())},mt=function(e){return t(function*(){let t=x.getInstance(),n={openid_list:e},i=yield t.buildApiUrl(st);return yield t.requestPost(i,n)}())},ht=function(e){return t(function*(){return yield gt([e])}())},_t=function(e){return t(function*(){return yield mt([e])}())};var bt={init:function(e){},get:function(e,n="zh_CN"){return t(function*(){let t=x.getInstance(),i=yield t.buildApiUrl(tt);i+="&openid="+e+"&lang="+n;let r=yield t.requestGet(i),a=new ot;return a.id=r.openid,a.nickname=r.nickname,a.name=r.nickname,a.avatar=r.headimgurl,a.original=r,a}())},batchGet:function(e){return t(function*(){let t=x.getInstance(),n={user_list:e},i=yield t.buildApiUrl(nt);return yield t.requestPost(i,n)}())},lists:function(e=null){return t(function*(){let t=x.getInstance(),n=yield t.buildApiUrl(it);return e&&(n+="&next_openid="+e),yield t.requestGet(n)}())},remark:function(e,n){return t(function*(){let e=x.getInstance(),t=yield e.buildApiUrl(rt);return yield e.requestPost(t)}())},blacklist:function(e){return t(function*(){let t=x.getInstance(),n={};e&&(n.begin_openid=e);let i=yield t.buildApiUrl(at);return yield t.requestPost(i,n)}())},batchBlock:gt,batchUnblock:mt,block:function(e){return t(function*(){return yield gt([e])}())},unblock:function(e){return t(function*(){return yield mt([e])}())}};const qt="https://api.weixin.qq.com/cgi-bin/menu/get",It="https://api.weixin.qq.com/cgi-bin/get_current_selfmenu_info",$t="https://api.weixin.qq.com/cgi-bin/menu/create",St="https://api.weixin.qq.com/cgi-bin/menu/delete",wt=function(e){},kt=function(){return t(function*(){let e=x.getInstance(),t=yield e.buildApiUrl(qt);return yield e.requestPost(t)}())},Pt=function(){return t(function*(){let e=x.getInstance(),t=yield e.buildApiUrl(It);return yield e.requestPost(t)}())},At=function(e){return t(function*(){let t={button:e},n=x.getInstance(),i=yield n.buildApiUrl($t);return yield n.requestPost(i,t)}())},Et=function(){return t(function*(){let e=x.getInstance(),t=yield e.buildApiUrl(St);return yield e.requestPost(t)}())};var Ut={init:function(e){},all:function(){return t(function*(){let e=x.getInstance(),t=yield e.buildApiUrl(qt);return yield e.requestPost(t)}())},current:function(){return t(function*(){let e=x.getInstance(),t=yield e.buildApiUrl(It);return yield e.requestPost(t)}())},add:function(e){return t(function*(){let t={button:e},n=x.getInstance(),i=yield n.buildApiUrl($t);return yield n.requestPost(i,t)}())},destroy:function(){return t(function*(){let e=x.getInstance(),t=yield e.buildApiUrl(St);return yield e.requestPost(t)}())}};const xt="https://api.weixin.qq.com/cgi-bin/shorturl",vt=function(e){},Tt=function(e){return t(function*(){let t={action:"long2short",long_url:e},n=x.getInstance(),i=yield n.buildApiUrl(xt);return yield n.requestPost(i,t)}())};var Mt={init:function(e){},shorten:function(e){return t(function*(){let t={action:"long2short",long_url:e},n=x.getInstance(),i=yield n.buildApiUrl(xt);return yield n.requestPost(i,t)}())}};const Ct="https://api.mch.weixin.qq.com/pay/unifiedorder",Nt=function(e){},jt=function(e){let t="<xml>";for(let n in e)e[n]&&($(e[n])?t+=`<${n}>${e[n]}</${n}>`:S(e[n])?t+=`<${n}>${JSON.stringify(e[n])}</${n}>`:t+=`<${n}><![CDATA[${e[n]}]]></${n}>`);return t+="</xml>"},Dt=function(e){return t(function*(){let t=x.getInstance(),n=t.$config.payment,i={appid:t.$config.appKey,mch_id:n.merchantId,device_info:e.device_info||"WEB",nonce_str:f(16),body:e.body,detail:e.detail||"",attach:e.attach||"",out_trade_no:e.out_trade_no,fee_type:e.fee_type||"CNY",total_fee:e.total_fee,spbill_create_ip:e.spbill_create_ip,time_start:e.time_start||"",time_expire:e.time_expire||"",goods_tag:e.goods_tag||"",notify_url:e.notify_url||n.notifyUrl,trade_type:e.trade_type||"JSAPI",product_id:e.product_id||"",limit_pay:e.limit_pay||"",openid:e.openid||"",scene_info:e.scene_info||"",sign_type:e.sign_type||"MD5"};i.sign=b(i,i.sign_type,n.key);let r=jt(i),a=yield t.requestPost(Ct,r);return a=yield Ot(a),d("payment.prepare(): ",i,r,a),a}())},Rt=function(e){return t(function*(){let t=x.getInstance(),n=t.$config.app;if(!n)throw new Error("\u672a\u5728\u914d\u7f6e\u6587\u4ef6\u4e2d\u8bbe\u7f6e\u5e94\u7528\u670d\u52a1\u5668");let i=t.$config.payment,r=yield n.getBody(),a=yield Ot(r),c={return_code:"",return_msg:""};if(d("payment.handleNotify():",a),"SUCCESS"!==a.return_code)return c.return_code="SUCCESS",c.return_msg="return_code\u5f02\u5e38",n.sendResponse(jt(c));let s=b(a,"MD5",i.key);if(s!==a.sign)return d("payment.handleNotify(): invalid_sign",s,a.sign),c.return_code="FAIL",c.return_msg="\u7b7e\u540d\u9519\u8bef",n.sendResponse(jt(c));let o=!1;try{o=yield e(a,"SUCCESS"===a.result_code)}catch(e){o=!1}!0===o?(c.return_code="SUCCESS",c.return_msg=""):(c.return_code="FAIL",c.return_msg=o),n.sendResponse(jt(c))}())},Ot=function(e){return new Promise((t,n)=>{l.parseString(e,(e,i)=>{if(e)n(e);else{let e;if(i&&i.xml){e={};for(let t in i.xml)e[t]=i.xml[t][0]}t(e)}})}).catch(e=>{d("payment.parseMessage()",e)})},Ft=function(e,t=!1){let n=x.getInstance(),i={appId:n.$config.appKey,timeStamp:p()+"",nonceStr:f(16),package:"prepay_id="+e,signType:"MD5"};return i.paySign=b(i,"MD5",n.$config.payment.key),d("payment.configForPayment()",i),t&&(i=JSON.stringify(i)),i},Kt=function(e,t=!1){let n=x.getInstance(),i=p(),r={appId:n.$config.appKey,timeStamp:i,nonceStr:f(16),package:"prepay_id="+e,signType:"MD5"};return r.paySign=b(r,"MD5",n.$config.payment.key),delete r.appId,delete r.timeStamp,r.timestamp=i,d("payment.configForJSSDKPayment()",r),t&&(r=JSON.stringify(r)),r};var Wt={init:function(e){},prepare:function(e){return t(function*(){let t=x.getInstance(),n=t.$config.payment,i={appid:t.$config.appKey,mch_id:n.merchantId,device_info:e.device_info||"WEB",nonce_str:f(16),body:e.body,detail:e.detail||"",attach:e.attach||"",out_trade_no:e.out_trade_no,fee_type:e.fee_type||"CNY",total_fee:e.total_fee,spbill_create_ip:e.spbill_create_ip,time_start:e.time_start||"",time_expire:e.time_expire||"",goods_tag:e.goods_tag||"",notify_url:e.notify_url||n.notifyUrl,trade_type:e.trade_type||"JSAPI",product_id:e.product_id||"",limit_pay:e.limit_pay||"",openid:e.openid||"",scene_info:e.scene_info||"",sign_type:e.sign_type||"MD5"};i.sign=b(i,i.sign_type,n.key);let r=jt(i),a=yield t.requestPost(Ct,r);return a=yield Ot(a),d("payment.prepare(): ",i,r,a),a}())},handleNotify:function(e){return t(function*(){let t=x.getInstance(),n=t.$config.app;if(!n)throw new Error("\u672a\u5728\u914d\u7f6e\u6587\u4ef6\u4e2d\u8bbe\u7f6e\u5e94\u7528\u670d\u52a1\u5668");let i=t.$config.payment,r=yield n.getBody(),a=yield Ot(r),c={return_code:"",return_msg:""};if(d("payment.handleNotify():",a),"SUCCESS"!==a.return_code)return c.return_code="SUCCESS",c.return_msg="return_code\u5f02\u5e38",n.sendResponse(jt(c));let s=b(a,"MD5",i.key);if(s!==a.sign)return d("payment.handleNotify(): invalid_sign",s,a.sign),c.return_code="FAIL",c.return_msg="\u7b7e\u540d\u9519\u8bef",n.sendResponse(jt(c));let o=!1;try{o=yield e(a,"SUCCESS"===a.result_code)}catch(e){o=!1}!0===o?(c.return_code="SUCCESS",c.return_msg=""):(c.return_code="FAIL",c.return_msg=o),n.sendResponse(jt(c))}())},configForPayment:function(e,t=!1){let n=x.getInstance(),i={appId:n.$config.appKey,timeStamp:p()+"",nonceStr:f(16),package:"prepay_id="+e,signType:"MD5"};return i.paySign=b(i,"MD5",n.$config.payment.key),d("payment.configForPayment()",i),t&&(i=JSON.stringify(i)),i},configForJSSDKPayment:function(e,t=!1){let n=x.getInstance(),i=p(),r={appId:n.$config.appKey,timeStamp:i,nonceStr:f(16),package:"prepay_id="+e,signType:"MD5"};return r.paySign=b(r,"MD5",n.$config.payment.key),delete r.appId,delete r.timeStamp,r.timestamp=i,d("payment.configForJSSDKPayment()",r),t&&(r=JSON.stringify(r)),r}};const Jt="https://api.weixin.qq.com/cgi-bin/media/get",Gt="https://api.weixin.qq.com/cgi-bin/media/upload",Bt=function(e){},Lt=function(e){return t(function*(){let t,n=x.getInstance(),i=(yield n.buildApiUrl(Jt))+"&media_id="+e;try{t=yield n.requestFile(i)}catch(t){return d("material_temporary.getStream()",e,t),!1}return S(t)?t.video_url?yield n.requestFile(t.video_url):(d("material_temporary.getStream()",t),!1):t}())},Qt=function(e,n,i=""){return t(function*(){let t=yield Lt(e);if(!t)return!1;try{i=i||e+".jpg",s.writeFileSync(n+i,t,"binary")}catch(e){return d("material_temporary.download()",e),!1}return!0}())},Ht=function(e,n="image",i=null){return t(function*(){let t,r=x.getInstance(),a=(yield r.buildApiUrl(Gt))+"&type="+n;try{let c={media:s.createReadStream(e)};i&&(c=extendObj(c,i)),t=yield r.requestForm(a,c)}catch(t){return d("material_temporary.upload()",e,n,t),!1}return t.errcode?(d("material_temporary.upload()",e,n,t),!1):t}())},Vt=function(e){return t(function*(){return yield Ht(e,"image")}())},zt=function(e){return t(function*(){return yield Ht(e,"voice")}())},Yt=function(e,n,i){return t(function*(){let t={description:JSON.stringify({title:n||"",introduction:i||""})};return yield Ht(e,"video",t)}())},Xt=function(e){return t(function*(){return yield Ht(e,"thumb")}())};var Zt={init:function(e){},getStream:Lt,download:function(e,n,i=""){return t(function*(){let t=yield Lt(e);if(!t)return!1;try{i=i||e+".jpg",s.writeFileSync(n+i,t,"binary")}catch(e){return d("material_temporary.download()",e),!1}return!0}())},upload:Ht,uploadImage:function(e){return t(function*(){return yield Ht(e,"image")}())},uploadVoice:function(e){return t(function*(){return yield Ht(e,"voice")}())},uploadVideo:function(e,n,i){return t(function*(){let t={description:JSON.stringify({title:n||"",introduction:i||""})};return yield Ht(e,"video",t)}())},uploadThumb:function(e){return t(function*(){return yield Ht(e,"thumb")}())}};const en="https://api.weixin.qq.com/cgi-bin/material/get_material",tn="https://api.weixin.qq.com/cgi-bin/material/add_material",nn="https://api.weixin.qq.com/cgi-bin/material/del_material",rn="https://api.weixin.qq.com/cgi-bin/material/batchget_material",an="https://api.weixin.qq.com/cgi-bin/material/get_materialcount",cn="https://api.weixin.qq.com/cgi-bin/material/add_news",sn="https://api.weixin.qq.com/cgi-bin/material/update_news",on="https://api.weixin.qq.com/cgi-bin/media/uploadimg",un=function(e){},ln=function(e){return t(function*(){let t,n=x.getInstance(),i=(yield n.buildApiUrl(en))+"&media_id="+e;try{t=yield n.requestFile(i)}catch(t){return d("material.getMaterial()",e,t),!1}return S(t)&&t.errcode?(d("material.getMaterial()",e,t),!1):t}())},dn=function(e,n,i=""){return t(function*(){let t=yield get(e);if(!t)return!1;try{i=i||e+".jpg",s.writeFileSync(n+i,t,"binary")}catch(e){return d("material.download()",e),!1}return!0}())},pn=function(e,n="image",i=null){return t(function*(){let t,r=x.getInstance(),a=(yield r.buildApiUrl(tn))+"&type="+n;try{let c={media:s.createReadStream(e)};i&&(c=g(c,i)),t=yield r.requestForm(a,c)}catch(t){return d("material.upload()",e,n,t),!1}return t.errcode?(d("material.upload()",e,n,t),!1):t}())},fn=function(e){return t(function*(){return yield pn(e,"image")}())},yn=function(e){return t(function*(){return yield pn(e,"voice")}())},gn=function(e,n,i){return t(function*(){let t={description:JSON.stringify({title:n||"",introduction:i||""})};return yield pn(e,"video",t)}())},mn=function(e){return t(function*(){return yield pn(e,"thumb")}())},hn=function(e){return t(function*(){let t,n=x.getInstance(),i=yield n.buildApiUrl(nn);try{t=yield n.requestPost(i,{mediaId:e})}catch(t){return d("material.deleteMaterial()",e,t),!1}return t.errcode?(d("material.deleteMaterial()",e,t),!1):t}())},_n=function(e,n=0,i=20){return t(function*(){let t,r=x.getInstance(),a=yield r.buildApiUrl(rn);try{t=yield r.requestPost(a,{type:e,offset:n,count:i})}catch(t){return d("material.lists()",e,n,i,t),!1}return t.errcode?(d("material.lists()",e,n,i,t),!1):t}())},bn=function(){return t(function*(){let e,t=x.getInstance(),n=yield t.buildApiUrl(an);try{e=yield t.requestGet(n)}catch(e){return d("material.stats()",e),!1}return e.errcode?(d("material.stats()",e),!1):e}())},qn=function(e){return t(function*(){S(e)&&(e=[e]);let t,n=x.getInstance(),i=yield n.buildApiUrl(cn);try{t=yield n.requestPost(i,{articles:e})}catch(t){return d("material.uploadArticle()",e,t),!1}return t.errcode?(d("material.uploadArticle()",e,t),!1):t}())},In=function(e){return t(function*(){let t,n=x.getInstance(),i=yield n.buildApiUrl(on);try{let r={media:s.createReadStream(e)};t=yield n.requestForm(i,r)}catch(t){return d("material.uploadArticleImage()",e,type,t),!1}return t.errcode?(d("material.uploadArticleImage()",e,type,t),!1):t}())},$n=function(e,n,i=0){return t(function*(){S(n)&&(n=[n]);let t,r=x.getInstance(),a=yield r.buildApiUrl(sn);try{t=yield r.requestPost(a,{media_id:e,index:i,articles:n})}catch(t){return d("material.updateArticle()",e,n,i,t),!1}return t.errcode?(d("material.updateArticle()",e,n,i,t),!1):t}())};var Sn={init:function(e){},get:function(e){return t(function*(){let t,n=x.getInstance(),i=(yield n.buildApiUrl(en))+"&media_id="+e;try{t=yield n.requestFile(i)}catch(t){return d("material.getMaterial()",e,t),!1}return S(t)&&t.errcode?(d("material.getMaterial()",e,t),!1):t}())},download:function(e,n,i=""){return t(function*(){let t=yield get(e);if(!t)return!1;try{i=i||e+".jpg",s.writeFileSync(n+i,t,"binary")}catch(e){return d("material.download()",e),!1}return!0}())},upload:pn,uploadImage:function(e){return t(function*(){return yield pn(e,"image")}())},uploadVoice:function(e){return t(function*(){return yield pn(e,"voice")}())},uploadVideo:function(e,n,i){return t(function*(){let t={description:JSON.stringify({title:n||"",introduction:i||""})};return yield pn(e,"video",t)}())},uploadThumb:function(e){return t(function*(){return yield pn(e,"thumb")}())},delete:function(e){return t(function*(){let t,n=x.getInstance(),i=yield n.buildApiUrl(nn);try{t=yield n.requestPost(i,{mediaId:e})}catch(t){return d("material.deleteMaterial()",e,t),!1}return t.errcode?(d("material.deleteMaterial()",e,t),!1):t}())},lists:function(e,n=0,i=20){return t(function*(){let t,r=x.getInstance(),a=yield r.buildApiUrl(rn);try{t=yield r.requestPost(a,{type:e,offset:n,count:i})}catch(t){return d("material.lists()",e,n,i,t),!1}return t.errcode?(d("material.lists()",e,n,i,t),!1):t}())},stats:function(){return t(function*(){let e,t=x.getInstance(),n=yield t.buildApiUrl(an);try{e=yield t.requestGet(n)}catch(e){return d("material.stats()",e),!1}return e.errcode?(d("material.stats()",e),!1):e}())},uploadArticle:function(e){return t(function*(){S(e)&&(e=[e]);let t,n=x.getInstance(),i=yield n.buildApiUrl(cn);try{t=yield n.requestPost(i,{articles:e})}catch(t){return d("material.uploadArticle()",e,t),!1}return t.errcode?(d("material.uploadArticle()",e,t),!1):t}())},uploadArticleImage:function(e){return t(function*(){let t,n=x.getInstance(),i=yield n.buildApiUrl(on);try{let r={media:s.createReadStream(e)};t=yield n.requestForm(i,r)}catch(t){return d("material.uploadArticleImage()",e,type,t),!1}return t.errcode?(d("material.uploadArticleImage()",e,type,t),!1):t}())},updateArticle:function(e,n,i=0){return t(function*(){S(n)&&(n=[n]);let t,r=x.getInstance(),a=yield r.buildApiUrl(sn);try{t=yield r.requestPost(a,{media_id:e,index:i,articles:n})}catch(t){return d("material.updateArticle()",e,n,i,t),!1}return t.errcode?(d("material.updateArticle()",e,n,i,t),!1):t}())}};const wn=require("crypto"),kn="https://api.weixin.qq.com/sns/jscode2session",Pn="https://api.weixin.qq.com/cgi-bin/token",An=function(e){},En={getSessionKey:function(e){return t(function*(){let t=x.getInstance(),n={appid:t.$config.mini_program.appId,secret:t.$config.mini_program.appSecret,js_code:e,grant_type:"authorization_code"},i=kn+"?"+c.stringify(n);return yield t.requestGet(i)}())},getAccessToken:function(e=!1){return t(function*(){let t=x.getInstance(),n=yield t.$config.cache.fetch(t.$config.mini_program.access_token_cache_key);if(e||!n){let e={appid:t.$config.mini_program.appId,secret:t.$config.mini_program.appSecret,grant_type:"client_credential"},i=Pn+"?"+c.stringify(e),r=yield t.requestGet(i);d("write AccessToken: ",t.$config.mini_program.access_token_cache_key,r.access_token,r.expires_in),yield t.$config.cache.save(t.$config.mini_program.access_token_cache_key,r.access_token,r.expires_in),n=r.access_token}return n}())}},Un={decryptData:function(e,n,i){return t(function*(){let t=Buffer.from(e,"base64"),r=Buffer.from(i,"base64"),a=Buffer.from(n,"base64"),c=null;try{let e=wn.createDecipheriv("aes-128-cbc",t,a);e.setAutoPadding(!0),c=e.update(r,"binary","utf8"),c+=e.final("utf8"),c=JSON.parse(c);let n=x.getInstance();if(c.watermark.appid!==n.$config.mini_program.appId)throw new Error("Invaild AppId")}catch(e){return d("mini_program.encryptor.decryptData()",e),null}return c}())}};var xn={init:function(e){},auth:En,encryptor:Un};x.EasyWechat.registPlugin("oauth",K),x.EasyWechat.registPlugin("cache",H),x.EasyWechat.registPlugin("access_token",ee),x.EasyWechat.registPlugin("jssdk",oe),x.EasyWechat.registPlugin("server",Pe),x.EasyWechat.registPlugin("notice",Qe),x.EasyWechat.registPlugin("qrcode",et),x.EasyWechat.registPlugin("user",bt),x.EasyWechat.registPlugin("menu",Ut),x.EasyWechat.registPlugin("url",Mt),x.EasyWechat.registPlugin("payment",Wt),x.EasyWechat.registPlugin("material_temporary",Zt),x.EasyWechat.registPlugin("material",Sn),x.EasyWechat.registPlugin("mini_program",xn),x.EasyWechat.Cache={};for(let e in B)x.EasyWechat.Cache[e]=B[e];x.EasyWechat.Message={};for(let e in he)x.EasyWechat.Message[e]=he[e];var vn=x.EasyWechat;module.exports=vn;
+
+'use strict';
+
+function _interopDefault (ex) { return (ex && (typeof ex === 'object') && 'default' in ex) ? ex['default'] : ex; }
+
+var merge = _interopDefault(require('merge'));
+var request = _interopDefault(require('request'));
+var Body = _interopDefault(require('body'));
+var Url = _interopDefault(require('url'));
+var qs = _interopDefault(require('qs'));
+var fs = _interopDefault(require('fs'));
+var path = _interopDefault(require('path'));
+var WechatCrypto = _interopDefault(require('wechat-crypto'));
+var xml2js = require('xml2js');
+
+function __async(g){return new Promise(function(s,j){function c(a,x){try{var r=g[x?"throw":"next"](a);}catch(e){j(e);return}r.done?s(r.value):Promise.resolve(r.value).then(c,d);}function d(e){c(e,1);}c();})}
+
+const log = function () {
+  let args = arguments;
+  args[0] = 'NodeEasywechat: ' + args[0];
+  return console.log.apply(null, arguments);
+};
+
+const getTimestamp = function () {
+  return parseInt((new Date()).getTime() / 1000);
+};
+
+const randomString = function (len = 16) {
+  let chars = 'ABCDEFGHJKMNPQRSTWXYZabcdefhijkmnprstwxyz2345678';
+  let str = '';
+  for (let i = 0; i < len; i++) {
+    str += chars.charAt(Math.floor(Math.random() * chars.length));
+  }
+  return str;
+};
+
+const cloneObj = function (oldObj) {
+  if (!oldObj) return oldObj;
+  if (typeof(oldObj) != 'object') return oldObj;
+  let newObj = new Object();
+  for (let k in oldObj) {
+    newObj[k] = cloneObj(oldObj[k]);
+  }
+  return newObj;
+};
+
+const extendObj$1 = function () {
+  let args = arguments;
+  if (args.length == 0) return null;
+  let temp = cloneObj(args[0]);
+  if (args.length == 1) return temp;
+  for (let i=1; i<args.length; i++) {
+    if (!args[i] || typeof(args[i]) != 'object') continue;
+    for (let k in args[i]) {
+      temp[k] = args[i][k];
+    }
+  }
+  return temp;
+};
+
+const crypto = require('crypto');
+
+const createHash = function (str, type = 'sha1') {
+  return crypto.createHash(type).update(str).digest('hex');
+};
+
+const createHmac = function (str, key, type = 'sha256') {
+  return crypto.createHmac(type, key).update(str).digest('hex');
+};
+
+const makeSignature = function (params, type = 'sha1', key = '') {
+  let paramsString = '';
+  let sparator = '';
+  let keys = Object.keys(params);
+  keys = keys.sort();
+  for (let i=0; i<keys.length; i++) {
+    if (keys[i] == 'sign' || !params[keys[i]]) continue;
+    paramsString += sparator + keys[i] + '=' + params[keys[i]];
+    sparator = '&';
+  }
+  if (key) {
+    paramsString += '&key=' + key;
+  }
+  let sign = '';
+  type = type.toLowerCase();
+  switch (type) {
+    case 'sha1':
+    case 'md5':
+      sign = createHash(paramsString, type);
+      break;
+    case 'hmac-sha256':
+    case 'hmac_sha256':
+      type = type.replace(/^hmac[\-|_]/i, '');
+      sign = createHmac(paramsString, key, type);
+      break;
+  }
+  return (sign + '').toUpperCase();
+};
+
+
+const isString = data => {
+  return Object.prototype.toString.call(data) == '[object String]';
+};
+
+const isArray = data => {
+  return Object.prototype.toString.call(data) == '[object Array]';
+};
+
+const isNumber = data => {
+  return Object.prototype.toString.call(data) == '[object Number]';
+};
+
+const isObject = data => {
+  return Object.prototype.toString.call(data) == '[object Object]';
+};
+
+class AppServer {
+  constructor (req, res) {
+    this.$req = req;
+    this.$res = res;
+  }
+
+  getMethod () {
+    if (!this.$req) return {};
+    return this.$req.method;
+  }
+
+  getQuery () {
+    if (!this.$req) return {};
+    let url = Url.parse(this.$req.url, true);
+    return url.query;
+  }
+
+  _readBody () {
+    return new Promise((resolve, reject) => {
+      Body(this.$req, (err, body) => {
+        if (err) {
+          reject(err);
+        } else {
+          resolve(body);
+        }
+      });
+    })
+    .catch((err) => {
+      log('app_server._readBody()', err);
+    });
+  }
+
+  getBody () {return __async(function*(){
+    if (!this.$req) return '';
+    let body = yield this._readBody();
+    return body;
+  }.call(this))}
+
+  _initResponseOptions (options = {}) {
+    options.status = options.status || 200;
+    options.contentType = options.contentType || 'text/html';
+    options.headers = options.headers || {};
+    options.headers['Content-Type'] = options.contentType;
+    return options
+  }
+
+  sendResponse (content, options = {}) {
+    if (!this.$res) return false;
+    options = this._initResponseOptions(options);
+    this.$res.writeHead(options.status, options.headers);
+    this.$res.end(content);
+  }
+}
+
+class AppServerKoa2 extends AppServer {
+  constructor (ctx) {
+    super(ctx.req, ctx.res);
+    this.$ctx = ctx;
+  }
+
+  sendResponse (content, options = {}) {
+    if (!this.$ctx) return false;
+    options = this._initResponseOptions(options);
+    this.$ctx.status = options.status;
+    for (let k in options.headers) {
+      this.$ctx.set(k, options.headers[k]);
+    }
+    this.$ctx.body = content;
+  }
+}
+
+class AppServerExpress extends AppServer {
+  constructor (req, res) {
+    super(req, res);
+  }
+
+  sendResponse (content, options = {}) {
+    if (!this.$res) return false;
+    options = this._initResponseOptions(options);
+    this.$res.status(options.status).set(options.headers).send(content);
+  }
+}
+
+const BASE_API = 'https://api.weixin.qq.com/';
+
+const defaultConfig = {
+  appKey: '',
+  appSecret: ''
+};
+
+var EasyWechatInstance = null;
+
+class EasyWechat {
+  constructor (config = {}) {
+    this.$config = merge({}, defaultConfig, config);
+    if (!this.$config.appKey && !this.$config.mini_program.appId) {
+      throw new Error('未填写appKey');
+      return;
+    }
+    if (!this.$config.appSecret && !this.$config.mini_program.appSecret) {
+      throw new Error('未填写appSecret');
+      return;
+    }
+
+    this.BASE_API = BASE_API;
+
+    EasyWechatInstance = this;
+    this.$plugins.forEach((name) => {
+      this[name].init(this);
+    });
+  }
+
+  setAppServerDefault (req, res) {
+    this.$config.app = new AppServer(req, res);
+  }
+
+  setAppServerKoa2 (ctx) {
+    this.$config.app = new AppServerKoa2(ctx);
+  }
+
+  setAppServerExpress (req, res) {
+    this.$config.app = new AppServerExpress(req, res);
+  }
+}
+
+EasyWechat.prototype.requestGet = (url) => {
+  return new Promise((resolve, reject) => {
+    request({
+      method: 'GET',
+      uri: url
+    }, function (error, response, body) {
+      if (error) {
+        reject(error);
+      }
+      else {
+        try {
+          body = JSON.parse(body);
+        }
+        catch (e) {}
+        resolve(body);
+      }
+    });
+  });
+};
+
+EasyWechat.prototype.requestFile = (url) => {
+  return new Promise((resolve, reject) => {
+    request({
+      method: 'GET',
+      uri: url,
+      encoding: 'binary'
+    }, function (error, response, body) {
+      if (error) {
+        reject(error);
+      }
+      else {
+        try {
+          let buffer = Buffer.from(body, 'binary');
+          body = JSON.parse(buffer.toString());
+        }
+        catch (e) {}
+        resolve(body);
+      }
+    });
+  });
+};
+
+EasyWechat.prototype.requestPost = (url, data = null, json = true) => {
+  return new Promise((resolve, reject) => {
+    request({
+      method: 'POST',
+      uri: url,
+      json: json,
+      body: data
+    }, function (error, response, body) {
+      if (error) {
+        reject(error);
+      }
+      else {
+        resolve(body);
+      }
+    });
+  });
+};
+
+EasyWechat.prototype.requestForm = (url, data = null) => {
+  return new Promise((resolve, reject) => {
+    request({
+      method: 'POST',
+      uri: url,
+      formData: data
+    }, function (error, response, body) {
+      if (error) {
+        reject(error);
+      }
+      else {
+        try {
+          body = JSON.parse(body);
+        }
+        catch (e) {}
+        resolve(body);
+      }
+    });
+  });
+};
+
+EasyWechat.prototype.buildApiUrl = (api) => __async(function*(){
+  let access_token = yield EasyWechatInstance.access_token.getToken();
+  return BASE_API + 'cgi-bin/' + api + '?access_token=' + access_token;
+}());
+
+EasyWechat.prototype.$plugins = [];
+EasyWechat.registPlugin = (name, plugin) => {
+  EasyWechat.prototype[name] = plugin;
+  EasyWechat.prototype.$plugins.push(name);
+};
+
+var Core = {
+  EasyWechat,
+  getInstance () {
+    return EasyWechatInstance;
+  }
+};
+
+class User {
+  constructor () {
+    this.id = '';
+    this.nickname = '';
+    this.name = '';
+    this.avatar = '';
+    this.original = {};
+    this.token = {};
+  }
+}
+
+const init = function (instance) {
+};
+
+const redirect = function (state = '') {
+  let instance = Core.getInstance();
+  if (!instance.$config.oauth) return '';
+  if (!instance.$config.oauth.scope) {
+    throw new Error('未填写授权scope');
+    return '';
+  }
+  if (!instance.$config.oauth.redirect) {
+    throw new Error('未填写授权回调地址');
+    return '';
+  }
+  let redirect_uri = instance.$config.oauth.redirect;
+  if (redirect_uri.substr(0, 7) != 'http://' && redirect_uri.substr(0, 8) != 'https://') {
+    throw new Error('请填写完整的回调地址，以“http://”或“https://”开头');
+    return '';
+  }
+
+  let api = 'connect/oauth2/authorize';
+  if (instance.$config.oauth.scope == 'snsapi_login') {
+    api = 'connect/qrconnect';
+  }
+
+  let params = {
+    appid: instance.$config.appKey,
+    redirect_uri: redirect_uri,
+    response_type: 'code',
+    scope: instance.$config.oauth.scope
+  };
+  if (state) {
+    params.state = state;
+  }
+
+  return 'https://open.weixin.qq.com/' + api + '?' + qs.stringify(params) + '#wechat_redirect';
+};
+
+const user = function (code) {return __async(function*(){
+  let user = yield fetchAccessToken(code);
+  let instance = Core.getInstance();
+  if (instance.$config.oauth.scope != 'snsapi_base') {
+    user = yield fetchUserInfo(user);
+  }
+  return user;
+}())};
+
+const fetchAccessToken = function (code) {return __async(function*(){
+  let instance = Core.getInstance();
+  let params = {
+    appid: instance.$config.appKey,
+    secret: instance.$config.appSecret,
+    code: code,
+    grant_type: 'authorization_code'
+  };
+  let url = this.BASE_API + 'sns/oauth2/access_token?' + qs.stringify(params);
+
+  let response = yield instance.requestGet(url);
+  let user = new User;
+  user.id = response.openid;
+  user.token = response;
+  return user;
+}.call(this))};
+
+const fetchUserInfo = function (user) {return __async(function*(){
+  let params = {
+    access_token: user.token.access_token,
+    openid: user.id,
+    lang: 'zh_CN'
+  };
+  let url = this.BASE_API + 'sns/userinfo?' + qs.stringify(params);
+
+  let instance = Core.getInstance();
+  let response = yield instance.requestGet(url);
+  if (response.errcode) {
+    log('oauth.fetchUserInfo()', response);
+    return user;
+  }
+  user.id = response.openid;
+  user.nickname = response.nickname;
+  user.name = response.nickname;
+  user.avatar = response.headimgurl;
+  user.original = response;
+  return user;
+}.call(this))};
+
+var oauth = {
+  init,
+  redirect,
+  user
+};
+
+class CacheInterface {
+  constructor () {
+    this.$options = {};
+  }
+
+  fetch (id) {return __async(function*(){
+    return null;
+  }())}
+
+  contains (id) {return __async(function*(){
+    return true;
+  }())}
+
+  save (id, data = null, lifeTime = 0) {return __async(function*(){
+    return true;
+  }())}
+
+  delete (id) {return __async(function*(){
+    return true;
+  }())}
+}
+
+class MemoryCache extends CacheInterface {
+  constructor () {
+    super();
+    this.$datas = {};
+  }
+
+  fetch (id) {return __async(function*(){
+    if (!this.contains(id) || (this.$datas[id].lifeTime > 0 && this.$datas[id].lifeTime < getTimestamp())) {
+      return null;
+    }
+    return this.$datas[id].data;
+  }.call(this))}
+
+  contains (id) {return __async(function*(){
+    if (typeof this.$datas[id] != 'object') return false;
+    return true;
+  }.call(this))}
+
+  save (id, data = null, lifeTime = 0) {return __async(function*(){
+    let dataItem = {
+      data,
+      lifeTime: lifeTime > 0 ? lifeTime + getTimestamp() : 0
+    };
+    this.$datas[id] = dataItem;
+    return true;
+  }.call(this))}
+
+  delete (id) {return __async(function*(){
+    delete this.$datas[id];
+    return true;
+  }.call(this))}
+}
+
+class FileCache extends CacheInterface {
+  constructor (options) {
+    super();
+    let defaultOptions = {
+      path: '',
+      dirMode: 0o777,
+      fileMode: 0o666,
+      ext: '.cache'
+    };
+    this.$options = extendObj$1(defaultOptions, options);
+    this.$options.path = path.resolve(this.$options.path);
+    try {
+      fs.accessSync(this.$options.path, fs.constants.R_OK & fs.constants.W_OK);
+    }
+    catch (e) {
+      try {
+        fs.mkdirSync(this.$options.path, this.$options.dirMode);
+      }
+      catch (e) {
+        log('无法创建缓存目录：' + this.$options.path, e);
+      }
+    }
+  }
+
+  getCacheFile (id) {
+    return this.$options.path + '/' + id + this.$options.ext;
+  }
+
+  fetch (id) {return __async(function*(){
+    let content = null;
+    let file = this.getCacheFile(id);
+    try {
+      let dataItem = JSON.parse(fs.readFileSync(file, {
+        encoding: 'utf-8',
+        flag: 'r'
+      }));
+
+      if (dataItem.lifeTime > 0 && dataItem.lifeTime < getTimestamp()) {
+        content = null;
+      }
+      else {
+        content = dataItem.data;
+      }
+    }
+    catch (e) {
+      log('无法读取缓存文件：' + file, e);
+      content = null;
+    }
+    return content;
+  }.call(this))}
+
+  contains (id) {return __async(function*(){
+    let file = this.getCacheFile(id);
+    try {
+      fs.accessSync(file, fs.constants.R_OK & fs.constants.W_OK);
+    }
+    catch (e) {
+      return false;
+    }
+    return true;
+  }.call(this))}
+
+  save (id, data = null, lifeTime = 0) {return __async(function*(){
+    let file = this.getCacheFile(id);
+    try {
+      let dataItem = {
+        data,
+        lifeTime: lifeTime > 0 ? lifeTime + getTimestamp() : 0
+      };
+      fs.writeFileSync(file, JSON.stringify(dataItem), {
+        mode: this.$options.fileMode,
+        encoding: 'utf-8',
+        flag: 'w'
+      });
+    }
+    catch (e) {
+      log('无法写入缓存文件：' + file, e);
+      return false;
+    }
+    return true;
+  }.call(this))}
+
+  delete (id) {return __async(function*(){
+    let file = this.getCacheFile(id);
+    try {
+      fs.unlinkSync(file);
+    }
+    catch (e) {
+      log('无法删除缓存文件：' + file, e);
+      return false;
+    }
+    return true;
+  }.call(this))}
+}
+
+
+var caches = Object.freeze({
+	CacheInterface: CacheInterface,
+	MemoryCache: MemoryCache,
+	FileCache: FileCache
+});
+
+const init$1 = function (instance) {
+  if (!instance.$config.cache) {
+    switch (instance.$config.cache_driver) {
+      case 'file':
+        instance.$config.cache = new FileCache(instance.$config.cache_options);
+        break;
+      case 'memory':
+      default:
+        instance.$config.cache = new MemoryCache;
+    }
+  }
+};
+
+const setCache = function (cache) {
+  if (
+    cache
+    && typeof cache.fetch == 'function'
+    && typeof cache.contains == 'function'
+    && typeof cache.save == 'function'
+    && typeof cache.delete == 'function'
+  ) {
+    Core.getInstance().$config.cache = cache;
+  }
+};
+
+var cache = {
+  init: init$1,
+  setCache
+};
+
+const init$2 = function (instance) {
+  instance.$config.access_token_cache_key = instance.$config.access_token_cache_key || 'NODE_EASYWECHAT_ACCESS_TOKEN';
+};
+
+const fetchAccessToken$1 = function () {return __async(function*(){
+  let instance = Core.getInstance();
+  let params = {
+    appid: instance.$config.appKey,
+    secret: instance.$config.appSecret,
+    grant_type: 'client_credential'
+  };
+  let url = this.BASE_API + 'cgi-bin/token?' + qs.stringify(params);
+
+  return yield instance.requestGet(url);
+}.call(this))};
+
+const getToken = function (force = false) {return __async(function*(){
+  let instance = Core.getInstance();
+  let accessToken = yield instance.$config.cache.fetch(instance.$config.access_token_cache_key);
+  if (force || !accessToken) {
+    let res = yield fetchAccessToken$1();
+    yield setToken(res.access_token, res.expires_in);
+    accessToken = res.access_token;
+  }
+  return accessToken;
+}())};
+
+const setToken = function (access_token, expires_in = 7200) {return __async(function*(){
+  let instance = Core.getInstance();
+  log('write AccessToken: ', instance.$config.access_token_cache_key, access_token, expires_in);
+  yield instance.$config.cache.save(instance.$config.access_token_cache_key, access_token, expires_in);
+}())};
+
+var access_token = {
+  init: init$2,
+  getToken,
+  setToken
+};
+
+const init$3 = function (instance) {
+  instance.$config.jssdk_cache_key = instance.$config.jssdk_cache_key || 'NODE_EASYWECHAT_JSSKD_TICKET';
+};
+
+var $url = '';
+
+const setUrl = function (url) {
+  $url = url;
+};
+
+const fetchJsapiTicket = function () {return __async(function*(){
+  let instance = Core.getInstance();
+  let accessToken = yield instance.access_token.getToken();
+  let params = {
+    access_token: accessToken,
+    type: 'jsapi'
+  };
+  let url = this.BASE_API + 'cgi-bin/ticket/getticket?' + qs.stringify(params);
+
+  return yield instance.requestGet(url);
+}.call(this))};
+
+const getTicket = function (force = false) {return __async(function*(){
+  let instance = Core.getInstance();
+  let jssdkTicket = yield instance.$config.cache.fetch(instance.$config.jssdk_cache_key);
+  if (force || !jssdkTicket) {
+    let res = yield fetchJsapiTicket();
+    log('write JSSDK: ', instance.$config.jssdk_cache_key, res.ticket, res.expires_in);
+    yield instance.$config.cache.save(instance.$config.jssdk_cache_key, res.ticket, res.expires_in);
+    jssdkTicket = res.ticket;
+  }
+
+  return jssdkTicket;
+}())};
+
+const config = function (APIs, debug = false, json = true) {return __async(function*(){
+  let instance = Core.getInstance();
+  let jssdkTicket = yield getTicket();
+
+  let url = $url;
+
+  let noncestr = randomString();
+  let timestamp = getTimestamp();
+  let signature = makeSignature({
+    jsapi_ticket: jssdkTicket,
+    noncestr,
+    timestamp,
+    url
+  });
+
+  let config = {
+    debug,
+    appId: instance.$config.appKey,
+    timestamp,
+    nonceStr: noncestr,
+    signature,
+    url,
+    jsApiList: APIs
+  };
+
+  /* 使用完清空设置的url */
+  $url = '';
+
+  return json ? JSON.stringify(config) : config;
+}())};
+
+var jssdk = {
+  init: init$3,
+  setUrl,
+  getTicket,
+  config
+};
+
+class Raw {
+  constructor (data) {
+    this.dataParams = {
+      ToUserName: '',
+      FromUserName: '',
+      CreateTime: getTimestamp(),
+      MsgType: ''
+    };
+    this.json = null;
+    this.data = '';
+    if (typeof data == 'object') {
+      this.json = data;
+    }
+    else {
+      this.data = data;
+    }
+  }
+
+  setAttribute (name, value) {
+    this.dataParams[name] = value;
+  }
+
+  formatData () {
+    let data = '<xml>' + this._formatData(this.dataParams) + '</xml>';
+    return data;
+  }
+
+  _formatData (v) {
+    if (typeof v == 'object') {
+      let data = '';
+      for (let k in v) {
+        if (isArray(v[k])) {
+          for (let i=0; i<v[k].length; i++) {
+            data += `<${k}>${this._formatData(v[k][i])}</${k}>`;
+          }
+        }
+        else {
+          data += `<${k}>${this._formatData(v[k])}</${k}>`;
+        }
+      }
+      return data;
+    }
+    if (isString(v)) {
+      return '<![CDATA[' + v + ']]>';
+    }
+    else {
+      return v;
+    }
+  }
+
+  getData () {
+    if (this.json) return JSON.stringify(this.json);
+    if (!this.data) this.data = this.formatData();
+    return this.data;
+  }
+}
+
+class Encrypt extends Raw {
+  constructor (options) {
+    super('');
+    this.dataParams = {};
+    this.dataParams.Encrypt = options.encrypt || '';
+    this.dataParams.MsgSignature = options.sign || '';
+    this.dataParams.TimeStamp = options.timestamp || getTimestamp();
+    this.dataParams.Nonce = options.nonce || '';
+  }
+
+  content (v) {
+    this.dataParams.Content = v;
+  }
+}
+
+class Text extends Raw {
+  constructor (options) {
+    super('');
+    this.dataParams.MsgType = 'text';
+    this.dataParams.Content = options.content || '';
+  }
+
+  content (v) {
+    this.dataParams.Content = v;
+  }
+}
+
+class Image extends Raw {
+  constructor (options) {
+    super('');
+    this.dataParams.MsgType = 'image';
+    this.dataParams.Image = {
+      MediaId: options.media_id || ''
+    };
+  }
+
+  mediaId (v) {
+    this.dataParams.Image.MediaId = v;
+  }
+}
+
+class Voice extends Raw {
+  constructor (options) {
+    super('');
+    this.dataParams.MsgType = 'voice';
+    this.dataParams.Voice = {
+      MediaId: options.media_id || ''
+    };
+  }
+
+  mediaId (v) {
+    this.dataParams.Voice.MediaId = v;
+  }
+}
+
+class Video extends Raw {
+  constructor (options) {
+    super('');
+    this.dataParams.MsgType = 'video';
+    this.dataParams.Video = {
+      MediaId: options.media_id || '',
+      Title: options.title || '',
+      Description: options.description || ''
+    };
+  }
+
+  mediaId (v) {
+    this.dataParams.Video.MediaId = v;
+  }
+
+  title (v) {
+    this.dataParams.Video.Title = v;
+  }
+
+  description (v) {
+    this.dataParams.Video.Description = v;
+  }
+}
+
+class Music extends Raw {
+  constructor (options) {
+    super('');
+    this.dataParams.MsgType = 'music';
+    this.dataParams.Music = {
+      MediaId: options.media_id || '',
+      Title: options.title || '',
+      Description: options.description || '',
+      MusicUrl: options.music_url || '',
+      HQMusicUrl: options.hq_music_url || '',
+      ThumbMediaId: options.thumb_media_id || ''
+    };
+  }
+
+  mediaId (v) {
+    this.dataParams.Music.MediaId = v;
+  }
+
+  title (v) {
+    this.dataParams.Music.Title = v;
+  }
+
+  description (v) {
+    this.dataParams.Music.Description = v;
+  }
+
+  musicUrl (v) {
+    this.dataParams.Music.MusicUrl = v;
+  }
+
+  hqMusicurl (v) {
+    this.dataParams.Music.HQMusicUrl = v;
+  }
+
+  thumbMediaId (v) {
+    this.dataParams.Music.ThumbMediaId = v;
+  }
+}
+
+class News extends Raw {
+  constructor (options) {
+    super('');
+    this.dataParams.MsgType = 'news';
+    this.dataParams.ArticleCount = 1;
+    this.dataParams.Articles = {
+      item: {
+        Title: options.title || '',
+        Description: options.description || '',
+        Url: options.url || '',
+        PicUrl: options.image || ''
+      }
+    };
+  }
+
+  title (v) {
+    this.dataParams.Articles.item.Title = v;
+  }
+
+  description (v) {
+    this.dataParams.Articles.item.Description = v;
+  }
+
+  url (v) {
+    this.dataParams.Articles.item.Url = v;
+  }
+
+  picUrl (v) {
+    this.dataParams.Articles.item.PicUrl = v;
+  }
+}
+
+
+var messages = Object.freeze({
+	Raw: Raw,
+	Encrypt: Encrypt,
+	Text: Text,
+	Image: Image,
+	Voice: Voice,
+	Video: Video,
+	Music: Music,
+	News: News
+});
+
+const init$4 = function (instance) {
+  $server_handler = function () {};
+};
+
+let $server_handler;
+let $server_message;
+
+const setMessageHandler = function (handler) {
+  if (typeof handler != 'function') handler = function () {};
+  $server_handler = handler;
+};
+
+const getAvailableNews = function (arr) {
+  let list = [];
+  let response = null;
+  for (let i in arr) {
+    if (arr[i].dataParams.MsgType == 'news') {
+      response = arr[i];
+      list.push(arr[i].dataParams.Articles.item);
+    }
+  }
+  if (list.length > 0 && response) {
+    response.dataParams.ArticleCount = list.length;
+    response.dataParams.Articles.item = list;
+  }
+  return response;
+};
+
+const serve = function () {return __async(function*(){
+  let instance = Core.getInstance();
+  let app = instance.$config.app;
+  if (!app) {
+    throw new Error('未在配置文件中设置应用服务器');
+    return;
+  }
+  let crypto = null;
+  if (instance.$config.aesKey) {
+    crypto = new WechatCrypto(instance.$config.token, instance.$config.aesKey, instance.$config.appKey);
+  }
+  if (app.getMethod() == 'GET') {
+    let query = app.getQuery();
+    if (!query.signature || !query.echostr || !query.timestamp || !query.nonce) {
+      app.sendResponse('Hello node-easywechat');
+      return;
+    }
+    let sign;
+    if (crypto) {
+      sign = crypto.getSignature(query.timestamp || '', query.nonce || '', query.encrypt || '');
+    }
+    else {
+      var sign_data = [instance.$config.token, query.timestamp || '', query.nonce || '', query.encrypt || ''].sort();
+      sign = createHash(sign_data.join(''), 'sha1');
+    }
+    if (sign === query.signature) {
+      app.sendResponse(query.echostr);
+    }
+    else {
+      app.sendResponse('fail');
+    }
+  }
+  else {
+    let xml = yield app.getBody();
+    $server_message = yield parseMessage(xml, crypto);
+    if ($server_handler && typeof $server_handler == 'function') {
+      let result = yield $server_handler($server_message);
+
+      if (!result || (isString(result) && result.toUpperCase() == 'SUCCESS')) {
+        app.sendResponse('SUCCESS');
+        return;
+      }
+      let response = null;
+      if (isString(result)) {
+        response = new Text({content: result});
+      }
+      else if (isArray(result)) {
+        response = getAvailableNews(result);
+      }
+      else {
+        response = result;
+      }
+
+      if (response && typeof response == 'object') {
+        response.setAttribute('ToUserName', $server_message.FromUserName);
+        response.setAttribute('FromUserName', $server_message.ToUserName);
+        let data = response.getData();
+        log('server.send().original', data);
+        if (crypto && $server_message._isEncrypt) {
+          data = crypto.encrypt(data);
+          let timestamp = getTimestamp();
+          let nonce = randomString();
+          let sign = crypto.getSignature(timestamp, nonce, data);
+          response = new Encrypt({
+            encrypt: data,
+            sign,
+            timestamp,
+            nonce
+          });
+          data = response.getData();
+          log('server.send().encrypt', data);
+        }
+        app.sendResponse(data);
+      }
+    }
+  }
+}())};
+
+const parseMessage = function (xml, crypto = null) {return __async(function*(){
+  return new Promise((resolve, reject) => {
+    xml2js.parseString(xml, (err, result) => __async(function*(){
+      if (err) {
+        reject(err);
+      }
+      else {
+        let message;
+        if (result && result.xml) {
+          message = {};
+          for (let k in result.xml) {
+            message[k] = result.xml[k][0];
+          }
+          message._isEncrypt = false;
+          if (message.Encrypt && crypto) {
+            let decrypted = crypto.decrypt(message.Encrypt);
+            log('parseMessage.decrypted', decrypted);
+            message = yield parseMessage(decrypted.message);
+            if (!message) {
+              throw new Error('无法解密消息，请确认 AppId、Token、AESKey 等是否正确');
+            }
+            else {
+              message._isEncrypt = true;
+            }
+          }
+        }
+        resolve(message);
+      }
+    }()));
+  })
+  .catch((err) => {
+    log('server.parseMessage()', err);
+  });
+}())};
+
+const getMessage = function () {
+  return $server_message;
+};
+
+var server = {
+  init: init$4,
+  setMessageHandler,
+  serve,
+  getMessage
+};
+
+const init$5 = function (instance) {
+  $notice_message = new NoticeMessage;
+};
+
+class NoticeMessage {
+  constructor () {
+    this.reset();
+  }
+}
+
+NoticeMessage.prototype.reset = function () {
+  this.touser = '';
+  this.template_id = '';
+  this.url = '';
+  this.miniprogram = {};
+  this.data = [];
+};
+
+let $notice_message = null;
+
+const to = function (touser) {
+  $notice_message.touser = touser;
+  return this;
+};
+
+const uses = function (template_id) {
+  $notice_message.template_id = template_id;
+  return this;
+};
+
+const url = function (url) {
+  $notice_message.url = url;
+  return this;
+};
+
+const data = function (data) {
+  $notice_message.data = formatData(data);
+  return this;
+};
+
+const formatData = function (data) {
+  let newData = {};
+  for (let k in data) {
+    let v = data[k];
+    if (typeof v == 'object') {
+      if (typeof v.length != 'undefined') {
+        newData[k] = {
+          value: v[0],
+          color: v[1]
+        };
+      }
+      else {
+        newData[k] = v;
+      }
+    }
+    else {
+      newData[k] = {
+        value: v
+      };
+    }
+  }
+  return newData;
+};
+
+const send = function (message = null) {return __async(function*(){
+  if (message) {
+    if (message.data) {
+      message.data = formatData(message.data);
+    }
+  } else {
+    message = {};
+  }
+  message = merge({}, $notice_message, message);
+  $notice_message.reset();
+
+  if (!message.touser) {
+    throw new Error('用户openid为空');
+    return;
+  }
+  if (!message.template_id) {
+    throw new Error('模板id为空');
+    return;
+  }
+
+  let instance = Core.getInstance();
+  let url = yield instance.buildApiUrl('message/template/send');
+  return yield instance.requestPost(url, message);
+}())};
+
+const getIndustry = function () {return __async(function*(){
+  let instance = Core.getInstance();
+  let url = yield instance.buildApiUrl('template/get_industry');
+  return yield instance.requestPost(url);
+}())};
+
+const setIndustry = function (industry_id1, industry_id2) {return __async(function*(){
+  let instance = Core.getInstance();
+  let url = yield instance.buildApiUrl('template/api_set_industry');
+  let data = {
+    industry_id1: industry_id1,
+    industry_id2: industry_id2
+  };
+  return yield instance.requestPost(url, data);
+}())};
+
+const addTemplate = function (template_id_short) {return __async(function*(){
+  let instance = Core.getInstance();
+  let url = yield instance.buildApiUrl('template/api_add_template');
+  let data = {
+    template_id_short: template_id_short
+  };
+  return yield instance.requestPost(url, data);
+}())};
+
+const getPrivateTemplates = function () {return __async(function*(){
+  let instance = Core.getInstance();
+  let url = yield instance.buildApiUrl('template/get_all_private_template');
+  return yield instance.requestPost(url);
+}())};
+
+const deletePrivateTemplate = function (template_id) {return __async(function*(){
+  let instance = Core.getInstance();
+  let url = yield instance.buildApiUrl('template/del_private_template');
+  let data = {
+    template_id: template_id
+  };
+  return yield instance.requestPost(url, data);
+}())};
+
+var notice = {
+  init: init$5,
+  to,
+  withTo: to,
+  andTo: to,
+  receiver: to,
+  withReceiver: to,
+  andhReceiver: to,
+  uses,
+  withUses: uses,
+  andUses: uses,
+  template: uses,
+  withTemplate: uses,
+  andTemplate: uses,
+  templateId: uses,
+  withTemplateId: uses,
+  andTemplateId: uses,
+  url,
+  withUrl: url,
+  andUrl: url,
+  link: url,
+  withLink: url,
+  andLink: url,
+  linkTo: url,
+  withLinkTo: url,
+  andLinkTo: url,
+  data,
+  withData: data,
+  andData: data,
+  send,
+  getIndustry,
+  setIndustry,
+  addTemplate,
+  getPrivateTemplates,
+  deletePrivateTemplate
+};
+
+const init$6 = function (instance) {
+};
+
+const temporary = function (scene, expireSeconds = null) {return __async(function*(){
+  expireSeconds = parseInt(expireSeconds);
+  if (expireSeconds <= 0 || expireSeconds > 2592000) expireSeconds = 2592000;
+  let action_name = '';
+  if (typeof scene == 'string') {
+    scene = {scene_str: scene};
+    action_name = 'QR_STR_SCENE';
+  }
+  else {
+    scene = {scene_id: scene};
+    action_name = 'QR_SCENE';
+  }
+  let data = {
+    expire_seconds: expireSeconds,
+    action_name,
+    action_info: {scene}
+  };
+  let instance = Core.getInstance();
+  let url = yield instance.buildApiUrl('qrcode/create');
+  return yield instance.requestPost(url, data);
+}())};
+
+const forever = function (scene) {return __async(function*(){
+  let action_name = '';
+  if (typeof scene == 'string') {
+    scene = {scene_str: scene};
+    action_name = 'QR_LIMIT_STR_SCENE';
+  }
+  else {
+    scene = {scene_id: scene};
+    action_name = 'QR_LIMIT_SCENE';
+  }
+  let data = {
+    action_name,
+    action_info: {scene}
+  };
+  let instance = Core.getInstance();
+  let url = yield instance.buildApiUrl('qrcode/create');
+  return yield instance.requestPost(url, data);
+}())};
+
+const url$1 = function (ticket) {return __async(function*(){
+  let url = 'https://mp.weixin.qq.com/cgi-bin/showqrcode?ticket=' + ticket;
+  let instance = Core.getInstance();
+  return yield instance.requestFile(url);
+}())};
+
+var qrcode = {
+  init: init$6,
+  temporary,
+  forever,
+  url: url$1
+};
+
+class User$1 {
+  constructor () {
+    this.id = '';
+    this.nickname = '';
+    this.name = '';
+    this.avatar = '';
+    this.original = {};
+    this.token = {};
+  }
+}
+
+const init$7 = function (instance) {
+};
+
+const get$1 = function (openid, lang = 'zh_CN') {return __async(function*(){
+  let instance = Core.getInstance();
+  let url = yield instance.buildApiUrl('user/info');
+  url += '&openid=' + openid + '&lang=' + lang;
+  let response = yield instance.requestGet(url);
+  let user = new User$1;
+  user.id = response.openid;
+  user.nickname = response.nickname;
+  user.name = response.nickname;
+  user.avatar = response.headimgurl;
+  user.original = response;
+  return user;
+}())};
+
+const batchGet = function (user_list) {return __async(function*(){
+  let instance = Core.getInstance();
+  let data = {
+    user_list
+  };
+  let url = yield instance.buildApiUrl('user/info/batchget');
+  return yield instance.requestPost(url, data);
+}())};
+
+const lists = function (next_openid = null) {return __async(function*(){
+  let instance = Core.getInstance();
+  let url = yield instance.buildApiUrl('user/get');
+  if (next_openid) {
+    url += '&next_openid=' + next_openid;
+  }
+  return yield instance.requestGet(url);
+}())};
+
+const remark = function (openid, remark) {return __async(function*(){
+  let instance = Core.getInstance();
+  let url = yield instance.buildApiUrl('user/info/updateremark');
+  return yield instance.requestPost(url);
+}())};
+
+const blacklist = function (begin_openid) {return __async(function*(){
+  let instance = Core.getInstance();
+  let data = {};
+  if (begin_openid) {
+    data.begin_openid = begin_openid;
+  }
+  let url = yield instance.buildApiUrl('tags/members/getblacklist');
+  return yield instance.requestPost(url, data);
+}())};
+
+const batchBlock = function (openid_list) {return __async(function*(){
+  let instance = Core.getInstance();
+  let data = {
+    openid_list
+  };
+  let url = yield instance.buildApiUrl('tags/members/batchblacklist');
+  return yield instance.requestPost(url, data);
+}())};
+
+const batchUnblock = function (openid_list) {return __async(function*(){
+  let instance = Core.getInstance();
+  let data = {
+    openid_list
+  };
+  let url = yield instance.buildApiUrl('tags/members/batchunblacklist');
+  return yield instance.requestPost(url, data);
+}())};
+
+const block = function (openid) {return __async(function*(){
+  return yield batchBlock([openid]);
+}())};
+
+const unblock = function (openid) {return __async(function*(){
+  return yield batchUnblock([openid]);
+}())};
+
+var user$1 = {
+  init: init$7,
+  get: get$1,
+  batchGet,
+  lists,
+  remark,
+  blacklist,
+  batchBlock,
+  batchUnblock,
+  block,
+  unblock
+};
+
+const init$8 = function (instance) {
+};
+
+const all = function () {return __async(function*(){
+  let instance = Core.getInstance();
+  let url = yield instance.buildApiUrl('menu/get');
+  return yield instance.requestPost(url);
+}())};
+
+const current = function () {return __async(function*(){
+  let instance = Core.getInstance();
+  let url = yield instance.buildApiUrl('get_current_selfmenu_info');
+  return yield instance.requestPost(url);
+}())};
+
+const add = function (buttons) {return __async(function*(){
+  let data = {
+    button: buttons
+  };
+    let instance = Core.getInstance();
+  let url = yield instance.buildApiUrl('menu/create');
+  return yield instance.requestPost(url, data);
+}())};
+
+const destroy = function () {return __async(function*(){
+  let instance = Core.getInstance();
+  let url = yield instance.buildApiUrl('menu/delete');
+  return yield instance.requestPost(url);
+}())};
+
+var menu = {
+  init: init$8,
+  all,
+  current,
+  add,
+  destroy
+};
+
+const init$9 = function (instance) {
+};
+
+const shorten = function (long_url) {return __async(function*(){
+  let data = {
+    action: 'long2short',
+    long_url
+  };
+  let instance = Core.getInstance();
+  let url = yield instance.buildApiUrl('shorturl');
+  return yield instance.requestPost(url, data);
+}())};
+
+var url$2 = {
+  init: init$9,
+  shorten
+};
+
+const init$10 = function (instance) {
+};
+
+const toXml = function (data) {
+  let xml = '<xml>';
+  for (let k in data) {
+    if (!data[k]) continue;
+    if (isNumber(data[k])) {
+      xml += `<${k}>${data[k]}</${k}>`;
+    }
+    else if (isObject(data[k])) {
+      xml += `<${k}>${JSON.stringify(data[k])}</${k}>`;
+    }
+    else {
+      xml += `<${k}><![CDATA[${data[k]}]]></${k}>`;
+    }
+  }
+  xml += '</xml>';
+  return xml;
+};
+
+const prepare = function (order) {return __async(function*(){
+  let instance = Core.getInstance();
+  let paymentConfig = instance.$config.payment;
+  let data = {
+    appid: instance.$config.appKey,
+    mch_id: paymentConfig.merchantId,
+    device_info: order.device_info || 'WEB',
+    nonce_str: randomString(16),
+    body: order.body,
+    detail: order.detail || '',
+    attach: order.attach || '',
+    out_trade_no: order.out_trade_no,
+    fee_type: order.fee_type || 'CNY',
+    total_fee: order.total_fee,
+    spbill_create_ip: order.spbill_create_ip,
+    time_start: order.time_start || '',
+    time_expire: order.time_expire || '',
+    goods_tag: order.goods_tag || '',
+    notify_url: order.notify_url || paymentConfig.notifyUrl,
+    trade_type: order.trade_type || 'JSAPI',
+    product_id: order.product_id || '',
+    limit_pay: order.limit_pay || '',
+    openid: order.openid || '',
+    scene_info: order.scene_info || '',
+    sign_type: order.sign_type || 'MD5'
+  };
+  data.sign = makeSignature(data, data.sign_type, paymentConfig.key);
+
+  let xml = toXml(data);
+  let result = yield instance.requestPost('https://api.mch.weixin.qq.com/pay/unifiedorder', xml);
+  result = yield parseMessage$1(result);
+  log('payment.prepare(): ', data, xml, result);
+  return result;
+}())};
+
+const handleNotify = function (handler) {return __async(function*(){
+  let instance = Core.getInstance();
+  let app = instance.$config.app;
+  if (!app) {
+    throw new Error('未在配置文件中设置应用服务器');
+    return;
+  }
+  let paymentConfig = instance.$config.payment;
+  let xml = yield app.getBody();
+  let notice = yield parseMessage$1(xml);
+  let response = {
+    return_code: '',
+    return_msg: ''
+  };
+  log('payment.handleNotify():', notice);
+
+  if (notice.return_code !== 'SUCCESS') {
+    response.return_code = 'SUCCESS';
+    response.return_msg = 'return_code异常';
+    return app.sendResponse(toXml(response));
+  }
+
+  // 验证签名
+  let check_sign = makeSignature(notice, 'MD5', paymentConfig.key);
+  if (check_sign !== notice.sign) {
+    log('payment.handleNotify(): invalid_sign', check_sign, notice.sign);
+    response.return_code = 'FAIL';
+    response.return_msg = '签名错误';
+    return app.sendResponse(toXml(response));
+  }
+
+  // 业务处理
+  let result = false;
+  try {
+    result = yield handler(notice, notice.result_code === 'SUCCESS');
+  }
+  catch (e) {
+    result = false;
+  }
+  if (result === true) {
+    response.return_code = 'SUCCESS';
+    response.return_msg = '';
+  }
+  else {
+    response.return_code = 'FAIL';
+    response.return_msg = result;
+  }
+
+  app.sendResponse(toXml(response));
+}())};
+
+const parseMessage$1 = function (xml) {
+  return new Promise((resolve, reject) => {
+    xml2js.parseString(xml, (err, result) => {
+      if (err) {
+        reject(err);
+      }
+      else {
+        let message;
+        if (result && result.xml) {
+          message = {};
+          for (let k in result.xml) {
+            message[k] = result.xml[k][0];
+          }
+        }
+        resolve(message);
+      }
+    });
+  })
+  .catch((err) => {
+    log('payment.parseMessage()', err);
+  });
+};
+
+const configForPayment = function (prepare_id, to_json = false) {
+  let instance = Core.getInstance();
+  let signType = 'MD5';
+  let config = {
+    appId: instance.$config.appKey,
+    timeStamp: getTimestamp() + '',
+    nonceStr: randomString(16),
+    package: 'prepay_id=' + prepare_id,
+    signType: signType
+  };
+  config.paySign = makeSignature(config, signType, instance.$config.payment.key);
+  log('payment.configForPayment()', config);
+  if (to_json) {
+    config = JSON.stringify(config);
+  }
+  return config;
+};
+
+const configForJSSDKPayment = function (prepare_id, to_json = false) {
+  let instance = Core.getInstance();
+  let signType = 'MD5';
+  let timestamp = getTimestamp();
+  let config = {
+    appId: instance.$config.appKey,
+    timeStamp: timestamp,
+    nonceStr: randomString(16),
+    package: 'prepay_id=' + prepare_id,
+    signType: signType
+  };
+  config.paySign = makeSignature(config, signType, instance.$config.payment.key);
+  delete config.appId;
+  delete config.timeStamp;
+  config.timestamp = timestamp;
+  log('payment.configForJSSDKPayment()', config);
+  if (to_json) {
+    config = JSON.stringify(config);
+  }
+  return config;
+};
+
+var payment = {
+  init: init$10,
+  prepare,
+  handleNotify,
+  configForPayment,
+  configForJSSDKPayment
+};
+
+const init$11 = function (instance) {
+};
+
+const getStream = function (mediaId) {return __async(function*(){
+  let instance = Core.getInstance();
+  let url = (yield instance.buildApiUrl('media/get')) + '&media_id=' + mediaId;
+  let res;
+  try {
+    res = yield instance.requestFile(url);
+  }
+  catch (e) {
+    log('material_temporary.getStream()', mediaId, e);
+    return false;
+  }
+  if (isObject(res)) {
+    if (res.video_url) {
+      return yield instance.requestFile(res.video_url);
+    }
+    else {
+      log('material_temporary.getStream()', res);
+      return false;
+    }
+  }
+  return res;
+}())};
+
+const download = function (mediaId, path$$1, fileName = '') {return __async(function*(){
+  let stream = yield getStream(mediaId);
+  if (!stream) return false;
+  try {
+    fileName = fileName || mediaId + '.jpg';
+    fs.writeFileSync(path$$1 + fileName, stream, 'binary');
+  }
+  catch (e) {
+    log('material_temporary.download()', e);
+    return false;
+  }
+  return true;
+}())};
+
+const upload = function (file, type = 'image', extra = null) {return __async(function*(){
+  let instance = Core.getInstance();
+  let url = (yield instance.buildApiUrl('media/upload')) + '&type=' + type;
+  let res;
+  try {
+    let formData = {media: fs.createReadStream(file)};
+    if (extra) {
+      formData = extendObj(formData, extra);
+    }
+    res = yield instance.requestForm(url, formData);
+  }
+  catch (e) {
+    log('material_temporary.upload()', file, type, e);
+    return false;
+  }
+  if (res.errcode) {
+    log('material_temporary.upload()', file, type, res);
+    return false;
+  }
+  return res;
+}())};
+
+const uploadImage = function (file) {return __async(function*(){
+  return yield upload(file, 'image');
+}())};
+
+const uploadVoice = function (file) {return __async(function*(){
+  return yield upload(file, 'voice');
+}())};
+
+const uploadVideo = function (file, title, desc) {return __async(function*(){
+  let extra = {
+    description: JSON.stringify({
+      title: title || '',
+      introduction: desc || ''
+    })
+  };
+  return yield upload(file, 'video', extra);
+}())};
+
+const uploadThumb = function (file) {return __async(function*(){
+  return yield upload(file, 'thumb');
+}())};
+
+var material_temporary = {
+  init: init$11,
+  getStream,
+  download,
+  upload,
+  uploadImage,
+  uploadVoice,
+  uploadVideo,
+  uploadThumb
+};
+
+const init$12 = function (instance) {
+};
+
+const getMaterial = function (mediaId) {return __async(function*(){
+  let instance = Core.getInstance();
+  let url = (yield instance.buildApiUrl('material/get_material')) + '&media_id=' + mediaId;
+  let res;
+  try {
+    res = yield instance.requestFile(url);
+  }
+  catch (e) {
+    log('material.getMaterial()', mediaId, e);
+    return false;
+  }
+  if (isObject(res) && res.errcode) {
+    log('material.getMaterial()', mediaId, res);
+    return false;
+  }
+  return res;
+}())};
+
+const download$1 = function (mediaId, path$$1, fileName = '') {return __async(function*(){
+  let stream = yield get(mediaId);
+  if (!stream) return false;
+  try {
+    fileName = fileName || mediaId + '.jpg';
+    fs.writeFileSync(path$$1 + fileName, stream, 'binary');
+  }
+  catch (e) {
+    log('material.download()', e);
+    return false;
+  }
+  return true;
+}())};
+
+const upload$1 = function (file, type = 'image', extra = null) {return __async(function*(){
+  let instance = Core.getInstance();
+  let url = (yield instance.buildApiUrl('material/add_material')) + '&type=' + type;
+  let res;
+  try {
+    let formData = {media: fs.createReadStream(file)};
+    if (extra) {
+      formData = extendObj$1(formData, extra);
+    }
+    res = yield instance.requestForm(url, formData);
+  }
+  catch (e) {
+    log('material.upload()', file, type, e);
+    return false;
+  }
+  if (res.errcode) {
+    log('material.upload()', file, type, res);
+    return false;
+  }
+  return res;
+}())};
+
+const uploadImage$1 = function (file) {return __async(function*(){
+  return yield upload$1(file, 'image');
+}())};
+
+const uploadVoice$1 = function (file) {return __async(function*(){
+  return yield upload$1(file, 'voice');
+}())};
+
+const uploadVideo$1 = function (file, title, desc) {return __async(function*(){
+  let extra = {
+    description: JSON.stringify({title: title || '', introduction: desc || ''})
+  };
+  return yield upload$1(file, 'video', extra);
+}())};
+
+const uploadThumb$1 = function (file) {return __async(function*(){
+  return yield upload$1(file, 'thumb');
+}())};
+
+const deleteMaterial = function (mediaId) {return __async(function*(){
+  let instance = Core.getInstance();
+  let url = yield instance.buildApiUrl('material/del_material');
+  let res;
+  try {
+    res = yield instance.requestPost(url, {mediaId: mediaId});
+  }
+  catch (e) {
+    log('material.deleteMaterial()', mediaId, e);
+    return false;
+  }
+  if (res.errcode) {
+    log('material.deleteMaterial()', mediaId, res);
+    return false;
+  }
+  return res;
+}())};
+
+const lists$1 = function (type, offset = 0, count = 20) {return __async(function*(){
+  let instance = Core.getInstance();
+  let url = yield instance.buildApiUrl('material/batchget_material');
+  let res;
+  try {
+    res = yield instance.requestPost(url, {
+      type: type,
+      offset: offset,
+      count: count
+    });
+  }
+  catch (e) {
+    log('material.lists()', type, offset, count, e);
+    return false;
+  }
+  if (res.errcode) {
+    log('material.lists()', type, offset, count, res);
+    return false;
+  }
+  return res;
+}())};
+
+const stats = function () {return __async(function*(){
+  let instance = Core.getInstance();
+  let url = yield instance.buildApiUrl('material/get_materialcount');
+  let res;
+  try {
+    res = yield instance.requestGet(url);
+  }
+  catch (e) {
+    log('material.stats()', e);
+    return false;
+  }
+  if (res.errcode) {
+    log('material.stats()', res);
+    return false;
+  }
+  return res;
+}())};
+
+const uploadArticle = function (article) {return __async(function*(){
+  if (isObject(article)) article = [article];
+
+  let instance = Core.getInstance();
+  let url = yield instance.buildApiUrl('material/add_news');
+  let res;
+  try {
+    res = yield instance.requestPost(url, {
+      articles: article
+    });
+  }
+  catch (e) {
+    log('material.uploadArticle()', article, e);
+    return false;
+  }
+  if (res.errcode) {
+    log('material.uploadArticle()', article, res);
+    return false;
+  }
+  return res;
+}())};
+
+const uploadArticleImage = function (file) {return __async(function*(){
+  let instance = Core.getInstance();
+  let url = yield instance.buildApiUrl('media/uploadimg');
+  let res;
+  try {
+    let formData = {media: fs.createReadStream(file)};
+    res = yield instance.requestForm(url, formData);
+  }
+  catch (e) {
+    log('material.uploadArticleImage()', file, type, e);
+    return false;
+  }
+  if (res.errcode) {
+    log('material.uploadArticleImage()', file, type, res);
+    return false;
+  }
+  return res;
+}())};
+
+const updateArticle = function (mediaId, article, index = 0) {return __async(function*(){
+  if (isObject(article)) article = [article];
+
+  let instance = Core.getInstance();
+  let url = yield instance.buildApiUrl('material/update_news');
+  let res;
+  try {
+    res = yield instance.requestPost(url, {
+      media_id: mediaId,
+      index: index,
+      articles: article
+    });
+  }
+  catch (e) {
+    log('material.updateArticle()', mediaId, article, index, e);
+    return false;
+  }
+  if (res.errcode) {
+    log('material.updateArticle()', mediaId, article, index, res);
+    return false;
+  }
+  return res;
+}())};
+
+var material = {
+  init: init$12,
+  get: getMaterial,
+  download: download$1,
+  upload: upload$1,
+  uploadImage: uploadImage$1,
+  uploadVoice: uploadVoice$1,
+  uploadVideo: uploadVideo$1,
+  uploadThumb: uploadThumb$1,
+  delete: deleteMaterial,
+  lists: lists$1,
+  stats,
+  uploadArticle,
+  uploadArticleImage,
+  updateArticle
+};
+
+const crypto$1 = require('crypto');
+
+const init$13 = function (instance) {
+};
+
+const auth = {
+  getSessionKey: function (code) {return __async(function*(){
+    let instance = Core.getInstance();
+    let params = {
+      appid: instance.$config.mini_program.appId,
+      secret: instance.$config.mini_program.appSecret,
+      js_code: code,
+      grant_type: 'authorization_code'
+    };
+    let url = this.BASE_API + 'sns/jscode2session?' + qs.stringify(params);
+
+    let response = yield instance.requestGet(url);
+    return response;
+  }.call(this))},
+  getAccessToken: function (force = false) {return __async(function*(){
+    let instance = Core.getInstance();
+    let accessToken = yield instance.$config.cache.fetch(instance.$config.mini_program.access_token_cache_key);
+    if (force || !accessToken) {
+      let params = {
+        appid: instance.$config.mini_program.appId,
+        secret: instance.$config.mini_program.appSecret,
+        grant_type: 'client_credential'
+      };
+      let url = this.BASE_API + 'cgi-bin/token?' + qs.stringify(params);
+
+      let res = yield instance.requestGet(url);
+      log('write AccessToken: ', instance.$config.mini_program.access_token_cache_key, res.access_token, res.expires_in);
+      yield instance.$config.cache.save(instance.$config.mini_program.access_token_cache_key, res.access_token, res.expires_in);
+      accessToken = res.access_token;
+    }
+    return accessToken;
+  }.call(this))}
+};
+
+const encryptor = {
+  decryptData: function (sessionKey, iv, encryptData) {return __async(function*(){
+    // base64 decode
+    let _sessionKey = Buffer.from(sessionKey, 'base64');
+    let _encryptData = Buffer.from(encryptData, 'base64');
+    let _iv = Buffer.from(iv, 'base64');
+
+    let decoded = null;
+    try {
+       // 解密
+      let decipher = crypto$1.createDecipheriv('aes-128-cbc', _sessionKey, _iv);
+      // 设置自动 padding 为 true，删除填充补位
+      decipher.setAutoPadding(true);
+
+      decoded = decipher.update(_encryptData, 'binary', 'utf8');
+      decoded += decipher.final('utf8');
+
+      decoded = JSON.parse(decoded);
+
+      let instance = Core.getInstance();
+      if (decoded.watermark.appid !== instance.$config.mini_program.appId) {
+        throw new Error('Invaild AppId');
+      }
+    }
+    catch (e) {
+      log('mini_program.encryptor.decryptData()', e);
+      return null;
+    }
+
+    return decoded;
+  }())}
+};
+
+var mini_program = {
+  init: init$13,
+  auth,
+  encryptor
+};
+
+const init$14 = function (instance) {
+};
+
+const lists$2 = function () {return __async(function*(){
+  let instance = Core.getInstance();
+  let url = yield instance.buildApiUrl('tags/get');
+  let response = yield instance.requestGet(url);
+  return response;
+}())};
+
+const create = function (name) {return __async(function*(){
+  let instance = Core.getInstance();
+  let url = yield instance.buildApiUrl('tags/create');
+  let data = {
+    tag: {
+      name
+    }
+  };
+  let response = yield instance.requestPost(url, data);
+  return response;
+}())};
+
+const update = function (id, name) {return __async(function*(){
+  let instance = Core.getInstance();
+  let url = yield instance.buildApiUrl('tags/update');
+  let data = {
+    tag: {
+      id, name
+    }
+  };
+  let response = yield instance.requestPost(url, data);
+  return response;
+}())};
+
+const del = function (id) {return __async(function*(){
+  let instance = Core.getInstance();
+  let url = yield instance.buildApiUrl('tags/delete');
+  let data = {
+    tag: {
+      id
+    }
+  };
+  let response = yield instance.requestPost(url, data);
+  return response;
+}())};
+
+const userTags = function (openId) {return __async(function*(){
+  let instance = Core.getInstance();
+  let url = yield instance.buildApiUrl('tags/getidlist');
+  let data = {
+    openid
+  };
+  let response = yield instance.requestPost(url, data);
+  return response;
+}())};
+
+const batchTagUsers = function (openIds, tagId) {return __async(function*(){
+  let instance = Core.getInstance();
+  let url = yield instance.buildApiUrl('tags/members/batchtagging');
+  let data = {
+    tagid: tagId,
+    openid_list: openIds
+  };
+  let response = yield instance.requestPost(url, data);
+  return response;
+}())};
+
+const batchUntagUsers = function (openIds, tagId) {return __async(function*(){
+  let instance = Core.getInstance();
+  let url = yield instance.buildApiUrl('tags/members/batchuntagging');
+  let data = {
+    tagid: tagId,
+    openid_list: openIds
+  };
+  let response = yield instance.requestPost(url, data);
+  return response;
+}())};
+
+var user_tag = {
+  init: init$14,
+  lists: lists$2,
+  create,
+  update,
+  delete: del,
+  userTags,
+  userOfTags,
+  batchTagUsers,
+  batchUntagUsers
+};
+
+Core.EasyWechat.registPlugin('oauth', oauth);
+Core.EasyWechat.registPlugin('cache', cache);
+Core.EasyWechat.registPlugin('access_token', access_token);
+Core.EasyWechat.registPlugin('jssdk', jssdk);
+Core.EasyWechat.registPlugin('server', server);
+Core.EasyWechat.registPlugin('notice', notice);
+Core.EasyWechat.registPlugin('qrcode', qrcode);
+Core.EasyWechat.registPlugin('user', user$1);
+Core.EasyWechat.registPlugin('menu', menu);
+Core.EasyWechat.registPlugin('url', url$2);
+Core.EasyWechat.registPlugin('payment', payment);
+Core.EasyWechat.registPlugin('material_temporary', material_temporary);
+Core.EasyWechat.registPlugin('material', material);
+Core.EasyWechat.registPlugin('mini_program', mini_program);
+Core.EasyWechat.registPlugin('user_tag', user_tag);
+
+Core.EasyWechat.Cache = {};
+for (let k in caches) {
+  Core.EasyWechat.Cache[k] = caches[k];
+}
+
+Core.EasyWechat.Message = {};
+for (let k in messages) {
+  Core.EasyWechat.Message[k] = messages[k];
+}
+
+var index = Core.EasyWechat;
+
+module.exports = index;

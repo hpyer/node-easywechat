@@ -3,13 +3,6 @@ import qs from 'qs';
 import Core from './core';
 import {log} from '../utils';
 
-const scopes = ['snsapi_base', 'snsapi_userinfo', 'snsapi_login'];
-
-const URL_MP = 'https://open.weixin.qq.com/connect/oauth2/authorize';
-const URL_OP = 'https://open.weixin.qq.com/connect/qrconnect';
-const URL_ACCESS_TOKEN = 'https://api.weixin.qq.com/sns/oauth2/access_token';
-const URL_USER_INFO = 'https://api.weixin.qq.com/sns/userinfo';
-
 class User {
   constructor () {
     this.id = ''
@@ -41,9 +34,9 @@ const redirect = function (state = '') {
     return '';
   }
 
-  let url = URL_MP;
+  let api = 'connect/oauth2/authorize';
   if (instance.$config.oauth.scope == 'snsapi_login') {
-    url = URL_OP;
+    api = 'connect/qrconnect';
   }
 
   let params = {
@@ -56,7 +49,7 @@ const redirect = function (state = '') {
     params.state = state;
   }
 
-  return url + '?' + qs.stringify(params) + '#wechat_redirect';
+  return 'https://open.weixin.qq.com/' + api + '?' + qs.stringify(params) + '#wechat_redirect';
 };
 
 const user = async function (code) {
@@ -76,7 +69,7 @@ const fetchAccessToken = async function (code) {
     code: code,
     grant_type: 'authorization_code'
   };
-  let url = URL_ACCESS_TOKEN + '?' + qs.stringify(params);
+  let url = this.BASE_API + 'sns/oauth2/access_token?' + qs.stringify(params);
 
   let response = await instance.requestGet(url);
   let user = new User;
@@ -91,7 +84,7 @@ const fetchUserInfo = async function (user) {
     openid: user.id,
     lang: 'zh_CN'
   };
-  let url = URL_USER_INFO + '?' + qs.stringify(params);
+  let url = this.BASE_API + 'sns/userinfo?' + qs.stringify(params);
 
   let instance = Core.getInstance();
   let response = await instance.requestGet(url);

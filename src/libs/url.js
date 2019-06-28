@@ -1,8 +1,6 @@
 
 import Core from './core';
 
-const URL_SHORTURL = 'https://api.weixin.qq.com/cgi-bin/shorturl';
-
 const init = function (instance) {
 };
 
@@ -12,7 +10,7 @@ const shorten = async function (long_url) {
     long_url
   };
   let instance = Core.getInstance();
-  let url = await instance.buildApiUrl(URL_SHORTURL);
+  let url = await instance.buildApiUrl('shorturl');
   return await instance.requestPost(url, data);
 };
 
