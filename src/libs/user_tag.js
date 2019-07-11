@@ -97,7 +97,7 @@ export default {
   update,
   delete: del,
   userTags,
-  userOfTags,
+  usersOfTag,
   batchTagUsers,
   batchUntagUsers
 };

@@ -16,7 +16,7 @@ const auth = {
       js_code: code,
       grant_type: 'authorization_code'
     };
-    let url = this.BASE_API + 'sns/jscode2session?' + qs.stringify(params);
+    let url = instance.BASE_API + 'sns/jscode2session?' + qs.stringify(params);
 
     let response = await instance.requestGet(url);
     return response;
@@ -30,7 +30,7 @@ const auth = {
         secret: instance.$config.mini_program.appSecret,
         grant_type: 'client_credential'
       };
-      let url = this.BASE_API + 'cgi-bin/token?' + qs.stringify(params);
+      let url = instance.BASE_API + 'cgi-bin/token?' + qs.stringify(params);
 
       let res = await instance.requestGet(url);
       log('write AccessToken: ', instance.$config.mini_program.access_token_cache_key, res.access_token, res.expires_in)

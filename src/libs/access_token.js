@@ -14,7 +14,7 @@ const fetchAccessToken = async function () {
     secret: instance.$config.appSecret,
     grant_type: 'client_credential'
   };
-  let url = this.BASE_API + 'cgi-bin/token?' + qs.stringify(params);
+  let url = instance.BASE_API + 'cgi-bin/token?' + qs.stringify(params);
 
   return await instance.requestGet(url);
 };
