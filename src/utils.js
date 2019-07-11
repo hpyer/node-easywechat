@@ -97,3 +97,24 @@ export const isNumber = data => {
 export const isObject = data => {
   return Object.prototype.toString.call(data) == '[object Object]';
 }
+
+const isFunction = data => {
+  return data && toString.call(data) == '[object Function]' || toString.call(data) == '[object AsyncFunction]';
+}
+
+export const inArray = (data, arr, strict = false) => {
+  if (!isArray(arr)) return strict ? data === arr : data == arr;
+  if (isFunction(arr.findIndex)) {
+    return arr.findIndex((o) => { return strict ? o === data : o == data }) > -1;
+  }
+  else {
+    let flag = false;
+    for (let i = 0; i < arr.length; i++) {
+      if (strict ? data === arr[i] : data == arr[i]) {
+        flag = true;
+        break;
+      }
+    }
+    return flag;
+  }
+}

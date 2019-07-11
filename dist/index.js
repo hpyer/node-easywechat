@@ -119,6 +119,27 @@ const isObject = data => {
   return Object.prototype.toString.call(data) == '[object Object]';
 };
 
+const isFunction = data => {
+  return data && toString.call(data) == '[object Function]' || toString.call(data) == '[object AsyncFunction]';
+};
+
+const inArray = (data, arr, strict = false) => {
+  if (!isArray(arr)) return strict ? data === arr : data == arr;
+  if (isFunction(arr.findIndex)) {
+    return arr.findIndex((o) => { return strict ? o === data : o == data }) > -1;
+  }
+  else {
+    let flag = false;
+    for (let i = 0; i < arr.length; i++) {
+      if (strict ? data === arr[i] : data == arr[i]) {
+        flag = true;
+        break;
+      }
+    }
+    return flag;
+  }
+};
+
 class AppServer {
   constructor (req, res) {
     this.$req = req;
@@ -952,6 +973,18 @@ class News extends Raw {
   }
 }
 
+class Article {
+  constructor (attrs = {}) {
+    this.title = attrs.title || '';
+    this.author = attrs.author || '';
+    this.content = attrs.content || '';
+    this.thumb_media_id = attrs.thumb_media_id || '';
+    this.digest = attrs.digest || '';
+    this.source_url = attrs.source_url || '';
+    this.show_cover = attrs.digest || 0;
+  }
+}
+
 
 var messages = Object.freeze({
 	Raw: Raw,
@@ -961,7 +994,8 @@ var messages = Object.freeze({
 	Voice: Voice,
 	Video: Video,
 	Music: Music,
-	News: News
+	News: News,
+	Article: Article
 });
 
 const init$4 = function (instance) {
@@ -2119,6 +2153,17 @@ const userTags = function (openId) {return __async(function*(){
   return response;
 }())};
 
+const usersOfTag = function (tagId, nextOpenId = '') {return __async(function*(){
+  let instance = Core.getInstance();
+  let url = yield instance.buildApiUrl('user/tag/get');
+  let data = {
+    tagid: tagId,
+    next_openid: nextOpenId
+  };
+  let response = yield instance.requestPost(url, data);
+  return response;
+}())};
+
 const batchTagUsers = function (openIds, tagId) {return __async(function*(){
   let instance = Core.getInstance();
   let url = yield instance.buildApiUrl('tags/members/batchtagging');
@@ -2148,9 +2193,290 @@ var user_tag = {
   update,
   delete: del,
   userTags,
-  userOfTags,
+  usersOfTag,
   batchTagUsers,
   batchUntagUsers
+};
+
+const BROADCAST_TYPE_NEWS = 'mpnews';
+const BROADCAST_TYPE_TEXT = 'text';
+const BROADCAST_TYPE_VOICE = 'voice';
+const BROADCAST_TYPE_IMAGE = 'image';
+const BROADCAST_TYPE_CARD = 'wxcard';
+const BROADCAST_TYPE_VIDEO = 'mpvideo';
+const BROADCAST_TYPES = [BROADCAST_TYPE_NEWS, BROADCAST_TYPE_TEXT, BROADCAST_TYPE_VOICE, BROADCAST_TYPE_IMAGE, BROADCAST_TYPE_CARD, BROADCAST_TYPE_VIDEO];
+
+const init$15 = function (instance) {
+};
+
+const send$1 = function (type, message, target = null) {return __async(function*(){
+  if (!inArray(type, BROADCAST_TYPES)) return false;
+  let api = '', data = {
+    msgtype: type,
+  };
+  if (isArray(target) && target.length > 0) {
+    data.touser = target;
+    api = 'message/mass/send';
+  }
+  else {
+    data.filter = {
+      is_to_all: true,
+    };
+    if (target) {
+      data.filter.is_to_all = false;
+      data.filter.tag_id = target;
+    }
+    api = 'message/mass/sendall';
+  }
+
+  let instance = Core.getInstance();
+
+  data[type] = {};
+  switch (type) {
+    case BROADCAST_TYPE_NEWS:
+      data[type] = {
+        media_id: message
+      };
+      break;
+    case BROADCAST_TYPE_TEXT:
+      data[type] = {
+        content: message
+      };
+      break;
+    case BROADCAST_TYPE_VOICE:
+      data[type] = {
+        media_id: message
+      };
+      break;
+    case BROADCAST_TYPE_IMAGE:
+      data[type] = {
+        media_id: message
+      };
+      break;
+    case BROADCAST_TYPE_CARD:
+      data[type] = {
+        card_id: message
+      };
+      break;
+    case BROADCAST_TYPE_VIDEO:
+      let res1;
+      try {
+        let url1 = yield instance.buildApiUrl('media/uploadvideo');
+        res1 = yield instance.requestPost(url1, message);
+        data[type] = {
+          media_id: res1.media_id
+        };
+        break;
+      }
+      catch (e) {
+        log('broadcast.exchange_video_id', message, e);
+        return false;
+      }
+  }
+
+  let url = yield instance.buildApiUrl(api);
+  let res = yield instance.requestPost(url, data);
+  if (!res || res.errcode) {
+    log('broadcast.send()', data, res);
+    return false;
+  }
+
+  return res;
+}())};
+
+const sendText = function (text, target) {return __async(function*(){
+  return yield send$1(BROADCAST_TYPE_TEXT, text, target);
+}())};
+const sendNews = function (media_id, target) {return __async(function*(){
+  return yield send$1(BROADCAST_TYPE_NEWS, media_id, target);
+}())};
+const sendVoice = function (media_id, target) {return __async(function*(){
+  return yield send$1(BROADCAST_TYPE_VOICE, media_id, target);
+}())};
+const sendImage = function (media_id, target) {return __async(function*(){
+  return yield send$1(BROADCAST_TYPE_IMAGE, media_id, target);
+}())};
+const sendVideo = function (message, target) {return __async(function*(){
+  return yield send$1(BROADCAST_TYPE_VIDEO, message, target);
+}())};
+const sendCard = function (card_id, target) {return __async(function*(){
+  return yield send$1(BROADCAST_TYPE_CARD, card_id, target);
+}())};
+
+const preview = function (type, message, target, isName = false) {return __async(function*(){
+  if (!inArray(type, BROADCAST_TYPES)) return false;
+  let api = 'message/mass/preview', data = {
+    msgtype: type,
+  };
+  if (isName) {
+    data.towxname = target;
+  }
+  else {
+    data.touser = target;
+  }
+
+  let instance = Core.getInstance();
+
+  data[type] = {};
+  switch (type) {
+    case BROADCAST_TYPE_NEWS:
+      data[type] = {
+        media_id: message
+      };
+      break;
+    case BROADCAST_TYPE_TEXT:
+      data[type] = {
+        content: message
+      };
+      break;
+    case BROADCAST_TYPE_VOICE:
+      data[type] = {
+        media_id: message
+      };
+      break;
+    case BROADCAST_TYPE_IMAGE:
+      data[type] = {
+        media_id: message
+      };
+      break;
+    case BROADCAST_TYPE_CARD:
+      data[type] = message;
+      break;
+    case BROADCAST_TYPE_VIDEO:
+      let res1;
+      try {
+        let url1 = yield instance.buildApiUrl('media/uploadvideo');
+        res1 = yield instance.requestPost(url1, message);
+        data[type] = {
+          media_id: res1.media_id
+        };
+        break;
+      }
+      catch (e) {
+        log('broadcast.exchange_video_id', message, e);
+        return false;
+      }
+  }
+
+  let url = yield instance.buildApiUrl(api);
+  let res = yield instance.requestPost(url, data);
+  if (!res || res.errcode) {
+    log('broadcast.preview', data, res);
+    return false;
+  }
+
+  return res;
+}())};
+
+const previewText = function (text, target) {return __async(function*(){
+  return yield preview(BROADCAST_TYPE_TEXT, text, target);
+}())};
+const previewNews = function (media_id, target) {return __async(function*(){
+  return yield preview(BROADCAST_TYPE_NEWS, media_id, target);
+}())};
+const previewVoice = function (media_id, target) {return __async(function*(){
+  return yield preview(BROADCAST_TYPE_VOICE, media_id, target);
+}())};
+const previewImage = function (media_id, target) {return __async(function*(){
+  return yield preview(BROADCAST_TYPE_IMAGE, media_id, target);
+}())};
+const previewVideo = function (message, target) {return __async(function*(){
+  return yield preview(BROADCAST_TYPE_VIDEO, message, target);
+}())};
+const previewCard = function (card, target) {return __async(function*(){
+  return yield preview(BROADCAST_TYPE_CARD, card, target);
+}())};
+
+const previewByName = function (type, message, wxname) {return __async(function*(){
+  return yield preview(type, message, wxname, true);
+}())};
+const previewTextByName = function (text, target) {return __async(function*(){
+  return yield preview(BROADCAST_TYPE_TEXT, text, target, true);
+}())};
+const previewNewsByName = function (media_id, target) {return __async(function*(){
+  return yield preview(BROADCAST_TYPE_NEWS, media_id, target, true);
+}())};
+const previewVoiceByName = function (media_id, target) {return __async(function*(){
+  return yield preview(BROADCAST_TYPE_VOICE, media_id, target, true);
+}())};
+const previewImageByName = function (media_id, target) {return __async(function*(){
+  return yield preview(BROADCAST_TYPE_IMAGE, media_id, target, true);
+}())};
+const previewVideoByName = function (message, target) {return __async(function*(){
+  return yield preview(BROADCAST_TYPE_VIDEO, message, target, true);
+}())};
+const previewCardByName = function (card, target) {return __async(function*(){
+  return yield preview(BROADCAST_TYPE_CARD, card, target, true);
+}())};
+
+const deleteBrodcast = function (msg_id, article_idx = 0) {return __async(function*(){
+  article_idx = parseInt(article_idx || 0);
+  if (article_idx < 0) article_idx = 0;
+  let data = {
+    msg_id,
+    article_idx
+  };
+
+  let instance = Core.getInstance();
+
+  let url = yield instance.buildApiUrl('message/mass/delete');
+  let res = yield instance.requestPost(url, data);
+  if (!res || res.errcode) {
+    log('broadcast.delete', data, res);
+    return false;
+  }
+
+  return res;
+}())};
+
+const get$2 = function (msg_id) {return __async(function*(){
+  let data = {
+    msg_id,
+  };
+
+  let instance = Core.getInstance();
+
+  let url = yield instance.buildApiUrl('message/mass/get');
+  let res = yield instance.requestPost(url, data);
+  if (!res || res.errcode) {
+    log('broadcast.get', data, res);
+    return false;
+  }
+
+  return res;
+}())};
+
+var broadcast = {
+  MSG_TYPE_NEWS: BROADCAST_TYPE_NEWS,
+  MSG_TYPE_TEXT: BROADCAST_TYPE_TEXT,
+  MSG_TYPE_VOICE: BROADCAST_TYPE_VOICE,
+  MSG_TYPE_IMAGE: BROADCAST_TYPE_IMAGE,
+  MSG_TYPE_CARD: BROADCAST_TYPE_CARD,
+  MSG_TYPE_VIDEO: BROADCAST_TYPE_VIDEO,
+  init: init$15,
+  send: send$1,
+  sendText,
+  sendNews,
+  sendVoice,
+  sendImage,
+  sendVideo,
+  sendCard,
+  preview,
+  previewText,
+  previewNews,
+  previewVoice,
+  previewImage,
+  previewVideo,
+  previewCard,
+  previewByName,
+  previewTextByName,
+  previewNewsByName,
+  previewVoiceByName,
+  previewImageByName,
+  previewVideoByName,
+  previewCardByName,
+  delete: deleteBrodcast,
+  get: get$2,
 };
 
 Core.EasyWechat.registPlugin('oauth', oauth);
@@ -2168,6 +2494,7 @@ Core.EasyWechat.registPlugin('material_temporary', material_temporary);
 Core.EasyWechat.registPlugin('material', material);
 Core.EasyWechat.registPlugin('mini_program', mini_program);
 Core.EasyWechat.registPlugin('user_tag', user_tag);
+Core.EasyWechat.registPlugin('broadcast', broadcast);
 
 Core.EasyWechat.Cache = {};
 for (let k in caches) {

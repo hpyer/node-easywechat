@@ -207,3 +207,15 @@ export class News extends Raw {
     this.dataParams.Articles.item.PicUrl = v
   }
 };
+
+export class Article {
+  constructor (attrs = {}) {
+    this.title = attrs.title || '';
+    this.author = attrs.author || '';
+    this.content = attrs.content || '';
+    this.thumb_media_id = attrs.thumb_media_id || '';
+    this.digest = attrs.digest || '';
+    this.source_url = attrs.source_url || '';
+    this.show_cover = attrs.digest || 0;
+  }
+};
