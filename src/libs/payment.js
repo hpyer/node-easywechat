@@ -28,7 +28,7 @@ const prepare = async function (order) {
   let instance = Core.getInstance();
   let paymentConfig = instance.$config.payment;
   let data = {
-    appid: instance.$config.appKey,
+    appid: order.appid || instance.$config.appKey,
     mch_id: paymentConfig.merchantId,
     device_info: order.device_info || 'WEB',
     nonce_str: randomString(16),
@@ -133,11 +133,11 @@ const parseMessage = function (xml) {
   });
 };
 
-const configForPayment = function (prepare_id, to_json = false) {
+const configForPayment = function (prepare_id, to_json = false, appId = null) {
   let instance = Core.getInstance();
   let signType = 'MD5';
   let config = {
-    appId: instance.$config.appKey,
+    appId: appId || instance.$config.appKey,
     timeStamp: getTimestamp() + '',
     nonceStr: randomString(16),
     package: 'prepay_id=' + prepare_id,
@@ -151,12 +151,12 @@ const configForPayment = function (prepare_id, to_json = false) {
   return config;
 };
 
-const configForJSSDKPayment = function (prepare_id, to_json = false) {
+const configForJSSDKPayment = function (prepare_id, to_json = false, appId = null) {
   let instance = Core.getInstance();
   let signType = 'MD5';
   let timestamp = getTimestamp();
   let config = {
-    appId: instance.$config.appKey,
+    appId: appId || instance.$config.appKey,
     timeStamp: timestamp,
     nonceStr: randomString(16),
     package: 'prepay_id=' + prepare_id,
