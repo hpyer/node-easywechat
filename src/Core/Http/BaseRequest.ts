@@ -27,4 +27,14 @@ export default class BaseRequest
     return '';
   }
 
+  getHeaders(): object
+  {
+    return {};
+  }
+
+  async getClientIp()
+  {
+    return '';
+  }
+
 };

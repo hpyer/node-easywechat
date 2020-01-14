@@ -1,69 +1,96 @@
 'use strict';
 
 import BaseClient from '../../Core/BaseClient';
-import { randomString, getTimestamp, makeSignature } from '../../Core/Utils';
+import * as Merge from 'merge';
+import { randomString, getTimestamp, createHash } from '../../Core/Utils';
 
 export default class Client extends BaseClient
 {
-  private url: string = '';
-  private endpoint: string = 'https://api.weixin.qq.com/cgi-bin/ticket/getticket';
+  protected url: string = '';
+  protected ticketEndpoint: string = 'https://api.weixin.qq.com/cgi-bin/ticket/getticket';
 
-  setUrl(url: string): void
+  async getTicket(refresh: boolean = false, type: string = 'jsapi'): Promise<string>
   {
-    this.url = url;
-  }
+    let cacheKey = `easywechat.basic_service.jssdk.ticket.${type}.${this.getAppId()}`;
 
-  async getTicket(force: boolean = false, type: string = 'jsapi'): Promise<string>
-  {
-    let cacheKey = `node-easywechat.access_token.${type}.${this.getAppId()}`;
-    let jssdkTicket = await this.app.getCache().fetch(cacheKey);
-    if (force || !jssdkTicket) {
-      let res = await this.requestWithAccessToken({
-        url: this.endpoint,
-        method: 'get',
-        qs: {
-          type,
-        },
-      });
-      await this.app.getCache().save(cacheKey, res.ticket, res.expires_in - 500);
-      jssdkTicket = res.ticket;
+    let cacher = this.app.getCache();
+
+    if (!refresh && await cacher.has(cacheKey)) {
+      return await cacher.fetch(cacheKey);
     }
 
-    return jssdkTicket;
-  }
-
-  async buildConfig(APIs: [], debug: boolean = false, beta: boolean = false, json: boolean = true): Promise<any>
-  {
-    let jssdkTicket = await this.getTicket();
-
-    let noncestr = randomString();
-    let timestamp = getTimestamp();
-    let signature = makeSignature({
-      jsapi_ticket: jssdkTicket,
-      noncestr,
-      timestamp,
-      url: this.url,
+    let res = await this.request({
+      url: this.ticketEndpoint,
+      method: 'get',
+      qs: {
+        type,
+      },
     });
+    await cacher.save(cacheKey, res, res['expires_in'] - 500);
 
-    let config = {
-      appId: this.getAppId(),
-      beta,
-      debug,
-      jsApiList: APIs,
-      nonceStr: noncestr,
-      signature,
-      timestamp,
-      url: this.url,
+    if (!cacher.has(cacheKey)) {
+      throw new Error('Failed to cache jssdk ticket.');
     }
 
-    /* 使用完清空设置的url */
-    this.url = '';
+    return res;
+  }
+
+  async buildConfig(jsApiList: Array<string>, debug: Boolean = false, beta: Boolean = false, json: Boolean = true): Promise<any>
+  {
+    let config = Merge({
+      jsApiList, debug, beta
+    }, await this.configSignature());
 
     return json ? JSON.stringify(config) : config;
+  }
+
+  async configSignature(url: string = '', nonce: string = '', timestamp: string = ''): Promise<object>
+  {
+    url = url || this.getUrl();
+    nonce = nonce || randomString(10);
+    timestamp = timestamp || getTimestamp() + '';
+    let ticket = await this.getTicket();
+
+    return {
+      appId: this.getAppId(),
+      nonceStr: nonce,
+      timestamp: timestamp,
+      url: url,
+      signature: this.getTicketSignature(ticket['ticket'], nonce, timestamp, url),
+    };
+  }
+
+  getTicketSignature(ticket: string, nonce: string, timestamp: string, url: string): string
+  {
+    return createHash(`jsapi_ticket=${ticket}&noncestr=${nonce}&timestamp=${timestamp}&url=${url}`, 'sha1');
+  }
+
+  dictionaryOrderSignature(): string
+  {
+    let params = [];
+    for (let i in arguments) {
+      params.push(arguments[i]);
+    }
+    params.sort();
+
+    return createHash(params.join(''), 'sha1');
+  }
+
+  setUrl(url: string): object
+  {
+    this.url = url;
+
+    return this;
+  }
+
+  getUrl(): string
+  {
+    return this.url;
   }
 
   getAppId(): string
   {
     return this.app['config']['app_id'];
   }
+
 }

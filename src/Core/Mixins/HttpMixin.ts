@@ -28,15 +28,7 @@ export default class HttpMixin
     payload['url'] = url;
     payload['method'] = 'GET';
     payload['encoding'] = 'binary';
-    return this.request(payload)
-      .then(body => {
-        try {
-          let buffer = Buffer.from(body, 'binary');
-          body = JSON.parse(buffer.toString());
-        }
-        catch (e) { }
-        return body;
-      });
+    return this.request(payload);
   }
 
   request(payload: object): Promise<any>
@@ -58,6 +50,10 @@ export default class HttpMixin
             }
             else {
               try {
+                if (payload['encoding'] == 'binary') {
+                  let buffer = Buffer.from(body, 'binary');
+                  body = buffer.toString();
+                }
                 body = JSON.parse(body);
               }
               catch (e) { }

@@ -31,7 +31,7 @@ class BaseAccessToken implements HttpMixin
 
   getCacheKey(): string
   {
-    return 'node-easywechat.access_token.' + createHash(JSON.stringify(this.getCredentials()), 'md5');
+    return 'easywechat.kernel.access_token.' + createHash(JSON.stringify(this.getCredentials()), 'md5');
   }
 
   async requestToken(credentials: object): Promise<any>

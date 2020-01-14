@@ -3,7 +3,7 @@
 import BaseAccessToken from './BaseAccessToken';
 import BaseApplication from './BaseApplication';
 import HttpMixin from './Mixins/HttpMixin';
-import { applyMixins } from './Utils';
+import { applyMixins, isIp } from './Utils';
 
 class BaseClient implements HttpMixin
 {

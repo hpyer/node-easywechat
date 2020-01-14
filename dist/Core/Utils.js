@@ -70,6 +70,19 @@ exports.isObject = function (data) {
 exports.isFunction = function (data) {
     return data && toString.call(data) == '[object Function]' || toString.call(data) == '[object AsyncFunction]';
 };
+exports.isIpv4 = function (ip) {
+    if (!ip)
+        return false;
+    return /^(25[0-5]|2[0-4]\d|[0-1]\d{2}|[1-9]?\d)\.(25[0-5]|2[0-4]\d|[0-1]\d{2}|[1-9]?\d)\.(25[0-5]|2[0-4]\d|[0-1]\d{2}|[1-9]?\d)\.(25[0-5]|2[0-4]\d|[0-1]\d{2}|[1-9]?\d)$/.test(ip);
+};
+exports.isIpv6 = function (ip) {
+    if (!ip)
+        return false;
+    return /^([\\da-fA-F]{1,4}:){7}([\\da-fA-F]{1,4})$/.test(ip);
+};
+exports.isIp = function (ip) {
+    return exports.isIpv4(ip) || exports.isIpv6(ip);
+};
 exports.inArray = function (data, arr, strict = false) {
     if (!exports.isArray(arr))
         return strict ? data === arr : data == arr;
@@ -113,4 +126,31 @@ exports.strStudly = function (value) {
 // 驼峰（首字母小写），'hello word' => 'helloWorld'
 exports.strCamel = function (value) {
     return exports.strLcwords(exports.strStudly(value));
+};
+// 如果只有一个同名、同级节点，则不当作数组
+exports.singleItem = function (obj) {
+    if (typeof obj == 'object') {
+        if (typeof obj.length != 'undefined') {
+            if (obj.length == 1) {
+                return exports.singleItem(obj[0]);
+            }
+            for (let i = 0; i < obj.length; i++) {
+                obj[i] = exports.singleItem(obj[i]);
+            }
+            return obj;
+        }
+        else {
+            for (let k in obj) {
+                obj[k] = exports.singleItem(obj[k]);
+            }
+        }
+    }
+    return obj;
+};
+exports.AesDecrypt = function (ciphertext, key, iv, method) {
+    var decipher = Crypto.createDecipheriv(method, key, iv);
+    decipher.setAutoPadding(true);
+    var plaintext = decipher.update(ciphertext, 'hex', 'utf8');
+    plaintext += decipher.final('utf8');
+    return plaintext;
 };

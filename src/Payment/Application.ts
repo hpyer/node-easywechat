@@ -23,7 +23,19 @@ export default class Application extends BaseApplication
       'OfficialAccount/Auth',
       'BaseService/Url',
 
-      'Payment/Base'
+      'Payment/Base',
+      'Payment/Bill',
+      'Payment/Coupon',
+      'Payment/Jssdk',
+      'Payment/Merchant',
+      'Payment/Order',
+      'Payment/Redpack',
+      'Payment/Refund',
+      'Payment/Reverse',
+      'Payment/Sandbox',
+      'Payment/Transfer',
+      'Payment/Security',
+      'Payment/ProfitSharing',
     ];
     super.registerProviders(providers);
   }
@@ -84,6 +96,11 @@ export default class Application extends BaseApplication
   async pay(params: object): Promise<any>
   {
     return await this['app']['base'].pay(params);
+  }
+
+  async authCodeToOpenid(auth_code: string): Promise<any>
+  {
+    return await this['app']['base'].authCodeToOpenid(auth_code);
   }
 
 };

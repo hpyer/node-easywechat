@@ -2,7 +2,7 @@
 
 import BaseApplication from '../../Core/BaseApplication';
 import HttpMixin from '../../Core/Mixins/HttpMixin';
-import { applyMixins, randomString, makeSignature } from '../../Core/Utils';
+import { applyMixins, randomString, makeSignature, singleItem } from '../../Core/Utils';
 import * as Merge from 'merge';
 import * as Xml2js from 'xml2js';
 import * as Fs from 'fs';
@@ -18,10 +18,10 @@ class BaseClient implements HttpMixin
 
   protected prepends()
   {
-    return [];
+    return {};
   }
 
-  protected requestApi(endpoint: string, params: object = {}, method: string = 'post', options: object = {}): Promise<any>
+  protected requestApi(endpoint: string, params: object = {}, method: string = 'post', options: object = {}, returnRaw: boolean = false): Promise<any>
   {
     let base = {
       mch_id: this.app['config']['mch_id'],
@@ -30,20 +30,36 @@ class BaseClient implements HttpMixin
       sub_appid: this.app['config']['sub_appid'],
     };
 
-    params = Merge(base, this.prepends(), params);
-    params['sign_type'] = params['sign_type'] || 'md5';
+    let localParams = Merge(base, this.prepends(), params);
+    localParams['sign_type'] = localParams['sign_type'] || 'md5';
 
     let secretKey = this.app['getKey'](endpoint);
-    params['sign'] = makeSignature(params, secretKey, params['sign_type']);
+    localParams['sign'] = makeSignature(localParams, secretKey, localParams['sign_type']);
 
     let XmlBuilder = new Xml2js.Builder;
     let payload = Merge(options, {
       url: endpoint,
       method,
-      body: XmlBuilder.buildObject(params)
+      body: XmlBuilder.buildObject(localParams)
     });
 
-    return this.request(payload);
+    return this.request(payload)
+      .then(async body => {
+        try {
+          if (!returnRaw) {
+            body = await this.parseXml(body);
+          }
+        }
+        catch (e) { }
+        return body;
+      });
+  }
+
+  async parseXml(xml: string): Promise<any>
+  {
+    let res = await Xml2js.parseStringPromise(xml);
+    res = singleItem(res);
+    return res;
   }
 
   protected safeRequestApi(endpoint: string, params: object = {}, method: string = 'post', options: object = {}): Promise<any>
@@ -57,9 +73,28 @@ class BaseClient implements HttpMixin
     return this.requestApi(endpoint, params, method, options);
   }
 
+  protected requestApiRaw(endpoint: string, params: object = {}, method: string = 'post', options: object = {}): Promise<any>
+  {
+    return this.requestApi(endpoint, params, method, options, true);
+  }
+
   protected wrap(endpoint: string): string
   {
     return this.app['inSandbox']() ? `sandboxnew/${endpoint}` : endpoint;
+  }
+
+  async getServerIp()
+  {
+    let res = await this.httpGet('http://ip.taobao.com/service/getIpInfo.php?ip=myip');
+    if (res && !res['code'] && res['data'] && res['data']['ip']) {
+      return res['data']['ip'];
+    }
+    return '';
+  }
+
+  async getClientIp()
+  {
+    return this.app['request'].getClientIp();
   }
 
 

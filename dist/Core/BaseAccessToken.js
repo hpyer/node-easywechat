@@ -29,7 +29,7 @@ class BaseAccessToken {
         return this.endpoint;
     }
     getCacheKey() {
-        return 'node-easywechat.access_token.' + Utils_1.createHash(JSON.stringify(this.getCredentials()), 'md5');
+        return 'easywechat.kernel.access_token.' + Utils_1.createHash(JSON.stringify(this.getCredentials()), 'md5');
     }
     requestToken(credentials) {
         return __awaiter(this, void 0, void 0, function* () {

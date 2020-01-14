@@ -20,26 +20,42 @@ class BaseClient {
         this.app = app;
     }
     prepends() {
-        return [];
+        return {};
     }
-    requestApi(endpoint, params = {}, method = 'post', options = {}) {
+    requestApi(endpoint, params = {}, method = 'post', options = {}, returnRaw = false) {
         let base = {
             mch_id: this.app['config']['mch_id'],
             nonce_str: Utils_1.randomString(32),
             sub_mch_id: this.app['config']['sub_mch_id'],
             sub_appid: this.app['config']['sub_appid'],
         };
-        params = Merge(base, this.prepends(), params);
-        params['sign_type'] = params['sign_type'] || 'md5';
+        let localParams = Merge(base, this.prepends(), params);
+        localParams['sign_type'] = localParams['sign_type'] || 'md5';
         let secretKey = this.app['getKey'](endpoint);
-        params['sign'] = Utils_1.makeSignature(params, secretKey, params['sign_type']);
+        localParams['sign'] = Utils_1.makeSignature(localParams, secretKey, localParams['sign_type']);
         let XmlBuilder = new Xml2js.Builder;
         let payload = Merge(options, {
             url: endpoint,
             method,
-            body: XmlBuilder.buildObject(params)
+            body: XmlBuilder.buildObject(localParams)
         });
-        return this.request(payload);
+        return this.request(payload)
+            .then((body) => __awaiter(this, void 0, void 0, function* () {
+            try {
+                if (!returnRaw) {
+                    body = yield this.parseXml(body);
+                }
+            }
+            catch (e) { }
+            return body;
+        }));
+    }
+    parseXml(xml) {
+        return __awaiter(this, void 0, void 0, function* () {
+            let res = yield Xml2js.parseStringPromise(xml);
+            res = Utils_1.singleItem(res);
+            return res;
+        });
     }
     safeRequestApi(endpoint, params = {}, method = 'post', options = {}) {
         options = Merge(options, {
@@ -50,8 +66,25 @@ class BaseClient {
         });
         return this.requestApi(endpoint, params, method, options);
     }
+    requestApiRaw(endpoint, params = {}, method = 'post', options = {}) {
+        return this.requestApi(endpoint, params, method, options, true);
+    }
     wrap(endpoint) {
         return this.app['inSandbox']() ? `sandboxnew/${endpoint}` : endpoint;
+    }
+    getServerIp() {
+        return __awaiter(this, void 0, void 0, function* () {
+            let res = yield this.httpGet('http://ip.taobao.com/service/getIpInfo.php?ip=myip');
+            if (res && !res['code'] && res['data'] && res['data']['ip']) {
+                return res['data']['ip'];
+            }
+            return '';
+        });
+    }
+    getClientIp() {
+        return __awaiter(this, void 0, void 0, function* () {
+            return this.app['request'].getClientIp();
+        });
     }
     // Rewrite by HttpMixin
     httpGet(url, payload = null) {

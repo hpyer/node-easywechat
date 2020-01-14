@@ -90,6 +90,20 @@ export const isFunction = function (data: any): boolean
 {
   return data && toString.call(data) == '[object Function]' || toString.call(data) == '[object AsyncFunction]';
 };
+export const isIpv4 = function (ip: string): boolean
+{
+  if (!ip) return false;
+  return /^(25[0-5]|2[0-4]\d|[0-1]\d{2}|[1-9]?\d)\.(25[0-5]|2[0-4]\d|[0-1]\d{2}|[1-9]?\d)\.(25[0-5]|2[0-4]\d|[0-1]\d{2}|[1-9]?\d)\.(25[0-5]|2[0-4]\d|[0-1]\d{2}|[1-9]?\d)$/.test(ip);
+};
+export const isIpv6 = function (ip: string): boolean
+{
+  if (!ip) return false;
+  return /^([\\da-fA-F]{1,4}:){7}([\\da-fA-F]{1,4})$/.test(ip);
+};
+export const isIp = function (ip: string): boolean
+{
+  return isIpv4(ip) || isIpv6(ip);
+};
 
 export const inArray = function (data: any, arr: any, strict: boolean = false): boolean
 {
@@ -145,3 +159,34 @@ export const strCamel = function (value: string): string
 {
   return strLcwords(strStudly(value));
 };
+
+// 如果只有一个同名、同级节点，则不当作数组
+export const singleItem = function (obj: any): any
+{
+  if (typeof obj == 'object') {
+    if (typeof obj.length != 'undefined') {
+      if (obj.length == 1) {
+        return singleItem(obj[0]);
+      }
+      for (let i = 0; i < obj.length; i++) {
+        obj[i] = singleItem(obj[i]);
+      }
+      return obj;
+    }
+    else {
+      for (let k in obj) {
+        obj[k] = singleItem(obj[k]);
+      }
+    }
+  }
+  return obj;
+};
+
+export const AesDecrypt = function (ciphertext, key, iv, method)
+{
+  var decipher = Crypto.createDecipheriv(method, key, iv);
+  decipher.setAutoPadding(true)
+  var plaintext = decipher.update(ciphertext, 'hex', 'utf8');
+  plaintext += decipher.final('utf8');
+  return plaintext;
+}

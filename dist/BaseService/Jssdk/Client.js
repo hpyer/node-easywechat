@@ -10,59 +10,75 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const BaseClient_1 = require("../../Core/BaseClient");
+const Merge = require("merge");
 const Utils_1 = require("../../Core/Utils");
 class Client extends BaseClient_1.default {
     constructor() {
         super(...arguments);
         this.url = '';
-        this.endpoint = 'https://api.weixin.qq.com/cgi-bin/ticket/getticket';
+        this.ticketEndpoint = 'https://api.weixin.qq.com/cgi-bin/ticket/getticket';
+    }
+    getTicket(refresh = false, type = 'jsapi') {
+        return __awaiter(this, void 0, void 0, function* () {
+            let cacheKey = `easywechat.basic_service.jssdk.ticket.${type}.${this.getAppId()}`;
+            let cacher = this.app.getCache();
+            if (!refresh && (yield cacher.has(cacheKey))) {
+                return yield cacher.fetch(cacheKey);
+            }
+            let res = yield this.request({
+                url: this.ticketEndpoint,
+                method: 'get',
+                qs: {
+                    type,
+                },
+            });
+            yield cacher.save(cacheKey, res, res['expires_in'] - 500);
+            if (!cacher.has(cacheKey)) {
+                throw new Error('Failed to cache jssdk ticket.');
+            }
+            return res;
+        });
+    }
+    buildConfig(jsApiList, debug = false, beta = false, json = true) {
+        return __awaiter(this, void 0, void 0, function* () {
+            let config = Merge({
+                jsApiList, debug, beta
+            }, yield this.configSignature());
+            return json ? JSON.stringify(config) : config;
+        });
+    }
+    configSignature(url = '', nonce = '', timestamp = '') {
+        return __awaiter(this, void 0, void 0, function* () {
+            url = url || this.getUrl();
+            nonce = nonce || Utils_1.randomString(10);
+            timestamp = timestamp || Utils_1.getTimestamp() + '';
+            let ticket = yield this.getTicket();
+            return {
+                appId: this.getAppId(),
+                nonceStr: nonce,
+                timestamp: timestamp,
+                url: url,
+                signature: this.getTicketSignature(ticket['ticket'], nonce, timestamp, url),
+            };
+        });
+    }
+    getTicketSignature(ticket, nonce, timestamp, url) {
+        return Utils_1.createHash(`jsapi_ticket=${ticket}&noncestr=${nonce}&timestamp=${timestamp}&url=${url}`, 'sha1');
+    }
+    dictionaryOrderSignature() {
+        let params = [];
+        for (let i in arguments) {
+            params.push(arguments[i]);
+        }
+        params.sort();
+        return Utils_1.createHash(params.join(''), 'sha1');
     }
     setUrl(url) {
         this.url = url;
+        return this;
     }
-    getTicket(force = false, type = 'jsapi') {
-        return __awaiter(this, void 0, void 0, function* () {
-            let cacheKey = `node-easywechat.access_token.${type}.${this.getAppId()}`;
-            let jssdkTicket = yield this.app.getCache().fetch(cacheKey);
-            if (force || !jssdkTicket) {
-                let res = yield this.requestWithAccessToken({
-                    url: this.endpoint,
-                    method: 'get',
-                    qs: {
-                        type,
-                    },
-                });
-                yield this.app.getCache().save(cacheKey, res.ticket, res.expires_in - 500);
-                jssdkTicket = res.ticket;
-            }
-            return jssdkTicket;
-        });
-    }
-    buildConfig(APIs, debug = false, beta = false, json = true) {
-        return __awaiter(this, void 0, void 0, function* () {
-            let jssdkTicket = yield this.getTicket();
-            let noncestr = Utils_1.randomString();
-            let timestamp = Utils_1.getTimestamp();
-            let signature = Utils_1.makeSignature({
-                jsapi_ticket: jssdkTicket,
-                noncestr,
-                timestamp,
-                url: this.url,
-            });
-            let config = {
-                appId: this.getAppId(),
-                beta,
-                debug,
-                jsApiList: APIs,
-                nonceStr: noncestr,
-                signature,
-                timestamp,
-                url: this.url,
-            };
-            /* 使用完清空设置的url */
-            this.url = '';
-            return json ? JSON.stringify(config) : config;
-        });
+    getUrl() {
+        return this.url;
     }
     getAppId() {
         return this.app['config']['app_id'];

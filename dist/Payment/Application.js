@@ -26,7 +26,19 @@ class Application extends BaseApplication_1.default {
         let providers = [
             'OfficialAccount/Auth',
             'BaseService/Url',
-            'Payment/Base'
+            'Payment/Base',
+            'Payment/Bill',
+            'Payment/Coupon',
+            'Payment/Jssdk',
+            'Payment/Merchant',
+            'Payment/Order',
+            'Payment/Redpack',
+            'Payment/Refund',
+            'Payment/Reverse',
+            'Payment/Sandbox',
+            'Payment/Transfer',
+            'Payment/Security',
+            'Payment/ProfitSharing',
         ];
         super.registerProviders(providers);
     }
@@ -68,6 +80,11 @@ class Application extends BaseApplication_1.default {
     pay(params) {
         return __awaiter(this, void 0, void 0, function* () {
             return yield this['app']['base'].pay(params);
+        });
+    }
+    authCodeToOpenid(auth_code) {
+        return __awaiter(this, void 0, void 0, function* () {
+            return yield this['app']['base'].authCodeToOpenid(auth_code);
         });
     }
 }
