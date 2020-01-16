@@ -22,7 +22,7 @@ export default class Client extends BaseClient
       params['contract_notify_url'] = params['contract_notify_url'] || this.app['config'].contract_notify_url;
     }
 
-    return this.requestApi(this.wrap('pay/contractorder'), params);
+    return this.request(this.wrap('pay/contractorder'), params);
   }
 
   queryByOutTradeNumber(out_trade_no: string): Promise<any>
@@ -45,7 +45,7 @@ export default class Client extends BaseClient
   {
     params['appid'] = this.app['config'].app_id;
 
-    return this.requestApi(this.wrap('pay/orderquery'), params);
+    return this.request(this.wrap('pay/orderquery'), params);
   }
 
   close(tradeNo: string): Promise<any>
@@ -55,7 +55,7 @@ export default class Client extends BaseClient
       out_trade_no: tradeNo,
     };
 
-    return this.requestApi(this.wrap('pay/closeorder'), params);
+    return this.request(this.wrap('pay/closeorder'), params);
   }
 
 }

@@ -11,6 +11,8 @@ class BaseClient implements HttpMixin
 {
   protected app: BaseApplication = null;
 
+  protected serverIp: String = '';
+
   constructor(app: BaseApplication)
   {
     this.app = app;
@@ -21,7 +23,7 @@ class BaseClient implements HttpMixin
     return {};
   }
 
-  protected requestApi(endpoint: string, params: object = {}, method: string = 'post', options: object = {}, returnRaw: boolean = false): Promise<any>
+  protected request(endpoint: string, params: object = {}, method: string = 'post', options: object = {}, returnResponse: boolean = false): Promise<any>
   {
     let base = {
       mch_id: this.app['config']['mch_id'],
@@ -43,12 +45,10 @@ class BaseClient implements HttpMixin
       body: XmlBuilder.buildObject(localParams)
     });
 
-    return this.request(payload)
+    return this.doRequest(payload, returnResponse)
       .then(async body => {
         try {
-          if (!returnRaw) {
-            body = await this.parseXml(body);
-          }
+          body = await this.parseXml(body);
         }
         catch (e) { }
         return body;
@@ -62,7 +62,7 @@ class BaseClient implements HttpMixin
     return res;
   }
 
-  protected safeRequestApi(endpoint: string, params: object = {}, method: string = 'post', options: object = {}): Promise<any>
+  protected safeRequest(endpoint: string, params: object = {}, method: string = 'post', options: object = {}): Promise<any>
   {
     options = Merge(options, {
       agentOptions: {
@@ -70,12 +70,13 @@ class BaseClient implements HttpMixin
         passphrase: this.app['config']['mch_id'],
       }
     });
-    return this.requestApi(endpoint, params, method, options);
+    return this.request(endpoint, params, method, options);
   }
 
-  protected requestApiRaw(endpoint: string, params: object = {}, method: string = 'post', options: object = {}): Promise<any>
+  protected requestRaw(endpoint: string, params: object = {}, method: string = 'post', options: object = {}): Promise<any>
   {
-    return this.requestApi(endpoint, params, method, options, true);
+    options['encoding'] = null;
+    return this.request(endpoint, params, method, options, true);
   }
 
   protected wrap(endpoint: string): string
@@ -85,11 +86,17 @@ class BaseClient implements HttpMixin
 
   async getServerIp()
   {
-    let res = await this.httpGet('http://ip.taobao.com/service/getIpInfo.php?ip=myip');
-    if (res && !res['code'] && res['data'] && res['data']['ip']) {
-      return res['data']['ip'];
+    if (!this.serverIp) {
+      let res = await this.doRequest({
+        url: 'http://ip.taobao.com/service/getIpInfo.php?ip=myip',
+        method: 'GET',
+      });
+      if (res && !res['code'] && res['data'] && res['data']['ip']) {
+        this.serverIp = res['data']['ip'];
+      }
     }
-    return '';
+
+    return this.serverIp;
   }
 
   async getClientIp()
@@ -99,10 +106,7 @@ class BaseClient implements HttpMixin
 
 
   // Rewrite by HttpMixin
-  async httpGet(url: string, payload: object = null): Promise<any> {}
-  async httpPost(url: string, payload: object = null): Promise<any> { }
-  async httpFile(url: string, payload: object = null): Promise<any> { }
-  async request(payload: object): Promise<any> { }
+  async doRequest(payload: object, returnResponse: Boolean = false): Promise<any> { }
 
 };
 

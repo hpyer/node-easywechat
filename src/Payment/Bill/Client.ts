@@ -19,12 +19,14 @@ export default class Client extends BaseClient
     };
     params = Merge(params, options);
 
-    let res = await this.requestApiRaw(this.wrap('pay/downloadbill'), params);
+    let res = await this.requestRaw(this.wrap('pay/downloadbill'), params);
 
-    if (res.indexOf('<xml>') === 0) {
-      return await this.parseXml(res);
+    let content = res.getContent().toString();
+    if (content && content.indexOf('<xml>') === 0) {
+      return await this.parseXml(content);
     }
-    return new StreamResponse(res);
+
+    return StreamResponse.buildFromIncomingMessage(res);
   }
 
 }

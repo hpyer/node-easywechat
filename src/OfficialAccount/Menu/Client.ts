@@ -17,31 +17,22 @@ export default class Client extends BaseClient
   async create(button: object, matchrule: object = null): Promise<any>
   {
     if (matchrule) {
-      return await this.httpPost('cgi-bin/menu/addconditional', {
-        json: true,
-        body: {
-          button,
-          matchrule,
-        }
+      return await this.httpPostJson('cgi-bin/menu/addconditional', {
+        button,
+        matchrule,
       });
     }
 
-    return await this.httpPost('cgi-bin/menu/create', {
-      json: true,
-      body: {
-        button,
-      }
+    return await this.httpPostJson('cgi-bin/menu/create', {
+      button,
     });
   }
 
   async delete(menuid: Number): Promise<any>
   {
     if (menuid) {
-      return await this.httpPost('cgi-bin/menu/delconditional', {
-        json: true,
-        body: {
-          menuid,
-        }
+      return await this.httpPostJson('cgi-bin/menu/delconditional', {
+        menuid,
       });
     }
 
@@ -50,11 +41,8 @@ export default class Client extends BaseClient
 
   async match(user_id: string): Promise<any>
   {
-    return await this.httpPost('cgi-bin/menu/trymatch', {
-      json: true,
-      body: {
-        user_id,
-      }
+    return await this.httpPostJson('cgi-bin/menu/trymatch', {
+      user_id,
     });
   }
 

@@ -13,7 +13,7 @@ export default class Client extends BaseClient
     let key = await cacher.fetch(this.getCacheKey());
     if (key) return key;
 
-    let res = await this.requestApi('sandboxnew/pay/getsignkey');
+    let res = await this.request('sandboxnew/pay/getsignkey');
     if (res && 'SUCCESS' === res['return_code']) {
       key = res['sandbox_signkey'];
       await cacher.save(this.getCacheKey(), key, 24 * 3600);

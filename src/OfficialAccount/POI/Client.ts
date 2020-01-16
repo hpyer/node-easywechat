@@ -11,63 +11,48 @@ export default class Client extends BaseClient
 
   async get(poi_id: number): Promise<any>
   {
-    return await this.httpPost('cgi-bin/poi/getpoi', {
-      json: true,
-      body: {
-        poi_id,
-      }
+    return await this.httpPostJson('cgi-bin/poi/getpoi', {
+      poi_id,
     });
   }
 
   async list(begin: number = 0, limit: number = 10): Promise<any>
   {
-    return await this.httpPost('cgi-bin/poi/getpoilist', {
-      json: true,
-      body: {
-        begin,
-        limit,
-      }
+    return await this.httpPostJson('cgi-bin/poi/getpoilist', {
+      begin,
+      limit,
     });
   }
 
   async create(base_info: object): Promise<any>
   {
-    return await this.httpPost('cgi-bin/poi/addpoi', {
-      json: true,
-      body: {
-        business: {
-          base_info
-        },
-      }
+    return await this.httpPostJson('cgi-bin/poi/addpoi', {
+      business: {
+        base_info
+      },
     });
   }
 
   async createAndGetId(base_info: object): Promise<any>
   {
-    let response = await this.create(base_info);
-    return response && response['poi_id'] ? response['poi_id'] : '';
+    let res = await this.create(base_info);
+    return res && res['poi_id'] ? res['poi_id'] : '';
   }
 
   async update(poi_id: number, base_info: object): Promise<any>
   {
     base_info['poi_id'] = poi_id;
-    return await this.httpPost('cgi-bin/poi/updatepoi', {
-      json: true,
-      body: {
-        business: {
-          base_info
-        },
-      }
+    return await this.httpPostJson('cgi-bin/poi/updatepoi', {
+      business: {
+        base_info
+      },
     });
   }
 
   async delete(poi_id: string): Promise<any>
   {
-    return await this.httpPost('cgi-bin/poi/delpoi', {
-      json: true,
-      body: {
-        poi_id,
-      }
+    return await this.httpPostJson('cgi-bin/poi/delpoi', {
+      poi_id,
     });
   }
 

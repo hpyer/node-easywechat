@@ -8,11 +8,8 @@ export default class Client extends BaseClient
 
   async clearQuota(): Promise<any>
   {
-    return await this.httpPost('cgi-bin/clear_quota', {
-      json: true,
-      body: {
-        appid: this.app['config']['app_id'],
-      }
+    return await this.httpPostJson('cgi-bin/clear_quota', {
+      appid: this.app['config']['app_id'],
     });
   }
 
@@ -33,12 +30,9 @@ export default class Client extends BaseClient
       throw new Error('The operator must be CHINANET, UNICOM, CAP, DEFAULT.');
     }
 
-    return await this.httpPost('cgi-bin/callback/check', {
-      json: true,
-      body: {
-        action,
-        check_operator: operator,
-      }
+    return await this.httpPostJson('cgi-bin/callback/check', {
+      action,
+      check_operator: operator,
     });
   }
 

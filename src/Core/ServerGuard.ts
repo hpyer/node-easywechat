@@ -102,13 +102,13 @@ export default class ServerGuard
       'content': this.app['request'].getContent(),
     });
 
-    let response = await this.validate().resolve();
+    let res = await this.validate().resolve();
 
     this.app['log']('Server response created:', {
-      content: response.getContent()
+      content: res.getContent()
     });
 
-    return response;
+    return res;
   }
 
   validate(): ServerGuard
@@ -132,18 +132,18 @@ export default class ServerGuard
   {
     let result = await this.handleRequest();
 
-    let response;
+    let res;
     if (this.shouldReturnRawResponse()) {
-      response = new Response(result['response']);
+      res = new Response(result['response']);
     } else {
-      response = new Response(
+      res = new Response(
         this.buildResponse(result['to'], result['from'], result['response']),
         200,
         { 'Content-Type': 'application/xml' }
       );
     }
 
-    return response;
+    return res;
   }
 
   shouldReturnRawResponse(): boolean
@@ -185,14 +185,14 @@ export default class ServerGuard
       MsgType: message.getType(),
     };
 
-    let response = message.transformToXml(prepends);
+    let res = message.transformToXml(prepends);
 
     if (this.isSafeMode()) {
       this.app['log'].debug('Messages safe mode is enabled.');
-      response = this.app['encryptor'].encrypt(response);
+      res = this.app['encryptor'].encrypt(res);
     }
 
-    return response;
+    return res;
   }
 
   getToken(): string

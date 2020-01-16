@@ -1,24 +1,26 @@
 'use strict';
 
+import { IncomingMessage } from "http";
+
 export default class Response
 {
-  protected content: string = '';
+  protected content: any = '';
   protected statusCode: number = 200;
   protected headers: object = {};
 
-  constructor(content: string = '', statusCode: number = 200, headers: object = {})
+  constructor(content: any, statusCode: number = 200, headers: object = {})
   {
     this.content = content;
     this.statusCode = statusCode;
     this.headers = headers;
   }
 
-  setContent(content: string): void
+  setContent(content: any): void
   {
     this.content = content;
   }
 
-  getContent(): string
+  getContent(): any
   {
     return this.content;
   }
@@ -46,6 +48,16 @@ export default class Response
   getHeaders(): object
   {
     return this.headers;
+  }
+
+  getHeader(key: string): string
+  {
+    return this.headers[key] || '';
+  }
+
+  static buildFromIncomingMessage(message: IncomingMessage)
+  {
+    return new Response(message['body'], message['statusCode'], message['headers']);
   }
 
 };

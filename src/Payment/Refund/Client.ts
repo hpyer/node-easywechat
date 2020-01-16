@@ -29,7 +29,7 @@ export default class Client extends BaseClient
       refund_fee: refundFee,
     }, optional);
 
-    return this.safeRequestApi(this.wrap(
+    return this.safeRequest(this.wrap(
       this.app['inSandbox']() ? 'pay/refund' : 'secapi/pay/refund'
     ), params);
   }
@@ -62,7 +62,7 @@ export default class Client extends BaseClient
     };
     params[type] = number;
 
-    return this.requestApi(this.wrap('pay/refundquery'), params);
+    return this.request(this.wrap('pay/refundquery'), params);
   }
 
 }

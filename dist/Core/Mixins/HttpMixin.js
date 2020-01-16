@@ -30,23 +30,29 @@ class HttpMixin {
         if (this['baseUrl']) {
             payload['baseUrl'] = this['baseUrl'];
         }
-        this['app']['log']('request', payload);
+        // this['app']['log']('request', payload);
         return new Promise((resolve, reject) => {
+
             Request(payload, function (error, response, body) {
-                if (error) {
-                    reject(error);
-                }
-                else {
-                    try {
-                        if (payload['encoding'] == 'binary') {
-                            let buffer = Buffer.from(body, 'binary');
-                            body = buffer.toString();
-                        }
-                        body = JSON.parse(body);
-                    }
-                    catch (e) { }
-                    resolve(body);
-                }
+              // console.log(response);
+              const Fs = require('fs');
+              // let bf = Buffer.from(response.body, 'binary');
+              console.log(response);
+              Fs.writeFileSync('1.jpg', body);
+                // if (error) {
+                //     reject(error);
+                // }
+                // else {
+                //     try {
+                //         if (payload['encoding'] == 'binary') {
+                //             let buffer = Buffer.from(body, 'binary');
+                //             body = buffer.toString();
+                //         }
+                //         body = JSON.parse(body);
+                //     }
+                //     catch (e) { }
+                //     resolve(body);
+                // }
             });
         });
     }

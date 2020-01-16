@@ -3,7 +3,9 @@
 import BaseAccessToken from './BaseAccessToken';
 import BaseApplication from './BaseApplication';
 import HttpMixin from './Mixins/HttpMixin';
-import { applyMixins, isIp } from './Utils';
+import { applyMixins, isIp, isString } from './Utils';
+import * as Fs from 'fs';
+import * as Merge from 'merge';
 
 class BaseClient implements HttpMixin
 {
@@ -28,7 +30,7 @@ class BaseClient implements HttpMixin
     return this.accessToken;
   }
 
-  async requestWithAccessToken(payload: object): Promise<any>
+  async request(payload: object, returnResponse: Boolean = false): Promise<any>
   {
     if (!payload['qs']) {
       payload['qs'] = {};
@@ -39,15 +41,74 @@ class BaseClient implements HttpMixin
     if (!payload['method']) {
       payload['method'] = 'POST';
     }
-    await this.request(payload);
+    return this.doRequest(payload, returnResponse);
+  }
+
+  httpUpload(url: string, files: object = {}, form: object = {}, query: object = {}): Promise<any>
+  {
+    let formData = {};
+
+    for (let name in files) {
+      if (isString(files[name])) {
+        formData[name] = Fs.createReadStream(files[name]);
+      }
+      else {
+        formData[name] = files[name];
+      }
+    }
+
+    formData = Merge(formData, form);
+
+    return this.request({
+      url,
+      formData,
+      method: 'POST',
+      qs: query,
+    });
+  }
+
+  httpGet(url: string, query: object = {}): Promise<any>
+  {
+    let payload = {
+      url,
+      method: 'GET',
+      qs: query,
+    };
+    return this.request(payload);
+  }
+
+  httpPost(url: string, formData: object = {}): Promise<any>
+  {
+    let payload = {
+      url,
+      method: 'POST',
+      formData,
+    };
+    return this.request(payload);
+  }
+
+  httpPostJson(url: string, data: object = {}, query: object = {}): Promise<any>
+  {
+    let payload = {
+      url,
+      method: 'POST',
+      json: true,
+      body: data,
+      qs: query,
+    };
+    return this.request(payload);
+  }
+
+  requestRaw(payload: object): Promise<any>
+  {
+    payload = payload || {};
+    payload['encoding'] = null;
+    return this.request(payload, true);
   }
 
 
   // Rewrite by HttpMixin
-  async httpGet(url: string, payload: object = null): Promise<any> {}
-  async httpPost(url: string, payload: object = null): Promise<any> { }
-  async httpFile(url: string, payload: object = null): Promise<any> { }
-  async request(payload: object): Promise<any> { }
+  async doRequest(payload: object, returnResponse: Boolean = false): Promise<any> { }
 
 };
 

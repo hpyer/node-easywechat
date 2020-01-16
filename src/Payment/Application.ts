@@ -93,14 +93,14 @@ export default class Application extends BaseApplication
   }
 
 
-  async pay(params: object): Promise<any>
+  pay(params: object): Promise<any>
   {
-    return await this['app']['base'].pay(params);
+    return this['base'].pay(params);
   }
 
-  async authCodeToOpenid(auth_code: string): Promise<any>
+  authCodeToOpenid(auth_code: string): Promise<any>
   {
-    return await this['app']['base'].authCodeToOpenid(auth_code);
+    return this['base'].authCodeToOpenid(auth_code);
   }
 
 };

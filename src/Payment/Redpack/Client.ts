@@ -18,7 +18,7 @@ export default class Client extends BaseClient
       bill_type: 'MCHT',
     });
 
-    return this.safeRequestApi('mmpaymkttransfers/gethbinfo', params);
+    return this.safeRequest('mmpaymkttransfers/gethbinfo', params);
   }
 
   sendNormal(params: object): Promise<any>
@@ -29,7 +29,7 @@ export default class Client extends BaseClient
       client_ip: params['client_ip'] || this.getServerIp(),
     });
 
-    return this.safeRequestApi('mmpaymkttransfers/sendredpack', params);
+    return this.safeRequest('mmpaymkttransfers/sendredpack', params);
   }
 
   sendGroup(params: object): Promise<any>
@@ -39,7 +39,7 @@ export default class Client extends BaseClient
       amt_type: 'ALL_RAND',
     });
 
-    return this.safeRequestApi('mmpaymkttransfers/sendgroupredpack', params);
+    return this.safeRequest('mmpaymkttransfers/sendgroupredpack', params);
   }
 
 }

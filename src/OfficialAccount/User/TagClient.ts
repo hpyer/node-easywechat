@@ -6,12 +6,9 @@ export default class TagClient extends BaseClient
 {
   async create(name: string): Promise<any>
   {
-    return await this.httpPost('cgi-bin/tags/create', {
-      json: true,
-      body: {
-        tag: {
-          name,
-        }
+    return await this.httpPostJson('cgi-bin/tags/create', {
+      tag: {
+        name,
       }
     });
   }
@@ -23,69 +20,51 @@ export default class TagClient extends BaseClient
 
   async update(id: string, name: string): Promise<any>
   {
-    return await this.httpPost('cgi-bin/tags/update', {
-      json: true,
-      body: {
-        tag: {
-          id,
-          name,
-        }
+    return await this.httpPostJson('cgi-bin/tags/update', {
+      tag: {
+        id,
+        name,
       }
     });
   }
 
   async delete(id: string): Promise<any>
   {
-    return await this.httpPost('cgi-bin/tags/delete', {
-      json: true,
-      body: {
-        tag: {
-          id,
-        }
+    return await this.httpPostJson('cgi-bin/tags/delete', {
+      tag: {
+        id,
       }
     });
   }
 
   async userTags(openid: string): Promise<any>
   {
-    return await this.httpPost('cgi-bin/tags/getidlist', {
-      json: true,
-      body: {
-        openid,
-      }
+    return await this.httpPostJson('cgi-bin/tags/getidlist', {
+      openid,
     });
   }
 
   async usersOfTag(tagid: number, next_openid: string): Promise<any>
   {
-    return await this.httpPost('cgi-bin/user/tag/get', {
-      json: true,
-      body: {
-        tagid,
-        next_openid,
-      }
+    return await this.httpPostJson('cgi-bin/user/tag/get', {
+      tagid,
+      next_openid,
     });
   }
 
   async tagUsers(openid_list: Array<string>, tagid: number): Promise<any>
   {
-    return await this.httpPost('cgi-bin/tags/members/batchtagging', {
-      json: true,
-      body: {
-        openid_list,
-        tagid,
-      }
+    return await this.httpPostJson('cgi-bin/tags/members/batchtagging', {
+      openid_list,
+      tagid,
     });
   }
 
   async untagUsers(openid_list: Array<string>, tagid: number): Promise<any>
   {
-    return await this.httpPost('cgi-bin/tags/members/batchuntagging', {
-      json: true,
-      body: {
-        openid_list,
-        tagid,
-      }
+    return await this.httpPostJson('cgi-bin/tags/members/batchuntagging', {
+      openid_list,
+      tagid,
     });
   }
 

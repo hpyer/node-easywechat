@@ -3,6 +3,7 @@
 import Response from './Response';
 import * as Fs from 'fs';
 import { createHash } from '../Utils';
+import { IncomingMessage } from 'http';
 
 export default class StreamResponse extends Response
 {
@@ -19,7 +20,7 @@ export default class StreamResponse extends Response
       throw new Error(`'${directory}' is not writable.`);
     }
 
-    let content = this.getContent();
+    let content = this.getContent().toString();
 
     if (!content || '{' === content[0]) {
       throw new Error('Invalid media response content.');
@@ -29,7 +30,7 @@ export default class StreamResponse extends Response
       filename = createHash(content, 'md5');
     }
 
-    Fs.writeFileSync(`${directory}/${filename}`, content);
+    Fs.writeFileSync(`${directory}/${filename}`, this.getContent());
 
     return filename;
   }
@@ -37,6 +38,11 @@ export default class StreamResponse extends Response
   saveAs(directory: string, filename: string = ''): string
   {
     return this.save(directory, filename);
+  }
+
+  static buildFromIncomingMessage(message: IncomingMessage)
+  {
+    return new StreamResponse(message['body'], message['statusCode'], message['headers']);
   }
 
 };

@@ -12,7 +12,7 @@ export default class Client extends BaseClient
       baseUrl: '',
     };
 
-    return this.safeRequestApi('https://fraud.mch.weixin.qq.com/risk/getpublickey', params);
+    return this.safeRequest('https://fraud.mch.weixin.qq.com/risk/getpublickey', params);
   }
 
 }

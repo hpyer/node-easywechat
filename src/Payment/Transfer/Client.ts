@@ -16,7 +16,7 @@ export default class Client extends BaseClient
       partner_trade_no: partnerTradeNo,
     };
 
-    return this.safeRequestApi('mmpaymkttransfers/gettransferinfo', params);
+    return this.safeRequest('mmpaymkttransfers/gettransferinfo', params);
   }
 
   queryBankCardOrder(partnerTradeNo: string): Promise<any>
@@ -26,7 +26,7 @@ export default class Client extends BaseClient
       partner_trade_no: partnerTradeNo,
     };
 
-    return this.safeRequestApi('mmpaymkttransfers/query_bank', params);
+    return this.safeRequest('mmpaymkttransfers/query_bank', params);
   }
 
   toBalance(params: object): Promise<any>
@@ -41,7 +41,7 @@ export default class Client extends BaseClient
       params['spbill_create_ip'] = this.getServerIp();
     }
 
-    return this.safeRequestApi('mmpaymkttransfers/promotion/transfers', Merge(base, params));
+    return this.safeRequest('mmpaymkttransfers/promotion/transfers', Merge(base, params));
   }
 
   toBankCard(params: object): Promise<any>
@@ -57,7 +57,7 @@ export default class Client extends BaseClient
     params['enc_bank_no'] = rsa.encrypt(params['enc_bank_no'], 'hex');
     params['enc_true_name'] = rsa.encrypt(params['enc_true_name'], 'hex');
 
-    return this.safeRequestApi('mmpaymkttransfers/pay_bank', params);
+    return this.safeRequest('mmpaymkttransfers/pay_bank', params);
   }
 
 }

@@ -37,7 +37,10 @@ class BaseAccessToken implements HttpMixin
   async requestToken(credentials: object): Promise<any>
   {
     let url = this.getEndpoint() + '?' + Qs.stringify(credentials);
-    return await this.httpGet(url);
+    return await this.doRequest({
+      url,
+      method: 'GET',
+    });
   };
 
   async getToken(force: boolean = false): Promise<string>
@@ -73,10 +76,7 @@ class BaseAccessToken implements HttpMixin
 
 
   // Rewrite by HttpMixin
-  async httpGet(url: string, payload: object = null): Promise<any> { }
-  async httpPost(url: string, payload: object = null): Promise<any> { }
-  async httpFile(url: string, payload: object = null): Promise<any> { }
-  async request(payload: object): Promise<any> { }
+  async doRequest(payload: object, returnResponse: Boolean = false): Promise<any> { }
 
 };
 

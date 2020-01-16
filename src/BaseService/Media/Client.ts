@@ -2,31 +2,32 @@
 
 import * as Fs from 'fs';
 import BaseClient from '../../Core/BaseClient';
-import { inArray, isObject, isString } from '../../Core/Utils';
+import { inArray, isString } from '../../Core/Utils';
+import StreamResponse from '../../Core/Http/StreamResponse';
 
 export default class Client extends BaseClient
 {
   protected baseUrl: string = 'https://api.weixin.qq.com/cgi-bin/';
   protected allowTypes: Array<string> = ['image', 'voice', 'video', 'thumb'];
 
-  async uploadImage(file: any): Promise<any>
+  uploadImage(file: any): Promise<any>
   {
-    return await this.upload('image', file);
+    return this.upload('image', file);
   }
-  async uploadVideo(file: any): Promise<any>
+  uploadVideo(file: any): Promise<any>
   {
-    return await this.upload('video', file);
+    return this.upload('video', file);
   }
-  async uploadVoice(file: any): Promise<any>
+  uploadVoice(file: any): Promise<any>
   {
-    return await this.upload('voice', file);
+    return this.upload('voice', file);
   }
-  async uploadThumb(file: any): Promise<any>
+  uploadThumb(file: any): Promise<any>
   {
-    return await this.upload('thumb', file);
+    return this.upload('thumb', file);
   }
 
-  async upload(type: string, file: any): Promise<any>
+  upload(type: string, file: any): Promise<any>
   {
     if (!file) {
       throw new Error(`File does not exist, or the file is unreadable: '${file}'`);
@@ -39,11 +40,9 @@ export default class Client extends BaseClient
       throw new Error(`Unsupported media type: '${type}'`);
     }
 
-    return await this.httpPost('media/upload', {
-      formData: {
-        media: file,
-        type,
-      }
+    return this.httpPost('media/upload', {
+      media: file,
+      type,
     });
   }
 
@@ -58,50 +57,57 @@ export default class Client extends BaseClient
 
   async createVideoForBroadcasting(media_id: string, title: string, description: string): Promise<any>
   {
-    return await this.httpPost('media/uploadvideo', {
-      json: true,
-      body: {
-        media_id,
-        title,
-        description,
-      }
+    return await this.httpPostJson('media/uploadvideo', {
+      media_id,
+      title,
+      description,
     });
   }
 
   async get(media_id: string): Promise<any>
   {
-    let response = await this.httpGet('media/get', {
+    let res = await this.requestRaw({
+      url: 'media/get',
+      method: 'GET',
       qs: {
         media_id,
       }
     });
 
-    if (isObject(response)) {
-      if (!response['video_url']) {
-        return false;
-      }
-      return await this.httpFile(response['video_url']);
+    if (res.getHeader['content-disposition'].indexOf('attachment') > -1) {
+      return StreamResponse.buildFromIncomingMessage(res);
     }
 
-    return response;
+    let content = res.getContent().toString();
+    try {
+      content = JSON.parse(content);
+    }
+    catch (e) { }
+
+    return content;
   }
 
   async getJssdkMedia(media_id: string): Promise<any>
   {
-    let response = await this.httpGet('media/get/jssdk', {
+    let res = await this.requestRaw({
+      url: 'media/get/jssdk',
+      method: 'GET',
       qs: {
         media_id,
       }
     });
 
-    if (isObject(response)) {
-      if (!response['video_url']) {
-        return false;
-      }
-      return await this.httpFile(response['video_url']);
+    if (res.getHeader['content-disposition'].indexOf('attachment') > -1) {
+      return StreamResponse.buildFromIncomingMessage(res);
     }
 
-    return response;
+    let content = res.getContent().toString();
+    try {
+      content = JSON.parse(content);
+    }
+    catch (e) { }
+
+    return content;
   }
 
 }

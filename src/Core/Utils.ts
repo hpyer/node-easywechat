@@ -13,10 +13,16 @@ export const createHmac = function (str: string, key: string, type: string = 'sh
   return Crypto.createHmac(type, key).update(str).digest('hex');
 };
 
-export const getTimestamp = function (): number
+export const getTimestamp = function (datetime: string = null): number
 {
-  let time = (new Date()).getTime();
-  return time / 1000;
+  let time;
+  try {
+    time = (isString(datetime) ? new Date(datetime) : new Date).getTime();
+  }
+  catch (e) {
+    return 0;
+  }
+  return parseInt((time / 1000).toString());
 };
 
 export const buildQueryString = function (data: object, options: object = {}): number

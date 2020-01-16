@@ -4,58 +4,72 @@ import BaseClient from '../../Core/BaseClient';
 
 export default class Client extends BaseClient
 {
-  private endpoint: string = 'https://api.weixin.qq.com/cgi-bin/qrcode/create';
 
-  async temporary(scene_str: string, expireSeconds: number = 0): Promise<any>
+  DAY: number = 86400;
+  SCENE_MAX_VALUE: number = 100000;
+  SCENE_QR_CARD: string = 'QR_CARD';
+  SCENE_QR_TEMPORARY: string = 'QR_SCENE';
+  SCENE_QR_TEMPORARY_STR: string = 'QR_STR_SCENE';
+  SCENE_QR_FOREVER: string = 'QR_LIMIT_SCENE';
+  SCENE_QR_FOREVER_STR: string = 'QR_LIMIT_STR_SCENE';
+
+  protected baseUri: string = 'https://api.weixin.qq.com/cgi-bin/';
+
+  temporary(sceneValue: any, expireSeconds: number = 0): Promise<any>
   {
-    if (expireSeconds <= 0 || expireSeconds > 2592000) expireSeconds = 2592000;
-    let action_name = '', scene = {};
-    if (typeof scene_str == 'string') {
-      scene = { scene_str };
-      action_name = 'QR_STR_SCENE';
+    let type: string = '', sceneKey: string = '';
+    if (typeof sceneValue == 'number' && sceneValue > 0) {
+      type = this.SCENE_QR_TEMPORARY;
+      sceneKey = 'scene_id';
     }
     else {
-      scene = { scene_id: scene_str };
-      action_name = 'QR_SCENE';
+      type = this.SCENE_QR_TEMPORARY_STR;
+      sceneKey = 'scene_str';
     }
-    let data = {
-      expire_seconds: expireSeconds,
-      action_name,
-      action_info: { scene }
-    };
-    return await this.requestWithAccessToken({
-      url: this.endpoint,
-      json: true,
-      body: data
-    });
+    let scene: object = {};
+    scene[sceneKey] = sceneValue;
+
+    return this.create(type, scene, true, expireSeconds);
   }
 
-  async forever(scene: any): Promise<any>
+  async forever(sceneValue: any): Promise<any>
   {
-    let action_name = '';
-    if (typeof scene == 'string') {
-      scene = { scene_str: scene };
-      action_name = 'QR_LIMIT_STR_SCENE';
+    let type: string = '', sceneKey: string = '';
+    if (typeof sceneValue == 'number' && sceneValue > 0) {
+      type = this.SCENE_QR_FOREVER;
+      sceneKey = 'scene_id';
     }
     else {
-      scene = { scene_id: scene };
-      action_name = 'QR_LIMIT_SCENE';
+      type = this.SCENE_QR_FOREVER_STR;
+      sceneKey = 'scene_str';
     }
-    let data = {
-      action_name,
-      action_info: { scene }
-    };
-    return await this.requestWithAccessToken({
-      url: this.endpoint,
-      json: true,
-      body: data
-    });
+
+    let scene: object = {};
+    scene[sceneKey] = sceneValue;
+
+    return this.create(type, scene, false);
   }
 
-  async url (ticket: string): Promise<any>
+  url(ticket: string): string
   {
-    let url = 'https://mp.weixin.qq.com/cgi-bin/showqrcode?ticket=' + ticket;
-    return await this.httpFile(url);
+    return `'https://mp.weixin.qq.com/cgi-bin/showqrcode?ticket=${ticket}'`;
+  }
+
+  protected create(actionName: string, actionInfo, temporary: Boolean = true, expireSeconds: number = 0): Promise<any>
+  {
+    if (!expireSeconds || expireSeconds <= 0) {
+      expireSeconds = 7 * this.DAY;
+    }
+    let params = {
+      action_name: actionName,
+      action_info: {
+        scene: actionInfo,
+      },
+    };
+    if (temporary) {
+      params['expire_seconds'] = Math.min(expireSeconds, 30 * this.DAY);
+    }
+    return this.httpPostJson('qrcode/create', params);
   }
 
 }

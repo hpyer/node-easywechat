@@ -17,28 +17,22 @@ export default class Client extends BaseClient
     }
 
     return await this.httpGet('cv/ocr/idcard', {
-      qs: {
-        type,
-        img_url,
-      }
+      type,
+      img_url,
     });
   }
 
   async bankCard(img_url: string): Promise<any>
   {
     return await this.httpGet('cv/ocr/bankcard', {
-      qs: {
-        img_url,
-      }
+      img_url,
     });
   }
 
   async vehicleLicense(img_url: string): Promise<any>
   {
     return await this.httpGet('cv/ocr/driving', {
-      qs: {
-        img_url,
-      }
+      img_url,
     });
   }
 

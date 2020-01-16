@@ -7,10 +7,8 @@ export default class UserClient extends BaseClient
   async get(openid: string, lang: string = 'zh_CN'): Promise<any>
   {
     return await this.httpGet('cgi-bin/user/info', {
-      qs: {
-        openid,
-        lang,
-      }
+      openid,
+      lang,
     });
   }
 
@@ -23,72 +21,52 @@ export default class UserClient extends BaseClient
         lang,
       });
     });
-    return await this.httpPost('cgi-bin/user/info/batchget', {
-      json: true,
-      body: {
-        user_list
-      }
+    return await this.httpPostJson('cgi-bin/user/info/batchget', {
+      user_list
     });
   }
 
   async list(next_openid: string): Promise<any>
   {
     return await this.httpGet('cgi-bin/user/get', {
-      qs: {
-        next_openid,
-      }
+      next_openid,
     });
   }
 
   async remark(openid: string, remark: string): Promise<any>
   {
-    return await this.httpPost('cgi-bin/user/info/updateremark', {
-      json: true,
-      body: {
-        openid,
-        remark,
-      }
+    return await this.httpPostJson('cgi-bin/user/info/updateremark', {
+      openid,
+      remark,
     });
   }
 
   async blacklist(begin_openid: string): Promise<any>
   {
-    return await this.httpPost('cgi-bin/tags/members/getblacklist', {
-      json: true,
-      body: {
-        begin_openid,
-      }
+    return await this.httpPostJson('cgi-bin/tags/members/getblacklist', {
+      begin_openid,
     });
   }
 
   async block(openid_list: Array<string>): Promise<any>
   {
-    return await this.httpPost('cgi-bin/tags/members/batchblacklist', {
-      json: true,
-      body: {
-        openid_list,
-      }
+    return await this.httpPostJson('cgi-bin/tags/members/batchblacklist', {
+      openid_list,
     });
   }
 
   async unblock(openid_list: Array<string>): Promise<any>
   {
-    return await this.httpPost('cgi-bin/tags/members/batchunblacklist', {
-      json: true,
-      body: {
-        openid_list,
-      }
+    return await this.httpPostJson('cgi-bin/tags/members/batchunblacklist', {
+      openid_list,
     });
   }
 
   async changeOpenid(from_appid: string, openid_list: Array<string>): Promise<any>
   {
-    return await this.httpPost('cgi-bin/changeopenid', {
-      json: true,
-      body: {
-        from_appid,
-        openid_list,
-      }
+    return await this.httpPostJson('cgi-bin/changeopenid', {
+      from_appid,
+      openid_list,
     });
   }
 

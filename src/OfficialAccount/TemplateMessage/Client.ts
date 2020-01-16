@@ -6,6 +6,8 @@ import { inArray, isArray, isObject } from '../../Core/Utils';
 
 export default class Client extends BaseClient
 {
+  API_SEND: string = 'cgi-bin/message/template/send';
+
   protected message: object = {
     touser: '',
     template_id: '',
@@ -20,12 +22,9 @@ export default class Client extends BaseClient
 
   async setIndustry(industry_id1: string, industry_id2: string): Promise<any>
   {
-    return await this.httpPost('cgi-bin/template/api_set_industry', {
-      json: true,
-      body: {
-        industry_id1,
-        industry_id2,
-      }
+    return await this.httpPostJson('cgi-bin/template/api_set_industry', {
+      industry_id1,
+      industry_id2,
     });
   }
 
@@ -36,11 +35,8 @@ export default class Client extends BaseClient
 
   async addTemplate(template_id_short: string): Promise<any>
   {
-    return await this.httpPost('cgi-bin/template/api_add_template', {
-      json: true,
-      body: {
-        template_id_short,
-      }
+    return await this.httpPostJson('cgi-bin/template/api_add_template', {
+      template_id_short,
     });
   }
 
@@ -51,33 +47,30 @@ export default class Client extends BaseClient
 
   async deletePrivateTemplate(template_id: string): Promise<any>
   {
-    return await this.httpPost('cgi-bin/template/del_private_template', {
-      json: true,
-      body: {
-        template_id,
-      }
+    return await this.httpPostJson('cgi-bin/template/del_private_template', {
+      template_id,
     });
   }
 
   async send(data: object): Promise<any>
   {
     let params = this.formatMessage(data);
-    return await this.httpPost('cgi-bin/message/template/send', {
-      json: true,
-      body: params
-    });
+
+    this.restoreMessage();
+
+    return await this.httpPostJson(this.API_SEND, params);
   }
 
   async sendSubscription(data: object): Promise<any>
   {
     let params = this.formatMessage(data);
-    return await this.httpPost('cgi-bin/message/template/subscribe', {
-      json: true,
-      body: params
-    });
+
+    this.restoreMessage();
+
+    return await this.httpPostJson('cgi-bin/message/template/subscribe', params);
   }
 
-  formatMessage (data: object)
+  protected formatMessage (data: object)
   {
     let params = Merge({}, this.message, data);
 
@@ -92,7 +85,7 @@ export default class Client extends BaseClient
     return params;
   }
 
-  formatData (data: object)
+  protected formatData (data: object)
   {
     let formatted: object = {}, value: object;
 
@@ -117,6 +110,21 @@ export default class Client extends BaseClient
     }
 
     return formatted;
+  }
+
+  protected restoreMessage()
+  {
+    for (let key in this.message) {
+      if (isObject(this.message[key])) {
+        this.message[key] = {};
+      }
+      if (isArray(this.message[key])) {
+        this.message[key] = [];
+      }
+      else {
+        this.message[key] = '';
+      }
+    }
   }
 
 }

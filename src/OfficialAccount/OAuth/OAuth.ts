@@ -72,15 +72,15 @@ export default class OAuth extends BaseClient
     };
     let url = 'https://api.weixin.qq.com/sns/oauth2/access_token?' + Qs.stringify(params);
 
-    let response = await this.httpGet(url);
-    if (response.errcode) {
-      this.app['log']('获取 AccessToken 失败', response);
+    let res = await this.httpGet(url);
+    if (res.errcode) {
+      this.app['log']('获取 AccessToken 失败', res);
       throw new Error('获取 AccessToken 失败');
     }
 
     let user = new User;
-    user.id = response.openid;
-    user.token = response;
+    user.id = res.openid;
+    user.token = res;
 
     if (this.app['config']['scope'] != 'snsapi_base') {
       let params = {
@@ -90,16 +90,16 @@ export default class OAuth extends BaseClient
       };
       let url = 'https://api.weixin.qq.com/sns/userinfo?' + Qs.stringify(params);
 
-      response = await this.httpGet(url);
-      if (response.errcode) {
-        this.app['log']('获取用户信息失败', response);
+      res = await this.httpGet(url);
+      if (res.errcode) {
+        this.app['log']('获取用户信息失败', res);
         return user;
       }
-      user.id = response.openid;
-      user.nickname = response.nickname;
-      user.name = response.nickname;
-      user.avatar = response.headimgurl;
-      user.original = response;
+      user.id = res.openid;
+      user.nickname = res.nickname;
+      user.name = res.nickname;
+      user.avatar = res.headimgurl;
+      user.original = res;
     }
 
     return user;

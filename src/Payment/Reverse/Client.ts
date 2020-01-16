@@ -22,7 +22,7 @@ export default class Client extends BaseClient
     };
     params[type] = number;
 
-    return this.safeRequestApi(this.wrap('secapi/pay/reverse'), params);
+    return this.safeRequest(this.wrap('secapi/pay/reverse'), params);
   }
 
 }

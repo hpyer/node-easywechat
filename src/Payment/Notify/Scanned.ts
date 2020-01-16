@@ -15,7 +15,14 @@ export default class ScannedHandler extends Handler
 
   async handle(closure: Function): Promise<void>
   {
-    let result = await closure(this.getMessage(), this.setFail, this.setAlert);
+    if (typeof closure != 'function') {
+      throw new Error('Should pass an closure function');
+    }
+    let result = await closure.apply(this, [
+      this.getMessage(),
+      this.setFail,
+      this.setAlert,
+    ]);
 
     let attributes = {
       result_code: !this.alert && !this.fail ? this.SUCCESS : this.FAIL,

@@ -7,7 +7,14 @@ export default class RefundedHandler extends Handler
 {
   async handle(closure: Function): Promise<void>
   {
-    this.strict(await closure(this.getMessage(), await this.reqInfo(), this.setFail));
+    if (typeof closure != 'function') {
+      throw new Error('Should pass an closure function');
+    }
+    this.strict(await closure.apply(this, [
+      this.getMessage(),
+      await this.reqInfo(),
+      this.setFail
+    ]));
   }
 
   async reqInfo(): Promise<any>

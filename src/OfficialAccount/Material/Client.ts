@@ -4,6 +4,7 @@ import * as Fs from 'fs';
 import BaseClient from '../../Core/BaseClient';
 import { inArray, isString, isObject } from '../../Core/Utils';
 import { Article } from '../../Core/Messages';
+import StreamResponse from '../../Core/Http/StreamResponse';
 
 export default class Client extends BaseClient
 {
@@ -56,9 +57,7 @@ export default class Client extends BaseClient
     formData['media'] = file;
     formData['type'] = type;
 
-    return await this.httpPost(this.getApiByType(type), {
-      formData
-    });
+    return await this.httpPost(this.getApiByType(type), formData);
   }
 
   getApiByType(type: string): string
@@ -75,22 +74,19 @@ export default class Client extends BaseClient
       articles = [articles];
     }
 
-    let body = {
+    let data = {
       articles: [],
     };
     articles.forEach(article => {
       if (article instanceof Article) {
-        body.articles.push(article.transformForJsonRequestWithoutType());
+        data.articles.push(article.transformForJsonRequestWithoutType());
       }
       else {
-        body.articles.push(article);
+        data.articles.push(article);
       }
     });
 
-    return await this.httpPost('cgi-bin/material/add_news', {
-      json: true,
-      body,
-    });
+    return await this.httpPostJson('cgi-bin/material/add_news', data);
   }
 
   async updateArticle(media_id: string, article: any, index: number = 0): Promise<any>
@@ -99,48 +95,50 @@ export default class Client extends BaseClient
       article = article.transformForJsonRequestWithoutType();
     }
 
-    return await this.httpPost('cgi-bin/material/update_news', {
-      json: true,
-      body: {
-        media_id,
-        index,
-        articles: article['title'] ? article : (article[index] || {}),
-      },
+    return await this.httpPostJson('cgi-bin/material/update_news', {
+      media_id,
+      index,
+      articles: article['title'] ? article : (article[index] || {}),
     });
   }
 
   async get(media_id: string): Promise<any>
   {
-    return await this.request({
+    let res = await this.requestRaw({
       url: 'cgi-bin/material/get_material',
       method: 'POST',
       json: true,
-      encoding: 'binary',
       body: {
         media_id,
       }
     });
+
+    if (res.getHeader['content-disposition'].indexOf('attachment') > -1) {
+      return StreamResponse.buildFromIncomingMessage(res);
+    }
+
+    let content = res.getContent().toString();
+    try {
+      content = JSON.parse(content);
+    }
+    catch (e) { }
+
+    return content;
   }
 
   async delete(media_id: string): Promise<any>
   {
-    return await this.httpPost('cgi-bin/material/del_material', {
-      json: true,
-      body: {
-        media_id,
-      }
+    return await this.httpPostJson('cgi-bin/material/del_material', {
+      media_id,
     });
   }
 
   async list(type: string, offset: number = 0, count: number = 20): Promise<any>
   {
-    return await this.httpPost('cgi-bin/material/batchget_material', {
-      json: true,
-      body: {
-        type,
-        offset,
-        count,
-      }
+    return await this.httpPostJson('cgi-bin/material/batchget_material', {
+      type,
+      offset,
+      count,
     });
   }
 

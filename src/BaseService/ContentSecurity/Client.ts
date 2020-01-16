@@ -1,8 +1,6 @@
 'use strict';
 
-import * as Fs from 'fs';
 import BaseClient from '../../Core/BaseClient';
-import { isString } from '../../Core/Utils';
 
 export default class Client extends BaseClient
 {
@@ -10,11 +8,8 @@ export default class Client extends BaseClient
 
   async checkText(text: string): Promise<any>
   {
-    return await this.httpPost('msg_sec_check', {
-      json: true,
-      body: {
-        content: text,
-      }
+    return await this.httpPostJson('msg_sec_check', {
+      content: text,
     });
   }
 
@@ -23,14 +18,9 @@ export default class Client extends BaseClient
     if (!file) {
       throw new Error(`File does not exist, or the file is unreadable: '${file}'`);
     }
-    if (isString(file)) {
-      file = Fs.createReadStream(file);
-    }
 
-    return await this.httpPost('img_sec_check', {
-      formData: {
-        media: file,
-      }
+    return await this.httpUpload('img_sec_check', {
+      media: file,
     });
   }
 

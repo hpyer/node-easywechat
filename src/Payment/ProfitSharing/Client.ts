@@ -19,7 +19,7 @@ export default class Client extends BaseClient
       receiver: JSON.stringify(receiver),
     };
 
-    return this.requestApi('pay/profitsharingaddreceiver', params);
+    return this.request('pay/profitsharingaddreceiver', params);
   }
 
   deleteReceiver(receiver: object): Promise<any>
@@ -29,7 +29,7 @@ export default class Client extends BaseClient
       receiver: JSON.stringify(receiver),
     };
 
-    return this.requestApi('pay/profitsharingremovereceiver', params);
+    return this.request('pay/profitsharingremovereceiver', params);
   }
 
   share(transactionId: string, outOrderNo: string, receivers: Array<object>): Promise<any>
@@ -41,7 +41,7 @@ export default class Client extends BaseClient
       receivers: JSON.stringify(receivers),
     };
 
-    return this.safeRequestApi('secapi/pay/profitsharing', params);
+    return this.safeRequest('secapi/pay/profitsharing', params);
   }
 
   multiShare(transactionId: string, outOrderNo: string, receivers: Array<object>): Promise<any>
@@ -53,7 +53,7 @@ export default class Client extends BaseClient
       receivers: JSON.stringify(receivers),
     };
 
-    return this.safeRequestApi('secapi/pay/multiprofitsharing', params);
+    return this.safeRequest('secapi/pay/multiprofitsharing', params);
   }
 
   markOrderAsFinished(params: object): Promise<any>
@@ -61,7 +61,7 @@ export default class Client extends BaseClient
     params['appid'] = this.app['config'].app_id;
     params['sub_appid'] = null;
 
-    return this.safeRequestApi('secapi/pay/profitsharingfinish', params);
+    return this.safeRequest('secapi/pay/profitsharingfinish', params);
   }
 
   query(transactionId: string, outOrderNo: string): Promise<any>
@@ -72,7 +72,7 @@ export default class Client extends BaseClient
       out_order_no: outOrderNo,
     };
 
-    return this.requestApi('pay/profitsharingquery', params);
+    return this.request('pay/profitsharingquery', params);
   }
 
 }
