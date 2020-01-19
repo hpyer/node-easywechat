@@ -76,11 +76,11 @@ class ServerGuard {
                 'content-type': this.app['request'].getContentType(),
                 'content': this.app['request'].getContent(),
             });
-            let response = yield this.validate().resolve();
+            let res = yield this.validate().resolve();
             this.app['log']('Server response created:', {
-                content: response.getContent()
+                content: res.getContent()
             });
-            return response;
+            return res;
         });
     }
     validate() {
@@ -99,14 +99,14 @@ class ServerGuard {
     resolve() {
         return __awaiter(this, void 0, void 0, function* () {
             let result = yield this.handleRequest();
-            let response;
+            let res;
             if (this.shouldReturnRawResponse()) {
-                response = new Response_1.default(result['response']);
+                res = new Response_1.default(result['response']);
             }
             else {
-                response = new Response_1.default(this.buildResponse(result['to'], result['from'], result['response']), 200, { 'Content-Type': 'application/xml' });
+                res = new Response_1.default(this.buildResponse(result['to'], result['from'], result['response']), 200, { 'Content-Type': 'application/xml' });
             }
-            return response;
+            return res;
         });
     }
     shouldReturnRawResponse() {
@@ -137,12 +137,12 @@ class ServerGuard {
             CreateTime: Utils_1.getTimestamp(),
             MsgType: message.getType(),
         };
-        let response = message.transformToXml(prepends);
+        let res = message.transformToXml(prepends);
         if (this.isSafeMode()) {
             this.app['log'].debug('Messages safe mode is enabled.');
-            response = this.app['encryptor'].encrypt(response);
+            res = this.app['encryptor'].encrypt(res);
         }
-        return response;
+        return res;
     }
     getToken() {
         return this.app['config']['token'];

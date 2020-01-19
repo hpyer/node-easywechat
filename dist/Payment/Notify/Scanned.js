@@ -22,7 +22,14 @@ class ScannedHandler extends Handler_1.default {
     }
     handle(closure) {
         return __awaiter(this, void 0, void 0, function* () {
-            let result = yield closure(this.getMessage(), this.setFail, this.setAlert);
+            if (typeof closure != 'function') {
+                throw new Error('Should pass an closure function');
+            }
+            let result = yield closure.apply(this, [
+                this.getMessage(),
+                this.setFail,
+                this.setAlert,
+            ]);
             let attributes = {
                 result_code: !this.alert && !this.fail ? this.SUCCESS : this.FAIL,
                 err_code_des: this.alert,

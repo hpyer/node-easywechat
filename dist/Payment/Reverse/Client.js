@@ -13,7 +13,7 @@ class Client extends BaseClient_1.default {
             appid: this.app['config'].app_id,
         };
         params[type] = number;
-        return this.safeRequestApi(this.wrap('secapi/pay/reverse'), params);
+        return this.safeRequest(this.wrap('secapi/pay/reverse'), params);
     }
 }
 exports.default = Client;

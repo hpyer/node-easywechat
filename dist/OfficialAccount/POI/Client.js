@@ -12,70 +12,43 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const BaseClient_1 = require("../../Core/BaseClient");
 class Client extends BaseClient_1.default {
     categories() {
-        return __awaiter(this, void 0, void 0, function* () {
-            return yield this.httpGet('cgi-bin/poi/getwxcategory');
-        });
+        return this.httpGet('cgi-bin/poi/getwxcategory');
     }
     get(poi_id) {
-        return __awaiter(this, void 0, void 0, function* () {
-            return yield this.httpPost('cgi-bin/poi/getpoi', {
-                json: true,
-                body: {
-                    poi_id,
-                }
-            });
+        return this.httpPostJson('cgi-bin/poi/getpoi', {
+            poi_id,
         });
     }
     list(begin = 0, limit = 10) {
-        return __awaiter(this, void 0, void 0, function* () {
-            return yield this.httpPost('cgi-bin/poi/getpoilist', {
-                json: true,
-                body: {
-                    begin,
-                    limit,
-                }
-            });
+        return this.httpPostJson('cgi-bin/poi/getpoilist', {
+            begin,
+            limit,
         });
     }
     create(base_info) {
-        return __awaiter(this, void 0, void 0, function* () {
-            return yield this.httpPost('cgi-bin/poi/addpoi', {
-                json: true,
-                body: {
-                    business: {
-                        base_info
-                    },
-                }
-            });
+        return this.httpPostJson('cgi-bin/poi/addpoi', {
+            business: {
+                base_info
+            },
         });
     }
     createAndGetId(base_info) {
         return __awaiter(this, void 0, void 0, function* () {
-            let response = yield this.create(base_info);
-            return response && response['poi_id'] ? response['poi_id'] : '';
+            let res = yield this.create(base_info);
+            return res && res['poi_id'] ? res['poi_id'] : '';
         });
     }
     update(poi_id, base_info) {
-        return __awaiter(this, void 0, void 0, function* () {
-            base_info['poi_id'] = poi_id;
-            return yield this.httpPost('cgi-bin/poi/updatepoi', {
-                json: true,
-                body: {
-                    business: {
-                        base_info
-                    },
-                }
-            });
+        base_info['poi_id'] = poi_id;
+        return this.httpPostJson('cgi-bin/poi/updatepoi', {
+            business: {
+                base_info
+            },
         });
     }
     delete(poi_id) {
-        return __awaiter(this, void 0, void 0, function* () {
-            return yield this.httpPost('cgi-bin/poi/delpoi', {
-                json: true,
-                body: {
-                    poi_id,
-                }
-            });
+        return this.httpPostJson('cgi-bin/poi/delpoi', {
+            poi_id,
         });
     }
 }

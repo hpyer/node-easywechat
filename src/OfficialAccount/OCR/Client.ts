@@ -10,28 +10,28 @@ export default class Client extends BaseClient
     'scan',
   ];
 
-  async idCard(img_url: string, type: string = 'photo'): Promise<any>
+  idCard(img_url: string, type: string = 'photo'): Promise<any>
   {
     if (!inArray(type, this.allowTypes, true)) {
       throw new Error(`Unsupported type: '${type}'`);
     }
 
-    return await this.httpGet('cv/ocr/idcard', {
+    return this.httpGet('cv/ocr/idcard', {
       type,
       img_url,
     });
   }
 
-  async bankCard(img_url: string): Promise<any>
+  bankCard(img_url: string): Promise<any>
   {
-    return await this.httpGet('cv/ocr/bankcard', {
+    return this.httpGet('cv/ocr/bankcard', {
       img_url,
     });
   }
 
-  async vehicleLicense(img_url: string): Promise<any>
+  vehicleLicense(img_url: string): Promise<any>
   {
-    return await this.httpGet('cv/ocr/driving', {
+    return this.httpGet('cv/ocr/driving', {
       img_url,
     });
   }

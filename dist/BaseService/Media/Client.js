@@ -12,6 +12,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const Fs = require("fs");
 const BaseClient_1 = require("../../Core/BaseClient");
 const Utils_1 = require("../../Core/Utils");
+const StreamResponse_1 = require("../../Core/Http/StreamResponse");
 class Client extends BaseClient_1.default {
     constructor() {
         super(...arguments);
@@ -19,42 +20,30 @@ class Client extends BaseClient_1.default {
         this.allowTypes = ['image', 'voice', 'video', 'thumb'];
     }
     uploadImage(file) {
-        return __awaiter(this, void 0, void 0, function* () {
-            return yield this.upload('image', file);
-        });
+        return this.upload('image', file);
     }
     uploadVideo(file) {
-        return __awaiter(this, void 0, void 0, function* () {
-            return yield this.upload('video', file);
-        });
+        return this.upload('video', file);
     }
     uploadVoice(file) {
-        return __awaiter(this, void 0, void 0, function* () {
-            return yield this.upload('voice', file);
-        });
+        return this.upload('voice', file);
     }
     uploadThumb(file) {
-        return __awaiter(this, void 0, void 0, function* () {
-            return yield this.upload('thumb', file);
-        });
+        return this.upload('thumb', file);
     }
     upload(type, file) {
-        return __awaiter(this, void 0, void 0, function* () {
-            if (!file) {
-                throw new Error(`File does not exist, or the file is unreadable: '${file}'`);
-            }
-            if (Utils_1.isString(file)) {
-                file = Fs.createReadStream(file);
-            }
-            if (!Utils_1.inArray(type, this.allowTypes)) {
-                throw new Error(`Unsupported media type: '${type}'`);
-            }
-            return yield this.httpPost('media/upload', {
-                formData: {
-                    media: file,
-                    type,
-                }
-            });
+        if (!file) {
+            throw new Error(`File does not exist, or the file is unreadable: '${file}'`);
+        }
+        if (Utils_1.isString(file)) {
+            file = Fs.createReadStream(file);
+        }
+        if (!Utils_1.inArray(type, this.allowTypes)) {
+            throw new Error(`Unsupported media type: '${type}'`);
+        }
+        return this.httpPost('media/upload', {
+            media: file,
+            type,
         });
     }
     uploadVideoForBroadcasting(file, title, description) {
@@ -68,46 +57,51 @@ class Client extends BaseClient_1.default {
     }
     createVideoForBroadcasting(media_id, title, description) {
         return __awaiter(this, void 0, void 0, function* () {
-            return yield this.httpPost('media/uploadvideo', {
-                json: true,
-                body: {
-                    media_id,
-                    title,
-                    description,
-                }
+            return yield this.httpPostJson('media/uploadvideo', {
+                media_id,
+                title,
+                description,
             });
         });
     }
     get(media_id) {
         return __awaiter(this, void 0, void 0, function* () {
-            let response = yield this.httpGet('media/get', {
+            let res = yield this.requestRaw({
+                url: 'media/get',
+                method: 'GET',
                 qs: {
                     media_id,
                 }
             });
-            if (Utils_1.isObject(response)) {
-                if (!response['video_url']) {
-                    return false;
-                }
-                return yield this.httpFile(response['video_url']);
+            if (res.getHeader['content-disposition'].indexOf('attachment') > -1) {
+                return StreamResponse_1.default.buildFromIncomingMessage(res);
             }
-            return response;
+            let content = res.getContent().toString();
+            try {
+                content = JSON.parse(content);
+            }
+            catch (e) { }
+            return content;
         });
     }
     getJssdkMedia(media_id) {
         return __awaiter(this, void 0, void 0, function* () {
-            let response = yield this.httpGet('media/get/jssdk', {
+            let res = yield this.requestRaw({
+                url: 'media/get/jssdk',
+                method: 'GET',
                 qs: {
                     media_id,
                 }
             });
-            if (Utils_1.isObject(response)) {
-                if (!response['video_url']) {
-                    return false;
-                }
-                return yield this.httpFile(response['video_url']);
+            if (res.getHeader['content-disposition'].indexOf('attachment') > -1) {
+                return StreamResponse_1.default.buildFromIncomingMessage(res);
             }
-            return response;
+            let content = res.getContent().toString();
+            try {
+                content = JSON.parse(content);
+            }
+            catch (e) { }
+            return content;
         });
     }
 }

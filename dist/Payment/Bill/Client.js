@@ -23,11 +23,12 @@ class Client extends BaseClient_1.default {
                 bill_type: type,
             };
             params = Merge(params, options);
-            let res = yield this.requestApiRaw(this.wrap('pay/downloadbill'), params);
-            if (res.indexOf('<xml>') === 0) {
-                return yield this.parseXml(res);
+            let res = yield this.requestRaw(this.wrap('pay/downloadbill'), params);
+            let content = res.getContent().toString();
+            if (content && content.indexOf('<xml>') === 0) {
+                return yield this.parseXml(content);
             }
-            return new StreamResponse_1.default(res);
+            return StreamResponse_1.default.buildFromIncomingMessage(res);
         });
     }
 }

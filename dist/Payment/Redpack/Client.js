@@ -12,7 +12,7 @@ class Client extends BaseClient_1.default {
             appid: this.app['config'].app_id,
             bill_type: 'MCHT',
         });
-        return this.safeRequestApi('mmpaymkttransfers/gethbinfo', params);
+        return this.safeRequest('mmpaymkttransfers/gethbinfo', params);
     }
     sendNormal(params) {
         params = Merge({}, params, {
@@ -20,14 +20,14 @@ class Client extends BaseClient_1.default {
             total_num: 1,
             client_ip: params['client_ip'] || this.getServerIp(),
         });
-        return this.safeRequestApi('mmpaymkttransfers/sendredpack', params);
+        return this.safeRequest('mmpaymkttransfers/sendredpack', params);
     }
     sendGroup(params) {
         params = Merge({}, params, {
             wxappid: this.app['config'].app_id,
             amt_type: 'ALL_RAND',
         });
-        return this.safeRequestApi('mmpaymkttransfers/sendgroupredpack', params);
+        return this.safeRequest('mmpaymkttransfers/sendgroupredpack', params);
     }
 }
 exports.default = Client;

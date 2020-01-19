@@ -1,7 +1,7 @@
 'use strict';
 Object.defineProperty(exports, "__esModule", { value: true });
 class Response {
-    constructor(content = '', statusCode = 200, headers = {}) {
+    constructor(content, statusCode = 200, headers = {}) {
         this.content = '';
         this.statusCode = 200;
         this.headers = {};
@@ -29,6 +29,12 @@ class Response {
     }
     getHeaders() {
         return this.headers;
+    }
+    getHeader(key) {
+        return this.headers[key] || '';
+    }
+    static buildFromIncomingMessage(message) {
+        return new Response(message['body'], message['statusCode'], message['headers']);
     }
 }
 exports.default = Response;

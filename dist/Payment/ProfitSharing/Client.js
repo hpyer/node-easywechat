@@ -12,14 +12,14 @@ class Client extends BaseClient_1.default {
             appid: this.app['config'].app_id,
             receiver: JSON.stringify(receiver),
         };
-        return this.requestApi('pay/profitsharingaddreceiver', params);
+        return this.request('pay/profitsharingaddreceiver', params);
     }
     deleteReceiver(receiver) {
         let params = {
             appid: this.app['config'].app_id,
             receiver: JSON.stringify(receiver),
         };
-        return this.requestApi('pay/profitsharingremovereceiver', params);
+        return this.request('pay/profitsharingremovereceiver', params);
     }
     share(transactionId, outOrderNo, receivers) {
         let params = {
@@ -28,7 +28,7 @@ class Client extends BaseClient_1.default {
             out_order_no: outOrderNo,
             receivers: JSON.stringify(receivers),
         };
-        return this.safeRequestApi('secapi/pay/profitsharing', params);
+        return this.safeRequest('secapi/pay/profitsharing', params);
     }
     multiShare(transactionId, outOrderNo, receivers) {
         let params = {
@@ -37,12 +37,12 @@ class Client extends BaseClient_1.default {
             out_order_no: outOrderNo,
             receivers: JSON.stringify(receivers),
         };
-        return this.safeRequestApi('secapi/pay/multiprofitsharing', params);
+        return this.safeRequest('secapi/pay/multiprofitsharing', params);
     }
     markOrderAsFinished(params) {
         params['appid'] = this.app['config'].app_id;
         params['sub_appid'] = null;
-        return this.safeRequestApi('secapi/pay/profitsharingfinish', params);
+        return this.safeRequest('secapi/pay/profitsharingfinish', params);
     }
     query(transactionId, outOrderNo) {
         let params = {
@@ -50,7 +50,7 @@ class Client extends BaseClient_1.default {
             transaction_id: transactionId,
             out_order_no: outOrderNo,
         };
-        return this.requestApi('pay/profitsharingquery', params);
+        return this.request('pay/profitsharingquery', params);
     }
 }
 exports.default = Client;

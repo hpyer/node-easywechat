@@ -15,18 +15,21 @@ class StreamResponse extends Response_1.default {
         catch (e) {
             throw new Error(`'${directory}' is not writable.`);
         }
-        let content = this.getContent();
+        let content = this.getContent().toString();
         if (!content || '{' === content[0]) {
             throw new Error('Invalid media response content.');
         }
         if (!filename) {
             filename = Utils_1.createHash(content, 'md5');
         }
-        Fs.writeFileSync(`${directory}/${filename}`, content);
+        Fs.writeFileSync(`${directory}/${filename}`, this.getContent());
         return filename;
     }
     saveAs(directory, filename = '') {
         return this.save(directory, filename);
+    }
+    static buildFromIncomingMessage(message) {
+        return new StreamResponse(message['body'], message['statusCode'], message['headers']);
     }
 }
 exports.default = StreamResponse;

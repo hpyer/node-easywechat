@@ -20,54 +20,54 @@ export default class Client extends BaseClient
     'template_id',
   ];
 
-  async setIndustry(industry_id1: string, industry_id2: string): Promise<any>
+  setIndustry(industry_id1: string, industry_id2: string): Promise<any>
   {
-    return await this.httpPostJson('cgi-bin/template/api_set_industry', {
+    return this.httpPostJson('cgi-bin/template/api_set_industry', {
       industry_id1,
       industry_id2,
     });
   }
 
-  async getIndustry(): Promise<any>
+  getIndustry(): Promise<any>
   {
-    return await this.httpGet('cgi-bin/template/get_industry');
+    return this.httpGet('cgi-bin/template/get_industry');
   }
 
-  async addTemplate(template_id_short: string): Promise<any>
+  addTemplate(template_id_short: string): Promise<any>
   {
-    return await this.httpPostJson('cgi-bin/template/api_add_template', {
+    return this.httpPostJson('cgi-bin/template/api_add_template', {
       template_id_short,
     });
   }
 
-  async getPrivateTemplates(): Promise<any>
+  getPrivateTemplates(): Promise<any>
   {
-    return await this.httpGet('cgi-bin/template/get_all_private_template');
+    return this.httpGet('cgi-bin/template/get_all_private_template');
   }
 
-  async deletePrivateTemplate(template_id: string): Promise<any>
+  deletePrivateTemplate(template_id: string): Promise<any>
   {
-    return await this.httpPostJson('cgi-bin/template/del_private_template', {
+    return this.httpPostJson('cgi-bin/template/del_private_template', {
       template_id,
     });
   }
 
-  async send(data: object): Promise<any>
+  send(data: object): Promise<any>
   {
     let params = this.formatMessage(data);
 
     this.restoreMessage();
 
-    return await this.httpPostJson(this.API_SEND, params);
+    return this.httpPostJson(this.API_SEND, params);
   }
 
-  async sendSubscription(data: object): Promise<any>
+  sendSubscription(data: object): Promise<any>
   {
     let params = this.formatMessage(data);
 
     this.restoreMessage();
 
-    return await this.httpPostJson('cgi-bin/message/template/subscribe', params);
+    return this.httpPostJson('cgi-bin/message/template/subscribe', params);
   }
 
   protected formatMessage (data: object)

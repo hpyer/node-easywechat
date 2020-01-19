@@ -17,12 +17,13 @@ const Fs = require("fs");
 class BaseClient {
     constructor(app) {
         this.app = null;
+        this.serverIp = '';
         this.app = app;
     }
     prepends() {
         return {};
     }
-    requestApi(endpoint, params = {}, method = 'post', options = {}, returnRaw = false) {
+    request(endpoint, params = {}, method = 'post', options = {}, returnResponse = false) {
         let base = {
             mch_id: this.app['config']['mch_id'],
             nonce_str: Utils_1.randomString(32),
@@ -39,12 +40,10 @@ class BaseClient {
             method,
             body: XmlBuilder.buildObject(localParams)
         });
-        return this.request(payload)
+        return this.doRequest(payload, returnResponse)
             .then((body) => __awaiter(this, void 0, void 0, function* () {
             try {
-                if (!returnRaw) {
-                    body = yield this.parseXml(body);
-                }
+                body = yield this.parseXml(body);
             }
             catch (e) { }
             return body;
@@ -57,28 +56,34 @@ class BaseClient {
             return res;
         });
     }
-    safeRequestApi(endpoint, params = {}, method = 'post', options = {}) {
+    safeRequest(endpoint, params = {}, method = 'post', options = {}) {
         options = Merge(options, {
             agentOptions: {
                 pfx: Fs.readFileSync(this.app['config']['cert_path']),
                 passphrase: this.app['config']['mch_id'],
             }
         });
-        return this.requestApi(endpoint, params, method, options);
+        return this.request(endpoint, params, method, options);
     }
-    requestApiRaw(endpoint, params = {}, method = 'post', options = {}) {
-        return this.requestApi(endpoint, params, method, options, true);
+    requestRaw(endpoint, params = {}, method = 'post', options = {}) {
+        options['encoding'] = null;
+        return this.request(endpoint, params, method, options, true);
     }
     wrap(endpoint) {
         return this.app['inSandbox']() ? `sandboxnew/${endpoint}` : endpoint;
     }
     getServerIp() {
         return __awaiter(this, void 0, void 0, function* () {
-            let res = yield this.httpGet('http://ip.taobao.com/service/getIpInfo.php?ip=myip');
-            if (res && !res['code'] && res['data'] && res['data']['ip']) {
-                return res['data']['ip'];
+            if (!this.serverIp) {
+                let res = yield this.doRequest({
+                    url: 'http://ip.taobao.com/service/getIpInfo.php?ip=myip',
+                    method: 'GET',
+                });
+                if (res && !res['code'] && res['data'] && res['data']['ip']) {
+                    this.serverIp = res['data']['ip'];
+                }
             }
-            return '';
+            return this.serverIp;
         });
     }
     getClientIp() {
@@ -87,16 +92,7 @@ class BaseClient {
         });
     }
     // Rewrite by HttpMixin
-    httpGet(url, payload = null) {
-        return __awaiter(this, void 0, void 0, function* () { });
-    }
-    httpPost(url, payload = null) {
-        return __awaiter(this, void 0, void 0, function* () { });
-    }
-    httpFile(url, payload = null) {
-        return __awaiter(this, void 0, void 0, function* () { });
-    }
-    request(payload) {
+    doRequest(payload, returnResponse = false) {
         return __awaiter(this, void 0, void 0, function* () { });
     }
 }

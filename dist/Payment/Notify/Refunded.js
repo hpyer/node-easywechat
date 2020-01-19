@@ -14,7 +14,14 @@ const Xml2js = require("xml2js");
 class RefundedHandler extends Handler_1.default {
     handle(closure) {
         return __awaiter(this, void 0, void 0, function* () {
-            this.strict(yield closure(this.getMessage(), yield this.reqInfo(), this.setFail));
+            if (typeof closure != 'function') {
+                throw new Error('Should pass an closure function');
+            }
+            this.strict(yield closure.apply(this, [
+                this.getMessage(),
+                yield this.reqInfo(),
+                this.setFail
+            ]));
         });
     }
     reqInfo() {

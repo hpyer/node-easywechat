@@ -13,60 +13,62 @@ const BaseClient_1 = require("../../Core/BaseClient");
 class Client extends BaseClient_1.default {
     constructor() {
         super(...arguments);
-        this.endpoint = 'https://api.weixin.qq.com/cgi-bin/qrcode/create';
+        this.DAY = 86400;
+        this.SCENE_MAX_VALUE = 100000;
+        this.SCENE_QR_CARD = 'QR_CARD';
+        this.SCENE_QR_TEMPORARY = 'QR_SCENE';
+        this.SCENE_QR_TEMPORARY_STR = 'QR_STR_SCENE';
+        this.SCENE_QR_FOREVER = 'QR_LIMIT_SCENE';
+        this.SCENE_QR_FOREVER_STR = 'QR_LIMIT_STR_SCENE';
+        this.baseUri = 'https://api.weixin.qq.com/cgi-bin/';
     }
-    temporary(scene_str, expireSeconds = 0) {
+    temporary(sceneValue, expireSeconds = 0) {
+        let type = '', sceneKey = '';
+        if (typeof sceneValue == 'number' && sceneValue > 0) {
+            type = this.SCENE_QR_TEMPORARY;
+            sceneKey = 'scene_id';
+        }
+        else {
+            type = this.SCENE_QR_TEMPORARY_STR;
+            sceneKey = 'scene_str';
+        }
+        let scene = {};
+        scene[sceneKey] = sceneValue;
+        return this.create(type, scene, true, expireSeconds);
+    }
+    forever(sceneValue) {
         return __awaiter(this, void 0, void 0, function* () {
-            if (expireSeconds <= 0 || expireSeconds > 2592000)
-                expireSeconds = 2592000;
-            let action_name = '', scene = {};
-            if (typeof scene_str == 'string') {
-                scene = { scene_str };
-                action_name = 'QR_STR_SCENE';
+            let type = '', sceneKey = '';
+            if (typeof sceneValue == 'number' && sceneValue > 0) {
+                type = this.SCENE_QR_FOREVER;
+                sceneKey = 'scene_id';
             }
             else {
-                scene = { scene_id: scene_str };
-                action_name = 'QR_SCENE';
+                type = this.SCENE_QR_FOREVER_STR;
+                sceneKey = 'scene_str';
             }
-            let data = {
-                expire_seconds: expireSeconds,
-                action_name,
-                action_info: { scene }
-            };
-            return yield this.requestWithAccessToken({
-                url: this.endpoint,
-                json: true,
-                body: data
-            });
-        });
-    }
-    forever(scene) {
-        return __awaiter(this, void 0, void 0, function* () {
-            let action_name = '';
-            if (typeof scene == 'string') {
-                scene = { scene_str: scene };
-                action_name = 'QR_LIMIT_STR_SCENE';
-            }
-            else {
-                scene = { scene_id: scene };
-                action_name = 'QR_LIMIT_SCENE';
-            }
-            let data = {
-                action_name,
-                action_info: { scene }
-            };
-            return yield this.requestWithAccessToken({
-                url: this.endpoint,
-                json: true,
-                body: data
-            });
+            let scene = {};
+            scene[sceneKey] = sceneValue;
+            return this.create(type, scene, false);
         });
     }
     url(ticket) {
-        return __awaiter(this, void 0, void 0, function* () {
-            let url = 'https://mp.weixin.qq.com/cgi-bin/showqrcode?ticket=' + ticket;
-            return yield this.httpFile(url);
-        });
+        return `'https://mp.weixin.qq.com/cgi-bin/showqrcode?ticket=${ticket}'`;
+    }
+    create(actionName, actionInfo, temporary = true, expireSeconds = 0) {
+        if (!expireSeconds || expireSeconds <= 0) {
+            expireSeconds = 7 * this.DAY;
+        }
+        let params = {
+            action_name: actionName,
+            action_info: {
+                scene: actionInfo,
+            },
+        };
+        if (temporary) {
+            params['expire_seconds'] = Math.min(expireSeconds, 30 * this.DAY);
+        }
+        return this.httpPostJson('qrcode/create', params);
     }
 }
 exports.default = Client;

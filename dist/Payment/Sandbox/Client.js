@@ -18,7 +18,7 @@ class Client extends BaseClient_1.default {
             let key = yield cacher.fetch(this.getCacheKey());
             if (key)
                 return key;
-            let res = yield this.requestApi('sandboxnew/pay/getsignkey');
+            let res = yield this.request('sandboxnew/pay/getsignkey');
             if (res && 'SUCCESS' === res['return_code']) {
                 key = res['sandbox_signkey'];
                 yield cacher.save(this.getCacheKey(), key, 24 * 3600);

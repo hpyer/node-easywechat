@@ -8,9 +8,15 @@ exports.createHash = function (str, type = 'sha1') {
 exports.createHmac = function (str, key, type = 'sha256') {
     return Crypto.createHmac(type, key).update(str).digest('hex');
 };
-exports.getTimestamp = function () {
-    let time = (new Date()).getTime();
-    return time / 1000;
+exports.getTimestamp = function (datetime = null) {
+    let time;
+    try {
+        time = (exports.isString(datetime) ? new Date(datetime) : new Date).getTime();
+    }
+    catch (e) {
+        return 0;
+    }
+    return parseInt((time / 1000).toString());
 };
 exports.buildQueryString = function (data, options = {}) {
     return Qs.stringify(data, options);

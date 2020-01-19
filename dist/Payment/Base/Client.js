@@ -14,12 +14,12 @@ class Client extends BaseClient_1.default {
     pay(params) {
         return __awaiter(this, void 0, void 0, function* () {
             params['appid'] = this.app['config']['app_id'];
-            return yield this.requestApi(this.wrap('pay/micropay'), params);
+            return yield this.request(this.wrap('pay/micropay'), params);
         });
     }
     authCodeToOpenid(auth_code) {
         return __awaiter(this, void 0, void 0, function* () {
-            return yield this.requestApi('tools/authcodetoopenid', {
+            return yield this.request('tools/authcodetoopenid', {
                 appid: this.app['config']['app_id'],
                 auth_code,
             });

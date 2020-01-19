@@ -10,11 +10,11 @@ export default class Client extends BaseClient
 {
   protected allowTypes: Array<string> = ['image', 'voice', 'video', 'thumb', 'news_image'];
 
-  async uploadImage(file: any): Promise<any>
+  uploadImage(file: any): Promise<any>
   {
-    return await this.upload('image', file);
+    return this.upload('image', file);
   }
-  async uploadVideo(file: any, title: string, description: string): Promise<any>
+  uploadVideo(file: any, title: string, description: string): Promise<any>
   {
     let params = {
       description: JSON.stringify({
@@ -23,22 +23,22 @@ export default class Client extends BaseClient
       }),
     };
 
-    return await this.upload('video', file, params);
+    return this.upload('video', file, params);
   }
-  async uploadVoice(file: any): Promise<any>
+  uploadVoice(file: any): Promise<any>
   {
-    return await this.upload('voice', file);
+    return this.upload('voice', file);
   }
-  async uploadThumb(file: any): Promise<any>
+  uploadThumb(file: any): Promise<any>
   {
-    return await this.upload('thumb', file);
+    return this.upload('thumb', file);
   }
-  async uploadArticleImage(file: any): Promise<any>
+  uploadArticleImage(file: any): Promise<any>
   {
-    return await this.upload('news_image', file);
+    return this.upload('news_image', file);
   }
 
-  async upload(type: string, file: any, formData: object = {}): Promise<any>
+  upload(type: string, file: any, formData: object = {}): Promise<any>
   {
     if (!file) {
       throw new Error(`File does not exist, or the file is unreadable: '${file}'`);
@@ -57,7 +57,7 @@ export default class Client extends BaseClient
     formData['media'] = file;
     formData['type'] = type;
 
-    return await this.httpPost(this.getApiByType(type), formData);
+    return this.httpPost(this.getApiByType(type), formData);
   }
 
   getApiByType(type: string): string
@@ -68,7 +68,7 @@ export default class Client extends BaseClient
     return 'cgi-bin/material/add_material';
   }
 
-  async uploadArticle(articles: any): Promise<any>
+  uploadArticle(articles: any): Promise<any>
   {
     if (articles instanceof Article || articles['title']) {
       articles = [articles];
@@ -86,16 +86,16 @@ export default class Client extends BaseClient
       }
     });
 
-    return await this.httpPostJson('cgi-bin/material/add_news', data);
+    return this.httpPostJson('cgi-bin/material/add_news', data);
   }
 
-  async updateArticle(media_id: string, article: any, index: number = 0): Promise<any>
+  updateArticle(media_id: string, article: any, index: number = 0): Promise<any>
   {
     if (article instanceof Article) {
       article = article.transformForJsonRequestWithoutType();
     }
 
-    return await this.httpPostJson('cgi-bin/material/update_news', {
+    return this.httpPostJson('cgi-bin/material/update_news', {
       media_id,
       index,
       articles: article['title'] ? article : (article[index] || {}),
@@ -126,25 +126,25 @@ export default class Client extends BaseClient
     return content;
   }
 
-  async delete(media_id: string): Promise<any>
+  delete(media_id: string): Promise<any>
   {
-    return await this.httpPostJson('cgi-bin/material/del_material', {
+    return this.httpPostJson('cgi-bin/material/del_material', {
       media_id,
     });
   }
 
-  async list(type: string, offset: number = 0, count: number = 20): Promise<any>
+  list(type: string, offset: number = 0, count: number = 20): Promise<any>
   {
-    return await this.httpPostJson('cgi-bin/material/batchget_material', {
+    return this.httpPostJson('cgi-bin/material/batchget_material', {
       type,
       offset,
       count,
     });
   }
 
-  async stats(): Promise<any>
+  stats(): Promise<any>
   {
-    return await this.httpGet('cgi-bin/material/get_materialcount');
+    return this.httpGet('cgi-bin/material/get_materialcount');
   }
 
 }

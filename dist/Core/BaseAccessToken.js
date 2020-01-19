@@ -34,7 +34,10 @@ class BaseAccessToken {
     requestToken(credentials) {
         return __awaiter(this, void 0, void 0, function* () {
             let url = this.getEndpoint() + '?' + Qs.stringify(credentials);
-            return yield this.httpGet(url);
+            return yield this.doRequest({
+                url,
+                method: 'GET',
+            });
         });
     }
     ;
@@ -69,16 +72,7 @@ class BaseAccessToken {
         });
     }
     // Rewrite by HttpMixin
-    httpGet(url, payload = null) {
-        return __awaiter(this, void 0, void 0, function* () { });
-    }
-    httpPost(url, payload = null) {
-        return __awaiter(this, void 0, void 0, function* () { });
-    }
-    httpFile(url, payload = null) {
-        return __awaiter(this, void 0, void 0, function* () { });
-    }
-    request(payload) {
+    doRequest(payload, returnResponse = false) {
         return __awaiter(this, void 0, void 0, function* () { });
     }
 }

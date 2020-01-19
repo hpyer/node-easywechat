@@ -13,7 +13,13 @@ const Handler_1 = require("./Handler");
 class PaidHandler extends Handler_1.default {
     handle(closure) {
         return __awaiter(this, void 0, void 0, function* () {
-            this.strict(yield closure(this.getMessage(), this.setFail));
+            if (typeof closure != 'function') {
+                throw new Error('Should pass an closure function');
+            }
+            this.strict(yield closure.apply(this, [
+                this.getMessage(),
+                this.setFail,
+            ]));
         });
     }
 }

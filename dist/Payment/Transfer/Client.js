@@ -11,14 +11,14 @@ class Client extends BaseClient_1.default {
             mch_id: this.app['config'].mch_id,
             partner_trade_no: partnerTradeNo,
         };
-        return this.safeRequestApi('mmpaymkttransfers/gettransferinfo', params);
+        return this.safeRequest('mmpaymkttransfers/gettransferinfo', params);
     }
     queryBankCardOrder(partnerTradeNo) {
         let params = {
             mch_id: this.app['config'].mch_id,
             partner_trade_no: partnerTradeNo,
         };
-        return this.safeRequestApi('mmpaymkttransfers/query_bank', params);
+        return this.safeRequest('mmpaymkttransfers/query_bank', params);
     }
     toBalance(params) {
         let base = {
@@ -29,7 +29,7 @@ class Client extends BaseClient_1.default {
         if (!params['spbill_create_ip']) {
             params['spbill_create_ip'] = this.getServerIp();
         }
-        return this.safeRequestApi('mmpaymkttransfers/promotion/transfers', Merge(base, params));
+        return this.safeRequest('mmpaymkttransfers/promotion/transfers', Merge(base, params));
     }
     toBankCard(params) {
         ['bank_code', 'partner_trade_no', 'enc_bank_no', 'enc_true_name', 'amount'].map(key => {
@@ -41,7 +41,7 @@ class Client extends BaseClient_1.default {
         let rsa = new NodeRsa(publicKey);
         params['enc_bank_no'] = rsa.encrypt(params['enc_bank_no'], 'hex');
         params['enc_true_name'] = rsa.encrypt(params['enc_true_name'], 'hex');
-        return this.safeRequestApi('mmpaymkttransfers/pay_bank', params);
+        return this.safeRequest('mmpaymkttransfers/pay_bank', params);
     }
 }
 exports.default = Client;

@@ -65,11 +65,11 @@ export default class Client extends BaseClient
     return createHash(`jsapi_ticket=${ticket}&noncestr=${nonce}&timestamp=${timestamp}&url=${url}`, 'sha1');
   }
 
-  dictionaryOrderSignature(): string
+  dictionaryOrderSignature(args: Array<string>): string
   {
     let params = [];
-    for (let i in arguments) {
-      params.push(arguments[i]);
+    for (let i in args) {
+      params.push(args[i]);
     }
     params.sort();
 

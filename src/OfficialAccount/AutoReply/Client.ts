@@ -4,9 +4,9 @@ import BaseClient from '../../Core/BaseClient';
 
 export default class Client extends BaseClient
 {
-  async current(): Promise<any>
+  current(): Promise<any>
   {
-    return await this.httpGet('cgi-bin/get_current_autoreply_info');
+    return this.httpGet('cgi-bin/get_current_autoreply_info');
   }
 
 }

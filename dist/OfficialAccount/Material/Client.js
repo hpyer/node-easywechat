@@ -13,62 +13,49 @@ const Fs = require("fs");
 const BaseClient_1 = require("../../Core/BaseClient");
 const Utils_1 = require("../../Core/Utils");
 const Messages_1 = require("../../Core/Messages");
+const StreamResponse_1 = require("../../Core/Http/StreamResponse");
 class Client extends BaseClient_1.default {
     constructor() {
         super(...arguments);
         this.allowTypes = ['image', 'voice', 'video', 'thumb', 'news_image'];
     }
     uploadImage(file) {
-        return __awaiter(this, void 0, void 0, function* () {
-            return yield this.upload('image', file);
-        });
+        return this.upload('image', file);
     }
     uploadVideo(file, title, description) {
-        return __awaiter(this, void 0, void 0, function* () {
-            let params = {
-                description: JSON.stringify({
-                    title: title,
-                    introduction: description,
-                }),
-            };
-            return yield this.upload('video', file, params);
-        });
+        let params = {
+            description: JSON.stringify({
+                title: title,
+                introduction: description,
+            }),
+        };
+        return this.upload('video', file, params);
     }
     uploadVoice(file) {
-        return __awaiter(this, void 0, void 0, function* () {
-            return yield this.upload('voice', file);
-        });
+        return this.upload('voice', file);
     }
     uploadThumb(file) {
-        return __awaiter(this, void 0, void 0, function* () {
-            return yield this.upload('thumb', file);
-        });
+        return this.upload('thumb', file);
     }
     uploadArticleImage(file) {
-        return __awaiter(this, void 0, void 0, function* () {
-            return yield this.upload('news_image', file);
-        });
+        return this.upload('news_image', file);
     }
     upload(type, file, formData = {}) {
-        return __awaiter(this, void 0, void 0, function* () {
-            if (!file) {
-                throw new Error(`File does not exist, or the file is unreadable: '${file}'`);
-            }
-            if (Utils_1.isString(file)) {
-                file = Fs.createReadStream(file);
-            }
-            if (!Utils_1.inArray(type, this.allowTypes)) {
-                throw new Error(`Unsupported media type: '${type}'`);
-            }
-            if (!formData || !Utils_1.isObject(formData)) {
-                formData = {};
-            }
-            formData['media'] = file;
-            formData['type'] = type;
-            return yield this.httpPost(this.getApiByType(type), {
-                formData
-            });
-        });
+        if (!file) {
+            throw new Error(`File does not exist, or the file is unreadable: '${file}'`);
+        }
+        if (Utils_1.isString(file)) {
+            file = Fs.createReadStream(file);
+        }
+        if (!Utils_1.inArray(type, this.allowTypes)) {
+            throw new Error(`Unsupported media type: '${type}'`);
+        }
+        if (!formData || !Utils_1.isObject(formData)) {
+            formData = {};
+        }
+        formData['media'] = file;
+        formData['type'] = type;
+        return this.httpPost(this.getApiByType(type), formData);
     }
     getApiByType(type) {
         if (type == 'news_image') {
@@ -77,81 +64,67 @@ class Client extends BaseClient_1.default {
         return 'cgi-bin/material/add_material';
     }
     uploadArticle(articles) {
-        return __awaiter(this, void 0, void 0, function* () {
-            if (articles instanceof Messages_1.Article || articles['title']) {
-                articles = [articles];
+        if (articles instanceof Messages_1.Article || articles['title']) {
+            articles = [articles];
+        }
+        let data = {
+            articles: [],
+        };
+        articles.forEach(article => {
+            if (article instanceof Messages_1.Article) {
+                data.articles.push(article.transformForJsonRequestWithoutType());
             }
-            let body = {
-                articles: [],
-            };
-            articles.forEach(article => {
-                if (article instanceof Messages_1.Article) {
-                    body.articles.push(article.transformForJsonRequestWithoutType());
-                }
-                else {
-                    body.articles.push(article);
-                }
-            });
-            return yield this.httpPost('cgi-bin/material/add_news', {
-                json: true,
-                body,
-            });
+            else {
+                data.articles.push(article);
+            }
         });
+        return this.httpPostJson('cgi-bin/material/add_news', data);
     }
     updateArticle(media_id, article, index = 0) {
-        return __awaiter(this, void 0, void 0, function* () {
-            if (article instanceof Messages_1.Article) {
-                article = article.transformForJsonRequestWithoutType();
-            }
-            return yield this.httpPost('cgi-bin/material/update_news', {
-                json: true,
-                body: {
-                    media_id,
-                    index,
-                    articles: article['title'] ? article : (article[index] || {}),
-                },
-            });
+        if (article instanceof Messages_1.Article) {
+            article = article.transformForJsonRequestWithoutType();
+        }
+        return this.httpPostJson('cgi-bin/material/update_news', {
+            media_id,
+            index,
+            articles: article['title'] ? article : (article[index] || {}),
         });
     }
     get(media_id) {
         return __awaiter(this, void 0, void 0, function* () {
-            return yield this.request({
+            let res = yield this.requestRaw({
                 url: 'cgi-bin/material/get_material',
                 method: 'POST',
                 json: true,
-                encoding: 'binary',
                 body: {
                     media_id,
                 }
             });
+            if (res.getHeader['content-disposition'].indexOf('attachment') > -1) {
+                return StreamResponse_1.default.buildFromIncomingMessage(res);
+            }
+            let content = res.getContent().toString();
+            try {
+                content = JSON.parse(content);
+            }
+            catch (e) { }
+            return content;
         });
     }
     delete(media_id) {
-        return __awaiter(this, void 0, void 0, function* () {
-            return yield this.httpPost('cgi-bin/material/del_material', {
-                json: true,
-                body: {
-                    media_id,
-                }
-            });
+        return this.httpPostJson('cgi-bin/material/del_material', {
+            media_id,
         });
     }
     list(type, offset = 0, count = 20) {
-        return __awaiter(this, void 0, void 0, function* () {
-            return yield this.httpPost('cgi-bin/material/batchget_material', {
-                json: true,
-                body: {
-                    type,
-                    offset,
-                    count,
-                }
-            });
+        return this.httpPostJson('cgi-bin/material/batchget_material', {
+            type,
+            offset,
+            count,
         });
     }
     stats() {
-        return __awaiter(this, void 0, void 0, function* () {
-            return yield this.httpGet('cgi-bin/material/get_materialcount');
-        });
+        return this.httpGet('cgi-bin/material/get_materialcount');
     }
 }
 exports.default = Client;

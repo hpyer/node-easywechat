@@ -31,7 +31,7 @@ class Client extends BaseClient_1.default {
             sub_mech_id: '',
             sub_appid: '',
         });
-        return this.safeRequestApi('secapi/mch/submchmanage', params, 'post', { qs: query });
+        return this.safeRequest('secapi/mch/submchmanage', params, 'post', { qs: query });
     }
 }
 exports.default = Client;

@@ -11,6 +11,8 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 Object.defineProperty(exports, "__esModule", { value: true });
 const HttpMixin_1 = require("./Mixins/HttpMixin");
 const Utils_1 = require("./Utils");
+const Fs = require("fs");
+const Merge = require("merge");
 class BaseClient {
     constructor(app, accessToken = null) {
         this.accessToken = null;
@@ -25,7 +27,7 @@ class BaseClient {
     getAccessToken() {
         return this.accessToken;
     }
-    requestWithAccessToken(payload) {
+    request(payload, returnResponse = false) {
         return __awaiter(this, void 0, void 0, function* () {
             if (!payload['qs']) {
                 payload['qs'] = {};
@@ -36,20 +38,60 @@ class BaseClient {
             if (!payload['method']) {
                 payload['method'] = 'POST';
             }
-            yield this.request(payload);
+            return this.doRequest(payload, returnResponse);
         });
     }
+    httpUpload(url, files = {}, form = {}, query = {}) {
+        let formData = {};
+        for (let name in files) {
+            if (Utils_1.isString(files[name])) {
+                formData[name] = Fs.createReadStream(files[name]);
+            }
+            else {
+                formData[name] = files[name];
+            }
+        }
+        formData = Merge(formData, form);
+        return this.request({
+            url,
+            formData,
+            method: 'POST',
+            qs: query,
+        });
+    }
+    httpGet(url, query = {}) {
+        let payload = {
+            url,
+            method: 'GET',
+            qs: query,
+        };
+        return this.request(payload);
+    }
+    httpPost(url, formData = {}) {
+        let payload = {
+            url,
+            method: 'POST',
+            formData,
+        };
+        return this.request(payload);
+    }
+    httpPostJson(url, data = {}, query = {}) {
+        let payload = {
+            url,
+            method: 'POST',
+            json: true,
+            body: data,
+            qs: query,
+        };
+        return this.request(payload);
+    }
+    requestRaw(payload) {
+        payload = payload || {};
+        payload['encoding'] = null;
+        return this.request(payload, true);
+    }
     // Rewrite by HttpMixin
-    httpGet(url, payload = null) {
-        return __awaiter(this, void 0, void 0, function* () { });
-    }
-    httpPost(url, payload = null) {
-        return __awaiter(this, void 0, void 0, function* () { });
-    }
-    httpFile(url, payload = null) {
-        return __awaiter(this, void 0, void 0, function* () { });
-    }
-    request(payload) {
+    doRequest(payload, returnResponse = false) {
         return __awaiter(this, void 0, void 0, function* () { });
     }
 }

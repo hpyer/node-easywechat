@@ -15,19 +15,19 @@ class Client extends BaseClient_1.default {
         return __awaiter(this, void 0, void 0, function* () {
             params['appid'] = this.app['config']['app_id'];
             params['openid_count'] = 1;
-            return yield this.safeRequestApi('mmpaymkttransfers/send_coupon', params);
+            return yield this.safeRequest('mmpaymkttransfers/send_coupon', params);
         });
     }
     stock(params = {}) {
         return __awaiter(this, void 0, void 0, function* () {
             params['appid'] = this.app['config']['app_id'];
-            return yield this.requestApi('mmpaymkttransfers/query_coupon_stock', params);
+            return yield this.request('mmpaymkttransfers/query_coupon_stock', params);
         });
     }
     info(params = {}) {
         return __awaiter(this, void 0, void 0, function* () {
             params['appid'] = this.app['config']['app_id'];
-            return yield this.requestApi('mmpaymkttransfers/querycouponsinfo', params);
+            return yield this.request('mmpaymkttransfers/querycouponsinfo', params);
         });
     }
 }

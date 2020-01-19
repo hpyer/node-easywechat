@@ -20,7 +20,7 @@ class Client extends BaseClient_1.default {
             total_fee: totalFee,
             refund_fee: refundFee,
         }, optional);
-        return this.safeRequestApi(this.wrap(this.app['inSandbox']() ? 'pay/refund' : 'secapi/pay/refund'), params);
+        return this.safeRequest(this.wrap(this.app['inSandbox']() ? 'pay/refund' : 'secapi/pay/refund'), params);
     }
     queryByTransactionId(transactionId) {
         return this.query(transactionId, 'transaction_id');
@@ -39,7 +39,7 @@ class Client extends BaseClient_1.default {
             appid: this.app['config'].app_id,
         };
         params[type] = number;
-        return this.requestApi(this.wrap('pay/refundquery'), params);
+        return this.request(this.wrap('pay/refundquery'), params);
     }
 }
 exports.default = Client;

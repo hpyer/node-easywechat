@@ -7,7 +7,7 @@ class Client extends BaseClient_1.default {
             sign_type: 'MD5',
             baseUrl: '',
         };
-        return this.safeRequestApi('https://fraud.mch.weixin.qq.com/risk/getpublickey', params);
+        return this.safeRequest('https://fraud.mch.weixin.qq.com/risk/getpublickey', params);
     }
 }
 exports.default = Client;

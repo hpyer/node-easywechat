@@ -9,9 +9,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-const Fs = require("fs");
 const BaseClient_1 = require("../../Core/BaseClient");
-const Utils_1 = require("../../Core/Utils");
 class Client extends BaseClient_1.default {
     constructor() {
         super(...arguments);
@@ -19,11 +17,8 @@ class Client extends BaseClient_1.default {
     }
     checkText(text) {
         return __awaiter(this, void 0, void 0, function* () {
-            return yield this.httpPost('msg_sec_check', {
-                json: true,
-                body: {
-                    content: text,
-                }
+            return yield this.httpPostJson('msg_sec_check', {
+                content: text,
             });
         });
     }
@@ -32,13 +27,8 @@ class Client extends BaseClient_1.default {
             if (!file) {
                 throw new Error(`File does not exist, or the file is unreadable: '${file}'`);
             }
-            if (Utils_1.isString(file)) {
-                file = Fs.createReadStream(file);
-            }
-            return yield this.httpPost('img_sec_check', {
-                formData: {
-                    media: file,
-                }
+            return yield this.httpUpload('img_sec_check', {
+                media: file,
             });
         });
     }

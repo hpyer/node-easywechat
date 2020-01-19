@@ -1,13 +1,4 @@
 'use strict';
-var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
-    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
-    return new (P || (P = Promise))(function (resolve, reject) {
-        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
-        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
-        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
-        step((generator = generator.apply(thisArg, _arguments || [])).next());
-    });
-};
 Object.defineProperty(exports, "__esModule", { value: true });
 const Merge = require("merge");
 const BaseClient_1 = require("../../Core/BaseClient");
@@ -15,6 +6,7 @@ const Utils_1 = require("../../Core/Utils");
 class Client extends BaseClient_1.default {
     constructor() {
         super(...arguments);
+        this.API_SEND = 'cgi-bin/message/template/send';
         this.message = {
             touser: '',
             template_id: '',
@@ -28,63 +20,36 @@ class Client extends BaseClient_1.default {
         ];
     }
     setIndustry(industry_id1, industry_id2) {
-        return __awaiter(this, void 0, void 0, function* () {
-            return yield this.httpPost('cgi-bin/template/api_set_industry', {
-                json: true,
-                body: {
-                    industry_id1,
-                    industry_id2,
-                }
-            });
+        return this.httpPostJson('cgi-bin/template/api_set_industry', {
+            industry_id1,
+            industry_id2,
         });
     }
     getIndustry() {
-        return __awaiter(this, void 0, void 0, function* () {
-            return yield this.httpGet('cgi-bin/template/get_industry');
-        });
+        return this.httpGet('cgi-bin/template/get_industry');
     }
     addTemplate(template_id_short) {
-        return __awaiter(this, void 0, void 0, function* () {
-            return yield this.httpPost('cgi-bin/template/api_add_template', {
-                json: true,
-                body: {
-                    template_id_short,
-                }
-            });
+        return this.httpPostJson('cgi-bin/template/api_add_template', {
+            template_id_short,
         });
     }
     getPrivateTemplates() {
-        return __awaiter(this, void 0, void 0, function* () {
-            return yield this.httpGet('cgi-bin/template/get_all_private_template');
-        });
+        return this.httpGet('cgi-bin/template/get_all_private_template');
     }
     deletePrivateTemplate(template_id) {
-        return __awaiter(this, void 0, void 0, function* () {
-            return yield this.httpPost('cgi-bin/template/del_private_template', {
-                json: true,
-                body: {
-                    template_id,
-                }
-            });
+        return this.httpPostJson('cgi-bin/template/del_private_template', {
+            template_id,
         });
     }
     send(data) {
-        return __awaiter(this, void 0, void 0, function* () {
-            let params = this.formatMessage(data);
-            return yield this.httpPost('cgi-bin/message/template/send', {
-                json: true,
-                body: params
-            });
-        });
+        let params = this.formatMessage(data);
+        this.restoreMessage();
+        return this.httpPostJson(this.API_SEND, params);
     }
     sendSubscription(data) {
-        return __awaiter(this, void 0, void 0, function* () {
-            let params = this.formatMessage(data);
-            return yield this.httpPost('cgi-bin/message/template/subscribe', {
-                json: true,
-                body: params
-            });
-        });
+        let params = this.formatMessage(data);
+        this.restoreMessage();
+        return this.httpPostJson('cgi-bin/message/template/subscribe', params);
     }
     formatMessage(data) {
         let params = Merge({}, this.message, data);
@@ -117,6 +82,19 @@ class Client extends BaseClient_1.default {
             formatted[key] = value;
         }
         return formatted;
+    }
+    restoreMessage() {
+        for (let key in this.message) {
+            if (Utils_1.isObject(this.message[key])) {
+                this.message[key] = {};
+            }
+            if (Utils_1.isArray(this.message[key])) {
+                this.message[key] = [];
+            }
+            else {
+                this.message[key] = '';
+            }
+        }
     }
 }
 exports.default = Client;
