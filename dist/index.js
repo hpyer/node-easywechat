@@ -12,4 +12,6 @@ EasyWechat['Factory'] = {
     },
 };
 EasyWechat['BaseCache'] = require('./Core/Cache/BaseCache')['default'];
+EasyWechat['BaseRequest'] = require('./Core/Http/Request')['default'];
+EasyWechat['Messages'] = require('./Core/Messages');
 module.exports = EasyWechat;
