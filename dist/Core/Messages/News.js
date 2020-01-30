@@ -36,7 +36,9 @@ class News extends Message_1.Message {
         catch (e) { }
         return {
             ArticleCount: newItems.length,
-            Articles: newItems,
+            Articles: {
+                item: newItems
+            },
         };
     }
 }

@@ -13,7 +13,7 @@ export default class Client extends BaseClient
   SCENE_QR_FOREVER: string = 'QR_LIMIT_SCENE';
   SCENE_QR_FOREVER_STR: string = 'QR_LIMIT_STR_SCENE';
 
-  protected baseUri: string = 'https://api.weixin.qq.com/cgi-bin/';
+  protected baseUrl: string = 'https://api.weixin.qq.com/cgi-bin/';
 
   temporary(sceneValue: any, expireSeconds: number = 0): Promise<any>
   {
@@ -32,7 +32,7 @@ export default class Client extends BaseClient
     return this.create(type, scene, true, expireSeconds);
   }
 
-  async forever(sceneValue: any): Promise<any>
+  forever(sceneValue: any): Promise<any>
   {
     let type: string = '', sceneKey: string = '';
     if (typeof sceneValue == 'number' && sceneValue > 0) {

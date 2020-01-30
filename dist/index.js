@@ -11,7 +11,15 @@ EasyWechat['Factory'] = {
         }
     },
 };
-EasyWechat['BaseCache'] = require('./Core/Cache/BaseCache')['default'];
-EasyWechat['BaseRequest'] = require('./Core/Http/Request')['default'];
-EasyWechat['Messages'] = require('./Core/Messages');
+EasyWechat['CacheInterface'] = require('./Core/Contracts/CacheInterface')['default'];
+EasyWechat['Decorator'] = {
+    FinallResult: require('./Core/Http/FinallResult')['default'],
+    TerminateResult: require('./Core/Http/TerminateResult')['default'],
+};
+EasyWechat['Http'] = {
+    Request: require('./Core/Http/Request')['default'],
+    Response: require('./Core/Http/Response')['default'],
+    StreamResponse: require('./Core/Http/StreamResponse')['default'],
+};
+EasyWechat['Message'] = require('./Core/Messages');
 module.exports = EasyWechat;

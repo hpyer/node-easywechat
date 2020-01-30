@@ -1,7 +1,7 @@
 'use strict';
 Object.defineProperty(exports, "__esModule", { value: true });
-const merge_1 = require("merge");
-const xml2js_1 = require("xml2js");
+const Merge = require("merge");
+const Xml2js = require("xml2js");
 const HasAttributesMixin_1 = require("../Mixins/HasAttributesMixin");
 class Message extends HasAttributesMixin_1.default {
     constructor(attributes = {}) {
@@ -18,12 +18,20 @@ class Message extends HasAttributesMixin_1.default {
     }
     transformToXml(appends = {}, returnAsObject = false) {
         let data = {
-            xml: merge_1.default({ MsgType: this.getType() }, this.toXmlArray(), appends)
+            xml: Merge({ MsgType: this.getType() }, this.toXmlArray(), appends)
         };
         if (returnAsObject) {
             return data;
         }
-        return (new xml2js_1.XmlBuilder).buildObject(data);
+        let XmlBuilder = new Xml2js.Builder({
+            cdata: true,
+            renderOpts: {
+                pretty: false,
+                indent: '',
+                newline: '',
+            }
+        });
+        return XmlBuilder.buildObject(data);
     }
     toXmlArray() {
         throw new Error(`Class "${this.constructor.name}" cannot support transform to XML message.`);
@@ -36,10 +44,10 @@ class Message extends HasAttributesMixin_1.default {
             return this.propertiesToObject({}, this.jsonAliases);
         }
         let messageType = this.getType();
-        let data = merge_1.default({
+        let data = Merge({
             msgtype: messageType
         }, appends);
-        data[messageType] = merge_1.default(data[messageType] || {}, this.propertiesToObject({}, this.jsonAliases));
+        data[messageType] = Merge(data[messageType] || {}, this.propertiesToObject({}, this.jsonAliases));
         return data;
     }
     propertiesToObject(data, aliases = null) {

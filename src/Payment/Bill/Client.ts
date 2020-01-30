@@ -26,7 +26,7 @@ export default class Client extends BaseClient
       return await this.parseXml(content);
     }
 
-    return StreamResponse.buildFromIncomingMessage(res);
+    return StreamResponse.buildFromResponse(res);
   }
 
 }

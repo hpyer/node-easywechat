@@ -4,10 +4,8 @@ const Path = require("path");
 const Fs = require("fs");
 const Merge = require("merge");
 const Utils_1 = require("../Utils");
-const BaseCache_1 = require("./BaseCache");
-class FileCache extends BaseCache_1.default {
+class FileCache {
     constructor(options = {}) {
-        super();
         this.options = {};
         this.defaultOptions = {
             path: './',
@@ -32,7 +30,7 @@ class FileCache extends BaseCache_1.default {
     getCacheFile(id) {
         return this.options['path'] + 'node-easywechat.file_cache.' + id + this.options['ext'];
     }
-    fetch(id) {
+    get(id) {
         let content = null;
         let file = this.getCacheFile(id);
         try {
@@ -52,7 +50,7 @@ class FileCache extends BaseCache_1.default {
         }
         return content;
     }
-    contains(id) {
+    has(id) {
         let file = this.getCacheFile(id);
         try {
             Fs.accessSync(file, Fs.constants.R_OK & Fs.constants.W_OK);
@@ -62,7 +60,7 @@ class FileCache extends BaseCache_1.default {
         }
         return true;
     }
-    save(id, data = null, lifeTime = 0) {
+    set(id, data = null, lifeTime = 0) {
         let file = this.getCacheFile(id);
         try {
             let dataItem = {

@@ -28,7 +28,7 @@ class Client extends BaseClient_1.default {
             if (content && content.indexOf('<xml>') === 0) {
                 return yield this.parseXml(content);
             }
-            return StreamResponse_1.default.buildFromIncomingMessage(res);
+            return StreamResponse_1.default.buildFromResponse(res);
         });
     }
 }

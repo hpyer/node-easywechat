@@ -1,7 +1,7 @@
 'use strict';
 
-import * as Qs from 'qs';
 import BaseClient from '../../Core/BaseClient';
+import { buildQueryString } from '../../Core/Utils';
 
 class User
 {
@@ -15,37 +15,39 @@ class User
 
 export default class OAuth extends BaseClient
 {
-  private scope: string = 'snsapi_userinfo';
-  private callback: string = '';
-  private state: string = '';
+  protected _scope: string = 'snsapi_userinfo';
+  protected _callback: string = '';
+  protected _state: string = '';
 
-  setScope(scope: string): OAuth
+  scopes(scope: string): OAuth
   {
-    this.scope = scope || 'snsapi_userinfo';
+    this._scope = scope || 'snsapi_userinfo';
     return this;
   }
 
-  setCallback(callback: string): OAuth
+  callback(callback: string): OAuth
   {
-    this.callback = callback || '';
+    this._callback = callback || '';
     return this;
   }
 
-  setState(state: string): OAuth
+  state(state: string): OAuth
   {
-    this.state = state || '';
+    this._state = state || '';
     return this;
   }
 
-  redirect(): string
+  redirect(callback: string = null): string
   {
     if (!this.app['config']['oauth']) {
-      throw new Error('未配置网页授权相关参数');
+      throw new Error('Please config `oauth` section');
     }
-    let scope = this.scope || this.app['config']['oauth']['scope'] || 'snsapi_userinfo';
-    let callback = this.callback || this.app['config']['oauth']['callback'] || '';
-    if (callback.substr(0, 7) != 'http://' && callback.substr(0, 8) != 'https://') {
-      throw new Error('请填写完整的回调地址，以“http://”或“https://”开头');
+    let scope = this._scope || this.app['config']['oauth']['scope'] || 'snsapi_userinfo';
+    if (!callback) {
+      callback = this._callback || this.app['config']['oauth']['callback'] || '';
+    }
+    if (callback.substr(0, 7) !== 'http://' && callback.substr(0, 8) !== 'https://') {
+      throw new Error('Please set callback url start with "http://" or "https://"');
     }
 
     let params = {
@@ -55,11 +57,11 @@ export default class OAuth extends BaseClient
       scope: scope,
       state: '',
     }
-    if (this.state) {
-      params.state = this.state;
+    if (this._state) {
+      params.state = this._state;
     }
 
-    return 'https://open.weixin.qq.com/connect/oauth2/authorize?' + Qs.stringify(params) + '#wechat_redirect';
+    return 'https://open.weixin.qq.com/connect/oauth2/authorize?' + buildQueryString(params) + '#wechat_redirect';
   }
 
   async user(code: string): Promise<User>
@@ -70,12 +72,11 @@ export default class OAuth extends BaseClient
       code: code,
       grant_type: 'authorization_code'
     };
-    let url = 'https://api.weixin.qq.com/sns/oauth2/access_token?' + Qs.stringify(params);
 
-    let res = await this.httpGet(url);
+    let res = await this.httpGet('/sns/oauth2/access_token', params);
     if (res.errcode) {
-      this.app['log']('获取 AccessToken 失败', res);
-      throw new Error('获取 AccessToken 失败');
+      this.app['log']('Fail to fetch access_token', res);
+      throw new Error('Fail to fetch access_token');
     }
 
     let user = new User;
@@ -88,11 +89,10 @@ export default class OAuth extends BaseClient
         openid: user.id,
         lang: 'zh_CN'
       };
-      let url = 'https://api.weixin.qq.com/sns/userinfo?' + Qs.stringify(params);
 
-      res = await this.httpGet(url);
+      res = await this.httpGet('/sns/userinfo', params);
       if (res.errcode) {
-        this.app['log']('获取用户信息失败', res);
+        this.app['log']('Fail to fetch userinfo', res);
         return user;
       }
       user.id = res.openid;

@@ -5,7 +5,7 @@ import { createHmac } from '../../Core/Utils';
 
 export default class Client extends BaseClient {
 
-  protected baseUri = 'https://api.weixin.qq.com/wxa/';
+  protected baseUrl = 'https://api.weixin.qq.com/wxa/';
 
   removeUserStorage(openid: string, sessionKey: string, key: Array<string>): Promise<any> {
     let data = {

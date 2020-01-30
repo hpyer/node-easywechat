@@ -9,11 +9,12 @@ export default class HttpMixin
 
   doRequest(payload: object, returnResponse: Boolean = false): Promise<any>
   {
-    if (this['app'] && this['app'] instanceof BaseApplicatioin) {
-      payload = Merge({}, this['app']['config']['http'] || {}, payload || {});
-    }
+    payload = payload || {};
     if (this['baseUrl']) {
       payload['baseUrl'] = this['baseUrl'];
+    }
+    if (this['app'] && this['app'] instanceof BaseApplicatioin) {
+      payload = Merge({}, this['app']['config']['http'] || {}, payload);
     }
     this['app']['log']('request', payload);
     return new Promise(

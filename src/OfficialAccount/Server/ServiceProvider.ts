@@ -3,6 +3,7 @@
 import Guard from './Guard';
 import BaseServiceProvider from '../../Core/BaseServiceProvider';
 import BaseApplication from '../../Core/BaseApplication';
+import FinallResult from '../../Core/Decorators/FinallResult';
 
 export default class ServiceProvider extends BaseServiceProvider
 {
@@ -10,10 +11,10 @@ export default class ServiceProvider extends BaseServiceProvider
   {
     if (!app['server']) {
       app['server'] = new Guard(app);
-      app['server'].push(function (app) {
-        let str = app['request'].get('echostr');
+      app['server'].push(async function () {
+        let str = await app['request'].get('echostr');
         if (str) {
-          return str;
+          return new FinallResult(str);
         }
       });
     }

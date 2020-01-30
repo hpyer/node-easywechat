@@ -17,7 +17,7 @@ class JssdkClient extends Client_1.default {
             let cacheKey = `easywechat.basic_service.jssdk.ticket.${type}.${this.getAppId()}`;
             let cacher = this.app.getCache();
             if (!refresh && (yield cacher.has(cacheKey))) {
-                return yield cacher.fetch(cacheKey);
+                return yield cacher.get(cacheKey);
             }
             let res = yield this.request({
                 url: this.ticketEndpoint,
@@ -26,7 +26,7 @@ class JssdkClient extends Client_1.default {
                     type,
                 },
             });
-            yield cacher.save(cacheKey, res, res['expires_in'] - 500);
+            yield cacher.set(cacheKey, res, res['expires_in'] - 500);
             if (!cacher.has(cacheKey)) {
                 throw new Error('Failed to cache jssdk ticket.');
             }

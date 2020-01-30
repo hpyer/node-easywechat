@@ -4,9 +4,9 @@ import * as Path from 'path';
 import * as Fs from 'fs';
 import * as Merge from 'merge';
 import { getTimestamp } from '../Utils';
-import BaseCache from './BaseCache';
+import CacheInterface from '../Contracts/CacheInterface';
 
-export default class FileCache extends BaseCache
+export default class FileCache implements CacheInterface
 {
   private options: object = {};
   private defaultOptions: object = {
@@ -18,8 +18,6 @@ export default class FileCache extends BaseCache
 
   constructor(options: object = {})
   {
-    super();
-
     this.options = Merge({}, this.defaultOptions, options);
     this.options['path'] = Path.resolve(this.options['path']);
 
@@ -41,7 +39,7 @@ export default class FileCache extends BaseCache
     return this.options['path'] + 'node-easywechat.file_cache.' + id + this.options['ext'];
   }
 
-  fetch(id: string): any
+  get(id: string): any
   {
     let content = null;
     let file = this.getCacheFile(id);
@@ -64,7 +62,7 @@ export default class FileCache extends BaseCache
     return content;
   }
 
-  contains(id: string): boolean
+  has(id: string): boolean
   {
     let file = this.getCacheFile(id);
     try {
@@ -76,7 +74,7 @@ export default class FileCache extends BaseCache
     return true;
   }
 
-  save(id: string, data = null, lifeTime = 0): boolean
+  set(id: string, data = null, lifeTime = 0): boolean
   {
     let file = this.getCacheFile(id);
     try {

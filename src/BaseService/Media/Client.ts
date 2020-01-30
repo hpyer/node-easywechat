@@ -55,9 +55,9 @@ export default class Client extends BaseClient
     return response;
   }
 
-  async createVideoForBroadcasting(media_id: string, title: string, description: string): Promise<any>
+  createVideoForBroadcasting(media_id: string, title: string, description: string): Promise<any>
   {
-    return await this.httpPostJson('media/uploadvideo', {
+    return this.httpPostJson('media/uploadvideo', {
       media_id,
       title,
       description,
@@ -74,17 +74,11 @@ export default class Client extends BaseClient
       }
     });
 
-    if (res.getHeader['content-disposition'].indexOf('attachment') > -1) {
-      return StreamResponse.buildFromIncomingMessage(res);
+    if (res.getHeader('content-disposition').indexOf('attachment') > -1) {
+      return StreamResponse.buildFromResponse(res);
     }
 
-    let content = res.getContent().toString();
-    try {
-      content = JSON.parse(content);
-    }
-    catch (e) { }
-
-    return content;
+    return res.getContent().toString();
   }
 
   async getJssdkMedia(media_id: string): Promise<any>
@@ -97,17 +91,11 @@ export default class Client extends BaseClient
       }
     });
 
-    if (res.getHeader['content-disposition'].indexOf('attachment') > -1) {
-      return StreamResponse.buildFromIncomingMessage(res);
+    if (res.getHeader('content-disposition').indexOf('attachment') > -1) {
+      return StreamResponse.buildFromResponse(res);
     }
 
-    let content = res.getContent().toString();
-    try {
-      content = JSON.parse(content);
-    }
-    catch (e) { }
-
-    return content;
+    return res.getContent();
   }
 
 }

@@ -1,9 +1,8 @@
 'use strict';
 
-import * as Qs from 'qs';
 import BaseApplication from './BaseApplication';
 import HttpMixin from './Mixins/HttpMixin';
-import { createHash, applyMixins } from './Utils';
+import { createHash, applyMixins, buildQueryString } from './Utils';
 
 class BaseAccessToken implements HttpMixin
 {
@@ -36,7 +35,7 @@ class BaseAccessToken implements HttpMixin
 
   async requestToken(credentials: object): Promise<any>
   {
-    let url = this.getEndpoint() + '?' + Qs.stringify(credentials);
+    let url = this.getEndpoint() + '?' + buildQueryString(credentials);
     return await this.doRequest({
       url,
       method: 'GET',
@@ -52,7 +51,7 @@ class BaseAccessToken implements HttpMixin
     }
 
     if (!this.token) {
-      this.token = await this.app.getCache().fetch(this.getCacheKey());
+      this.token = await this.app.getCache().get(this.getCacheKey());
 
       if (!this.token) {
         let res = await this.requestToken(this.getCredentials());
@@ -65,7 +64,7 @@ class BaseAccessToken implements HttpMixin
   async setToken(access_token: string, expires_in: number = 7200): Promise<any>
   {
     this.token = access_token;
-    await this.app.getCache().save(this.getCacheKey(), access_token, expires_in);
+    await this.app.getCache().set(this.getCacheKey(), access_token, expires_in);
   };
 
   async refresh(): Promise<object>

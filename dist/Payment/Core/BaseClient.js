@@ -14,6 +14,8 @@ const Utils_1 = require("../../Core/Utils");
 const Merge = require("merge");
 const Xml2js = require("xml2js");
 const Fs = require("fs");
+const RawBody = require("raw-body");
+const Response_1 = require("../../Core/Http/Response");
 class BaseClient {
     constructor(app) {
         this.app = null;
@@ -34,7 +36,14 @@ class BaseClient {
         localParams['sign_type'] = localParams['sign_type'] || 'md5';
         let secretKey = this.app['getKey'](endpoint);
         localParams['sign'] = Utils_1.makeSignature(localParams, secretKey, localParams['sign_type']);
-        let XmlBuilder = new Xml2js.Builder;
+        let XmlBuilder = new Xml2js.Builder({
+            cdata: true,
+            renderOpts: {
+                pretty: false,
+                indent: '',
+                newline: '',
+            }
+        });
         let payload = Merge(options, {
             url: endpoint,
             method,
@@ -42,10 +51,12 @@ class BaseClient {
         });
         return this.doRequest(payload, returnResponse)
             .then((body) => __awaiter(this, void 0, void 0, function* () {
-            try {
-                body = yield this.parseXml(body);
+            if (!returnResponse) {
+                try {
+                    body = yield this.parseXml(body);
+                }
+                catch (e) { }
             }
-            catch (e) { }
             return body;
         }));
     }
@@ -66,8 +77,12 @@ class BaseClient {
         return this.request(endpoint, params, method, options);
     }
     requestRaw(endpoint, params = {}, method = 'post', options = {}) {
-        options['encoding'] = null;
-        return this.request(endpoint, params, method, options, true);
+        return __awaiter(this, void 0, void 0, function* () {
+            options['encoding'] = null;
+            let res = yield this.request(endpoint, params, method, options, true);
+            let body = yield RawBody(res);
+            return new Response_1.default(body, res.statusCode, res.headers);
+        });
     }
     wrap(endpoint) {
         return this.app['inSandbox']() ? `sandboxnew/${endpoint}` : endpoint;
@@ -76,6 +91,7 @@ class BaseClient {
         return __awaiter(this, void 0, void 0, function* () {
             if (!this.serverIp) {
                 let res = yield this.doRequest({
+                    baseUrl: '',
                     url: 'http://ip.taobao.com/service/getIpInfo.php?ip=myip',
                     method: 'GET',
                 });

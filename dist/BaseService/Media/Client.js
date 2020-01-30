@@ -56,12 +56,10 @@ class Client extends BaseClient_1.default {
         });
     }
     createVideoForBroadcasting(media_id, title, description) {
-        return __awaiter(this, void 0, void 0, function* () {
-            return yield this.httpPostJson('media/uploadvideo', {
-                media_id,
-                title,
-                description,
-            });
+        return this.httpPostJson('media/uploadvideo', {
+            media_id,
+            title,
+            description,
         });
     }
     get(media_id) {
@@ -73,15 +71,10 @@ class Client extends BaseClient_1.default {
                     media_id,
                 }
             });
-            if (res.getHeader['content-disposition'].indexOf('attachment') > -1) {
-                return StreamResponse_1.default.buildFromIncomingMessage(res);
+            if (res.getHeader('content-disposition').indexOf('attachment') > -1) {
+                return StreamResponse_1.default.buildFromResponse(res);
             }
-            let content = res.getContent().toString();
-            try {
-                content = JSON.parse(content);
-            }
-            catch (e) { }
-            return content;
+            return res.getContent().toString();
         });
     }
     getJssdkMedia(media_id) {
@@ -93,15 +86,10 @@ class Client extends BaseClient_1.default {
                     media_id,
                 }
             });
-            if (res.getHeader['content-disposition'].indexOf('attachment') > -1) {
-                return StreamResponse_1.default.buildFromIncomingMessage(res);
+            if (res.getHeader('content-disposition').indexOf('attachment') > -1) {
+                return StreamResponse_1.default.buildFromResponse(res);
             }
-            let content = res.getContent().toString();
-            try {
-                content = JSON.parse(content);
-            }
-            catch (e) { }
-            return content;
+            return res.getContent();
         });
     }
 }

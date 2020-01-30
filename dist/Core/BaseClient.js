@@ -13,6 +13,8 @@ const HttpMixin_1 = require("./Mixins/HttpMixin");
 const Utils_1 = require("./Utils");
 const Fs = require("fs");
 const Merge = require("merge");
+const RawBody = require("raw-body");
+const Response_1 = require("./Http/Response");
 class BaseClient {
     constructor(app, accessToken = null) {
         this.accessToken = null;
@@ -33,7 +35,7 @@ class BaseClient {
                 payload['qs'] = {};
             }
             if (this.accessToken) {
-                payload['qs'].accessToken = yield this.accessToken['getToken']();
+                payload['qs'].access_token = yield this.accessToken['getToken']();
             }
             if (!payload['method']) {
                 payload['method'] = 'POST';
@@ -86,9 +88,13 @@ class BaseClient {
         return this.request(payload);
     }
     requestRaw(payload) {
-        payload = payload || {};
-        payload['encoding'] = null;
-        return this.request(payload, true);
+        return __awaiter(this, void 0, void 0, function* () {
+            payload = payload || {};
+            payload['encoding'] = null;
+            let res = yield this.request(payload, true);
+            let body = yield RawBody(res);
+            return new Response_1.default(body, res.statusCode, res.headers);
+        });
     }
     // Rewrite by HttpMixin
     doRequest(payload, returnResponse = false) {

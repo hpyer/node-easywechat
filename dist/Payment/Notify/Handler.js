@@ -45,7 +45,14 @@ class Handler {
         if (this.sign) {
             attributes['sign'] = Utils_1.makeSignature(attributes, this.app['getKey']());
         }
-        let XmlBuilder = new Xml2js.Builder;
+        let XmlBuilder = new Xml2js.Builder({
+            cdata: true,
+            renderOpts: {
+                pretty: false,
+                indent: '',
+                newline: '',
+            }
+        });
         return new Response_1.default(XmlBuilder.buildObject(attributes));
     }
     getMessage() {
@@ -54,7 +61,8 @@ class Handler {
                 return this.message;
             let message = null;
             try {
-                message = yield Xml2js.parseStringPromise(this.app['request'].getContent());
+                let content = yield this.app['request'].getContent();
+                message = yield Xml2js.parseStringPromise(content.toString());
             }
             catch (e) {
                 throw new Error('Invalid request XML: ' + e.message);

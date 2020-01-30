@@ -40,17 +40,11 @@ export default class Client extends BaseClient
       body: params
     });
 
-    if (res.getHeader['content-disposition'].indexOf('attachment') > -1) {
-      return StreamResponse.buildFromIncomingMessage(res);
+    if (res.getHeader('content-disposition').indexOf('attachment') > -1) {
+      return StreamResponse.buildFromResponse(res);
     }
 
-    let content = res.getContent().toString();
-    try {
-      content = JSON.parse(content);
-    }
-    catch (e) {}
-
-    return content;
+    return res.getContent();
   }
 
 }

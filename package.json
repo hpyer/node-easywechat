@@ -20,10 +20,10 @@
     "@types/node": "^12.12.7"
   },
   "dependencies": {
-    "body": "^5.1.0",
     "merge": "^1.2.1",
     "node-rsa": "^1.0.7",
     "qs": "^6.5.0",
+    "raw-body": "^2.4.1",
     "request": "^2.81.0",
     "wechat-crypto": "^0.0.2",
     "xml2js": "^0.4.22"

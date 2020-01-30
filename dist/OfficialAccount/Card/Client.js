@@ -58,20 +58,21 @@ class Client extends BaseClient_1.default {
     }
     getQrCode(ticket) {
         return __awaiter(this, void 0, void 0, function* () {
-            let baseUri = 'https://mp.weixin.qq.com/cgi-bin/showqrcode';
+            let baseUrl = 'https://mp.weixin.qq.com/cgi-bin/showqrcode';
             let params = {
                 ticket,
             };
             let res = yield this.requestRaw({
-                url: baseUri,
+                baseUrl: '',
+                url: baseUrl,
                 method: 'GET',
                 qs: params,
             });
             return {
-                status: res.statusCode,
-                headers: res.headers,
-                body: res.body,
-                url: baseUri + '?' + Utils_1.buildQueryString(params),
+                status: res.getStatusCode(),
+                headers: res.getHeaders(),
+                body: res.getContent(),
+                url: baseUrl + '?' + Utils_1.buildQueryString(params),
             };
         });
     }

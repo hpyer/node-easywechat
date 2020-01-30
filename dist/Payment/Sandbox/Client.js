@@ -15,13 +15,13 @@ class Client extends BaseClient_1.default {
     getKey() {
         return __awaiter(this, void 0, void 0, function* () {
             let cacher = this.app.getCache();
-            let key = yield cacher.fetch(this.getCacheKey());
+            let key = yield cacher.get(this.getCacheKey());
             if (key)
                 return key;
             let res = yield this.request('sandboxnew/pay/getsignkey');
             if (res && 'SUCCESS' === res['return_code']) {
                 key = res['sandbox_signkey'];
-                yield cacher.save(this.getCacheKey(), key, 24 * 3600);
+                yield cacher.set(this.getCacheKey(), key, 24 * 3600);
                 return key;
             }
             throw new Error(res['retmsg'] || res['return_msg']);

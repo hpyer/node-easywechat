@@ -12,8 +12,10 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const Response_1 = require("./Http/Response");
 const Messages_1 = require("./Messages");
 const Utils_1 = require("./Utils");
-const xml2js_1 = require("xml2js");
+const Xml2js = require("xml2js");
 const wechat_crypto_1 = require("wechat-crypto");
+const FinallResult_1 = require("./Decorators/FinallResult");
+const TerminateResult_1 = require("./Decorators/TerminateResult");
 class ServerGuard {
     constructor(app) {
         this.app = null;
@@ -37,11 +39,17 @@ class ServerGuard {
                     for (let i = 0; i < handlers.length; i++) {
                         let handler = handlers[i];
                         let res = yield this._callHandler(handler, payload);
-                        if (res === false) {
+                        if (res instanceof TerminateResult_1.default) {
+                            return res.content;
+                        }
+                        else if (res === true) {
+                            break;
+                        }
+                        else if (res === false) {
                             isBreak = true;
                             break;
                         }
-                        else {
+                        else if (res && !(result instanceof FinallResult_1.default)) {
                             result = res;
                         }
                     }
@@ -50,105 +58,137 @@ class ServerGuard {
                     }
                 }
             }
-            return result;
+            return result instanceof FinallResult_1.default ? result.content : result;
         });
     }
     _callHandler(handler, payload) {
         return __awaiter(this, void 0, void 0, function* () {
             try {
                 if (typeof handler == 'function') {
-                    return yield handler.apply(this, [payload]);
+                    return yield handler(payload);
                 }
             }
             catch (e) {
-                if (this.app) {
-                    this.app['log']('Observer.notify: 函数执行错误', e);
-                }
+                this.app['log']('ServerGuard.notify: ', e);
             }
             return false;
         });
     }
     serve() {
         return __awaiter(this, void 0, void 0, function* () {
+            let content = yield this.app['request'].getContent();
             this.app['log']('Request received:', {
                 'method': this.app['request'].getMethod(),
                 'uri': this.app['request'].getUri(),
                 'content-type': this.app['request'].getContentType(),
-                'content': this.app['request'].getContent(),
+                'content': content.toString(),
             });
-            let res = yield this.validate().resolve();
+            yield this.validate();
+            let res = yield this.resolve();
             this.app['log']('Server response created:', {
-                content: res.getContent()
+                content: res.getContent().toString()
             });
             return res;
         });
     }
     validate() {
-        if (!this.alwaysValidate && !this.isSafeMode()) {
+        return __awaiter(this, void 0, void 0, function* () {
+            if (!this.alwaysValidate && !(yield this.isSafeMode())) {
+                return this;
+            }
+            let signature = yield this.app['request'].get('signature');
+            let timestamp = yield this.app['request'].get('timestamp');
+            let nonce = yield this.app['request'].get('nonce');
+            if (signature !== this.signature([this.getToken(), timestamp, nonce])) {
+                throw new Error('Invalid request signature.');
+            }
             return this;
-        }
-        if (this.app['request'].get('signature') !== this.signature([
-            this.getToken(),
-            this.app['request'].get('timestamp'),
-            this.app['request'].get('nonce'),
-        ])) {
-            throw new Error('Invalid request signature.');
-        }
-        return this;
+        });
     }
     resolve() {
         return __awaiter(this, void 0, void 0, function* () {
             let result = yield this.handleRequest();
             let res;
-            if (this.shouldReturnRawResponse()) {
-                res = new Response_1.default(result['response']);
+            if (yield this.shouldReturnRawResponse()) {
+                res = new Response_1.default(Buffer.from(result['response']));
             }
             else {
-                res = new Response_1.default(this.buildResponse(result['to'], result['from'], result['response']), 200, { 'Content-Type': 'application/xml' });
+                res = new Response_1.default(Buffer.from(yield this.buildResponse(result['to'], result['from'], result['response'])), 200, { 'Content-Type': 'application/xml' });
             }
             return res;
         });
     }
     shouldReturnRawResponse() {
-        return false;
+        return __awaiter(this, void 0, void 0, function* () {
+            return false;
+        });
     }
     buildResponse(to, from, message) {
-        if (!message || ServerGuard.SUCCESS_EMPTY_RESPONSE === message) {
-            return ServerGuard.SUCCESS_EMPTY_RESPONSE;
-        }
-        if (message instanceof Messages_1.Raw) {
-            return message.get('content', ServerGuard.SUCCESS_EMPTY_RESPONSE);
-        }
-        if (Utils_1.isString(message) || Utils_1.isNumber(message)) {
-            message = new Messages_1.Text(message + '');
-        }
-        if (Utils_1.isArray(message) && message[0] instanceof Messages_1.NewsItem) {
-            message = new Messages_1.News(message);
-        }
-        if (!(message instanceof Messages_1.Message)) {
-            throw new Error(`Invalid Messages type "%s".`);
-        }
-        return this.buildReply(to, from, message);
+        return __awaiter(this, void 0, void 0, function* () {
+            if (!message || ServerGuard.SUCCESS_EMPTY_RESPONSE === message) {
+                return ServerGuard.SUCCESS_EMPTY_RESPONSE;
+            }
+            if (message instanceof Messages_1.Raw) {
+                return message.get('content', ServerGuard.SUCCESS_EMPTY_RESPONSE);
+            }
+            if (Utils_1.isString(message) || Utils_1.isNumber(message)) {
+                message = new Messages_1.Text(message + '');
+            }
+            if (Utils_1.isArray(message) && message[0] instanceof Messages_1.NewsItem) {
+                message = new Messages_1.News(message);
+            }
+            if (message instanceof Messages_1.NewsItem) {
+                message = new Messages_1.News([message]);
+            }
+            if (!(message instanceof Messages_1.Message)) {
+                throw new Error(`Invalid Messages type "%s".`);
+            }
+            return yield this.buildReply(to, from, message);
+        });
     }
     buildReply(to, from, message) {
-        let prepends = {
-            ToUserName: to,
-            FromUserName: from,
-            CreateTime: Utils_1.getTimestamp(),
-            MsgType: message.getType(),
-        };
-        let res = message.transformToXml(prepends);
-        if (this.isSafeMode()) {
-            this.app['log'].debug('Messages safe mode is enabled.');
-            res = this.app['encryptor'].encrypt(res);
-        }
-        return res;
+        return __awaiter(this, void 0, void 0, function* () {
+            let prepends = {
+                ToUserName: to,
+                FromUserName: from,
+                CreateTime: Utils_1.getTimestamp(),
+                MsgType: message.getType(),
+            };
+            let res = message.transformToXml(prepends);
+            if (yield this.isSafeMode()) {
+                this.app['log']('Messages safe mode is enabled.');
+                let crypto = new wechat_crypto_1.default(this.app['config'].token, this.app['config'].aesKey, this.app['config'].appKey);
+                res = crypto.encrypt(res);
+                let timestamp = Utils_1.getTimestamp();
+                let nonce = Utils_1.randomString();
+                let sign = crypto.getSignature(timestamp, nonce, res);
+                let XmlBuilder = new Xml2js.Builder({
+                    cdata: true,
+                    renderOpts: {
+                        pretty: false,
+                        indent: '',
+                        newline: '',
+                    }
+                });
+                return XmlBuilder.buildObject({
+                    encrypt: res,
+                    sign,
+                    timestamp,
+                    nonce
+                });
+            }
+            return res;
+        });
     }
     getToken() {
         return this.app['config']['token'];
     }
     isSafeMode() {
-        return this.app['request'].get('signature') && 'aes' === this.app['request'].get('encrypt_type');
+        return __awaiter(this, void 0, void 0, function* () {
+            let signature = yield this.app['request'].get('signature');
+            let encrypt_type = yield this.app['request'].get('encrypt_type');
+            return signature && 'aes' === encrypt_type;
+        });
     }
     signature(params) {
         params.sort();
@@ -167,11 +207,13 @@ class ServerGuard {
     }
     getMessage() {
         return __awaiter(this, void 0, void 0, function* () {
-            let message = this.parseMessage(this.app['request'].getContent());
-            if (!message) {
-                throw new Error('No message received.');
-            }
-            if (this.isSafeMode() && message['Encrypt']) {
+            let content = yield this.app['request'].getContent();
+            let message = yield this.parseMessage(content.toString());
+            // console.log('message', message, typeof message);
+            // if (!message) {
+            //   throw new Error('No message received.');
+            // }
+            if ((yield this.isSafeMode()) && message['Encrypt']) {
                 let crypto = new wechat_crypto_1.default(this.app['config'].token, this.app['config'].aesKey, this.app['config'].appKey);
                 let decrypted = crypto.decrypt(message['Encrypt']);
                 message = yield this.parseMessage(decrypted.message);
@@ -201,7 +243,7 @@ class ServerGuard {
     }
     parseXmlMessage(xml) {
         return new Promise((resolve, reject) => {
-            xml2js_1.parseString(xml, (err, result) => __awaiter(this, void 0, void 0, function* () {
+            Xml2js.parseString(xml, (err, result) => {
                 if (err) {
                     reject(err);
                 }
@@ -215,7 +257,7 @@ class ServerGuard {
                     }
                     resolve(message);
                 }
-            }));
+            });
         })
             .catch((err) => {
             this.app['log']('server.parseMessage()', err);

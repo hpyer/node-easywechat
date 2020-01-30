@@ -2,13 +2,13 @@
 
 import BaseApplication from '../BaseApplication';
 import BaseServiceProvider from '../BaseServiceProvider';
-import BaseRequest from '../Http/BaseRequest';
+import Request from '../Http/Request';
 
 export default class RequestServiceProvider extends BaseServiceProvider
 {
   static register(app: BaseApplication): void
   {
-    app['request'] = new BaseRequest;
+    app['request'] = new Request;
   }
 
 };

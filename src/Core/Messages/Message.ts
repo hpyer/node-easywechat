@@ -1,7 +1,7 @@
 'use strict';
 
-import Merge from 'merge';
-import { XmlBuilder } from 'xml2js';
+import * as Merge from 'merge';
+import * as Xml2js from 'xml2js';
 import HasAttributesMixin from '../Mixins/HasAttributesMixin';
 
 export class Message extends HasAttributesMixin
@@ -56,7 +56,15 @@ export class Message extends HasAttributesMixin
     if (returnAsObject) {
       return data;
     }
-    return (new XmlBuilder).buildObject(data);
+    let XmlBuilder = new Xml2js.Builder({
+      cdata: true,
+      renderOpts: {
+        pretty: false,
+        indent: '',
+        newline: '',
+      }
+    });
+    return XmlBuilder.buildObject(data);
   }
 
   toXmlArray(): void

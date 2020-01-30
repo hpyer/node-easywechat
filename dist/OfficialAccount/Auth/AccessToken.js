@@ -4,7 +4,7 @@ const BaseAccessToken_1 = require("../../Core/BaseAccessToken");
 class AccessToken extends BaseAccessToken_1.default {
     constructor() {
         super(...arguments);
-        this.endpoint = 'https://api.weixin.qq.com/cgi-bin/token';
+        this.endpoint = 'cgi-bin/token';
     }
     getCredentials() {
         return {

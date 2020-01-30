@@ -25,12 +25,12 @@ export const getTimestamp = function (datetime: string = null): number
   return parseInt((time / 1000).toString());
 };
 
-export const buildQueryString = function (data: object, options: object = {}): number
+export const buildQueryString = function (data: object, options: object = {}): string
 {
   return Qs.stringify(data, options);
 };
 
-export const parseQueryString = function (data: string, options: object = {}): number
+export const parseQueryString = function (data: string, options: object = {}): object
 {
   return Qs.parse(data, options);
 };

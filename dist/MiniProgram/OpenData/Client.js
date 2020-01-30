@@ -5,7 +5,7 @@ const Utils_1 = require("../../Core/Utils");
 class Client extends BaseClient_1.default {
     constructor() {
         super(...arguments);
-        this.baseUri = 'https://api.weixin.qq.com/wxa/';
+        this.baseUrl = 'https://api.weixin.qq.com/wxa/';
     }
     removeUserStorage(openid, sessionKey, key) {
         let data = {

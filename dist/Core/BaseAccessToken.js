@@ -9,7 +9,6 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-const Qs = require("qs");
 const HttpMixin_1 = require("./Mixins/HttpMixin");
 const Utils_1 = require("./Utils");
 class BaseAccessToken {
@@ -33,7 +32,7 @@ class BaseAccessToken {
     }
     requestToken(credentials) {
         return __awaiter(this, void 0, void 0, function* () {
-            let url = this.getEndpoint() + '?' + Qs.stringify(credentials);
+            let url = this.getEndpoint() + '?' + Utils_1.buildQueryString(credentials);
             return yield this.doRequest({
                 url,
                 method: 'GET',
@@ -49,7 +48,7 @@ class BaseAccessToken {
                 return this.token;
             }
             if (!this.token) {
-                this.token = yield this.app.getCache().fetch(this.getCacheKey());
+                this.token = yield this.app.getCache().get(this.getCacheKey());
                 if (!this.token) {
                     let res = yield this.requestToken(this.getCredentials());
                     yield this.setToken(res.access_token, res.expires_in);
@@ -61,7 +60,7 @@ class BaseAccessToken {
     setToken(access_token, expires_in = 7200) {
         return __awaiter(this, void 0, void 0, function* () {
             this.token = access_token;
-            yield this.app.getCache().save(this.getCacheKey(), access_token, expires_in);
+            yield this.app.getCache().set(this.getCacheKey(), access_token, expires_in);
         });
     }
     ;

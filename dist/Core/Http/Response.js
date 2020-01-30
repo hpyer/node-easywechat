@@ -2,7 +2,7 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 class Response {
     constructor(content, statusCode = 200, headers = {}) {
-        this.content = '';
+        this.content = null;
         this.statusCode = 200;
         this.headers = {};
         this.content = content;
@@ -32,9 +32,6 @@ class Response {
     }
     getHeader(key) {
         return this.headers[key] || '';
-    }
-    static buildFromIncomingMessage(message) {
-        return new Response(message['body'], message['statusCode'], message['headers']);
     }
 }
 exports.default = Response;

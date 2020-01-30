@@ -3,7 +3,6 @@
 import Response from './Response';
 import * as Fs from 'fs';
 import { createHash } from '../Utils';
-import { IncomingMessage } from 'http';
 
 export default class StreamResponse extends Response
 {
@@ -40,9 +39,9 @@ export default class StreamResponse extends Response
     return this.save(directory, filename);
   }
 
-  static buildFromIncomingMessage(message: IncomingMessage)
+  static buildFromResponse(res: Response)
   {
-    return new StreamResponse(message['body'], message['statusCode'], message['headers']);
+    return new StreamResponse(res.getContent(), res.getStatusCode(), res.getHeaders());
   }
 
 };

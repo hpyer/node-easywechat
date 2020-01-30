@@ -70,20 +70,21 @@ export default class Client extends BaseClient
 
   async getQrCode(ticket: string): Promise<object>
   {
-    let baseUri = 'https://mp.weixin.qq.com/cgi-bin/showqrcode';
+    let baseUrl = 'https://mp.weixin.qq.com/cgi-bin/showqrcode';
     let params = {
       ticket,
     }
     let res = await this.requestRaw({
-      url: baseUri,
+      baseUrl: '',
+      url: baseUrl,
       method: 'GET',
       qs: params,
     });
     return {
-      status: res.statusCode,
-      headers: res.headers,
-      body: res.body,
-      url: baseUri + '?' + buildQueryString(params),
+      status: res.getStatusCode(),
+      headers: res.getHeaders(),
+      body: res.getContent(),
+      url: baseUrl + '?' + buildQueryString(params),
     };
   }
 

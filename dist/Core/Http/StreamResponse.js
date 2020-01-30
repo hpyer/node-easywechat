@@ -28,8 +28,8 @@ class StreamResponse extends Response_1.default {
     saveAs(directory, filename = '') {
         return this.save(directory, filename);
     }
-    static buildFromIncomingMessage(message) {
-        return new StreamResponse(message['body'], message['statusCode'], message['headers']);
+    static buildFromResponse(res) {
+        return new StreamResponse(res.getContent(), res.getStatusCode(), res.getHeaders());
     }
 }
 exports.default = StreamResponse;

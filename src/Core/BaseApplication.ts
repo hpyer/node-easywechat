@@ -23,7 +23,7 @@ export default class BaseApplicatioin
     let base = {
       // https://www.npmjs.com/package/request#requestoptions-callback
       http: {
-        timeout: 30,
+        timeout: 30000,
         baseUrl: 'https://api.weixin.qq.com/',
       },
     };

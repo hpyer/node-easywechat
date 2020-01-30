@@ -4,8 +4,8 @@ import ServerGuard from '../../Core/ServerGuard';
 
 export default class Guard extends ServerGuard
 {
-  shouldReturnRawResponse(): boolean
+  async shouldReturnRawResponse(): Promise<boolean>
   {
-    return !!this.app['request'].get('echostr');
+    return !!(await this.app['request'].get('echostr'));
   }
 };

@@ -47,7 +47,9 @@ export class News extends Message
 
     return {
       ArticleCount: newItems.length,
-      Articles: newItems,
+      Articles: {
+        item: newItems
+      },
     };
   }
 

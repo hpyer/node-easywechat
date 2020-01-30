@@ -16,14 +16,14 @@ class Client extends BaseClient_1.default {
     constructor() {
         super(...arguments);
         this.url = '';
-        this.ticketEndpoint = 'https://api.weixin.qq.com/cgi-bin/ticket/getticket';
+        this.ticketEndpoint = 'cgi-bin/ticket/getticket';
     }
     getTicket(refresh = false, type = 'jsapi') {
         return __awaiter(this, void 0, void 0, function* () {
             let cacheKey = `easywechat.basic_service.jssdk.ticket.${type}.${this.getAppId()}`;
             let cacher = this.app.getCache();
             if (!refresh && (yield cacher.has(cacheKey))) {
-                return yield cacher.fetch(cacheKey);
+                return yield cacher.get(cacheKey);
             }
             let res = yield this.request({
                 url: this.ticketEndpoint,
@@ -32,7 +32,7 @@ class Client extends BaseClient_1.default {
                     type,
                 },
             });
-            yield cacher.save(cacheKey, res, res['expires_in'] - 500);
+            yield cacher.set(cacheKey, res, res['expires_in'] - 500);
             if (!cacher.has(cacheKey)) {
                 throw new Error('Failed to cache jssdk ticket.');
             }

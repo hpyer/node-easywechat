@@ -3,9 +3,11 @@
 import BaseAccessToken from './BaseAccessToken';
 import BaseApplication from './BaseApplication';
 import HttpMixin from './Mixins/HttpMixin';
-import { applyMixins, isIp, isString } from './Utils';
+import { applyMixins, isString } from './Utils';
 import * as Fs from 'fs';
 import * as Merge from 'merge';
+import * as RawBody from 'raw-body';
+import Response from './Http/Response';
 
 class BaseClient implements HttpMixin
 {
@@ -36,7 +38,7 @@ class BaseClient implements HttpMixin
       payload['qs'] = {};
     }
     if (this.accessToken) {
-      payload['qs'].accessToken = await this.accessToken['getToken']();
+      payload['qs'].access_token = await this.accessToken['getToken']();
     }
     if (!payload['method']) {
       payload['method'] = 'POST';
@@ -99,11 +101,13 @@ class BaseClient implements HttpMixin
     return this.request(payload);
   }
 
-  requestRaw(payload: object): Promise<any>
+  async requestRaw(payload: object): Promise<Response>
   {
     payload = payload || {};
     payload['encoding'] = null;
-    return this.request(payload, true);
+    let res = await this.request(payload, true);
+    let body = await RawBody(res);
+    return new Response(body, res.statusCode, res.headers);
   }
 
 

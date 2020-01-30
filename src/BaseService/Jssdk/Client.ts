@@ -7,7 +7,7 @@ import { randomString, getTimestamp, createHash } from '../../Core/Utils';
 export default class Client extends BaseClient
 {
   protected url: string = '';
-  protected ticketEndpoint: string = 'https://api.weixin.qq.com/cgi-bin/ticket/getticket';
+  protected ticketEndpoint: string = 'cgi-bin/ticket/getticket';
 
   async getTicket(refresh: boolean = false, type: string = 'jsapi'): Promise<string>
   {
@@ -16,7 +16,7 @@ export default class Client extends BaseClient
     let cacher = this.app.getCache();
 
     if (!refresh && await cacher.has(cacheKey)) {
-      return await cacher.fetch(cacheKey);
+      return await cacher.get(cacheKey);
     }
 
     let res = await this.request({
@@ -26,7 +26,7 @@ export default class Client extends BaseClient
         type,
       },
     });
-    await cacher.save(cacheKey, res, res['expires_in'] - 500);
+    await cacher.set(cacheKey, res, res['expires_in'] - 500);
 
     if (!cacher.has(cacheKey)) {
       throw new Error('Failed to cache jssdk ticket.');

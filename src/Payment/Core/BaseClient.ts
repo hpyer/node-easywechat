@@ -6,6 +6,8 @@ import { applyMixins, randomString, makeSignature, singleItem } from '../../Core
 import * as Merge from 'merge';
 import * as Xml2js from 'xml2js';
 import * as Fs from 'fs';
+import * as RawBody from 'raw-body';
+import Response from '../../Core/Http/Response';
 
 class BaseClient implements HttpMixin
 {
@@ -38,7 +40,14 @@ class BaseClient implements HttpMixin
     let secretKey = this.app['getKey'](endpoint);
     localParams['sign'] = makeSignature(localParams, secretKey, localParams['sign_type']);
 
-    let XmlBuilder = new Xml2js.Builder;
+    let XmlBuilder = new Xml2js.Builder({
+      cdata: true,
+      renderOpts: {
+        pretty: false,
+        indent: '',
+        newline: '',
+      }
+    });
     let payload = Merge(options, {
       url: endpoint,
       method,
@@ -47,10 +56,12 @@ class BaseClient implements HttpMixin
 
     return this.doRequest(payload, returnResponse)
       .then(async body => {
-        try {
-          body = await this.parseXml(body);
+        if (!returnResponse) {
+          try {
+            body = await this.parseXml(body);
+          }
+          catch (e) { }
         }
-        catch (e) { }
         return body;
       });
   }
@@ -73,10 +84,12 @@ class BaseClient implements HttpMixin
     return this.request(endpoint, params, method, options);
   }
 
-  protected requestRaw(endpoint: string, params: object = {}, method: string = 'post', options: object = {}): Promise<any>
+  protected async requestRaw(endpoint: string, params: object = {}, method: string = 'post', options: object = {}): Promise<any>
   {
     options['encoding'] = null;
-    return this.request(endpoint, params, method, options, true);
+    let res = await this.request(endpoint, params, method, options, true);
+    let body = await RawBody(res);
+    return new Response(body, res.statusCode, res.headers);
   }
 
   protected wrap(endpoint: string): string
@@ -88,6 +101,7 @@ class BaseClient implements HttpMixin
   {
     if (!this.serverIp) {
       let res = await this.doRequest({
+        baseUrl: '',
         url: 'http://ip.taobao.com/service/getIpInfo.php?ip=myip',
         method: 'GET',
       });

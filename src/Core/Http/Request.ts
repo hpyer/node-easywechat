@@ -1,118 +1,147 @@
 'use strict';
 
-import TextBody from 'body';
-import AnyBody from 'body/any';
 import * as Url from 'url';
-import { IncomingMessage as HttpRequest } from 'http';
-import BaseRequest from './BaseRequest';
-import { isIp } from '../Utils';
+import { IncomingMessage } from 'http';
+import RequestInterface from '../Contracts/RequestInterface';
+import { isIp, parseQueryString } from '../Utils';
+import * as RawBody from 'raw-body';
 
-export default class Request implements BaseRequest
+export default class Request implements RequestInterface
 {
+  protected _req: IncomingMessage = null;
   protected _uri: string = '';
   protected _method: string = '';
   protected _headers: object = {};
   protected _get: object = {};
   protected _post: object = {};
-  protected _content: string = '';
+  protected _content: Buffer = null;
   protected _contentType: string = '';
   protected _ip: string = '';
 
-  constructor(req: HttpRequest)
+  constructor(req: IncomingMessage = null)
   {
-    this._uri = req.url;
-    this._method = req.method;
-    this._headers = req.headers || {};
-    this._contentType = req.headers['content-type'] || '';
+    if (req) {
 
-    this._get = Url.parse(req.url, true).query;
+      this._req = req;
 
-    TextBody(req, (err, body) => {
-      if (err) {
-        throw new Error(err);
+      this._uri = req.url;
+      this._method = req.method.toUpperCase();
+      this._headers = req.headers || {};
+      this._contentType = this._headers['content-type'] || '';
+
+      this._get = Url.parse(req.url, true).query;
+
+      // 提取请求ip
+      if (isIp(this._headers['x-client-ip'])) {
+        this._ip = this._headers['x-client-ip'];
       }
-      this._content = body;
-    });
+      else if (this._headers['x-forwarded-for']) {
+        let ip = '';
 
-    AnyBody(req, (err, body) => {
-      if (err) {
-        throw new Error(err);
-      }
-      this._post = body;
-    });
+        let items = this._headers['x-forwarded-for'].split(',');
+        for (let i = 0; i < items.length; i++) {
+          if (!items[i]) continue;
 
-
-    // 提取请求ip
-    if (isIp(this._headers['x-client-ip'])) {
-      this._ip = this._headers['x-client-ip'];
-    }
-    else if (this._headers['x-forwarded-for']) {
-      let ip = '';
-
-      let items = this._headers['x-forwarded-for'].split(',');
-      for (let i = 0; i < items.length; i++) {
-        if (!items[i]) continue;
-
-        ip = items[i].trim();
-        if (items[i].indexOf(':') > -1) {
-          let tmp = items[i].split(':');
-          if (tmp.length == 2) {
-            ip = tmp[0];
+          ip = items[i].trim();
+          if (items[i].indexOf(':') > -1) {
+            let tmp = items[i].split(':');
+            if (tmp.length == 2) {
+              ip = tmp[0];
+            }
+          }
+          if (isIp(ip)) {
+            break;
           }
         }
-        if (isIp(ip)) {
-          break;
-        }
+        this._ip = ip;
       }
-      this._ip = ip;
-    }
-    else if (isIp(this._headers['x-real-ip'])) {
-      this._ip = this._headers['x-real-ip'];
-    }
-    else if (isIp(this._headers['x-forwarded'])) {
-      this._ip = this._headers['x-forwarded'];
-    }
-    else if (isIp(this._headers['forwarded-for'])) {
-      this._ip = this._headers['forwarded-for'];
-    }
-    else if (isIp(this._headers['client-ip'])) {
-      this._ip = this._headers['client-ip'];
+      else if (isIp(this._headers['x-real-ip'])) {
+        this._ip = this._headers['x-real-ip'];
+      }
+      else if (isIp(this._headers['x-forwarded'])) {
+        this._ip = this._headers['x-forwarded'];
+      }
+      else if (isIp(this._headers['forwarded-for'])) {
+        this._ip = this._headers['forwarded-for'];
+      }
+      else if (isIp(this._headers['client-ip'])) {
+        this._ip = this._headers['client-ip'];
+      }
     }
 
+  }
+
+  isValid(): Boolean
+  {
+    return !!this._req;
   }
 
   getMethod(): string
   {
+    if (!this.isValid) throw new Error('Please set request first. app.rebind(\'request\', new EasyWechat.Request(ctx.req));');
     return this._method;
   }
 
-  get(key: string): any
+  get(key: string): Promise<any>
   {
-    return this._get[key] || this._post[key] || null;
+    if (!this.isValid) throw new Error('Please set request first. app.rebind(\'request\', new EasyWechat.Request(ctx.req));');
+    if (this._get[key]) return this._get[key];
+    return this.post(key);
   }
 
-  getContent(): string
+  async post(key: string): Promise<any>
   {
-    return this._content || '';
+    if (!this.isValid) throw new Error('Please set request first. app.rebind(\'request\', new EasyWechat.Request(ctx.req));');
+    if (this._method !== 'POST') return null;
+    if (!this._content) {
+      await this.getContent();
+
+      let contentType = (this._headers['content-type'] || '').toLowerCase();
+      if (contentType.indexOf('application/json') > -1) {
+        try {
+          this._post = JSON.parse(this._content.toString());
+        }
+        catch (e) { }
+      }
+      else if (contentType.indexOf('application/x-www-form-urlencoded') > -1) {
+        this._post = parseQueryString(this._content.toString());
+      }
+
+    }
+    return this._post && this._post[key] ? this._post[key] : null;
+  }
+
+  async getContent(): Promise<Buffer>
+  {
+    if (!this.isValid) throw new Error('Please set request first. app.rebind(\'request\', new EasyWechat.Request(ctx.req));');
+    if (this._method !== 'POST') return null;
+    if (!this._content) {
+      this._content = await RawBody(this._req);
+    }
+    return this._content;
   }
 
   getUri(): string
   {
+    if (!this.isValid) throw new Error('Please set request first. app.rebind(\'request\', new EasyWechat.Request(ctx.req));');
     return this._uri || '';
   }
 
   getContentType(): string
   {
+    if (!this.isValid) throw new Error('Please set request first. app.rebind(\'request\', new EasyWechat.Request(ctx.req));');
     return this._contentType || '';
   }
 
   getHeaders(): object
   {
+    if (!this.isValid) throw new Error('Please set request first. app.rebind(\'request\', new EasyWechat.Request(ctx.req));');
     return this._headers || {};
   }
 
-  async getClientIp()
+  getClientIp(): string
   {
+    if (!this.isValid) throw new Error('Please set request first. app.rebind(\'request\', new EasyWechat.Request(ctx.req));');
     return this._ip;
   }
 
