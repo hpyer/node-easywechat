@@ -106,7 +106,7 @@ export default class ServerGuard
       'method': this.app['request'].getMethod(),
       'uri': this.app['request'].getUri(),
       'content-type': this.app['request'].getContentType(),
-      'content': content.toString(),
+      'content': content ? content.toString() : '',
     });
 
     await this.validate();
@@ -260,7 +260,7 @@ export default class ServerGuard
   async getMessage(): Promise<object>
   {
     let content = await this.app['request'].getContent();
-    let message = await this.parseMessage(content.toString());
+    let message = await this.parseMessage(content ? content.toString() : '');
 
     // console.log('message', message, typeof message);
 
@@ -280,7 +280,10 @@ export default class ServerGuard
   async parseMessage(content): Promise<any>
   {
     try {
-      if (0 === content.indexOf('<')) {
+      if (!content) {
+        return {};
+      }
+      else if (0 === content.indexOf('<')) {
         content = await this.parseXmlMessage(content);
       } else {
         // Handle JSON format.

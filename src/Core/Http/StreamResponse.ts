@@ -19,7 +19,8 @@ export default class StreamResponse extends Response
       throw new Error(`'${directory}' is not writable.`);
     }
 
-    let content = this.getContent().toString();
+    let buffer = this.getContent();
+    let content = buffer.toString();
 
     if (!content || '{' === content[0]) {
       throw new Error('Invalid media response content.');
@@ -29,7 +30,7 @@ export default class StreamResponse extends Response
       filename = createHash(content, 'md5');
     }
 
-    Fs.writeFileSync(`${directory}/${filename}`, this.getContent());
+    Fs.writeFileSync(`${directory}/${filename}`, buffer);
 
     return filename;
   }

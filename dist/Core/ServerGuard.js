@@ -81,7 +81,7 @@ class ServerGuard {
                 'method': this.app['request'].getMethod(),
                 'uri': this.app['request'].getUri(),
                 'content-type': this.app['request'].getContentType(),
-                'content': content.toString(),
+                'content': content ? content.toString() : '',
             });
             yield this.validate();
             let res = yield this.resolve();
@@ -208,7 +208,7 @@ class ServerGuard {
     getMessage() {
         return __awaiter(this, void 0, void 0, function* () {
             let content = yield this.app['request'].getContent();
-            let message = yield this.parseMessage(content.toString());
+            let message = yield this.parseMessage(content ? content.toString() : '');
             // console.log('message', message, typeof message);
             // if (!message) {
             //   throw new Error('No message received.');
@@ -224,7 +224,10 @@ class ServerGuard {
     parseMessage(content) {
         return __awaiter(this, void 0, void 0, function* () {
             try {
-                if (0 === content.indexOf('<')) {
+                if (!content) {
+                    return {};
+                }
+                else if (0 === content.indexOf('<')) {
                     content = yield this.parseXmlMessage(content);
                 }
                 else {

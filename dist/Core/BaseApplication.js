@@ -64,7 +64,7 @@ class BaseApplicatioin {
         return this.cache = this.createDefaultCache();
     }
     createDefaultCache() {
-        return new FileCache_1.default;
+        return new FileCache_1.default(this['config']['file_cache'] || {});
     }
 }
 exports.default = BaseApplicatioin;

@@ -17,8 +17,8 @@ EasyWechat['Factory'] = {
 
 EasyWechat['CacheInterface'] = require('./Core/Contracts/CacheInterface')['default'];
 EasyWechat['Decorator'] = {
-  FinallResult: require('./Core/Http/FinallResult')['default'],
-  TerminateResult: require('./Core/Http/TerminateResult')['default'],
+  FinallResult: require('./Core/Decorators/FinallResult')['default'],
+  TerminateResult: require('./Core/Decorators/TerminateResult')['default'],
 };
 EasyWechat['Http'] = {
   Request: require('./Core/Http/Request')['default'],

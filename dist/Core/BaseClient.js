@@ -13,7 +13,6 @@ const HttpMixin_1 = require("./Mixins/HttpMixin");
 const Utils_1 = require("./Utils");
 const Fs = require("fs");
 const Merge = require("merge");
-const RawBody = require("raw-body");
 const Response_1 = require("./Http/Response");
 class BaseClient {
     constructor(app, accessToken = null) {
@@ -92,8 +91,7 @@ class BaseClient {
             payload = payload || {};
             payload['encoding'] = null;
             let res = yield this.request(payload, true);
-            let body = yield RawBody(res);
-            return new Response_1.default(body, res.statusCode, res.headers);
+            return new Response_1.default(res.body, res.statusCode, res.headers);
         });
     }
     // Rewrite by HttpMixin

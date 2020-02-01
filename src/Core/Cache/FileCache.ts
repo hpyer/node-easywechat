@@ -19,7 +19,7 @@ export default class FileCache implements CacheInterface
   constructor(options: object = {})
   {
     this.options = Merge({}, this.defaultOptions, options);
-    this.options['path'] = Path.resolve(this.options['path']);
+    this.options['path'] = Path.resolve(this.options['path']) + '/';
 
     try {
       Fs.accessSync(this.options['path'], Fs.constants.R_OK & Fs.constants.W_OK);
@@ -29,7 +29,7 @@ export default class FileCache implements CacheInterface
         Fs.mkdirSync(this.options['path'], this.options['dirMode']);
       }
       catch (e) {
-        throw new Error('无法创建缓存目录：' + this.options['path']);
+        throw new Error(`The path '${this.options['path']}' can not be write.`);
       }
     }
   }
@@ -39,22 +39,24 @@ export default class FileCache implements CacheInterface
     return this.options['path'] + 'node-easywechat.file_cache.' + id + this.options['ext'];
   }
 
-  get(id: string): any
+  getCacheContent(file: string): string
+  {
+    let dataItem = JSON.parse(Fs.readFileSync(file, {
+      encoding: 'utf-8',
+      flag: 'r'
+    }));
+    if (dataItem.lifeTime > 0 && dataItem.lifeTime < getTimestamp()) {
+      throw new Error('Cache expired.');
+    }
+    return dataItem.data;
+  }
+
+  async get(id: string): Promise<any>
   {
     let content = null;
-    let file = this.getCacheFile(id);
     try {
-      let dataItem = JSON.parse(Fs.readFileSync(file, {
-        encoding: 'utf-8',
-        flag: 'r'
-      }));
-
-      if (dataItem.lifeTime > 0 && dataItem.lifeTime < getTimestamp()) {
-        content = null;
-      }
-      else {
-        content = dataItem.data;
-      }
+      let file = this.getCacheFile(id);
+      content = this.getCacheContent(file);
     }
     catch (e) {
       content = null;
@@ -62,11 +64,13 @@ export default class FileCache implements CacheInterface
     return content;
   }
 
-  has(id: string): boolean
+  async has(id: string): Promise<boolean>
   {
-    let file = this.getCacheFile(id);
     try {
+      let file = this.getCacheFile(id);
       Fs.accessSync(file, Fs.constants.R_OK & Fs.constants.W_OK);
+
+      let content = this.getCacheContent(file);
     }
     catch (e) {
       return false;
@@ -74,7 +78,7 @@ export default class FileCache implements CacheInterface
     return true;
   }
 
-  set(id: string, data = null, lifeTime = 0): boolean
+  async set(id: string, data = null, lifeTime = 0): Promise<boolean>
   {
     let file = this.getCacheFile(id);
     try {
@@ -94,7 +98,7 @@ export default class FileCache implements CacheInterface
     return true;
   }
 
-  delete(id: string): boolean
+  async delete(id: string): Promise<boolean>
   {
     let file = this.getCacheFile(id);
     try {

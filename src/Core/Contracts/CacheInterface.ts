@@ -2,22 +2,22 @@
 
 export default class CacheInterface
 {
-  get(id: string): any
+  async get(id: string): Promise<any>
   {
     return null;
   }
 
-  has(id: string): boolean
+  async has(id: string): Promise<boolean>
   {
     return false;
   }
 
-  set(id: string, data: any = null, lifeTime: number = 0): boolean
+  async set(id: string, data: any = null, lifeTime: number = 0): Promise<boolean>
   {
     return false;
   }
 
-  delete(id: string): boolean
+  async delete(id: string): Promise<boolean>
   {
     return false;
   }

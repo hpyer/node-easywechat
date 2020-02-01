@@ -6,7 +6,6 @@ import HttpMixin from './Mixins/HttpMixin';
 import { applyMixins, isString } from './Utils';
 import * as Fs from 'fs';
 import * as Merge from 'merge';
-import * as RawBody from 'raw-body';
 import Response from './Http/Response';
 
 class BaseClient implements HttpMixin
@@ -106,8 +105,7 @@ class BaseClient implements HttpMixin
     payload = payload || {};
     payload['encoding'] = null;
     let res = await this.request(payload, true);
-    let body = await RawBody(res);
-    return new Response(body, res.statusCode, res.headers);
+    return new Response(res.body, res.statusCode, res.headers);
   }
 
 

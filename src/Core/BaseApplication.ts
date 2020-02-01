@@ -90,7 +90,7 @@ export default class BaseApplicatioin
 
   createDefaultCache(): FileCache
   {
-    return new FileCache;
+    return new FileCache(this['config']['file_cache'] || {});
   }
 
 };
