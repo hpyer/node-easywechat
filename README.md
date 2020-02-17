@@ -1,7 +1,7 @@
 
 ## EasyWechat for Node.js
 
-注：1.x分支针对 EasyWechat 的 3.x版本。若您需要 EasyWechat 的 4.x版本，请切换到 2.x 分支。
+**注：1.x分支针对 EasyWechat 的 3.x版本。若您需要 EasyWechat 的 4.x版本，请切换到 [2.x](https://github.com/hpyer/node-easywechat/tree/2.x) 分支。**
 
 [EasyWechat](https://github.com/overtrue/wechat) 是一个由 `安正超` 大神用 PHP 开发的开源的微信非官方 SDK。其功能强大，使用方便，个人一直很喜欢，所以近日将其在 Node.js 上实现。本人会尽量还原其配置项以及接口的调用方式，但毕竟语言环境不同，具体的实现方式会有些许差别，还请各位开发者见谅。
 
