@@ -10,11 +10,11 @@
 
 ### 安装
 
-`npm install -S node-easywechat`
+`npm install -S node-easywechat2`
 
 ### 使用示例
 
-[node-easywechat-demo](https://github.com/hpyer/node-easywechat-demo)
+[node-easywechat-demo](https://github.com/hpyer/node-easywechat-demo/tree/2.x)
 
 ### 配置项示例
 

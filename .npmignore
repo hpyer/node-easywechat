@@ -3,3 +3,4 @@ src/
 .gitignore
 .npmignore
 yarn.lock
+yarn-error.log
