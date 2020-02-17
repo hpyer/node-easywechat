@@ -1,7 +1,7 @@
 
 ## EasyWechat for Node.js
 
-> 注：2.x分支针对 EasyWechat 的 4.x版本
+**注：2.x分支针对 EasyWechat 的 4.x版本。若您需要 EasyWechat 的 3.x版本，请切换到 [1.x](https://github.com/hpyer/node-easywechat/tree/2.x) 分支。**
 
 [EasyWechat](https://github.com/overtrue/wechat) 是一个由 `安正超` 大神用 PHP 开发的开源的微信非官方 SDK。其功能强大，使用方便，个人一直很喜欢，所以近日将其在 Node.js 上实现。本人会尽量还原其配置项以及接口的调用方式，但毕竟语言环境不同，具体的实现方式会有些许差别，还请各位开发者见谅。
 
@@ -19,34 +19,26 @@
 ### 配置项示例
 
 ``` js
+// 公众号配置
 {
   // 微信公众号的 app key
-  appKey: '',
+  app_id: '',
   // 微信公众号的 app secret
-  appSecret: '',
+  secret: '',
   // 微信公众号的 token
   token: '',
-  // 微信公众号的 token
-  aesKey: '',
+  // EncodingAESKey
+  aes_key: '',
 
-  // access_token 的缓存名称
-  access_token_cache_key: 'NODE_EASYWECHAT_ACCESS_TOKEN',
-
-  // jssdk 的缓存名称
-  jssdk_cache_key: 'NODE_EASYWECHAT_JSSKD_TICKET',
-
-  // 缓存驱动，可选值：memory（内存存储）、file（文件存储），默认：memory
-  cache_driver: 'file',
-  // 缓存以文件存储时，需要的配置项
-  cache_options: {
+  // 缓存以文件(默认设置)存储时，需要的配置项
+  file_cache: {
     path: './cache/', // 文件存储目录（请确保该目录有读写权限）
     fileMode: 0o666,  // 文件权限
     ext: '.cache'     // 文件扩展名
   },
-  // // 自定义缓存驱动
-  // // 您需要实现一个继承 EasyWechat.Cache.CacheInterface 的缓存驱动类
-  // // 实例化以后赋值给 cache 选项即可
-  // cache: customCacheDriver
+  // 自定义缓存驱动
+  // 您需要实现一个继承 EasyWechat.CacheInterface 的缓存驱动类
+  // 实例化以后利用 “模块替换” 功能赋值给 app.cache
 
   // 网页授权认证
   oauth: {
@@ -54,59 +46,43 @@
     scope: 'snsapi_userinfo',
     // 网页授权回调地址，完整的URL
     redirect: 'http://node-easywechat.hpyer.cn/wxlogin/callback'
-  },
-
-  // 支付
-  payment: {
-    // 商户号
-    merchant_id: 'your-mch-id',
-    // 签名密钥
-    key: 'key-for-signature',
-    // 默认回调地址，也可以在下单时单独设置来覆盖它，完整URL，不带参数
-    notify_url: '默认的订单回调地址'
-  },
-
-  // 小程序
-  mini_program: {
-    // appId
-    appId: 'your-app-id',
-    // appSecret
-    appSecret: 'your-app-secret'
   }
 }
 ```
 
-### 功能支持列表
+``` js
+// 微信支付配置
+{
+  // 应用的 app_id
+  app_id: 'xxx',
+  // 商户号
+  mch_id: 'your-mch-id',
+  // 签名密钥
+  key: 'key-for-signature',
+  // 默认回调地址，也可以在下单时单独设置来覆盖它，完整URL，不带参数
+  notify_url: 'http://xxx.com/pay/notify',
+  // 证书地址，Node.js 只需要 .pfx 证书文件即可
+  cert_path: 'path/to/your/cert.pfx', // XXX: 绝对路径！！！！
+}
+```
 
-- [x] 网页授权登录
-- [x] JSSDK
-- [x] 服务端
-- [x] 消息
-- [ ] 多客服消息转发
-- [x] 事件
-- [ ] 群发消息
-- [x] 模板消息
-- [x] 用户
-- [x] 用户标签
-- [ ] 用户组
+``` js
+// 小程序配置
+{
+  // appId
+  app_id: 'your-app-id',
+  // appSecret
+  secret: 'your-app-secret'
+}
+```
+
+### 模块支持情况
+
+- [x] 公众号模块
+- [x] 微信支付
 - [x] 小程序
-- [x] 素材管理
-- [x] 菜单
-- [x] 支付
-- [ ] 企业支付
-- [ ] 红包
-- [ ] 卡券
-- [ ] 小店
-- [ ] 门店
-- [ ] 客服
-- [ ] 数据统计与分析
-- [x] 二维码
-- [x] 短网址
-- [ ] 语义理解
-- [ ] 自动回复
 - [ ] 开放平台
-
-### 自定义功能
-
-- [x] Access Token
-- [x] 缓存
+- [ ] 企业微信
+- [ ] 企业微信开放平台
+- [ ] 小微商户
+- [x] 自定义
