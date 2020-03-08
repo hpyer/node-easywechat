@@ -20,6 +20,9 @@ class Application extends BaseApplication_1.default {
             'MiniProgram/NearbyPoi',
             'MiniProgram/OCR',
             'MiniProgram/Soter',
+            'MiniProgram/SubscribeMessage',
+            'MiniProgram/RealtimeLog',
+            'MiniProgram/Search',
             // BaseService
             'BaseService/Media',
             'BaseService/ContentSecurity',

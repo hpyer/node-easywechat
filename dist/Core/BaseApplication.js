@@ -3,15 +3,24 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const Path = require("path");
 const Merge = require("merge");
 const FileCache_1 = require("./Cache/FileCache");
+const Utils_1 = require("./Utils");
 class BaseApplicatioin {
-    constructor(config = {}) {
+    constructor(config = {}, id = null) {
         this.defaultConfig = {};
         this.userConfig = {};
         this.cache = null;
+        this.id = null;
         if (new.target === BaseApplicatioin) {
             throw new Error('本接口不能实例化');
         }
         this.userConfig = config || {};
+        this.id = id || null;
+    }
+    getId() {
+        if (!this.id) {
+            this.id = Utils_1.createHash(JSON.stringify(this.userConfig), 'md5');
+        }
+        return this.id;
     }
     getConfig() {
         let base = {

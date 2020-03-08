@@ -136,6 +136,12 @@ export default class ServerGuard
     return this;
   }
 
+  forceValidate(): ServerGuard
+  {
+    this.alwaysValidate = true;
+    return this;
+  }
+
   async resolve(): Promise<Response>
   {
     let result = await this.handleRequest();

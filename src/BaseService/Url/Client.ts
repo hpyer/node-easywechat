@@ -4,7 +4,7 @@ import BaseClient from '../../Core/BaseClient';
 
 export default class Client extends BaseClient
 {
-  protected endpoint: string = 'https://api.weixin.qq.com/';
+  protected baseUri: string = 'https://api.weixin.qq.com/';
 
   shorten(long_url): Promise<any>
   {

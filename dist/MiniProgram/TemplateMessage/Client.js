@@ -27,7 +27,7 @@ class Client extends Client_1.default {
         });
     }
     add(id, keyword) {
-        return this.httpPostJson('cgi-bin/wxopen/template/library/get', {
+        return this.httpPostJson('cgi-bin/wxopen/template/library/add', {
             id,
             keyword,
         });

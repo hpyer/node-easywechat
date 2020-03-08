@@ -105,6 +105,10 @@ class ServerGuard {
             return this;
         });
     }
+    forceValidate() {
+        this.alwaysValidate = true;
+        return this;
+    }
     resolve() {
         return __awaiter(this, void 0, void 0, function* () {
             let result = yield this.handleRequest();

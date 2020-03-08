@@ -25,6 +25,9 @@ export default class Application extends BaseApplication
       'MiniProgram/NearbyPoi',
       'MiniProgram/OCR',
       'MiniProgram/Soter',
+      'MiniProgram/SubscribeMessage',
+      'MiniProgram/RealtimeLog',
+      'MiniProgram/Search',
 
       // BaseService
       'BaseService/Media',

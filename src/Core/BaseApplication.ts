@@ -3,22 +3,33 @@
 import * as Path from 'path';
 import * as Merge from 'merge';
 import FileCache from './Cache/FileCache';
+import { createHash } from './Utils';
 
 export default class BaseApplicatioin
 {
   protected defaultConfig: Object = {};
   protected userConfig: Object = {};
   protected cache: Object = null;
+  protected id: String = null;
 
-  constructor(config: object = {})
+  constructor(config: Object = {}, id: String = null)
   {
     if (new.target === BaseApplicatioin) {
       throw new Error('本接口不能实例化');
     }
     this.userConfig = config || {};
+    this.id = id || null;
   }
 
-  getConfig(): object
+  getId(): String
+  {
+    if (!this.id) {
+      this.id = createHash(JSON.stringify(this.userConfig), 'md5');
+    }
+    return this.id;
+  }
+
+  getConfig(): Object
   {
     let base = {
       // https://www.npmjs.com/package/request#requestoptions-callback

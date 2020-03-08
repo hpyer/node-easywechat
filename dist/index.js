@@ -1,8 +1,10 @@
 'use strict';
+const Utils_1 = require("./Core/Utils");
 const EasyWechat = {};
 EasyWechat['Factory'] = {
     getInstance: function (service, config = {}) {
         try {
+            service = Utils_1.strStudly(service);
             let applicationClass = require('./' + service + '/Application')['default'];
             return new applicationClass(config);
         }

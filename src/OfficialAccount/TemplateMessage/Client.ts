@@ -56,16 +56,12 @@ export default class Client extends BaseClient
   {
     let params = this.formatMessage(data);
 
-    this.restoreMessage();
-
     return this.httpPostJson(this.API_SEND, params);
   }
 
   sendSubscription(data: object): Promise<any>
   {
     let params = this.formatMessage(data);
-
-    this.restoreMessage();
 
     return this.httpPostJson('cgi-bin/message/template/subscribe', params);
   }
@@ -75,7 +71,7 @@ export default class Client extends BaseClient
     let params = Merge({}, this.message, data);
 
     for (let key in params) {
-      if (inArray(key, this.required) && !params[key] && !this.message[key]) {
+      if (inArray(key, this.required) && !params[key]) {
         throw new Error(`Attribute "${key}" can not be empty!`);
       }
     }
@@ -110,21 +106,6 @@ export default class Client extends BaseClient
     }
 
     return formatted;
-  }
-
-  protected restoreMessage()
-  {
-    for (let key in this.message) {
-      if (isObject(this.message[key])) {
-        this.message[key] = {};
-      }
-      if (isArray(this.message[key])) {
-        this.message[key] = [];
-      }
-      else {
-        this.message[key] = '';
-      }
-    }
   }
 
 }

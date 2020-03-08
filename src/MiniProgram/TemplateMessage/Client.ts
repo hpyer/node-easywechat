@@ -35,7 +35,7 @@ export default class Client extends BaseClient
 
   add(id: string, keyword: Array<Number>): Promise<any>
   {
-    return this.httpPostJson('cgi-bin/wxopen/template/library/get', {
+    return this.httpPostJson('cgi-bin/wxopen/template/library/add', {
       id,
       keyword,
     });

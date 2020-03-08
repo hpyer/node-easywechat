@@ -1,53 +1,22 @@
 'use strict';
 Object.defineProperty(exports, "__esModule", { value: true });
-const Merge = require("merge");
 const BaseClient_1 = require("../../Core/BaseClient");
+const Merge = require("merge");
 const Utils_1 = require("../../Core/Utils");
 class Client extends BaseClient_1.default {
     constructor() {
         super(...arguments);
-        this.API_SEND = 'cgi-bin/message/template/send';
         this.message = {
             touser: '',
             template_id: '',
-            url: '',
-            data: {},
-            miniprogram: '',
+            page: '',
+            data: '',
         };
-        this.required = [
-            'touser',
-            'template_id',
-        ];
-    }
-    setIndustry(industry_id1, industry_id2) {
-        return this.httpPostJson('cgi-bin/template/api_set_industry', {
-            industry_id1,
-            industry_id2,
-        });
-    }
-    getIndustry() {
-        return this.httpGet('cgi-bin/template/get_industry');
-    }
-    addTemplate(template_id_short) {
-        return this.httpPostJson('cgi-bin/template/api_add_template', {
-            template_id_short,
-        });
-    }
-    getPrivateTemplates() {
-        return this.httpGet('cgi-bin/template/get_all_private_template');
-    }
-    deletePrivateTemplate(template_id) {
-        return this.httpPostJson('cgi-bin/template/del_private_template', {
-            template_id,
-        });
+        this.required = ['touser', 'template_id', 'data'];
     }
     send(data) {
         let params = this.formatMessage(data);
-        return this.httpPostJson(this.API_SEND, params);
-    }
-    sendSubscription(data) {
-        let params = this.formatMessage(data);
-        return this.httpPostJson('cgi-bin/message/template/subscribe', params);
+        return this.httpPostJson('cgi-bin/message/subscribe/send', params);
     }
     formatMessage(data) {
         let params = Merge({}, this.message, data);
@@ -80,6 +49,41 @@ class Client extends BaseClient_1.default {
             formatted[key] = value;
         }
         return formatted;
+    }
+    addTemplate(tid, kidList, sceneDesc = null) {
+        sceneDesc = sceneDesc || '';
+        return this.httpPost('wxaapi/newtmpl/addtemplate', {
+            tid,
+            kidList,
+            sceneDesc,
+        });
+    }
+    deleteTemplate(id) {
+        return this.httpPost('wxaapi/newtmpl/deltemplate', {
+            priTmplId: id,
+        });
+    }
+    getTemplateKeywords(tid) {
+        return this.httpGet('wxaapi/newtmpl/getpubtemplatekeywords', {
+            tid,
+        });
+    }
+    getTemplateTitles(ids, start = 0, limit = 30) {
+        let query = {
+            ids: '',
+            start,
+            limit,
+        };
+        if (Utils_1.isArray(ids)) {
+            query.ids = ids.join(',');
+        }
+        return this.httpGet('wxaapi/newtmpl/getpubtemplatetitles', query);
+    }
+    getTemplates() {
+        return this.httpGet('wxaapi/newtmpl/gettemplate');
+    }
+    getCategory() {
+        return this.httpGet('wxaapi/newtmpl/getcategory');
     }
 }
 exports.default = Client;

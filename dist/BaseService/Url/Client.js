@@ -4,7 +4,7 @@ const BaseClient_1 = require("../../Core/BaseClient");
 class Client extends BaseClient_1.default {
     constructor() {
         super(...arguments);
-        this.endpoint = 'https://api.weixin.qq.com/';
+        this.baseUri = 'https://api.weixin.qq.com/';
     }
     shorten(long_url) {
         let data = {

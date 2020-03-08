@@ -1,11 +1,14 @@
 'use strict';
 
+import { strStudly } from './Core/Utils';
+
 const EasyWechat = {};
 
 EasyWechat['Factory'] = {
   getInstance: function (service, config = {}): void
   {
     try {
+      service = strStudly(service);
       let applicationClass = require('./' + service + '/Application')['default'];
       return new applicationClass(config);
     }
