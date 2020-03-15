@@ -3,8 +3,8 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const BaseApplication_1 = require("../Core/BaseApplication");
 const Utils_1 = require("../Core/Utils");
 class Application extends BaseApplication_1.default {
-    constructor(config = {}) {
-        super(config);
+    constructor(config = {}, prepends = {}, id = null) {
+        super(config, prepends, id);
         this.defaultConfig = {
             // 必要配置
             app_id: '',
@@ -68,11 +68,12 @@ class Application extends BaseApplication_1.default {
         }
         return key;
     }
-    pay(params) {
-        return this['base'].pay(params);
+    // map to `base` module
+    pay() {
+        return this['base'].pay.apply(this, arguments);
     }
-    authCodeToOpenid(auth_code) {
-        return this['base'].authCodeToOpenid(auth_code);
+    authCodeToOpenid() {
+        return this['base'].authCodeToOpenid.apply(this, arguments);
     }
 }
 exports.default = Application;

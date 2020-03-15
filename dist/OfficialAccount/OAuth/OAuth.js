@@ -17,7 +17,7 @@ class User {
         this.nickname = '';
         this.name = '';
         this.avatar = '';
-        this.original = '';
+        this.original = null;
         this.token = {};
     }
 }
@@ -28,6 +28,7 @@ class OAuth extends BaseClient_1.default {
         this._scope = 'snsapi_userinfo';
         this._callback = '';
         this._state = '';
+        this._code = '';
     }
     scopes(scope) {
         this._scope = scope || 'snsapi_userinfo';
@@ -41,6 +42,9 @@ class OAuth extends BaseClient_1.default {
         this._state = state || '';
         return this;
     }
+    getAppId() {
+        return this.app['config']['app_id'];
+    }
     redirect(callback = null) {
         if (!this.app['config']['oauth']) {
             throw new Error('Please config `oauth` section');
@@ -53,7 +57,7 @@ class OAuth extends BaseClient_1.default {
             throw new Error('Please set callback url start with "http://" or "https://"');
         }
         let params = {
-            appid: this.app['config']['app_id'],
+            appid: this.getAppId(),
             redirect_uri: callback,
             response_type: 'code',
             scope: scope,
@@ -64,37 +68,43 @@ class OAuth extends BaseClient_1.default {
         }
         return 'https://open.weixin.qq.com/connect/oauth2/authorize?' + Utils_1.buildQueryString(params) + '#wechat_redirect';
     }
-    user(code) {
+    getToken() {
         return __awaiter(this, void 0, void 0, function* () {
-            let params = {
-                appid: this.app['config']['app_id'],
+            let res = yield this.httpGet('/sns/oauth2/access_token', {
+                appid: this.getAppId(),
                 secret: this.app['config']['secret'],
-                code: code,
+                code: this._code,
                 grant_type: 'authorization_code'
-            };
-            let res = yield this.httpGet('/sns/oauth2/access_token', params);
-            if (res.errcode) {
+            });
+            if (!res || res['errcode']) {
                 this.app['log']('Fail to fetch access_token', res);
                 throw new Error('Fail to fetch access_token');
             }
+            return res;
+        });
+    }
+    user(code) {
+        return __awaiter(this, void 0, void 0, function* () {
+            this._code = code;
+            let token = yield this.getToken();
             let user = new User;
-            user.id = res.openid;
-            user.token = res;
+            user.id = token['openid'];
+            user.token = token;
             if (this.app['config']['scope'] != 'snsapi_base') {
                 let params = {
                     access_token: user.token['access_token'],
                     openid: user.id,
                     lang: 'zh_CN'
                 };
-                res = yield this.httpGet('/sns/userinfo', params);
-                if (res.errcode) {
+                let res = yield this.httpGet('/sns/userinfo', params);
+                if (!res || res['errcode']) {
                     this.app['log']('Fail to fetch userinfo', res);
                     return user;
                 }
-                user.id = res.openid;
-                user.nickname = res.nickname;
-                user.name = res.nickname;
-                user.avatar = res.headimgurl;
+                user.id = res['openid'];
+                user.nickname = res['nickname'];
+                user.name = res['nickname'];
+                user.avatar = res['headimgurl'];
                 user.original = res;
             }
             return user;

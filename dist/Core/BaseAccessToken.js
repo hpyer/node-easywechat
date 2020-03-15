@@ -23,7 +23,7 @@ class BaseAccessToken {
     }
     getEndpoint() {
         if (!this.endpoint) {
-            throw new Error('未设置获取 AccessToken 的接口地址');
+            throw new Error('Unset the endpoint of AccessToken');
         }
         return this.endpoint;
     }

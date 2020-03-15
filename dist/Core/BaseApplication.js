@@ -5,13 +5,18 @@ const Merge = require("merge");
 const FileCache_1 = require("./Cache/FileCache");
 const Utils_1 = require("./Utils");
 class BaseApplicatioin {
-    constructor(config = {}, id = null) {
+    constructor(config = {}, prepends = {}, id = null) {
         this.defaultConfig = {};
         this.userConfig = {};
         this.cache = null;
         this.id = null;
         if (new.target === BaseApplicatioin) {
-            throw new Error('本接口不能实例化');
+            throw new Error('Can not create instance via BaseApplicatioin.');
+        }
+        if (Utils_1.isObject(prepends)) {
+            for (let key in prepends) {
+                this.offsetSet(key, prepends[key]);
+            }
         }
         this.userConfig = config || {};
         this.id = id || null;
@@ -40,19 +45,19 @@ class BaseApplicatioin {
         ].forEach(provider => {
             try {
                 let serviceClass = require(Path.resolve(__dirname + '/' + provider))['default'];
-                serviceClass.register(this);
+                serviceClass.register.call(this, this);
             }
             catch (e) {
-                throw new Error('服务`' + provider + '`注册失败，错误：' + e.message);
+                throw new Error(`Fail to regist service '${provider}', erro: ${e.message}`);
             }
         });
         providers.forEach(provider => {
             try {
                 let serviceClass = require(Path.resolve(__dirname + '/../' + provider + '/ServiceProvider'))['default'];
-                serviceClass.register(this);
+                serviceClass.register.call(this, this);
             }
             catch (e) {
-                throw new Error('服务`' + provider + '`注册失败，错误：' + e.message);
+                throw new Error(`Fail to regist service '${provider}', erro: ${e.message}`);
             }
         });
     }
@@ -64,6 +69,9 @@ class BaseApplicatioin {
         delete this[id];
     }
     offsetSet(id, value) {
+        if (Utils_1.isFunction(value)) {
+            value = value.call(this, this);
+        }
         this[id] = value;
     }
     getCache() {

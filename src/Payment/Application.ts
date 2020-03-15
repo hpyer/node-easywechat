@@ -15,9 +15,9 @@ export default class Application extends BaseApplication
     },
   };
 
-  constructor(config = {})
+  constructor(config: Object = {}, prepends: Object = {}, id: String = null)
   {
-    super(config);
+    super(config, prepends, id);
 
     let providers = [
       'OfficialAccount/Auth',
@@ -93,14 +93,14 @@ export default class Application extends BaseApplication
   }
 
 
-  pay(params: object): Promise<any>
+  // map to `base` module
+  pay(): Promise<any>
   {
-    return this['base'].pay(params);
+    return this['base'].pay.apply(this, arguments);
   }
-
-  authCodeToOpenid(auth_code: string): Promise<any>
+  authCodeToOpenid(): Promise<any>
   {
-    return this['base'].authCodeToOpenid(auth_code);
+    return this['base'].authCodeToOpenid.apply(this, arguments);
   }
 
 };

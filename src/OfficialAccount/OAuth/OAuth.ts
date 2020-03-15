@@ -9,7 +9,7 @@ class User
   nickname: string = '';
   name: string = '';
   avatar: string = '';
-  original: string = '';
+  original: object = null;
   token: object = {};
 };
 
@@ -18,6 +18,7 @@ export default class OAuth extends BaseClient
   protected _scope: string = 'snsapi_userinfo';
   protected _callback: string = '';
   protected _state: string = '';
+  protected _code: string = '';
 
   scopes(scope: string): OAuth
   {
@@ -37,6 +38,11 @@ export default class OAuth extends BaseClient
     return this;
   }
 
+  getAppId(): string
+  {
+    return this.app['config']['app_id'];
+  }
+
   redirect(callback: string = null): string
   {
     if (!this.app['config']['oauth']) {
@@ -51,7 +57,7 @@ export default class OAuth extends BaseClient
     }
 
     let params = {
-      appid: this.app['config']['app_id'],
+      appid: this.getAppId(),
       redirect_uri: callback,
       response_type: 'code',
       scope: scope,
@@ -64,24 +70,30 @@ export default class OAuth extends BaseClient
     return 'https://open.weixin.qq.com/connect/oauth2/authorize?' + buildQueryString(params) + '#wechat_redirect';
   }
 
-  async user(code: string): Promise<User>
+  async getToken(): Promise<object>
   {
-    let params = {
-      appid: this.app['config']['app_id'],
+    let res = await this.httpGet('/sns/oauth2/access_token', {
+      appid: this.getAppId(),
       secret: this.app['config']['secret'],
-      code: code,
+      code: this._code,
       grant_type: 'authorization_code'
-    };
-
-    let res = await this.httpGet('/sns/oauth2/access_token', params);
-    if (res.errcode) {
+    });
+    if (!res || res['errcode']) {
       this.app['log']('Fail to fetch access_token', res);
       throw new Error('Fail to fetch access_token');
     }
+    return res;
+  }
+
+  async user(code: string): Promise<User>
+  {
+    this._code = code;
+
+    let token = await this.getToken();
 
     let user = new User;
-    user.id = res.openid;
-    user.token = res;
+    user.id = token['openid'];
+    user.token = token;
 
     if (this.app['config']['scope'] != 'snsapi_base') {
       let params = {
@@ -90,15 +102,15 @@ export default class OAuth extends BaseClient
         lang: 'zh_CN'
       };
 
-      res = await this.httpGet('/sns/userinfo', params);
-      if (res.errcode) {
+      let res = await this.httpGet('/sns/userinfo', params);
+      if (!res || res['errcode']) {
         this.app['log']('Fail to fetch userinfo', res);
         return user;
       }
-      user.id = res.openid;
-      user.nickname = res.nickname;
-      user.name = res.nickname;
-      user.avatar = res.headimgurl;
+      user.id = res['openid'];
+      user.nickname = res['nickname'];
+      user.name = res['nickname'];
+      user.avatar = res['headimgurl'];
       user.original = res;
     }
 

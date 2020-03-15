@@ -13,7 +13,6 @@ const Response_1 = require("./Http/Response");
 const Messages_1 = require("./Messages");
 const Utils_1 = require("./Utils");
 const Xml2js = require("xml2js");
-const wechat_crypto_1 = require("wechat-crypto");
 const FinallResult_1 = require("./Decorators/FinallResult");
 const TerminateResult_1 = require("./Decorators/TerminateResult");
 class ServerGuard {
@@ -23,11 +22,20 @@ class ServerGuard {
         this.handlers = {};
         this.app = app;
     }
+    on(condition, handler) {
+        this.push(handler, condition);
+    }
+    observe(condition, handler) {
+        this.push(handler, condition);
+    }
     push(handler, condition = '*') {
         if (!this.handlers[condition]) {
             this.handlers[condition] = [];
         }
         this.handlers[condition].push(handler);
+    }
+    dispatch(event, payload) {
+        return this.notify(event, payload);
     }
     notify(event, payload) {
         return __awaiter(this, void 0, void 0, function* () {
@@ -65,7 +73,7 @@ class ServerGuard {
         return __awaiter(this, void 0, void 0, function* () {
             try {
                 if (typeof handler == 'function') {
-                    return yield handler(payload);
+                    return yield handler.call(this, payload);
                 }
             }
             catch (e) {
@@ -161,11 +169,6 @@ class ServerGuard {
             let res = message.transformToXml(prepends);
             if (yield this.isSafeMode()) {
                 this.app['log']('Messages safe mode is enabled.');
-                let crypto = new wechat_crypto_1.default(this.app['config'].token, this.app['config'].aesKey, this.app['config'].appKey);
-                res = crypto.encrypt(res);
-                let timestamp = Utils_1.getTimestamp();
-                let nonce = Utils_1.randomString();
-                let sign = crypto.getSignature(timestamp, nonce, res);
                 let XmlBuilder = new Xml2js.Builder({
                     cdata: true,
                     renderOpts: {
@@ -174,12 +177,7 @@ class ServerGuard {
                         newline: '',
                     }
                 });
-                return XmlBuilder.buildObject({
-                    encrypt: res,
-                    sign,
-                    timestamp,
-                    nonce
-                });
+                return XmlBuilder.buildObject(this.app['encryptor'].encrypt(res));
             }
             return res;
         });
@@ -218,9 +216,8 @@ class ServerGuard {
             //   throw new Error('No message received.');
             // }
             if ((yield this.isSafeMode()) && message['Encrypt']) {
-                let crypto = new wechat_crypto_1.default(this.app['config'].token, this.app['config'].aesKey, this.app['config'].appKey);
-                let decrypted = crypto.decrypt(message['Encrypt']);
-                message = yield this.parseMessage(decrypted.message);
+                let decrypted = this.decryptMessage(message);
+                message = yield this.parseMessage(decrypted);
             }
             return message;
         });
@@ -268,6 +265,11 @@ class ServerGuard {
         })
             .catch((err) => {
             this.app['log']('server.parseMessage()', err);
+        });
+    }
+    decryptMessage(message) {
+        return __awaiter(this, void 0, void 0, function* () {
+            return this.app['encryptor'].decrypt(message['Encrypt'], yield this.app['request'].get('msg_signature'), yield this.app['request'].get('nonce'), yield this.app['request'].get('timestamp'));
         });
     }
 }

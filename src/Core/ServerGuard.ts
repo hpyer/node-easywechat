@@ -3,9 +3,8 @@
 import Response from './Http/Response';
 import BaseApplication from './BaseApplication';
 import { Message, Text, News, NewsItem, Raw as RawMessage } from './Messages';
-import { createHash, isString, isNumber, isArray, getTimestamp, randomString } from './Utils';
+import { createHash, isString, isNumber, isArray, getTimestamp } from './Utils';
 import * as Xml2js from 'xml2js';
-import WechatCrypto from 'wechat-crypto';
 import FinallResult from './Decorators/FinallResult';
 import TerminateResult from './Decorators/TerminateResult';
 
@@ -40,6 +39,14 @@ export default class ServerGuard
     this.app = app;
   }
 
+  on(condition: string, handler: Function): void
+  {
+    this.push(handler, condition);
+  }
+  observe(condition: string, handler: Function): void
+  {
+    this.push(handler, condition);
+  }
 
   push (handler: Function, condition: string = '*'): void
   {
@@ -49,7 +56,12 @@ export default class ServerGuard
     this.handlers[condition].push(handler);
   }
 
-  async notify (event: number, payload): Promise<any>
+  dispatch(event: number, payload: any): Promise<any>
+  {
+    return this.notify(event, payload);
+  }
+
+  async notify(event: number, payload: any): Promise<any>
   {
     let result = null;
 
@@ -89,7 +101,7 @@ export default class ServerGuard
   {
     try {
       if (typeof handler == 'function') {
-        return await handler(payload);
+        return await handler.call(this, payload);
       }
     }
     catch (e) {
@@ -142,7 +154,7 @@ export default class ServerGuard
     return this;
   }
 
-  async resolve(): Promise<Response>
+  protected async resolve(): Promise<Response>
   {
     let result = await this.handleRequest();
 
@@ -172,7 +184,7 @@ export default class ServerGuard
     }
 
     if (message instanceof RawMessage) {
-      return message.get('content', ServerGuard. SUCCESS_EMPTY_RESPONSE);
+      return message.get('content', ServerGuard.SUCCESS_EMPTY_RESPONSE);
     }
 
     if (isString(message) || isNumber(message)) {
@@ -207,11 +219,6 @@ export default class ServerGuard
 
     if (await this.isSafeMode()) {
       this.app['log']('Messages safe mode is enabled.');
-      let crypto = new WechatCrypto(this.app['config'].token, this.app['config'].aesKey, this.app['config'].appKey);
-      res = crypto.encrypt(res);
-      let timestamp = getTimestamp();
-      let nonce = randomString();
-      let sign = crypto.getSignature(timestamp, nonce, res);
       let XmlBuilder = new Xml2js.Builder({
         cdata: true,
         renderOpts: {
@@ -220,18 +227,13 @@ export default class ServerGuard
           newline: '',
         }
       });
-      return XmlBuilder.buildObject({
-        encrypt: res,
-        sign,
-        timestamp,
-        nonce
-      });
+      return XmlBuilder.buildObject(this.app['encryptor'].encrypt(res));
     }
 
     return res;
   }
 
-  getToken(): string
+  protected getToken(): string
   {
     return this.app['config']['token'];
   }
@@ -275,9 +277,8 @@ export default class ServerGuard
     // }
 
     if (await this.isSafeMode() && message['Encrypt']) {
-      let crypto = new WechatCrypto(this.app['config'].token, this.app['config'].aesKey, this.app['config'].appKey);
-      let decrypted = crypto.decrypt(message['Encrypt']);
-      message = await this.parseMessage(decrypted.message);
+      let decrypted = this.decryptMessage(message);
+      message = await this.parseMessage(decrypted);
     }
 
     return message;
@@ -327,6 +328,16 @@ export default class ServerGuard
     .catch((err) => {
       this.app['log']('server.parseMessage()', err)
     });
+  }
+
+  protected async decryptMessage(message: object)
+  {
+    return this.app['encryptor'].decrypt(
+      message['Encrypt'],
+      await this.app['request'].get('msg_signature'),
+      await this.app['request'].get('nonce'),
+      await this.app['request'].get('timestamp')
+    );
   }
 
 };

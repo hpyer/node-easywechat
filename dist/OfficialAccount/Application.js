@@ -2,8 +2,8 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 const BaseApplication_1 = require("../Core/BaseApplication");
 class Application extends BaseApplication_1.default {
-    constructor(config = {}) {
-        super(config);
+    constructor(config = {}, prepends = {}, id = null) {
+        super(config, prepends, id);
         this.defaultConfig = {
             app_id: '',
             secret: '',
@@ -41,6 +41,16 @@ class Application extends BaseApplication_1.default {
             'BaseService/Url',
         ];
         super.registerProviders(providers);
+    }
+    // map to `base` module
+    clearQuota() {
+        return this['base'].clearQuota.apply(this, arguments);
+    }
+    getValidIps() {
+        return this['base'].getValidIps.apply(this, arguments);
+    }
+    checkCallbackUrl() {
+        return this['base'].checkCallbackUrl.apply(this, arguments);
     }
 }
 exports.default = Application;

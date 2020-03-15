@@ -1,6 +1,6 @@
 {
   "name": "node-easywechat2",
-  "version": "2.0.1",
+  "version": "2.1.0",
   "description": "EasyWechat SDK for Node.js (NOT OFFICIAL)",
   "main": "dist/index.js",
   "scripts": {
@@ -25,7 +25,6 @@
     "qs": "^6.5.0",
     "raw-body": "^2.4.1",
     "request": "^2.81.0",
-    "wechat-crypto": "^0.0.2",
     "xml2js": "^0.4.22"
   }
 }

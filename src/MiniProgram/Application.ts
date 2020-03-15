@@ -5,9 +5,9 @@ import BaseApplication from '../Core/BaseApplication';
 export default class Application extends BaseApplication
 {
 
-  constructor(config = {})
+  constructor(config: Object = {}, prepends: Object = {}, id: String = null)
   {
-    super(config);
+    super(config, prepends, id);
 
     let providers = [
       'MiniProgram/Auth',
@@ -36,9 +36,10 @@ export default class Application extends BaseApplication
     super.registerProviders(providers);
   }
 
-  getPaidUnionid(openid: string, optional: object = {}): Promise<any>
+  // map to `base` module
+  getPaidUnionid(): Promise<any>
   {
-    return this['base'].getPaidUnionid(openid, optional);
+    return this['base'].getPaidUnionid.apply(this, arguments);
   }
 
 };

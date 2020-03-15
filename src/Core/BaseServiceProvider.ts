@@ -5,7 +5,7 @@ export default class BaseServiceProvider
   constructor()
   {
     if (new.target === BaseServiceProvider) {
-      throw new Error('本接口不能实例化');
+      throw new Error('Can not create instance via BaseServiceProvider.');
     }
   }
 

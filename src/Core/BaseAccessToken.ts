@@ -15,7 +15,7 @@ class BaseAccessToken implements HttpMixin
     this.app = app;
   }
 
-  getCredentials(): object
+  protected getCredentials(): object
   {
     return {};
   }
@@ -23,7 +23,7 @@ class BaseAccessToken implements HttpMixin
   getEndpoint(): string
   {
     if (!this.endpoint) {
-      throw new Error('未设置获取 AccessToken 的接口地址');
+      throw new Error('Unset the endpoint of AccessToken');
     }
     return this.endpoint;
   }

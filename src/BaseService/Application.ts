@@ -9,9 +9,9 @@ export default class Application extends BaseApplication
     secret: '',
   };
 
-  constructor(config: object = {})
+  constructor(config: Object = {}, prepends: Object = {}, id: String = null)
   {
-    super(config);
+    super(config, prepends, id);
 
     let providers = [
       'BaseService/Jssdk',

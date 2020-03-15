@@ -13,9 +13,9 @@ export default class Application extends BaseApplication
     },
   };
 
-  constructor(config = {})
+  constructor(config: Object = {}, prepends: Object = {}, id: String = null)
   {
-    super(config);
+    super(config, prepends, id);
 
     let providers = [
       'OfficialAccount/Auth',
@@ -47,5 +47,20 @@ export default class Application extends BaseApplication
       'BaseService/Url',
     ];
     super.registerProviders(providers);
+  }
+
+
+  // map to `base` module
+  clearQuota(): Promise<any>
+  {
+    return this['base'].clearQuota.apply(this, arguments);
+  }
+  getValidIps(): Promise<any>
+  {
+    return this['base'].getValidIps.apply(this, arguments);
+  }
+  checkCallbackUrl(): Promise<any>
+  {
+    return this['base'].checkCallbackUrl.apply(this, arguments);
   }
 };

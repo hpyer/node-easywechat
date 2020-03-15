@@ -2,8 +2,8 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 const BaseApplication_1 = require("../Core/BaseApplication");
 class Application extends BaseApplication_1.default {
-    constructor(config = {}) {
-        super(config);
+    constructor(config = {}, prepends = {}, id = null) {
+        super(config, prepends, id);
         this.defaultConfig = {
             app_id: '',
             secret: '',

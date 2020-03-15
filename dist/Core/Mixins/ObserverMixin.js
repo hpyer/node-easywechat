@@ -42,7 +42,7 @@ class ObserverMixin {
         }
         catch (e) {
             if (this['app']) {
-                this['app']['log']('Observer.notify: 函数执行错误', e);
+                this['app']['log']('Observer.notify:', e);
             }
         }
         return false;

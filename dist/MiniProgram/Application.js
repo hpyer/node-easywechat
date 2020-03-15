@@ -2,8 +2,8 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 const BaseApplication_1 = require("../Core/BaseApplication");
 class Application extends BaseApplication_1.default {
-    constructor(config = {}) {
-        super(config);
+    constructor(config = {}, prepends = {}, id = null) {
+        super(config, prepends, id);
         let providers = [
             'MiniProgram/Auth',
             'MiniProgram/DataCube',
@@ -29,8 +29,9 @@ class Application extends BaseApplication_1.default {
         ];
         super.registerProviders(providers);
     }
-    getPaidUnionid(openid, optional = {}) {
-        return this['base'].getPaidUnionid(openid, optional);
+    // map to `base` module
+    getPaidUnionid() {
+        return this['base'].getPaidUnionid.apply(this, arguments);
     }
 }
 exports.default = Application;

@@ -3,7 +3,7 @@
 import * as Path from 'path';
 import * as Merge from 'merge';
 import FileCache from './Cache/FileCache';
-import { createHash } from './Utils';
+import { createHash, isObject, isFunction } from './Utils';
 
 export default class BaseApplicatioin
 {
@@ -12,10 +12,15 @@ export default class BaseApplicatioin
   protected cache: Object = null;
   protected id: String = null;
 
-  constructor(config: Object = {}, id: String = null)
+  constructor(config: Object = {}, prepends: Object = {}, id: String = null)
   {
     if (new.target === BaseApplicatioin) {
-      throw new Error('本接口不能实例化');
+      throw new Error('Can not create instance via BaseApplicatioin.');
+    }
+    if (isObject(prepends)) {
+      for (let key in prepends) {
+        this.offsetSet(key, prepends[key]);
+      }
     }
     this.userConfig = config || {};
     this.id = id || null;
@@ -52,10 +57,10 @@ export default class BaseApplicatioin
       provider => {
         try {
           let serviceClass = require(Path.resolve(__dirname + '/' + provider))['default'];
-          serviceClass.register(this);
+          serviceClass.register.call(this, this);
         }
         catch (e) {
-          throw new Error('服务`' + provider + '`注册失败，错误：' + e.message);
+          throw new Error(`Fail to regist service '${provider}', erro: ${e.message}`);
         }
       }
     );
@@ -64,10 +69,10 @@ export default class BaseApplicatioin
       provider => {
         try {
           let serviceClass = require(Path.resolve(__dirname + '/../' + provider + '/ServiceProvider'))['default'];
-          serviceClass.register(this);
+          serviceClass.register.call(this, this);
         }
         catch (e) {
-          throw new Error('服务`' + provider + '`注册失败，错误：' + e.message);
+          throw new Error(`Fail to regist service '${provider}', erro: ${e.message}`);
         }
       }
     );
@@ -87,6 +92,9 @@ export default class BaseApplicatioin
 
   offsetSet(id: string, value: any): void
   {
+    if (isFunction(value)) {
+      value = value.call(this, this);
+    }
     this[id] = value;
   }
 
