@@ -52,7 +52,7 @@ export default class Client extends BaseClient
 
   url(ticket: string): string
   {
-    return `'https://mp.weixin.qq.com/cgi-bin/showqrcode?ticket=${ticket}'`;
+    return `https://mp.weixin.qq.com/cgi-bin/showqrcode?ticket=${ticket}`;
   }
 
   protected create(actionName: string, actionInfo, temporary: Boolean = true, expireSeconds: number = 0): Promise<any>

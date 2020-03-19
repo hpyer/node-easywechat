@@ -42,7 +42,7 @@ class Client extends BaseClient_1.default {
         return this.create(type, scene, false);
     }
     url(ticket) {
-        return `'https://mp.weixin.qq.com/cgi-bin/showqrcode?ticket=${ticket}'`;
+        return `https://mp.weixin.qq.com/cgi-bin/showqrcode?ticket=${ticket}`;
     }
     create(actionName, actionInfo, temporary = true, expireSeconds = 0) {
         if (!expireSeconds || expireSeconds <= 0) {
