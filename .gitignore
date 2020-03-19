@@ -1,3 +1,13 @@
-node_modules
+.DS_Store
+node_modules/
+npm-debug.log
 yarn.lock
 yarn-error.log
+
+# Editor directories and files
+.idea
+.vscode
+*.suo
+*.ntvs*
+*.njsproj
+*.sln

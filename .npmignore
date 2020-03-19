@@ -1,6 +1,16 @@
 src/
+.DS_Store
 .editorconfig
 .gitignore
 .npmignore
 yarn.lock
 yarn-error.log
+npm-debug.log
+
+# Editor directories and files
+.idea
+.vscode
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
