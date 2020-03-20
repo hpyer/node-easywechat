@@ -33,7 +33,7 @@ class BaseClient {
             if (!payload['qs']) {
                 payload['qs'] = {};
             }
-            if (this.accessToken) {
+            if (this.accessToken && !payload['qs'].access_token) {
                 payload['qs'].access_token = yield this.accessToken['getToken']();
             }
             if (!payload['method']) {

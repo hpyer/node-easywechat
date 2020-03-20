@@ -36,7 +36,7 @@ class BaseClient implements HttpMixin
     if (!payload['qs']) {
       payload['qs'] = {};
     }
-    if (this.accessToken) {
+    if (this.accessToken && !payload['qs'].access_token) {
       payload['qs'].access_token = await this.accessToken['getToken']();
     }
     if (!payload['method']) {

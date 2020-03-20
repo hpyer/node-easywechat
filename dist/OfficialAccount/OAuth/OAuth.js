@@ -70,11 +70,15 @@ class OAuth extends BaseClient_1.default {
     }
     getToken() {
         return __awaiter(this, void 0, void 0, function* () {
-            let res = yield this.httpGet('/sns/oauth2/access_token', {
-                appid: this.getAppId(),
-                secret: this.app['config']['secret'],
-                code: this._code,
-                grant_type: 'authorization_code'
+            let res = yield this.doRequest({
+                url: '/sns/oauth2/access_token',
+                method: 'GET',
+                qs: {
+                    appid: this.getAppId(),
+                    secret: this.app['config']['secret'],
+                    code: this._code,
+                    grant_type: 'authorization_code',
+                },
             });
             if (!res || res['errcode']) {
                 this.app['log']('Fail to fetch access_token', res);
@@ -92,7 +96,7 @@ class OAuth extends BaseClient_1.default {
             user.token = token;
             if (this.app['config']['scope'] != 'snsapi_base') {
                 let params = {
-                    access_token: user.token['access_token'],
+                    access_token: token['access_token'],
                     openid: user.id,
                     lang: 'zh_CN'
                 };
