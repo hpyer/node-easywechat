@@ -30,15 +30,17 @@ export default class Handler
     this.app = app;
   }
 
-  async handle(closure: Function): Promise<void>
-  {}
+  async handle(closure: Function): Promise<Response>
+  {
+    return null;
+  }
 
   setFail(message: string): void
   {
     this.fail = message;
   }
 
-  respondWith(attributes: object, sign: Boolean = false): object
+  respondWith(attributes: object, sign: Boolean = false): Handler
   {
     this.attributes = attributes;
     this.sign = sign;
@@ -46,7 +48,7 @@ export default class Handler
     return this;
   }
 
-  toResponse(): object
+  toResponse(): Response
   {
     let base = {
       return_code: this.fail ? this.FAIL : this.SUCCESS,

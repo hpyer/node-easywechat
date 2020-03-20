@@ -26,7 +26,7 @@ class ScannedHandler extends Handler_1.default {
                 throw new Error('Should pass an closure function');
             }
             let result = yield closure.apply(this, [
-                this.getMessage(),
+                yield this.getMessage(),
                 this.setFail,
                 this.setAlert,
             ]);
@@ -40,7 +40,7 @@ class ScannedHandler extends Handler_1.default {
                 attributes['nonce_str'] = Utils_1.randomString(16);
                 attributes['prepay_id'] = result;
             }
-            return this.respondWith(attributes, true)['toResponse']();
+            return this.respondWith(attributes, true).toResponse();
         });
     }
 }

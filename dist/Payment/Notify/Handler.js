@@ -26,7 +26,9 @@ class Handler {
         this.app = app;
     }
     handle(closure) {
-        return __awaiter(this, void 0, void 0, function* () { });
+        return __awaiter(this, void 0, void 0, function* () {
+            return null;
+        });
     }
     setFail(message) {
         this.fail = message;

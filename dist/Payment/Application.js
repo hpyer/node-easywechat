@@ -2,6 +2,9 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 const BaseApplication_1 = require("../Core/BaseApplication");
 const Utils_1 = require("../Core/Utils");
+const Paid_1 = require("./Notify/Paid");
+const Refunded_1 = require("./Notify/Refunded");
+const Scanned_1 = require("./Notify/Scanned");
 class Application extends BaseApplication_1.default {
     constructor(config = {}, prepends = {}, id = null) {
         super(config, prepends, id);
@@ -67,6 +70,15 @@ class Application extends BaseApplication_1.default {
             throw new Error(`'${key}' should be 32 chars length.`);
         }
         return key;
+    }
+    handlePaidNotify(closure) {
+        return (new Paid_1.default(this)).handle(closure);
+    }
+    handleRefundedNotify(closure) {
+        return (new Refunded_1.default(this)).handle(closure);
+    }
+    handleScannedNotify(closure) {
+        return (new Scanned_1.default(this)).handle(closure);
     }
     // map to `base` module
     pay() {

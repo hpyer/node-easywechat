@@ -2,6 +2,10 @@
 
 import BaseApplication from '../Core/BaseApplication';
 import { getTimestamp, randomString, makeSignature, buildQueryString } from '../Core/Utils';
+import Response from '../Core/Http/Response';
+import PaidNotify from './Notify/Paid';
+import RefundedNotify from './Notify/Refunded';
+import ScannedNotify from './Notify/Scanned';
 
 export default class Application extends BaseApplication
 {
@@ -90,6 +94,19 @@ export default class Application extends BaseApplication
     }
 
     return key;
+  }
+
+  handlePaidNotify(closure: Function): Promise<Response>
+  {
+    return (new PaidNotify(this)).handle(closure);
+  }
+  handleRefundedNotify(closure: Function): Promise<Response>
+  {
+    return (new RefundedNotify(this)).handle(closure);
+  }
+  handleScannedNotify(closure: Function): Promise<Response>
+  {
+    return (new ScannedNotify(this)).handle(closure);
   }
 
 

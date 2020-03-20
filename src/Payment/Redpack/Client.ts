@@ -21,15 +21,15 @@ export default class Client extends BaseClient
     return this.safeRequest('mmpaymkttransfers/gethbinfo', params);
   }
 
-  sendNormal(params: object): Promise<any>
+  async sendNormal(params: object): Promise<any>
   {
     params = Merge({}, params, {
       wxappid: this.app['config'].app_id,
       total_num: 1,
-      client_ip: params['client_ip'] || this.getServerIp(),
+      client_ip: params['client_ip'] || await this.getServerIp(),
     });
 
-    return this.safeRequest('mmpaymkttransfers/sendredpack', params);
+    return await this.safeRequest('mmpaymkttransfers/sendredpack', params);
   }
 
   sendGroup(params: object): Promise<any>

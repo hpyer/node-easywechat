@@ -17,9 +17,10 @@ class PaidHandler extends Handler_1.default {
                 throw new Error('Should pass an closure function');
             }
             this.strict(yield closure.apply(this, [
-                this.getMessage(),
+                yield this.getMessage(),
                 this.setFail,
             ]));
+            return this.toResponse();
         });
     }
 }

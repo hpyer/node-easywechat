@@ -2,6 +2,7 @@
 
 import Handler from './Handler';
 import { isString, randomString } from '../../Core/Utils';
+import Response from '../../Core/Http/Response';
 
 export default class ScannedHandler extends Handler
 {
@@ -13,13 +14,13 @@ export default class ScannedHandler extends Handler
     this.alert = message;
   }
 
-  async handle(closure: Function): Promise<void>
+  async handle(closure: Function): Promise<Response>
   {
     if (typeof closure != 'function') {
       throw new Error('Should pass an closure function');
     }
     let result = await closure.apply(this, [
-      this.getMessage(),
+      await this.getMessage(),
       this.setFail,
       this.setAlert,
     ]);
@@ -36,7 +37,7 @@ export default class ScannedHandler extends Handler
       attributes['prepay_id'] = result;
     }
 
-    return this.respondWith(attributes, true)['toResponse']();
+    return this.respondWith(attributes, true).toResponse();
   }
 
 }
