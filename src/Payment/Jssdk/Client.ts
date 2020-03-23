@@ -11,7 +11,7 @@ export default class Client extends JssdkClient
   {
     let params = {
       appId: this.app['config'].sub_appid ? this.app['config'].sub_appid : this.app['config'].app_id,
-      timeStamp: getTimestamp(),
+      timeStamp: getTimestamp() + '',
       nonceStr: randomString(16),
       package: `prepay_id=${prepayId}`,
       signType: 'MD5',
@@ -38,7 +38,7 @@ export default class Client extends JssdkClient
       partnerid: this.app['config'].mch_id,
       prepayid: prepayId,
       noncestr: randomString(16),
-      timestamp: getTimestamp(),
+      timestamp: getTimestamp() + '',
       package: 'Sign=WXPay',
     };
 
@@ -56,7 +56,7 @@ export default class Client extends JssdkClient
     let params = {
       appId: this.app['config'].app_id,
       scope: 'jsapi_address',
-      timeStamp: getTimestamp(),
+      timeStamp: getTimestamp() + '',
       nonceStr: randomString(16),
       signType: 'SHA1',
     };

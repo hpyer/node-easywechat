@@ -3,7 +3,7 @@
 import BaseApplicatioin from "../../Core/BaseApplication";
 import * as Merge from 'merge';
 import * as Xml2js from 'xml2js';
-import { makeSignature, AesDecrypt, createHash } from "../../Core/Utils";
+import { makeSignature, AesDecrypt, createHash, singleItem } from "../../Core/Utils";
 import Response from "../../Core/Http/Response";
 
 export default class Handler
@@ -74,12 +74,11 @@ export default class Handler
 
   async getMessage(): Promise<object>
   {
-    if (this.message) return this.message;
-
     let message: object = null;
     try {
       let content = await this.app['request'].getContent();
-      message = await Xml2js.parseStringPromise(content.toString());
+      message = await this.parseXml(content.toString());
+      this.app['log']('Payment.Notify.Handler.getMessage', content.toString(), message);
     }
     catch (e) {
       throw new Error('Invalid request XML: ' + e.message);
@@ -93,9 +92,15 @@ export default class Handler
       this.validate(message);
     }
 
-    this.message = message;
-
     return message;
+  }
+
+  async parseXml(xml: string): Promise<any>
+  {
+    let res = await Xml2js.parseStringPromise(xml);
+    res = singleItem(res);
+    if (res['xml']) res = res['xml'];
+    return res;
   }
 
   async decryptMessage(key: string): Promise<string>

@@ -29,8 +29,8 @@ class BaseClient {
         let base = {
             mch_id: this.app['config']['mch_id'],
             nonce_str: Utils_1.randomString(32),
-            sub_mch_id: this.app['config']['sub_mch_id'],
-            sub_appid: this.app['config']['sub_appid'],
+            sub_mch_id: this.app['config']['sub_mch_id'] || '',
+            sub_appid: this.app['config']['sub_appid'] || '',
         };
         let localParams = Merge(base, this.prepends(), params);
         localParams['sign_type'] = localParams['sign_type'] || 'md5';
@@ -64,6 +64,8 @@ class BaseClient {
         return __awaiter(this, void 0, void 0, function* () {
             let res = yield Xml2js.parseStringPromise(xml);
             res = Utils_1.singleItem(res);
+            if (res['xml'])
+                res = res['xml'];
             return res;
         });
     }
@@ -103,9 +105,7 @@ class BaseClient {
         });
     }
     getClientIp() {
-        return __awaiter(this, void 0, void 0, function* () {
-            return this.app['request'].getClientIp();
-        });
+        return this.app['request'].getClientIp();
     }
     // Rewrite by HttpMixin
     doRequest(payload, returnResponse = false) {

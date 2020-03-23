@@ -59,12 +59,11 @@ class Handler {
     }
     getMessage() {
         return __awaiter(this, void 0, void 0, function* () {
-            if (this.message)
-                return this.message;
             let message = null;
             try {
                 let content = yield this.app['request'].getContent();
-                message = yield Xml2js.parseStringPromise(content.toString());
+                message = yield this.parseXml(content.toString());
+                this.app['log']('Payment.Notify.Handler.getMessage', content.toString(), message);
             }
             catch (e) {
                 throw new Error('Invalid request XML: ' + e.message);
@@ -75,8 +74,16 @@ class Handler {
             if (this.check) {
                 this.validate(message);
             }
-            this.message = message;
             return message;
+        });
+    }
+    parseXml(xml) {
+        return __awaiter(this, void 0, void 0, function* () {
+            let res = yield Xml2js.parseStringPromise(xml);
+            res = Utils_1.singleItem(res);
+            if (res['xml'])
+                res = res['xml'];
+            return res;
         });
     }
     decryptMessage(key) {

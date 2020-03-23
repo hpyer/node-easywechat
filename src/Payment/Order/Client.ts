@@ -6,14 +6,14 @@ import { getTimestamp } from '../../Core/Utils';
 export default class Client extends BaseClient
 {
 
-  unify(params: object, isContract: Boolean = false): Promise<any>
+  async unify(params: object, isContract: Boolean = false): Promise<any>
   {
     if (!params['spbill_create_ip']) {
-      params['spbill_create_ip'] = 'NATIVE' === params['trade_type'] ? this.getServerIp() : this.getClientIp();
+      params['spbill_create_ip'] = 'NATIVE' === params['trade_type'] ? await this.getServerIp() : this.getClientIp();
     }
 
     params['appid'] = this.app['config'].app_id;
-    params['notify_url'] = this.app['config'].app_id;
+    params['notify_url'] = this.app['config'].notify_url;
 
     if (isContract) {
       params['contract_appid'] = this.app['config'].app_id;

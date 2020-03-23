@@ -30,8 +30,8 @@ class BaseClient implements HttpMixin
     let base = {
       mch_id: this.app['config']['mch_id'],
       nonce_str: randomString(32),
-      sub_mch_id: this.app['config']['sub_mch_id'],
-      sub_appid: this.app['config']['sub_appid'],
+      sub_mch_id: this.app['config']['sub_mch_id'] || '',
+      sub_appid: this.app['config']['sub_appid'] || '',
     };
 
     let localParams = Merge(base, this.prepends(), params);
@@ -70,6 +70,7 @@ class BaseClient implements HttpMixin
   {
     let res = await Xml2js.parseStringPromise(xml);
     res = singleItem(res);
+    if (res['xml']) res = res['xml'];
     return res;
   }
 
@@ -113,7 +114,7 @@ class BaseClient implements HttpMixin
     return this.serverIp;
   }
 
-  async getClientIp()
+  getClientIp()
   {
     return this.app['request'].getClientIp();
   }

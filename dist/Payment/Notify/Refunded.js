@@ -11,6 +11,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 Object.defineProperty(exports, "__esModule", { value: true });
 const Handler_1 = require("./Handler");
 const Xml2js = require("xml2js");
+const Utils_1 = require("../../Core/Utils");
 class RefundedHandler extends Handler_1.default {
     handle(closure) {
         return __awaiter(this, void 0, void 0, function* () {
@@ -27,7 +28,16 @@ class RefundedHandler extends Handler_1.default {
     }
     reqInfo() {
         return __awaiter(this, void 0, void 0, function* () {
-            return yield Xml2js.parseStringPromise(this.decryptMessage('req_info'));
+            return yield this.parseXml(yield this.decryptMessage('req_info'));
+        });
+    }
+    parseXml(xml) {
+        return __awaiter(this, void 0, void 0, function* () {
+            let res = yield Xml2js.parseStringPromise(xml);
+            res = Utils_1.singleItem(res);
+            if (res['xml'])
+                res = res['xml'];
+            return res;
         });
     }
 }

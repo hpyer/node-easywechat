@@ -3,6 +3,7 @@
 import Handler from './Handler';
 import * as Xml2js from 'xml2js';
 import Response from '../../Core/Http/Response';
+import { singleItem } from '../../Core/Utils';
 
 export default class RefundedHandler extends Handler
 {
@@ -22,6 +23,15 @@ export default class RefundedHandler extends Handler
 
   async reqInfo(): Promise<any>
   {
-    return await Xml2js.parseStringPromise(this.decryptMessage('req_info'));
+    return await this.parseXml(await this.decryptMessage('req_info'));
   }
+
+  async parseXml(xml: string): Promise<any>
+  {
+    let res = await Xml2js.parseStringPromise(xml);
+    res = singleItem(res);
+    if (res['xml']) res = res['xml'];
+    return res;
+  }
+
 }

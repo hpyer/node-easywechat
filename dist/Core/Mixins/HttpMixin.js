@@ -6,7 +6,7 @@ const BaseApplication_1 = require("../BaseApplication");
 class HttpMixin {
     doRequest(payload, returnResponse = false) {
         payload = payload || {};
-        if (this['baseUrl']) {
+        if (typeof payload['baseUrl'] == 'undefined' && this['baseUrl']) {
             payload['baseUrl'] = this['baseUrl'];
         }
         if (this['app'] && this['app'] instanceof BaseApplication_1.default) {

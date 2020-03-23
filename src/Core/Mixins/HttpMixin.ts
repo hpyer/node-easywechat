@@ -10,7 +10,7 @@ export default class HttpMixin
   doRequest(payload: object, returnResponse: Boolean = false): Promise<any>
   {
     payload = payload || {};
-    if (this['baseUrl']) {
+    if (typeof payload['baseUrl'] == 'undefined' && this['baseUrl']) {
       payload['baseUrl'] = this['baseUrl'];
     }
     if (this['app'] && this['app'] instanceof BaseApplicatioin) {

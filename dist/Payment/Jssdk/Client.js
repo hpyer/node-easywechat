@@ -7,7 +7,7 @@ class Client extends Client_1.default {
     bridgeConfig(prepayId, json = true) {
         let params = {
             appId: this.app['config'].sub_appid ? this.app['config'].sub_appid : this.app['config'].app_id,
-            timeStamp: Utils_1.getTimestamp(),
+            timeStamp: Utils_1.getTimestamp() + '',
             nonceStr: Utils_1.randomString(16),
             package: `prepay_id=${prepayId}`,
             signType: 'MD5',
@@ -27,7 +27,7 @@ class Client extends Client_1.default {
             partnerid: this.app['config'].mch_id,
             prepayid: prepayId,
             noncestr: Utils_1.randomString(16),
-            timestamp: Utils_1.getTimestamp(),
+            timestamp: Utils_1.getTimestamp() + '',
             package: 'Sign=WXPay',
         };
         params['sign'] = Utils_1.makeSignature(params, this.app['config'].key, 'md5');
@@ -40,7 +40,7 @@ class Client extends Client_1.default {
         let params = {
             appId: this.app['config'].app_id,
             scope: 'jsapi_address',
-            timeStamp: Utils_1.getTimestamp(),
+            timeStamp: Utils_1.getTimestamp() + '',
             nonceStr: Utils_1.randomString(16),
             signType: 'SHA1',
         };
