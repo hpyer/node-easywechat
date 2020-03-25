@@ -35,7 +35,7 @@ export default class Application extends BaseApplication
       };
     }
     else {
-      optional['pre_auth_code'] = await this.createPreAuthorizationCode()['pre_auth_code'];
+      optional['pre_auth_code'] = (await this.createPreAuthorizationCode())['pre_auth_code'];
     }
 
     return 'https://mp.weixin.qq.com/cgi-bin/componentloginpage?' + buildQueryString(Merge({}, optional, {

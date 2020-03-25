@@ -39,8 +39,9 @@ class Application extends BaseApplication_1.default {
                 };
             }
             else {
-                optional['pre_auth_code'] = yield this.createPreAuthorizationCode()['pre_auth_code'];
+                optional['pre_auth_code'] = (yield this.createPreAuthorizationCode())['pre_auth_code'];
             }
+            console.log('optional', optional);
             return 'https://mp.weixin.qq.com/cgi-bin/componentloginpage?' + Utils_1.buildQueryString(Merge({}, optional, {
                 component_appid: this['config']['app_id'],
                 redirect_uri: callbackUrl,

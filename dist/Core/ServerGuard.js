@@ -42,7 +42,7 @@ class ServerGuard {
             let result = null;
             for (let condition in this.handlers) {
                 let handlers = this.handlers[condition];
-                if (condition == '*' || (Number(condition) & event) == event) {
+                if (condition === '*' || condition === event) {
                     let isBreak = false;
                     for (let i = 0; i < handlers.length; i++) {
                         let handler = handlers[i];
@@ -216,7 +216,7 @@ class ServerGuard {
             //   throw new Error('No message received.');
             // }
             if ((yield this.isSafeMode()) && message['Encrypt']) {
-                let decrypted = this.decryptMessage(message);
+                let decrypted = yield this.decryptMessage(message);
                 message = yield this.parseMessage(decrypted);
             }
             return message;

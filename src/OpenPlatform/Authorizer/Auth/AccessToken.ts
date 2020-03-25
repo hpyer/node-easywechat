@@ -19,7 +19,7 @@ export default class AccessToken extends BaseAccessToken
     this.component = component;
   }
 
-  protected getCredentials(): object
+  async getCredentials(): Promise<object>
   {
     return {
       component_appid: this.component['config']['app_id'],

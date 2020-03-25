@@ -22,7 +22,7 @@ class Guard extends ServerGuard_1.default {
             this.registerHandlers();
             let message = yield this.getMessage();
             if (message['InfoType']) {
-                this.dispatch(message['InfoType'], message);
+                yield this.dispatch(message['InfoType'], message);
             }
             return new Response_1.default(Buffer.from(ServerGuard_1.default.SUCCESS_EMPTY_RESPONSE));
         });
@@ -40,7 +40,7 @@ class Guard extends ServerGuard_1.default {
         this.on(exports.EVENT_COMPONENT_VERIFY_TICKET, function (payload) {
             return __awaiter(this, void 0, void 0, function* () {
                 if (payload['ComponentVerifyTicket']) {
-                    return this.app['verify_ticket'].setTicket(payload['ComponentVerifyTicket']);
+                    this.app['verify_ticket'].setTicket(payload['ComponentVerifyTicket']);
                 }
             });
         });

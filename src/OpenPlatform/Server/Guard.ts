@@ -19,7 +19,7 @@ export default class Guard extends ServerGuard
     let message = await this.getMessage();
 
     if (message['InfoType']) {
-      this.dispatch(message['InfoType'], message);
+      await this.dispatch(message['InfoType'], message);
     }
 
     return new Response(Buffer.from(ServerGuard.SUCCESS_EMPTY_RESPONSE));
@@ -32,7 +32,7 @@ export default class Guard extends ServerGuard
     this.on(EVENT_UPDATE_AUTHORIZED, async function () {});
     this.on(EVENT_COMPONENT_VERIFY_TICKET, async function (payload) {
       if (payload['ComponentVerifyTicket']) {
-        return this.app['verify_ticket'].setTicket(payload['ComponentVerifyTicket']);
+        this.app['verify_ticket'].setTicket(payload['ComponentVerifyTicket']);
       }
     });
   }

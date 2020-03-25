@@ -1,12 +1,16 @@
 'use strict';
 
+import * as Merge from 'merge';
 import BaseApplication from './BaseApplication';
 import HttpMixin from './Mixins/HttpMixin';
 import { createHash, applyMixins, buildQueryString } from './Utils';
 
 class BaseAccessToken implements HttpMixin
 {
+  protected requestMethod: string = 'GET';
   protected token: string = '';
+  protected queryName: string = '';
+  protected tokenKey: string = 'access_token';
   protected endpointToGetToken: string = '';
   protected app: BaseApplication = null;
 
@@ -15,7 +19,7 @@ class BaseAccessToken implements HttpMixin
     this.app = app;
   }
 
-  protected getCredentials(): object
+  protected async getCredentials(): Promise<object>
   {
     return {};
   }
@@ -28,49 +32,79 @@ class BaseAccessToken implements HttpMixin
     return this.endpointToGetToken;
   }
 
-  getCacheKey(): string
+  async getCacheKey(): Promise<string>
   {
-    return 'easywechat.kernel.access_token.' + createHash(JSON.stringify(this.getCredentials()), 'md5');
+    return 'easywechat.kernel.access_token.' + createHash(JSON.stringify(await this.getCredentials()), 'md5');
   }
 
   async requestToken(credentials: object): Promise<any>
   {
-    let url = this.getEndpoint() + '?' + buildQueryString(credentials);
-    return await this.doRequest({
-      url,
-      method: 'GET',
-    });
+    let payload = {
+      url: this.getEndpoint(),
+      method: this.requestMethod,
+    }
+    if (this.requestMethod == 'POST') {
+      payload['json'] = true;
+      payload['body'] = credentials;
+    }
+    else {
+      payload['qs'] = credentials;
+    }
+    return await this.doRequest(payload);
   };
 
-  async getToken(force: boolean = false): Promise<string>
+  async getToken(refresh: boolean = false): Promise<string>
   {
-    if (force) {
-      let res = await this.requestToken(this.getCredentials());
-      await this.setToken(res.access_token, res.expires_in);
-      return this.token;
+    let cacheKey = await this.getCacheKey();
+    let cache = this.app.getCache();
+
+    if (!refresh && await cache.has(cacheKey)) {
+      return await cache.get(cacheKey);
     }
 
-    if (!this.token) {
-      this.token = await this.app.getCache().get(this.getCacheKey());
+    let res = await this.requestToken(await this.getCredentials());
+    await this.setToken(res[this.tokenKey], res.expires_in || 7200);
 
-      if (!this.token) {
-        let res = await this.requestToken(this.getCredentials());
-        await this.setToken(res.access_token, res.expires_in);
-      }
-    }
-    return this.token;
+    return res[this.tokenKey];
   }
 
-  async setToken(access_token: string, expires_in: number = 7200): Promise<any>
+  async setToken(access_token: string, expires_in: number = 7200): Promise<BaseAccessToken>
   {
-    this.token = access_token;
-    await this.app.getCache().set(this.getCacheKey(), access_token, expires_in);
+    let cacheKey = await this.getCacheKey();
+    let cache = this.app.getCache();
+
+    await cache.set(cacheKey, access_token, expires_in);
+
+    if (!cache.has(cacheKey)) {
+      throw new Error('Failed to cache access token.');
+    }
+
+    return this;
   };
 
-  async refresh(): Promise<object>
+  async refresh(): Promise<BaseAccessToken>
   {
     await this.getToken(true);
     return this;
+  }
+
+  getRefreshedToken(): Promise<string>
+  {
+    return this.getToken(true);
+  }
+
+  getTokenKey(): string
+  {
+    return this.tokenKey;
+  }
+
+  async applyToRequest(payload: object): Promise<object>
+  {
+    payload['qs'] = payload['qs'] || {};
+    if (!payload['qs'][this.queryName || this.tokenKey]) {
+      payload['qs'][this.queryName || this.tokenKey] = await this.getToken();
+    }
+    return payload;
   }
 
 

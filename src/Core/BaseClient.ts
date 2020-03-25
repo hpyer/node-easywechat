@@ -33,14 +33,14 @@ class BaseClient implements HttpMixin
 
   async request(payload: object, returnResponse: Boolean = false): Promise<any>
   {
+    if (!payload['method']) {
+      payload['method'] = 'POST';
+    }
     if (!payload['qs']) {
       payload['qs'] = {};
     }
-    if (this.accessToken && !payload['qs'].access_token) {
-      payload['qs'].access_token = await this.accessToken['getToken']();
-    }
-    if (!payload['method']) {
-      payload['method'] = 'POST';
+    if (this.accessToken) {
+      payload = await this.accessToken.applyToRequest(payload);
     }
     return this.doRequest(payload, returnResponse);
   }

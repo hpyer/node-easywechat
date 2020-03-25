@@ -30,14 +30,14 @@ class BaseClient {
     }
     request(payload, returnResponse = false) {
         return __awaiter(this, void 0, void 0, function* () {
+            if (!payload['method']) {
+                payload['method'] = 'POST';
+            }
             if (!payload['qs']) {
                 payload['qs'] = {};
             }
-            if (this.accessToken && !payload['qs'].access_token) {
-                payload['qs'].access_token = yield this.accessToken['getToken']();
-            }
-            if (!payload['method']) {
-                payload['method'] = 'POST';
+            if (this.accessToken) {
+                payload = yield this.accessToken.applyToRequest(payload);
             }
             return this.doRequest(payload, returnResponse);
         });

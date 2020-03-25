@@ -13,13 +13,18 @@ const HttpMixin_1 = require("./Mixins/HttpMixin");
 const Utils_1 = require("./Utils");
 class BaseAccessToken {
     constructor(app) {
+        this.requestMethod = 'GET';
         this.token = '';
+        this.queryName = '';
+        this.tokenKey = 'access_token';
         this.endpointToGetToken = '';
         this.app = null;
         this.app = app;
     }
     getCredentials() {
-        return {};
+        return __awaiter(this, void 0, void 0, function* () {
+            return {};
+        });
     }
     getEndpoint() {
         if (!this.endpointToGetToken) {
@@ -28,39 +33,48 @@ class BaseAccessToken {
         return this.endpointToGetToken;
     }
     getCacheKey() {
-        return 'easywechat.kernel.access_token.' + Utils_1.createHash(JSON.stringify(this.getCredentials()), 'md5');
+        return __awaiter(this, void 0, void 0, function* () {
+            return 'easywechat.kernel.access_token.' + Utils_1.createHash(JSON.stringify(yield this.getCredentials()), 'md5');
+        });
     }
     requestToken(credentials) {
         return __awaiter(this, void 0, void 0, function* () {
-            let url = this.getEndpoint() + '?' + Utils_1.buildQueryString(credentials);
-            return yield this.doRequest({
-                url,
-                method: 'GET',
-            });
+            let payload = {
+                url: this.getEndpoint(),
+                method: this.requestMethod,
+            };
+            if (this.requestMethod == 'POST') {
+                payload['json'] = true;
+                payload['body'] = credentials;
+            }
+            else {
+                payload['qs'] = credentials;
+            }
+            return yield this.doRequest(payload);
         });
     }
     ;
-    getToken(force = false) {
+    getToken(refresh = false) {
         return __awaiter(this, void 0, void 0, function* () {
-            if (force) {
-                let res = yield this.requestToken(this.getCredentials());
-                yield this.setToken(res.access_token, res.expires_in);
-                return this.token;
+            let cacheKey = yield this.getCacheKey();
+            let cache = this.app.getCache();
+            if (!refresh && (yield cache.has(cacheKey))) {
+                return yield cache.get(cacheKey);
             }
-            if (!this.token) {
-                this.token = yield this.app.getCache().get(this.getCacheKey());
-                if (!this.token) {
-                    let res = yield this.requestToken(this.getCredentials());
-                    yield this.setToken(res.access_token, res.expires_in);
-                }
-            }
-            return this.token;
+            let res = yield this.requestToken(yield this.getCredentials());
+            yield this.setToken(res[this.tokenKey], res.expires_in || 7200);
+            return res[this.tokenKey];
         });
     }
     setToken(access_token, expires_in = 7200) {
         return __awaiter(this, void 0, void 0, function* () {
-            this.token = access_token;
-            yield this.app.getCache().set(this.getCacheKey(), access_token, expires_in);
+            let cacheKey = yield this.getCacheKey();
+            let cache = this.app.getCache();
+            yield cache.set(cacheKey, access_token, expires_in);
+            if (!cache.has(cacheKey)) {
+                throw new Error('Failed to cache access token.');
+            }
+            return this;
         });
     }
     ;
@@ -68,6 +82,21 @@ class BaseAccessToken {
         return __awaiter(this, void 0, void 0, function* () {
             yield this.getToken(true);
             return this;
+        });
+    }
+    getRefreshedToken() {
+        return this.getToken(true);
+    }
+    getTokenKey() {
+        return this.tokenKey;
+    }
+    applyToRequest(payload) {
+        return __awaiter(this, void 0, void 0, function* () {
+            payload['qs'] = payload['qs'] || {};
+            if (!payload['qs'][this.queryName || this.tokenKey]) {
+                payload['qs'][this.queryName || this.tokenKey] = yield this.getToken();
+            }
+            return payload;
         });
     }
     // Rewrite by HttpMixin

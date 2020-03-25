@@ -56,18 +56,18 @@ export default class ServerGuard
     this.handlers[condition].push(handler);
   }
 
-  dispatch(event: number, payload: any): Promise<any>
+  dispatch(event: string, payload: any): Promise<any>
   {
     return this.notify(event, payload);
   }
 
-  async notify(event: number, payload: any): Promise<any>
+  async notify(event: string, payload: any): Promise<any>
   {
     let result = null;
 
     for (let condition in this.handlers) {
       let handlers = this.handlers[condition];
-      if (condition == '*' || (Number(condition) & event) == event) {
+      if (condition === '*' || condition === event) {
         let isBreak = false;
         for (let i=0; i<handlers.length; i++) {
           let handler = handlers[i];
@@ -277,7 +277,7 @@ export default class ServerGuard
     // }
 
     if (await this.isSafeMode() && message['Encrypt']) {
-      let decrypted = this.decryptMessage(message);
+      let decrypted = await this.decryptMessage(message);
       message = await this.parseMessage(decrypted);
     }
 

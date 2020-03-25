@@ -9,7 +9,7 @@ export default class LogServiceProvider extends BaseServiceProvider
   {
     app['log'] = function () {
       let args = arguments;
-      args[0] = 'NodeEasywechat: ' + args[0];
+      args[0] = 'NodeEasywechat2: ' + args[0];
       return console.log.apply(null, arguments);
     };
   }
