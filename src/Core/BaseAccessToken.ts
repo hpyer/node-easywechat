@@ -7,7 +7,7 @@ import { createHash, applyMixins, buildQueryString } from './Utils';
 class BaseAccessToken implements HttpMixin
 {
   protected token: string = '';
-  protected endpoint: string = '';
+  protected endpointToGetToken: string = '';
   protected app: BaseApplication = null;
 
   constructor(app: BaseApplication)
@@ -22,10 +22,10 @@ class BaseAccessToken implements HttpMixin
 
   getEndpoint(): string
   {
-    if (!this.endpoint) {
+    if (!this.endpointToGetToken) {
       throw new Error('Unset the endpoint of AccessToken');
     }
-    return this.endpoint;
+    return this.endpointToGetToken;
   }
 
   getCacheKey(): string

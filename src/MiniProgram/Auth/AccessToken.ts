@@ -4,7 +4,7 @@ import BaseAccessToken from '../../Core/BaseAccessToken';
 
 export default class AccessToken extends BaseAccessToken
 {
-  protected endpoint: string = 'cgi-bin/token';
+  protected endpointToGetToken: string = 'cgi-bin/token';
 
   getCredentials(): object
   {

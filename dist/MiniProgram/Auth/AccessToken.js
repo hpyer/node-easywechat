@@ -4,7 +4,7 @@ const BaseAccessToken_1 = require("../../Core/BaseAccessToken");
 class AccessToken extends BaseAccessToken_1.default {
     constructor() {
         super(...arguments);
-        this.endpoint = 'cgi-bin/token';
+        this.endpointToGetToken = 'cgi-bin/token';
     }
     getCredentials() {
         return {

@@ -14,7 +14,7 @@ const Utils_1 = require("./Utils");
 class BaseAccessToken {
     constructor(app) {
         this.token = '';
-        this.endpoint = '';
+        this.endpointToGetToken = '';
         this.app = null;
         this.app = app;
     }
@@ -22,10 +22,10 @@ class BaseAccessToken {
         return {};
     }
     getEndpoint() {
-        if (!this.endpoint) {
+        if (!this.endpointToGetToken) {
             throw new Error('Unset the endpoint of AccessToken');
         }
-        return this.endpoint;
+        return this.endpointToGetToken;
     }
     getCacheKey() {
         return 'easywechat.kernel.access_token.' + Utils_1.createHash(JSON.stringify(this.getCredentials()), 'md5');
