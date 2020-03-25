@@ -31,7 +31,7 @@ class Application extends BaseApplication_1.default {
     }
     // map to `base` module
     getPaidUnionid() {
-        return this['base'].getPaidUnionid.apply(this, arguments);
+        return this['base'].getPaidUnionid.apply(this['base'], arguments);
     }
 }
 exports.default = Application;

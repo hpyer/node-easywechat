@@ -53,14 +53,14 @@ export default class Application extends BaseApplication
   // map to `base` module
   clearQuota(): Promise<any>
   {
-    return this['base'].clearQuota.apply(this, arguments);
+    return this['base'].clearQuota.apply(this['base'], arguments);
   }
   getValidIps(): Promise<any>
   {
-    return this['base'].getValidIps.apply(this, arguments);
+    return this['base'].getValidIps.apply(this['base'], arguments);
   }
   checkCallbackUrl(): Promise<any>
   {
-    return this['base'].checkCallbackUrl.apply(this, arguments);
+    return this['base'].checkCallbackUrl.apply(this['base'], arguments);
   }
 };

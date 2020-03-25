@@ -44,13 +44,13 @@ class Application extends BaseApplication_1.default {
     }
     // map to `base` module
     clearQuota() {
-        return this['base'].clearQuota.apply(this, arguments);
+        return this['base'].clearQuota.apply(this['base'], arguments);
     }
     getValidIps() {
-        return this['base'].getValidIps.apply(this, arguments);
+        return this['base'].getValidIps.apply(this['base'], arguments);
     }
     checkCallbackUrl() {
-        return this['base'].checkCallbackUrl.apply(this, arguments);
+        return this['base'].checkCallbackUrl.apply(this['base'], arguments);
     }
 }
 exports.default = Application;

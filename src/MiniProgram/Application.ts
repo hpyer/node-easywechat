@@ -39,7 +39,7 @@ export default class Application extends BaseApplication
   // map to `base` module
   getPaidUnionid(): Promise<any>
   {
-    return this['base'].getPaidUnionid.apply(this, arguments);
+    return this['base'].getPaidUnionid.apply(this['base'], arguments);
   }
 
 };

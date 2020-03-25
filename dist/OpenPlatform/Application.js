@@ -113,25 +113,25 @@ class Application extends BaseApplication_1.default {
     }
     // map to `base` module
     handleAuthorize() {
-        return this['base'].handleAuthorize.apply(this, arguments);
+        return this['base'].handleAuthorize.apply(this['base'], arguments);
     }
     getAuthorizer() {
-        return this['base'].getAuthorizer.apply(this, arguments);
+        return this['base'].getAuthorizer.apply(this['base'], arguments);
     }
     getAuthorizerOption() {
-        return this['base'].getAuthorizerOption.apply(this, arguments);
+        return this['base'].getAuthorizerOption.apply(this['base'], arguments);
     }
     setAuthorizerOption() {
-        return this['base'].setAuthorizerOption.apply(this, arguments);
+        return this['base'].setAuthorizerOption.apply(this['base'], arguments);
     }
     getAuthorizers() {
-        return this['base'].getAuthorizers.apply(this, arguments);
+        return this['base'].getAuthorizers.apply(this['base'], arguments);
     }
     createPreAuthorizationCode() {
-        return this['base'].createPreAuthorizationCode.apply(this, arguments);
+        return this['base'].createPreAuthorizationCode.apply(this['base'], arguments);
     }
     clearQuota() {
-        return this['base'].clearQuota.apply(this, arguments);
+        return this['base'].clearQuota.apply(this['base'], arguments);
     }
 }
 exports.default = Application;

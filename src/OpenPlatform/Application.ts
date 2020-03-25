@@ -123,30 +123,30 @@ export default class Application extends BaseApplication
   // map to `base` module
   handleAuthorize(): Promise<any>
   {
-    return this['base'].handleAuthorize.apply(this, arguments);
+    return this['base'].handleAuthorize.apply(this['base'], arguments);
   }
   getAuthorizer(): Promise<any>
   {
-    return this['base'].getAuthorizer.apply(this, arguments);
+    return this['base'].getAuthorizer.apply(this['base'], arguments);
   }
   getAuthorizerOption(): Promise<any>
   {
-    return this['base'].getAuthorizerOption.apply(this, arguments);
+    return this['base'].getAuthorizerOption.apply(this['base'], arguments);
   }
   setAuthorizerOption(): Promise<any>
   {
-    return this['base'].setAuthorizerOption.apply(this, arguments);
+    return this['base'].setAuthorizerOption.apply(this['base'], arguments);
   }
   getAuthorizers(): Promise<any>
   {
-    return this['base'].getAuthorizers.apply(this, arguments);
+    return this['base'].getAuthorizers.apply(this['base'], arguments);
   }
   createPreAuthorizationCode(): Promise<any>
   {
-    return this['base'].createPreAuthorizationCode.apply(this, arguments);
+    return this['base'].createPreAuthorizationCode.apply(this['base'], arguments);
   }
   clearQuota(): Promise<any>
   {
-    return this['base'].clearQuota.apply(this, arguments);
+    return this['base'].clearQuota.apply(this['base'], arguments);
   }
 };

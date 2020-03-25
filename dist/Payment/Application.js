@@ -82,10 +82,10 @@ class Application extends BaseApplication_1.default {
     }
     // map to `base` module
     pay() {
-        return this['base'].pay.apply(this, arguments);
+        return this['base'].pay.apply(this['base'], arguments);
     }
     authCodeToOpenid() {
-        return this['base'].authCodeToOpenid.apply(this, arguments);
+        return this['base'].authCodeToOpenid.apply(this['base'], arguments);
     }
 }
 exports.default = Application;

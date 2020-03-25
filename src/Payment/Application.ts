@@ -113,11 +113,11 @@ export default class Application extends BaseApplication
   // map to `base` module
   pay(): Promise<any>
   {
-    return this['base'].pay.apply(this, arguments);
+    return this['base'].pay.apply(this['base'], arguments);
   }
   authCodeToOpenid(): Promise<any>
   {
-    return this['base'].authCodeToOpenid.apply(this, arguments);
+    return this['base'].authCodeToOpenid.apply(this['base'], arguments);
   }
 
 };
