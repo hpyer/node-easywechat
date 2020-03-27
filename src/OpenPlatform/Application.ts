@@ -74,17 +74,17 @@ export default class Application extends BaseApplication
 
   protected getReplaceServices(accessToken = null): object
   {
+    let that = this;
     let services = {
       access_token: accessToken || function (app) {
-        return new AccessToken(app, this);
+        return new AccessToken(app, that);
       },
       server: function (app) {
         return new Guard(app);
       },
     };
 
-    let that = this;
-    ['cache', 'log', 'request'].map(reuse => {
+    ['cache', 'log', 'request'].forEach(function (reuse) {
       if (that[reuse]) {
         services[reuse] = that[reuse];
       }
@@ -98,8 +98,6 @@ export default class Application extends BaseApplication
     let that = this;
     let services = Merge({}, this.getReplaceServices(accessToken), {
       encryptor: this['encryptor'],
-      request: this['request'],
-      cache: this['cache'],
       account: function (app) {
         return new OAAccountClient(app, that);
       },
@@ -114,8 +112,6 @@ export default class Application extends BaseApplication
   {
     let that = this;
     let services = Merge({}, this.getReplaceServices(accessToken), {
-      request: this['request'],
-      cache: this['cache'],
       auth: function (app) {
         return new MPAuthClient(app, that);
       },

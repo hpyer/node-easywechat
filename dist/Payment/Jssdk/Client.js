@@ -1,4 +1,13 @@
 'use strict';
+var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
+    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
+    return new (P || (P = Promise))(function (resolve, reject) {
+        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
+        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
+        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
+        step((generator = generator.apply(thisArg, _arguments || [])).next());
+    });
+};
 Object.defineProperty(exports, "__esModule", { value: true });
 const Client_1 = require("../../BaseService/Jssdk/Client");
 const Utils_1 = require("../../Core/Utils");
@@ -34,25 +43,27 @@ class Client extends Client_1.default {
         return params;
     }
     shareAddressConfig(accessToken, json = true) {
-        if (accessToken instanceof BaseAccessToken_1.default) {
-            accessToken = accessToken.getToken();
-        }
-        let params = {
-            appId: this.app['config'].app_id,
-            scope: 'jsapi_address',
-            timeStamp: Utils_1.getTimestamp() + '',
-            nonceStr: Utils_1.randomString(16),
-            signType: 'SHA1',
-        };
-        let signParams = {
-            appId: params['appId'],
-            url: this.getUrl(),
-            timestamp: params['timeStamp'],
-            noncestr: params['nonceStr'],
-            accesstoken: '' + accessToken,
-        };
-        params['addrSign'] = Utils_1.makeSignature(signParams, '', 'sha1');
-        return json ? JSON.stringify(params) : params;
+        return __awaiter(this, void 0, void 0, function* () {
+            if (accessToken instanceof BaseAccessToken_1.default) {
+                accessToken = yield accessToken.getToken();
+            }
+            let params = {
+                appId: this.app['config'].app_id,
+                scope: 'jsapi_address',
+                timeStamp: Utils_1.getTimestamp() + '',
+                nonceStr: Utils_1.randomString(16),
+                signType: 'SHA1',
+            };
+            let signParams = {
+                appId: params['appId'],
+                url: this.getUrl(),
+                timestamp: params['timeStamp'],
+                noncestr: params['nonceStr'],
+                accesstoken: '' + accessToken,
+            };
+            params['addrSign'] = Utils_1.makeSignature(signParams, '', 'sha1');
+            return json ? JSON.stringify(params) : params;
+        });
     }
 }
 exports.default = Client;

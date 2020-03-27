@@ -30,8 +30,10 @@ class AccessToken extends BaseAccessToken_1.default {
         });
     }
     getEndpoint() {
-        return 'cgi-bin/component/api_authorizer_token?' + Utils_1.buildQueryString({
-            component_access_token: this.component['access_token'].getToken()['component_access_token'],
+        return __awaiter(this, void 0, void 0, function* () {
+            return 'cgi-bin/component/api_authorizer_token?' + Utils_1.buildQueryString({
+                component_access_token: (yield this.component['access_token'].getToken()),
+            });
         });
     }
 }

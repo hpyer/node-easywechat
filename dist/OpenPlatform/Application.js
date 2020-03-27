@@ -73,16 +73,16 @@ class Application extends BaseApplication_1.default {
         });
     }
     getReplaceServices(accessToken = null) {
+        let that = this;
         let services = {
             access_token: accessToken || function (app) {
-                return new AccessToken_1.default(app, this);
+                return new AccessToken_1.default(app, that);
             },
             server: function (app) {
                 return new Guard_1.default(app);
             },
         };
-        let that = this;
-        ['cache', 'log', 'request'].map(reuse => {
+        ['cache', 'log', 'request'].forEach(function (reuse) {
             if (that[reuse]) {
                 services[reuse] = that[reuse];
             }
@@ -93,8 +93,6 @@ class Application extends BaseApplication_1.default {
         let that = this;
         let services = Merge({}, this.getReplaceServices(accessToken), {
             encryptor: this['encryptor'],
-            request: this['request'],
-            cache: this['cache'],
             account: function (app) {
                 return new Client_2.default(app, that);
             },
@@ -107,8 +105,6 @@ class Application extends BaseApplication_1.default {
     miniProgram(appId, refreshToken = null, accessToken = null) {
         let that = this;
         let services = Merge({}, this.getReplaceServices(accessToken), {
-            request: this['request'],
-            cache: this['cache'],
             auth: function (app) {
                 return new Client_3.default(app, that);
             },

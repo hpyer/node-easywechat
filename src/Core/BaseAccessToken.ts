@@ -1,9 +1,8 @@
 'use strict';
 
-import * as Merge from 'merge';
 import BaseApplication from './BaseApplication';
 import HttpMixin from './Mixins/HttpMixin';
-import { createHash, applyMixins, buildQueryString } from './Utils';
+import { createHash, applyMixins } from './Utils';
 
 class BaseAccessToken implements HttpMixin
 {
@@ -24,7 +23,7 @@ class BaseAccessToken implements HttpMixin
     return {};
   }
 
-  getEndpoint(): string
+  async getEndpoint(): Promise<string>
   {
     if (!this.endpointToGetToken) {
       throw new Error('Unset the endpoint of AccessToken');
@@ -40,7 +39,7 @@ class BaseAccessToken implements HttpMixin
   async requestToken(credentials: object): Promise<any>
   {
     let payload = {
-      url: this.getEndpoint(),
+      url: await this.getEndpoint(),
       method: this.requestMethod,
     }
     if (this.requestMethod == 'POST') {

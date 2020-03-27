@@ -45,7 +45,7 @@ class BaseApplicatioin {
         ].forEach(provider => {
             try {
                 let serviceClass = require(Path.resolve(__dirname + '/' + provider))['default'];
-                serviceClass.register.call(this, this);
+                serviceClass.register(this);
             }
             catch (e) {
                 throw new Error(`Fail to regist service '${provider}', erro: ${e.message}`);
@@ -54,7 +54,7 @@ class BaseApplicatioin {
         providers.forEach(provider => {
             try {
                 let serviceClass = require(Path.resolve(__dirname + '/../' + provider + '/ServiceProvider'))['default'];
-                serviceClass.register.call(this, this);
+                serviceClass.register(this);
             }
             catch (e) {
                 throw new Error(`Fail to regist service '${provider}', erro: ${e.message}`);
@@ -70,7 +70,7 @@ class BaseApplicatioin {
     }
     offsetSet(id, value) {
         if (Utils_1.isFunction(value)) {
-            value = value.call(this, this);
+            value = value(this);
         }
         this[id] = value;
     }

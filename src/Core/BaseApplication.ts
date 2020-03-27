@@ -57,7 +57,7 @@ export default class BaseApplicatioin
       provider => {
         try {
           let serviceClass = require(Path.resolve(__dirname + '/' + provider))['default'];
-          serviceClass.register.call(this, this);
+          serviceClass.register(this);
         }
         catch (e) {
           throw new Error(`Fail to regist service '${provider}', erro: ${e.message}`);
@@ -69,7 +69,7 @@ export default class BaseApplicatioin
       provider => {
         try {
           let serviceClass = require(Path.resolve(__dirname + '/../' + provider + '/ServiceProvider'))['default'];
-          serviceClass.register.call(this, this);
+          serviceClass.register(this);
         }
         catch (e) {
           throw new Error(`Fail to regist service '${provider}', erro: ${e.message}`);
@@ -93,7 +93,7 @@ export default class BaseApplicatioin
   offsetSet(id: string, value: any): void
   {
     if (isFunction(value)) {
-      value = value.call(this, this);
+      value = value(this);
     }
     this[id] = value;
   }

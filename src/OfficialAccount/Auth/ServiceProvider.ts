@@ -8,6 +8,8 @@ export default class ServiceProvider extends BaseServiceProvider
 {
   static register(app: BaseApplication): void
   {
-    app['access_token'] = new AccessToken(app);
+    if (!app['access_token']) {
+      app['access_token'] = new AccessToken(app);
+    }
   }
 };

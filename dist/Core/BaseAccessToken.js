@@ -27,10 +27,12 @@ class BaseAccessToken {
         });
     }
     getEndpoint() {
-        if (!this.endpointToGetToken) {
-            throw new Error('Unset the endpoint of AccessToken');
-        }
-        return this.endpointToGetToken;
+        return __awaiter(this, void 0, void 0, function* () {
+            if (!this.endpointToGetToken) {
+                throw new Error('Unset the endpoint of AccessToken');
+            }
+            return this.endpointToGetToken;
+        });
     }
     getCacheKey() {
         return __awaiter(this, void 0, void 0, function* () {
@@ -40,7 +42,7 @@ class BaseAccessToken {
     requestToken(credentials) {
         return __awaiter(this, void 0, void 0, function* () {
             let payload = {
-                url: this.getEndpoint(),
+                url: yield this.getEndpoint(),
                 method: this.requestMethod,
             };
             if (this.requestMethod == 'POST') {

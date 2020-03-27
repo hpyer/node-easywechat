@@ -28,10 +28,10 @@ export default class AccessToken extends BaseAccessToken
     };
   }
 
-  getEndpoint(): string
+  async getEndpoint(): Promise<string>
   {
     return 'cgi-bin/component/api_authorizer_token?' + buildQueryString({
-      component_access_token: this.component['access_token'].getToken()['component_access_token'],
-    })
+      component_access_token: (await this.component['access_token'].getToken()),
+    });
   }
 }

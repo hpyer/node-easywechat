@@ -8,6 +8,8 @@ export default class ServiceProvider extends BaseServiceProvider
 {
   static register(app: BaseApplication): void
   {
-    app['oauth'] = new OAuth(app);
+    if (!app['oauth']) {
+      app['oauth'] = new OAuth(app);
+    }
   }
 };

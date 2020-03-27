@@ -47,10 +47,10 @@ export default class Client extends JssdkClient
     return params;
   }
 
-  shareAddressConfig(accessToken: any, json: Boolean = true): any
+  async shareAddressConfig(accessToken: any, json: Boolean = true): Promise<any>
   {
     if (accessToken instanceof BaseAccessToken) {
-      accessToken = accessToken.getToken();
+      accessToken = await accessToken.getToken();
     }
 
     let params = {
