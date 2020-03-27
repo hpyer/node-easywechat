@@ -42,7 +42,7 @@ class ServerGuard {
             let result = null;
             for (let condition in this.handlers) {
                 let handlers = this.handlers[condition];
-                if (condition === '*' || condition === event) {
+                if (condition == '*' || condition == event || Number(Number(condition) & Number(event)) == Number(event)) {
                     let isBreak = false;
                     for (let i = 0; i < handlers.length; i++) {
                         let handler = handlers[i];

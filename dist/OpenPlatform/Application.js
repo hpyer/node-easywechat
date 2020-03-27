@@ -41,7 +41,6 @@ class Application extends BaseApplication_1.default {
             else {
                 optional['pre_auth_code'] = (yield this.createPreAuthorizationCode())['pre_auth_code'];
             }
-            console.log('optional', optional);
             return 'https://mp.weixin.qq.com/cgi-bin/componentloginpage?' + Utils_1.buildQueryString(Merge({}, optional, {
                 component_appid: this['config']['app_id'],
                 redirect_uri: callbackUrl,
@@ -94,6 +93,8 @@ class Application extends BaseApplication_1.default {
         let that = this;
         let services = Merge({}, this.getReplaceServices(accessToken), {
             encryptor: this['encryptor'],
+            request: this['request'],
+            cache: this['cache'],
             account: function (app) {
                 return new Client_2.default(app, that);
             },
@@ -106,6 +107,8 @@ class Application extends BaseApplication_1.default {
     miniProgram(appId, refreshToken = null, accessToken = null) {
         let that = this;
         let services = Merge({}, this.getReplaceServices(accessToken), {
+            request: this['request'],
+            cache: this['cache'],
             auth: function (app) {
                 return new Client_3.default(app, that);
             },

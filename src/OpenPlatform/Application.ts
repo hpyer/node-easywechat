@@ -98,6 +98,8 @@ export default class Application extends BaseApplication
     let that = this;
     let services = Merge({}, this.getReplaceServices(accessToken), {
       encryptor: this['encryptor'],
+      request: this['request'],
+      cache: this['cache'],
       account: function (app) {
         return new OAAccountClient(app, that);
       },
@@ -112,6 +114,8 @@ export default class Application extends BaseApplication
   {
     let that = this;
     let services = Merge({}, this.getReplaceServices(accessToken), {
+      request: this['request'],
+      cache: this['cache'],
       auth: function (app) {
         return new MPAuthClient(app, that);
       },

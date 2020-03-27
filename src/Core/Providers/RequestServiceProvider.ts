@@ -8,7 +8,9 @@ export default class RequestServiceProvider extends BaseServiceProvider
 {
   static register(app: BaseApplication): void
   {
-    app['request'] = new Request;
+    if (!app['request']) {
+      app['request'] = new Request;
+    }
   }
 
 };
