@@ -2,6 +2,11 @@
 const Utils_1 = require("./Core/Utils");
 const EasyWechat = {};
 EasyWechat['Factory'] = {
+    OfficialAccount: require('./OfficialAccount/Application')['default'],
+    BasicService: require('./BasicService/Application')['default'],
+    MiniProgram: require('./MiniProgram/Application')['default'],
+    OpenPlatform: require('./OpenPlatform/Application')['default'],
+    Payment: require('./Payment/Application')['default'],
     getInstance: function (service, config = {}) {
         try {
             service = Utils_1.strStudly(service);

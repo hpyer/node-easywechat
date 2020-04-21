@@ -5,7 +5,13 @@ import { strStudly } from './Core/Utils';
 const EasyWechat = {};
 
 EasyWechat['Factory'] = {
-  getInstance: function (service, config = {}): void
+  OfficialAccount: require('./OfficialAccount/Application')['default'],
+  BasicService: require('./BasicService/Application')['default'],
+  MiniProgram: require('./MiniProgram/Application')['default'],
+  OpenPlatform: require('./OpenPlatform/Application')['default'],
+  Payment: require('./Payment/Application')['default'],
+
+  getInstance: function (service, config = {}): any
   {
     try {
       service = strStudly(service);

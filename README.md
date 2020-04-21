@@ -16,6 +16,33 @@
 
 绝大部分API都可以根据 [EasyWechat 的文档](https://www.easywechat.com/docs) 来使用。小部分（如获取请求相关数据、返回响应数据、支付证书等）的操作，由于语言环境的不同，会有不同处理。具体可以查看 [node-easywechat-demo](https://github.com/hpyer/node-easywechat-demo/tree/2.x) 。如果仍有疑问，请提issue，谢谢～
 
+```js
+// 公众号
+let officialAccount = new EasyWechat.Factory.OfficialAccount({
+  // ...
+});
+
+// 小程序
+let miniProgram = new EasyWechat.Factory.MiniProgram({
+  // ...
+});
+
+// 微信支付
+let payment = new EasyWechat.Factory.Payment({
+  // ...
+});
+
+// 微信支付
+let openPlatform = new EasyWechat.Factory.OpenPlatform({
+  // ...
+});
+
+// 通用方式
+let app = EasyWechat.Factory.getInstance('OficialAccount', {
+  // ...
+});
+```
+
 ### 配置项示例
 
 ``` js
