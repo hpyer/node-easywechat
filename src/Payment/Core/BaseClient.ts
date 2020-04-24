@@ -103,11 +103,11 @@ class BaseClient implements HttpMixin
     if (!this.serverIp) {
       let res = await this.doRequest({
         baseUrl: '',
-        url: 'http://ip.taobao.com/service/getIpInfo.php?ip=myip',
+        url: 'https://api.ipify.org?format=json',
         method: 'GET',
       });
-      if (res && !res['code'] && res['data'] && res['data']['ip']) {
-        this.serverIp = res['data']['ip'];
+      if (res && res['ip']) {
+        this.serverIp = res['ip'];
       }
     }
 
