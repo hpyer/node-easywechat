@@ -1,39 +1,50 @@
 'use strict';
 
 import { strStudly } from './Core/Utils';
+import OfficialAccount from './OfficialAccount/Application';
+import BaseService from './BaseService/Application';
+import MiniProgram from './MiniProgram/Application';
+import OpenPlatform from './OpenPlatform/Application';
+import Payment from './Payment/Application';
+import CacheInterface from './Core/Contracts/CacheInterface';
+import FinallResult from './Core/Decorators/FinallResult';
+import TerminateResult from './Core/Decorators/TerminateResult';
+import Request from './Core/Http/Request';
+import Response from './Core/Http/Response';
+import StreamResponse from './Core/Http/StreamResponse';
+import * as Message from './Core/Messages';
 
-const EasyWechat = {};
+const EasyWechat = {
+  Factory: {
+    OfficialAccount,
+    BaseService,
+    MiniProgram,
+    OpenPlatform,
+    Payment,
 
-EasyWechat['Factory'] = {
-  OfficialAccount: require('./OfficialAccount/Application')['default'],
-  BaseService: require('./BaseService/Application')['default'],
-  MiniProgram: require('./MiniProgram/Application')['default'],
-  OpenPlatform: require('./OpenPlatform/Application')['default'],
-  Payment: require('./Payment/Application')['default'],
-
-  getInstance: function (service, config = {}): any
-  {
-    try {
-      service = strStudly(service);
-      let applicationClass = this[service];
-      return new applicationClass(config);
-    }
-    catch (e) {
-      console.log(e)
-    }
+    getInstance: function (service: string, config: object = {}): any {
+      try {
+        service = strStudly(service);
+        let applicationClass = this[service];
+        return new applicationClass(config);
+      }
+      catch (e) {
+        console.log(e)
+      }
+    },
   },
-};
 
-EasyWechat['CacheInterface'] = require('./Core/Contracts/CacheInterface')['default'];
-EasyWechat['Decorator'] = {
-  FinallResult: require('./Core/Decorators/FinallResult')['default'],
-  TerminateResult: require('./Core/Decorators/TerminateResult')['default'],
+  CacheInterface,
+  Decorator: {
+    FinallResult,
+    TerminateResult,
+  },
+  Http: {
+    Request,
+    Response,
+    StreamResponse,
+  },
+  Message,
 };
-EasyWechat['Http'] = {
-  Request: require('./Core/Http/Request')['default'],
-  Response: require('./Core/Http/Response')['default'],
-  StreamResponse: require('./Core/Http/StreamResponse')['default'],
-};
-EasyWechat['Message'] = require('./Core/Messages');
 
 export = EasyWechat;
