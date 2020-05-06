@@ -30,9 +30,14 @@ class BaseClient implements HttpMixin
     let base = {
       mch_id: this.app['config']['mch_id'],
       nonce_str: randomString(32),
-      sub_mch_id: this.app['config']['sub_mch_id'] || '',
-      sub_appid: this.app['config']['sub_appid'] || '',
     };
+
+    if (this.app['config']['sub_mch_id']) {
+      base['sub_mch_id'] = '';
+    }
+    if (this.app['config']['sub_appid']) {
+      base['sub_appid'] = '';
+    }
 
     let localParams = Merge(base, this.prepends(), params);
     localParams['sign_type'] = localParams['sign_type'] || 'md5';
