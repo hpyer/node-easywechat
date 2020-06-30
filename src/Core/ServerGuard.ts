@@ -39,15 +39,30 @@ export default class ServerGuard
     this.app = app;
   }
 
+  /**
+   * 注册消息处理器
+   * @param condition EasyWechat.Messages.Message.xxx，用于处理特定消息类型，默认：* 表示全部
+   * @param handler 处理函数，该函数需要接收一个消息对象
+   */
   on(condition: string, handler: Function): void
   {
     this.push(handler, condition);
   }
+  /**
+   * 注册消息处理器
+   * @param condition EasyWechat.Messages.Message.xxx，用于处理特定消息类型，默认：* 表示全部
+   * @param handler 处理函数，该函数需要接收一个消息对象
+   */
   observe(condition: string, handler: Function): void
   {
     this.push(handler, condition);
   }
 
+  /**
+   * 注册消息处理器
+   * @param handler 处理函数，该函数需要接收一个消息对象
+   * @param condition EasyWechat.Messages.Message.xxx，用于处理特定消息类型，默认：* 表示全部
+   */
   push (handler: Function, condition: string = '*'): void
   {
     if (!this.handlers[condition]) {
@@ -56,12 +71,12 @@ export default class ServerGuard
     this.handlers[condition].push(handler);
   }
 
-  dispatch(event: string, payload: any): Promise<any>
+  protected dispatch(event: string, payload: any): Promise<any>
   {
     return this.notify(event, payload);
   }
 
-  async notify(event: string, payload: any): Promise<any>
+  protected async notify(event: string, payload: any): Promise<any>
   {
     let result = null;
 
@@ -97,7 +112,7 @@ export default class ServerGuard
     return result instanceof FinallResult ? result.content : result;
   }
 
-  async _callHandler(handler: Function, payload: any): Promise<any>
+  protected async _callHandler(handler: Function, payload: any): Promise<any>
   {
     try {
       if (typeof handler == 'function') {
@@ -111,6 +126,9 @@ export default class ServerGuard
   }
 
 
+  /**
+   * 处理消息
+   */
   async serve(): Promise<Response>
   {
     let content = await this.app['request'].getContent();
@@ -131,7 +149,7 @@ export default class ServerGuard
     return res;
   }
 
-  async validate(): Promise<ServerGuard>
+  protected async validate(): Promise<ServerGuard>
   {
     if (!this.alwaysValidate && !(await this.isSafeMode())) {
       return this;
@@ -148,7 +166,7 @@ export default class ServerGuard
     return this;
   }
 
-  forceValidate(): ServerGuard
+  protected forceValidate(): ServerGuard
   {
     this.alwaysValidate = true;
     return this;
@@ -172,12 +190,12 @@ export default class ServerGuard
     return res;
   }
 
-  async shouldReturnRawResponse(): Promise<boolean>
+  protected async shouldReturnRawResponse(): Promise<boolean>
   {
     return false;
   }
 
-  async buildResponse(to: string, from: string, message: any): Promise<string>
+  protected async buildResponse(to: string, from: string, message: any): Promise<string>
   {
     if (!message || ServerGuard.SUCCESS_EMPTY_RESPONSE === message) {
       return ServerGuard.SUCCESS_EMPTY_RESPONSE;
@@ -206,7 +224,7 @@ export default class ServerGuard
     return await this.buildReply(to, from, message);
   }
 
-  async buildReply(to: string, from: string, message: Message): Promise<string>
+  protected async buildReply(to: string, from: string, message: Message): Promise<string>
   {
     let prepends = {
       ToUserName: to,
@@ -238,21 +256,21 @@ export default class ServerGuard
     return this.app['config']['token'];
   }
 
-  async isSafeMode(): Promise<boolean>
+  protected async isSafeMode(): Promise<boolean>
   {
     let signature = await this.app['request'].get('signature');
     let encrypt_type = await this.app['request'].get('encrypt_type');
     return signature && 'aes' === encrypt_type;
   }
 
-  signature(params): string
+  protected signature(params): string
   {
     params.sort();
 
     return createHash(params.join(''), 'sha1');
   }
 
-  async handleRequest(): Promise<object>
+  protected async handleRequest(): Promise<object>
   {
     let castedMessage = await this.getMessage();
 
@@ -265,6 +283,9 @@ export default class ServerGuard
     };
   }
 
+  /**
+   * 获取消息
+   */
   async getMessage(): Promise<object>
   {
     let content = await this.app['request'].getContent();
@@ -284,7 +305,7 @@ export default class ServerGuard
     return message;
   }
 
-  async parseMessage(content): Promise<any>
+  protected async parseMessage(content): Promise<any>
   {
     try {
       if (!content) {
@@ -306,7 +327,7 @@ export default class ServerGuard
     }
   }
 
-  parseXmlMessage(xml): Promise<any>
+  protected parseXmlMessage(xml): Promise<any>
   {
     return new Promise((resolve, reject) => {
       Xml2js.parseString(xml, (err, result) => {

@@ -1,7 +1,7 @@
 'use strict';
 
 import { Message, Text, Raw as RawMessage } from "../../Core/Messages";
-import Client from "./Client";
+import CustomerServiceClient from "./CustomerServiceClient";
 import { isString } from "../../Core/Utils";
 
 export default class Messenger
@@ -12,9 +12,9 @@ export default class Messenger
 
   protected account: string;
 
-  protected client: Client;
+  protected client: CustomerServiceClient;
 
-  constructor(client: Client)
+  constructor(client: CustomerServiceClient)
   {
     this.client = client;
   }
@@ -85,7 +85,7 @@ export default class Messenger
     return this._message;
   }
 
-  getClient(): Client
+  getClient(): CustomerServiceClient
   {
     return this.client;
   }

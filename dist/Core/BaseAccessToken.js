@@ -56,6 +56,10 @@ class BaseAccessToken {
         });
     }
     ;
+    /**
+     * 获取Token
+     * @param refresh 为true时表示强制刷新
+     */
     getToken(refresh = false) {
         return __awaiter(this, void 0, void 0, function* () {
             let cacheKey = yield this.getCacheKey();
@@ -68,6 +72,11 @@ class BaseAccessToken {
             return res[this.tokenKey];
         });
     }
+    /**
+     * 设置Token
+     * @param access_token AccessToken
+     * @param expires_in 有效时间，单位：秒
+     */
     setToken(access_token, expires_in = 7200) {
         return __awaiter(this, void 0, void 0, function* () {
             let cacheKey = yield this.getCacheKey();
@@ -80,12 +89,18 @@ class BaseAccessToken {
         });
     }
     ;
+    /**
+     * 刷新Token
+     */
     refresh() {
         return __awaiter(this, void 0, void 0, function* () {
             yield this.getToken(true);
             return this;
         });
     }
+    /**
+     * 获取刷新后的Token
+     */
     getRefreshedToken() {
         return this.getToken(true);
     }

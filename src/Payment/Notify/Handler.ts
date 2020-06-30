@@ -112,7 +112,7 @@ export default class Handler
 
     let buffer = Buffer.from(message[key], 'base64');
 
-    return AesDecrypt(buffer.toString(), createHash(this.app['config'].key, 'md5'), '', 'AES-256-ECB');
+    return AesDecrypt(buffer.toString(), createHash(this.app['config']['key'], 'md5'), '', 'AES-256-ECB');
   }
 
   protected validate(message: object): void

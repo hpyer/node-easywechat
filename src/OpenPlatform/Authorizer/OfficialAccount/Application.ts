@@ -1,18 +1,27 @@
 'use strict';
 
-import OfficialAccount from '../../../OfficialAccount/Application';
+import BaseApplication from '../../../OfficialAccount/Application';
+import MiniProgramClient from './MiniProgram/MiniProgramClient';
 
-export default class Application extends OfficialAccount
+export default class OfficialAccount extends BaseApplication
 {
+
+  public mini_program: MiniProgramClient = null;
+
   constructor(config: Object = {}, prepends: Object = {}, id: String = null)
   {
     super(config, prepends, id);
 
-    let providers = [
-      'OpenPlatform/Authorizer/Aggregate',
-      'OpenPlatform/Authorizer/OfficialAccount/MiniProgram',
-    ];
-    super.registerProviders(providers);
+    this.registerProviders();
+  }
+
+  registerProviders(): void
+  {
+    this.registerCommonProviders();
+
+    this.offsetSet('mini_program', function (app) {
+      return new MiniProgramClient(app);
+    });
   }
 
 };

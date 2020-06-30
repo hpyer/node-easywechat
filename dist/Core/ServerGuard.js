@@ -22,12 +22,27 @@ class ServerGuard {
         this.handlers = {};
         this.app = app;
     }
+    /**
+     * 注册消息处理器
+     * @param condition EasyWechat.Messages.Message.xxx，用于处理特定消息类型，默认：* 表示全部
+     * @param handler 处理函数，该函数需要接收一个消息对象
+     */
     on(condition, handler) {
         this.push(handler, condition);
     }
+    /**
+     * 注册消息处理器
+     * @param condition EasyWechat.Messages.Message.xxx，用于处理特定消息类型，默认：* 表示全部
+     * @param handler 处理函数，该函数需要接收一个消息对象
+     */
     observe(condition, handler) {
         this.push(handler, condition);
     }
+    /**
+     * 注册消息处理器
+     * @param handler 处理函数，该函数需要接收一个消息对象
+     * @param condition EasyWechat.Messages.Message.xxx，用于处理特定消息类型，默认：* 表示全部
+     */
     push(handler, condition = '*') {
         if (!this.handlers[condition]) {
             this.handlers[condition] = [];
@@ -82,6 +97,9 @@ class ServerGuard {
             return false;
         });
     }
+    /**
+     * 处理消息
+     */
     serve() {
         return __awaiter(this, void 0, void 0, function* () {
             let content = yield this.app['request'].getContent();
@@ -207,6 +225,9 @@ class ServerGuard {
             };
         });
     }
+    /**
+     * 获取消息
+     */
     getMessage() {
         return __awaiter(this, void 0, void 0, function* () {
             let content = yield this.app['request'].getContent();

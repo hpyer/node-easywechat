@@ -5,7 +5,22 @@ const Utils_1 = require("../Core/Utils");
 const Paid_1 = require("./Notify/Paid");
 const Refunded_1 = require("./Notify/Refunded");
 const Scanned_1 = require("./Notify/Scanned");
-class Application extends BaseApplication_1.default {
+const AccessToken_1 = require("../OfficialAccount/Auth/AccessToken");
+const UrlClient_1 = require("../BaseService/Url/UrlClient");
+const PaymentBase_1 = require("./Base/PaymentBase");
+const BillClient_1 = require("./Bill/BillClient");
+const CouponClient_1 = require("./Coupon/CouponClient");
+const JssdkClient_1 = require("./Jssdk/JssdkClient");
+const MerchantClient_1 = require("./Merchant/MerchantClient");
+const OrderClient_1 = require("./Order/OrderClient");
+const RedpackClient_1 = require("./Redpack/RedpackClient");
+const RefundClient_1 = require("./Refund/RefundClient");
+const ReverseClient_1 = require("./Reverse/ReverseClient");
+const SandboxClient_1 = require("./Sandbox/SandboxClient");
+const TransferClient_1 = require("./Transfer/TransferClient");
+const SecurityClient_1 = require("./Security/SecurityClient");
+const ProfitSharingClient_1 = require("./ProfitSharing/ProfitSharingClient");
+class Payment extends BaseApplication_1.default {
     constructor(config = {}, prepends = {}, id = null) {
         super(config, prepends, id);
         this.defaultConfig = {
@@ -17,50 +32,100 @@ class Application extends BaseApplication_1.default {
                 baseUrl: 'https://api.mch.weixin.qq.com/',
             },
         };
-        let providers = [
-            'OfficialAccount/Auth',
-            'BaseService/Url',
-            'Payment/Base',
-            'Payment/Bill',
-            'Payment/Coupon',
-            'Payment/Jssdk',
-            'Payment/Merchant',
-            'Payment/Order',
-            'Payment/Redpack',
-            'Payment/Refund',
-            'Payment/Reverse',
-            'Payment/Sandbox',
-            'Payment/Transfer',
-            'Payment/Security',
-            'Payment/ProfitSharing',
-        ];
-        super.registerProviders(providers);
+        this.base = null;
+        this.bill = null;
+        this.coupon = null;
+        this.jssdk = null;
+        this.merchant = null;
+        this.order = null;
+        this.redpack = null;
+        this.refund = null;
+        this.reverse = null;
+        this.sandbox = null;
+        this.transfer = null;
+        this.security = null;
+        this.profit_sharing = null;
+        this.access_token = null;
+        this.url = null;
+        this.registerProviders();
+    }
+    registerProviders() {
+        super.registerCommonProviders();
+        this.offsetSet('base', function (app) {
+            return new PaymentBase_1.default(app);
+        });
+        this.offsetSet('bill', function (app) {
+            return new BillClient_1.default(app);
+        });
+        this.offsetSet('coupon', function (app) {
+            return new CouponClient_1.default(app);
+        });
+        this.offsetSet('jssdk', function (app) {
+            return new JssdkClient_1.default(app);
+        });
+        this.offsetSet('merchant', function (app) {
+            return new MerchantClient_1.default(app);
+        });
+        this.offsetSet('order', function (app) {
+            return new OrderClient_1.default(app);
+        });
+        this.offsetSet('redpack', function (app) {
+            return new RedpackClient_1.default(app);
+        });
+        this.offsetSet('refund', function (app) {
+            return new RefundClient_1.default(app);
+        });
+        this.offsetSet('reverse', function (app) {
+            return new ReverseClient_1.default(app);
+        });
+        this.offsetSet('sandbox', function (app) {
+            return new SandboxClient_1.default(app);
+        });
+        this.offsetSet('transfer', function (app) {
+            return new TransferClient_1.default(app);
+        });
+        this.offsetSet('security', function (app) {
+            return new SecurityClient_1.default(app);
+        });
+        this.offsetSet('profit_sharing', function (app) {
+            return new ProfitSharingClient_1.default(app);
+        });
+        // OfficialAccount
+        if (!this.access_token) {
+            this.offsetSet('access_token', function (app) {
+                return new AccessToken_1.default(app);
+            });
+        }
+        // BaseService
+        this.offsetSet('url', function (app) {
+            return new UrlClient_1.default(app);
+        });
     }
     scheme(product_id) {
         let params = {
-            appid: this['config']['app_id'],
-            mch_id: this['config']['mch_id'],
+            appid: this.config['app_id'],
+            mch_id: this.config['mch_id'],
             time_stamp: Utils_1.getTimestamp(),
             nonce_str: Utils_1.randomString(16),
             product_id,
         };
-        params['sign'] = Utils_1.makeSignature(params, this['config']['key']);
+        params['sign'] = Utils_1.makeSignature(params, this.config['key']);
         return 'weixin://wxpay/bizpayurl?' + Utils_1.buildQueryString(params);
     }
     codeUrlScheme(codeUrl) {
         return 'weixin://wxpay/bizpayurl?sr=' + codeUrl;
     }
     setSubMerchant(mchId, appId = null) {
-        this['config']['sub_mch_id'] = mchId;
-        this['config']['sub_appid'] = appId;
+        this.config['sub_mch_id'] = mchId;
+        this.config['sub_appid'] = appId;
         return this;
     }
     inSandbox() {
-        return !!this['config']['sandbox'];
+        return !!this.config['sandbox'];
     }
     getKey(endpoint = null) {
         if ('sandboxnew/pay/getsignkey' === endpoint) {
-            return this['config']['key'];
+            return this.config['key'];
         }
         let key = this.inSandbox() ? this['sandbox'].getKey() : this['config']['key'];
         if (!key) {
@@ -82,11 +147,11 @@ class Application extends BaseApplication_1.default {
     }
     // map to `base` module
     pay() {
-        return this['base'].pay.apply(this['base'], arguments);
+        return this.base.pay.apply(this.base, arguments);
     }
     authCodeToOpenid() {
-        return this['base'].authCodeToOpenid.apply(this['base'], arguments);
+        return this.base.authCodeToOpenid.apply(this.base, arguments);
     }
 }
-exports.default = Application;
+exports.default = Payment;
 ;

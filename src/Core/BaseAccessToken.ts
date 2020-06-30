@@ -52,6 +52,10 @@ class BaseAccessToken implements HttpMixin
     return await this.doRequest(payload);
   };
 
+  /**
+   * 获取Token
+   * @param refresh 为true时表示强制刷新
+   */
   async getToken(refresh: boolean = false): Promise<string>
   {
     let cacheKey = await this.getCacheKey();
@@ -67,6 +71,11 @@ class BaseAccessToken implements HttpMixin
     return res[this.tokenKey];
   }
 
+  /**
+   * 设置Token
+   * @param access_token AccessToken
+   * @param expires_in 有效时间，单位：秒
+   */
   async setToken(access_token: string, expires_in: number = 7200): Promise<BaseAccessToken>
   {
     let cacheKey = await this.getCacheKey();
@@ -81,12 +90,18 @@ class BaseAccessToken implements HttpMixin
     return this;
   };
 
+  /**
+   * 刷新Token
+   */
   async refresh(): Promise<BaseAccessToken>
   {
     await this.getToken(true);
     return this;
   }
 
+  /**
+   * 获取刷新后的Token
+   */
   getRefreshedToken(): Promise<string>
   {
     return this.getToken(true);

@@ -9,9 +9,9 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-const Client_1 = require("../../BaseService/Jssdk/Client");
+const JssdkClient_1 = require("../../BaseService/Jssdk/JssdkClient");
 const Utils_1 = require("../../Core/Utils");
-class JssdkClient extends Client_1.default {
+class JssdkClient extends JssdkClient_1.default {
     getTicket(refresh = false, type = 'wx_card') {
         return __awaiter(this, void 0, void 0, function* () {
             let cacheKey = `easywechat.basic_service.jssdk.ticket.${type}.${this.getAppId()}`;

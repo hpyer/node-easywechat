@@ -11,7 +11,7 @@ const TerminateResult_1 = require("./Core/Decorators/TerminateResult");
 const Request_1 = require("./Core/Http/Request");
 const Response_1 = require("./Core/Http/Response");
 const StreamResponse_1 = require("./Core/Http/StreamResponse");
-const Message = require("./Core/Messages");
+const Messages = require("./Core/Messages");
 const EasyWechat = {
     Factory: {
         OfficialAccount: Application_1.default,
@@ -40,6 +40,6 @@ const EasyWechat = {
         Response: Response_1.default,
         StreamResponse: StreamResponse_1.default,
     },
-    Message,
+    Messages,
 };
 module.exports = EasyWechat;

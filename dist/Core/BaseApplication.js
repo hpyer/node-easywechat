@@ -1,15 +1,30 @@
 'use strict';
 Object.defineProperty(exports, "__esModule", { value: true });
-const Path = require("path");
 const Merge = require("merge");
 const FileCache_1 = require("./Cache/FileCache");
 const Utils_1 = require("./Utils");
+const Request_1 = require("./Http/Request");
 class BaseApplicatioin {
     constructor(config = {}, prepends = {}, id = null) {
         this.defaultConfig = {};
         this.userConfig = {};
-        this.cache = null;
         this.id = null;
+        /**
+         * 缓存实例
+         */
+        this.cache = null;
+        /**
+         * 配置
+         */
+        this.config = {};
+        /**
+         * 日志方法
+         */
+        this.log = null;
+        /**
+         * 请求实例
+         */
+        this.request = null;
         if (new.target === BaseApplicatioin) {
             throw new Error('Can not create instance via BaseApplicatioin.');
         }
@@ -27,6 +42,9 @@ class BaseApplicatioin {
         }
         return this.id;
     }
+    /**
+     * 获取合并后的配置
+     */
     getConfig() {
         let base = {
             // https://www.npmjs.com/package/request#requestoptions-callback
@@ -37,51 +55,64 @@ class BaseApplicatioin {
         };
         return Merge(base, this.defaultConfig, this.userConfig);
     }
-    registerProviders(providers = []) {
-        [
-            'Providers/ConfigServiceProvider',
-            'Providers/LogServiceProvider',
-            'Providers/RequestServiceProvider',
-        ].forEach(provider => {
-            try {
-                let serviceClass = require(Path.resolve(__dirname + '/' + provider))['default'];
-                serviceClass.register(this);
-            }
-            catch (e) {
-                throw new Error(`Fail to regist service '${provider}', erro: ${e.message}`);
-            }
+    /**
+     * 注册通用模块
+     */
+    registerCommonProviders() {
+        this.offsetSet('config', function (app) {
+            return app.getConfig();
         });
-        providers.forEach(provider => {
-            try {
-                let serviceClass = require(Path.resolve(__dirname + '/../' + provider + '/ServiceProvider'))['default'];
-                serviceClass.register(this);
-            }
-            catch (e) {
-                throw new Error(`Fail to regist service '${provider}', erro: ${e.message}`);
-            }
-        });
+        this.log = function () {
+            let args = arguments;
+            args[0] = 'NodeEasywechat2: ' + args[0];
+            return console.log.apply(null, arguments);
+        };
+        if (!this.request) {
+            this.request = new Request_1.default;
+        }
     }
+    /**
+     * 自定义服务模块（重新绑定）
+     * @param id 服务模块的id，如：cache、request、access_token
+     * @param value 自定义服务模块的实例，可以传入一个闭包，闭包会接收一个指向Application的参数
+     */
     rebind(id, value) {
         this.offsetUnset(id);
         this.offsetSet(id, value);
     }
+    /**
+     * 解绑自定义服务模块
+     * @param id 服务模块的id，如：cache、request、access_token
+     * @param value 自定义服务模块的实例
+     */
     offsetUnset(id) {
         delete this[id];
     }
+    /**
+     * 绑定自定义服务模块
+     * @param id 服务模块的id，如：cache、request、access_token
+     * @param value 自定义服务模块的实例，可以传入一个闭包，闭包会接收一个指向Application的参数
+     */
     offsetSet(id, value) {
         if (Utils_1.isFunction(value)) {
             value = value(this);
         }
         this[id] = value;
     }
+    /**
+     * 获取cache实例
+     */
     getCache() {
         if (this.cache) {
             return this.cache;
         }
         return this.cache = this.createDefaultCache();
     }
+    /**
+     * 生成默认的缓存实例（文件缓存）
+     */
     createDefaultCache() {
-        return new FileCache_1.default(this['config']['file_cache'] || {});
+        return new FileCache_1.default(this.config['file_cache'] || {});
     }
 }
 exports.default = BaseApplicatioin;

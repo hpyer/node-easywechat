@@ -1,6 +1,6 @@
 'use strict';
 
-import Jssdk from '../../BaseService/Jssdk/Client';
+import Jssdk from '../../BaseService/Jssdk/JssdkClient';
 import { getTimestamp, randomString } from '../../Core/Utils';
 
 export default class JssdkClient extends Jssdk

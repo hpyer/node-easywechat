@@ -12,7 +12,7 @@ import TerminateResult from './Core/Decorators/TerminateResult';
 import Request from './Core/Http/Request';
 import Response from './Core/Http/Response';
 import StreamResponse from './Core/Http/StreamResponse';
-import * as Message from './Core/Messages';
+import * as Messages from './Core/Messages';
 
 const EasyWechat = {
   Factory: {
@@ -44,7 +44,7 @@ const EasyWechat = {
     Response,
     StreamResponse,
   },
-  Message,
+  Messages,
 };
 
 export = EasyWechat;

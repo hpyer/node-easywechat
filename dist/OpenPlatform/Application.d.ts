@@ -1,0 +1,35 @@
+import BaseApplication from '../Core/BaseApplication';
+import AuthorizerAccessToken from './Authorizer/Auth/AccessToken';
+import OfficialAccount from './Authorizer/OfficialAccount/Application';
+import MiniProgram from './Authorizer/MiniProgram/Application';
+import VerifyTicket from './Auth/VerifyTicket';
+import AccessToken from './Auth/AccessToken';
+import OpenPlatformBase from './Base/OpenPlatformBase';
+import Encryptor from '../Core/Encryptor';
+import OpenPlatformGuard from './Server/OpenPlatformGuard';
+import CodeTemplateClient from './CodeTemplate/CodeTemplateClient';
+import ComponentClient from './Component/ComponentClient';
+export default class OpenPlatform extends BaseApplication {
+    verify_ticket: VerifyTicket;
+    access_token: AccessToken;
+    base: OpenPlatformBase;
+    encryptor: Encryptor;
+    server: OpenPlatformGuard;
+    code_template: CodeTemplateClient;
+    component: ComponentClient;
+    constructor(config?: Object, prepends?: Object, id?: String);
+    registerProviders(): void;
+    getPreAuthorizationUrl(callbackUrl: string, optional?: {}): Promise<string>;
+    getMobilePreAuthorizationUrl(callbackUrl: string, optional?: {}): Promise<string>;
+    protected getAuthorizerConfig(appId: string, refreshToken?: string): object;
+    protected getReplaceServices(accessToken?: any): object;
+    officialAccount(appId: string, refreshToken?: string, accessToken?: AuthorizerAccessToken): OfficialAccount;
+    miniProgram(appId: string, refreshToken?: string, accessToken?: AuthorizerAccessToken): MiniProgram;
+    handleAuthorize(): Promise<any>;
+    getAuthorizer(): Promise<any>;
+    getAuthorizerOption(): Promise<any>;
+    setAuthorizerOption(): Promise<any>;
+    getAuthorizers(): Promise<any>;
+    createPreAuthorizationCode(): Promise<any>;
+    clearQuota(): Promise<any>;
+}

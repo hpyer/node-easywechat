@@ -9,11 +9,17 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-const OAuth_1 = require("../../../../OfficialAccount/OAuth/OAuth");
-class Client extends OAuth_1.default {
+const OAuthClient_1 = require("../../../../OfficialAccount/OAuth/OAuthClient");
+class Client extends OAuthClient_1.default {
+    /**
+     * 获取配置中的app_id
+     */
     getAppId() {
         return this.app['config']['app_id'];
     }
+    /**
+     * 获取授权后的token
+     */
     getToken() {
         return __awaiter(this, void 0, void 0, function* () {
             return this.app['access_token'].getToken();

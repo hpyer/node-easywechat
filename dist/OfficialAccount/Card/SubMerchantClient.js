@@ -2,6 +2,10 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 const BaseClient_1 = require("../../Core/BaseClient");
 class SubMerchantClient extends BaseClient_1.default {
+    /**
+     * 添加子商户
+     * @param info 商户信息
+     */
     create(info) {
         let params = {
             info: {
@@ -18,6 +22,11 @@ class SubMerchantClient extends BaseClient_1.default {
         };
         return this.httpPostJson('card/submerchant/submit', params);
     }
+    /**
+     * 更新子商户
+     * @param merchantId 商户id
+     * @param info 商户信息
+     */
     update(merchantId, info) {
         let params = {
             info: {
@@ -35,11 +44,21 @@ class SubMerchantClient extends BaseClient_1.default {
         };
         return this.httpPostJson('card/submerchant/update', params);
     }
+    /**
+     * 获取子商户信息
+     * @param merchantId 子商户id
+     */
     get(merchantId) {
         return this.httpPostJson('card/submerchant/get', {
             merchant_id: merchantId,
         });
     }
+    /**
+     * 获取子商户列表
+     * @param beginId 起始的子商户id，一个母商户公众号下唯一，默认：0
+     * @param limit 拉取的子商户的个数，最大值为100，默认：50
+     * @param status 子商户审核状态。默认：CHECKING
+     */
     list(beginId = 0, limit = 50, status = 'CHECKING') {
         return this.httpPostJson('card/submerchant/get', {
             begin_id: beginId,
