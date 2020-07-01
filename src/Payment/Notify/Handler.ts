@@ -35,6 +35,10 @@ export default class Handler
     return null;
   }
 
+  /**
+   * 设置处理失败时的错误消息
+   * @param message 错误消息
+   */
   setFail(message: string): void
   {
     this.fail = message;

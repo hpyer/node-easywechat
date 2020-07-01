@@ -13,6 +13,12 @@ const BaseClient_1 = require("../Core/BaseClient");
 const Merge = require("merge");
 const StreamResponse_1 = require("../../Core/Http/StreamResponse");
 class BillClient extends BaseClient_1.default {
+    /**
+     * 下载对账单
+     * @param date 对账单的日期，格式：20140603
+     * @param type 账单类型，默认：ALL
+     * @param options 其它参数
+     */
     get(date, type = 'ALL', options = {}) {
         return __awaiter(this, void 0, void 0, function* () {
             options = options || {};

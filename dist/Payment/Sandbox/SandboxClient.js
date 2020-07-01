@@ -12,6 +12,9 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const BaseClient_1 = require("../Core/BaseClient");
 const Utils_1 = require("../../Core/Utils");
 class SandboxClient extends BaseClient_1.default {
+    /**
+     * 获取沙盒环境的密钥
+     */
     getKey() {
         return __awaiter(this, void 0, void 0, function* () {
             let cacher = this.app.getCache();

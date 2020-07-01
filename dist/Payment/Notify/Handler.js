@@ -30,6 +30,10 @@ class Handler {
             return null;
         });
     }
+    /**
+     * 设置处理失败时的错误消息
+     * @param message 错误消息
+     */
     setFail(message) {
         this.fail = message;
     }

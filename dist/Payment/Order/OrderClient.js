@@ -12,6 +12,11 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const BaseClient_1 = require("../Core/BaseClient");
 const Utils_1 = require("../../Core/Utils");
 class OrderClient extends BaseClient_1.default {
+    /**
+     * 统一下单
+     * @param params 订单信息
+     * @param isContract 是否支付中签约，默认 false
+     */
     unify(params, isContract = false) {
         return __awaiter(this, void 0, void 0, function* () {
             if (!params['spbill_create_ip']) {
@@ -28,12 +33,20 @@ class OrderClient extends BaseClient_1.default {
             return this.request(this.wrap('pay/contractorder'), params);
         });
     }
+    /**
+     * 根据商户订单号查询
+     * @param out_trade_no 商户订单号
+     */
     queryByOutTradeNumber(out_trade_no) {
         let params = {
             out_trade_no,
         };
         return this.query(params);
     }
+    /**
+     * 根据交易号查询
+     * @param transaction_id 交易号
+     */
     queryByTransactionId(transaction_id) {
         let params = {
             transaction_id,
@@ -44,6 +57,10 @@ class OrderClient extends BaseClient_1.default {
         params['appid'] = this.app['config']['app_id'];
         return this.request(this.wrap('pay/orderquery'), params);
     }
+    /**
+     * 关闭订单
+     * @param tradeNo 商户订单号
+     */
     close(tradeNo) {
         let params = {
             appid: this.app['config']['app_id'],

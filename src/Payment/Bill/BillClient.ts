@@ -7,6 +7,12 @@ import StreamResponse from '../../Core/Http/StreamResponse';
 export default class BillClient extends BaseClient
 {
 
+  /**
+   * 下载对账单
+   * @param date 对账单的日期，格式：20140603
+   * @param type 账单类型，默认：ALL
+   * @param options 其它参数
+   */
   async get(date: string, type: string = 'ALL', options: object = {}): Promise<any>
   {
     options = options || {};

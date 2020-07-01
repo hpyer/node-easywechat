@@ -6,6 +6,11 @@ import { getTimestamp } from '../../Core/Utils';
 export default class OrderClient extends BaseClient
 {
 
+  /**
+   * 统一下单
+   * @param params 订单信息
+   * @param isContract 是否支付中签约，默认 false
+   */
   async unify(params: object, isContract: Boolean = false): Promise<any>
   {
     if (!params['spbill_create_ip']) {
@@ -25,6 +30,10 @@ export default class OrderClient extends BaseClient
     return this.request(this.wrap('pay/contractorder'), params);
   }
 
+  /**
+   * 根据商户订单号查询
+   * @param out_trade_no 商户订单号
+   */
   queryByOutTradeNumber(out_trade_no: string): Promise<any>
   {
     let params = {
@@ -33,6 +42,10 @@ export default class OrderClient extends BaseClient
     return this.query(params);
   }
 
+  /**
+   * 根据交易号查询
+   * @param transaction_id 交易号
+   */
   queryByTransactionId(transaction_id: string): Promise<any>
   {
     let params = {
@@ -48,6 +61,10 @@ export default class OrderClient extends BaseClient
     return this.request(this.wrap('pay/orderquery'), params);
   }
 
+  /**
+   * 关闭订单
+   * @param tradeNo 商户订单号
+   */
   close(tradeNo: string): Promise<any>
   {
     let params = {

@@ -5,6 +5,10 @@ const Merge = require("merge");
 const Fs = require("fs");
 const NodeRsa = require("node-rsa");
 class TransferClient extends BaseClient_1.default {
+    /**
+     * 查询付款到零钱的订单
+     * @param partnerTradeNo 商户订单号
+     */
     queryBalanceOrder(partnerTradeNo) {
         let params = {
             appid: this.app['config']['app_id'],
@@ -13,6 +17,10 @@ class TransferClient extends BaseClient_1.default {
         };
         return this.safeRequest('mmpaymkttransfers/gettransferinfo', params);
     }
+    /**
+     * 查询付款到银行卡的订单
+     * @param partnerTradeNo 商户订单号
+     */
     queryBankCardOrder(partnerTradeNo) {
         let params = {
             mch_id: this.app['config']['mch_id'],
@@ -20,6 +28,10 @@ class TransferClient extends BaseClient_1.default {
         };
         return this.safeRequest('mmpaymkttransfers/query_bank', params);
     }
+    /**
+     * 企业付款到用户零钱
+     * @param params 付款信息
+     */
     toBalance(params) {
         let base = {
             mch_id: null,
@@ -31,6 +43,10 @@ class TransferClient extends BaseClient_1.default {
         }
         return this.safeRequest('mmpaymkttransfers/promotion/transfers', Merge(base, params));
     }
+    /**
+     * 企业付款到银行卡
+     * @param params 付款信息
+     */
     toBankCard(params) {
         ['bank_code', 'partner_trade_no', 'enc_bank_no', 'enc_true_name', 'amount'].map(key => {
             if (!params[key]) {

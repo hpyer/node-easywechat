@@ -2,6 +2,10 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 const BaseClient_1 = require("../../Core/BaseClient");
 class AuthClient extends BaseClient_1.default {
+    /**
+     * 根据 jsCode 获取用户 session 信息
+     * @param code 小程序端通过 wx.login 获取
+     */
     session(code) {
         let params = {
             appid: this.app['config']['app_id'],

@@ -6,6 +6,9 @@ import { createHash } from '../../Core/Utils';
 export default class SandboxClient extends BaseClient
 {
 
+  /**
+   * 获取沙盒环境的密钥
+   */
   async getKey(): Promise<string>
   {
     let cacher = this.app.getCache();

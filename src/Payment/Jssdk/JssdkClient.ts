@@ -7,6 +7,11 @@ import BaseAccessToken from '../../Core/BaseAccessToken';
 export default class JssdkClient extends BaseClient
 {
 
+  /**
+   * 生成支付 JS 配置（WeixinJSBridge方式）
+   * @param prepayId 通过统一下单（unify）接口获取
+   * @param json 是否返回json字符串，默认：true
+   */
   bridgeConfig(prepayId: string, json: Boolean = true): any
   {
     let params = {
@@ -22,6 +27,10 @@ export default class JssdkClient extends BaseClient
     return json ? JSON.stringify(params) : params;
   }
 
+  /**
+   * 生成支付 JS 配置（JSSDK方式）
+   * @param prepayId 通过统一下单（unify）接口获取
+   */
   sdkConfig(prepayId: string): object
   {
     let config = this.bridgeConfig(prepayId, false);
@@ -31,6 +40,10 @@ export default class JssdkClient extends BaseClient
     return config;
   }
 
+  /**
+   * 生成 APP 支付配置
+   * @param prepayId 通过统一下单（unify）接口获取
+   */
   appConfig(prepayId: string): object
   {
     let params = {
@@ -47,6 +60,11 @@ export default class JssdkClient extends BaseClient
     return params;
   }
 
+  /**
+   * 生成共享收货地址 JS 配置
+   * @param accessToken OAuth授权后的AccessToken
+   * @param json 是否返回json字符串，默认：true
+   */
   async shareAddressConfig(accessToken: any, json: Boolean = true): Promise<any>
   {
     if (accessToken instanceof BaseAccessToken) {

@@ -13,6 +13,10 @@ const BaseClient_1 = require("../Core/BaseClient");
 const Merge = require("merge");
 const Utils_1 = require("../../Core/Utils");
 class RedpackClient extends BaseClient_1.default {
+    /**
+     * 查询红包信息
+     * @param mchBillno 商户订单号
+     */
     info(mchBillno) {
         let params = Utils_1.isObject(mchBillno) ? mchBillno : {
             mch_billno: mchBillno
@@ -23,6 +27,10 @@ class RedpackClient extends BaseClient_1.default {
         });
         return this.safeRequest('mmpaymkttransfers/gethbinfo', params);
     }
+    /**
+     * 发送普通红包
+     * @param params 红包参数
+     */
     sendNormal(params) {
         return __awaiter(this, void 0, void 0, function* () {
             params = Merge({}, params, {
@@ -33,6 +41,10 @@ class RedpackClient extends BaseClient_1.default {
             return yield this.safeRequest('mmpaymkttransfers/sendredpack', params);
         });
     }
+    /**
+     * 发送裂变红包
+     * @param params 红包参数
+     */
     sendGroup(params) {
         params = Merge({}, params, {
             wxappid: this.app['config']['app_id'],

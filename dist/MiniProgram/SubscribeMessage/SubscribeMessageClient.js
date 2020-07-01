@@ -14,6 +14,10 @@ class SubscribeMessageClient extends BaseClient_1.default {
         };
         this.required = ['touser', 'template_id', 'data'];
     }
+    /**
+     * 发送订阅消息
+     * @param data 消息内容
+     */
     send(data) {
         let params = this.formatMessage(data);
         return this.httpPostJson('cgi-bin/message/subscribe/send', params);
@@ -50,6 +54,12 @@ class SubscribeMessageClient extends BaseClient_1.default {
         }
         return formatted;
     }
+    /**
+     * 添加订阅消息到个人模板库
+     * @param tid 模板id
+     * @param kidList 开发者自行组合好的模板关键词列表
+     * @param sceneDesc 服务场景描述
+     */
     addTemplate(tid, kidList, sceneDesc = null) {
         sceneDesc = sceneDesc || '';
         return this.httpPost('wxaapi/newtmpl/addtemplate', {
@@ -58,16 +68,30 @@ class SubscribeMessageClient extends BaseClient_1.default {
             sceneDesc,
         });
     }
+    /**
+     * 删除个人模板库中的模板
+     * @param id 模板id
+     */
     deleteTemplate(id) {
         return this.httpPost('wxaapi/newtmpl/deltemplate', {
             priTmplId: id,
         });
     }
+    /**
+     * 获取模板标题的关键词列表
+     * @param tid 模板id
+     */
     getTemplateKeywords(tid) {
         return this.httpGet('wxaapi/newtmpl/getpubtemplatekeywords', {
             tid,
         });
     }
+    /**
+     * 获取帐号所属类目下的公共模板标题
+     * @param ids 类目 id
+     * @param start 开始下标，从0开始
+     * @param limit 分页记录数
+     */
     getTemplateTitles(ids, start = 0, limit = 30) {
         let query = {
             ids: '',
@@ -79,9 +103,15 @@ class SubscribeMessageClient extends BaseClient_1.default {
         }
         return this.httpGet('wxaapi/newtmpl/getpubtemplatetitles', query);
     }
+    /**
+     * 获取当前帐号下的个人模板列表
+     */
     getTemplates() {
         return this.httpGet('wxaapi/newtmpl/gettemplate');
     }
+    /**
+     * 获取小程序账号的类目
+     */
     getCategory() {
         return this.httpGet('wxaapi/newtmpl/getcategory');
     }

@@ -11,12 +11,20 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 Object.defineProperty(exports, "__esModule", { value: true });
 const BaseClient_1 = require("../Core/BaseClient");
 class PaymentBase extends BaseClient_1.default {
+    /**
+     * 刷卡支付
+     * @param params 支付订单参数
+     */
     pay(params) {
         return __awaiter(this, void 0, void 0, function* () {
             params['appid'] = this.app['config']['app_id'];
             return yield this.request(this.wrap('pay/micropay'), params);
         });
     }
+    /**
+     * 付款码查询openid
+     * @param auth_code 扫码支付付款码
+     */
     authCodeToOpenid(auth_code) {
         return __awaiter(this, void 0, void 0, function* () {
             return yield this.request('tools/authcodetoopenid', {

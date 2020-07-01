@@ -13,6 +13,11 @@ const JssdkClient_1 = require("../../BaseService/Jssdk/JssdkClient");
 const Utils_1 = require("../../Core/Utils");
 const BaseAccessToken_1 = require("../../Core/BaseAccessToken");
 class JssdkClient extends JssdkClient_1.default {
+    /**
+     * 生成支付 JS 配置（WeixinJSBridge方式）
+     * @param prepayId 通过统一下单（unify）接口获取
+     * @param json 是否返回json字符串，默认：true
+     */
     bridgeConfig(prepayId, json = true) {
         let params = {
             appId: this.app['config']['sub_appid'] ? this.app['config']['sub_appid'] : this.app['config']['app_id'],
@@ -24,12 +29,20 @@ class JssdkClient extends JssdkClient_1.default {
         params['paySign'] = Utils_1.makeSignature(params, this.app['config']['key'], 'md5');
         return json ? JSON.stringify(params) : params;
     }
+    /**
+     * 生成支付 JS 配置（JSSDK方式）
+     * @param prepayId 通过统一下单（unify）接口获取
+     */
     sdkConfig(prepayId) {
         let config = this.bridgeConfig(prepayId, false);
         config['timestamp'] = config['timeStamp'];
         delete config['timeStamp'];
         return config;
     }
+    /**
+     * 生成 APP 支付配置
+     * @param prepayId 通过统一下单（unify）接口获取
+     */
     appConfig(prepayId) {
         let params = {
             appid: this.app['config']['app_id'],
@@ -42,6 +55,11 @@ class JssdkClient extends JssdkClient_1.default {
         params['sign'] = Utils_1.makeSignature(params, this.app['config']['key'], 'md5');
         return params;
     }
+    /**
+     * 生成共享收货地址 JS 配置
+     * @param accessToken OAuth授权后的AccessToken
+     * @param json 是否返回json字符串，默认：true
+     */
     shareAddressConfig(accessToken, json = true) {
         return __awaiter(this, void 0, void 0, function* () {
             if (accessToken instanceof BaseAccessToken_1.default) {

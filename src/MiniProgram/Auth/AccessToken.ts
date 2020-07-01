@@ -6,7 +6,7 @@ export default class AccessToken extends BaseAccessToken
 {
   protected endpointToGetToken: string = 'cgi-bin/token';
 
-  async getCredentials(): Promise<object>
+  protected async getCredentials(): Promise<object>
   {
     return {
       appid: this.app['config']['app_id'],

@@ -39,9 +39,29 @@ export default class Payment extends BaseApplication {
     setSubMerchant(mchId: string, appId?: string): object;
     inSandbox(): boolean;
     getKey(endpoint?: string): any;
+    /**
+     * 处理付款结果通知
+     * @param closure 处理函数。需接收2个参数，第1个参数通知消息message，第2个参数为设置错误消息的方法。处理函数需要return true;表示处理成功
+     */
     handlePaidNotify(closure: Function): Promise<Response>;
+    /**
+     * 处理退款结果通知
+     * @param closure 处理函数。需接收3个参数，第1个参数通知消息message，第2个参数为message['req_info']解密后的信息，第3个参数为设置错误消息的方法。处理函数需要return true;表示处理成功
+     */
     handleRefundedNotify(closure: Function): Promise<Response>;
+    /**
+     * 扫码支付通知
+     * @param closure 处理函数。需接收3个参数，第1个参数通知消息message，第2个参数返回“通信错误”给微信，第3个参数返回“业务错误”给微信。处理函数需要return prepay_id
+     */
     handleScannedNotify(closure: Function): Promise<Response>;
+    /**
+     * 刷卡支付
+     * @param params 支付订单参数
+     */
     pay(): Promise<any>;
+    /**
+     * 付款码查询openid
+     * @param auth_code 扫码支付付款码
+     */
     authCodeToOpenid(): Promise<any>;
 }

@@ -8,6 +8,10 @@ import * as NodeRsa from 'node-rsa';
 export default class TransferClient extends BaseClient
 {
 
+  /**
+   * 查询付款到零钱的订单
+   * @param partnerTradeNo 商户订单号
+   */
   queryBalanceOrder(partnerTradeNo: string): Promise<any>
   {
     let params = {
@@ -19,6 +23,10 @@ export default class TransferClient extends BaseClient
     return this.safeRequest('mmpaymkttransfers/gettransferinfo', params);
   }
 
+  /**
+   * 查询付款到银行卡的订单
+   * @param partnerTradeNo 商户订单号
+   */
   queryBankCardOrder(partnerTradeNo: string): Promise<any>
   {
     let params = {
@@ -29,6 +37,10 @@ export default class TransferClient extends BaseClient
     return this.safeRequest('mmpaymkttransfers/query_bank', params);
   }
 
+  /**
+   * 企业付款到用户零钱
+   * @param params 付款信息
+   */
   toBalance(params: object): Promise<any>
   {
     let base = {
@@ -44,6 +56,10 @@ export default class TransferClient extends BaseClient
     return this.safeRequest('mmpaymkttransfers/promotion/transfers', Merge(base, params));
   }
 
+  /**
+   * 企业付款到银行卡
+   * @param params 付款信息
+   */
   toBankCard(params: object): Promise<any>
   {
     ['bank_code', 'partner_trade_no', 'enc_bank_no', 'enc_true_name', 'amount'].map(key => {
