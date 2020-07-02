@@ -62,6 +62,11 @@ class OpenPlatform extends BaseApplication_1.default {
             return new ComponentClient_1.default(app);
         });
     }
+    /**
+     * 获取用户授权页 URL
+     * @param callbackUrl 回调地址
+     * @param optional 其它参数
+     */
     getPreAuthorizationUrl(callbackUrl, optional = {}) {
         return __awaiter(this, void 0, void 0, function* () {
             if (Utils_1.isString(optional)) {
@@ -78,6 +83,11 @@ class OpenPlatform extends BaseApplication_1.default {
             }));
         });
     }
+    /**
+     * 获取移动端用户授权页 URL
+     * @param callbackUrl 回调地址
+     * @param optional 其它参数
+     */
     getMobilePreAuthorizationUrl(callbackUrl, optional = {}) {
         return __awaiter(this, void 0, void 0, function* () {
             if (Utils_1.isString(optional)) {
@@ -120,6 +130,12 @@ class OpenPlatform extends BaseApplication_1.default {
         });
         return services;
     }
+    /**
+     * 代理公众号实现业务，返回SDK实例
+     * @param appId 授权方公众号 APPID，非开放平台第三方平台 APPID
+     * @param refreshToken 为授权方的 refresh_token
+     * @param accessToken
+     */
     officialAccount(appId, refreshToken = null, accessToken = null) {
         let that = this;
         let services = Merge({}, this.getReplaceServices(accessToken), {
@@ -133,6 +149,12 @@ class OpenPlatform extends BaseApplication_1.default {
         });
         return new Application_1.default(this.getAuthorizerConfig(appId, refreshToken), services);
     }
+    /**
+     * 代理小程序实现业务，返回SDK实例
+     * @param appId 授权方小程序 APPID，非开放平台第三方平台 APPID
+     * @param refreshToken 为授权方的 refresh_token
+     * @param accessToken
+     */
     miniProgram(appId, refreshToken = null, accessToken = null) {
         let that = this;
         let services = Merge({}, this.getReplaceServices(accessToken), {
@@ -143,24 +165,54 @@ class OpenPlatform extends BaseApplication_1.default {
         return new Application_2.default(this.getAuthorizerConfig(appId, refreshToken), services);
     }
     // map to `base` module
+    /**
+     * 使用授权码换取接口调用凭据和授权信息
+     * @param authCode 授权码, 会在授权成功的回调返回给第三方平台
+     */
     handleAuthorize() {
         return this.base.handleAuthorize.apply(this.base, arguments);
     }
+    /**
+     * 获取授权方的帐号基本信息
+     * @param appId 授权方app_id
+     */
     getAuthorizer() {
         return this.base.getAuthorizer.apply(this.base, arguments);
     }
+    /**
+     * 设置授权方的选项信息
+     * @param appId 授权方app_id
+     * @param name 选项名称
+     */
     getAuthorizerOption() {
         return this.base.getAuthorizerOption.apply(this.base, arguments);
     }
+    /**
+     * 设置授权方的选项信息
+     * @param appId 授权方app_id
+     * @param name 选项名称
+     * @param value 选项值
+     */
     setAuthorizerOption() {
         return this.base.setAuthorizerOption.apply(this.base, arguments);
     }
+    /**
+     * 获取已授权的授权方列表
+     * @param offset 起始位置，从0开始
+     * @param count 获取记录数，最大500
+     */
     getAuthorizers() {
         return this.base.getAuthorizers.apply(this.base, arguments);
     }
+    /**
+     * 获取预授权码
+     */
     createPreAuthorizationCode() {
         return this.base.createPreAuthorizationCode.apply(this.base, arguments);
     }
+    /**
+     * 清零调用次数
+     */
     clearQuota() {
         return this.base.clearQuota.apply(this.base, arguments);
     }

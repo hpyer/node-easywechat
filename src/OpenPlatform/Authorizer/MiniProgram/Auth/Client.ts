@@ -13,6 +13,10 @@ export default class Client extends BaseClient
     this.component = component;
   }
 
+  /**
+   * 小程序登录，jscode换取session_key
+   * @param code wx.login 获取的 code
+   */
   async session(code: string): Promise<any>
   {
     let access_token = await this.component['access_token'].getToken()['component_access_token'];

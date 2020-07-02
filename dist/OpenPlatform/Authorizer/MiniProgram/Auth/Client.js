@@ -16,6 +16,10 @@ class Client extends BaseClient_1.default {
         this.component = null;
         this.component = component;
     }
+    /**
+     * 小程序登录，jscode换取session_key
+     * @param code wx.login 获取的 code
+     */
     session(code) {
         return __awaiter(this, void 0, void 0, function* () {
             let access_token = yield this.component['access_token'].getToken()['component_access_token'];

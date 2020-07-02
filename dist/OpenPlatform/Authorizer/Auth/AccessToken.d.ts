@@ -7,6 +7,6 @@ export default class AccessToken extends BaseAccessToken {
     protected tokenKey: string;
     protected component: OpenPlatformApplication;
     constructor(app: BaseApplicatioin, component: OpenPlatformApplication);
-    getCredentials(): Promise<object>;
+    protected getCredentials(): Promise<object>;
     getEndpoint(): Promise<string>;
 }

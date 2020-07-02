@@ -5,11 +5,18 @@ import BaseClient from '../../../../Core/BaseClient';
 export default class SettingClient extends BaseClient
 {
 
+  /**
+   * 获取可以设置的所有类目
+   */
   getAllCategories(): Promise<any>
   {
     return this.httpPostJson('cgi-bin/wxopen/getallcategories');
   }
 
+  /**
+   * 添加类目
+   * @param categories 类目信息列表
+   */
   addCategories(categories: Array<object>): Promise<any>
   {
     return this.httpPostJson('cgi-bin/wxopen/addcategory', {
@@ -17,6 +24,11 @@ export default class SettingClient extends BaseClient
     });
   }
 
+  /**
+   * 删除类目
+   * @param firstId 一级类目 ID
+   * @param secondId 二级类目 ID
+   */
   deleteCategories(firstId: number, secondId: number): Promise<any>
   {
     return this.httpPostJson('cgi-bin/wxopen/deletecategory', {
@@ -25,16 +37,30 @@ export default class SettingClient extends BaseClient
     });
   }
 
+  /**
+   * 获取已设置的所有类目
+   */
   getCategories(): Promise<any>
   {
     return this.httpPostJson('cgi-bin/wxopen/getcategory');
   }
 
+  /**
+   * 修改类目资质信息
+   * @param category 类目信息
+   */
   updateCategory(category: object): Promise<any>
   {
     return this.httpPostJson('cgi-bin/wxopen/modifycategory', category);
   }
 
+  /**
+   * 设置名称
+   * @param nickname 昵称
+   * @param idCardMediaId 身份证照片 mediaid
+   * @param licenseMediaId 组织机构代码证或营业执照 mediaid
+   * @param otherStuffs 其它证明材料 mediaid
+   */
   setNickname(nickname: string, idCardMediaId: string = '', licenseMediaId: string = '', otherStuffs: Array<string> = []): Promise<any>
   {
     let params = {
@@ -48,6 +74,10 @@ export default class SettingClient extends BaseClient
     return this.httpPostJson('wxa/setnickname', params);
   }
 
+  /**
+   * 查询改名审核状态
+   * @param auditId 审核id
+   */
   getNicknameAuditStatus(auditId: string): Promise<any>
   {
     return this.httpPostJson('wxa/api_wxa_querynickname', {
@@ -55,6 +85,10 @@ export default class SettingClient extends BaseClient
     });
   }
 
+  /**
+   * 微信认证名称检测
+   * @param nickname 名称（昵称）
+   */
   isAvailableNickname(nickname: string): Promise<any>
   {
     return this.httpPostJson('cgi-bin/wxverify/checkwxverifynickname', {
@@ -62,11 +96,17 @@ export default class SettingClient extends BaseClient
     });
   }
 
+  /**
+   * 查询隐私设置
+   */
   getSearchStatus(): Promise<any>
   {
     return this.httpGet('wxa/getwxasearchstatus');
   }
 
+  /**
+   * 设置为可搜索
+   */
   setSearchable(): Promise<any>
   {
     return this.httpPostJson('wxa/changewxasearchstatus', {
@@ -74,6 +114,9 @@ export default class SettingClient extends BaseClient
     });
   }
 
+  /**
+   * 设置为不可搜索
+   */
   setUnsearchable(): Promise<any>
   {
     return this.httpPostJson('wxa/changewxasearchstatus', {
@@ -81,11 +124,18 @@ export default class SettingClient extends BaseClient
     });
   }
 
+  /**
+   * 获取展示的公众号信息
+   */
   getDisplayedOfficialAccount(): Promise<any>
   {
     return this.httpGet('wxa/getshowwxaitem');
   }
 
+  /**
+   * 设置展示的公众号信息
+   * @param appid 传入新的公众号 appid表示开启，否则关闭
+   */
   setDisplayedOfficialAccount(appid: string = null): Promise<any>
   {
     return this.httpPostJson('wxa/updateshowwxaitem', {
@@ -94,6 +144,11 @@ export default class SettingClient extends BaseClient
     });
   }
 
+  /**
+   * 获取可以用来设置的公众号列表
+   * @param page 页码，从 0 开始
+   * @param num 每页记录数，最大为 20
+   */
   getDisplayableOfficialAccounts(page: number, num: number): Promise<any>
   {
     return this.httpGet('wxa/getwxamplinkforshow', {
