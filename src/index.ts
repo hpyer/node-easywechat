@@ -44,6 +44,10 @@ const EasyWechat = {
     Response,
     StreamResponse,
   },
+  /**
+   * @deprecated 即将作废，请使用 Messages 代替
+   */
+  Message: Messages,
   Messages,
 };
 

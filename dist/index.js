@@ -40,6 +40,10 @@ const EasyWechat = {
         Response: Response_1.default,
         StreamResponse: StreamResponse_1.default,
     },
+    /**
+     * @deprecated 即将作废，请使用 Messages 代替
+     */
+    Message: Messages,
     Messages,
 };
 module.exports = EasyWechat;
