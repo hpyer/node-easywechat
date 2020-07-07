@@ -14,7 +14,7 @@
 
 ### 使用说明
 
-绝大部分API都可以根据 [EasyWechat 的文档](https://www.easywechat.com/docs) 来使用。小部分（如获取请求相关数据、返回响应数据、支付证书等）的操作，由于语言环境的不同，会有不同处理。具体可以查看 [node-easywechat-demo](https://github.com/hpyer/node-easywechat-demo/tree/2.x) 。如果仍有疑问，请提issue，谢谢～
+绝大部分API都可以根据 [EasyWechat 的文档](https://www.easywechat.com/docs) 来使用。小部分（如获取请求相关数据、返回响应数据、支付证书等）的操作，由于语言环境的不同，会有不同处理。具体可以查看 [node-easywechat-demo](https://github.com/hpyer/node-easywechat-demo/tree/2.x) 以及下方的[自定义模块说明](#自定义模块（模块替换）使用方法) 。如果仍有疑问，请提issue，谢谢～
 
 ```js
 // 公众号
@@ -113,3 +113,135 @@ let app = EasyWechat.Factory.getInstance('OficialAccount', {
 - [ ] 企业微信开放平台
 - [ ] 小微商户
 - [x] 自定义
+
+### 自定义模块（模块替换）使用方法
+
+使用自定义模块的主要目的，是为了消除不同框架、不同软件包的使用方法所带来的差异，以提升 node-easywechat 的使用效率。下面就来说说几个主要模块的自定义方法。
+
+##### 日志模块（log）
+
+```js
+// 创建实例
+const Easywechat = require('node-easywechat2');
+let officialAccount = new Easywechat.Factory.OfficialAccount({
+  ...
+});
+
+// 自定义日志处理方法
+const myLogger = () => {
+  // 注意：这里返回的方法不能使用箭头函数，否则会导致获取到的 arguments 异常
+  // 若需要关闭日志，则返回空的函数即可
+  return function() {
+    let args = arguments;
+    args[0] = 'myLogger: ' + args[0];
+    return console.log.apply(null, arguments);
+  }
+}
+
+// 使用 rebind 方法，将 myLogger 绑定为 log 模块
+officialAccount.rebind('log', myLogger);
+```
+
+##### 请求模块（request）
+
+```js
+// request 模块需实例化 EasyWechat.Http.Request 类
+// 实例化时，需要传入 IncomingMessage 实例
+let request = new EasyWechat.Http.Request(req);
+
+// 当然，由于 IncomingMessage 的 body 流的特殊性，某些框架（目前已知：fastify）
+// 可能会自动读取后挂载到上下文中，从而导致 node-easywechat 去尝试读取时报错。
+// 这时你可以选择继承 EasyWechat.Http.Request 重写其中的方法
+// 参考：https://github.com/hpyer/node-easywechat/issues/5
+
+// 使用 rebind 方法，绑定 request 实例
+officialAccount.rebind('request', request);
+```
+
+##### 缓存模块（cache）
+
+```js
+// cache 模块需要您继承并实例化 EasyWechat.CacheInterface 接口
+// 以 redis 为例
+const Redis = require('redis');
+const BlueBird = require('bluebird');
+
+BlueBird.promisifyAll(Redis.RedisClient.prototype);
+BlueBird.promisifyAll(Redis.Multi.prototype);
+
+class RedisCache extends EasyWechat.CacheInterface
+{
+  constructor (options)
+  {
+    super();
+
+    this.$client = null;
+    try {
+      this.$client = Redis.createClient(options);
+    }
+    catch (e) {
+      console.log('无法创建Redis客户端', e);
+    }
+  }
+
+  async get(id)
+  {
+    if (!this.$client) return false;
+    let content = null;
+    try {
+      content = JSON.parse(await this.$client.getAsync(id));
+    }
+    catch (e) {
+      console.log('获取Redis缓存失败', id, e);
+      return false;
+    }
+    return content;
+  }
+
+  async has(id)
+  {
+    if (!this.$client) return false;
+    try {
+      let res = await this.$client.existsAsync(id);
+      return res == 1;
+    }
+    catch (e) {
+      return false;
+    }
+  }
+
+  async set(id, data = null, lifeTime = 0)
+  {
+    if (!this.$client) return false;
+    try {
+      if (lifeTime > 0) {
+        await this.$client.setAsync(id, JSON.stringify(data), 'EX', lifeTime);
+      }
+      else {
+        await this.$client.setAsync(id, JSON.stringify(data));
+      }
+    }
+    catch (e) {
+      console.log('设置Redis缓存失败', id, data, e);
+      return false;
+    }
+    return true;
+  }
+
+  async delete(id)
+  {
+    if (!this.$client) return false;
+    try {
+      let res = await this.$client.delAsync(id);
+      return true;
+    }
+    catch (e) {
+      return false;
+    }
+  }
+}
+let redisCache = new RedisCache(req);
+
+// 使用 rebind 方法，绑定 cache 实例
+officialAccount.rebind('cache', redisCache);
+```
