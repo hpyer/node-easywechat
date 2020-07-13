@@ -14,6 +14,11 @@ class User
    */
   id: string = '';
   /**
+   * unionid
+   * @var {string}
+   */
+  unionid: string = '';
+  /**
    * 昵称
    * @var {string}
    */
@@ -45,6 +50,14 @@ class User
    */
   getId(): string {
     return this.id;
+  }
+s
+  /**
+   * 获取 unionid
+   * @return {string}
+   */
+  getUnionId(): string {
+    return this.unionid;
   }
 
   /**
@@ -251,15 +264,13 @@ export default class OAuthClient extends BaseClient
       };
 
       let res = await this.httpGet('/sns/userinfo', params);
-      if (!res || res['errcode']) {
-        this.app['log']('Fail to fetch userinfo', res);
-        return user;
+      if (res && !res['errcode']) {
+        user.unionid = res['unionid'] || '';
+        user.nickname = res['nickname'];
+        user.name = res['nickname'];
+        user.avatar = res['headimgurl'];
+        user.original = res;
       }
-      user.id = res['openid'];
-      user.nickname = res['nickname'];
-      user.name = res['nickname'];
-      user.avatar = res['headimgurl'];
-      user.original = res;
     }
 
     return user;
