@@ -218,7 +218,7 @@ export default class ServerGuard
     }
 
     if (!(message instanceof Message)) {
-      throw new Error(`Invalid Messages type "%s".`);
+      throw new Error('The message object should be instance of EasyWechat.Messages.*');
     }
 
     return await this.buildReply(to, from, message);

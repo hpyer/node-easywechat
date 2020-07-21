@@ -171,7 +171,7 @@ class ServerGuard {
                 message = new Messages_1.News([message]);
             }
             if (!(message instanceof Messages_1.Message)) {
-                throw new Error(`Invalid Messages type "%s".`);
+                throw new Error('The message object should be instance of EasyWechat.Messages.*');
             }
             return yield this.buildReply(to, from, message);
         });
