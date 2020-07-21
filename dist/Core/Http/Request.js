@@ -13,7 +13,7 @@ const Url = require("url");
 const Utils_1 = require("../Utils");
 const RawBody = require("raw-body");
 class Request {
-    constructor(req = null) {
+    constructor(req = null, content = null) {
         this._req = null;
         this._uri = '';
         this._method = '';
@@ -29,6 +29,20 @@ class Request {
             this._method = req.method.toUpperCase();
             this._headers = req.headers || {};
             this._contentType = this._headers['content-type'] || '';
+            if (Buffer.isBuffer(content)) {
+                this._content = content;
+            }
+            else if (Utils_1.isObject(content)) {
+                this._post = content;
+            }
+            else if (Utils_1.isString(content)) {
+                try {
+                    this._post = JSON.parse(content);
+                }
+                catch (e) {
+                    this._post = Utils_1.parseQueryString(content);
+                }
+            }
             this._get = Url.parse(req.url, true).query;
             // 提取请求ip
             if (Utils_1.isIp(this._headers['x-client-ip'])) {
@@ -89,7 +103,9 @@ class Request {
             if (this._method !== 'POST')
                 return null;
             if (!this._content) {
-                yield this.getContent();
+                this._content = yield this.getContent();
+            }
+            if (!this._post && this._content) {
                 let contentType = (this._headers['content-type'] || '').toLowerCase();
                 if (contentType.indexOf('application/json') > -1) {
                     try {

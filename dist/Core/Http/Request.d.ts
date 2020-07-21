@@ -11,7 +11,7 @@ export default class Request implements RequestInterface {
     protected _content: Buffer;
     protected _contentType: string;
     protected _ip: string;
-    constructor(req?: IncomingMessage);
+    constructor(req?: IncomingMessage, content?: Buffer | object | string);
     isValid(): Boolean;
     getMethod(): string;
     get(key: string): Promise<any>;
