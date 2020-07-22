@@ -3,7 +3,7 @@
 import * as Url from 'url';
 import { IncomingMessage } from 'http';
 import RequestInterface from '../Contracts/RequestInterface';
-import { isIp, parseQueryString } from '../Utils';
+import { isIp, parseQueryString, isObject, isString } from '../Utils';
 import * as RawBody from 'raw-body';
 
 export default class Request implements RequestInterface
@@ -18,7 +18,7 @@ export default class Request implements RequestInterface
   protected _contentType: string = '';
   protected _ip: string = '';
 
-  constructor(req: IncomingMessage = null)
+  constructor(req: IncomingMessage = null, content: Buffer | object | string = null)
   {
     if (req) {
 
@@ -28,6 +28,21 @@ export default class Request implements RequestInterface
       this._method = req.method.toUpperCase();
       this._headers = req.headers || {};
       this._contentType = this._headers['content-type'] || '';
+
+      if (Buffer.isBuffer(content)) {
+        this._content = content;
+      }
+      else if (isObject(content)) {
+        this._post = <object> content;
+      }
+      else if (isString(content)) {
+        try {
+          this._post = JSON.parse(<string> content);
+        }
+        catch (e) {
+          this._post = parseQueryString(<string> content);
+        }
+      }
 
       this._get = Url.parse(req.url, true).query;
 
@@ -94,8 +109,9 @@ export default class Request implements RequestInterface
     if (!this.isValid) throw new Error('Please set request first. app.rebind(\'request\', new EasyWechat.Request(ctx.req));');
     if (this._method !== 'POST') return null;
     if (!this._content) {
-      await this.getContent();
-
+      this._content = await this.getContent();
+    }
+    if (!this._post && this._content) {
       let contentType = (this._headers['content-type'] || '').toLowerCase();
       if (contentType.indexOf('application/json') > -1) {
         try {
