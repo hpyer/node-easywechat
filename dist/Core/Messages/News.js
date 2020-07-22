@@ -1,5 +1,6 @@
 'use strict';
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.News = void 0;
 const Message_1 = require("./Message");
 const NewsItem_1 = require("./NewsItem");
 class News extends Message_1.Message {

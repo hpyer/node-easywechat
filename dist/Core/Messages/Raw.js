@@ -1,5 +1,6 @@
 'use strict';
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.Raw = void 0;
 const Message_1 = require("./Message");
 class Raw extends Message_1.Message {
     constructor(content) {

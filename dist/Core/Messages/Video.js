@@ -1,5 +1,6 @@
 'use strict';
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.Video = void 0;
 const Media_1 = require("./Media");
 class Video extends Media_1.Media {
     constructor(mediaId, attributes = {}) {

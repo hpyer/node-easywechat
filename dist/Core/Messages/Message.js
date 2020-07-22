@@ -1,5 +1,6 @@
 'use strict';
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.Message = void 0;
 const Merge = require("merge");
 const Xml2js = require("xml2js");
 const HasAttributesMixin_1 = require("../Mixins/HasAttributesMixin");

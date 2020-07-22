@@ -1,5 +1,6 @@
 'use strict';
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.DeviceText = void 0;
 const Message_1 = require("./Message");
 class DeviceText extends Message_1.Message {
     constructor() {

@@ -9,6 +9,11 @@ declare class User {
      */
     id: string;
     /**
+     * unionid
+     * @var {string}
+     */
+    unionid: string;
+    /**
      * 昵称
      * @var {string}
      */
@@ -38,6 +43,12 @@ declare class User {
      * @return {string}
      */
     getId(): string;
+    s: any;
+    /**
+     * 获取 unionid
+     * @return {string}
+     */
+    getUnionId(): string;
     /**
      * 获取昵称
      * @return {string}

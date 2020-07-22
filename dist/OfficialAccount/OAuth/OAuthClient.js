@@ -9,6 +9,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.AccessToken = void 0;
 const BaseClient_1 = require("../../Core/BaseClient");
 const Utils_1 = require("../../Core/Utils");
 /**
@@ -21,6 +22,11 @@ class User {
          * @var {string}
          */
         this.id = '';
+        /**
+         * unionid
+         * @var {string}
+         */
+        this.unionid = '';
         /**
          * 昵称
          * @var {string}
@@ -53,6 +59,13 @@ class User {
      */
     getId() {
         return this.id;
+    }
+    /**
+     * 获取 unionid
+     * @return {string}
+     */
+    getUnionId() {
+        return this.unionid;
     }
     /**
      * 获取昵称
@@ -238,15 +251,13 @@ class OAuthClient extends BaseClient_1.default {
                     lang: 'zh_CN'
                 };
                 let res = yield this.httpGet('/sns/userinfo', params);
-                if (!res || res['errcode']) {
-                    this.app['log']('Fail to fetch userinfo', res);
-                    return user;
+                if (res && !res['errcode']) {
+                    user.unionid = res['unionid'] || '';
+                    user.nickname = res['nickname'];
+                    user.name = res['nickname'];
+                    user.avatar = res['headimgurl'];
+                    user.original = res;
                 }
-                user.id = res['openid'];
-                user.nickname = res['nickname'];
-                user.name = res['nickname'];
-                user.avatar = res['headimgurl'];
-                user.original = res;
             }
             return user;
         });

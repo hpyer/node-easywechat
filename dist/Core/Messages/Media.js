@@ -1,5 +1,6 @@
 'use strict';
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.Media = void 0;
 const merge_1 = require("merge");
 const Message_1 = require("./Message");
 const Utils_1 = require("../Utils");
