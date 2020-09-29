@@ -62,7 +62,8 @@ class BaseAccessToken implements HttpMixin
     let cache = this.app.getCache();
 
     if (!refresh && await cache.has(cacheKey)) {
-      return await cache.get(cacheKey);
+      let token = await cache.get(cacheKey);
+      if (token) return token;
     }
 
     let res = await this.requestToken(await this.getCredentials());

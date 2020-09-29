@@ -21,7 +21,8 @@ export default class Client extends BaseClient
     let cacher = this.app.getCache();
 
     if (!refresh && await cacher.has(cacheKey)) {
-      return await cacher.get(cacheKey);
+      let ticket = await cacher.get(cacheKey);
+      if (ticket) return ticket;
     }
 
     let res = await this.request({
