@@ -41,19 +41,34 @@ export default class Client extends BaseClient
   }
 
   /**
-   * 获取JSSDK的配置数组
+   * 获取JSSDK的配置
    * @param {Array<string>} jsApiList API列表
    * @param {Boolean} debug 是否调试模式，默认：false
    * @param {Boolean} beta 是否测试模式，默认：false
    * @param {Boolean} json true时返回JSON字符串，默认：true
+   * @param {Array<string>} openTagList 开放标签列表，默认：[]
+   * @param {string} url 请求URL，默认：当前URL
    */
-  async buildConfig(jsApiList: Array<string>, debug: Boolean = false, beta: Boolean = false, json: Boolean = true): Promise<any>
+  async buildConfig(jsApiList: Array<string>, debug: Boolean = false, beta: Boolean = false, json: Boolean = true, openTagList: Array<string> = [], url: string = ''): Promise<any>
   {
     let config = Merge({
-      jsApiList, debug, beta
-    }, await this.configSignature());
+      jsApiList, debug, beta, openTagList
+    }, await this.configSignature(url));
 
     return json ? JSON.stringify(config) : config;
+  }
+
+  /**
+   * 获取JSSDK的配置对象
+   * @param {Array<string>} jsApiList API列表
+   * @param {Boolean} debug 是否调试模式，默认：false
+   * @param {Boolean} beta 是否测试模式，默认：false
+   * @param {Array<string>} openTagList 开放标签列表，默认：[]
+   * @param {string} url 请求URL，默认：当前URL
+   */
+  getConfigArray(jsApiList: Array<string>, debug: Boolean = false, beta: Boolean = false, openTagList: Array<string> = [], url: string = ''): Promise<any>
+  {
+    return this.buildConfig(jsApiList, debug, beta, false, openTagList, url);
   }
 
   /**
