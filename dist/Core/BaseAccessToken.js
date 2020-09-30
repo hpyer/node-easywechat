@@ -65,7 +65,9 @@ class BaseAccessToken {
             let cacheKey = yield this.getCacheKey();
             let cache = this.app.getCache();
             if (!refresh && (yield cache.has(cacheKey))) {
-                return yield cache.get(cacheKey);
+                let token = yield cache.get(cacheKey);
+                if (token)
+                    return token;
             }
             let res = yield this.requestToken(yield this.getCredentials());
             yield this.setToken(res[this.tokenKey], res.expires_in || 7200);

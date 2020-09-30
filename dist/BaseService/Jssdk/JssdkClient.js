@@ -28,7 +28,9 @@ class Client extends BaseClient_1.default {
             let cacheKey = `easywechat.basic_service.jssdk.ticket.${type}.${this.getAppId()}`;
             let cacher = this.app.getCache();
             if (!refresh && (yield cacher.has(cacheKey))) {
-                return yield cacher.get(cacheKey);
+                let ticket = yield cacher.get(cacheKey);
+                if (ticket)
+                    return ticket;
             }
             let res = yield this.request({
                 url: this.ticketEndpoint,
@@ -45,19 +47,32 @@ class Client extends BaseClient_1.default {
         });
     }
     /**
-     * 获取JSSDK的配置数组
+     * 获取JSSDK的配置
      * @param {Array<string>} jsApiList API列表
      * @param {Boolean} debug 是否调试模式，默认：false
      * @param {Boolean} beta 是否测试模式，默认：false
      * @param {Boolean} json true时返回JSON字符串，默认：true
+     * @param {Array<string>} openTagList 开放标签列表，默认：[]
+     * @param {string} url 请求URL，默认：当前URL
      */
-    buildConfig(jsApiList, debug = false, beta = false, json = true) {
+    buildConfig(jsApiList, debug = false, beta = false, json = true, openTagList = [], url = '') {
         return __awaiter(this, void 0, void 0, function* () {
             let config = Merge({
-                jsApiList, debug, beta
-            }, yield this.configSignature());
+                jsApiList, debug, beta, openTagList
+            }, yield this.configSignature(url));
             return json ? JSON.stringify(config) : config;
         });
+    }
+    /**
+     * 获取JSSDK的配置对象
+     * @param {Array<string>} jsApiList API列表
+     * @param {Boolean} debug 是否调试模式，默认：false
+     * @param {Boolean} beta 是否测试模式，默认：false
+     * @param {Array<string>} openTagList 开放标签列表，默认：[]
+     * @param {string} url 请求URL，默认：当前URL
+     */
+    getConfigArray(jsApiList, debug = false, beta = false, openTagList = [], url = '') {
+        return this.buildConfig(jsApiList, debug, beta, false, openTagList, url);
     }
     /**
      * 获取签名配置
