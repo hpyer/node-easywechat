@@ -13,13 +13,17 @@ export default class HttpMixin
     if (typeof payload['baseUrl'] == 'undefined' && this['baseUrl']) {
       payload['baseUrl'] = this['baseUrl'];
     }
+    if (typeof payload['method'] == 'undefined') {
+      payload['method'] = 'post';
+    }
+    let method = payload['method'].toLowerCase();
     if (this['app'] && this['app'] instanceof BaseApplicatioin) {
       payload = Merge({}, this['app']['config']['http'] || {}, payload);
     }
     this['app']['log']('request', payload);
     return new Promise(
       (resolve, reject) => {
-        Request(
+        Request[method](
           payload,
           function (error, response, body) {
             if (error) {
