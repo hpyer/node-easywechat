@@ -4,7 +4,8 @@
   "description": "EasyWechat SDK for Node.js (NOT OFFICIAL)",
   "main": "dist/index.js",
   "scripts": {
-    "build": "tsc"
+    "build": "tsc",
+    "test": "mocha ./test/**/*.js"
   },
   "repository": {
     "type": "git",
@@ -17,7 +18,8 @@
   "author": "Hpyer",
   "license": "MIT",
   "devDependencies": {
-    "@types/node": "^12.12.7"
+    "@types/node": "^12.12.7",
+    "sinon": "^9.2.0"
   },
   "dependencies": {
     "merge": "^1.2.1",

@@ -1,4 +1,5 @@
 src/
+test/
 .DS_Store
 .editorconfig
 .gitignore
