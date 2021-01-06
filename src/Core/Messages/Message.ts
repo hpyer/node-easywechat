@@ -1,8 +1,7 @@
 'use strict';
 
-import * as Merge from 'merge';
 import * as Xml2js from 'xml2js';
-import { isArray, inArray } from "../Utils";
+import { merge, isArray, inArray } from "../Utils";
 
 export class Message
 {
@@ -49,7 +48,7 @@ export class Message
   transformToXml(appends: object = {}, returnAsObject: boolean = false): any
   {
     let data = {
-      xml: Merge({ MsgType: this.getType() }, this.toXmlArray(), appends)
+      xml: merge(merge({ MsgType: this.getType() }, this.toXmlArray()), appends)
     };
 
     if (returnAsObject) {
@@ -82,11 +81,11 @@ export class Message
       return this.propertiesToObject({}, this.jsonAliases);
     }
     let messageType = this.getType();
-    let data = Merge({
+    let data = merge({
       msgtype: messageType
     }, appends);
 
-    data[messageType] = Merge(data[messageType] || {}, this.propertiesToObject({}, this.jsonAliases));
+    data[messageType] = merge(data[messageType] || {}, this.propertiesToObject({}, this.jsonAliases));
 
     return data;
   }
@@ -155,7 +154,7 @@ export class Message
 
   merge(attributes: object): Message
   {
-    this.attributes = Merge(this.attributes, attributes);
+    this.attributes = merge(this.attributes, attributes);
 
     return this;
   }

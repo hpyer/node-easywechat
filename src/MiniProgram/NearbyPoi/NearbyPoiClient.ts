@@ -1,8 +1,7 @@
 'use strict';
 
 import BaseClient from '../../Core/BaseClient';
-import * as Merge from 'merge';
-import { inArray } from '../../Core/Utils';
+import { merge, inArray } from '../../Core/Utils';
 
 export default class NearbyPoiClient extends BaseClient
 {
@@ -13,7 +12,7 @@ export default class NearbyPoiClient extends BaseClient
    */
   add(params: object = {}): Promise<any>
   {
-    params = Merge({
+    params = merge({
       is_comm_nearby: '1',
       poi_id: '',
     }, params);
@@ -27,7 +26,7 @@ export default class NearbyPoiClient extends BaseClient
    */
   update(poiId: string, params: object = {}): Promise<any>
   {
-    params = Merge({
+    params = merge({
       is_comm_nearby: '1',
       poi_id: poiId,
     }, params);

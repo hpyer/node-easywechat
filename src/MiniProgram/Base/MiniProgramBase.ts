@@ -1,7 +1,7 @@
 'use strict';
 
 import BaseClient from '../../Core/BaseClient';
-import * as Merge from 'merge';
+import { merge } from '../../Core/Utils';
 
 export default class MiniProgramBase extends BaseClient
 {
@@ -13,7 +13,7 @@ export default class MiniProgramBase extends BaseClient
    */
   getPaidUnionid(openid: string, optional: object = {}): Promise<any>
   {
-    let params = Merge({
+    let params = merge({
       openid,
     }, optional);
     return this.httpGet('wxa/getpaidunionid', params);

@@ -1,7 +1,7 @@
 'use strict';
 
+import { merge } from '../../Core/Utils';
 import BaseClient from '../Core/BaseClient';
-import * as Merge from 'merge';
 
 export default class RefundClient extends BaseClient
 {
@@ -16,7 +16,7 @@ export default class RefundClient extends BaseClient
    */
   byOutTradeNumber(number: string, refundNumber: string, totalFee: number, refundFee: number, optional: object = {}): Promise<any>
   {
-    return this.refund(refundNumber, totalFee, refundFee, Merge({}, optional, {
+    return this.refund(refundNumber, totalFee, refundFee, merge(optional, {
       out_trade_no: number,
     }));
   }
@@ -31,14 +31,14 @@ export default class RefundClient extends BaseClient
    */
   byTransactionId(transactionId: string, refundNumber: string, totalFee: number, refundFee: number, optional: object = {}): Promise<any>
   {
-    return this.refund(refundNumber, totalFee, refundFee, Merge({}, optional, {
+    return this.refund(refundNumber, totalFee, refundFee, merge(optional, {
       transaction_id: transactionId,
     }));
   }
 
   protected refund(refundNumber: string, totalFee: number, refundFee: number, optional: object = {}): Promise<any>
   {
-    let params = Merge({
+    let params = merge({
       appid: this.app['config']['app_id'],
       out_refund_no: refundNumber,
       total_fee: totalFee,

@@ -1,7 +1,7 @@
 'use strict';
 
 import BaseClient from '../../Core/BaseClient';
-import * as Merge from 'merge';
+import { merge } from '../../Core/Utils';
 
 export default class RealtimeLogClient extends BaseClient
 {
@@ -15,7 +15,7 @@ export default class RealtimeLogClient extends BaseClient
    */
   search(date: string, beginTime: number, endTime: number, options: object = {}): Promise<any>
   {
-    let params = Merge({
+    let params = merge({
       date: date,
       begintime: beginTime,
       endtime: endTime,

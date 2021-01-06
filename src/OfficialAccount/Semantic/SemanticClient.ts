@@ -1,7 +1,7 @@
 'use strict';
 
 import BaseClient from '../../Core/BaseClient';
-import * as Merge from 'merge';
+import { merge } from '../../Core/Utils';
 
 export default class SemanticClient extends BaseClient
 {
@@ -14,7 +14,7 @@ export default class SemanticClient extends BaseClient
    */
   query(keyword: string, categories: string, optional: object = {}): Promise<any>
   {
-    let params = Merge({
+    let params = merge({
       query: keyword,
       category: categories,
       appid: this.app['config']['app_id'],

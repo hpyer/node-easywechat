@@ -3,9 +3,8 @@
 import BaseAccessToken from './BaseAccessToken';
 import BaseApplication from './BaseApplication';
 import HttpMixin from './Mixins/HttpMixin';
-import { applyMixins, isString } from './Utils';
+import { merge, applyMixins, isString } from './Utils';
 import * as Fs from 'fs';
-import * as Merge from 'merge';
 import Response from './Http/Response';
 
 class BaseClient implements HttpMixin
@@ -58,7 +57,7 @@ class BaseClient implements HttpMixin
       }
     }
 
-    formData = Merge(formData, form);
+    formData = merge(formData, form);
 
     return this.request({
       url,

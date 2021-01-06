@@ -2,7 +2,7 @@
 
 import BaseClient from '../../Core/BaseClient';
 import StreamResponse from '../../Core/Http/StreamResponse';
-import * as Merge from 'merge';
+import { merge } from '../../Core/Utils';
 
 export default class AppCodeClient extends BaseClient
 {
@@ -14,7 +14,7 @@ export default class AppCodeClient extends BaseClient
    */
   async get(path: string, optional: object = {}): Promise<any>
   {
-    let params = Merge({
+    let params = merge({
       path,
     }, optional);
     return await this.getStream('wxa/getwxacode', params);
@@ -27,7 +27,7 @@ export default class AppCodeClient extends BaseClient
    */
   async getUnlimit(scene: string, optional: object = {}): Promise<any>
   {
-    let params = Merge({
+    let params = merge({
       scene,
     }, optional);
     return await this.getStream('wxa/getwxacodeunlimit', params);

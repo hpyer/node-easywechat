@@ -1,9 +1,8 @@
 'use strict';
 
 import BaseApplicatioin from "../../Core/BaseApplication";
-import * as Merge from 'merge';
 import * as Xml2js from 'xml2js';
-import { makeSignature, AesDecrypt, createHash, singleItem } from "../../Core/Utils";
+import { makeSignature, AesDecrypt, createHash, singleItem, merge } from "../../Core/Utils";
 import Response from "../../Core/Http/Response";
 
 export default class Handler
@@ -59,7 +58,7 @@ export default class Handler
       return_msg: this.fail
     };
 
-    let attributes = Merge(base, this.attributes);
+    let attributes = merge(base, this.attributes);
 
     if (this.sign) {
       attributes['sign'] = makeSignature(attributes, this.app['getKey']())

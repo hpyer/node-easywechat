@@ -1,8 +1,7 @@
 'use strict';
 
 import BaseClient from '../Core/BaseClient';
-import * as Merge from 'merge';
-import { isObject } from '../../Core/Utils';
+import { merge, isObject } from '../../Core/Utils';
 
 export default class RedpackClient extends BaseClient
 {
@@ -17,7 +16,7 @@ export default class RedpackClient extends BaseClient
       mch_billno: mchBillno
     };
 
-    params = Merge({}, params, {
+    params = merge(params, {
       appid: this.app['config']['app_id'],
       bill_type: 'MCHT',
     });
@@ -31,7 +30,7 @@ export default class RedpackClient extends BaseClient
    */
   async sendNormal(params: object): Promise<any>
   {
-    params = Merge({}, params, {
+    params = merge(params, {
       wxappid: this.app['config']['app_id'],
       total_num: 1,
       client_ip: params['client_ip'] || await this.getServerIp(),
@@ -46,7 +45,7 @@ export default class RedpackClient extends BaseClient
    */
   sendGroup(params: object): Promise<any>
   {
-    params = Merge({}, params, {
+    params = merge(params, {
       wxappid: this.app['config']['app_id'],
       amt_type: 'ALL_RAND',
     });

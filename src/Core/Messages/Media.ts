@@ -1,8 +1,7 @@
 'use strict';
 
-import Merge from 'merge';
 import { Message } from './Message';
-import { strStudly } from '../Utils';
+import { merge, strStudly } from '../Utils';
 
 export class Media extends Message
 {
@@ -17,7 +16,7 @@ export class Media extends Message
 
   constructor(mediaId: string, type: string = '', attributes: object = {})
   {
-    super(Merge({ media_id: mediaId }, attributes));
+    super(merge({ media_id: mediaId }, attributes));
 
     if (type) this.setType(type);
   }

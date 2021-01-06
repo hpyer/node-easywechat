@@ -2,8 +2,7 @@
 
 import * as Path from 'path';
 import * as Fs from 'fs';
-import * as Merge from 'merge';
-import { getTimestamp } from '../Utils';
+import { merge, getTimestamp } from '../Utils';
 import CacheInterface from '../Contracts/CacheInterface';
 
 export default class FileCache implements CacheInterface
@@ -18,7 +17,7 @@ export default class FileCache implements CacheInterface
 
   constructor(options: object = {})
   {
-    this.options = Merge({}, this.defaultOptions, options);
+    this.options = merge(this.defaultOptions, options);
     this.options['path'] = Path.resolve(this.options['path']) + '/';
 
     try {

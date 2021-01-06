@@ -1,8 +1,8 @@
 'use strict';
 
-import * as Merge from 'merge';
 import * as Request from 'request';
 import BaseApplicatioin from '../BaseApplication';
+import { merge } from '../Utils';
 
 export default class HttpMixin
 {
@@ -18,7 +18,7 @@ export default class HttpMixin
     }
     let method = payload['method'].toLowerCase();
     if (this['app'] && this['app'] instanceof BaseApplicatioin) {
-      payload = Merge({}, this['app']['config']['http'] || {}, payload);
+      payload = merge(this['app']['config']['http'] || {}, payload);
     }
     this['app']['log']('request', payload);
     return new Promise(

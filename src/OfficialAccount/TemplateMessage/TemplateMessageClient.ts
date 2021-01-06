@@ -1,8 +1,7 @@
 'use strict';
 
-import * as Merge from 'merge';
 import BaseClient from '../../Core/BaseClient';
-import { inArray, isArray, isObject } from '../../Core/Utils';
+import { inArray, isArray, isObject, merge } from '../../Core/Utils';
 
 export default class Client extends BaseClient
 {
@@ -95,7 +94,7 @@ export default class Client extends BaseClient
 
   protected formatMessage (data: object)
   {
-    let params = Merge({}, this.message, data);
+    let params = merge(merge({}, this.message), data);
 
     for (let key in params) {
       if (inArray(key, this.required) && !params[key]) {

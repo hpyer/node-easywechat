@@ -1,8 +1,7 @@
 'use strict';
 
 import BaseClient from '../../Core/BaseClient';
-import * as Merge from 'merge';
-import { inArray, isArray, isObject } from '../../Core/Utils';
+import { merge, inArray, isArray, isObject } from '../../Core/Utils';
 
 export default class SubscribeMessageClient extends BaseClient
 {
@@ -29,7 +28,7 @@ export default class SubscribeMessageClient extends BaseClient
 
   protected formatMessage (data: object)
   {
-    let params = Merge({}, this.message, data);
+    let params = merge(merge({}, this.message), data);
 
     for (let key in params) {
       if (inArray(key, this.required) && !params[key]) {

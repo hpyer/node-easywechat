@@ -1,7 +1,7 @@
 'use strict';
 
 import BaseClient from '../../Core/BaseClient';
-import * as Merge from 'merge';
+import { merge } from '../../Core/Utils';
 
 export default class DataCubeClient extends BaseClient
 {
@@ -236,7 +236,7 @@ export default class DataCubeClient extends BaseClient
 
   protected query(api: string, from: string, to: string, ext: object = {}): Promise<any>
   {
-    let params = Merge({
+    let params = merge({
       begin_date: from,
       end_date: to,
     }, ext);

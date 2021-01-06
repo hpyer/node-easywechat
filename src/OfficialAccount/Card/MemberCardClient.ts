@@ -1,7 +1,7 @@
 'use strict';
 
+import { merge } from '../../Core/Utils';
 import Client from './Client';
-import * as Merge from 'merge';
 
 export default class MemberCardClient extends Client
 {
@@ -22,7 +22,7 @@ export default class MemberCardClient extends Client
    */
   setActivationForm(cardId: string, settings: object): Promise<any>
   {
-    let params = Merge({
+    let params = merge({
       card_id: cardId,
     }, settings);
     return this.httpPostJson('card/membercard/activateuserform/set', params);

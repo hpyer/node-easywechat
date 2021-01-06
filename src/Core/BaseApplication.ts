@@ -1,9 +1,8 @@
 'use strict';
 
-import * as Merge from 'merge';
 import CacheInterface from './Contracts/CacheInterface';
 import FileCache from './Cache/FileCache';
-import { createHash, isObject, isFunction } from './Utils';
+import { merge, createHash, isObject, isFunction } from './Utils';
 import Request from './Http/Request';
 
 export default class BaseApplicatioin
@@ -64,7 +63,7 @@ export default class BaseApplicatioin
       },
     };
 
-    return Merge(base, this.defaultConfig, this.userConfig);
+    return merge(merge(base, this.defaultConfig), this.userConfig);
   }
 
   /**

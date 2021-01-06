@@ -1,7 +1,7 @@
 'use strict';
 
 import { Message } from '../../Core/Messages';
-import * as Merge from 'merge';
+import { merge } from '../../Core/Utils';
 
 export default class MessageBuilder
 {
@@ -69,7 +69,7 @@ export default class MessageBuilder
       prepends = this._to;
     }
 
-    let message = Merge(prepends, content, this._attributes);
+    let message = merge(merge(prepends, content), this._attributes);
 
     return message;
   }

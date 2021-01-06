@@ -1,7 +1,7 @@
 'use strict';
 
+import { merge } from '../../Core/Utils';
 import BaseClient from '../Core/BaseClient';
-import * as Merge from 'merge';
 
 export default class MerchantClient extends BaseClient
 {
@@ -35,7 +35,7 @@ export default class MerchantClient extends BaseClient
 
   protected manage(params: object, query: object): Promise<any>
   {
-    params = Merge({}, params, {
+    params = merge(params, {
       appid: this.app['config']['app_id'],
       nonce_str: '',
       sub_mech_id: '',

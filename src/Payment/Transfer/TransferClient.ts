@@ -1,9 +1,9 @@
 'use strict';
 
 import BaseClient from '../Core/BaseClient';
-import * as Merge from 'merge';
 import * as Fs from 'fs';
 import * as NodeRsa from 'node-rsa';
+import { merge } from '../../Core/Utils';
 
 export default class TransferClient extends BaseClient
 {
@@ -53,7 +53,7 @@ export default class TransferClient extends BaseClient
       params['spbill_create_ip'] = this.getServerIp();
     }
 
-    return this.safeRequest('mmpaymkttransfers/promotion/transfers', Merge(base, params));
+    return this.safeRequest('mmpaymkttransfers/promotion/transfers', merge(base, params));
   }
 
   /**

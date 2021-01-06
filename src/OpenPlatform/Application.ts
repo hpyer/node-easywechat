@@ -1,8 +1,7 @@
 'use strict';
 
 import BaseApplication from '../Core/BaseApplication';
-import * as Merge from 'merge';
-import { isString, buildQueryString } from '../Core/Utils';
+import { merge, isString, buildQueryString } from '../Core/Utils';
 import AuthorizerAccessToken from './Authorizer/Auth/AccessToken';
 import AuthorizerGuard from './Authorizer/Server/Guard';
 import OfficialAccount from './Authorizer/OfficialAccount/Application';
@@ -79,7 +78,7 @@ export default class OpenPlatform extends BaseApplication
       optional['pre_auth_code'] = (await this.createPreAuthorizationCode())['pre_auth_code'];
     }
 
-    return 'https://mp.weixin.qq.com/cgi-bin/componentloginpage?' + buildQueryString(Merge({}, optional, {
+    return 'https://mp.weixin.qq.com/cgi-bin/componentloginpage?' + buildQueryString(merge(optional, {
       component_appid: this.config['app_id'],
       redirect_uri: callbackUrl,
     }));
@@ -101,7 +100,7 @@ export default class OpenPlatform extends BaseApplication
       optional['pre_auth_code'] = await this.createPreAuthorizationCode()['pre_auth_code'];
     }
 
-    return 'https://mp.weixin.qq.com/safe/bindcomponent?' + buildQueryString(Merge({}, optional, {
+    return 'https://mp.weixin.qq.com/safe/bindcomponent?' + buildQueryString(merge(optional, {
       component_appid: this.config['app_id'],
       redirect_uri: callbackUrl,
       action: 'bindcomponent',
@@ -111,7 +110,7 @@ export default class OpenPlatform extends BaseApplication
 
   protected getAuthorizerConfig(appId: string, refreshToken: string = null): object
   {
-    return Merge({}, this.config, {
+    return merge(merge({}, this.config), {
       component_app_id: this.config['app_id'],
       app_id: appId,
       refresh_token: refreshToken,
@@ -148,7 +147,7 @@ export default class OpenPlatform extends BaseApplication
   officialAccount(appId: string, refreshToken: string = null, accessToken: AuthorizerAccessToken = null)
   {
     let that = this;
-    let services = Merge({}, this.getReplaceServices(accessToken), {
+    let services = merge(merge({}, this.getReplaceServices(accessToken)), {
       encryptor: this.encryptor,
       account: function (app) {
         return new OAAccountClient(app, that);
@@ -169,7 +168,7 @@ export default class OpenPlatform extends BaseApplication
   miniProgram(appId: string, refreshToken: string = null, accessToken: AuthorizerAccessToken = null)
   {
     let that = this;
-    let services = Merge({}, this.getReplaceServices(accessToken), {
+    let services = merge(merge({}, this.getReplaceServices(accessToken)), {
       auth: function (app) {
         return new MPAuthClient(app, that);
       },

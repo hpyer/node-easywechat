@@ -1,8 +1,8 @@
 'use strict';
 
 import BaseClient from '../Core/BaseClient';
-import * as Merge from 'merge';
 import StreamResponse from '../../Core/Http/StreamResponse';
+import { merge } from '../../Core/Utils';
 
 export default class BillClient extends BaseClient
 {
@@ -23,7 +23,7 @@ export default class BillClient extends BaseClient
       bill_date: date,
       bill_type: type,
     };
-    params = Merge(params, options);
+    params = merge(params, options);
 
     let res = await this.requestRaw(this.wrap('pay/downloadbill'), params);
 

@@ -2,8 +2,7 @@
 
 import BaseApplication from '../../Core/BaseApplication';
 import HttpMixin from '../../Core/Mixins/HttpMixin';
-import { applyMixins, randomString, makeSignature, singleItem } from '../../Core/Utils';
-import * as Merge from 'merge';
+import { merge, applyMixins, randomString, makeSignature, singleItem } from '../../Core/Utils';
 import * as Xml2js from 'xml2js';
 import * as Fs from 'fs';
 import * as RawBody from 'raw-body';
@@ -39,7 +38,7 @@ class BaseClient implements HttpMixin
       base['sub_appid'] = '';
     }
 
-    let localParams = Merge(base, this.prepends(), params);
+    let localParams = merge(merge(base, this.prepends()), params);
     localParams['sign_type'] = localParams['sign_type'] || 'md5';
 
     let secretKey = this.app['getKey'](endpoint);
@@ -53,7 +52,7 @@ class BaseClient implements HttpMixin
         newline: '',
       }
     });
-    let payload = Merge(options, {
+    let payload = merge(options, {
       url: endpoint,
       method,
       body: XmlBuilder.buildObject(localParams)
@@ -81,7 +80,7 @@ class BaseClient implements HttpMixin
 
   protected safeRequest(endpoint: string, params: object = {}, method: string = 'post', options: object = {}): Promise<any>
   {
-    options = Merge(options, {
+    options = merge(options, {
       agentOptions: {
         pfx: Fs.readFileSync(this.app['config']['cert_path']),
         passphrase: this.app['config']['mch_id'],

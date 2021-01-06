@@ -3,6 +3,30 @@
 import * as Crypto from 'crypto';
 import * as Qs from 'qs';
 
+export const merge = (target: any, source: any): any => {
+  if (isObject(source)) {
+    if (!target || !isObject(target)) {
+      target = {};
+    }
+    Object.keys(source).map((k) => {
+      if (!target[k]) {
+        target[k] = null;
+      }
+      target[k] = merge(target[k], source[k]);
+    });
+  }
+  else if (isArray(source)) {
+    if (!target || !isArray(target)) {
+      target = [];
+    }
+    target = target.concat(target, source);
+  }
+  else {
+    target = source;
+  }
+  return target;
+}
+
 export const createHash = function (str: string, type: string = 'sha1'): any
 {
   return Crypto.createHash(type).update(str).digest('hex');

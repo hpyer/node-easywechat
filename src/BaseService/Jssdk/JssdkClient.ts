@@ -1,8 +1,7 @@
 'use strict';
 
 import BaseClient from '../../Core/BaseClient';
-import * as Merge from 'merge';
-import { randomString, getTimestamp, createHash } from '../../Core/Utils';
+import { merge, randomString, getTimestamp, createHash } from '../../Core/Utils';
 
 export default class Client extends BaseClient
 {
@@ -52,7 +51,7 @@ export default class Client extends BaseClient
    */
   async buildConfig(jsApiList: Array<string>, debug: Boolean = false, beta: Boolean = false, json: Boolean = true, openTagList: Array<string> = [], url: string = ''): Promise<any>
   {
-    let config = Merge({
+    let config = merge({
       jsApiList, debug, beta, openTagList
     }, await this.configSignature(url));
 
