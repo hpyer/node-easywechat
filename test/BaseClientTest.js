@@ -4,21 +4,56 @@ const Sinon = require('sinon');
 const request = require('request');
 const assert = require('assert');
 
-module.exports = class TestCase {
+/**
+ * 通用模块测试
+ */
+module.exports = class BaseClientTest {
 
-  constructor(service, config) {
+  /**
+   * 构造通用模块测试用例
+   * @param {string} service 要测试的服务名称，可选值：'BaseService' | 'OfficialAccount' | 'MiniProgram' | 'OpenPlatform' | 'Payment'
+   * @param {string} module 要测试的功能模块
+   * @param {import('../dist/Core/Types').EasyWechatConfig} config 对应的配置参数
+   * @param {boolean} 是否自动运行测试用例
+   */
+  constructor(service, module, config, autoRun = false) {
+
+    /**
+     * 服务名称
+     * @type {string}
+     */
     this.service = service;
-
+    /**
+     * 功能模块名称
+     * @type {string}
+     */
+    this.module = module;
+    /**
+     * 断言方法
+     * @type {typeof assert}
+     */
     this.assert = assert;
-
+    /**
+     * Easywechat实例
+     */
     this.app = EasyWechat.Factory.getInstance(service, config);
 
     // 关闭请求日志
     this.app.rebind('log', () => {
       return function () { };
     });
+
+    if (autoRun) {
+      this.run();
+    }
   }
 
+  /**
+   * 配置模拟请求的响应结果
+   * @param {string} body 响应结果
+   * @param {object} headers 响应 headers
+   * @param {number} statusCode 响应状态码，默认：200
+   */
   mockResponse(body, headers = null, statusCode=200) {
     this._get.yields(null, {statusCode, headers}, body);
     this._post.yields(null, {statusCode, headers}, body);
@@ -31,14 +66,27 @@ module.exports = class TestCase {
     return this;
   }
 
+  /**
+   * 发起模拟请求（在当前模块中）
+   * @param {string} method 要执行的方法
+   * @param {any} args
+   */
   mockRequest() {
     let args = [...arguments];
     let method = args.shift();
     return this.app[this.module][method].call(this.app[this.module], args);
   }
 
-  run(module, callback = null) {
-    this.module = module;
+  /**
+   * 具体的测试方法，需要被继承
+   */
+  test() {
+  }
+
+  /**
+   * 执行测试用例
+   */
+  run() {
 
     describe(this.service, () => {
 
@@ -64,7 +112,7 @@ module.exports = class TestCase {
           request.delete.restore();
         });
 
-        callback && typeof callback == 'function' && callback.call(this);
+        this.test();
 
       });
     });
