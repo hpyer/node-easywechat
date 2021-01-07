@@ -40,7 +40,7 @@ export default class Client extends BaseClient {
      * 设置当前URL
      * @param {string} url 完整的URL地址
      */
-    setUrl(url: string): object;
+    setUrl(url: string): this;
     /**
      * 获取当前设置的URL
      */

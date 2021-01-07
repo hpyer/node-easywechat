@@ -30,13 +30,13 @@ export declare class Message {
     propertiesToObject(data: object, aliases?: object): object;
     protected attributes: object;
     protected required: Array<string>;
-    setAttributes(attributes: object): Message;
-    setAttribute(name: string, value: string): Message;
-    set(name: string, value: string): Message;
+    setAttributes(attributes: object): this;
+    setAttribute(name: string, value: string): this;
+    set(name: string, value: string): this;
     getAttribute(name: string, defaultValue?: any): any;
     get(name: string, defaultValue?: any): any;
     has(name: string): boolean;
-    merge(attributes: object): Message;
+    merge(attributes: object): this;
     only(keys: Array<string>): object;
     all(): object;
     getRequired(): Array<string>;

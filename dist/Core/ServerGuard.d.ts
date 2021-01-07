@@ -33,8 +33,8 @@ export default class ServerGuard {
      * 处理消息
      */
     serve(): Promise<Response>;
-    protected validate(): Promise<ServerGuard>;
-    protected forceValidate(): ServerGuard;
+    protected validate(): Promise<this>;
+    protected forceValidate(): this;
     protected resolve(): Promise<Response>;
     protected shouldReturnRawResponse(): Promise<boolean>;
     protected buildResponse(to: string, from: string, message: any): Promise<string>;

@@ -6,10 +6,10 @@ export default class Messenger {
     protected account: string;
     protected client: CustomerServiceClient;
     constructor(client: CustomerServiceClient);
-    message(message: any): object;
-    by(account: string): object;
-    from(account: string): object;
-    to(openid: string): object;
+    message(message: any): this;
+    by(account: string): this;
+    from(account: string): this;
+    to(openid: string): this;
     send(): Promise<any>;
     getAccount(): string;
     getTo(): string;

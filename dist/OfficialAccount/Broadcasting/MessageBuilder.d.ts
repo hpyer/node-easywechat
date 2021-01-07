@@ -3,12 +3,12 @@ export default class MessageBuilder {
     protected _to: object;
     protected _message: Message;
     protected _attributes: object;
-    message(message: Message): MessageBuilder;
-    to(to: object): MessageBuilder;
-    toTag(tagId: number): MessageBuilder;
-    toUsers(openids: Array<string>): MessageBuilder;
-    toAll(): MessageBuilder;
-    with(attributes: object): MessageBuilder;
+    message(message: Message): this;
+    to(to: object): this;
+    toTag(tagId: number): this;
+    toUsers(openids: Array<string>): this;
+    toAll(): this;
+    with(attributes: object): this;
     build(prepends?: object): object;
     buildForPreview(by: string, user: string): object;
 }

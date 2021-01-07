@@ -72,11 +72,11 @@ declare abstract class BaseAccessToken implements HttpMixin {
      * @param access_token AccessToken
      * @param expires_in 有效时间，单位：秒
      */
-    setToken(access_token: string, expires_in?: number): Promise<BaseAccessToken>;
+    setToken(access_token: string, expires_in?: number): Promise<this>;
     /**
      * 刷新Token
      */
-    refresh(): Promise<BaseAccessToken>;
+    refresh(): Promise<this>;
     /**
      * 获取刷新后的Token
      */

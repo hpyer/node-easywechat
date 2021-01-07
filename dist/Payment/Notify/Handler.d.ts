@@ -16,7 +16,7 @@ export default class Handler {
      * @param message 错误消息
      */
     setFail(message: string): void;
-    respondWith(attributes: object, sign?: Boolean): Handler;
+    respondWith(attributes: object, sign?: Boolean): this;
     toResponse(): Response;
     getMessage(): Promise<object>;
     parseXml(xml: string): Promise<any>;

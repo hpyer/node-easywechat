@@ -37,7 +37,7 @@ export default class Payment extends BaseApplication {
     registerProviders(): void;
     scheme(product_id: string): string;
     codeUrlScheme(codeUrl: string): string;
-    setSubMerchant(mchId: string, appId?: string): object;
+    setSubMerchant(mchId: string, appId?: string): this;
     inSandbox(): boolean;
     getKey(endpoint?: string): Promise<string>;
     /**
