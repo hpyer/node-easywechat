@@ -43,7 +43,7 @@ export default class Handler
     this.fail = message;
   }
 
-  respondWith(attributes: object, sign: Boolean = false): Handler
+  respondWith(attributes: object, sign: Boolean = false): this
   {
     this.attributes = attributes;
     this.sign = sign;

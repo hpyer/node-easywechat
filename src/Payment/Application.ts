@@ -135,7 +135,7 @@ export default class Payment extends BaseApplication
     return 'weixin://wxpay/bizpayurl?sr=' + codeUrl;
   }
 
-  setSubMerchant(mchId: string, appId: string = null): object
+  setSubMerchant(mchId: string, appId: string = null): this
   {
     this.config['sub_mch_id'] = mchId;
     this.config['sub_appid'] = appId;

@@ -115,7 +115,7 @@ export default class OAuthClient extends BaseClient
    * 设置scope
    * @param scope 可选值：snsapi_userinfo、snsapi_base，默认：snsapi_userinfo
    */
-  scopes(scope: string): OAuthClient
+  scopes(scope: string): this
   {
     this._scope = scope || 'snsapi_userinfo';
     return this;
@@ -125,7 +125,7 @@ export default class OAuthClient extends BaseClient
    * 设置授权后的回调地址
    * @param callback 完整的URL地址
    */
-  callback(callback: string): OAuthClient
+  callback(callback: string): this
   {
     this._callback = callback || '';
     return this;
@@ -135,7 +135,7 @@ export default class OAuthClient extends BaseClient
    * 设置state参数
    * @param state
    */
-  state(state: string): OAuthClient
+  state(state: string): this
   {
     this._state = state || '';
     return this;

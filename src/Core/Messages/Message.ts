@@ -111,21 +111,21 @@ export class Message
 
   protected required: Array<string> = [];
 
-  setAttributes(attributes: object): Message
+  setAttributes(attributes: object): this
   {
     this.attributes = attributes;
 
     return this;
   }
 
-  setAttribute(name: string, value: string): Message
+  setAttribute(name: string, value: string): this
   {
     this.attributes[name] = value;
 
     return this;
   }
 
-  set(name: string, value: string): Message
+  set(name: string, value: string): this
   {
     this.setAttribute(name, value);
 
@@ -152,7 +152,7 @@ export class Message
     return false;
   }
 
-  merge(attributes: object): Message
+  merge(attributes: object): this
   {
     this.attributes = merge(this.attributes, attributes);
 

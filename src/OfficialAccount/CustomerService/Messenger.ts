@@ -19,7 +19,7 @@ export default class Messenger
     this.client = client;
   }
 
-  message(message: any): object
+  message(message: any): this
   {
     if (isString(message)) {
       message = new Text(message);
@@ -28,18 +28,18 @@ export default class Messenger
     return this;
   }
 
-  by(account: string): object
+  by(account: string): this
   {
     this.account = account;
     return this;
   }
 
-  from(account: string): object
+  from(account: string): this
   {
     return this.by(account);
   }
 
-  to(openid: string): object
+  to(openid: string): this
   {
     this._to = openid;
     return this;

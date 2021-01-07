@@ -148,7 +148,7 @@ abstract class BaseAccessToken implements HttpMixin
    * @param access_token AccessToken
    * @param expires_in 有效时间，单位：秒
    */
-  async setToken(access_token: string, expires_in: number = 7200): Promise<BaseAccessToken>
+  async setToken(access_token: string, expires_in: number = 7200): Promise<this>
   {
     let cacheKey = await this.getCacheKey();
     let cache = this.app.getCache();
@@ -165,7 +165,7 @@ abstract class BaseAccessToken implements HttpMixin
   /**
    * 刷新Token
    */
-  async refresh(): Promise<BaseAccessToken>
+  async refresh(): Promise<this>
   {
     await this.getToken(true);
     return this;

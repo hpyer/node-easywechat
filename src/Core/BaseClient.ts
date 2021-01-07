@@ -18,7 +18,7 @@ abstract class BaseClient implements HttpMixin
     this.accessToken = accessToken || this.app.access_token;
   }
 
-  setAccessToken(accessToken: BaseAccessToken)
+  setAccessToken(accessToken: BaseAccessToken): this
   {
     this.accessToken = accessToken;
 

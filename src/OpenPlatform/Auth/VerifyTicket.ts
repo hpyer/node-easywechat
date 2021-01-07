@@ -12,7 +12,7 @@ export default class VerifyTicket
     this.app = app;
   }
 
-  async setTicket(ticket: string): Promise<VerifyTicket>
+  async setTicket(ticket: string): Promise<this>
   {
     let cacher = this.app.getCache();
 
