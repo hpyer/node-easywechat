@@ -4,11 +4,13 @@ import CacheInterface from './Contracts/CacheInterface';
 import FileCache from './Cache/FileCache';
 import { merge, createHash, isObject, isFunction } from './Utils';
 import Request from './Http/Request';
+import { EasyWechatConfig } from './Types';
+import BaseAccessToken from './BaseAccessToken';
 
-export default class BaseApplicatioin
+export default abstract class BaseApplicatioin
 {
-  protected defaultConfig: Object = {};
-  protected userConfig: Object = {};
+  protected defaultConfig: EasyWechatConfig = {};
+  protected userConfig: EasyWechatConfig = {};
   protected id: String = null;
 
   /**
@@ -16,9 +18,9 @@ export default class BaseApplicatioin
    */
   public cache: CacheInterface = null;
   /**
-   * 配置
+   * 配置项
    */
-  public config: Object = {};
+  public config: EasyWechatConfig = {};
   /**
    * 日志方法
    */
@@ -28,7 +30,12 @@ export default class BaseApplicatioin
    */
   public request: Request = null;
 
-  constructor(config: Object = {}, prepends: Object = {}, id: String = null)
+  /**
+   * 请求token
+   */
+  public access_token: BaseAccessToken = null;
+
+  constructor(config: EasyWechatConfig, prepends: Object = {}, id: String = null)
   {
     if (new.target === BaseApplicatioin) {
       throw new Error('Can not create instance via BaseApplicatioin.');
@@ -53,9 +60,9 @@ export default class BaseApplicatioin
   /**
    * 获取合并后的配置
    */
-  getConfig(): Object
+  getConfig(): EasyWechatConfig
   {
-    let base = {
+    let base: EasyWechatConfig = {
       // https://www.npmjs.com/package/request#requestoptions-callback
       http: {
         timeout: 30000,
@@ -123,7 +130,7 @@ export default class BaseApplicatioin
   /**
    * 获取cache实例
    */
-  getCache(): any
+  getCache(): CacheInterface
   {
     if (this.cache) {
       return this.cache;

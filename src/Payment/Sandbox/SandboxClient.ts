@@ -28,7 +28,7 @@ export default class SandboxClient extends BaseClient
 
   protected getCacheKey(): string
   {
-    return 'easywechat.payment.sandbox.' + createHash(this.app['config']['app_id'], 'md5');
+    return 'easywechat.payment.sandbox.' + createHash(this.app.config.app_id, 'md5');
   }
 
 }

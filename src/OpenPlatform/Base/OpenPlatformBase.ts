@@ -12,7 +12,7 @@ export default class OpenPlatformBase extends BaseClient
   handleAuthorize(authCode: string = null): Promise<any>
   {
     return this.httpPostJson('cgi-bin/component/api_query_auth', {
-      component_appid: this.app['config']['app_id'],
+      component_appid: this.app.config.app_id,
       authorization_code: authCode || this.app['request'].get('auth_code'),
     });
   }
@@ -24,7 +24,7 @@ export default class OpenPlatformBase extends BaseClient
   getAuthorizer(appId: string): Promise<any>
   {
     return this.httpPostJson('cgi-bin/component/api_get_authorizer_info', {
-      component_appid: this.app['config']['app_id'],
+      component_appid: this.app.config.app_id,
       authorizer_appid: appId,
     });
   }
@@ -37,7 +37,7 @@ export default class OpenPlatformBase extends BaseClient
   getAuthorizerOption(appId: string, name: string): Promise<any>
   {
     return this.httpPostJson('cgi-bin/component/api_get_authorizer_option', {
-      component_appid: this.app['config']['app_id'],
+      component_appid: this.app.config.app_id,
       authorizer_appid: appId,
       option_name: name,
     });
@@ -52,7 +52,7 @@ export default class OpenPlatformBase extends BaseClient
   setAuthorizerOption(appId: string, name: string, value: string): Promise<any>
   {
     return this.httpPostJson('cgi-bin/component/api_set_authorizer_option', {
-      component_appid: this.app['config']['app_id'],
+      component_appid: this.app.config.app_id,
       authorizer_appid: appId,
       option_name: name,
       option_value: value,
@@ -67,7 +67,7 @@ export default class OpenPlatformBase extends BaseClient
   getAuthorizers(offset: number = 0, count: number = 500): Promise<any>
   {
     return this.httpPostJson('cgi-bin/component/api_get_authorizer_list', {
-      component_appid: this.app['config']['app_id'],
+      component_appid: this.app.config.app_id,
       offset,
       count,
     });
@@ -79,7 +79,7 @@ export default class OpenPlatformBase extends BaseClient
   createPreAuthorizationCode(): Promise<any>
   {
     return this.httpPostJson('cgi-bin/component/api_create_preauthcode', {
-      component_appid: this.app['config']['app_id'],
+      component_appid: this.app.config.app_id,
     });
   }
 
@@ -89,7 +89,7 @@ export default class OpenPlatformBase extends BaseClient
   clearQuota(): Promise<any>
   {
     return this.httpPostJson('cgi-bin/component/clear_quota', {
-      component_appid: this.app['config']['app_id'],
+      component_appid: this.app.config.app_id,
     });
   }
 

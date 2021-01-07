@@ -2,13 +2,16 @@
 
 import BaseClient from '../../Core/BaseClient';
 
+/**
+ * @see http://iot.weixin.qq.com/wiki/new/index.html
+ */
 export default class DeviceClient extends BaseClient
 {
 
   message(deviceId: string, openid: string, content: string): Promise<any>
   {
     return this.httpPostJson('device/transmsg', {
-      device_type: this.app['config']['device_type'],
+      device_type: this.app.config.device_type,
       device_id: deviceId,
       open_id: openid,
       content: Buffer.from(content).toString('base64'),

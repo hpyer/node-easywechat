@@ -1,10 +1,10 @@
 'use strict';
 
-import * as Url from 'url';
+import Url from 'url';
 import { IncomingMessage } from 'http';
 import RequestInterface from '../Contracts/RequestInterface';
 import { isIp, parseQueryString, isObject, isString } from '../Utils';
-import * as RawBody from 'raw-body';
+import RawBody from 'raw-body';
 
 export default class Request implements RequestInterface
 {

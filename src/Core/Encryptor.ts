@@ -1,6 +1,6 @@
 'use strict';
 
-import * as Crypto from 'crypto';
+import Crypto from 'crypto';
 import { getTimestamp } from './Utils';
 
 export default class Encryptor

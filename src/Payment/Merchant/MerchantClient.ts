@@ -36,7 +36,7 @@ export default class MerchantClient extends BaseClient
   protected manage(params: object, query: object): Promise<any>
   {
     params = merge(params, {
-      appid: this.app['config']['app_id'],
+      appid: this.app.config.app_id,
       nonce_str: '',
       sub_mech_id: '',
       sub_appid: '',

@@ -17,7 +17,7 @@ export default class RedpackClient extends BaseClient
     };
 
     params = merge(params, {
-      appid: this.app['config']['app_id'],
+      appid: this.app.config.app_id,
       bill_type: 'MCHT',
     });
 
@@ -31,7 +31,7 @@ export default class RedpackClient extends BaseClient
   async sendNormal(params: object): Promise<any>
   {
     params = merge(params, {
-      wxappid: this.app['config']['app_id'],
+      wxappid: this.app.config.app_id,
       total_num: 1,
       client_ip: params['client_ip'] || await this.getServerIp(),
     });
@@ -46,7 +46,7 @@ export default class RedpackClient extends BaseClient
   sendGroup(params: object): Promise<any>
   {
     params = merge(params, {
-      wxappid: this.app['config']['app_id'],
+      wxappid: this.app.config.app_id,
       amt_type: 'ALL_RAND',
     });
 

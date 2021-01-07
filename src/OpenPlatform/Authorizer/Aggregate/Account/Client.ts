@@ -11,7 +11,7 @@ export default class Client extends BaseClient
   create(): Promise<any>
   {
     return this.httpPostJson('cgi-bin/open/create', {
-      appid: this.app['config']['app_id'],
+      appid: this.app.config.app_id,
     });
   }
 
@@ -22,7 +22,7 @@ export default class Client extends BaseClient
   bindTo(openAppId: string): Promise<any>
   {
     return this.httpPostJson('cgi-bin/open/bind', {
-      appid: this.app['config']['app_id'],
+      appid: this.app.config.app_id,
       open_appid: openAppId,
     });
   }
@@ -34,7 +34,7 @@ export default class Client extends BaseClient
   unbindFrom(openAppId: string): Promise<any>
   {
     return this.httpPostJson('cgi-bin/open/unbind', {
-      appid: this.app['config']['app_id'],
+      appid: this.app.config.app_id,
       open_appid: openAppId,
     });
   }
@@ -45,7 +45,7 @@ export default class Client extends BaseClient
   getBinding(): Promise<any>
   {
     return this.httpPostJson('cgi-bin/open/get', {
-      appid: this.app['config']['app_id'],
+      appid: this.app.config.app_id,
     });
   }
 

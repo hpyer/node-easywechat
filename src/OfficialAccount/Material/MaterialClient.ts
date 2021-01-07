@@ -1,6 +1,6 @@
 'use strict';
 
-import * as Fs from 'fs';
+import Fs from 'fs';
 import BaseClient from '../../Core/BaseClient';
 import { inArray, isString, isObject } from '../../Core/Utils';
 import { Article } from '../../Core/Messages';

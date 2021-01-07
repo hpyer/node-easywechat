@@ -6,10 +6,11 @@ import MediaClient from './Media/MediaClient';
 import QrcodeClient from './Qrcode/QrcodeClient';
 import UrlClient from './Url/UrlClient';
 import ContentSecurityClient from './ContentSecurity/ContentSecurityClient';
+import { EasyWechatConfig } from '../Core/Types';
 
 export default class BaseService extends BaseApplication
 {
-  protected defaultConfig: object = {
+  protected defaultConfig: EasyWechatConfig = {
     app_id: '',
     secret: '',
   };
@@ -20,7 +21,7 @@ export default class BaseService extends BaseApplication
   public url: UrlClient = null;
   public content_security: ContentSecurityClient = null;
 
-  constructor(config: Object = {}, prepends: Object = {}, id: String = null)
+  constructor(config: EasyWechatConfig = null, prepends: Object = {}, id: String = null)
   {
     super(config, prepends, id);
 
@@ -31,19 +32,19 @@ export default class BaseService extends BaseApplication
   {
     super.registerCommonProviders();
 
-    this.offsetSet('jssdk', function (app) {
+    this.offsetSet('jssdk', function (app: BaseService) {
       return new JssdkClient(app);
     });
-    this.offsetSet('media', function (app) {
+    this.offsetSet('media', function (app: BaseService) {
       return new MediaClient(app);
     });
-    this.offsetSet('qrcode', function (app) {
+    this.offsetSet('qrcode', function (app: BaseService) {
       return new QrcodeClient(app);
     });
-    this.offsetSet('url', function (app) {
+    this.offsetSet('url', function (app: BaseService) {
       return new UrlClient(app);
     });
-    this.offsetSet('content_security', function (app) {
+    this.offsetSet('content_security', function (app: BaseService) {
       return new ContentSecurityClient(app);
     });
   }

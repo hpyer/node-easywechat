@@ -1,6 +1,6 @@
 'use strict';
 
-export default class CacheInterface
+export default abstract class CacheInterface
 {
   async get(id: string): Promise<any>
   {

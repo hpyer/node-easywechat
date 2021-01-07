@@ -21,10 +21,11 @@ import SandboxClient from './Sandbox/SandboxClient';
 import TransferClient from './Transfer/TransferClient';
 import SecurityClient from './Security/SecurityClient';
 import ProfitSharingClient from './ProfitSharing/ProfitSharingClient';
+import { EasyWechatConfig } from '../Core/Types';
 
 export default class Payment extends BaseApplication
 {
-  protected defaultConfig: object = {
+  protected defaultConfig: EasyWechatConfig = {
     // 必要配置
     app_id : '',
     mch_id : '',
@@ -50,7 +51,7 @@ export default class Payment extends BaseApplication
   public access_token: AccessToken = null;
   public url: UrlClient = null;
 
-  constructor(config: Object = {}, prepends: Object = {}, id: String = null)
+  constructor(config: EasyWechatConfig = {}, prepends: Object = {}, id: String = null)
   {
     super(config, prepends, id);
 
@@ -147,13 +148,13 @@ export default class Payment extends BaseApplication
     return !!this.config['sandbox'];
   }
 
-  getKey(endpoint: string = null)
+  async getKey(endpoint: string = null): Promise<string>
   {
     if ('sandboxnew/pay/getsignkey' === endpoint) {
-      return this.config['key'];
+      return this.config.key;
     }
 
-    let key = this.inSandbox() ? this['sandbox'].getKey() : this['config']['key'];
+    let key = this.inSandbox() ? await this['sandbox'].getKey() : this.config.key;
 
     if (!key) {
       throw new Error('config key should not empty.');

@@ -13,7 +13,7 @@ export default class OfficialAccountBase extends BaseClient
   clearQuota(): Promise<any>
   {
     return this.httpPostJson('cgi-bin/clear_quota', {
-      appid: this.app['config']['app_id'],
+      appid: this.app.config.app_id,
     });
   }
 

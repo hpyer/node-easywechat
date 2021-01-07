@@ -1,7 +1,7 @@
 'use strict';
 
 import BaseApplicatioin from "../../Core/BaseApplication";
-import * as Xml2js from 'xml2js';
+import Xml2js from 'xml2js';
 import { makeSignature, AesDecrypt, createHash, singleItem, merge } from "../../Core/Utils";
 import Response from "../../Core/Http/Response";
 
@@ -115,7 +115,7 @@ export default class Handler
 
     let buffer = Buffer.from(message[key], 'base64');
 
-    return AesDecrypt(buffer.toString(), createHash(this.app['config']['key'], 'md5'), '', 'AES-256-ECB');
+    return AesDecrypt(buffer.toString(), createHash(this.app.config.key, 'md5'), '', 'AES-256-ECB');
   }
 
   protected validate(message: object): void

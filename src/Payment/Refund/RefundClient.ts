@@ -39,7 +39,7 @@ export default class RefundClient extends BaseClient
   protected refund(refundNumber: string, totalFee: number, refundFee: number, optional: object = {}): Promise<any>
   {
     let params = merge({
-      appid: this.app['config']['app_id'],
+      appid: this.app.config.app_id,
       out_refund_no: refundNumber,
       total_fee: totalFee,
       refund_fee: refundFee,
@@ -89,7 +89,7 @@ export default class RefundClient extends BaseClient
   protected query(number: string, type: string): Promise<any>
   {
     let params = {
-      appid: this.app['config']['app_id'],
+      appid: this.app.config.app_id,
     };
     params[type] = number;
 

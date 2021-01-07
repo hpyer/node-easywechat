@@ -63,7 +63,7 @@ export default class UniformMessageClient extends BaseClient
     let params = this.baseFormat(data, this.weappMessage);
 
     if (!params['miniprogram']['appid']) {
-      params['miniprogram']['appid'] = this.app['config']['app_id'];
+      params['miniprogram']['appid'] = this.app.config.app_id;
     }
 
     params['data'] = this.formatData(params['data'] || {});

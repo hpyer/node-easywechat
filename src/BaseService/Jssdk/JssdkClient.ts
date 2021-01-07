@@ -133,7 +133,7 @@ export default class Client extends BaseClient
    */
   getAppId(): string
   {
-    return this.app['config']['app_id'];
+    return this.app.config.app_id;
   }
 
 }

@@ -12,8 +12,8 @@ export default class AuthClient extends BaseClient
   session(code: string): Promise<any>
   {
     let params = {
-      appid: this.app['config']['app_id'],
-      secret: this.app['config']['secret'],
+      appid: this.app.config.app_id,
+      secret: this.app.config.secret,
       js_code: code,
       grant_type: 'authorization_code',
     };

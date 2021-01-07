@@ -19,7 +19,7 @@ export default class BillClient extends BaseClient
     options['encoding'] = 'binary';
 
     let params = {
-      appid: this.app['config']['app_id'],
+      appid: this.app.config.app_id,
       bill_date: date,
       bill_type: type,
     };

@@ -3,9 +3,9 @@
 import BaseApplication from '../../Core/BaseApplication';
 import HttpMixin from '../../Core/Mixins/HttpMixin';
 import { merge, applyMixins, randomString, makeSignature, singleItem } from '../../Core/Utils';
-import * as Xml2js from 'xml2js';
-import * as Fs from 'fs';
-import * as RawBody from 'raw-body';
+import Xml2js from 'xml2js';
+import Fs from 'fs';
+import RawBody from 'raw-body';
 import Response from '../../Core/Http/Response';
 
 class BaseClient implements HttpMixin
@@ -27,14 +27,14 @@ class BaseClient implements HttpMixin
   protected request(endpoint: string, params: object = {}, method: string = 'post', options: object = {}, returnResponse: boolean = false): Promise<any>
   {
     let base = {
-      mch_id: this.app['config']['mch_id'],
+      mch_id: this.app.config.mch_id,
       nonce_str: randomString(32),
     };
 
-    if (this.app['config']['sub_mch_id']) {
+    if (this.app.config.sub_mch_id) {
       base['sub_mch_id'] = '';
     }
-    if (this.app['config']['sub_appid']) {
+    if (this.app.config.sub_appid) {
       base['sub_appid'] = '';
     }
 
@@ -82,8 +82,8 @@ class BaseClient implements HttpMixin
   {
     options = merge(options, {
       agentOptions: {
-        pfx: Fs.readFileSync(this.app['config']['cert_path']),
-        passphrase: this.app['config']['mch_id'],
+        pfx: Fs.readFileSync(this.app.config.cert_path),
+        passphrase: this.app.config.mch_id,
       }
     });
     return this.request(endpoint, params, method, options);
@@ -120,7 +120,7 @@ class BaseClient implements HttpMixin
 
   getClientIp()
   {
-    return this.app['request'].getClientIp();
+    return this.app.request.getClientIp();
   }
 
 

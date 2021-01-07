@@ -30,10 +30,11 @@ import JssdkClient from '../BaseService/Jssdk/JssdkClient';
 import MediaClient from '../BaseService/Media/MediaClient';
 import QrcodeClient from '../BaseService/Qrcode/QrcodeClient';
 import UrlClient from '../BaseService/Url/UrlClient';
+import { EasyWechatConfig } from '../Core/Types';
 
 export default class OfficialAccount extends BaseApplication
 {
-  protected defaultConfig: object = {
+  protected defaultConfig: EasyWechatConfig = {
     app_id: '',
     secret: '',
     oauth: {
@@ -71,7 +72,7 @@ export default class OfficialAccount extends BaseApplication
   public qrcode: QrcodeClient = null;
   public url: UrlClient = null;
 
-  constructor(config: Object = {}, prepends: Object = {}, id: String = null)
+  constructor(config: EasyWechatConfig = {}, prepends: Object = {}, id: String = null)
   {
     super(config, prepends, id);
 

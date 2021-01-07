@@ -1,7 +1,7 @@
 'use strict';
 
-import * as Crypto from 'crypto';
-import * as Qs from 'qs';
+import Crypto from 'crypto';
+import Qs from 'qs';
 
 export const merge = (target: any, source: any): any => {
   if (isObject(source)) {

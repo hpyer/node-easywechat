@@ -1,7 +1,7 @@
 'use strict';
 
 import Response from './Response';
-import * as Fs from 'fs';
+import Fs from 'fs';
 import { createHash } from '../Utils';
 
 export default class StreamResponse extends Response

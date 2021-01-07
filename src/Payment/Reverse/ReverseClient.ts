@@ -26,7 +26,7 @@ export default class ReverseClient extends BaseClient
   protected reverse(number: string, type: string): Promise<any>
   {
     let params = {
-      appid: this.app['config']['app_id'],
+      appid: this.app.config.app_id,
     };
     params[type] = number;
 

@@ -1,7 +1,7 @@
 'use strict';
 
 import Handler from './Handler';
-import * as Xml2js from 'xml2js';
+import Xml2js from 'xml2js';
 import Response from '../../Core/Http/Response';
 import { singleItem } from '../../Core/Utils';
 

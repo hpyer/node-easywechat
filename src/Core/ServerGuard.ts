@@ -4,7 +4,7 @@ import Response from './Http/Response';
 import BaseApplication from './BaseApplication';
 import { Message, Text, News, NewsItem, Raw as RawMessage } from './Messages';
 import { createHash, isString, isNumber, isArray, getTimestamp } from './Utils';
-import * as Xml2js from 'xml2js';
+import Xml2js from 'xml2js';
 import FinallResult from './Decorators/FinallResult';
 import TerminateResult from './Decorators/TerminateResult';
 
@@ -253,7 +253,7 @@ export default class ServerGuard
 
   protected getToken(): string
   {
-    return this.app['config']['token'];
+    return this.app.config.token;
   }
 
   protected async isSafeMode(): Promise<boolean>

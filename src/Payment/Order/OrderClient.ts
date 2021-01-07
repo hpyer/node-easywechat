@@ -17,14 +17,14 @@ export default class OrderClient extends BaseClient
       params['spbill_create_ip'] = 'NATIVE' === params['trade_type'] ? await this.getServerIp() : this.getClientIp();
     }
 
-    params['appid'] = this.app['config']['app_id'];
-    params['notify_url'] = this.app['config']['notify_url'];
+    params['appid'] = this.app.config.app_id;
+    params['notify_url'] = this.app.config.notify_url;
 
     if (isContract) {
-      params['contract_appid'] = this.app['config']['app_id'];
-      params['contract_mchid'] = this.app['config']['mch_id'];
+      params['contract_appid'] = this.app.config.app_id;
+      params['contract_mchid'] = this.app.config.mch_id;
       params['request_serial'] = params['request_serial'] || getTimestamp();
-      params['contract_notify_url'] = params['contract_notify_url'] || this.app['config']['contract_notify_url'];
+      params['contract_notify_url'] = params['contract_notify_url'] || this.app.config.contract_notify_url;
     }
 
     return this.request(this.wrap('pay/contractorder'), params);
@@ -56,7 +56,7 @@ export default class OrderClient extends BaseClient
 
   protected query(params: object): Promise<any>
   {
-    params['appid'] = this.app['config']['app_id'];
+    params['appid'] = this.app.config.app_id;
 
     return this.request(this.wrap('pay/orderquery'), params);
   }
@@ -68,7 +68,7 @@ export default class OrderClient extends BaseClient
   close(tradeNo: string): Promise<any>
   {
     let params = {
-      appid: this.app['config']['app_id'],
+      appid: this.app.config.app_id,
       out_trade_no: tradeNo,
     };
 

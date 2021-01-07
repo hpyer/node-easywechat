@@ -16,6 +16,7 @@ import Encryptor from '../Core/Encryptor';
 import OpenPlatformGuard from './Server/OpenPlatformGuard';
 import CodeTemplateClient from './CodeTemplate/CodeTemplateClient';
 import ComponentClient from './Component/ComponentClient';
+import { EasyWechatConfig } from '../Core/Types';
 
 export default class OpenPlatform extends BaseApplication
 {
@@ -28,7 +29,7 @@ export default class OpenPlatform extends BaseApplication
   public code_template: CodeTemplateClient = null;
   public component: ComponentClient = null;
 
-  constructor(config: Object = {}, prepends: Object = {}, id: String = null)
+  constructor(config: EasyWechatConfig = {}, prepends: Object = {}, id: String = null)
   {
     super(config, prepends, id);
 

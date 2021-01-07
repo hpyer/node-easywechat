@@ -26,8 +26,8 @@ export default class Client extends BaseClient
   {
     let query = {
       copy_wx_verify: copyWxVerify,
-      component_appid: this.component['config']['app_id'],
-      appid: this.app['config']['app_id'],
+      component_appid: this.component.config.app_id,
+      appid: this.app.config.app_id,
       redirect_uri: callbackUrl,
     }
     return 'https://mp.weixin.qq.com/cgi-bin/fastregisterauth?' + buildQueryString(query);

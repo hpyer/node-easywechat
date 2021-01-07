@@ -31,8 +31,8 @@ export default class ScannedHandler extends Handler
     }
 
     if (!this.alert && isString(result)) {
-      attributes['appid'] = this.app['config']['app_id'];
-      attributes['mch_id'] = this.app['config']['mch_id'];
+      attributes['appid'] = this.app.config.app_id;
+      attributes['mch_id'] = this.app.config.mch_id;
       attributes['nonce_str'] = randomString(16);
       attributes['prepay_id'] = result;
     }

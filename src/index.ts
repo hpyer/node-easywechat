@@ -13,6 +13,7 @@ import Request from './Core/Http/Request';
 import Response from './Core/Http/Response';
 import StreamResponse from './Core/Http/StreamResponse';
 import * as Messages from './Core/Messages';
+import { EasyWechatConfig } from './Core/Types';
 
 const EasyWechat = {
   Factory: {
@@ -22,7 +23,7 @@ const EasyWechat = {
     OpenPlatform,
     Payment,
 
-    getInstance: function (service: string, config: object = {}): any {
+    getInstance: function (service: string, config: EasyWechatConfig = {}): any {
       try {
         service = strStudly(service);
         let applicationClass = this[service];

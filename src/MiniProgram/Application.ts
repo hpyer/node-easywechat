@@ -24,6 +24,7 @@ import RealtimeLogClient from './RealtimeLog/RealtimeLogClient';
 import SearchClient from './Search/SearchClient';
 import MediaClient from '../BaseService/Media/MediaClient';
 import ContentSecurityClient from '../BaseService/ContentSecurity/ContentSecurityClient';
+import { EasyWechatConfig } from '../Core/Types';
 
 export default class MiniProgram extends BaseApplication
 {
@@ -52,7 +53,7 @@ export default class MiniProgram extends BaseApplication
   public media: MediaClient = null;
   public content_security: ContentSecurityClient = null;
 
-  constructor(config: Object = {}, prepends: Object = {}, id: String = null)
+  constructor(config: EasyWechatConfig = {}, prepends: Object = {}, id: String = null)
   {
     super(config, prepends, id);
 

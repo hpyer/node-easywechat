@@ -1,6 +1,6 @@
 'use strict';
 
-import * as Xml2js from 'xml2js';
+import Xml2js from 'xml2js';
 import { merge, isArray, inArray } from "../Utils";
 
 export class Message

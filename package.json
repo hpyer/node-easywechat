@@ -19,6 +19,7 @@
   "license": "MIT",
   "devDependencies": {
     "@types/node": "^12.12.7",
+    "@types/request": "^2.48.5",
     "sinon": "^9.2.0"
   },
   "dependencies": {

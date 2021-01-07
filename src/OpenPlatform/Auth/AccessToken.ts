@@ -11,8 +11,8 @@ export default class AccessToken extends BaseAccessToken
   protected async getCredentials(): Promise<object>
   {
     return {
-      component_appid: this.app['config']['app_id'],
-      component_appsecret: this.app['config']['secret'],
+      component_appid: this.app.config.app_id,
+      component_appsecret: this.app.config.secret,
       component_verify_ticket: await this.app['verify_ticket'].getTicket(),
     };
   }

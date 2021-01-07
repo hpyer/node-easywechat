@@ -4,7 +4,78 @@ import BaseApplication from './BaseApplication';
 import HttpMixin from './Mixins/HttpMixin';
 import { createHash, applyMixins } from './Utils';
 
-class BaseAccessToken implements HttpMixin
+/**
+ * 授权后的AccessToken对象
+ */
+export class AccessToken {
+  /**
+   * 网页授权接口调用凭证
+   */
+  access_token: string = '';
+  /**
+   * 调用凭证的超时时间，单位（秒）
+   */
+  expires_in: number = 0;
+  /**
+   * 刷新access_token
+   */
+  refresh_token: string = '';
+  /**
+   * 用户唯一标识，openid
+   */
+  openid: string = '';
+  /**
+   * 授权的作用域
+   */
+  scope: string = null;
+
+  constructor(info: object) {
+    this.access_token = info['access_token'] || info['accessToken'] || '';
+    this.expires_in = info['expires_in'] || info['expiresIn'] || 0;
+    this.refresh_token = info['refresh_token'] || info['refreshToken'] || '';
+    this.openid = info['openid'] || '';
+    this.scope = info['scope'] || '';
+  }
+
+  /**
+   * 获取access_token
+   */
+  getToken(): string {
+    return this.access_token;
+  }
+  /**
+   * 获取access_token
+   */
+  getAccessToken(): string {
+    return this.access_token;
+  }
+  /**
+   * 获取过期时间
+   */
+  getExpires(): number {
+    return this.expires_in;
+  }
+  /**
+   * 获取refresh_token
+   */
+  getRefreshToken(): string {
+    return this.refresh_token;
+  }
+  /**
+   * 获取openid
+   */
+  getOpenid(): string {
+    return this.openid;
+  }
+  /**
+   * 获取scope
+   */
+  getScope(): string {
+    return this.scope;
+  }
+};
+
+abstract class BaseAccessToken implements HttpMixin
 {
   protected requestMethod: string = 'GET';
   protected token: string = '';
@@ -56,20 +127,20 @@ class BaseAccessToken implements HttpMixin
    * 获取Token
    * @param refresh 为true时表示强制刷新
    */
-  async getToken(refresh: boolean = false): Promise<string>
+  async getToken(refresh: boolean = false): Promise<AccessToken>
   {
     let cacheKey = await this.getCacheKey();
     let cache = this.app.getCache();
 
     if (!refresh && await cache.has(cacheKey)) {
       let token = await cache.get(cacheKey);
-      if (token) return token;
+      if (token) return new AccessToken(token);
     }
 
     let res = await this.requestToken(await this.getCredentials());
-    await this.setToken(res[this.tokenKey], res.expires_in || 7200);
+    await this.setToken(res, res.expires_in || 7200);
 
-    return res[this.tokenKey];
+    return res;
   }
 
   /**
@@ -103,7 +174,7 @@ class BaseAccessToken implements HttpMixin
   /**
    * 获取刷新后的Token
    */
-  getRefreshedToken(): Promise<string>
+  getRefreshedToken(): Promise<AccessToken>
   {
     return this.getToken(true);
   }
@@ -117,7 +188,7 @@ class BaseAccessToken implements HttpMixin
   {
     payload['qs'] = payload['qs'] || {};
     if (!payload['qs'][this.queryName || this.tokenKey]) {
-      payload['qs'][this.queryName || this.tokenKey] = await this.getToken();
+      payload['qs'][this.queryName || this.tokenKey] = (await this.getToken())[this.tokenKey];
     }
     return payload;
   }

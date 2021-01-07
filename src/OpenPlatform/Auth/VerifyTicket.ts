@@ -38,6 +38,6 @@ export default class VerifyTicket
 
   protected getCacheKey(): string
   {
-    return 'easywechat.open_platform.verify_ticket.' + this.app['config']['app_id'];
+    return 'easywechat.open_platform.verify_ticket.' + this.app.config.app_id;
   }
 }

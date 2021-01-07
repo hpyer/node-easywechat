@@ -1,6 +1,6 @@
 'use strict';
 
-import * as Crypto from 'crypto';
+import Crypto from 'crypto';
 import BaseEncryptor from '../Core/Encryptor';
 
 export default class Encryptor extends BaseEncryptor

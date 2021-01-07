@@ -15,7 +15,7 @@ export default class ProfitSharingClient extends BaseClient
   addReceiver(receiver: object): Promise<any>
   {
     let params = {
-      appid: this.app['config']['app_id'],
+      appid: this.app.config.app_id,
       receiver: JSON.stringify(receiver),
     };
 
@@ -25,7 +25,7 @@ export default class ProfitSharingClient extends BaseClient
   deleteReceiver(receiver: object): Promise<any>
   {
     let params = {
-      appid: this.app['config']['app_id'],
+      appid: this.app.config.app_id,
       receiver: JSON.stringify(receiver),
     };
 
@@ -35,7 +35,7 @@ export default class ProfitSharingClient extends BaseClient
   share(transactionId: string, outOrderNo: string, receivers: Array<object>): Promise<any>
   {
     let params = {
-      appid: this.app['config']['app_id'],
+      appid: this.app.config.app_id,
       transaction_id: transactionId,
       out_order_no: outOrderNo,
       receivers: JSON.stringify(receivers),
@@ -47,7 +47,7 @@ export default class ProfitSharingClient extends BaseClient
   multiShare(transactionId: string, outOrderNo: string, receivers: Array<object>): Promise<any>
   {
     let params = {
-      appid: this.app['config']['app_id'],
+      appid: this.app.config.app_id,
       transaction_id: transactionId,
       out_order_no: outOrderNo,
       receivers: JSON.stringify(receivers),
@@ -58,7 +58,7 @@ export default class ProfitSharingClient extends BaseClient
 
   markOrderAsFinished(params: object): Promise<any>
   {
-    params['appid'] = this.app['config']['app_id'];
+    params['appid'] = this.app.config.app_id;
     params['sub_appid'] = null;
 
     return this.safeRequest('secapi/pay/profitsharingfinish', params);

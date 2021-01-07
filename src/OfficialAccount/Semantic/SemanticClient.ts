@@ -17,7 +17,7 @@ export default class SemanticClient extends BaseClient
     let params = merge({
       query: keyword,
       category: categories,
-      appid: this.app['config']['app_id'],
+      appid: this.app.config.app_id,
     }, optional);
     return this.httpPostJson('semantic/semproxy/search', params);
   }

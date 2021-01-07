@@ -1,8 +1,8 @@
 'use strict';
 
 import BaseClient from '../Core/BaseClient';
-import * as Fs from 'fs';
-import * as NodeRsa from 'node-rsa';
+import Fs from 'fs';
+import NodeRsa from 'node-rsa';
 import { merge } from '../../Core/Utils';
 
 export default class TransferClient extends BaseClient
@@ -15,8 +15,8 @@ export default class TransferClient extends BaseClient
   queryBalanceOrder(partnerTradeNo: string): Promise<any>
   {
     let params = {
-      appid: this.app['config']['app_id'],
-      mch_id: this.app['config']['mch_id'],
+      appid: this.app.config.app_id,
+      mch_id: this.app.config.mch_id,
       partner_trade_no: partnerTradeNo,
     };
 
@@ -30,7 +30,7 @@ export default class TransferClient extends BaseClient
   queryBankCardOrder(partnerTradeNo: string): Promise<any>
   {
     let params = {
-      mch_id: this.app['config']['mch_id'],
+      mch_id: this.app.config.mch_id,
       partner_trade_no: partnerTradeNo,
     };
 
@@ -45,8 +45,8 @@ export default class TransferClient extends BaseClient
   {
     let base = {
       mch_id: null,
-      mchid: this.app['config']['mch_id'],
-      mch_appid: this.app['config']['app_id'],
+      mchid: this.app.config.mch_id,
+      mch_appid: this.app.config.app_id,
     };
 
     if (!params['spbill_create_ip']) {
@@ -68,7 +68,7 @@ export default class TransferClient extends BaseClient
       }
     });
 
-    let publicKey = Fs.readFileSync(this.app['config']['rsa_public_key_path']).toString();
+    let publicKey = Fs.readFileSync(this.app.config.rsa_public_key_path).toString();
     let rsa = new NodeRsa(publicKey);
     params['enc_bank_no'] = rsa.encrypt(params['enc_bank_no'], 'hex');
     params['enc_true_name'] = rsa.encrypt(params['enc_true_name'], 'hex');
