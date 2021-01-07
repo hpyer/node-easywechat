@@ -16,7 +16,7 @@ module.exports = class BaseClientTest {
    * @param {import('../dist/Core/Types').EasyWechatConfig} config 对应的配置参数
    * @param {boolean} 是否自动运行测试用例
    */
-  constructor(service, module, config, autoRun = false) {
+  constructor(service, module, config, autoRun = true) {
 
     /**
      * 服务名称
