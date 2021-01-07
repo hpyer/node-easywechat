@@ -8,10 +8,13 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
 Object.defineProperty(exports, "__esModule", { value: true });
-const BaseClient_1 = require("../../Core/BaseClient");
-const StreamResponse_1 = require("../../Core/Http/StreamResponse");
-const Merge = require("merge");
+const BaseClient_1 = __importDefault(require("../../Core/BaseClient"));
+const StreamResponse_1 = __importDefault(require("../../Core/Http/StreamResponse"));
+const Utils_1 = require("../../Core/Utils");
 class AppCodeClient extends BaseClient_1.default {
     /**
      * 获取小程序码（临时）
@@ -20,7 +23,7 @@ class AppCodeClient extends BaseClient_1.default {
      */
     get(path, optional = {}) {
         return __awaiter(this, void 0, void 0, function* () {
-            let params = Merge({
+            let params = Utils_1.merge({
                 path,
             }, optional);
             return yield this.getStream('wxa/getwxacode', params);
@@ -33,7 +36,7 @@ class AppCodeClient extends BaseClient_1.default {
      */
     getUnlimit(scene, optional = {}) {
         return __awaiter(this, void 0, void 0, function* () {
-            let params = Merge({
+            let params = Utils_1.merge({
                 scene,
             }, optional);
             return yield this.getStream('wxa/getwxacodeunlimit', params);

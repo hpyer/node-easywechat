@@ -1,6 +1,9 @@
 'use strict';
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
 Object.defineProperty(exports, "__esModule", { value: true });
-const BaseClient_1 = require("../../Core/BaseClient");
+const BaseClient_1 = __importDefault(require("../../Core/BaseClient"));
 const Utils_1 = require("../../Core/Utils");
 class OpenDataClient extends BaseClient_1.default {
     constructor() {

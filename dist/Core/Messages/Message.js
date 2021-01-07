@@ -1,14 +1,17 @@
 'use strict';
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.Message = void 0;
-const Merge = require("merge");
-const Xml2js = require("xml2js");
-const HasAttributesMixin_1 = require("../Mixins/HasAttributesMixin");
-class Message extends HasAttributesMixin_1.default {
+const xml2js_1 = __importDefault(require("xml2js"));
+const Utils_1 = require("../Utils");
+class Message {
     constructor(attributes = {}) {
-        super();
         this.properties = [];
         this.jsonAliases = {};
+        this.attributes = {};
+        this.required = [];
         this.setAttributes(attributes);
     }
     getType() {
@@ -19,12 +22,12 @@ class Message extends HasAttributesMixin_1.default {
     }
     transformToXml(appends = {}, returnAsObject = false) {
         let data = {
-            xml: Merge({ MsgType: this.getType() }, this.toXmlArray(), appends)
+            xml: Utils_1.merge(Utils_1.merge({ MsgType: this.getType() }, this.toXmlArray()), appends)
         };
         if (returnAsObject) {
             return data;
         }
-        let XmlBuilder = new Xml2js.Builder({
+        let XmlBuilder = new xml2js_1.default.Builder({
             cdata: true,
             renderOpts: {
                 pretty: false,
@@ -45,10 +48,10 @@ class Message extends HasAttributesMixin_1.default {
             return this.propertiesToObject({}, this.jsonAliases);
         }
         let messageType = this.getType();
-        let data = Merge({
+        let data = Utils_1.merge({
             msgtype: messageType
         }, appends);
-        data[messageType] = Merge(data[messageType] || {}, this.propertiesToObject({}, this.jsonAliases));
+        data[messageType] = Utils_1.merge(data[messageType] || {}, this.propertiesToObject({}, this.jsonAliases));
         return data;
     }
     propertiesToObject(data, aliases = null) {
@@ -61,6 +64,64 @@ class Message extends HasAttributesMixin_1.default {
             data[alias ? alias : property] = this.get(property);
         }
         return data;
+    }
+    setAttributes(attributes) {
+        this.attributes = attributes;
+        return this;
+    }
+    setAttribute(name, value) {
+        this.attributes[name] = value;
+        return this;
+    }
+    set(name, value) {
+        this.setAttribute(name, value);
+        return this;
+    }
+    getAttribute(name, defaultValue = null) {
+        return this.attributes[name] || defaultValue;
+    }
+    get(name, defaultValue = null) {
+        return this.getAttribute(name, defaultValue);
+    }
+    has(name) {
+        for (let k in this.attributes) {
+            if (k === name) {
+                return true;
+            }
+        }
+        return false;
+    }
+    merge(attributes) {
+        this.attributes = Utils_1.merge(this.attributes, attributes);
+        return this;
+    }
+    only(keys) {
+        let attributes = {};
+        for (let k in this.attributes) {
+            keys.forEach(key => {
+                if (k === key) {
+                    attributes[k] = this.attributes[k];
+                }
+            });
+        }
+        return attributes;
+    }
+    all() {
+        this.checkRequiredAttributes();
+        return this.attributes;
+    }
+    getRequired() {
+        return this.required && Utils_1.isArray(this.required) ? this.required : [];
+    }
+    isRequired(attribute) {
+        return Utils_1.inArray(attribute, this.getRequired(), true);
+    }
+    checkRequiredAttributes() {
+        this.getRequired().forEach(attribute => {
+            if (attribute == null) {
+                throw new Error(`"${attribute}" cannot be empty.`);
+            }
+        });
     }
 }
 exports.Message = Message;

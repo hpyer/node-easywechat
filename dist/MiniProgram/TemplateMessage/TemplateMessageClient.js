@@ -1,6 +1,9 @@
 'use strict';
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
 Object.defineProperty(exports, "__esModule", { value: true });
-const TemplateMessageClient_1 = require("../../OfficialAccount/TemplateMessage/TemplateMessageClient");
+const TemplateMessageClient_1 = __importDefault(require("../../OfficialAccount/TemplateMessage/TemplateMessageClient"));
 class TemplateMessageClient extends TemplateMessageClient_1.default {
     constructor() {
         super(...arguments);

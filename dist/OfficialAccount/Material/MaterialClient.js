@@ -8,12 +8,15 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
 Object.defineProperty(exports, "__esModule", { value: true });
-const Fs = require("fs");
-const BaseClient_1 = require("../../Core/BaseClient");
+const fs_1 = __importDefault(require("fs"));
+const BaseClient_1 = __importDefault(require("../../Core/BaseClient"));
 const Utils_1 = require("../../Core/Utils");
 const Messages_1 = require("../../Core/Messages");
-const StreamResponse_1 = require("../../Core/Http/StreamResponse");
+const StreamResponse_1 = __importDefault(require("../../Core/Http/StreamResponse"));
 class MaterialClient extends BaseClient_1.default {
     constructor() {
         super(...arguments);
@@ -67,7 +70,7 @@ class MaterialClient extends BaseClient_1.default {
             throw new Error(`File does not exist, or the file is unreadable: '${file}'`);
         }
         if (Utils_1.isString(file)) {
-            file = Fs.createReadStream(file);
+            file = fs_1.default.createReadStream(file);
         }
         if (!Utils_1.inArray(type, this.allowTypes)) {
             throw new Error(`Unsupported media type: '${type}'`);

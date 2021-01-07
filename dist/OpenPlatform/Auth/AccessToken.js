@@ -8,8 +8,11 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
 Object.defineProperty(exports, "__esModule", { value: true });
-const BaseAccessToken_1 = require("../../Core/BaseAccessToken");
+const BaseAccessToken_1 = __importDefault(require("../../Core/BaseAccessToken"));
 class AccessToken extends BaseAccessToken_1.default {
     constructor() {
         super(...arguments);
@@ -20,8 +23,8 @@ class AccessToken extends BaseAccessToken_1.default {
     getCredentials() {
         return __awaiter(this, void 0, void 0, function* () {
             return {
-                component_appid: this.app['config']['app_id'],
-                component_appsecret: this.app['config']['secret'],
+                component_appid: this.app.config.app_id,
+                component_appsecret: this.app.config.secret,
                 component_verify_ticket: yield this.app['verify_ticket'].getTicket(),
             };
         });

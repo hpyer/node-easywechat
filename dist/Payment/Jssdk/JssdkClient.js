@@ -8,8 +8,11 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
 Object.defineProperty(exports, "__esModule", { value: true });
-const JssdkClient_1 = require("../../BaseService/Jssdk/JssdkClient");
+const JssdkClient_1 = __importDefault(require("../../BaseService/Jssdk/JssdkClient"));
 const Utils_1 = require("../../Core/Utils");
 const BaseAccessToken_1 = require("../../Core/BaseAccessToken");
 class JssdkClient extends JssdkClient_1.default {
@@ -20,13 +23,13 @@ class JssdkClient extends JssdkClient_1.default {
      */
     bridgeConfig(prepayId, json = true) {
         let params = {
-            appId: this.app['config']['sub_appid'] ? this.app['config']['sub_appid'] : this.app['config']['app_id'],
+            appId: this.app.config.sub_appid ? this.app.config.sub_appid : this.app.config.app_id,
             timeStamp: Utils_1.getTimestamp() + '',
             nonceStr: Utils_1.randomString(16),
             package: `prepay_id=${prepayId}`,
             signType: 'MD5',
         };
-        params['paySign'] = Utils_1.makeSignature(params, this.app['config']['key'], 'md5');
+        params['paySign'] = Utils_1.makeSignature(params, this.app.config.key, 'md5');
         return json ? JSON.stringify(params) : params;
     }
     /**
@@ -45,14 +48,14 @@ class JssdkClient extends JssdkClient_1.default {
      */
     appConfig(prepayId) {
         let params = {
-            appid: this.app['config']['app_id'],
-            partnerid: this.app['config']['mch_id'],
+            appid: this.app.config.app_id,
+            partnerid: this.app.config.mch_id,
             prepayid: prepayId,
             noncestr: Utils_1.randomString(16),
             timestamp: Utils_1.getTimestamp() + '',
             package: 'Sign=WXPay',
         };
-        params['sign'] = Utils_1.makeSignature(params, this.app['config']['key'], 'md5');
+        params['sign'] = Utils_1.makeSignature(params, this.app.config.key, 'md5');
         return params;
     }
     /**
@@ -62,11 +65,11 @@ class JssdkClient extends JssdkClient_1.default {
      */
     shareAddressConfig(accessToken, json = true) {
         return __awaiter(this, void 0, void 0, function* () {
-            if (accessToken instanceof BaseAccessToken_1.default) {
-                accessToken = yield accessToken.getToken();
+            if (accessToken instanceof BaseAccessToken_1.AccessToken) {
+                accessToken = accessToken.getToken();
             }
             let params = {
-                appId: this.app['config']['app_id'],
+                appId: this.app.config.app_id,
                 scope: 'jsapi_address',
                 timeStamp: Utils_1.getTimestamp() + '',
                 nonceStr: Utils_1.randomString(16),

@@ -8,14 +8,16 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
 Object.defineProperty(exports, "__esModule", { value: true });
-const HttpMixin_1 = require("../../Core/Mixins/HttpMixin");
+const HttpMixin_1 = __importDefault(require("../../Core/Mixins/HttpMixin"));
 const Utils_1 = require("../../Core/Utils");
-const Merge = require("merge");
-const Xml2js = require("xml2js");
-const Fs = require("fs");
-const RawBody = require("raw-body");
-const Response_1 = require("../../Core/Http/Response");
+const xml2js_1 = __importDefault(require("xml2js"));
+const fs_1 = __importDefault(require("fs"));
+const raw_body_1 = __importDefault(require("raw-body"));
+const Response_1 = __importDefault(require("../../Core/Http/Response"));
 class BaseClient {
     constructor(app) {
         this.app = null;
@@ -27,20 +29,20 @@ class BaseClient {
     }
     request(endpoint, params = {}, method = 'post', options = {}, returnResponse = false) {
         let base = {
-            mch_id: this.app['config']['mch_id'],
+            mch_id: this.app.config.mch_id,
             nonce_str: Utils_1.randomString(32),
         };
-        if (this.app['config']['sub_mch_id']) {
+        if (this.app.config.sub_mch_id) {
             base['sub_mch_id'] = '';
         }
-        if (this.app['config']['sub_appid']) {
+        if (this.app.config.sub_appid) {
             base['sub_appid'] = '';
         }
-        let localParams = Merge(base, this.prepends(), params);
+        let localParams = Utils_1.merge(Utils_1.merge(base, this.prepends()), params);
         localParams['sign_type'] = localParams['sign_type'] || 'md5';
         let secretKey = this.app['getKey'](endpoint);
         localParams['sign'] = Utils_1.makeSignature(localParams, secretKey, localParams['sign_type']);
-        let XmlBuilder = new Xml2js.Builder({
+        let XmlBuilder = new xml2js_1.default.Builder({
             cdata: true,
             renderOpts: {
                 pretty: false,
@@ -48,7 +50,7 @@ class BaseClient {
                 newline: '',
             }
         });
-        let payload = Merge(options, {
+        let payload = Utils_1.merge(options, {
             url: endpoint,
             method,
             body: XmlBuilder.buildObject(localParams)
@@ -66,7 +68,7 @@ class BaseClient {
     }
     parseXml(xml) {
         return __awaiter(this, void 0, void 0, function* () {
-            let res = yield Xml2js.parseStringPromise(xml);
+            let res = yield xml2js_1.default.parseStringPromise(xml);
             res = Utils_1.singleItem(res);
             if (res['xml'])
                 res = res['xml'];
@@ -74,10 +76,10 @@ class BaseClient {
         });
     }
     safeRequest(endpoint, params = {}, method = 'post', options = {}) {
-        options = Merge(options, {
+        options = Utils_1.merge(options, {
             agentOptions: {
-                pfx: Fs.readFileSync(this.app['config']['cert_path']),
-                passphrase: this.app['config']['mch_id'],
+                pfx: fs_1.default.readFileSync(this.app.config.cert_path),
+                passphrase: this.app.config.mch_id,
             }
         });
         return this.request(endpoint, params, method, options);
@@ -86,7 +88,7 @@ class BaseClient {
         return __awaiter(this, void 0, void 0, function* () {
             options['encoding'] = null;
             let res = yield this.request(endpoint, params, method, options, true);
-            let body = yield RawBody(res);
+            let body = yield raw_body_1.default(res);
             return new Response_1.default(body, res.statusCode, res.headers);
         });
     }
@@ -109,7 +111,7 @@ class BaseClient {
         });
     }
     getClientIp() {
-        return this.app['request'].getClientIp();
+        return this.app.request.getClientIp();
     }
     // Rewrite by HttpMixin
     doRequest(payload, returnResponse = false) {

@@ -1,13 +1,39 @@
 'use strict';
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.AesDecrypt = exports.singleItem = exports.strCamel = exports.strStudly = exports.strLcwords = exports.strUcwords = exports.applyMixins = exports.inArray = exports.isIp = exports.isIpv6 = exports.isIpv4 = exports.isFunction = exports.isObject = exports.isNumber = exports.isArray = exports.isString = exports.makeSignature = exports.randomString = exports.parseQueryString = exports.buildQueryString = exports.getTimestamp = exports.createHmac = exports.createHash = void 0;
-const Crypto = require("crypto");
-const Qs = require("qs");
+exports.AesDecrypt = exports.singleItem = exports.strCamel = exports.strStudly = exports.strLcwords = exports.strUcwords = exports.applyMixins = exports.inArray = exports.isIp = exports.isIpv6 = exports.isIpv4 = exports.isFunction = exports.isObject = exports.isNumber = exports.isArray = exports.isString = exports.makeSignature = exports.randomString = exports.parseQueryString = exports.buildQueryString = exports.getTimestamp = exports.createHmac = exports.createHash = exports.merge = void 0;
+const crypto_1 = __importDefault(require("crypto"));
+const qs_1 = __importDefault(require("qs"));
+exports.merge = (target, source) => {
+    if (exports.isObject(source)) {
+        if (!target || !exports.isObject(target)) {
+            target = {};
+        }
+        Object.keys(source).map((k) => {
+            if (!target[k]) {
+                target[k] = null;
+            }
+            target[k] = exports.merge(target[k], source[k]);
+        });
+    }
+    else if (exports.isArray(source)) {
+        if (!target || !exports.isArray(target)) {
+            target = [];
+        }
+        target = target.concat(target, source);
+    }
+    else {
+        target = source;
+    }
+    return target;
+};
 exports.createHash = function (str, type = 'sha1') {
-    return Crypto.createHash(type).update(str).digest('hex');
+    return crypto_1.default.createHash(type).update(str).digest('hex');
 };
 exports.createHmac = function (str, key, type = 'sha256') {
-    return Crypto.createHmac(type, key).update(str).digest('hex');
+    return crypto_1.default.createHmac(type, key).update(str).digest('hex');
 };
 exports.getTimestamp = function (datetime = null) {
     let time;
@@ -20,10 +46,10 @@ exports.getTimestamp = function (datetime = null) {
     return parseInt((time / 1000).toString());
 };
 exports.buildQueryString = function (data, options = {}) {
-    return Qs.stringify(data, options);
+    return qs_1.default.stringify(data, options);
 };
 exports.parseQueryString = function (data, options = {}) {
-    return Qs.parse(data, options);
+    return qs_1.default.parse(data, options);
 };
 exports.randomString = function (len = 16) {
     let chars = 'ABCDEFGHJKMNPQRSTWXYZabcdefhijkmnprstwxyz2345678';
@@ -155,7 +181,7 @@ exports.singleItem = function (obj) {
     return obj;
 };
 exports.AesDecrypt = function (ciphertext, key, iv, method) {
-    var decipher = Crypto.createDecipheriv(method, key, iv);
+    var decipher = crypto_1.default.createDecipheriv(method, key, iv);
     decipher.setAutoPadding(true);
     var plaintext = decipher.update(ciphertext, 'hex', 'utf8');
     plaintext += decipher.final('utf8');

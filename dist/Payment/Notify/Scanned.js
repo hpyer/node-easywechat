@@ -8,8 +8,11 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
 Object.defineProperty(exports, "__esModule", { value: true });
-const Handler_1 = require("./Handler");
+const Handler_1 = __importDefault(require("./Handler"));
 const Utils_1 = require("../../Core/Utils");
 class ScannedHandler extends Handler_1.default {
     constructor() {
@@ -35,8 +38,8 @@ class ScannedHandler extends Handler_1.default {
                 err_code_des: this.alert,
             };
             if (!this.alert && Utils_1.isString(result)) {
-                attributes['appid'] = this.app['config']['app_id'];
-                attributes['mch_id'] = this.app['config']['mch_id'];
+                attributes['appid'] = this.app.config.app_id;
+                attributes['mch_id'] = this.app.config.mch_id;
                 attributes['nonce_str'] = Utils_1.randomString(16);
                 attributes['prepay_id'] = result;
             }

@@ -9,6 +9,7 @@ import Encryptor from '../Core/Encryptor';
 import OpenPlatformGuard from './Server/OpenPlatformGuard';
 import CodeTemplateClient from './CodeTemplate/CodeTemplateClient';
 import ComponentClient from './Component/ComponentClient';
+import { EasyWechatConfig } from '../Core/Types';
 export default class OpenPlatform extends BaseApplication {
     verify_ticket: VerifyTicket;
     access_token: AccessToken;
@@ -17,7 +18,7 @@ export default class OpenPlatform extends BaseApplication {
     server: OpenPlatformGuard;
     code_template: CodeTemplateClient;
     component: ComponentClient;
-    constructor(config?: Object, prepends?: Object, id?: String);
+    constructor(config?: EasyWechatConfig, prepends?: Object, id?: String);
     registerProviders(): void;
     /**
      * 获取用户授权页 URL

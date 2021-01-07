@@ -8,10 +8,13 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
 Object.defineProperty(exports, "__esModule", { value: true });
-const Url = require("url");
+const url_1 = __importDefault(require("url"));
 const Utils_1 = require("../Utils");
-const RawBody = require("raw-body");
+const raw_body_1 = __importDefault(require("raw-body"));
 class Request {
     constructor(req = null, content = null) {
         this._req = null;
@@ -43,7 +46,7 @@ class Request {
                     this._post = Utils_1.parseQueryString(content);
                 }
             }
-            this._get = Url.parse(req.url, true).query;
+            this._get = url_1.default.parse(req.url, true).query;
             // 提取请求ip
             if (Utils_1.isIp(this._headers['x-client-ip'])) {
                 this._ip = this._headers['x-client-ip'];
@@ -127,7 +130,7 @@ class Request {
             if (this._method !== 'POST')
                 return null;
             if (!this._content) {
-                this._content = yield RawBody(this._req);
+                this._content = yield raw_body_1.default(this._req);
             }
             return this._content;
         });

@@ -1,6 +1,9 @@
 'use strict';
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
 Object.defineProperty(exports, "__esModule", { value: true });
-const BaseClient_1 = require("../Core/BaseClient");
+const BaseClient_1 = __importDefault(require("../Core/BaseClient"));
 class ReverseClient extends BaseClient_1.default {
     /**
      * 通过商户订单号撤销订单
@@ -18,7 +21,7 @@ class ReverseClient extends BaseClient_1.default {
     }
     reverse(number, type) {
         let params = {
-            appid: this.app['config']['app_id'],
+            appid: this.app.config.app_id,
         };
         params[type] = number;
         return this.safeRequest(this.wrap('secapi/pay/reverse'), params);

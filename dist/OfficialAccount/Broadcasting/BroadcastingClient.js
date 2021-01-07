@@ -1,8 +1,11 @@
 'use strict';
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
 Object.defineProperty(exports, "__esModule", { value: true });
-const BaseClient_1 = require("../../Core/BaseClient");
+const BaseClient_1 = __importDefault(require("../../Core/BaseClient"));
 const Messages_1 = require("../../Core/Messages");
-const MessageBuilder_1 = require("./MessageBuilder");
+const MessageBuilder_1 = __importDefault(require("./MessageBuilder"));
 const Utils_1 = require("../../Core/Utils");
 class BroadcastingClient extends BaseClient_1.default {
     constructor() {

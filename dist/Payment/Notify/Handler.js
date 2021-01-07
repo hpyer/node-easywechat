@@ -8,11 +8,13 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
 Object.defineProperty(exports, "__esModule", { value: true });
-const Merge = require("merge");
-const Xml2js = require("xml2js");
+const xml2js_1 = __importDefault(require("xml2js"));
 const Utils_1 = require("../../Core/Utils");
-const Response_1 = require("../../Core/Http/Response");
+const Response_1 = __importDefault(require("../../Core/Http/Response"));
 class Handler {
     constructor(app) {
         this.SUCCESS = 'SUCCESS';
@@ -47,11 +49,11 @@ class Handler {
             return_code: this.fail ? this.FAIL : this.SUCCESS,
             return_msg: this.fail
         };
-        let attributes = Merge(base, this.attributes);
+        let attributes = Utils_1.merge(base, this.attributes);
         if (this.sign) {
             attributes['sign'] = Utils_1.makeSignature(attributes, this.app['getKey']());
         }
-        let XmlBuilder = new Xml2js.Builder({
+        let XmlBuilder = new xml2js_1.default.Builder({
             cdata: true,
             renderOpts: {
                 pretty: false,
@@ -83,7 +85,7 @@ class Handler {
     }
     parseXml(xml) {
         return __awaiter(this, void 0, void 0, function* () {
-            let res = yield Xml2js.parseStringPromise(xml);
+            let res = yield xml2js_1.default.parseStringPromise(xml);
             res = Utils_1.singleItem(res);
             if (res['xml'])
                 res = res['xml'];
@@ -97,7 +99,7 @@ class Handler {
                 return null;
             }
             let buffer = Buffer.from(message[key], 'base64');
-            return Utils_1.AesDecrypt(buffer.toString(), Utils_1.createHash(this.app['config']['key'], 'md5'), '', 'AES-256-ECB');
+            return Utils_1.AesDecrypt(buffer.toString(), Utils_1.createHash(this.app.config.key, 'md5'), '', 'AES-256-ECB');
         });
     }
     validate(message) {

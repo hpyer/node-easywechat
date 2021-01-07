@@ -8,24 +8,26 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
 Object.defineProperty(exports, "__esModule", { value: true });
-const BaseApplication_1 = require("../Core/BaseApplication");
-const Merge = require("merge");
+const BaseApplication_1 = __importDefault(require("../Core/BaseApplication"));
 const Utils_1 = require("../Core/Utils");
-const AccessToken_1 = require("./Authorizer/Auth/AccessToken");
-const Guard_1 = require("./Authorizer/Server/Guard");
-const Application_1 = require("./Authorizer/OfficialAccount/Application");
-const Client_1 = require("./Authorizer/OfficialAccount/OAuth/Client");
-const Client_2 = require("./Authorizer/OfficialAccount/Account/Client");
-const Application_2 = require("./Authorizer/MiniProgram/Application");
-const Client_3 = require("./Authorizer/MiniProgram/Auth/Client");
-const VerifyTicket_1 = require("./Auth/VerifyTicket");
-const AccessToken_2 = require("./Auth/AccessToken");
-const OpenPlatformBase_1 = require("./Base/OpenPlatformBase");
-const Encryptor_1 = require("../Core/Encryptor");
-const OpenPlatformGuard_1 = require("./Server/OpenPlatformGuard");
-const CodeTemplateClient_1 = require("./CodeTemplate/CodeTemplateClient");
-const ComponentClient_1 = require("./Component/ComponentClient");
+const AccessToken_1 = __importDefault(require("./Authorizer/Auth/AccessToken"));
+const Guard_1 = __importDefault(require("./Authorizer/Server/Guard"));
+const Application_1 = __importDefault(require("./Authorizer/OfficialAccount/Application"));
+const Client_1 = __importDefault(require("./Authorizer/OfficialAccount/OAuth/Client"));
+const Client_2 = __importDefault(require("./Authorizer/OfficialAccount/Account/Client"));
+const Application_2 = __importDefault(require("./Authorizer/MiniProgram/Application"));
+const Client_3 = __importDefault(require("./Authorizer/MiniProgram/Auth/Client"));
+const VerifyTicket_1 = __importDefault(require("./Auth/VerifyTicket"));
+const AccessToken_2 = __importDefault(require("./Auth/AccessToken"));
+const OpenPlatformBase_1 = __importDefault(require("./Base/OpenPlatformBase"));
+const Encryptor_1 = __importDefault(require("../Core/Encryptor"));
+const OpenPlatformGuard_1 = __importDefault(require("./Server/OpenPlatformGuard"));
+const CodeTemplateClient_1 = __importDefault(require("./CodeTemplate/CodeTemplateClient"));
+const ComponentClient_1 = __importDefault(require("./Component/ComponentClient"));
 class OpenPlatform extends BaseApplication_1.default {
     constructor(config = {}, prepends = {}, id = null) {
         super(config, prepends, id);
@@ -77,7 +79,7 @@ class OpenPlatform extends BaseApplication_1.default {
             else {
                 optional['pre_auth_code'] = (yield this.createPreAuthorizationCode())['pre_auth_code'];
             }
-            return 'https://mp.weixin.qq.com/cgi-bin/componentloginpage?' + Utils_1.buildQueryString(Merge({}, optional, {
+            return 'https://mp.weixin.qq.com/cgi-bin/componentloginpage?' + Utils_1.buildQueryString(Utils_1.merge(optional, {
                 component_appid: this.config['app_id'],
                 redirect_uri: callbackUrl,
             }));
@@ -98,7 +100,7 @@ class OpenPlatform extends BaseApplication_1.default {
             else {
                 optional['pre_auth_code'] = yield this.createPreAuthorizationCode()['pre_auth_code'];
             }
-            return 'https://mp.weixin.qq.com/safe/bindcomponent?' + Utils_1.buildQueryString(Merge({}, optional, {
+            return 'https://mp.weixin.qq.com/safe/bindcomponent?' + Utils_1.buildQueryString(Utils_1.merge(optional, {
                 component_appid: this.config['app_id'],
                 redirect_uri: callbackUrl,
                 action: 'bindcomponent',
@@ -107,7 +109,7 @@ class OpenPlatform extends BaseApplication_1.default {
         });
     }
     getAuthorizerConfig(appId, refreshToken = null) {
-        return Merge({}, this.config, {
+        return Utils_1.merge(Utils_1.merge({}, this.config), {
             component_app_id: this.config['app_id'],
             app_id: appId,
             refresh_token: refreshToken,
@@ -138,7 +140,7 @@ class OpenPlatform extends BaseApplication_1.default {
      */
     officialAccount(appId, refreshToken = null, accessToken = null) {
         let that = this;
-        let services = Merge({}, this.getReplaceServices(accessToken), {
+        let services = Utils_1.merge(Utils_1.merge({}, this.getReplaceServices(accessToken)), {
             encryptor: this.encryptor,
             account: function (app) {
                 return new Client_2.default(app, that);
@@ -157,7 +159,7 @@ class OpenPlatform extends BaseApplication_1.default {
      */
     miniProgram(appId, refreshToken = null, accessToken = null) {
         let that = this;
-        let services = Merge({}, this.getReplaceServices(accessToken), {
+        let services = Utils_1.merge(Utils_1.merge({}, this.getReplaceServices(accessToken)), {
             auth: function (app) {
                 return new Client_3.default(app, that);
             },

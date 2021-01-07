@@ -1,11 +1,13 @@
 'use strict';
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
 Object.defineProperty(exports, "__esModule", { value: true });
-const Merge = require("merge");
-const FileCache_1 = require("./Cache/FileCache");
+const FileCache_1 = __importDefault(require("./Cache/FileCache"));
 const Utils_1 = require("./Utils");
-const Request_1 = require("./Http/Request");
+const Request_1 = __importDefault(require("./Http/Request"));
 class BaseApplicatioin {
-    constructor(config = {}, prepends = {}, id = null) {
+    constructor(config, prepends = {}, id = null) {
         this.defaultConfig = {};
         this.userConfig = {};
         this.id = null;
@@ -14,7 +16,7 @@ class BaseApplicatioin {
          */
         this.cache = null;
         /**
-         * 配置
+         * 配置项
          */
         this.config = {};
         /**
@@ -25,6 +27,10 @@ class BaseApplicatioin {
          * 请求实例
          */
         this.request = null;
+        /**
+         * 请求token
+         */
+        this.access_token = null;
         if (new.target === BaseApplicatioin) {
             throw new Error('Can not create instance via BaseApplicatioin.');
         }
@@ -53,7 +59,7 @@ class BaseApplicatioin {
                 baseUrl: 'https://api.weixin.qq.com/',
             },
         };
-        return Merge(base, this.defaultConfig, this.userConfig);
+        return Utils_1.merge(Utils_1.merge(base, this.defaultConfig), this.userConfig);
     }
     /**
      * 注册通用模块

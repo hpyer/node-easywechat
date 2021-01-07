@@ -1,7 +1,9 @@
 'use strict';
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
 Object.defineProperty(exports, "__esModule", { value: true });
-const BaseClient_1 = require("../../Core/BaseClient");
-const Merge = require("merge");
+const BaseClient_1 = __importDefault(require("../../Core/BaseClient"));
 const Utils_1 = require("../../Core/Utils");
 class SubscribeMessageClient extends BaseClient_1.default {
     constructor() {
@@ -23,7 +25,7 @@ class SubscribeMessageClient extends BaseClient_1.default {
         return this.httpPostJson('cgi-bin/message/subscribe/send', params);
     }
     formatMessage(data) {
-        let params = Merge({}, this.message, data);
+        let params = Utils_1.merge(Utils_1.merge({}, this.message), data);
         for (let key in params) {
             if (Utils_1.inArray(key, this.required) && !params[key]) {
                 throw new Error(`Attribute "${key}" can not be empty!`);

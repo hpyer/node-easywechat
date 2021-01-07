@@ -8,10 +8,12 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
 Object.defineProperty(exports, "__esModule", { value: true });
-const Path = require("path");
-const Fs = require("fs");
-const Merge = require("merge");
+const path_1 = __importDefault(require("path"));
+const fs_1 = __importDefault(require("fs"));
 const Utils_1 = require("../Utils");
 class FileCache {
     constructor(options = {}) {
@@ -22,14 +24,14 @@ class FileCache {
             fileMode: 0o666,
             ext: '.cache'
         };
-        this.options = Merge({}, this.defaultOptions, options);
-        this.options['path'] = Path.resolve(this.options['path']) + '/';
+        this.options = Utils_1.merge(this.defaultOptions, options);
+        this.options['path'] = path_1.default.resolve(this.options['path']) + '/';
         try {
-            Fs.accessSync(this.options['path'], Fs.constants.R_OK & Fs.constants.W_OK);
+            fs_1.default.accessSync(this.options['path'], fs_1.default.constants.R_OK & fs_1.default.constants.W_OK);
         }
         catch (e) {
             try {
-                Fs.mkdirSync(this.options['path'], this.options['dirMode']);
+                fs_1.default.mkdirSync(this.options['path'], this.options['dirMode']);
             }
             catch (e) {
                 throw new Error(`The path '${this.options['path']}' can not be write.`);
@@ -40,7 +42,7 @@ class FileCache {
         return this.options['path'] + 'node-easywechat.file_cache.' + id + this.options['ext'];
     }
     getCacheContent(file) {
-        let dataItem = JSON.parse(Fs.readFileSync(file, {
+        let dataItem = JSON.parse(fs_1.default.readFileSync(file, {
             encoding: 'utf-8',
             flag: 'r'
         }));
@@ -66,7 +68,7 @@ class FileCache {
         return __awaiter(this, void 0, void 0, function* () {
             try {
                 let file = this.getCacheFile(id);
-                Fs.accessSync(file, Fs.constants.R_OK & Fs.constants.W_OK);
+                fs_1.default.accessSync(file, fs_1.default.constants.R_OK & fs_1.default.constants.W_OK);
                 let content = this.getCacheContent(file);
             }
             catch (e) {
@@ -83,7 +85,7 @@ class FileCache {
                     data,
                     lifeTime: lifeTime > 0 ? lifeTime + Utils_1.getTimestamp() : 0
                 };
-                Fs.writeFileSync(file, JSON.stringify(dataItem), {
+                fs_1.default.writeFileSync(file, JSON.stringify(dataItem), {
                     mode: this.options['fileMode'],
                     encoding: 'utf-8',
                     flag: 'w'
@@ -99,7 +101,7 @@ class FileCache {
         return __awaiter(this, void 0, void 0, function* () {
             let file = this.getCacheFile(id);
             try {
-                Fs.unlinkSync(file);
+                fs_1.default.unlinkSync(file);
             }
             catch (e) {
                 return false;

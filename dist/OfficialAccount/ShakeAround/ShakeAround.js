@@ -1,12 +1,15 @@
 'use strict';
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
 Object.defineProperty(exports, "__esModule", { value: true });
-const Client_1 = require("./Client");
-const DeviceClient_1 = require("./DeviceClient");
-const PageClient_1 = require("./PageClient");
-const MaterialClient_1 = require("./MaterialClient");
-const GroupClient_1 = require("./GroupClient");
-const RelationClient_1 = require("./RelationClient");
-const StatsClient_1 = require("./StatsClient");
+const Client_1 = __importDefault(require("./Client"));
+const DeviceClient_1 = __importDefault(require("./DeviceClient"));
+const PageClient_1 = __importDefault(require("./PageClient"));
+const MaterialClient_1 = __importDefault(require("./MaterialClient"));
+const GroupClient_1 = __importDefault(require("./GroupClient"));
+const RelationClient_1 = __importDefault(require("./RelationClient"));
+const StatsClient_1 = __importDefault(require("./StatsClient"));
 class ShakeAround extends Client_1.default {
     constructor(app, accessToken = null) {
         super(app, accessToken);

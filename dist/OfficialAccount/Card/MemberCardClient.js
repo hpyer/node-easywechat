@@ -1,7 +1,10 @@
 'use strict';
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
 Object.defineProperty(exports, "__esModule", { value: true });
-const Client_1 = require("./Client");
-const Merge = require("merge");
+const Utils_1 = require("../../Core/Utils");
+const Client_1 = __importDefault(require("./Client"));
 class MemberCardClient extends Client_1.default {
     /**
      * 激活会员卡
@@ -16,7 +19,7 @@ class MemberCardClient extends Client_1.default {
      * @param settings 会员卡激活时的选项
      */
     setActivationForm(cardId, settings) {
-        let params = Merge({
+        let params = Utils_1.merge({
             card_id: cardId,
         }, settings);
         return this.httpPostJson('card/membercard/activateuserform/set', params);

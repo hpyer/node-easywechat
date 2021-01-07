@@ -27,8 +27,9 @@ import JssdkClient from '../BaseService/Jssdk/JssdkClient';
 import MediaClient from '../BaseService/Media/MediaClient';
 import QrcodeClient from '../BaseService/Qrcode/QrcodeClient';
 import UrlClient from '../BaseService/Url/UrlClient';
+import { EasyWechatConfig } from '../Core/Types';
 export default class OfficialAccount extends BaseApplication {
-    protected defaultConfig: object;
+    protected defaultConfig: EasyWechatConfig;
     access_token: AccessToken;
     encryptor: Encryptor;
     server: Guard;
@@ -57,7 +58,7 @@ export default class OfficialAccount extends BaseApplication {
     media: MediaClient;
     qrcode: QrcodeClient;
     url: UrlClient;
-    constructor(config?: Object, prepends?: Object, id?: String);
+    constructor(config?: EasyWechatConfig, prepends?: Object, id?: String);
     registerProviders(): void;
     clearQuota(): Promise<any>;
     getValidIps(): Promise<any>;

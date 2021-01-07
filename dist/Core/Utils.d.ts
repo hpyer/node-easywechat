@@ -1,3 +1,4 @@
+export declare const merge: (target: any, source: any) => any;
 export declare const createHash: (str: string, type?: string) => any;
 export declare const createHmac: (str: string, key: string, type?: string) => any;
 export declare const getTimestamp: (datetime?: string) => number;

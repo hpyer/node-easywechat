@@ -1,6 +1,9 @@
 'use strict';
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
 Object.defineProperty(exports, "__esModule", { value: true });
-const Crypto = require("crypto");
+const crypto_1 = __importDefault(require("crypto"));
 const Utils_1 = require("./Utils");
 class Encryptor {
     constructor(appId, token, aesKey) {
@@ -17,7 +20,7 @@ class Encryptor {
     }
     signature(...args) {
         args.sort();
-        let shasum = Crypto.createHash('sha1');
+        let shasum = crypto_1.default.createHash('sha1');
         shasum.update(args.join(''));
         return shasum.digest('hex');
     }
@@ -25,12 +28,12 @@ class Encryptor {
         let encrypted = '';
         try {
             // 算法：AES_Encrypt(随机16B + msg_len(4) + msg + appID)
-            let randomString = Crypto.pseudoRandomBytes(16);
+            let randomString = crypto_1.default.pseudoRandomBytes(16);
             let msg = Buffer.from(text);
             let msgLength = Buffer.alloc(4);
             msgLength.writeUInt32BE(msg.length, 0);
             let encoded = this.pkcs7Pad(Buffer.concat([randomString, msgLength, msg, Buffer.from(this.appId)]), this.blockSize);
-            let cipher = Crypto.createCipheriv('aes-256-cbc', this.aesKey, this.aesKey.slice(0, 16));
+            let cipher = crypto_1.default.createCipheriv('aes-256-cbc', this.aesKey, this.aesKey.slice(0, 16));
             cipher.setAutoPadding(false);
             encrypted = Buffer.concat([cipher.update(encoded), cipher.final()]).toString('base64');
         }
@@ -53,7 +56,7 @@ class Encryptor {
         if (signature !== msgSignature) {
             throw new Error('Invalid Signature.');
         }
-        let decipher = Crypto.createDecipheriv('aes-256-cbc', this.aesKey, this.aesKey.slice(0, 16));
+        let decipher = crypto_1.default.createDecipheriv('aes-256-cbc', this.aesKey, this.aesKey.slice(0, 16));
         decipher.setAutoPadding(false);
         let deciphered = Buffer.concat([decipher.update(text, 'base64'), decipher.final()]);
         deciphered = this.pkcs7Unpad(deciphered);

@@ -8,8 +8,11 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
 Object.defineProperty(exports, "__esModule", { value: true });
-const BaseClient_1 = require("../../../../Core/BaseClient");
+const BaseClient_1 = __importDefault(require("../../../../Core/BaseClient"));
 class Client extends BaseClient_1.default {
     constructor(app, component) {
         super(app);
@@ -22,12 +25,12 @@ class Client extends BaseClient_1.default {
      */
     session(code) {
         return __awaiter(this, void 0, void 0, function* () {
-            let access_token = yield this.component['access_token'].getToken()['component_access_token'];
+            let access_token = (yield this.component.access_token.getToken())['component_access_token'];
             return this.httpGet('sns/component/jscode2session', {
-                appid: this.app['config']['app_id'],
+                appid: this.app.config.app_id,
                 js_code: code,
                 grant_type: 'authorization_code',
-                component_appid: this.component['config']['app_id'],
+                component_appid: this.component.config.app_id,
                 component_access_token: access_token,
             });
         });

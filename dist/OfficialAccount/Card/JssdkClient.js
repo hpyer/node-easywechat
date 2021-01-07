@@ -8,8 +8,11 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
 Object.defineProperty(exports, "__esModule", { value: true });
-const JssdkClient_1 = require("../../BaseService/Jssdk/JssdkClient");
+const JssdkClient_1 = __importDefault(require("../../BaseService/Jssdk/JssdkClient"));
 const Utils_1 = require("../../Core/Utils");
 class JssdkClient extends JssdkClient_1.default {
     getTicket(refresh = false, type = 'wx_card') {

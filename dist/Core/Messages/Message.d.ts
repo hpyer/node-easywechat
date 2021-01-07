@@ -1,5 +1,4 @@
-import HasAttributesMixin from '../Mixins/HasAttributesMixin';
-export declare class Message extends HasAttributesMixin {
+export declare class Message {
     static TEXT: number;
     static IMAGE: number;
     static VOICE: number;
@@ -29,4 +28,18 @@ export declare class Message extends HasAttributesMixin {
     transformForJsonRequestWithoutType(appends?: object): object;
     transformForJsonRequest(appends?: object, withType?: boolean): object;
     propertiesToObject(data: object, aliases?: object): object;
+    protected attributes: object;
+    protected required: Array<string>;
+    setAttributes(attributes: object): Message;
+    setAttribute(name: string, value: string): Message;
+    set(name: string, value: string): Message;
+    getAttribute(name: string, defaultValue?: any): any;
+    get(name: string, defaultValue?: any): any;
+    has(name: string): boolean;
+    merge(attributes: object): Message;
+    only(keys: Array<string>): object;
+    all(): object;
+    getRequired(): Array<string>;
+    isRequired(attribute: any): boolean;
+    protected checkRequiredAttributes(): void;
 }

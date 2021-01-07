@@ -1,3 +1,4 @@
+import { AccessToken } from '../../Core/BaseAccessToken';
 import BaseClient from '../../Core/BaseClient';
 /**
  * OAuth授权后的用户对象
@@ -34,8 +35,7 @@ declare class User {
      */
     original: object;
     /**
-     * AccessToken
-     * @var {AccessToken}
+     * AccessToken对象
      */
     token: AccessToken;
     /**
@@ -43,7 +43,6 @@ declare class User {
      * @return {string}
      */
     getId(): string;
-    s: any;
     /**
      * 获取 unionid
      * @return {string}
@@ -74,37 +73,6 @@ declare class User {
      * @return {AccessToken}
      */
     getToken(): AccessToken;
-}
-/**
- * OAuth授权后的AccessToken对象
- */
-export declare class AccessToken {
-    constructor(info: any);
-    /**
-     * 网页授权接口调用凭证
-     * @var {string}
-     */
-    access_token: string;
-    /**
-     * 调用凭证的超时时间，单位（秒）
-     * @var {number}
-     */
-    expires_in: number;
-    /**
-     * 刷新access_token
-     * @var {string}
-     */
-    refresh_token: string;
-    /**
-     * 用户唯一标识，openid
-     * @var {string}
-     */
-    openid: string;
-    /**
-     * 授权的作用域
-     * @var {string}
-     */
-    scope: string;
 }
 /**
  * OAuth客户端

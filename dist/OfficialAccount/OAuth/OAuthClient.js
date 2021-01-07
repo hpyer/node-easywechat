@@ -8,9 +8,12 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.AccessToken = void 0;
-const BaseClient_1 = require("../../Core/BaseClient");
+const BaseAccessToken_1 = require("../../Core/BaseAccessToken");
+const BaseClient_1 = __importDefault(require("../../Core/BaseClient"));
 const Utils_1 = require("../../Core/Utils");
 /**
  * OAuth授权后的用户对象
@@ -48,8 +51,7 @@ class User {
          */
         this.original = null;
         /**
-         * AccessToken
-         * @var {AccessToken}
+         * AccessToken对象
          */
         this.token = null;
     }
@@ -105,45 +107,6 @@ class User {
 }
 ;
 /**
- * OAuth授权后的AccessToken对象
- */
-class AccessToken {
-    constructor(info) {
-        /**
-         * 网页授权接口调用凭证
-         * @var {string}
-         */
-        this.access_token = '';
-        /**
-         * 调用凭证的超时时间，单位（秒）
-         * @var {number}
-         */
-        this.expires_in = 0;
-        /**
-         * 刷新access_token
-         * @var {string}
-         */
-        this.refresh_token = '';
-        /**
-         * 用户唯一标识，openid
-         * @var {string}
-         */
-        this.openid = '';
-        /**
-         * 授权的作用域
-         * @var {string}
-         */
-        this.scope = null;
-        this.access_token = info.access_token;
-        this.expires_in = info.expires_in;
-        this.refresh_token = info.refresh_token;
-        this.openid = info.openid;
-        this.scope = info.scope;
-    }
-}
-exports.AccessToken = AccessToken;
-;
-/**
  * OAuth客户端
  */
 class OAuthClient extends BaseClient_1.default {
@@ -182,19 +145,22 @@ class OAuthClient extends BaseClient_1.default {
      * 获取配置中的app_id
      */
     getAppId() {
-        return this.app['config']['app_id'];
+        return this.app.config.app_id;
     }
     /**
      * 生成授权链接
      * @param callback 授权后的回调地址
      */
     redirect(callback = null) {
-        if (!this.app['config']['oauth']) {
-            throw new Error('Please config `oauth` section');
+        if (!this.app.config.oauth) {
+            this.app.config.oauth = {
+                scope: 'snsapi_userinfo',
+                callback: '',
+            };
         }
-        let scope = this._scope || this.app['config']['oauth']['scope'] || 'snsapi_userinfo';
+        let scope = this._scope || this.app.config.oauth.scope || 'snsapi_userinfo';
         if (!callback) {
-            callback = this._callback || this.app['config']['oauth']['callback'] || '';
+            callback = this._callback || this.app.config.oauth.callback || '';
         }
         if (callback.substr(0, 7) !== 'http://' && callback.substr(0, 8) !== 'https://') {
             throw new Error('Please set callback url start with "http://" or "https://"');
@@ -221,7 +187,7 @@ class OAuthClient extends BaseClient_1.default {
                 method: 'GET',
                 qs: {
                     appid: this.getAppId(),
-                    secret: this.app['config']['secret'],
+                    secret: this.app.config.secret,
                     code: this._code,
                     grant_type: 'authorization_code',
                 },
@@ -230,7 +196,7 @@ class OAuthClient extends BaseClient_1.default {
                 this.app['log']('Fail to fetch access_token', res);
                 throw new Error('Fail to fetch access_token');
             }
-            return new AccessToken(res);
+            return new BaseAccessToken_1.AccessToken(res);
         });
     }
     /**
@@ -244,7 +210,7 @@ class OAuthClient extends BaseClient_1.default {
             let user = new User;
             user.id = token['openid'];
             user.token = token;
-            if (this.app['config']['scope'] != 'snsapi_base') {
+            if (this.app.config.oauth.scope != 'snsapi_base') {
                 let params = {
                     access_token: token.access_token,
                     openid: user.id,

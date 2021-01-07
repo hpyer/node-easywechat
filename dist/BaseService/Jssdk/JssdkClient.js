@@ -8,9 +8,11 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
 Object.defineProperty(exports, "__esModule", { value: true });
-const BaseClient_1 = require("../../Core/BaseClient");
-const Merge = require("merge");
+const BaseClient_1 = __importDefault(require("../../Core/BaseClient"));
 const Utils_1 = require("../../Core/Utils");
 class Client extends BaseClient_1.default {
     constructor() {
@@ -57,7 +59,7 @@ class Client extends BaseClient_1.default {
      */
     buildConfig(jsApiList, debug = false, beta = false, json = true, openTagList = [], url = '') {
         return __awaiter(this, void 0, void 0, function* () {
-            let config = Merge({
+            let config = Utils_1.merge({
                 jsApiList, debug, beta, openTagList
             }, yield this.configSignature(url));
             return json ? JSON.stringify(config) : config;
@@ -124,7 +126,7 @@ class Client extends BaseClient_1.default {
      * 获取配置中的app_id
      */
     getAppId() {
-        return this.app['config']['app_id'];
+        return this.app.config.app_id;
     }
 }
 exports.default = Client;

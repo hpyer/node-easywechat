@@ -1,6 +1,9 @@
 'use strict';
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
 Object.defineProperty(exports, "__esModule", { value: true });
-const Client_1 = require("../../Aggregate/Account/Client");
+const Client_1 = __importDefault(require("../../Aggregate/Account/Client"));
 const Utils_1 = require("../../../../Core/Utils");
 class Client extends Client_1.default {
     constructor(app, component) {
@@ -16,8 +19,8 @@ class Client extends Client_1.default {
     getFastRegistrationUrl(callbackUrl, copyWxVerify = true) {
         let query = {
             copy_wx_verify: copyWxVerify,
-            component_appid: this.component['config']['app_id'],
-            appid: this.app['config']['app_id'],
+            component_appid: this.component.config.app_id,
+            appid: this.app.config.app_id,
             redirect_uri: callbackUrl,
         };
         return 'https://mp.weixin.qq.com/cgi-bin/fastregisterauth?' + Utils_1.buildQueryString(query);

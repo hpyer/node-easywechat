@@ -1,7 +1,10 @@
 'use strict';
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
 Object.defineProperty(exports, "__esModule", { value: true });
-const BaseClient_1 = require("../../Core/BaseClient");
-const Merge = require("merge");
+const BaseClient_1 = __importDefault(require("../../Core/BaseClient"));
+const Utils_1 = require("../../Core/Utils");
 class DataCubeClient extends BaseClient_1.default {
     /**
      * 获取用户增减数据, 最大时间跨度：7
@@ -190,7 +193,7 @@ class DataCubeClient extends BaseClient_1.default {
         return this.query('datacube/getcardmembercarddetail', from, to, ext);
     }
     query(api, from, to, ext = {}) {
-        let params = Merge({
+        let params = Utils_1.merge({
             begin_date: from,
             end_date: to,
         }, ext);

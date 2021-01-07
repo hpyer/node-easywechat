@@ -34,7 +34,7 @@ class VerifyTicket {
         });
     }
     getCacheKey() {
-        return 'easywechat.open_platform.verify_ticket.' + this.app['config']['app_id'];
+        return 'easywechat.open_platform.verify_ticket.' + this.app.config.app_id;
     }
 }
 exports.default = VerifyTicket;

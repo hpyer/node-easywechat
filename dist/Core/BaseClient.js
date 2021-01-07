@@ -8,18 +8,20 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
 Object.defineProperty(exports, "__esModule", { value: true });
-const HttpMixin_1 = require("./Mixins/HttpMixin");
+const HttpMixin_1 = __importDefault(require("./Mixins/HttpMixin"));
 const Utils_1 = require("./Utils");
-const Fs = require("fs");
-const Merge = require("merge");
-const Response_1 = require("./Http/Response");
+const fs_1 = __importDefault(require("fs"));
+const Response_1 = __importDefault(require("./Http/Response"));
 class BaseClient {
     constructor(app, accessToken = null) {
         this.accessToken = null;
         this.app = null;
         this.app = app;
-        this.accessToken = accessToken || this.app['access_token'];
+        this.accessToken = accessToken || this.app.access_token;
     }
     setAccessToken(accessToken) {
         this.accessToken = accessToken;
@@ -46,13 +48,13 @@ class BaseClient {
         let formData = {};
         for (let name in files) {
             if (Utils_1.isString(files[name])) {
-                formData[name] = Fs.createReadStream(files[name]);
+                formData[name] = fs_1.default.createReadStream(files[name]);
             }
             else {
                 formData[name] = files[name];
             }
         }
-        formData = Merge(formData, form);
+        formData = Utils_1.merge(formData, form);
         return this.request({
             url,
             formData,

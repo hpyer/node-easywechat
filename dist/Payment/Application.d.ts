@@ -15,8 +15,9 @@ import SandboxClient from './Sandbox/SandboxClient';
 import TransferClient from './Transfer/TransferClient';
 import SecurityClient from './Security/SecurityClient';
 import ProfitSharingClient from './ProfitSharing/ProfitSharingClient';
+import { EasyWechatConfig } from '../Core/Types';
 export default class Payment extends BaseApplication {
-    protected defaultConfig: object;
+    protected defaultConfig: EasyWechatConfig;
     base: PaymentBase;
     bill: BillClient;
     coupon: CouponClient;
@@ -32,13 +33,13 @@ export default class Payment extends BaseApplication {
     profit_sharing: ProfitSharingClient;
     access_token: AccessToken;
     url: UrlClient;
-    constructor(config?: Object, prepends?: Object, id?: String);
+    constructor(config?: EasyWechatConfig, prepends?: Object, id?: String);
     registerProviders(): void;
     scheme(product_id: string): string;
     codeUrlScheme(codeUrl: string): string;
     setSubMerchant(mchId: string, appId?: string): object;
     inSandbox(): boolean;
-    getKey(endpoint?: string): any;
+    getKey(endpoint?: string): Promise<string>;
     /**
      * 处理付款结果通知
      * @param closure 处理函数。需接收2个参数，第1个参数通知消息message，第2个参数为设置错误消息的方法。处理函数需要return true;表示处理成功

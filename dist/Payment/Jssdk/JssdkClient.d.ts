@@ -1,4 +1,5 @@
 import BaseClient from '../../BaseService/Jssdk/JssdkClient';
+import { AccessToken } from '../../Core/BaseAccessToken';
 export default class JssdkClient extends BaseClient {
     /**
      * 生成支付 JS 配置（WeixinJSBridge方式）
@@ -21,5 +22,5 @@ export default class JssdkClient extends BaseClient {
      * @param accessToken OAuth授权后的AccessToken
      * @param json 是否返回json字符串，默认：true
      */
-    shareAddressConfig(accessToken: any, json?: Boolean): Promise<any>;
+    shareAddressConfig(accessToken: string | AccessToken, json?: Boolean): Promise<any>;
 }

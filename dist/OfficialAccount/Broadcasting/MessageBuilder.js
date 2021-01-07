@@ -1,6 +1,6 @@
 'use strict';
 Object.defineProperty(exports, "__esModule", { value: true });
-const Merge = require("merge");
+const Utils_1 = require("../../Core/Utils");
 class MessageBuilder {
     constructor() {
         this._to = {};
@@ -50,7 +50,7 @@ class MessageBuilder {
         if (!prepends) {
             prepends = this._to;
         }
-        let message = Merge(prepends, content, this._attributes);
+        let message = Utils_1.merge(Utils_1.merge(prepends, content), this._attributes);
         return message;
     }
     buildForPreview(by, user) {

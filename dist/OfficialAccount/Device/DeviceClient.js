@@ -1,10 +1,16 @@
 'use strict';
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
 Object.defineProperty(exports, "__esModule", { value: true });
-const BaseClient_1 = require("../../Core/BaseClient");
+const BaseClient_1 = __importDefault(require("../../Core/BaseClient"));
+/**
+ * @see http://iot.weixin.qq.com/wiki/new/index.html
+ */
 class DeviceClient extends BaseClient_1.default {
     message(deviceId, openid, content) {
         return this.httpPostJson('device/transmsg', {
-            device_type: this.app['config']['device_type'],
+            device_type: this.app.config.device_type,
             device_id: deviceId,
             open_id: openid,
             content: Buffer.from(content).toString('base64'),

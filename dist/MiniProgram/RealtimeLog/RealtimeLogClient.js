@@ -1,7 +1,10 @@
 'use strict';
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
 Object.defineProperty(exports, "__esModule", { value: true });
-const BaseClient_1 = require("../../Core/BaseClient");
-const Merge = require("merge");
+const BaseClient_1 = __importDefault(require("../../Core/BaseClient"));
+const Utils_1 = require("../../Core/Utils");
 class RealtimeLogClient extends BaseClient_1.default {
     /**
      * 实时日志查询
@@ -11,7 +14,7 @@ class RealtimeLogClient extends BaseClient_1.default {
      * @param options 其它参数
      */
     search(date, beginTime, endTime, options = {}) {
-        let params = Merge({
+        let params = Utils_1.merge({
             date: date,
             begintime: beginTime,
             endtime: endTime,

@@ -1,7 +1,10 @@
 'use strict';
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
 Object.defineProperty(exports, "__esModule", { value: true });
-const BaseClient_1 = require("../Core/BaseClient");
-const Merge = require("merge");
+const Utils_1 = require("../../Core/Utils");
+const BaseClient_1 = __importDefault(require("../Core/BaseClient"));
 class RefundClient extends BaseClient_1.default {
     /**
      * 根据商户订单号退款
@@ -12,7 +15,7 @@ class RefundClient extends BaseClient_1.default {
      * @param optional 其它参数
      */
     byOutTradeNumber(number, refundNumber, totalFee, refundFee, optional = {}) {
-        return this.refund(refundNumber, totalFee, refundFee, Merge({}, optional, {
+        return this.refund(refundNumber, totalFee, refundFee, Utils_1.merge(optional, {
             out_trade_no: number,
         }));
     }
@@ -25,13 +28,13 @@ class RefundClient extends BaseClient_1.default {
      * @param optional 其它参数
      */
     byTransactionId(transactionId, refundNumber, totalFee, refundFee, optional = {}) {
-        return this.refund(refundNumber, totalFee, refundFee, Merge({}, optional, {
+        return this.refund(refundNumber, totalFee, refundFee, Utils_1.merge(optional, {
             transaction_id: transactionId,
         }));
     }
     refund(refundNumber, totalFee, refundFee, optional = {}) {
-        let params = Merge({
-            appid: this.app['config']['app_id'],
+        let params = Utils_1.merge({
+            appid: this.app.config.app_id,
             out_refund_no: refundNumber,
             total_fee: totalFee,
             refund_fee: refundFee,
@@ -68,7 +71,7 @@ class RefundClient extends BaseClient_1.default {
     }
     query(number, type) {
         let params = {
-            appid: this.app['config']['app_id'],
+            appid: this.app.config.app_id,
         };
         params[type] = number;
         return this.request(this.wrap('pay/refundquery'), params);

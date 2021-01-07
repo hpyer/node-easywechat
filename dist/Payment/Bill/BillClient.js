@@ -8,10 +8,13 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
 Object.defineProperty(exports, "__esModule", { value: true });
-const BaseClient_1 = require("../Core/BaseClient");
-const Merge = require("merge");
-const StreamResponse_1 = require("../../Core/Http/StreamResponse");
+const BaseClient_1 = __importDefault(require("../Core/BaseClient"));
+const StreamResponse_1 = __importDefault(require("../../Core/Http/StreamResponse"));
+const Utils_1 = require("../../Core/Utils");
 class BillClient extends BaseClient_1.default {
     /**
      * 下载对账单
@@ -24,11 +27,11 @@ class BillClient extends BaseClient_1.default {
             options = options || {};
             options['encoding'] = 'binary';
             let params = {
-                appid: this.app['config']['app_id'],
+                appid: this.app.config.app_id,
                 bill_date: date,
                 bill_type: type,
             };
-            params = Merge(params, options);
+            params = Utils_1.merge(params, options);
             let res = yield this.requestRaw(this.wrap('pay/downloadbill'), params);
             let content = res.getContent().toString();
             if (content && content.indexOf('<xml>') === 0) {

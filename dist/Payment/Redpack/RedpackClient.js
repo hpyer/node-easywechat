@@ -8,9 +8,11 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
 Object.defineProperty(exports, "__esModule", { value: true });
-const BaseClient_1 = require("../Core/BaseClient");
-const Merge = require("merge");
+const BaseClient_1 = __importDefault(require("../Core/BaseClient"));
 const Utils_1 = require("../../Core/Utils");
 class RedpackClient extends BaseClient_1.default {
     /**
@@ -21,8 +23,8 @@ class RedpackClient extends BaseClient_1.default {
         let params = Utils_1.isObject(mchBillno) ? mchBillno : {
             mch_billno: mchBillno
         };
-        params = Merge({}, params, {
-            appid: this.app['config']['app_id'],
+        params = Utils_1.merge(params, {
+            appid: this.app.config.app_id,
             bill_type: 'MCHT',
         });
         return this.safeRequest('mmpaymkttransfers/gethbinfo', params);
@@ -33,8 +35,8 @@ class RedpackClient extends BaseClient_1.default {
      */
     sendNormal(params) {
         return __awaiter(this, void 0, void 0, function* () {
-            params = Merge({}, params, {
-                wxappid: this.app['config']['app_id'],
+            params = Utils_1.merge(params, {
+                wxappid: this.app.config.app_id,
                 total_num: 1,
                 client_ip: params['client_ip'] || (yield this.getServerIp()),
             });
@@ -46,8 +48,8 @@ class RedpackClient extends BaseClient_1.default {
      * @param params 红包参数
      */
     sendGroup(params) {
-        params = Merge({}, params, {
-            wxappid: this.app['config']['app_id'],
+        params = Utils_1.merge(params, {
+            wxappid: this.app.config.app_id,
             amt_type: 'ALL_RAND',
         });
         return this.safeRequest('mmpaymkttransfers/sendgroupredpack', params);

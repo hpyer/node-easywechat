@@ -1,7 +1,9 @@
 'use strict';
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
 Object.defineProperty(exports, "__esModule", { value: true });
-const TemplateMessageClient_1 = require("../../OfficialAccount/TemplateMessage/TemplateMessageClient");
-const Merge = require("merge");
+const TemplateMessageClient_1 = __importDefault(require("../../OfficialAccount/TemplateMessage/TemplateMessageClient"));
 const Utils_1 = require("../../Core/Utils");
 class UniformMessageClient extends TemplateMessageClient_1.default {
     constructor() {
@@ -27,7 +29,7 @@ class UniformMessageClient extends TemplateMessageClient_1.default {
         this.required = ['touser', 'template_id', 'form_id', 'miniprogram', 'appid'];
     }
     formatMessage(data) {
-        let params = Merge(this.message, data);
+        let params = Utils_1.merge(this.message, data);
         if (!params['touser']) {
             throw new Error('Attribute "touser" can not be empty!');
         }
@@ -47,13 +49,13 @@ class UniformMessageClient extends TemplateMessageClient_1.default {
     formatMpMessage(data) {
         let params = this.baseFormat(data, this.weappMessage);
         if (!params['miniprogram']['appid']) {
-            params['miniprogram']['appid'] = this.app['config']['app_id'];
+            params['miniprogram']['appid'] = this.app.config.app_id;
         }
         params['data'] = this.formatData(params['data'] || {});
         return params;
     }
     baseFormat(data = {}, defaultData = {}) {
-        let params = Merge(defaultData, data);
+        let params = Utils_1.merge(defaultData, data);
         for (let key in params) {
             if (Utils_1.inArray(key, this.required) && !params[key] && !defaultData[key]) {
                 throw new Error(`Attribute "${key}" can not be empty!`);

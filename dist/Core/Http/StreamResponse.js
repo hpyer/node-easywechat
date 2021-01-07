@@ -1,16 +1,19 @@
 'use strict';
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
 Object.defineProperty(exports, "__esModule", { value: true });
-const Response_1 = require("./Response");
-const Fs = require("fs");
+const Response_1 = __importDefault(require("./Response"));
+const fs_1 = __importDefault(require("fs"));
 const Utils_1 = require("../Utils");
 class StreamResponse extends Response_1.default {
     save(directory, filename = '') {
-        let dirStatus = Fs.statSync(directory);
+        let dirStatus = fs_1.default.statSync(directory);
         if (!dirStatus.isDirectory()) {
-            Fs.mkdirSync(directory);
+            fs_1.default.mkdirSync(directory);
         }
         try {
-            Fs.accessSync(directory, Fs.constants.W_OK);
+            fs_1.default.accessSync(directory, fs_1.default.constants.W_OK);
         }
         catch (e) {
             throw new Error(`'${directory}' is not writable.`);
@@ -23,7 +26,7 @@ class StreamResponse extends Response_1.default {
         if (!filename) {
             filename = Utils_1.createHash(content, 'md5');
         }
-        Fs.writeFileSync(`${directory}/${filename}`, buffer);
+        fs_1.default.writeFileSync(`${directory}/${filename}`, buffer);
         return filename;
     }
     saveAs(directory, filename = '') {

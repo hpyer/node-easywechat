@@ -8,9 +8,83 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
 Object.defineProperty(exports, "__esModule", { value: true });
-const HttpMixin_1 = require("./Mixins/HttpMixin");
+exports.AccessToken = void 0;
+const HttpMixin_1 = __importDefault(require("./Mixins/HttpMixin"));
 const Utils_1 = require("./Utils");
+/**
+ * 授权后的AccessToken对象
+ */
+class AccessToken {
+    constructor(info) {
+        /**
+         * 网页授权接口调用凭证
+         */
+        this.access_token = '';
+        /**
+         * 调用凭证的超时时间，单位（秒）
+         */
+        this.expires_in = 0;
+        /**
+         * 刷新access_token
+         */
+        this.refresh_token = '';
+        /**
+         * 用户唯一标识，openid
+         */
+        this.openid = '';
+        /**
+         * 授权的作用域
+         */
+        this.scope = null;
+        this.access_token = info['access_token'] || info['accessToken'] || '';
+        this.expires_in = info['expires_in'] || info['expiresIn'] || 0;
+        this.refresh_token = info['refresh_token'] || info['refreshToken'] || '';
+        this.openid = info['openid'] || '';
+        this.scope = info['scope'] || '';
+    }
+    /**
+     * 获取access_token
+     */
+    getToken() {
+        return this.access_token;
+    }
+    /**
+     * 获取access_token
+     */
+    getAccessToken() {
+        return this.access_token;
+    }
+    /**
+     * 获取过期时间
+     */
+    getExpires() {
+        return this.expires_in;
+    }
+    /**
+     * 获取refresh_token
+     */
+    getRefreshToken() {
+        return this.refresh_token;
+    }
+    /**
+     * 获取openid
+     */
+    getOpenid() {
+        return this.openid;
+    }
+    /**
+     * 获取scope
+     */
+    getScope() {
+        return this.scope;
+    }
+}
+exports.AccessToken = AccessToken;
+;
 class BaseAccessToken {
     constructor(app) {
         this.requestMethod = 'GET';
@@ -67,11 +141,11 @@ class BaseAccessToken {
             if (!refresh && (yield cache.has(cacheKey))) {
                 let token = yield cache.get(cacheKey);
                 if (token)
-                    return token;
+                    return new AccessToken(token);
             }
             let res = yield this.requestToken(yield this.getCredentials());
-            yield this.setToken(res[this.tokenKey], res.expires_in || 7200);
-            return res[this.tokenKey];
+            yield this.setToken(res, res.expires_in || 7200);
+            return res;
         });
     }
     /**
@@ -113,7 +187,7 @@ class BaseAccessToken {
         return __awaiter(this, void 0, void 0, function* () {
             payload['qs'] = payload['qs'] || {};
             if (!payload['qs'][this.queryName || this.tokenKey]) {
-                payload['qs'][this.queryName || this.tokenKey] = yield this.getToken();
+                payload['qs'][this.queryName || this.tokenKey] = (yield this.getToken())[this.tokenKey];
             }
             return payload;
         });

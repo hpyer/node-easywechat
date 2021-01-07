@@ -1,12 +1,11 @@
 'use strict';
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.Media = void 0;
-const merge_1 = require("merge");
 const Message_1 = require("./Message");
 const Utils_1 = require("../Utils");
 class Media extends Message_1.Message {
     constructor(mediaId, type = '', attributes = {}) {
-        super(merge_1.default({ media_id: mediaId }, attributes));
+        super(Utils_1.merge({ media_id: mediaId }, attributes));
         this.properties = [
             'media_id',
         ];

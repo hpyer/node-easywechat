@@ -1,7 +1,10 @@
 'use strict';
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
 Object.defineProperty(exports, "__esModule", { value: true });
-const BaseClient_1 = require("../Core/BaseClient");
-const Merge = require("merge");
+const Utils_1 = require("../../Core/Utils");
+const BaseClient_1 = __importDefault(require("../Core/BaseClient"));
 class MerchantClient extends BaseClient_1.default {
     addSubMerchant(params) {
         return this.manage(params, {
@@ -25,8 +28,8 @@ class MerchantClient extends BaseClient_1.default {
         });
     }
     manage(params, query) {
-        params = Merge({}, params, {
-            appid: this.app['config']['app_id'],
+        params = Utils_1.merge(params, {
+            appid: this.app.config.app_id,
             nonce_str: '',
             sub_mech_id: '',
             sub_appid: '',

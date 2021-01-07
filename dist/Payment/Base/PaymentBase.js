@@ -8,8 +8,11 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
 Object.defineProperty(exports, "__esModule", { value: true });
-const BaseClient_1 = require("../Core/BaseClient");
+const BaseClient_1 = __importDefault(require("../Core/BaseClient"));
 class PaymentBase extends BaseClient_1.default {
     /**
      * 刷卡支付
@@ -17,7 +20,7 @@ class PaymentBase extends BaseClient_1.default {
      */
     pay(params) {
         return __awaiter(this, void 0, void 0, function* () {
-            params['appid'] = this.app['config']['app_id'];
+            params['appid'] = this.app.config.app_id;
             return yield this.request(this.wrap('pay/micropay'), params);
         });
     }
@@ -28,7 +31,7 @@ class PaymentBase extends BaseClient_1.default {
     authCodeToOpenid(auth_code) {
         return __awaiter(this, void 0, void 0, function* () {
             return yield this.request('tools/authcodetoopenid', {
-                appid: this.app['config']['app_id'],
+                appid: this.app.config.app_id,
                 auth_code,
             });
         });

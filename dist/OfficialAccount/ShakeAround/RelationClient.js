@@ -1,6 +1,9 @@
 'use strict';
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
 Object.defineProperty(exports, "__esModule", { value: true });
-const Client_1 = require("./Client");
+const Client_1 = __importDefault(require("./Client"));
 class RelationClient extends Client_1.default {
     /**
      * 配置设备与页面的关联关系

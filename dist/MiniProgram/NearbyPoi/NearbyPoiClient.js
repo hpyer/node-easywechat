@@ -1,7 +1,9 @@
 'use strict';
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
 Object.defineProperty(exports, "__esModule", { value: true });
-const BaseClient_1 = require("../../Core/BaseClient");
-const Merge = require("merge");
+const BaseClient_1 = __importDefault(require("../../Core/BaseClient"));
 const Utils_1 = require("../../Core/Utils");
 class NearbyPoiClient extends BaseClient_1.default {
     /**
@@ -9,7 +11,7 @@ class NearbyPoiClient extends BaseClient_1.default {
      * @param params 地点信息
      */
     add(params = {}) {
-        params = Merge({
+        params = Utils_1.merge({
             is_comm_nearby: '1',
             poi_id: '',
         }, params);
@@ -21,7 +23,7 @@ class NearbyPoiClient extends BaseClient_1.default {
      * @param params 地点信息
      */
     update(poiId, params = {}) {
-        params = Merge({
+        params = Utils_1.merge({
             is_comm_nearby: '1',
             poi_id: poiId,
         }, params);

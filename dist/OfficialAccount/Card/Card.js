@@ -1,15 +1,18 @@
 'use strict';
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
 Object.defineProperty(exports, "__esModule", { value: true });
-const Client_1 = require("./Client");
-const CoinClient_1 = require("./CoinClient");
-const SubMerchantClient_1 = require("./SubMerchantClient");
-const CodeClient_1 = require("./CodeClient");
-const MovieTicketClient_1 = require("./MovieTicketClient");
-const MemberCardClient_1 = require("./MemberCardClient");
-const GeneralCardClient_1 = require("./GeneralCardClient");
-const BoardingPassClient_1 = require("./BoardingPassClient");
-const MeetingTicketClient_1 = require("./MeetingTicketClient");
-const JssdkClient_1 = require("./JssdkClient");
+const Client_1 = __importDefault(require("./Client"));
+const CoinClient_1 = __importDefault(require("./CoinClient"));
+const SubMerchantClient_1 = __importDefault(require("./SubMerchantClient"));
+const CodeClient_1 = __importDefault(require("./CodeClient"));
+const MovieTicketClient_1 = __importDefault(require("./MovieTicketClient"));
+const MemberCardClient_1 = __importDefault(require("./MemberCardClient"));
+const GeneralCardClient_1 = __importDefault(require("./GeneralCardClient"));
+const BoardingPassClient_1 = __importDefault(require("./BoardingPassClient"));
+const MeetingTicketClient_1 = __importDefault(require("./MeetingTicketClient"));
+const JssdkClient_1 = __importDefault(require("./JssdkClient"));
 class Card extends Client_1.default {
     constructor(app, accessToken = null) {
         super(app, accessToken);

@@ -1,13 +1,16 @@
 'use strict';
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
 Object.defineProperty(exports, "__esModule", { value: true });
-const BaseClient_1 = require("../../../../Core/BaseClient");
+const BaseClient_1 = __importDefault(require("../../../../Core/BaseClient"));
 class Client extends BaseClient_1.default {
     /**
      * 绑定公众号或小程序
      */
     create() {
         return this.httpPostJson('cgi-bin/open/create', {
-            appid: this.app['config']['app_id'],
+            appid: this.app.config.app_id,
         });
     }
     /**
@@ -16,7 +19,7 @@ class Client extends BaseClient_1.default {
      */
     bindTo(openAppId) {
         return this.httpPostJson('cgi-bin/open/bind', {
-            appid: this.app['config']['app_id'],
+            appid: this.app.config.app_id,
             open_appid: openAppId,
         });
     }
@@ -26,7 +29,7 @@ class Client extends BaseClient_1.default {
      */
     unbindFrom(openAppId) {
         return this.httpPostJson('cgi-bin/open/unbind', {
-            appid: this.app['config']['app_id'],
+            appid: this.app.config.app_id,
             open_appid: openAppId,
         });
     }
@@ -35,7 +38,7 @@ class Client extends BaseClient_1.default {
      */
     getBinding() {
         return this.httpPostJson('cgi-bin/open/get', {
-            appid: this.app['config']['app_id'],
+            appid: this.app.config.app_id,
         });
     }
 }

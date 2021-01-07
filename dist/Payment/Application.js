@@ -1,25 +1,37 @@
 'use strict';
+var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
+    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
+    return new (P || (P = Promise))(function (resolve, reject) {
+        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
+        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
+        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
+        step((generator = generator.apply(thisArg, _arguments || [])).next());
+    });
+};
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
 Object.defineProperty(exports, "__esModule", { value: true });
-const BaseApplication_1 = require("../Core/BaseApplication");
+const BaseApplication_1 = __importDefault(require("../Core/BaseApplication"));
 const Utils_1 = require("../Core/Utils");
-const Paid_1 = require("./Notify/Paid");
-const Refunded_1 = require("./Notify/Refunded");
-const Scanned_1 = require("./Notify/Scanned");
-const AccessToken_1 = require("../OfficialAccount/Auth/AccessToken");
-const UrlClient_1 = require("../BaseService/Url/UrlClient");
-const PaymentBase_1 = require("./Base/PaymentBase");
-const BillClient_1 = require("./Bill/BillClient");
-const CouponClient_1 = require("./Coupon/CouponClient");
-const JssdkClient_1 = require("./Jssdk/JssdkClient");
-const MerchantClient_1 = require("./Merchant/MerchantClient");
-const OrderClient_1 = require("./Order/OrderClient");
-const RedpackClient_1 = require("./Redpack/RedpackClient");
-const RefundClient_1 = require("./Refund/RefundClient");
-const ReverseClient_1 = require("./Reverse/ReverseClient");
-const SandboxClient_1 = require("./Sandbox/SandboxClient");
-const TransferClient_1 = require("./Transfer/TransferClient");
-const SecurityClient_1 = require("./Security/SecurityClient");
-const ProfitSharingClient_1 = require("./ProfitSharing/ProfitSharingClient");
+const Paid_1 = __importDefault(require("./Notify/Paid"));
+const Refunded_1 = __importDefault(require("./Notify/Refunded"));
+const Scanned_1 = __importDefault(require("./Notify/Scanned"));
+const AccessToken_1 = __importDefault(require("../OfficialAccount/Auth/AccessToken"));
+const UrlClient_1 = __importDefault(require("../BaseService/Url/UrlClient"));
+const PaymentBase_1 = __importDefault(require("./Base/PaymentBase"));
+const BillClient_1 = __importDefault(require("./Bill/BillClient"));
+const CouponClient_1 = __importDefault(require("./Coupon/CouponClient"));
+const JssdkClient_1 = __importDefault(require("./Jssdk/JssdkClient"));
+const MerchantClient_1 = __importDefault(require("./Merchant/MerchantClient"));
+const OrderClient_1 = __importDefault(require("./Order/OrderClient"));
+const RedpackClient_1 = __importDefault(require("./Redpack/RedpackClient"));
+const RefundClient_1 = __importDefault(require("./Refund/RefundClient"));
+const ReverseClient_1 = __importDefault(require("./Reverse/ReverseClient"));
+const SandboxClient_1 = __importDefault(require("./Sandbox/SandboxClient"));
+const TransferClient_1 = __importDefault(require("./Transfer/TransferClient"));
+const SecurityClient_1 = __importDefault(require("./Security/SecurityClient"));
+const ProfitSharingClient_1 = __importDefault(require("./ProfitSharing/ProfitSharingClient"));
 class Payment extends BaseApplication_1.default {
     constructor(config = {}, prepends = {}, id = null) {
         super(config, prepends, id);
@@ -124,17 +136,19 @@ class Payment extends BaseApplication_1.default {
         return !!this.config['sandbox'];
     }
     getKey(endpoint = null) {
-        if ('sandboxnew/pay/getsignkey' === endpoint) {
-            return this.config['key'];
-        }
-        let key = this.inSandbox() ? this['sandbox'].getKey() : this['config']['key'];
-        if (!key) {
-            throw new Error('config key should not empty.');
-        }
-        if (32 !== key.length) {
-            throw new Error(`'${key}' should be 32 chars length.`);
-        }
-        return key;
+        return __awaiter(this, void 0, void 0, function* () {
+            if ('sandboxnew/pay/getsignkey' === endpoint) {
+                return this.config.key;
+            }
+            let key = this.inSandbox() ? yield this['sandbox'].getKey() : this.config.key;
+            if (!key) {
+                throw new Error('config key should not empty.');
+            }
+            if (32 !== key.length) {
+                throw new Error(`'${key}' should be 32 chars length.`);
+            }
+            return key;
+        });
     }
     /**
      * 处理付款结果通知

@@ -1,8 +1,11 @@
 'use strict';
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
 Object.defineProperty(exports, "__esModule", { value: true });
-const BaseClient_1 = require("../../Core/BaseClient");
+const BaseClient_1 = __importDefault(require("../../Core/BaseClient"));
 const Utils_1 = require("../../Core/Utils");
-const Messenger_1 = require("./Messenger");
+const Messenger_1 = __importDefault(require("./Messenger"));
 class CustomerServiceClient extends BaseClient_1.default {
     list() {
         return this.httpGet('cgi-bin/customservice/getkflist');

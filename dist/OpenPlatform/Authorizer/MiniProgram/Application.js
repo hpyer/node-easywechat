@@ -1,11 +1,14 @@
 'use strict';
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
 Object.defineProperty(exports, "__esModule", { value: true });
-const Application_1 = require("../../../MiniProgram/Application");
-const CodeClient_1 = require("./Code/CodeClient");
-const DomainClient_1 = require("./Domain/DomainClient");
-const AccountClient_1 = require("./Account/AccountClient");
-const SettingClient_1 = require("./Setting/SettingClient");
-const TesterClient_1 = require("./Tester/TesterClient");
+const Application_1 = __importDefault(require("../../../MiniProgram/Application"));
+const CodeClient_1 = __importDefault(require("./Code/CodeClient"));
+const DomainClient_1 = __importDefault(require("./Domain/DomainClient"));
+const AccountClient_1 = __importDefault(require("./Account/AccountClient"));
+const SettingClient_1 = __importDefault(require("./Setting/SettingClient"));
+const TesterClient_1 = __importDefault(require("./Tester/TesterClient"));
 class MiniProgram extends Application_1.default {
     constructor(config = {}, prepends = {}, id = null) {
         super(config, prepends, id);

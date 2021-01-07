@@ -1,6 +1,9 @@
 'use strict';
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
 Object.defineProperty(exports, "__esModule", { value: true });
-const BaseClient_1 = require("../../Core/BaseClient");
+const BaseClient_1 = __importDefault(require("../../Core/BaseClient"));
 class OpenPlatformBase extends BaseClient_1.default {
     /**
      * 使用授权码换取接口调用凭据和授权信息
@@ -8,7 +11,7 @@ class OpenPlatformBase extends BaseClient_1.default {
      */
     handleAuthorize(authCode = null) {
         return this.httpPostJson('cgi-bin/component/api_query_auth', {
-            component_appid: this.app['config']['app_id'],
+            component_appid: this.app.config.app_id,
             authorization_code: authCode || this.app['request'].get('auth_code'),
         });
     }
@@ -18,7 +21,7 @@ class OpenPlatformBase extends BaseClient_1.default {
      */
     getAuthorizer(appId) {
         return this.httpPostJson('cgi-bin/component/api_get_authorizer_info', {
-            component_appid: this.app['config']['app_id'],
+            component_appid: this.app.config.app_id,
             authorizer_appid: appId,
         });
     }
@@ -29,7 +32,7 @@ class OpenPlatformBase extends BaseClient_1.default {
      */
     getAuthorizerOption(appId, name) {
         return this.httpPostJson('cgi-bin/component/api_get_authorizer_option', {
-            component_appid: this.app['config']['app_id'],
+            component_appid: this.app.config.app_id,
             authorizer_appid: appId,
             option_name: name,
         });
@@ -42,7 +45,7 @@ class OpenPlatformBase extends BaseClient_1.default {
      */
     setAuthorizerOption(appId, name, value) {
         return this.httpPostJson('cgi-bin/component/api_set_authorizer_option', {
-            component_appid: this.app['config']['app_id'],
+            component_appid: this.app.config.app_id,
             authorizer_appid: appId,
             option_name: name,
             option_value: value,
@@ -55,7 +58,7 @@ class OpenPlatformBase extends BaseClient_1.default {
      */
     getAuthorizers(offset = 0, count = 500) {
         return this.httpPostJson('cgi-bin/component/api_get_authorizer_list', {
-            component_appid: this.app['config']['app_id'],
+            component_appid: this.app.config.app_id,
             offset,
             count,
         });
@@ -65,7 +68,7 @@ class OpenPlatformBase extends BaseClient_1.default {
      */
     createPreAuthorizationCode() {
         return this.httpPostJson('cgi-bin/component/api_create_preauthcode', {
-            component_appid: this.app['config']['app_id'],
+            component_appid: this.app.config.app_id,
         });
     }
     /**
@@ -73,7 +76,7 @@ class OpenPlatformBase extends BaseClient_1.default {
      */
     clearQuota() {
         return this.httpPostJson('cgi-bin/component/clear_quota', {
-            component_appid: this.app['config']['app_id'],
+            component_appid: this.app.config.app_id,
         });
     }
 }

@@ -1,18 +1,20 @@
 import CacheInterface from './Contracts/CacheInterface';
 import FileCache from './Cache/FileCache';
 import Request from './Http/Request';
-export default class BaseApplicatioin {
-    protected defaultConfig: Object;
-    protected userConfig: Object;
+import { EasyWechatConfig } from './Types';
+import BaseAccessToken from './BaseAccessToken';
+export default abstract class BaseApplicatioin {
+    protected defaultConfig: EasyWechatConfig;
+    protected userConfig: EasyWechatConfig;
     protected id: String;
     /**
      * 缓存实例
      */
     cache: CacheInterface;
     /**
-     * 配置
+     * 配置项
      */
-    config: Object;
+    config: EasyWechatConfig;
     /**
      * 日志方法
      */
@@ -21,12 +23,16 @@ export default class BaseApplicatioin {
      * 请求实例
      */
     request: Request;
-    constructor(config?: Object, prepends?: Object, id?: String);
+    /**
+     * 请求token
+     */
+    access_token: BaseAccessToken;
+    constructor(config: EasyWechatConfig, prepends?: Object, id?: String);
     getId(): String;
     /**
      * 获取合并后的配置
      */
-    getConfig(): Object;
+    getConfig(): EasyWechatConfig;
     /**
      * 注册通用模块
      */
@@ -52,7 +58,7 @@ export default class BaseApplicatioin {
     /**
      * 获取cache实例
      */
-    getCache(): any;
+    getCache(): CacheInterface;
     /**
      * 生成默认的缓存实例（文件缓存）
      */

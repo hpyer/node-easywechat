@@ -8,9 +8,12 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
 Object.defineProperty(exports, "__esModule", { value: true });
-const Handler_1 = require("./Handler");
-const Xml2js = require("xml2js");
+const Handler_1 = __importDefault(require("./Handler"));
+const xml2js_1 = __importDefault(require("xml2js"));
 const Utils_1 = require("../../Core/Utils");
 class RefundedHandler extends Handler_1.default {
     handle(closure) {
@@ -33,7 +36,7 @@ class RefundedHandler extends Handler_1.default {
     }
     parseXml(xml) {
         return __awaiter(this, void 0, void 0, function* () {
-            let res = yield Xml2js.parseStringPromise(xml);
+            let res = yield xml2js_1.default.parseStringPromise(xml);
             res = Utils_1.singleItem(res);
             if (res['xml'])
                 res = res['xml'];

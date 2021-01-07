@@ -1,13 +1,16 @@
 'use strict';
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
 Object.defineProperty(exports, "__esModule", { value: true });
-const BaseApplication_1 = require("../Core/BaseApplication");
-const JssdkClient_1 = require("./Jssdk/JssdkClient");
-const MediaClient_1 = require("./Media/MediaClient");
-const QrcodeClient_1 = require("./Qrcode/QrcodeClient");
-const UrlClient_1 = require("./Url/UrlClient");
-const ContentSecurityClient_1 = require("./ContentSecurity/ContentSecurityClient");
+const BaseApplication_1 = __importDefault(require("../Core/BaseApplication"));
+const JssdkClient_1 = __importDefault(require("./Jssdk/JssdkClient"));
+const MediaClient_1 = __importDefault(require("./Media/MediaClient"));
+const QrcodeClient_1 = __importDefault(require("./Qrcode/QrcodeClient"));
+const UrlClient_1 = __importDefault(require("./Url/UrlClient"));
+const ContentSecurityClient_1 = __importDefault(require("./ContentSecurity/ContentSecurityClient"));
 class BaseService extends BaseApplication_1.default {
-    constructor(config = {}, prepends = {}, id = null) {
+    constructor(config = null, prepends = {}, id = null) {
         super(config, prepends, id);
         this.defaultConfig = {
             app_id: '',

@@ -1,4 +1,7 @@
 import BaseClient from '../../Core/BaseClient';
+/**
+ * @see http://iot.weixin.qq.com/wiki/new/index.html
+ */
 export default class DeviceClient extends BaseClient {
     message(deviceId: string, openid: string, content: string): Promise<any>;
     qrCode(deviceIds: Array<string>): Promise<any>;

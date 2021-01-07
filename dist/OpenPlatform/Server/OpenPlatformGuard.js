@@ -8,10 +8,13 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.EVENT_THIRD_FAST_REGISTERED = exports.EVENT_COMPONENT_VERIFY_TICKET = exports.EVENT_UPDATE_AUTHORIZED = exports.EVENT_UNAUTHORIZED = exports.EVENT_AUTHORIZED = void 0;
-const ServerGuard_1 = require("../../Core/ServerGuard");
-const Response_1 = require("../../Core/Http/Response");
+const ServerGuard_1 = __importDefault(require("../../Core/ServerGuard"));
+const Response_1 = __importDefault(require("../../Core/Http/Response"));
 exports.EVENT_AUTHORIZED = 'authorized';
 exports.EVENT_UNAUTHORIZED = 'unauthorized';
 exports.EVENT_UPDATE_AUTHORIZED = 'updateauthorized';

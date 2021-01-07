@@ -2,11 +2,11 @@ import BaseAccessToken from './BaseAccessToken';
 import BaseApplication from './BaseApplication';
 import HttpMixin from './Mixins/HttpMixin';
 import Response from './Http/Response';
-declare class BaseClient implements HttpMixin {
+declare abstract class BaseClient implements HttpMixin {
     protected accessToken: BaseAccessToken;
     protected app: BaseApplication;
     constructor(app: BaseApplication, accessToken?: BaseAccessToken);
-    setAccessToken(accessToken: any): BaseClient;
+    setAccessToken(accessToken: BaseAccessToken): this;
     getAccessToken(): BaseAccessToken;
     request(payload: object, returnResponse?: Boolean): Promise<any>;
     httpUpload(url: string, files?: object, form?: object, query?: object): Promise<any>;
