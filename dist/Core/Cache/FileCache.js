@@ -16,30 +16,36 @@ const path_1 = __importDefault(require("path"));
 const fs_1 = __importDefault(require("fs"));
 const Utils_1 = require("../Utils");
 class FileCache {
-    constructor(options = {}) {
-        this.options = {};
-        this.defaultOptions = {
+    constructor(options = null) {
+        this.options = {
             path: './',
             dirMode: 0o777,
             fileMode: 0o666,
             ext: '.cache'
         };
-        this.options = Utils_1.merge(this.defaultOptions, options);
-        this.options['path'] = path_1.default.resolve(this.options['path']) + '/';
+        if (options && typeof options == 'object') {
+            this.options = Utils_1.merge({
+                path: './',
+                dirMode: 0o777,
+                fileMode: 0o666,
+                ext: '.cache'
+            }, options);
+        }
+        this.options.path = path_1.default.resolve(this.options.path) + '/';
         try {
-            fs_1.default.accessSync(this.options['path'], fs_1.default.constants.R_OK & fs_1.default.constants.W_OK);
+            fs_1.default.accessSync(this.options.path, fs_1.default.constants.R_OK & fs_1.default.constants.W_OK);
         }
         catch (e) {
             try {
-                fs_1.default.mkdirSync(this.options['path'], this.options['dirMode']);
+                fs_1.default.mkdirSync(this.options.path, this.options.dirMode);
             }
             catch (e) {
-                throw new Error(`The path '${this.options['path']}' can not be write.`);
+                throw new Error(`The path '${this.options.path}' can not be write.`);
             }
         }
     }
     getCacheFile(id) {
-        return this.options['path'] + 'node-easywechat.file_cache.' + id + this.options['ext'];
+        return this.options.path + 'node-easywechat.file_cache.' + id + this.options.ext;
     }
     getCacheContent(file) {
         let dataItem = JSON.parse(fs_1.default.readFileSync(file, {
@@ -86,7 +92,7 @@ class FileCache {
                     lifeTime: lifeTime > 0 ? lifeTime + Utils_1.getTimestamp() : 0
                 };
                 fs_1.default.writeFileSync(file, JSON.stringify(dataItem), {
-                    mode: this.options['fileMode'],
+                    mode: this.options.fileMode,
                     encoding: 'utf-8',
                     flag: 'w'
                 });

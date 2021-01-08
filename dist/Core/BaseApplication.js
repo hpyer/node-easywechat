@@ -118,7 +118,7 @@ class BaseApplicatioin {
      * 生成默认的缓存实例（文件缓存）
      */
     createDefaultCache() {
-        return new FileCache_1.default(this.config['file_cache'] || {});
+        return new FileCache_1.default(this.config.file_cache || null);
     }
 }
 exports.default = BaseApplicatioin;

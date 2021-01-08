@@ -8,15 +8,20 @@ const crypto_1 = __importDefault(require("crypto"));
 const qs_1 = __importDefault(require("qs"));
 exports.merge = (target, source) => {
     if (exports.isObject(source)) {
-        if (!target || !exports.isObject(target)) {
-            target = {};
+        if (source.constructor !== Object) {
+            target = source;
         }
-        Object.keys(source).map((k) => {
-            if (!target[k]) {
-                target[k] = null;
+        else {
+            if (!target || !exports.isObject(target)) {
+                target = {};
             }
-            target[k] = exports.merge(target[k], source[k]);
-        });
+            Object.keys(source).map((k) => {
+                if (!target[k]) {
+                    target[k] = null;
+                }
+                target[k] = exports.merge(target[k], source[k]);
+            });
+        }
     }
     else if (exports.isArray(source)) {
         if (!target || !exports.isArray(target)) {

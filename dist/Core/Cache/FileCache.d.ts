@@ -1,8 +1,8 @@
 import CacheInterface from '../Contracts/CacheInterface';
+import { EasyWechatConfigCacheFile } from '../Types';
 export default class FileCache implements CacheInterface {
     private options;
-    private defaultOptions;
-    constructor(options?: object);
+    constructor(options?: EasyWechatConfigCacheFile);
     getCacheFile(id: string): string;
     getCacheContent(file: string): string;
     get(id: string): Promise<any>;
