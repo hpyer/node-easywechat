@@ -5,15 +5,20 @@ import Qs from 'qs';
 
 export const merge = (target: any, source: any): any => {
   if (isObject(source)) {
-    if (!target || !isObject(target)) {
-      target = {};
+    if (source.constructor !== Object) {
+      target = source;
     }
-    Object.keys(source).map((k) => {
-      if (!target[k]) {
-        target[k] = null;
+    else {
+      if (!target || !isObject(target)) {
+        target = {};
       }
-      target[k] = merge(target[k], source[k]);
-    });
+      Object.keys(source).map((k) => {
+        if (!target[k]) {
+          target[k] = null;
+        }
+        target[k] = merge(target[k], source[k]);
+      });
+    }
   }
   else if (isArray(source)) {
     if (!target || !isArray(target)) {
