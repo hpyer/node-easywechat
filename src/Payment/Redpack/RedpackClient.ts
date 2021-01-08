@@ -12,11 +12,11 @@ export default class RedpackClient extends BaseClient
    */
   info(mchBillno: any): Promise<any>
   {
-    let params = isObject(mchBillno) ? mchBillno : {
+    let data = isObject(mchBillno) ? mchBillno : {
       mch_billno: mchBillno
     };
 
-    params = merge(params, {
+    let params = merge(merge({}, data), {
       appid: this.app.config.app_id,
       bill_type: 'MCHT',
     });
@@ -26,14 +26,14 @@ export default class RedpackClient extends BaseClient
 
   /**
    * 发送普通红包
-   * @param params 红包参数
+   * @param data 红包参数
    */
-  async sendNormal(params: object): Promise<any>
+  async sendNormal(data: object): Promise<any>
   {
-    params = merge(params, {
+    let params = merge(merge({}, data), {
       wxappid: this.app.config.app_id,
       total_num: 1,
-      client_ip: params['client_ip'] || await this.getServerIp(),
+      client_ip: data['client_ip'] || await this.getServerIp(),
     });
 
     return await this.safeRequest('mmpaymkttransfers/sendredpack', params);

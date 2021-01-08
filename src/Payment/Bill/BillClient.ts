@@ -18,12 +18,11 @@ export default class BillClient extends BaseClient
     options = options || {};
     options['encoding'] = 'binary';
 
-    let params = {
+    let params = merge({
       appid: this.app.config.app_id,
       bill_date: date,
       bill_type: type,
-    };
-    params = merge(params, options);
+    }, options);
 
     let res = await this.requestRaw(this.wrap('pay/downloadbill'), params);
 

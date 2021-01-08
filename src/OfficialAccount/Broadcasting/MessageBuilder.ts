@@ -69,7 +69,7 @@ export default class MessageBuilder
       prepends = this._to;
     }
 
-    let message = merge(merge(prepends, content), this._attributes);
+    let message = merge(merge(merge({}, prepends), content), this._attributes);
 
     return message;
   }

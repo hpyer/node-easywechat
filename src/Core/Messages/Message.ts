@@ -154,7 +154,7 @@ export class Message
 
   merge(attributes: object): this
   {
-    this.attributes = merge(this.attributes, attributes);
+    this.attributes = merge(merge({}, this.attributes), attributes);
 
     return this;
   }

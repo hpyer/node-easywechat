@@ -52,7 +52,7 @@ class BaseClient implements HttpMixin
         newline: '',
       }
     });
-    let payload = merge(options, {
+    let payload = merge(merge({}, options), {
       url: endpoint,
       method,
       body: XmlBuilder.buildObject(localParams)
@@ -80,7 +80,7 @@ class BaseClient implements HttpMixin
 
   protected safeRequest(endpoint: string, params: object = {}, method: string = 'post', options: object = {}): Promise<any>
   {
-    options = merge(options, {
+    options = merge(merge({}, options), {
       agentOptions: {
         pfx: Fs.readFileSync(this.app.config.cert_path),
         passphrase: this.app.config.mch_id,

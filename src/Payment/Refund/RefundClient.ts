@@ -16,7 +16,7 @@ export default class RefundClient extends BaseClient
    */
   byOutTradeNumber(number: string, refundNumber: string, totalFee: number, refundFee: number, optional: object = {}): Promise<any>
   {
-    return this.refund(refundNumber, totalFee, refundFee, merge(optional, {
+    return this.refund(refundNumber, totalFee, refundFee, merge(merge({}, optional), {
       out_trade_no: number,
     }));
   }
@@ -31,7 +31,7 @@ export default class RefundClient extends BaseClient
    */
   byTransactionId(transactionId: string, refundNumber: string, totalFee: number, refundFee: number, optional: object = {}): Promise<any>
   {
-    return this.refund(refundNumber, totalFee, refundFee, merge(optional, {
+    return this.refund(refundNumber, totalFee, refundFee, merge(merge({}, optional), {
       transaction_id: transactionId,
     }));
   }

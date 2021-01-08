@@ -32,7 +32,7 @@ export default class UniformMessageClient extends BaseClient
 
   protected formatMessage(data: object): object
   {
-    let params = merge(this.message, data);
+    let params = merge(merge({}, this.message), data);
 
     if (!params['touser']) {
       throw new Error('Attribute "touser" can not be empty!');
@@ -73,7 +73,7 @@ export default class UniformMessageClient extends BaseClient
 
   protected baseFormat(data: object = {}, defaultData: object = {}): object
   {
-    let params = merge(defaultData, data);
+    let params = merge(merge({}, defaultData), data);
 
     for (let key in params) {
       if (inArray(key, this.required) && !params[key] && !defaultData[key]) {

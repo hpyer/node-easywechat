@@ -79,7 +79,7 @@ export default class OpenPlatform extends BaseApplication
       optional['pre_auth_code'] = (await this.createPreAuthorizationCode())['pre_auth_code'];
     }
 
-    return 'https://mp.weixin.qq.com/cgi-bin/componentloginpage?' + buildQueryString(merge(optional, {
+    return 'https://mp.weixin.qq.com/cgi-bin/componentloginpage?' + buildQueryString(merge(merge({}, optional), {
       component_appid: this.config['app_id'],
       redirect_uri: callbackUrl,
     }));
