@@ -144,7 +144,7 @@ export default abstract class BaseApplicatioin
    */
   createDefaultCache(): FileCache
   {
-    return new FileCache(this.config['file_cache'] || {});
+    return new FileCache(this.config.file_cache || null);
   }
 
 };
