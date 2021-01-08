@@ -50,7 +50,7 @@ class BaseClient {
                 newline: '',
             }
         });
-        let payload = Utils_1.merge(options, {
+        let payload = Utils_1.merge(Utils_1.merge({}, options), {
             url: endpoint,
             method,
             body: XmlBuilder.buildObject(localParams)
@@ -76,7 +76,7 @@ class BaseClient {
         });
     }
     safeRequest(endpoint, params = {}, method = 'post', options = {}) {
-        options = Utils_1.merge(options, {
+        options = Utils_1.merge(Utils_1.merge({}, options), {
             agentOptions: {
                 pfx: fs_1.default.readFileSync(this.app.config.cert_path),
                 passphrase: this.app.config.mch_id,

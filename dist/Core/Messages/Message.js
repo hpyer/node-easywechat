@@ -92,7 +92,7 @@ class Message {
         return false;
     }
     merge(attributes) {
-        this.attributes = Utils_1.merge(this.attributes, attributes);
+        this.attributes = Utils_1.merge(Utils_1.merge({}, this.attributes), attributes);
         return this;
     }
     only(keys) {

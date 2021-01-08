@@ -29,7 +29,7 @@ class UniformMessageClient extends TemplateMessageClient_1.default {
         this.required = ['touser', 'template_id', 'form_id', 'miniprogram', 'appid'];
     }
     formatMessage(data) {
-        let params = Utils_1.merge(this.message, data);
+        let params = Utils_1.merge(Utils_1.merge({}, this.message), data);
         if (!params['touser']) {
             throw new Error('Attribute "touser" can not be empty!');
         }
@@ -55,7 +55,7 @@ class UniformMessageClient extends TemplateMessageClient_1.default {
         return params;
     }
     baseFormat(data = {}, defaultData = {}) {
-        let params = Utils_1.merge(defaultData, data);
+        let params = Utils_1.merge(Utils_1.merge({}, defaultData), data);
         for (let key in params) {
             if (Utils_1.inArray(key, this.required) && !params[key] && !defaultData[key]) {
                 throw new Error(`Attribute "${key}" can not be empty!`);

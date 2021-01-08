@@ -20,10 +20,10 @@ class RedpackClient extends BaseClient_1.default {
      * @param mchBillno 商户订单号
      */
     info(mchBillno) {
-        let params = Utils_1.isObject(mchBillno) ? mchBillno : {
+        let data = Utils_1.isObject(mchBillno) ? mchBillno : {
             mch_billno: mchBillno
         };
-        params = Utils_1.merge(params, {
+        let params = Utils_1.merge(Utils_1.merge({}, data), {
             appid: this.app.config.app_id,
             bill_type: 'MCHT',
         });
@@ -31,14 +31,14 @@ class RedpackClient extends BaseClient_1.default {
     }
     /**
      * 发送普通红包
-     * @param params 红包参数
+     * @param data 红包参数
      */
-    sendNormal(params) {
+    sendNormal(data) {
         return __awaiter(this, void 0, void 0, function* () {
-            params = Utils_1.merge(params, {
+            let params = Utils_1.merge(Utils_1.merge({}, data), {
                 wxappid: this.app.config.app_id,
                 total_num: 1,
-                client_ip: params['client_ip'] || (yield this.getServerIp()),
+                client_ip: data['client_ip'] || (yield this.getServerIp()),
             });
             return yield this.safeRequest('mmpaymkttransfers/sendredpack', params);
         });

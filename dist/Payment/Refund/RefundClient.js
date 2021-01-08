@@ -15,7 +15,7 @@ class RefundClient extends BaseClient_1.default {
      * @param optional 其它参数
      */
     byOutTradeNumber(number, refundNumber, totalFee, refundFee, optional = {}) {
-        return this.refund(refundNumber, totalFee, refundFee, Utils_1.merge(optional, {
+        return this.refund(refundNumber, totalFee, refundFee, Utils_1.merge(Utils_1.merge({}, optional), {
             out_trade_no: number,
         }));
     }
@@ -28,7 +28,7 @@ class RefundClient extends BaseClient_1.default {
      * @param optional 其它参数
      */
     byTransactionId(transactionId, refundNumber, totalFee, refundFee, optional = {}) {
-        return this.refund(refundNumber, totalFee, refundFee, Utils_1.merge(optional, {
+        return this.refund(refundNumber, totalFee, refundFee, Utils_1.merge(Utils_1.merge({}, optional), {
             transaction_id: transactionId,
         }));
     }

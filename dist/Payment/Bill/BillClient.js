@@ -26,12 +26,11 @@ class BillClient extends BaseClient_1.default {
         return __awaiter(this, void 0, void 0, function* () {
             options = options || {};
             options['encoding'] = 'binary';
-            let params = {
+            let params = Utils_1.merge({
                 appid: this.app.config.app_id,
                 bill_date: date,
                 bill_type: type,
-            };
-            params = Utils_1.merge(params, options);
+            }, options);
             let res = yield this.requestRaw(this.wrap('pay/downloadbill'), params);
             let content = res.getContent().toString();
             if (content && content.indexOf('<xml>') === 0) {

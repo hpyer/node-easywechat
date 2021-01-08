@@ -17,7 +17,7 @@ class HttpMixin {
         }
         let method = payload['method'].toLowerCase();
         if (this['app'] && this['app'] instanceof BaseApplication_1.default) {
-            payload = Utils_1.merge(this['app'].config.http || {}, payload);
+            payload = Utils_1.merge(Utils_1.merge({}, this['app'].config.http || {}), payload);
         }
         this['app']['log']('debug', 'doRequest', payload);
         return new Promise((resolve, reject) => {

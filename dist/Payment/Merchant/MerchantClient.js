@@ -27,8 +27,8 @@ class MerchantClient extends BaseClient_1.default {
             action: 'query',
         });
     }
-    manage(params, query) {
-        params = Utils_1.merge(params, {
+    manage(data, query) {
+        let params = Utils_1.merge(Utils_1.merge({}, data), {
             appid: this.app.config.app_id,
             nonce_str: '',
             sub_mech_id: '',
