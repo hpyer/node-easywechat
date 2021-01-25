@@ -39,7 +39,7 @@ class BaseClient implements HttpMixin
     }
 
     let localParams = merge(merge(base, this.prepends()), params);
-    localParams['sign_type'] = localParams['sign_type'] || 'md5';
+    localParams['sign_type'] = localParams['sign_type'] || 'MD5';
 
     let secretKey = this.app['getKey'](endpoint);
     localParams['sign'] = makeSignature(localParams, secretKey, localParams['sign_type']);

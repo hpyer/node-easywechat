@@ -39,7 +39,7 @@ class BaseClient {
             base['sub_appid'] = '';
         }
         let localParams = Utils_1.merge(Utils_1.merge(base, this.prepends()), params);
-        localParams['sign_type'] = localParams['sign_type'] || 'md5';
+        localParams['sign_type'] = localParams['sign_type'] || 'MD5';
         let secretKey = this.app['getKey'](endpoint);
         localParams['sign'] = Utils_1.makeSignature(localParams, secretKey, localParams['sign_type']);
         let XmlBuilder = new xml2js_1.default.Builder({
