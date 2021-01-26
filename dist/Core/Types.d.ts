@@ -122,4 +122,14 @@ export declare interface EasyWechatConfig {
      * @scope OfficialAccount
      */
     device_type?: string;
+    /**
+     * 企业id
+     * @scope Work
+     */
+    corp_id?: string;
+    /**
+     * 代理商id
+     * @scope Work
+     */
+    agent_id?: string;
 }

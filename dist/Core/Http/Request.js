@@ -37,6 +37,7 @@ class Request {
             }
             else if (Utils_1.isObject(content)) {
                 this._post = content;
+                this._content = Buffer.from(JSON.stringify(content));
             }
             else if (Utils_1.isString(content)) {
                 try {
@@ -45,6 +46,7 @@ class Request {
                 catch (e) {
                     this._post = Utils_1.parseQueryString(content);
                 }
+                this._content = Buffer.from(content);
             }
             this._get = url_1.default.parse(req.url, true).query;
             // 提取请求ip
@@ -109,7 +111,7 @@ class Request {
                 this._content = yield this.getContent();
             }
             if (!this._post && this._content) {
-                let contentType = (this._headers['content-type'] || '').toLowerCase();
+                let contentType = this._contentType.toLowerCase();
                 if (contentType.indexOf('application/json') > -1) {
                     try {
                         this._post = JSON.parse(this._content.toString());

@@ -12,6 +12,9 @@ class HttpMixin {
         if (typeof payload['baseUrl'] == 'undefined' && this['baseUrl']) {
             payload['baseUrl'] = this['baseUrl'];
         }
+        if (payload['url'].substr(0, 7) == 'http://' || payload['url'].substr(0, 8) == 'https://') {
+            delete payload['baseUrl'];
+        }
         if (typeof payload['method'] == 'undefined') {
             payload['method'] = 'post';
         }
