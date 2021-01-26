@@ -34,6 +34,7 @@ export default class Request implements RequestInterface
       }
       else if (isObject(content)) {
         this._post = <object> content;
+        this._content = Buffer.from(JSON.stringify(content));
       }
       else if (isString(content)) {
         try {
@@ -42,6 +43,7 @@ export default class Request implements RequestInterface
         catch (e) {
           this._post = parseQueryString(<string> content);
         }
+        this._content = Buffer.from(content);
       }
 
       this._get = Url.parse(req.url, true).query;
@@ -112,7 +114,7 @@ export default class Request implements RequestInterface
       this._content = await this.getContent();
     }
     if (!this._post && this._content) {
-      let contentType = (this._headers['content-type'] || '').toLowerCase();
+      let contentType = this._contentType.toLowerCase();
       if (contentType.indexOf('application/json') > -1) {
         try {
           this._post = JSON.parse(this._content.toString());
