@@ -152,7 +152,7 @@ let request = new EasyWechat.Http.Request(req);
 // 当然，由于 IncomingMessage 的 body 流的特殊性，某些框架（目前已知：fastify）
 // 可能会自动读取后挂载到上下文中，从而导致 node-easywechat 去尝试读取时报错。
 // 这时可以选择传入第二个参数，即post的内容
-// 支持 Buffer、object对象、JSON字符串、QueryString格式的POST内容字符串
+// 支持 Buffer、object对象、JSON字符串、XML字符串、QueryString格式的POST内容字符串
 let request = new EasyWechat.Http.Request(req, content);
 
 // 若此法方法仍不能满足你的需求，可以选择继承 EasyWechat.Http.Request 类，
