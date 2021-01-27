@@ -1,4 +1,4 @@
-import BaseApplicatioin from "../../Core/BaseApplication";
+import BaseApplicatioin from "../../Payment/Application";
 import Response from "../../Core/Http/Response";
 export default class Handler {
     SUCCESS: string;
@@ -17,10 +17,9 @@ export default class Handler {
      */
     setFail(message: string): void;
     respondWith(attributes: object, sign?: Boolean): this;
-    toResponse(): Response;
+    toResponse(): Promise<Response>;
     getMessage(): Promise<object>;
-    parseXml(xml: string): Promise<any>;
     decryptMessage(key: string): Promise<string>;
-    protected validate(message: object): void;
+    protected validate(message: object): Promise<void>;
     protected strict(result: any): void;
 }

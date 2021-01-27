@@ -26,7 +26,7 @@ class RefundedHandler extends Handler_1.default {
                 yield this.reqInfo(),
                 this.setFail
             ]));
-            return this.toResponse();
+            return yield this.toResponse();
         });
     }
     reqInfo() {

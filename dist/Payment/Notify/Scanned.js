@@ -43,7 +43,7 @@ class ScannedHandler extends Handler_1.default {
                 attributes['nonce_str'] = Utils_1.randomString(16);
                 attributes['prepay_id'] = result;
             }
-            return this.respondWith(attributes, true).toResponse();
+            return yield this.respondWith(attributes, true).toResponse();
         });
     }
 }

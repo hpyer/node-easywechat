@@ -45,51 +45,37 @@ class Handler {
         return this;
     }
     toResponse() {
-        let base = {
-            return_code: this.fail ? this.FAIL : this.SUCCESS,
-            return_msg: this.fail
-        };
-        let attributes = Utils_1.merge(base, this.attributes);
-        if (this.sign) {
-            attributes['sign'] = Utils_1.makeSignature(attributes, this.app['getKey']());
-        }
-        let XmlBuilder = new xml2js_1.default.Builder({
-            cdata: true,
-            renderOpts: {
-                pretty: false,
-                indent: '',
-                newline: '',
+        return __awaiter(this, void 0, void 0, function* () {
+            let base = {
+                return_code: this.fail ? this.FAIL : this.SUCCESS,
+                return_msg: this.fail
+            };
+            let attributes = Utils_1.merge(base, this.attributes);
+            if (this.sign) {
+                attributes['sign'] = Utils_1.makeSignature(attributes, yield this.app.getKey());
             }
+            let XmlBuilder = new xml2js_1.default.Builder({
+                cdata: true,
+                renderOpts: {
+                    pretty: false,
+                    indent: '',
+                    newline: '',
+                }
+            });
+            return new Response_1.default(XmlBuilder.buildObject(attributes));
         });
-        return new Response_1.default(XmlBuilder.buildObject(attributes));
     }
     getMessage() {
         return __awaiter(this, void 0, void 0, function* () {
-            let message = null;
-            try {
-                let content = yield this.app['request'].getContent();
-                message = yield this.parseXml(content.toString());
-                this.app['log']('Payment.Notify.Handler.getMessage', content.toString(), message);
-            }
-            catch (e) {
-                throw new Error('Invalid request XML: ' + e.message);
-            }
+            let message = yield this.app.request.getAllPost();
+            this.app.log('Payment.Notify.Handler.getMessage', message);
             if (!message) {
-                throw new Error('Invalid request XML.');
+                throw new Error('Invalid request message.');
             }
             if (this.check) {
-                this.validate(message);
+                yield this.validate(message);
             }
             return message;
-        });
-    }
-    parseXml(xml) {
-        return __awaiter(this, void 0, void 0, function* () {
-            let res = yield xml2js_1.default.parseStringPromise(xml);
-            res = Utils_1.singleItem(res);
-            if (res['xml'])
-                res = res['xml'];
-            return res;
         });
     }
     decryptMessage(key) {
@@ -103,10 +89,12 @@ class Handler {
         });
     }
     validate(message) {
-        let sign = message['sign'];
-        if (Utils_1.makeSignature(message, this.app['getKey']()) !== sign) {
-            throw new Error('Invalid Sign');
-        }
+        return __awaiter(this, void 0, void 0, function* () {
+            let sign = message['sign'];
+            if (Utils_1.makeSignature(message, yield this.app.getKey()) !== sign) {
+                throw new Error('Invalid Sign');
+            }
+        });
     }
     strict(result) {
         if (true !== result && this.fail === '') {

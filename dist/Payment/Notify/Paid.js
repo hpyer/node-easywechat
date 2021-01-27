@@ -23,7 +23,7 @@ class PaidHandler extends Handler_1.default {
                 yield this.getMessage(),
                 this.setFail,
             ]));
-            return this.toResponse();
+            return yield this.toResponse();
         });
     }
 }

@@ -16,6 +16,8 @@ export default class Request implements RequestInterface {
     getMethod(): string;
     get(key: string): Promise<any>;
     post(key: string): Promise<any>;
+    getAllGet(): object;
+    getAllPost(): object;
     getContent(): Promise<Buffer>;
     getUri(): string;
     getContentType(): string;
