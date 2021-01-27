@@ -15,6 +15,6 @@ export default class PaidHandler extends Handler
       this.setFail,
     ]));
 
-    return this.toResponse();
+    return await this.toResponse();
   }
 }

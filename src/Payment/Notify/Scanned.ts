@@ -37,7 +37,7 @@ export default class ScannedHandler extends Handler
       attributes['prepay_id'] = result;
     }
 
-    return this.respondWith(attributes, true).toResponse();
+    return await this.respondWith(attributes, true).toResponse();
   }
 
 }

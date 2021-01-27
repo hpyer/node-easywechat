@@ -1,8 +1,8 @@
 'use strict';
 
-import BaseApplicatioin from "../../Core/BaseApplication";
+import BaseApplicatioin from "../../Payment/Application";
 import Xml2js from 'xml2js';
-import { makeSignature, AesDecrypt, createHash, singleItem, merge } from "../../Core/Utils";
+import { makeSignature, AesDecrypt, createHash, merge } from "../../Core/Utils";
 import Response from "../../Core/Http/Response";
 
 export default class Handler
@@ -51,7 +51,7 @@ export default class Handler
     return this;
   }
 
-  toResponse(): Response
+  async toResponse(): Promise<Response>
   {
     let base = {
       return_code: this.fail ? this.FAIL : this.SUCCESS,
@@ -61,7 +61,7 @@ export default class Handler
     let attributes = merge(base, this.attributes);
 
     if (this.sign) {
-      attributes['sign'] = makeSignature(attributes, this.app['getKey']())
+      attributes['sign'] = makeSignature(attributes, await this.app.getKey())
     }
 
     let XmlBuilder = new Xml2js.Builder({
@@ -77,33 +77,18 @@ export default class Handler
 
   async getMessage(): Promise<object>
   {
-    let message: object = null;
-    try {
-      let content = await this.app['request'].getContent();
-      message = await this.parseXml(content.toString());
-      this.app['log']('Payment.Notify.Handler.getMessage', content.toString(), message);
-    }
-    catch (e) {
-      throw new Error('Invalid request XML: ' + e.message);
-    }
+    let message: object = await this.app.request.getAllPost();
+    this.app.log('Payment.Notify.Handler.getMessage', message);
 
     if (!message) {
-      throw new Error('Invalid request XML.');
+      throw new Error('Invalid request message.');
     }
 
     if (this.check) {
-      this.validate(message);
+      await this.validate(message);
     }
 
     return message;
-  }
-
-  async parseXml(xml: string): Promise<any>
-  {
-    let res = await Xml2js.parseStringPromise(xml);
-    res = singleItem(res);
-    if (res['xml']) res = res['xml'];
-    return res;
   }
 
   async decryptMessage(key: string): Promise<string>
@@ -118,11 +103,11 @@ export default class Handler
     return AesDecrypt(buffer.toString(), createHash(this.app.config.key, 'md5'), '', 'AES-256-ECB');
   }
 
-  protected validate(message: object): void
+  protected async validate(message: object): Promise<void>
   {
     let sign = message['sign'];
 
-    if (makeSignature(message, this.app['getKey']()) !== sign) {
+    if (makeSignature(message, await this.app.getKey()) !== sign) {
       throw new Error('Invalid Sign');
     }
   }

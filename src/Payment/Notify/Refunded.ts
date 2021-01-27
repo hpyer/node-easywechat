@@ -18,7 +18,7 @@ export default class RefundedHandler extends Handler
       this.setFail
     ]));
 
-    return this.toResponse();
+    return await this.toResponse();
   }
 
   async reqInfo(): Promise<any>
