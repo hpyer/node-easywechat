@@ -11,9 +11,9 @@ export default class Request implements RequestInterface
   protected _req: IncomingMessage = null;
   protected _uri: string = '';
   protected _method: string = '';
-  protected _headers: object = {};
-  protected _get: object = {};
-  protected _post: object = {};
+  protected _headers: object = null;
+  protected _get: object = null;
+  protected _post: object = null;
   protected _content: Buffer = null;
   protected _contentType: string = '';
   protected _ip: string = '';
@@ -46,7 +46,7 @@ export default class Request implements RequestInterface
         this._content = Buffer.from(content);
       }
 
-      this._get = Url.parse(req.url, true).query;
+      this._get = Url.parse(req.url, true).query || {};
 
       // 提取请求ip
       if (isIp(this._headers['x-client-ip'])) {
