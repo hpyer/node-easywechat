@@ -7,7 +7,7 @@ import Response from '../../Core/Http/Response';
 export default class ScannedHandler extends Handler
 {
   protected check: Boolean = false;
-  protected alert: string = '';
+  protected alert: string = null;
 
   setAlert(message: string): void
   {
@@ -21,16 +21,20 @@ export default class ScannedHandler extends Handler
     }
     let result = await closure.apply(this, [
       await this.getMessage(),
-      this.setFail,
-      this.setAlert,
+      (message: string) => {
+        this.setFail.apply(this, [message]);
+      },
+      (message: string) => {
+        this.setAlert.apply(this, [message]);
+      },
     ]);
 
     let attributes = {
-      result_code: !this.alert && !this.fail ? this.SUCCESS : this.FAIL,
+      result_code: (this.alert === null && this.fail === null) ? this.SUCCESS : this.FAIL,
       err_code_des: this.alert,
     }
 
-    if (!this.alert && isString(result)) {
+    if (this.alert === null && isString(result)) {
       attributes['appid'] = this.app.config.app_id;
       attributes['mch_id'] = this.app.config.mch_id;
       attributes['nonce_str'] = randomString(16);
