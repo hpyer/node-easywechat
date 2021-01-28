@@ -217,11 +217,23 @@ export const singleItem = function (obj: any): any
   return obj;
 };
 
-export const AesDecrypt = function (ciphertext, key, iv, method)
+export const AesDecrypt = function (ciphertext, key, iv = '', method = 'AES-256-ECB')
 {
+  iv = iv || '';
   var decipher = Crypto.createDecipheriv(method, key, iv);
   decipher.setAutoPadding(true)
-  var plaintext = decipher.update(ciphertext, 'hex', 'utf8');
+  var plaintext = decipher.update(ciphertext, 'base64', 'utf8');
   plaintext += decipher.final('utf8');
   return plaintext;
+}
+
+export const AesEncrypt = function (data, key, iv = '', method = 'AES-256-ECB')
+{
+  iv = iv || '';
+  var chunks = [];
+  var cipher = Crypto.createCipheriv(method, key, iv);
+  cipher.setAutoPadding(true);
+  chunks.push(cipher.update(data, 'utf8', 'base64'));
+  chunks.push(cipher.final('base64'));
+  return chunks.join('');
 }
