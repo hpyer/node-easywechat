@@ -3,10 +3,10 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.AesDecrypt = exports.singleItem = exports.strCamel = exports.strStudly = exports.strLcwords = exports.strUcwords = exports.applyMixins = exports.inArray = exports.isIp = exports.isIpv6 = exports.isIpv4 = exports.isFunction = exports.isObject = exports.isNumber = exports.isArray = exports.isString = exports.makeSignature = exports.randomString = exports.parseQueryString = exports.buildQueryString = exports.getTimestamp = exports.createHmac = exports.createHash = exports.merge = void 0;
+exports.AesEncrypt = exports.AesDecrypt = exports.singleItem = exports.strCamel = exports.strStudly = exports.strLcwords = exports.strUcwords = exports.applyMixins = exports.inArray = exports.isIp = exports.isIpv6 = exports.isIpv4 = exports.isFunction = exports.isObject = exports.isNumber = exports.isArray = exports.isString = exports.makeSignature = exports.randomString = exports.parseQueryString = exports.buildQueryString = exports.getTimestamp = exports.createHmac = exports.createHash = exports.merge = void 0;
 const crypto_1 = __importDefault(require("crypto"));
 const qs_1 = __importDefault(require("qs"));
-exports.merge = (target, source) => {
+const merge = (target, source) => {
     if (exports.isObject(source)) {
         if (source.constructor !== Object) {
             target = source;
@@ -34,13 +34,16 @@ exports.merge = (target, source) => {
     }
     return target;
 };
-exports.createHash = function (str, type = 'sha1') {
+exports.merge = merge;
+const createHash = function (str, type = 'sha1') {
     return crypto_1.default.createHash(type).update(str).digest('hex');
 };
-exports.createHmac = function (str, key, type = 'sha256') {
+exports.createHash = createHash;
+const createHmac = function (str, key, type = 'sha256') {
     return crypto_1.default.createHmac(type, key).update(str).digest('hex');
 };
-exports.getTimestamp = function (datetime = null) {
+exports.createHmac = createHmac;
+const getTimestamp = function (datetime = null) {
     let time;
     try {
         time = (exports.isString(datetime) ? new Date(datetime) : new Date).getTime();
@@ -50,13 +53,16 @@ exports.getTimestamp = function (datetime = null) {
     }
     return parseInt((time / 1000).toString());
 };
-exports.buildQueryString = function (data, options = {}) {
+exports.getTimestamp = getTimestamp;
+const buildQueryString = function (data, options = {}) {
     return qs_1.default.stringify(data, options);
 };
-exports.parseQueryString = function (data, options = {}) {
+exports.buildQueryString = buildQueryString;
+const parseQueryString = function (data, options = {}) {
     return qs_1.default.parse(data, options);
 };
-exports.randomString = function (len = 16) {
+exports.parseQueryString = parseQueryString;
+const randomString = function (len = 16) {
     let chars = 'ABCDEFGHJKMNPQRSTWXYZabcdefhijkmnprstwxyz2345678';
     let str = '';
     for (let i = 0; i < len; i++) {
@@ -64,7 +70,8 @@ exports.randomString = function (len = 16) {
     }
     return str;
 };
-exports.makeSignature = function (params, key = '', type = 'md5') {
+exports.randomString = randomString;
+const makeSignature = function (params, key = '', type = 'md5') {
     let paramsString = '';
     let sparator = '';
     let keys = Object.keys(params);
@@ -93,35 +100,44 @@ exports.makeSignature = function (params, key = '', type = 'md5') {
     }
     return (sign + '').toUpperCase();
 };
-exports.isString = function (data) {
+exports.makeSignature = makeSignature;
+const isString = function (data) {
     return Object.prototype.toString.call(data) == '[object String]';
 };
-exports.isArray = function (data) {
+exports.isString = isString;
+const isArray = function (data) {
     return Object.prototype.toString.call(data) == '[object Array]';
 };
-exports.isNumber = function (data) {
+exports.isArray = isArray;
+const isNumber = function (data) {
     return Object.prototype.toString.call(data) == '[object Number]';
 };
-exports.isObject = function (data) {
+exports.isNumber = isNumber;
+const isObject = function (data) {
     return Object.prototype.toString.call(data) == '[object Object]';
 };
-exports.isFunction = function (data) {
+exports.isObject = isObject;
+const isFunction = function (data) {
     return data && toString.call(data) == '[object Function]' || toString.call(data) == '[object AsyncFunction]';
 };
-exports.isIpv4 = function (ip) {
+exports.isFunction = isFunction;
+const isIpv4 = function (ip) {
     if (!ip)
         return false;
     return /^(25[0-5]|2[0-4]\d|[0-1]\d{2}|[1-9]?\d)\.(25[0-5]|2[0-4]\d|[0-1]\d{2}|[1-9]?\d)\.(25[0-5]|2[0-4]\d|[0-1]\d{2}|[1-9]?\d)\.(25[0-5]|2[0-4]\d|[0-1]\d{2}|[1-9]?\d)$/.test(ip);
 };
-exports.isIpv6 = function (ip) {
+exports.isIpv4 = isIpv4;
+const isIpv6 = function (ip) {
     if (!ip)
         return false;
     return /^([\\da-fA-F]{1,4}:){7}([\\da-fA-F]{1,4})$/.test(ip);
 };
-exports.isIp = function (ip) {
+exports.isIpv6 = isIpv6;
+const isIp = function (ip) {
     return exports.isIpv4(ip) || exports.isIpv6(ip);
 };
-exports.inArray = function (data, arr, strict = false) {
+exports.isIp = isIp;
+const inArray = function (data, arr, strict = false) {
     if (!exports.isArray(arr))
         return strict ? data === arr : data == arr;
     if (exports.isFunction(arr.findIndex)) {
@@ -138,35 +154,41 @@ exports.inArray = function (data, arr, strict = false) {
         return flag;
     }
 };
-exports.applyMixins = function (derivedCtor, baseCtors) {
+exports.inArray = inArray;
+const applyMixins = function (derivedCtor, baseCtors) {
     baseCtors.forEach(baseCtor => {
         Object.getOwnPropertyNames(baseCtor.prototype).forEach(name => {
             derivedCtor.prototype[name] = baseCtor.prototype[name];
         });
     });
 };
+exports.applyMixins = applyMixins;
 // 将单词首字母转成大写，'hello word' => 'Hello World'
-exports.strUcwords = function (str) {
+const strUcwords = function (str) {
     return str.replace(/\b[a-z]/gi, function (letter) {
         return letter.toUpperCase();
     });
 };
+exports.strUcwords = strUcwords;
 // 将单词首字母转成小写，'Hello World' => 'hello word'
-exports.strLcwords = function (str) {
+const strLcwords = function (str) {
     return str.replace(/\b[a-z]/gi, function (letter) {
         return letter.toLowerCase();
     });
 };
+exports.strLcwords = strLcwords;
 // 驼峰（首字母大写），'hello word' => 'HelloWorld'
-exports.strStudly = function (value) {
+const strStudly = function (value) {
     return exports.strUcwords(value.replace(/[\-|\_]/gi, ' ')).replace(/\s/gi, '');
 };
+exports.strStudly = strStudly;
 // 驼峰（首字母小写），'hello word' => 'helloWorld'
-exports.strCamel = function (value) {
+const strCamel = function (value) {
     return exports.strLcwords(exports.strStudly(value));
 };
+exports.strCamel = strCamel;
 // 如果只有一个同名、同级节点，则不当作数组
-exports.singleItem = function (obj) {
+const singleItem = function (obj) {
     if (typeof obj == 'object') {
         if (typeof obj.length != 'undefined') {
             if (obj.length == 1) {
@@ -185,10 +207,23 @@ exports.singleItem = function (obj) {
     }
     return obj;
 };
-exports.AesDecrypt = function (ciphertext, key, iv, method) {
+exports.singleItem = singleItem;
+const AesDecrypt = function (ciphertext, key, iv = '', method = 'AES-256-ECB') {
+    iv = iv || '';
     var decipher = crypto_1.default.createDecipheriv(method, key, iv);
     decipher.setAutoPadding(true);
-    var plaintext = decipher.update(ciphertext, 'hex', 'utf8');
+    var plaintext = decipher.update(ciphertext, 'base64', 'utf8');
     plaintext += decipher.final('utf8');
     return plaintext;
 };
+exports.AesDecrypt = AesDecrypt;
+const AesEncrypt = function (data, key, iv = '', method = 'AES-256-ECB') {
+    iv = iv || '';
+    var chunks = [];
+    var cipher = crypto_1.default.createCipheriv(method, key, iv);
+    cipher.setAutoPadding(true);
+    chunks.push(cipher.update(data, 'utf8', 'base64'));
+    chunks.push(cipher.final('base64'));
+    return chunks.join('');
+};
+exports.AesEncrypt = AesEncrypt;

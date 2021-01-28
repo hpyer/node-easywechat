@@ -21,7 +21,9 @@ class PaidHandler extends Handler_1.default {
             }
             this.strict(yield closure.apply(this, [
                 yield this.getMessage(),
-                this.setFail,
+                (message) => {
+                    this.setFail.apply(this, [message]);
+                },
             ]));
             return yield this.toResponse();
         });

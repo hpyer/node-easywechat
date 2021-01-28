@@ -21,7 +21,7 @@ class Handler {
         this.FAIL = 'FAIL';
         this.app = null;
         this.message = null;
-        this.fail = '';
+        this.fail = null;
         this.attributes = {};
         this.check = true;
         this.sign = false;
@@ -47,7 +47,7 @@ class Handler {
     toResponse() {
         return __awaiter(this, void 0, void 0, function* () {
             let base = {
-                return_code: this.fail ? this.FAIL : this.SUCCESS,
+                return_code: this.fail === null ? this.SUCCESS : this.FAIL,
                 return_msg: this.fail
             };
             let attributes = Utils_1.merge(base, this.attributes);
@@ -84,8 +84,7 @@ class Handler {
             if (!message[key]) {
                 return null;
             }
-            let buffer = Buffer.from(message[key], 'base64');
-            return Utils_1.AesDecrypt(buffer.toString(), Utils_1.createHash(this.app.config.key, 'md5'), '', 'AES-256-ECB');
+            return Utils_1.AesDecrypt(message[key], Utils_1.createHash(this.app.config.key, 'md5'), '', 'AES-256-ECB');
         });
     }
     validate(message) {
@@ -97,8 +96,8 @@ class Handler {
         });
     }
     strict(result) {
-        if (true !== result && this.fail === '') {
-            this.fail = result;
+        if (true !== result && this.fail === null) {
+            this.fail = result === false ? '' : result;
         }
     }
 }

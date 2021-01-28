@@ -24,7 +24,9 @@ class RefundedHandler extends Handler_1.default {
             this.strict(yield closure.apply(this, [
                 yield this.getMessage(),
                 yield this.reqInfo(),
-                this.setFail
+                (message) => {
+                    this.setFail.apply(this, [message]);
+                },
             ]));
             return yield this.toResponse();
         });
