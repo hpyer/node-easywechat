@@ -15,7 +15,7 @@ export default class Handler
 
   protected message: object = null;
 
-  protected fail: string = '';
+  protected fail: string = null;
 
   protected attributes: object = {};
 
@@ -54,7 +54,7 @@ export default class Handler
   async toResponse(): Promise<Response>
   {
     let base = {
-      return_code: this.fail ? this.FAIL : this.SUCCESS,
+      return_code: this.fail === null ? this.SUCCESS : this.FAIL,
       return_msg: this.fail
     };
 
@@ -98,9 +98,7 @@ export default class Handler
       return null;
     }
 
-    let buffer = Buffer.from(message[key], 'base64');
-
-    return AesDecrypt(buffer.toString(), createHash(this.app.config.key, 'md5'), '', 'AES-256-ECB');
+    return AesDecrypt(message[key], createHash(this.app.config.key, 'md5'), '', 'AES-256-ECB');
   }
 
   protected async validate(message: object): Promise<void>
@@ -114,8 +112,8 @@ export default class Handler
 
   protected strict(result: any): void
   {
-    if (true !== result && this.fail === '') {
-      this.fail = result;
+    if (true !== result && this.fail === null) {
+      this.fail = result === false ? '' : result;
     }
   }
 

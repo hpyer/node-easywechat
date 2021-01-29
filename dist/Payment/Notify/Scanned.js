@@ -18,7 +18,7 @@ class ScannedHandler extends Handler_1.default {
     constructor() {
         super(...arguments);
         this.check = false;
-        this.alert = '';
+        this.alert = null;
     }
     setAlert(message) {
         this.alert = message;
@@ -30,14 +30,18 @@ class ScannedHandler extends Handler_1.default {
             }
             let result = yield closure.apply(this, [
                 yield this.getMessage(),
-                this.setFail,
-                this.setAlert,
+                (message) => {
+                    this.setFail.apply(this, [message]);
+                },
+                (message) => {
+                    this.setAlert.apply(this, [message]);
+                },
             ]);
             let attributes = {
-                result_code: !this.alert && !this.fail ? this.SUCCESS : this.FAIL,
+                result_code: (this.alert === null && this.fail === null) ? this.SUCCESS : this.FAIL,
                 err_code_des: this.alert,
             };
-            if (!this.alert && Utils_1.isString(result)) {
+            if (this.alert === null && Utils_1.isString(result)) {
                 attributes['appid'] = this.app.config.app_id;
                 attributes['mch_id'] = this.app.config.mch_id;
                 attributes['nonce_str'] = Utils_1.randomString(16);

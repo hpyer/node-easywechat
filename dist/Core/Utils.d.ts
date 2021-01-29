@@ -21,4 +21,5 @@ export declare const strLcwords: (str: string) => string;
 export declare const strStudly: (value: string) => string;
 export declare const strCamel: (value: string) => string;
 export declare const singleItem: (obj: any) => any;
-export declare const AesDecrypt: (ciphertext: any, key: any, iv: any, method: any) => string;
+export declare const AesDecrypt: (ciphertext: any, key: any, iv?: string, method?: string) => string;
+export declare const AesEncrypt: (data: any, key: any, iv?: string, method?: string) => string;

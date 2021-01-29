@@ -12,7 +12,9 @@ export default class PaidHandler extends Handler
     }
     this.strict(await closure.apply(this, [
       await this.getMessage(),
-      this.setFail,
+      (message: string) => {
+        this.setFail.apply(this, [message]);
+      },
     ]));
 
     return await this.toResponse();
