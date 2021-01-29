@@ -25,6 +25,8 @@ export default class OrderClient extends BaseClient
       params['contract_mchid'] = this.app.config.mch_id;
       params['request_serial'] = params['request_serial'] || getTimestamp();
       params['contract_notify_url'] = params['contract_notify_url'] || this.app.config.contract_notify_url;
+
+      return this.request(this.wrap('pay/contractorder'), params);
     }
 
     return this.request(this.wrap('pay/unifiedorder'), params);
