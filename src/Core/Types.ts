@@ -131,6 +131,12 @@ export declare interface EasyWechatConfig {
    */
   contract_notify_url?: string;
 
+  /**
+   * 是否沙盒模式，默认：false
+   * @scope Payment
+   */
+  sandbox?: boolean;
+
 
   /**
    * 刷新token
