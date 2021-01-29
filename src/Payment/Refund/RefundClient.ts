@@ -46,7 +46,7 @@ export default class RefundClient extends BaseClient
     }, optional);
 
     return this.safeRequest(this.wrap(
-      this.app['inSandbox']() ? 'pay/refund' : 'secapi/pay/refund'
+      this.app.inSandbox() ? 'pay/refund' : 'secapi/pay/refund'
     ), params);
   }
 

@@ -1,6 +1,6 @@
 'use strict';
 
-import BaseApplication from '../../Core/BaseApplication';
+import BaseApplication from '../../Payment/Application';
 import HttpMixin from '../../Core/Mixins/HttpMixin';
 import { merge, applyMixins, randomString, makeSignature, singleItem } from '../../Core/Utils';
 import Xml2js from 'xml2js';
@@ -24,7 +24,7 @@ class BaseClient implements HttpMixin
     return {};
   }
 
-  protected request(endpoint: string, params: object = {}, method: string = 'post', options: object = {}, returnResponse: boolean = false): Promise<any>
+  protected async request(endpoint: string, params: object = {}, method: string = 'post', options: object = {}, returnResponse: boolean = false): Promise<any>
   {
     let base = {
       mch_id: this.app.config.mch_id,
@@ -41,7 +41,7 @@ class BaseClient implements HttpMixin
     let localParams = merge(merge(base, this.prepends()), params);
     localParams['sign_type'] = localParams['sign_type'] || 'MD5';
 
-    let secretKey = this.app['getKey'](endpoint);
+    let secretKey = await this.app.getKey(endpoint);
     localParams['sign'] = makeSignature(localParams, secretKey, localParams['sign_type']);
 
     let XmlBuilder = new Xml2js.Builder({
@@ -99,7 +99,7 @@ class BaseClient implements HttpMixin
 
   protected wrap(endpoint: string): string
   {
-    return this.app['inSandbox']() ? `sandboxnew/${endpoint}` : endpoint;
+    return this.app.inSandbox() ? `sandboxnew/${endpoint}` : endpoint;
   }
 
   async getServerIp()

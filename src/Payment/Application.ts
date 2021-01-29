@@ -118,14 +118,14 @@ export default class Payment extends BaseApplication
   scheme(product_id: string): string
   {
     let params = {
-      appid: this.config['app_id'],
-      mch_id: this.config['mch_id'],
+      appid: this.config.app_id,
+      mch_id: this.config.mch_id,
       time_stamp: getTimestamp(),
       nonce_str: randomString(16),
       product_id,
     }
 
-    params['sign'] = makeSignature(params, this.config['key']);
+    params['sign'] = makeSignature(params, this.config.key);
 
     return 'weixin://wxpay/bizpayurl?' + buildQueryString(params);
   }
@@ -135,17 +135,25 @@ export default class Payment extends BaseApplication
     return 'weixin://wxpay/bizpayurl?sr=' + codeUrl;
   }
 
+  /**
+   * 设置子商户
+   * @param mchId
+   * @param appId
+   */
   setSubMerchant(mchId: string, appId: string = null): this
   {
-    this.config['sub_mch_id'] = mchId;
-    this.config['sub_appid'] = appId;
+    this.config.sub_mch_id = mchId;
+    this.config.sub_appid = appId;
 
     return this;
   }
 
+  /**
+   * 判断是否沙盒模式
+   */
   inSandbox(): boolean
   {
-    return !!this.config['sandbox'];
+    return !!this.config.sandbox;
   }
 
   async getKey(endpoint: string = null): Promise<string>
@@ -154,7 +162,7 @@ export default class Payment extends BaseApplication
       return this.config.key;
     }
 
-    let key = this.inSandbox() ? await this['sandbox'].getKey() : this.config.key;
+    let key = this.inSandbox() ? await this.sandbox.getKey() : this.config.key;
 
     if (!key) {
       throw new Error('config key should not empty.');
