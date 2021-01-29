@@ -103,15 +103,20 @@ export declare interface EasyWechatConfig {
      */
     rsa_public_key_path?: string;
     /**
-     * 支付回调URL
+     * 支付通知URL
      * @scope Payment
      */
     notify_url?: string;
     /**
-     * 合同回调URL
+     * 支付签约通知URL
      * @scope Payment
      */
     contract_notify_url?: string;
+    /**
+     * 是否沙盒模式，默认：false
+     * @scope Payment
+     */
+    sandbox?: boolean;
     /**
      * 刷新token
      * @scope OpenPlatform

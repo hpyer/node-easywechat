@@ -34,7 +34,7 @@ class SandboxClient extends BaseClient_1.default {
         });
     }
     getCacheKey() {
-        return 'easywechat.payment.sandbox.' + Utils_1.createHash(this.app.config.app_id, 'md5');
+        return 'easywechat.payment.sandbox.' + Utils_1.createHash(this.app.config.app_id + this.app.config.mch_id, 'md5');
     }
 }
 exports.default = SandboxClient;

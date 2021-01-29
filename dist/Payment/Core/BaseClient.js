@@ -28,43 +28,45 @@ class BaseClient {
         return {};
     }
     request(endpoint, params = {}, method = 'post', options = {}, returnResponse = false) {
-        let base = {
-            mch_id: this.app.config.mch_id,
-            nonce_str: Utils_1.randomString(32),
-        };
-        if (this.app.config.sub_mch_id) {
-            base['sub_mch_id'] = '';
-        }
-        if (this.app.config.sub_appid) {
-            base['sub_appid'] = '';
-        }
-        let localParams = Utils_1.merge(Utils_1.merge(base, this.prepends()), params);
-        localParams['sign_type'] = localParams['sign_type'] || 'MD5';
-        let secretKey = this.app['getKey'](endpoint);
-        localParams['sign'] = Utils_1.makeSignature(localParams, secretKey, localParams['sign_type']);
-        let XmlBuilder = new xml2js_1.default.Builder({
-            cdata: true,
-            renderOpts: {
-                pretty: false,
-                indent: '',
-                newline: '',
+        return __awaiter(this, void 0, void 0, function* () {
+            let base = {
+                mch_id: this.app.config.mch_id,
+                nonce_str: Utils_1.randomString(32),
+            };
+            if (this.app.config.sub_mch_id) {
+                base['sub_mch_id'] = '';
             }
-        });
-        let payload = Utils_1.merge(Utils_1.merge({}, options), {
-            url: endpoint,
-            method,
-            body: XmlBuilder.buildObject(localParams)
-        });
-        return this.doRequest(payload, returnResponse)
-            .then((body) => __awaiter(this, void 0, void 0, function* () {
-            if (!returnResponse) {
-                try {
-                    body = yield this.parseXml(body);
+            if (this.app.config.sub_appid) {
+                base['sub_appid'] = '';
+            }
+            let localParams = Utils_1.merge(Utils_1.merge(base, this.prepends()), params);
+            localParams['sign_type'] = localParams['sign_type'] || 'MD5';
+            let secretKey = yield this.app.getKey(endpoint);
+            localParams['sign'] = Utils_1.makeSignature(localParams, secretKey, localParams['sign_type']);
+            let XmlBuilder = new xml2js_1.default.Builder({
+                cdata: true,
+                renderOpts: {
+                    pretty: false,
+                    indent: '',
+                    newline: '',
                 }
-                catch (e) { }
-            }
-            return body;
-        }));
+            });
+            let payload = Utils_1.merge(Utils_1.merge({}, options), {
+                url: endpoint,
+                method,
+                body: XmlBuilder.buildObject(localParams)
+            });
+            return this.doRequest(payload, returnResponse)
+                .then((body) => __awaiter(this, void 0, void 0, function* () {
+                if (!returnResponse) {
+                    try {
+                        body = yield this.parseXml(body);
+                    }
+                    catch (e) { }
+                }
+                return body;
+            }));
+        });
     }
     parseXml(xml) {
         return __awaiter(this, void 0, void 0, function* () {
@@ -93,7 +95,7 @@ class BaseClient {
         });
     }
     wrap(endpoint) {
-        return this.app['inSandbox']() ? `sandboxnew/${endpoint}` : endpoint;
+        return this.app.inSandbox() ? `sandboxnew/${endpoint}` : endpoint;
     }
     getServerIp() {
         return __awaiter(this, void 0, void 0, function* () {

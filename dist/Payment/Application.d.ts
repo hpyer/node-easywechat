@@ -37,7 +37,15 @@ export default class Payment extends BaseApplication {
     registerProviders(): void;
     scheme(product_id: string): string;
     codeUrlScheme(codeUrl: string): string;
+    /**
+     * 设置子商户
+     * @param mchId
+     * @param appId
+     */
     setSubMerchant(mchId: string, appId?: string): this;
+    /**
+     * 判断是否沙盒模式
+     */
     inSandbox(): boolean;
     getKey(endpoint?: string): Promise<string>;
     /**

@@ -39,7 +39,7 @@ class RefundClient extends BaseClient_1.default {
             total_fee: totalFee,
             refund_fee: refundFee,
         }, optional);
-        return this.safeRequest(this.wrap(this.app['inSandbox']() ? 'pay/refund' : 'secapi/pay/refund'), params);
+        return this.safeRequest(this.wrap(this.app.inSandbox() ? 'pay/refund' : 'secapi/pay/refund'), params);
     }
     /**
      * 根据支付交易号查询退款

@@ -1,4 +1,4 @@
-import BaseApplication from '../../Core/BaseApplication';
+import BaseApplication from '../../Payment/Application';
 import HttpMixin from '../../Core/Mixins/HttpMixin';
 declare class BaseClient implements HttpMixin {
     protected app: BaseApplication;
