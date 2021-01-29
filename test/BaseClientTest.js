@@ -74,7 +74,7 @@ module.exports = class BaseClientTest {
   mockRequest() {
     let args = [...arguments];
     let method = args.shift();
-    return this.app[this.module][method].call(this.app[this.module], args);
+    return this.app[this.module][method].apply(this.app[this.module], args);
   }
 
   /**
