@@ -27,7 +27,7 @@ export default class OrderClient extends BaseClient
       params['contract_notify_url'] = params['contract_notify_url'] || this.app.config.contract_notify_url;
     }
 
-    return this.request(this.wrap('pay/contractorder'), params);
+    return this.request(this.wrap('pay/unifiedorder'), params);
   }
 
   /**
