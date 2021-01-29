@@ -1,5 +1,6 @@
 
 const BaseClientTest = require('../BaseClientTest');
+const Path = require('path');
 
 class TestUnit extends BaseClientTest {
 
@@ -16,7 +17,7 @@ class TestUnit extends BaseClientTest {
     it('checkImage()', async () => {
       this.mockResponse('mock-result');
 
-      let resp = await this.mockRequest('checkImage', 'file_path');
+      let resp = await this.mockRequest('checkImage', Path.resolve(__dirname, '../temp/blank.png'));
 
       this.assert.strictEqual(resp, 'mock-result');
     });
