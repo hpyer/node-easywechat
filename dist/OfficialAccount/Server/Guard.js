@@ -16,7 +16,7 @@ const ServerGuard_1 = __importDefault(require("../../Core/ServerGuard"));
 class Guard extends ServerGuard_1.default {
     shouldReturnRawResponse() {
         return __awaiter(this, void 0, void 0, function* () {
-            return !!(yield this.app['request'].get('echostr'));
+            return !((yield this.app.request.get('echostr')) == null);
         });
     }
 }
