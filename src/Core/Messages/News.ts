@@ -18,7 +18,7 @@ export class News extends Message
 
   propertiesToArray(data, aliases = []): object
   {
-    let newItems: Array<any> = [];
+    let newItems: Array<object> = [];
     try {
       this.get('items').forEach(item => {
         if (item instanceof NewsItem) {
