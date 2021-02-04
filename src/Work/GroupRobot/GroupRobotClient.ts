@@ -4,7 +4,7 @@ import BaseClient from '../../Core/BaseClient';
 import { Message } from './Messages';
 import Messenger from './Messenger';
 
-export default class MessageClient extends BaseClient
+export default class GroupRobotClient extends BaseClient
 {
 
   message(message: Message): Messenger
