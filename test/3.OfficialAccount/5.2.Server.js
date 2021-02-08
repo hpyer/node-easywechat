@@ -1,8 +1,6 @@
 
 const BaseClientTest = require('../BaseClientTest');
 const EasyWechat = require('../../dist');
-const Utils = require('../../dist/Core/Utils');
-const Xml2js = require('xml2js');
 
 class TestUnit extends BaseClientTest {
 
