@@ -142,6 +142,16 @@ export default class OAuthClient extends BaseClient
   }
 
   /**
+   * 设置code参数
+   * @param code
+   */
+  code(code: string): this
+  {
+    this._code = code || '';
+    return this;
+  }
+
+  /**
    * 获取配置中的app_id
    */
   getAppId(): string
@@ -208,15 +218,18 @@ export default class OAuthClient extends BaseClient
   /**
    * 根据code获取用户信息
    * @param code 授权后回调地址带回的code
+   * @param token 授权后的token
    */
-  async user(code: string): Promise<User>
+  async user(code: string = '', token: AccessToken = null): Promise<User>
   {
     this._code = code;
 
-    let token: AccessToken = await this.getToken();
+    if (!token) {
+      token = await this.getToken();
+    }
 
     let user = new User;
-    user.id = token['openid'];
+    user.id = token.openid;
     user.token = token;
 
     if (this.app.config.oauth.scope != 'snsapi_base') {
