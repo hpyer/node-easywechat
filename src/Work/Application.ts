@@ -24,6 +24,7 @@ import Guard from './Server/Guard';
 import UserClient from './User/UserClient';
 import TagClient from './User/TagClient';
 import FinallResult from '../Core/Decorators/FinallResult';
+import MiniProgram from './MiniProgram/Application';
 
 export default class OfficialAccount extends BaseApplication
 {
@@ -149,6 +150,10 @@ export default class OfficialAccount extends BaseApplication
 
   }
 
+  miniProgram(): MiniProgram
+  {
+    return new MiniProgram(this.getConfig());
+  }
 
   // map to `base` module
   getCallbackIp(): Promise<any>
