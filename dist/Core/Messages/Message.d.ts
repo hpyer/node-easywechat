@@ -31,8 +31,8 @@ export declare class Message {
     protected attributes: object;
     protected required: Array<string>;
     setAttributes(attributes: object): this;
-    setAttribute(name: string, value: string): this;
-    set(name: string, value: string): this;
+    setAttribute(name: string, value: any): this;
+    set(name: string, value: any): this;
     getAttribute(name: string, defaultValue?: any): any;
     get(name: string, defaultValue?: any): any;
     has(name: string): boolean;

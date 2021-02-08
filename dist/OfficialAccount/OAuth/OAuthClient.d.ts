@@ -98,6 +98,11 @@ export default class OAuthClient extends BaseClient {
      */
     state(state: string): this;
     /**
+     * 设置code参数
+     * @param code
+     */
+    code(code: string): this;
+    /**
      * 获取配置中的app_id
      */
     getAppId(): string;
@@ -113,7 +118,8 @@ export default class OAuthClient extends BaseClient {
     /**
      * 根据code获取用户信息
      * @param code 授权后回调地址带回的code
+     * @param token 授权后的token
      */
-    user(code: string): Promise<User>;
+    user(code?: string, token?: AccessToken): Promise<User>;
 }
 export {};

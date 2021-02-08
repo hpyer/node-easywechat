@@ -142,6 +142,14 @@ class OAuthClient extends BaseClient_1.default {
         return this;
     }
     /**
+     * 设置code参数
+     * @param code
+     */
+    code(code) {
+        this._code = code || '';
+        return this;
+    }
+    /**
      * 获取配置中的app_id
      */
     getAppId() {
@@ -202,13 +210,16 @@ class OAuthClient extends BaseClient_1.default {
     /**
      * 根据code获取用户信息
      * @param code 授权后回调地址带回的code
+     * @param token 授权后的token
      */
-    user(code) {
+    user(code = '', token = null) {
         return __awaiter(this, void 0, void 0, function* () {
             this._code = code;
-            let token = yield this.getToken();
+            if (!token) {
+                token = yield this.getToken();
+            }
             let user = new User;
-            user.id = token['openid'];
+            user.id = token.openid;
             user.token = token;
             if (this.app.config.oauth.scope != 'snsapi_base') {
                 let params = {
