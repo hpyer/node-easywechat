@@ -6,6 +6,7 @@ import { merge, createHash, isObject, isFunction } from './Utils';
 import Request from './Http/Request';
 import { EasyWechatConfig } from './Types';
 import BaseAccessToken from './BaseAccessToken';
+import BaseClient from './BaseClient';
 
 export default abstract class BaseApplicatioin
 {
@@ -91,6 +92,17 @@ export default abstract class BaseApplicatioin
     if (!this.request) {
       this.request = new Request;
     }
+  }
+
+  /**
+   * 扩展服务模块
+   * @param id 服务模块的id，如：cache、request、access_token
+   * @param func 传入一个闭包，闭包会接收一个指向id模块的实例参数
+   */
+  extend(id: string, func: Function): void
+  {
+    let client: BaseClient = this[id];
+    func(client);
   }
 
   /**

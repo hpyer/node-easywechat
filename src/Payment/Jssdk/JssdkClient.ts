@@ -68,7 +68,7 @@ export default class JssdkClient extends BaseClient
   async shareAddressConfig(accessToken: string | AccessToken, json: Boolean = true): Promise<any>
   {
     if (accessToken instanceof AccessToken) {
-      accessToken = accessToken.getToken();
+      accessToken = accessToken.getToken() as string;
     }
 
     let params = {

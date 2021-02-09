@@ -29,18 +29,20 @@ export class AccessToken {
    */
   scope: string = null;
 
-  constructor(info: object) {
-    this.access_token = info['access_token'] || info['accessToken'] || '';
-    this.expires_in = info['expires_in'] || info['expiresIn'] || 0;
-    this.refresh_token = info['refresh_token'] || info['refreshToken'] || '';
-    this.openid = info['openid'] || '';
-    this.scope = info['scope'] || '';
+  constructor(info: object = null) {
+    if (info) {
+      this.access_token = info['access_token'] || info['accessToken'] || '';
+      this.expires_in = info['expires_in'] || info['expiresIn'] || 0;
+      this.refresh_token = info['refresh_token'] || info['refreshToken'] || '';
+      this.openid = info['openid'] || '';
+      this.scope = info['scope'] || '';
+    }
   }
 
   /**
    * 获取access_token
    */
-  getToken(): string {
+  getToken(): string | Promise<string> {
     return this.access_token;
   }
   /**

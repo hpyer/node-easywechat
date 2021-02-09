@@ -5,7 +5,7 @@ import { merge, isString, buildQueryString } from '../Core/Utils';
 import AuthorizerAccessToken from './Authorizer/Auth/AccessToken';
 import AuthorizerGuard from './Authorizer/Server/Guard';
 import OfficialAccount from './Authorizer/OfficialAccount/Application';
-import OAOauthClient from './Authorizer/OfficialAccount/OAuth/Client';
+import OAuthComponentDelegate from './Authorizer/OfficialAccount/OAuth/ComponentDelegate';
 import OAAccountClient from './Authorizer/OfficialAccount/Account/Client';
 import MiniProgram from './Authorizer/MiniProgram/Application';
 import MPAuthClient from './Authorizer/MiniProgram/Auth/Client';
@@ -153,11 +153,14 @@ export default class OpenPlatform extends BaseApplication
       account: function (app) {
         return new OAAccountClient(app, that);
       },
-      oauth: function (app) {
-        return new OAOauthClient(that);
-      },
     });
-    return new OfficialAccount(this.getAuthorizerConfig(appId, refreshToken), services);
+    let application = new OfficialAccount(this.getAuthorizerConfig(appId, refreshToken), services);
+
+    application.extend('oauth', function (client) {
+      client.component(new OAuthComponentDelegate(that));
+    });
+
+    return application;
   }
 
   /**
