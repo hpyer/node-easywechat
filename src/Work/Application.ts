@@ -25,8 +25,10 @@ import UserClient from './User/UserClient';
 import TagClient from './User/TagClient';
 import FinallResult from '../Core/Decorators/FinallResult';
 import MiniProgram from './MiniProgram/Application';
+import OAuthClient from './OAuth/OAuthClient';
+import AccessTokenDelegate from './OAuth/AccessTokenDelegate';
 
-export default class OfficialAccount extends BaseApplication
+export default class Work extends BaseApplication
 {
   protected defaultConfig: EasyWechatConfig = {
     http: {
@@ -55,6 +57,7 @@ export default class OfficialAccount extends BaseApplication
   public server: Guard = null;
   public user: UserClient = null;
   public tag: TagClient = null;
+  public oauth: OAuthClient = null;
 
   constructor(config: EasyWechatConfig = {}, prepends: Object = {}, id: String = null)
   {
@@ -147,6 +150,17 @@ export default class OfficialAccount extends BaseApplication
         return guard;
       });
     }
+    this.offsetSet('oauth', function (app) {
+      let client = new OAuthClient(app);
+      let scope = app.config.config.oauth.scope || 'snsapi_base';
+      if (scope) {
+        client.scopes(scope);
+      }
+      else {
+        client.setAgentId(app.config.agent_id);
+      }
+      return client.setToken(new AccessTokenDelegate(app));
+    });
 
   }
 
