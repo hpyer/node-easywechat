@@ -19,7 +19,7 @@ const Utils_1 = require("./Utils");
  * 授权后的AccessToken对象
  */
 class AccessToken {
-    constructor(info) {
+    constructor(info = null) {
         /**
          * 网页授权接口调用凭证
          */
@@ -40,11 +40,13 @@ class AccessToken {
          * 授权的作用域
          */
         this.scope = null;
-        this.access_token = info['access_token'] || info['accessToken'] || '';
-        this.expires_in = info['expires_in'] || info['expiresIn'] || 0;
-        this.refresh_token = info['refresh_token'] || info['refreshToken'] || '';
-        this.openid = info['openid'] || '';
-        this.scope = info['scope'] || '';
+        if (info) {
+            this.access_token = info['access_token'] || info['accessToken'] || '';
+            this.expires_in = info['expires_in'] || info['expiresIn'] || 0;
+            this.refresh_token = info['refresh_token'] || info['refreshToken'] || '';
+            this.openid = info['openid'] || '';
+            this.scope = info['scope'] || '';
+        }
     }
     /**
      * 获取access_token

@@ -24,11 +24,11 @@ export declare class AccessToken {
      * 授权的作用域
      */
     scope: string;
-    constructor(info: object);
+    constructor(info?: object);
     /**
      * 获取access_token
      */
-    getToken(): string;
+    getToken(): string | Promise<string>;
     /**
      * 获取access_token
      */

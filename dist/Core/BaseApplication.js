@@ -78,6 +78,15 @@ class BaseApplicatioin {
         }
     }
     /**
+     * 扩展服务模块
+     * @param id 服务模块的id，如：cache、request、access_token
+     * @param func 传入一个闭包，闭包会接收一个指向id模块的实例参数
+     */
+    extend(id, func) {
+        let client = this[id];
+        func(client);
+    }
+    /**
      * 自定义服务模块（重新绑定）
      * @param id 服务模块的id，如：cache、request、access_token
      * @param value 自定义服务模块的实例，可以传入一个闭包，闭包会接收一个指向Application的参数

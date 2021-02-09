@@ -17,10 +17,10 @@ const Utils_1 = require("../Core/Utils");
 const AccessToken_1 = __importDefault(require("./Authorizer/Auth/AccessToken"));
 const Guard_1 = __importDefault(require("./Authorizer/Server/Guard"));
 const Application_1 = __importDefault(require("./Authorizer/OfficialAccount/Application"));
-const Client_1 = __importDefault(require("./Authorizer/OfficialAccount/OAuth/Client"));
-const Client_2 = __importDefault(require("./Authorizer/OfficialAccount/Account/Client"));
+const ComponentDelegate_1 = __importDefault(require("./Authorizer/OfficialAccount/OAuth/ComponentDelegate"));
+const Client_1 = __importDefault(require("./Authorizer/OfficialAccount/Account/Client"));
 const Application_2 = __importDefault(require("./Authorizer/MiniProgram/Application"));
-const Client_3 = __importDefault(require("./Authorizer/MiniProgram/Auth/Client"));
+const Client_2 = __importDefault(require("./Authorizer/MiniProgram/Auth/Client"));
 const VerifyTicket_1 = __importDefault(require("./Auth/VerifyTicket"));
 const AccessToken_2 = __importDefault(require("./Auth/AccessToken"));
 const OpenPlatformBase_1 = __importDefault(require("./Base/OpenPlatformBase"));
@@ -143,13 +143,14 @@ class OpenPlatform extends BaseApplication_1.default {
         let services = Utils_1.merge(Utils_1.merge({}, this.getReplaceServices(accessToken)), {
             encryptor: this.encryptor,
             account: function (app) {
-                return new Client_2.default(app, that);
-            },
-            oauth: function (app) {
-                return new Client_1.default(that);
+                return new Client_1.default(app, that);
             },
         });
-        return new Application_1.default(this.getAuthorizerConfig(appId, refreshToken), services);
+        let application = new Application_1.default(this.getAuthorizerConfig(appId, refreshToken), services);
+        application.extend('oauth', function (client) {
+            client.component(new ComponentDelegate_1.default(that));
+        });
+        return application;
     }
     /**
      * 代理小程序实现业务，返回SDK实例
@@ -161,7 +162,7 @@ class OpenPlatform extends BaseApplication_1.default {
         let that = this;
         let services = Utils_1.merge(Utils_1.merge({}, this.getReplaceServices(accessToken)), {
             auth: function (app) {
-                return new Client_3.default(app, that);
+                return new Client_2.default(app, that);
             },
         });
         return new Application_2.default(this.getAuthorizerConfig(appId, refreshToken), services);

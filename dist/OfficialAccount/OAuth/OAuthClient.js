@@ -12,6 +12,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.OAuthComponent = exports.User = void 0;
 const BaseAccessToken_1 = require("../../Core/BaseAccessToken");
 const BaseClient_1 = __importDefault(require("../../Core/BaseClient"));
 const Utils_1 = require("../../Core/Utils");
@@ -25,6 +26,11 @@ class User {
          * @var {string}
          */
         this.id = '';
+        /**
+         * openid
+         * @var {string}
+         */
+        this.openid = '';
         /**
          * unionid
          * @var {string}
@@ -46,6 +52,11 @@ class User {
          */
         this.avatar = '';
         /**
+         * E-mail
+         * @var {string}
+         */
+        this.email = '';
+        /**
          * 原始数据
          * @var {object}
          */
@@ -61,6 +72,13 @@ class User {
      */
     getId() {
         return this.id;
+    }
+    /**
+     * 获取 openid
+     * @return {string}
+     */
+    getOpenId() {
+        return this.openid;
     }
     /**
      * 获取 unionid
@@ -91,6 +109,13 @@ class User {
         return this.avatar;
     }
     /**
+     * 获取E-mail
+     * @return {string}
+     */
+    getEmail() {
+        return this.email;
+    }
+    /**
      * 获取原始数据
      * @return {object}
      */
@@ -104,7 +129,41 @@ class User {
     getToken() {
         return this.token;
     }
+    /**
+     * 设置AccessToken
+     * @param token
+     */
+    setToken(token) {
+        this.token = token;
+        return this;
+    }
+    merge(attrs) {
+        for (let k in attrs) {
+            this[k] = attrs[k];
+        }
+        return this;
+    }
 }
+exports.User = User;
+;
+/**
+ * OAuth组件
+ */
+class OAuthComponent {
+    /**
+     * 获取应用id
+     */
+    getAppId() {
+        return null;
+    }
+    /**
+     * 获取access_token
+     */
+    getToken() {
+        return null;
+    }
+}
+exports.OAuthComponent = OAuthComponent;
 ;
 /**
  * OAuth客户端
@@ -112,10 +171,16 @@ class User {
 class OAuthClient extends BaseClient_1.default {
     constructor() {
         super(...arguments);
+        this._baseUrl = 'https://api.weixin.qq.com/sns';
         this._scope = 'snsapi_userinfo';
         this._callback = '';
         this._state = '';
         this._code = '';
+        this._scopeSeparator = '';
+        this._withCountryCode = false;
+        this._parameters = {};
+        this._component = null;
+        this._token = null;
     }
     /**
      * 设置scope
@@ -150,6 +215,71 @@ class OAuthClient extends BaseClient_1.default {
         return this;
     }
     /**
+     * 设置scope的分隔符
+     * @param separator
+     */
+    scopeSeparator(separator) {
+        this._scopeSeparator = separator || '';
+        return this;
+    }
+    /**
+     * 设置返回国家地区语言版本
+     */
+    withCountryCode() {
+        this._withCountryCode = true;
+        return this;
+    }
+    component(component) {
+        this._scope = 'snsapi_base';
+        this._component = component;
+        return this;
+    }
+    with(parameters) {
+        this._parameters = parameters;
+        return this;
+    }
+    formatScope(scopes, separator) {
+        if (typeof scopes == 'string') {
+            return scopes;
+        }
+        return scopes.join(separator);
+    }
+    getAuthUrl(state) {
+        let path = 'oauth2/authorize';
+        let scopes = [];
+        if (typeof this._scope == 'string' && this) {
+            scopes = this._scope.split(',');
+        }
+        if (Utils_1.inArray('snsapi_login', scopes)) {
+            path = 'qrconnect';
+        }
+        return this.buildAuthUrlFromBase(`https://open.weixin.qq.com/connect/${path}`, state);
+    }
+    buildAuthUrlFromBase(url, state) {
+        let query = Utils_1.buildQueryString(this.getCodeFields(state));
+        return url + '?' + query + '#wechat_redirect';
+    }
+    getCodeFields(state = null) {
+        if (this._component) {
+            this.with(Utils_1.merge(this._parameters, {
+                component_appid: this._component.getAppId(),
+            }));
+        }
+        let scope = this._scope || this.app.config.oauth.scope || 'snsapi_userinfo';
+        let callback = this._callback || this.app.config.oauth.callback || '';
+        if (callback.substr(0, 7) !== 'http://' && callback.substr(0, 8) !== 'https://') {
+            throw new Error('Please set callback url start with "http://" or "https://"');
+        }
+        return Utils_1.merge({
+            appid: this.getAppId(),
+            redirect_uri: callback,
+            response_type: 'code',
+            scope: this.formatScope(scope, this._scopeSeparator),
+            state: state || '',
+            connect_redirect: 1,
+        }, this._parameters);
+    }
+    /**
      * 获取配置中的app_id
      */
     getAppId() {
@@ -166,46 +296,111 @@ class OAuthClient extends BaseClient_1.default {
                 callback: '',
             };
         }
-        let scope = this._scope || this.app.config.oauth.scope || 'snsapi_userinfo';
-        if (!callback) {
-            callback = this._callback || this.app.config.oauth.callback || '';
+        if (callback) {
+            this._callback = callback;
         }
-        if (callback.substr(0, 7) !== 'http://' && callback.substr(0, 8) !== 'https://') {
-            throw new Error('Please set callback url start with "http://" or "https://"');
-        }
-        let params = {
+        return this.getAuthUrl(this._state);
+    }
+    getTokenFields(code) {
+        return {
             appid: this.getAppId(),
-            redirect_uri: callback,
-            response_type: 'code',
-            scope: scope,
-            state: '',
+            secret: this.app.config.secret,
+            component_appid: this._component ? this._component.getAppId() : null,
+            component_access_token: this._component ? this._component.getToken() : null,
+            code: code,
+            grant_type: 'authorization_code',
         };
-        if (this._state) {
-            params.state = this._state;
+    }
+    getTokenUrl() {
+        if (this._component) {
+            return this._baseUrl + '/oauth2/component/access_token';
         }
-        return 'https://open.weixin.qq.com/connect/oauth2/authorize?' + Utils_1.buildQueryString(params) + '#wechat_redirect';
+        return this._baseUrl + '/oauth2/access_token';
     }
     /**
      * 获取授权后的token
      */
-    getToken() {
+    getToken(code) {
         return __awaiter(this, void 0, void 0, function* () {
+            if (this._token) {
+                return this._token;
+            }
             let res = yield this.doRequest({
-                url: '/sns/oauth2/access_token',
+                url: this.getTokenUrl(),
                 method: 'GET',
-                qs: {
-                    appid: this.getAppId(),
-                    secret: this.app.config.secret,
-                    code: this._code,
-                    grant_type: 'authorization_code',
-                },
+                qs: this.getTokenFields(code),
             });
             if (!res || res['errcode']) {
                 this.app['log']('Fail to fetch access_token', res);
                 throw new Error('Fail to fetch access_token');
             }
-            return new BaseAccessToken_1.AccessToken(res);
+            return this.parseAccessToken(res);
         });
+    }
+    parseAccessToken(res) {
+        if (!res['access_token']) {
+            this.app['log']('Authorize Failed', res);
+            throw new Error('Authorize Failed');
+        }
+        return new BaseAccessToken_1.AccessToken(res);
+    }
+    /**
+     * 设置token
+     */
+    setToken(token) {
+        this._token = token;
+        return this;
+    }
+    /**
+     * 根据token获取用户信息
+     * @param token 授权后的token
+     */
+    getUserByToken(token) {
+        return __awaiter(this, void 0, void 0, function* () {
+            let scopes = token.getScope().split(',');
+            if (Utils_1.inArray('snsapi_base', scopes)) {
+                return token;
+            }
+            if (!token.openid) {
+                throw new Error('openid of AccessToken is required.');
+            }
+            let language = this._withCountryCode ? null : (this._parameters && this._parameters['lang'] ? this._parameters['lang'] : 'zh_CN');
+            let res = yield this.httpGet('/sns/userinfo', {
+                access_token: token.access_token,
+                openid: token.openid,
+                lang: language,
+            });
+            return res;
+        });
+    }
+    arrayItem(data, key = null, defaultValue = null) {
+        if (!data) {
+            return defaultValue;
+        }
+        if (key === null) {
+            return data;
+        }
+        if (typeof data[key] !== 'undefined') {
+            return data[key];
+        }
+        let keys = key.split('.');
+        for (let k in keys) {
+            let segment = keys[k];
+            if (!data || typeof data != 'object' || typeof data[segment] !== 'undefined') {
+                return defaultValue;
+            }
+            data = data[segment];
+        }
+        return data;
+    }
+    mapUserToObject(userData) {
+        let user = new User;
+        user.id = this.arrayItem(userData, 'openid');
+        user.name = this.arrayItem(userData, 'nickname');
+        user.nickname = this.arrayItem(userData, 'nickname');
+        user.avatar = this.arrayItem(userData, 'headimgurl');
+        user.email = null;
+        return user;
     }
     /**
      * 根据code获取用户信息
@@ -214,29 +409,17 @@ class OAuthClient extends BaseClient_1.default {
      */
     user(code = '', token = null) {
         return __awaiter(this, void 0, void 0, function* () {
-            this._code = code;
+            if (code) {
+                this._code = code;
+            }
             if (!token) {
-                token = yield this.getToken();
+                token = yield this.getToken(this._code);
             }
-            let user = new User;
-            user.id = token.openid;
-            user.token = token;
-            if (this.app.config.oauth.scope != 'snsapi_base') {
-                let params = {
-                    access_token: token.access_token,
-                    openid: user.id,
-                    lang: 'zh_CN'
-                };
-                let res = yield this.httpGet('/sns/userinfo', params);
-                if (res && !res['errcode']) {
-                    user.unionid = res['unionid'] || '';
-                    user.nickname = res['nickname'];
-                    user.name = res['nickname'];
-                    user.avatar = res['headimgurl'];
-                    user.original = res;
-                }
-            }
-            return user;
+            let userData = yield this.getUserByToken(token);
+            let user = this.mapUserToObject(userData).merge({
+                original: userData,
+            });
+            return user.setToken(token);
         });
     }
 }
