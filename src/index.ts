@@ -6,6 +6,7 @@ import BaseService from './BaseService/Application';
 import MiniProgram from './MiniProgram/Application';
 import OpenPlatform from './OpenPlatform/Application';
 import Payment from './Payment/Application';
+import Work from './Work/Application';
 import CacheInterface from './Core/Contracts/CacheInterface';
 import FinallResult from './Core/Decorators/FinallResult';
 import TerminateResult from './Core/Decorators/TerminateResult';
@@ -25,7 +26,8 @@ function getInstance(service: 'BaseService', config ?: EasyWechatConfig): BaseSe
 function getInstance(service: 'MiniProgram', config ?: EasyWechatConfig): MiniProgram;
 function getInstance(service: 'OpenPlatform', config ?: EasyWechatConfig): OpenPlatform;
 function getInstance(service: 'Payment', config?: EasyWechatConfig): Payment;
-function getInstance(service: 'OfficialAccount' | 'BaseService' | 'MiniProgram' | 'OpenPlatform' | 'Payment', config ?: EasyWechatConfig) {
+function getInstance(service: 'Work', config?: EasyWechatConfig): Work;
+function getInstance(service: 'OfficialAccount' | 'BaseService' | 'MiniProgram' | 'OpenPlatform' | 'Payment' | 'Work', config ?: EasyWechatConfig) {
   try {
     let s = strStudly(service);
     let applicationClass = this[s];
@@ -61,6 +63,10 @@ class EasyWechat {
      * 支付类
      */
     Payment: typeof Payment;
+    /**
+     * 企业微信类
+     */
+    Work: typeof Work;
 
 
     /**
@@ -115,6 +121,7 @@ class EasyWechat {
       MiniProgram: MiniProgram,
       OpenPlatform: OpenPlatform,
       Payment: Payment,
+      Work: Work,
       getInstance: getInstance,
     };
 
