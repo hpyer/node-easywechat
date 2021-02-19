@@ -1,6 +1,6 @@
 'use strict';
 
-import { Message } from '.';
+import { Message } from './Message';
 
 export class NewsItem extends Message
 {
