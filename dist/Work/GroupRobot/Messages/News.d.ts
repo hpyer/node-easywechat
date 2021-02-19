@@ -1,4 +1,5 @@
-import { Message, NewsItem } from '.';
+import { Message } from './Message';
+import { NewsItem } from './NewsItem';
 export declare class News extends Message {
     protected type: string;
     protected properties: Array<string>;

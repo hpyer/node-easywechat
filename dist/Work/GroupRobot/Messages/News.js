@@ -1,8 +1,9 @@
 'use strict';
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.News = void 0;
-const _1 = require(".");
-class News extends _1.Message {
+const Message_1 = require("./Message");
+const NewsItem_1 = require("./NewsItem");
+class News extends Message_1.Message {
     constructor(items) {
         super({
             items,
@@ -14,7 +15,7 @@ class News extends _1.Message {
         let newItems = [];
         try {
             this.get('items').forEach(item => {
-                if (item instanceof _1.NewsItem) {
+                if (item instanceof NewsItem_1.NewsItem) {
                     newItems.push(item.toJsonArray());
                 }
             });

@@ -1,8 +1,8 @@
 'use strict';
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.NewsItem = void 0;
-const _1 = require(".");
-class NewsItem extends _1.Message {
+const Message_1 = require("./Message");
+class NewsItem extends Message_1.Message {
     constructor() {
         super(...arguments);
         this.type = 'news';

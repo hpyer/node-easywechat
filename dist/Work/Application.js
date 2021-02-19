@@ -180,7 +180,7 @@ class Work extends BaseApplication_1.default {
                 let guard = new Guard_1.default(app);
                 guard.push(function (payload) {
                     return __awaiter(this, void 0, void 0, function* () {
-                        let str = yield this.app.request.get('echostr');
+                        let str = yield app.request.get('echostr');
                         if (str) {
                             return new FinallResult_1.default(str);
                         }
@@ -191,7 +191,10 @@ class Work extends BaseApplication_1.default {
         }
         this.offsetSet('oauth', function (app) {
             let client = new OAuthClient_1.default(app);
-            let scope = app.config.config.oauth.scope || 'snsapi_base';
+            let scope = 'snsapi_base';
+            if (app.config.oauth && app.config.oauth.scope) {
+                scope = app.config.oauth.scope;
+            }
             if (scope) {
                 client.scopes(scope);
             }

@@ -1,4 +1,4 @@
-import { Message } from '.';
+import { Message } from './Message';
 export declare class Image extends Message {
     protected type: string;
     protected properties: Array<string>;

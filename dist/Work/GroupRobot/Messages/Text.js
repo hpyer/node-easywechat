@@ -1,8 +1,8 @@
 'use strict';
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.Text = void 0;
-const _1 = require(".");
-class Text extends _1.Message {
+const Message_1 = require("./Message");
+class Text extends Message_1.Message {
     constructor(content, userIds = [], mobiles = []) {
         super({
             content,
