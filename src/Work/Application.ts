@@ -27,6 +27,13 @@ import FinallResult from '../Core/Decorators/FinallResult';
 import MiniProgram from './MiniProgram/Application';
 import OAuthClient from './OAuth/OAuthClient';
 import AccessTokenDelegate from './OAuth/AccessTokenDelegate';
+import ExternalContactClient from './ExternalContact/Client';
+import ExternalContactWayClient from './ExternalContact/ContactWayClient';
+import ExternalStatisticsClient from './ExternalContact/StatisticsClient';
+import ExternalMessageClient from './ExternalContact/MessageClient';
+import ExternalSchoolClient from './ExternalContact/SchoolClient';
+import ExternalMomentClient from './ExternalContact/MomentClient';
+import CorpGroupClient from './CorpGroup/CorpGroupClient';
 
 export default class Work extends BaseApplication
 {
@@ -42,7 +49,14 @@ export default class Work extends BaseApplication
   public base: WorkBase = null;
   public calendar: CalendarClient = null;
   public chat: ChatClient = null;
+  public corp_group: CorpGroupClient = null;
   public department: DepartmentClient = null;
+  public external_contact: ExternalContactClient = null;
+  public contact_way: ExternalContactWayClient = null;
+  public external_contact_statistics: ExternalStatisticsClient = null;
+  public external_contact_message: ExternalMessageClient = null;
+  public school: ExternalSchoolClient = null;
+  public external_contact_moment: ExternalMomentClient = null;
   public group_robot: GroupRobotClient = null;
   public group_robot_messenger: GroupRobotMessenger = null;
   public invoice: InvoiceClient = null;
@@ -90,8 +104,29 @@ export default class Work extends BaseApplication
     this.offsetSet('chat', function (app) {
       return new ChatClient(app);
     });
+    this.offsetSet('corp_group', function (app) {
+      return new CorpGroupClient(app);
+    });
     this.offsetSet('department', function (app) {
       return new DepartmentClient(app);
+    });
+    this.offsetSet('external_contact', function (app) {
+      return new ExternalContactClient(app);
+    });
+    this.offsetSet('contact_way', function (app) {
+      return new ExternalContactWayClient(app);
+    });
+    this.offsetSet('external_contact_statistics', function (app) {
+      return new ExternalStatisticsClient(app);
+    });
+    this.offsetSet('external_contact_message', function (app) {
+      return new ExternalMessageClient(app);
+    });
+    this.offsetSet('school', function (app) {
+      return new ExternalSchoolClient(app);
+    });
+    this.offsetSet('external_contact_moment', function (app) {
+      return new ExternalMomentClient(app);
     });
     this.offsetSet('group_robot', function (app) {
       return new GroupRobotClient(app);
