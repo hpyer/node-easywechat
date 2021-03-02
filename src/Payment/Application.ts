@@ -21,7 +21,7 @@ import SandboxClient from './Sandbox/SandboxClient';
 import TransferClient from './Transfer/TransferClient';
 import SecurityClient from './Security/SecurityClient';
 import ProfitSharingClient from './ProfitSharing/ProfitSharingClient';
-import { EasyWechatConfig } from '../Core/Types';
+import { EasyWechatConfig, PaymentPaidHandler, PaymentRefundedHandler, PaymentScannedHandler } from '../Core/Types';
 
 export default class Payment extends BaseApplication
 {
@@ -179,7 +179,7 @@ export default class Payment extends BaseApplication
    * 处理付款结果通知
    * @param closure 处理函数。需接收2个参数，第1个参数通知消息message，第2个参数为设置错误消息的方法。处理函数需要return true;表示处理成功
    */
-  handlePaidNotify(closure: Function): Promise<Response>
+  handlePaidNotify(closure: PaymentPaidHandler): Promise<Response>
   {
     return (new PaidNotify(this)).handle(closure);
   }
@@ -187,7 +187,7 @@ export default class Payment extends BaseApplication
    * 处理退款结果通知
    * @param closure 处理函数。需接收3个参数，第1个参数通知消息message，第2个参数为message['req_info']解密后的信息，第3个参数为设置错误消息的方法。处理函数需要return true;表示处理成功
    */
-  handleRefundedNotify(closure: Function): Promise<Response>
+  handleRefundedNotify(closure: PaymentRefundedHandler): Promise<Response>
   {
     return (new RefundedNotify(this)).handle(closure);
   }
@@ -195,7 +195,7 @@ export default class Payment extends BaseApplication
    * 扫码支付通知
    * @param closure 处理函数。需接收3个参数，第1个参数通知消息message，第2个参数返回“通信错误”给微信，第3个参数返回“业务错误”给微信。处理函数需要return prepay_id
    */
-  handleScannedNotify(closure: Function): Promise<Response>
+  handleScannedNotify(closure: PaymentScannedHandler): Promise<Response>
   {
     return (new ScannedNotify(this)).handle(closure);
   }

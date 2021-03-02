@@ -7,31 +7,32 @@ import { createHash, isString, isNumber, isArray, getTimestamp } from './Utils';
 import Xml2js from 'xml2js';
 import FinallResult from './Decorators/FinallResult';
 import TerminateResult from './Decorators/TerminateResult';
+import { ServerHandler, ServerHandlers } from './Types';
 
 export default class ServerGuard
 {
   static SUCCESS_EMPTY_RESPONSE: string = 'success';
 
   static MESSAGE_TYPE_MAPPING: object = {
-    text: Message.TEXT,
-    image: Message.IMAGE,
-    voice: Message.VOICE,
-    video: Message.VIDEO,
-    shortvideo: Message.SHORT_VIDEO,
-    location: Message.LOCATION,
-    link: Message.LINK,
-    device_event: Message.DEVICE_EVENT,
-    device_text: Message.DEVICE_TEXT,
-    event: Message.EVENT,
-    file: Message.FILE,
-    miniprogrampage: Message.MINIPROGRAM_PAGE,
+    text: Message.TEXT + '',
+    image: Message.IMAGE + '',
+    voice: Message.VOICE + '',
+    video: Message.VIDEO + '',
+    shortvideo: Message.SHORT_VIDEO + '',
+    location: Message.LOCATION + '',
+    link: Message.LINK + '',
+    device_event: Message.DEVICE_EVENT + '',
+    device_text: Message.DEVICE_TEXT + '',
+    event: Message.EVENT + '',
+    file: Message.FILE + '',
+    miniprogrampage: Message.MINIPROGRAM_PAGE + '',
   };
 
   protected app: BaseApplication = null;
 
   protected alwaysValidate: boolean = false;
 
-  protected handlers: Object = {}
+  protected handlers: ServerHandlers = {}
 
 
   constructor(app: BaseApplication)
@@ -44,7 +45,7 @@ export default class ServerGuard
    * @param condition EasyWechat.Messages.Message.xxx，用于处理特定消息类型，默认：* 表示全部
    * @param handler 处理函数，该函数需要接收一个消息对象
    */
-  on(condition: string, handler: Function): void
+  on(condition: string, handler: ServerHandler): void
   {
     this.push(handler, condition);
   }
@@ -53,7 +54,7 @@ export default class ServerGuard
    * @param condition EasyWechat.Messages.Message.xxx，用于处理特定消息类型，默认：* 表示全部
    * @param handler 处理函数，该函数需要接收一个消息对象
    */
-  observe(condition: string, handler: Function): void
+  observe(condition: string, handler: ServerHandler): void
   {
     this.push(handler, condition);
   }
@@ -63,7 +64,7 @@ export default class ServerGuard
    * @param handler 处理函数，该函数需要接收一个消息对象
    * @param condition EasyWechat.Messages.Message.xxx，用于处理特定消息类型，默认：* 表示全部
    */
-  push (handler: Function, condition: string = '*'): void
+  push(handler: ServerHandler, condition: string = '*'): void
   {
     if (!this.handlers[condition]) {
       this.handlers[condition] = [];
@@ -112,7 +113,7 @@ export default class ServerGuard
     return result instanceof FinallResult ? result.content : result;
   }
 
-  protected async _callHandler(handler: Function, payload: any): Promise<any>
+  protected async _callHandler(handler: ServerHandler, payload: any): Promise<any>
   {
     try {
       if (typeof handler == 'function') {
@@ -288,7 +289,7 @@ export default class ServerGuard
    */
   async getMessage(): Promise<object>
   {
-    let content = await this.app['request'].getContent();
+    let content = await this.app.request.getContent();
     let message = await this.parseMessage(content ? content.toString() : '');
 
     // console.log('message', message, typeof message);
@@ -298,14 +299,14 @@ export default class ServerGuard
     // }
 
     if (await this.isSafeMode() && message['Encrypt']) {
-      let decrypted = await this.decryptMessage(message);
+      let decrypted: string = await this.decryptMessage(message);
       message = await this.parseMessage(decrypted);
     }
 
     return message;
   }
 
-  protected async parseMessage(content): Promise<any>
+  protected async parseMessage(content: string): Promise<any>
   {
     try {
       if (!content) {
@@ -351,7 +352,7 @@ export default class ServerGuard
     });
   }
 
-  protected async decryptMessage(message: object)
+  protected async decryptMessage(message: object): Promise<string>
   {
     return this.app['encryptor'].decrypt(
       message['Encrypt'],

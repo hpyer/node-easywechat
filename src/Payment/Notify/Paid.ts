@@ -2,10 +2,11 @@
 
 import Handler from './Handler';
 import Response from "../../Core/Http/Response";
+import { PaymentPaidHandler } from '../../Core/Types';
 
 export default class PaidHandler extends Handler
 {
-  async handle(closure: Function): Promise<Response>
+  async handle(closure: PaymentPaidHandler): Promise<Response>
   {
     if (typeof closure != 'function') {
       throw new Error('Should pass an closure function');

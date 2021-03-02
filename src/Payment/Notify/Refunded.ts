@@ -4,10 +4,11 @@ import Handler from './Handler';
 import Xml2js from 'xml2js';
 import Response from '../../Core/Http/Response';
 import { singleItem } from '../../Core/Utils';
+import { PaymentRefundedHandler } from '../../Core/Types';
 
 export default class RefundedHandler extends Handler
 {
-  async handle(closure: Function): Promise<Response>
+  async handle(closure: PaymentRefundedHandler): Promise<Response>
   {
     if (typeof closure != 'function') {
       throw new Error('Should pass an closure function');
