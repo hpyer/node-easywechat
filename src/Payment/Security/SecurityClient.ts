@@ -12,7 +12,6 @@ export default class SecurityClient extends BaseClient
   {
     let params = {
       sign_type: 'MD5',
-      baseUrl: '',
     };
 
     return this.safeRequest('https://fraud.mch.weixin.qq.com/risk/getpublickey', params);

@@ -114,10 +114,10 @@ export default class Client extends BaseClient
       ticket,
     }
     let res = await this.requestRaw({
-      baseUrl: '',
+      baseURL: '',
       url: baseUrl,
       method: 'GET',
-      qs: params,
+      params: params,
     });
     return {
       status: res.getStatusCode(),

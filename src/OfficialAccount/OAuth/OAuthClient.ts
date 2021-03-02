@@ -360,11 +360,12 @@ export default class OAuthClient extends BaseClient
       return this._token;
     }
 
-    let res = await this.doRequest({
+    let response = await this.doRequest({
       url: this.getTokenUrl(),
       method: 'GET',
-      qs: this.getTokenFields(code),
+      params: this.getTokenFields(code),
     });
+    let res = response.data;
     if (!res || res['errcode']) {
       this.app['log']('Fail to fetch access_token', res);
       throw new Error('Fail to fetch access_token');

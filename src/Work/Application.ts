@@ -39,7 +39,7 @@ export default class Work extends BaseApplication
 {
   protected defaultConfig: EasyWechatConfig = {
     http: {
-      baseUrl: 'https://qyapi.weixin.qq.com/',
+      baseURL: 'https://qyapi.weixin.qq.com/',
     },
   };
 

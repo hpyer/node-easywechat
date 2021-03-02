@@ -4,6 +4,7 @@ import Fs from 'fs';
 import BaseClient from '../../Core/BaseClient';
 import { inArray, isString } from '../../Core/Utils';
 import StreamResponse from '../../Core/Http/StreamResponse';
+import FormData from 'form-data';
 
 export default class MediaClient extends BaseClient
 {
@@ -53,17 +54,15 @@ export default class MediaClient extends BaseClient
     if (!file) {
       throw new Error(`File does not exist, or the file is unreadable: '${file}'`);
     }
-    if (isString(file)) {
-      file = Fs.createReadStream(file);
-    }
 
     if (!inArray(type, this.allowTypes)) {
       throw new Error(`Unsupported media type: '${type}'`);
     }
 
-    return this.httpPost('media/upload', {
-      media: file,
-      type,
+    return this.httpUpload('media/upload', {
+      media: file
+    }, {}, {
+      type
     });
   }
 
@@ -106,7 +105,7 @@ export default class MediaClient extends BaseClient
     let res = await this.requestRaw({
       url: 'media/get',
       method: 'GET',
-      qs: {
+      params: {
         media_id,
       }
     });
@@ -127,7 +126,7 @@ export default class MediaClient extends BaseClient
     let res = await this.requestRaw({
       url: 'media/get/jssdk',
       method: 'GET',
-      qs: {
+      params: {
         media_id,
       }
     });

@@ -14,7 +14,7 @@ export default class MediaClient extends BaseClient
     let res = await this.requestRaw({
       url: 'cgi-bin/media/get',
       method: 'GET',
-      qs: {
+      params: {
         media_id: mediaId,
       }
     });

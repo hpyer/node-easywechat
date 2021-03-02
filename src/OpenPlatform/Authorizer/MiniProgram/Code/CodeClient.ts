@@ -31,7 +31,7 @@ export default class CodeClient extends BaseClient
     return this.requestRaw({
       url: 'wxa/get_qrcode',
       method: 'GET',
-      qs: {
+      params: {
         path,
       },
     });

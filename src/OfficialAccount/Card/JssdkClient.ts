@@ -16,12 +16,8 @@ export default class JssdkClient extends Jssdk
       return await cacher.get(cacheKey);
     }
 
-    let res = await this.request({
-      url: this.ticketEndpoint,
-      method: 'get',
-      qs: {
-        type,
-      },
+    let res = await this.httpGet(this.ticketEndpoint, {
+      type,
     });
     await cacher.set(cacheKey, res, res['expires_in'] - 500);
 

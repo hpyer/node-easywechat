@@ -51,8 +51,7 @@ export default class AppCodeClient extends BaseClient
     let res = await this.requestRaw({
       url: api,
       method: 'POST',
-      json: true,
-      body: params
+      data: params
     });
 
     if (res.getHeader('content-disposition').indexOf('attachment') > -1) {

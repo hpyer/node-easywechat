@@ -5,8 +5,9 @@ import HttpMixin from '../../Core/Mixins/HttpMixin';
 import { merge, applyMixins, randomString, makeSignature, singleItem } from '../../Core/Utils';
 import Xml2js from 'xml2js';
 import Fs from 'fs';
-import RawBody from 'raw-body';
 import Response from '../../Core/Http/Response';
+import Https from 'https';
+import { AxiosRequestConfig, AxiosResponse } from 'axios';
 
 class BaseClient implements HttpMixin
 {
@@ -24,7 +25,7 @@ class BaseClient implements HttpMixin
     return {};
   }
 
-  protected async request(endpoint: string, params: object = {}, method: string = 'post', options: object = {}, returnResponse: boolean = false): Promise<any>
+  protected async request(endpoint: string, params: object = {}, method: string = 'post', options: AxiosRequestConfig = {}, returnResponse: boolean = false): Promise<AxiosResponse<any>>
   {
     let base = {
       mch_id: this.app.config.mch_id,
@@ -55,19 +56,22 @@ class BaseClient implements HttpMixin
     let payload = merge(merge({}, options), {
       url: endpoint,
       method,
-      body: XmlBuilder.buildObject(localParams)
+      responseType: 'text',
+      data: XmlBuilder.buildObject(localParams)
     });
 
-    return this.doRequest(payload, returnResponse)
-      .then(async body => {
-        if (!returnResponse) {
-          try {
-            body = await this.parseXml(body);
-          }
-          catch (e) { }
-        }
-        return body;
-      });
+    let response = await this.doRequest(payload);
+    if (returnResponse) {
+      return response;
+    }
+    else {
+      let body = response.data;
+      try {
+        body = await this.parseXml(body);
+      }
+      catch (e) { }
+      return body;
+    }
   }
 
   async parseXml(xml: string): Promise<any>
@@ -78,23 +82,22 @@ class BaseClient implements HttpMixin
     return res;
   }
 
-  protected safeRequest(endpoint: string, params: object = {}, method: string = 'post', options: object = {}): Promise<any>
+  protected safeRequest(endpoint: string, params: object = {}, method: string = 'post', options: AxiosRequestConfig = {}): Promise<any>
   {
     options = merge(merge({}, options), {
-      agentOptions: {
+      httpsAgent: new Https.Agent({
         pfx: Fs.readFileSync(this.app.config.cert_path),
         passphrase: this.app.config.mch_id,
-      }
+      }),
     });
     return this.request(endpoint, params, method, options);
   }
 
-  protected async requestRaw(endpoint: string, params: object = {}, method: string = 'post', options: object = {}): Promise<any>
+  protected async requestRaw(endpoint: string, params: object = {}, method: string = 'post', options: AxiosRequestConfig = {}): Promise<any>
   {
-    options['encoding'] = null;
+    options.responseType = 'arraybuffer';
     let res = await this.request(endpoint, params, method, options, true);
-    let body = await RawBody(res);
-    return new Response(body, res.statusCode, res.headers);
+    return new Response(res.data, res.status, res.headers);
   }
 
   protected wrap(endpoint: string): string
@@ -106,7 +109,7 @@ class BaseClient implements HttpMixin
   {
     if (!this.serverIp) {
       let res = await this.doRequest({
-        baseUrl: '',
+        baseURL: '',
         url: 'https://api.ipify.org?format=json',
         method: 'GET',
       });
@@ -125,7 +128,9 @@ class BaseClient implements HttpMixin
 
 
   // Rewrite by HttpMixin
-  async doRequest(payload: object, returnResponse: Boolean = false): Promise<any> { }
+  async doRequest(payload: AxiosRequestConfig): Promise<AxiosResponse<any>> {
+    return null;
+  }
 
 };
 

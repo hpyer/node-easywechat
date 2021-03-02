@@ -5,6 +5,7 @@ import BaseClient from '../../Core/BaseClient';
 import { inArray, isString, isObject } from '../../Core/Utils';
 import { Article } from '../../Core/Messages';
 import StreamResponse from '../../Core/Http/StreamResponse';
+import FormData from 'form-data';
 
 export default class MaterialClient extends BaseClient
 {
@@ -60,7 +61,7 @@ export default class MaterialClient extends BaseClient
     return this.upload('news_image', file);
   }
 
-  protected upload(type: string, file: any, formData: object = {}): Promise<any>
+  protected upload(type: string, file: any, form: object = {}): Promise<any>
   {
     if (!file) {
       throw new Error(`File does not exist, or the file is unreadable: '${file}'`);
@@ -73,11 +74,12 @@ export default class MaterialClient extends BaseClient
       throw new Error(`Unsupported media type: '${type}'`);
     }
 
-    if (!formData || !isObject(formData)) {
-      formData = {};
+    let formData = new FormData();
+    formData.append('media', file);
+    formData.append('type', type);
+    for (let key in form) {
+      formData.append(key, form[key]);
     }
-    formData['media'] = file;
-    formData['type'] = type;
 
     return this.httpPost(this.getApiByType(type), formData);
   }
@@ -151,8 +153,7 @@ export default class MaterialClient extends BaseClient
     let res = await this.requestRaw({
       url: 'cgi-bin/material/get_material',
       method: 'POST',
-      json: true,
-      body: {
+      data: {
         media_id,
       }
     });

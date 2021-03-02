@@ -1,53 +1,46 @@
 'use strict';
 
-import Request from 'request';
+import Axios, { AxiosRequestConfig, AxiosResponse } from 'axios';
 import BaseApplicatioin from '../BaseApplication';
 import { merge } from '../Utils';
+import FormData from 'form-data';
 
 export default class HttpMixin
 {
 
-  doRequest(payload: object, returnResponse: Boolean = false): Promise<any>
+  async doRequest(payload: AxiosRequestConfig): Promise<AxiosResponse<any>>
   {
-    payload = payload || {};
-    if (typeof payload['baseUrl'] == 'undefined' && this['baseUrl']) {
-      payload['baseUrl'] = this['baseUrl'];
+    let opts = merge({}, payload || {}) as AxiosRequestConfig;
+    if (typeof opts.baseURL == 'undefined' && this['baseUrl']) {
+      opts.baseURL = this['baseUrl'];
     }
-    if (payload['url'].substr(0, 7) == 'http://' || payload['url'].substr(0, 8) == 'https://') {
-      delete payload['baseUrl'];
+    if (opts.url.substr(0, 7) == 'http://' || opts.url.substr(0, 8) == 'https://') {
+      delete opts.baseURL;
     }
-    if (typeof payload['method'] == 'undefined') {
-      payload['method'] = 'post';
+    if (typeof opts.method == 'undefined') {
+      opts.method = 'post';
     }
-    let method = payload['method'].toLowerCase();
+    if (!opts.responseType) {
+      opts.responseType = 'json';
+    }
     if (this['app'] && this['app'] instanceof BaseApplicatioin) {
-      payload = merge(merge({}, this['app'].config.http || {}), payload);
+      opts = merge(merge({}, this['app'].config.http || {}), opts);
     }
-    this['app']['log']('debug', 'doRequest', payload);
-    return new Promise(
-      (resolve, reject) => {
-        Request[method](
-          payload,
-          function (error, response, body) {
-            if (error) {
-              reject(error);
-            }
-            else {
-              if (returnResponse) {
-                resolve(response);
-              }
-              else {
-                try {
-                  body = JSON.parse(body);
-                }
-                catch (e) { }
-                resolve(body);
-              }
-            }
+    if (opts.data && opts.data instanceof FormData) {
+      opts.headers = merge(opts.headers || {}, opts.data.getHeaders());
+      opts.headers['Content-Length'] = await new Promise((resolve, reject) => {
+        opts.data.getLength((err, length) => {
+          if (err) {
+            resolve(0);
           }
-        );
-      }
-    );
+          else {
+            resolve(length);
+          }
+        });
+      });
+    }
+    this['app']['log']('debug', 'doRequest', opts);
+    return Axios.request(opts);
   }
 
 };

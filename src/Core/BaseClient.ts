@@ -3,9 +3,11 @@
 import BaseAccessToken from './BaseAccessToken';
 import BaseApplication from './BaseApplication';
 import HttpMixin from './Mixins/HttpMixin';
-import { merge, applyMixins, isString } from './Utils';
+import { applyMixins, isString } from './Utils';
 import Fs from 'fs';
 import Response from './Http/Response';
+import { AxiosRequestConfig, AxiosResponse } from 'axios';
+import FormData from 'form-data';
 
 abstract class BaseClient implements HttpMixin
 {
@@ -30,86 +32,88 @@ abstract class BaseClient implements HttpMixin
     return this.accessToken;
   }
 
-  async request(payload: object, returnResponse: Boolean = false): Promise<any>
+  async request(payload: AxiosRequestConfig, returnResponse: Boolean = false): Promise<AxiosResponse<any>>
   {
-    if (!payload['method']) {
-      payload['method'] = 'POST';
+    payload = payload || {};
+    if (!payload.method) {
+      payload.method = 'POST';
     }
-    if (!payload['qs']) {
-      payload['qs'] = {};
+    if (!payload.params) {
+      payload.params = {};
     }
     if (this.accessToken) {
       payload = await this.accessToken.applyToRequest(payload);
     }
-    return this.doRequest(payload, returnResponse);
+    let response = await this.doRequest(payload);
+    return returnResponse ? response : response.data;
   }
 
   httpUpload(url: string, files: object = {}, form: object = {}, query: object = {}): Promise<any>
   {
-    let formData = {};
+    let formData = new FormData;
 
     for (let name in files) {
       if (isString(files[name])) {
-        formData[name] = Fs.createReadStream(files[name]);
+        formData.append(name, Fs.createReadStream(files[name]));
       }
       else {
-        formData[name] = files[name];
+        formData.append(name, files[name]);
       }
     }
 
-    formData = merge(formData, form);
+    for (let name in form) {
+      formData.append(name, form[name]);
+    }
 
     return this.request({
       url,
-      formData,
+      data: formData,
       method: 'POST',
-      qs: query,
+      params: query,
     });
   }
 
   httpGet(url: string, query: object = {}): Promise<any>
   {
-    let payload = {
+    return this.request({
       url,
       method: 'GET',
-      qs: query,
-    };
-    return this.request(payload);
+      params: query,
+    });
   }
 
   httpPost(url: string, formData: object = {}): Promise<any>
   {
-    let payload = {
+    return this.request({
       url,
       method: 'POST',
-      formData,
-    };
-    return this.request(payload);
+      data: formData,
+    });
   }
 
   httpPostJson(url: string, data: object = {}, query: object = {}): Promise<any>
   {
-    let payload = {
+    return this.request({
       url,
       method: 'POST',
-      json: true,
-      body: data,
-      qs: query,
-    };
-    return this.request(payload);
+      data: data,
+      params: query,
+    });
   }
 
-  async requestRaw(payload: object): Promise<Response>
+  async requestRaw(payload: AxiosRequestConfig): Promise<Response>
   {
     payload = payload || {};
-    payload['encoding'] = null;
+    payload.responseType = 'arraybuffer';
     let res = await this.request(payload, true);
-    return new Response(res.body, res.statusCode, res.headers);
+    return new Response(res.data, res.status, res.headers);
   }
 
 
   // Rewrite by HttpMixin
-  async doRequest(payload: object, returnResponse: Boolean = false): Promise<any> { }
+  async doRequest(payload: AxiosRequestConfig): Promise<AxiosResponse<any>> {
+    return null;
+  }
 
 };
 

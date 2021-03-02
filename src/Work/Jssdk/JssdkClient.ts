@@ -95,12 +95,8 @@ export default class JssdkClient extends BaseClient
       if (ticket) return ticket;
     }
 
-    let res = await this.request({
-      url: 'cgi-bin/ticket/get',
-      method: 'get',
-      qs: {
-        type,
-      },
+    let res = await this.httpGet('cgi-bin/ticket/get', {
+      type,
     });
     await cacher.set(cacheKey, res, res['expires_in'] - 500);
 
@@ -127,12 +123,8 @@ export default class JssdkClient extends BaseClient
       if (ticket) return ticket;
     }
 
-    let res = await this.request({
-      url: this.ticketEndpoint,
-      method: 'get',
-      qs: {
-        type,
-      },
+    let res = await this.httpGet(this.ticketEndpoint, {
+      type,
     });
     await cacher.set(cacheKey, res, res['expires_in'] - 500);
 

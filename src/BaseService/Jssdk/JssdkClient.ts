@@ -24,12 +24,8 @@ export default class Client extends BaseClient
       if (ticket) return ticket;
     }
 
-    let res = await this.request({
-      url: this.ticketEndpoint,
-      method: 'get',
-      qs: {
-        type,
-      },
+    let res = await this.httpGet(this.ticketEndpoint, {
+      type,
     });
     await cacher.set(cacheKey, res, res['expires_in'] - 500);
 

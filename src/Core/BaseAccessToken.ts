@@ -3,6 +3,7 @@
 import BaseApplication from './BaseApplication';
 import HttpMixin from './Mixins/HttpMixin';
 import { createHash, applyMixins } from './Utils';
+import { AxiosRequestConfig, AxiosResponse, Method } from 'axios';
 
 /**
  * 授权后的AccessToken对象
@@ -111,18 +112,18 @@ abstract class BaseAccessToken implements HttpMixin
 
   async requestToken(credentials: object): Promise<any>
   {
-    let payload = {
+    let payload: AxiosRequestConfig = {
       url: await this.getEndpoint(),
-      method: this.requestMethod,
+      method: this.requestMethod as Method,
     }
     if (this.requestMethod == 'POST') {
-      payload['json'] = true;
-      payload['body'] = credentials;
+      payload.data = credentials;
     }
     else {
-      payload['qs'] = credentials;
+      payload.params = credentials;
     }
-    return await this.doRequest(payload);
+    let response =  await this.doRequest(payload);
+    return response.data;
   };
 
   /**
@@ -186,18 +187,20 @@ abstract class BaseAccessToken implements HttpMixin
     return this.tokenKey;
   }
 
-  async applyToRequest(payload: object): Promise<object>
+  async applyToRequest(payload: AxiosRequestConfig): Promise<object>
   {
-    payload['qs'] = payload['qs'] || {};
-    if (!payload['qs'][this.queryName || this.tokenKey]) {
-      payload['qs'][this.queryName || this.tokenKey] = (await this.getToken())[this.tokenKey];
+    payload.params = payload.params || {};
+    if (!payload.params[this.queryName || this.tokenKey]) {
+      payload.params[this.queryName || this.tokenKey] = (await this.getToken())[this.tokenKey];
     }
     return payload;
   }
 
 
   // Rewrite by HttpMixin
-  async doRequest(payload: object, returnResponse: Boolean = false): Promise<any> { }
+  async doRequest(payload: AxiosRequestConfig): Promise<AxiosResponse<any>> {
+    return null;
+  }
 
 };
 

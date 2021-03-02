@@ -1,4 +1,4 @@
-import { CoreOptions } from "request";
+import { AxiosRequestConfig } from 'axios';
 
 /**
  * 公众号网页授权相关配置
@@ -56,7 +56,7 @@ export declare interface EasyWechatConfig {
    * 网络请求相关配置
    * @scope ALL
    */
-  http?: CoreOptions;
+  http?: AxiosRequestConfig;
 
   /**
    * 文件缓存相关配置

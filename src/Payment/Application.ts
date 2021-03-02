@@ -31,7 +31,7 @@ export default class Payment extends BaseApplication
     mch_id : '',
     key : '',   // API 密钥
     http: {
-      baseUrl: 'https://api.mch.weixin.qq.com/',
+      baseURL: 'https://api.mch.weixin.qq.com/',
     },
   };
 

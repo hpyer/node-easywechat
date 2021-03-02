@@ -67,7 +67,7 @@ export default abstract class BaseApplicatioin
       // https://www.npmjs.com/package/request#requestoptions-callback
       http: {
         timeout: 30000,
-        baseUrl: 'https://api.weixin.qq.com/',
+        baseURL: 'https://api.weixin.qq.com/',
       },
     };
 
