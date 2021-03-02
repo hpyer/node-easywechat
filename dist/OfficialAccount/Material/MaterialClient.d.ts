@@ -29,7 +29,7 @@ export default class MaterialClient extends BaseClient {
      * @param file 文件路径或可读stream
      */
     uploadArticleImage(file: any): Promise<any>;
-    protected upload(type: string, file: any, formData?: object): Promise<any>;
+    protected upload(type: string, file: any, form?: object): Promise<any>;
     protected getApiByType(type: string): string;
     /**
      * 上传图文消息

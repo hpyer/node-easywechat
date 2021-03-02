@@ -12,7 +12,6 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-const fs_1 = __importDefault(require("fs"));
 const BaseClient_1 = __importDefault(require("../../Core/BaseClient"));
 const Utils_1 = require("../../Core/Utils");
 const StreamResponse_1 = __importDefault(require("../../Core/Http/StreamResponse"));
@@ -59,15 +58,13 @@ class MediaClient extends BaseClient_1.default {
         if (!file) {
             throw new Error(`File does not exist, or the file is unreadable: '${file}'`);
         }
-        if (Utils_1.isString(file)) {
-            file = fs_1.default.createReadStream(file);
-        }
         if (!Utils_1.inArray(type, this.allowTypes)) {
             throw new Error(`Unsupported media type: '${type}'`);
         }
-        return this.httpPost('media/upload', {
-            media: file,
-            type,
+        return this.httpUpload('media/upload', {
+            media: file
+        }, {}, {
+            type
         });
     }
     /**
@@ -107,7 +104,7 @@ class MediaClient extends BaseClient_1.default {
             let res = yield this.requestRaw({
                 url: 'media/get',
                 method: 'GET',
-                qs: {
+                params: {
                     media_id,
                 }
             });
@@ -126,7 +123,7 @@ class MediaClient extends BaseClient_1.default {
             let res = yield this.requestRaw({
                 url: 'media/get/jssdk',
                 method: 'GET',
-                qs: {
+                params: {
                     media_id,
                 }
             });

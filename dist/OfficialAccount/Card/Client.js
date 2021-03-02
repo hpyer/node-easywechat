@@ -105,10 +105,10 @@ class Client extends BaseClient_1.default {
                 ticket,
             };
             let res = yield this.requestRaw({
-                baseUrl: '',
+                baseURL: '',
                 url: baseUrl,
                 method: 'GET',
-                qs: params,
+                params: params,
             });
             return {
                 status: res.getStatusCode(),

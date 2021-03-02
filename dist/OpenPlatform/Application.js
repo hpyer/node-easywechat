@@ -17,7 +17,6 @@ const Utils_1 = require("../Core/Utils");
 const AccessToken_1 = __importDefault(require("./Authorizer/Auth/AccessToken"));
 const Guard_1 = __importDefault(require("./Authorizer/Server/Guard"));
 const Application_1 = __importDefault(require("./Authorizer/OfficialAccount/Application"));
-const ComponentDelegate_1 = __importDefault(require("./Authorizer/OfficialAccount/OAuth/ComponentDelegate"));
 const Client_1 = __importDefault(require("./Authorizer/OfficialAccount/Account/Client"));
 const Application_2 = __importDefault(require("./Authorizer/MiniProgram/Application"));
 const Client_2 = __importDefault(require("./Authorizer/MiniProgram/Auth/Client"));
@@ -148,7 +147,7 @@ class OpenPlatform extends BaseApplication_1.default {
         });
         let application = new Application_1.default(this.getAuthorizerConfig(appId, refreshToken), services);
         application.extend('oauth', function (client) {
-            client.component(new ComponentDelegate_1.default(that));
+            return client;
         });
         return application;
     }

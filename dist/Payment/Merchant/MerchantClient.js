@@ -34,7 +34,7 @@ class MerchantClient extends BaseClient_1.default {
             sub_mech_id: '',
             sub_appid: '',
         });
-        return this.safeRequest('secapi/mch/submchmanage', params, 'post', { qs: query });
+        return this.safeRequest('secapi/mch/submchmanage', params, 'post', { params: query });
     }
 }
 exports.default = MerchantClient;

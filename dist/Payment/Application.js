@@ -41,7 +41,7 @@ class Payment extends BaseApplication_1.default {
             mch_id: '',
             key: '',
             http: {
-                baseUrl: 'https://api.mch.weixin.qq.com/',
+                baseURL: 'https://api.mch.weixin.qq.com/',
             },
         };
         this.base = null;

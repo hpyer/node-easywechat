@@ -1,4 +1,4 @@
-import { CoreOptions } from "request";
+import { AxiosRequestConfig } from 'axios';
 /**
  * 公众号网页授权相关配置
  */
@@ -51,7 +51,7 @@ export declare interface EasyWechatConfig {
      * 网络请求相关配置
      * @scope ALL
      */
-    http?: CoreOptions;
+    http?: AxiosRequestConfig;
     /**
      * 文件缓存相关配置
      * @scope ALL
@@ -138,3 +138,45 @@ export declare interface EasyWechatConfig {
      */
     agent_id?: string;
 }
+/**
+ * 服务端通知处理回调函数
+ * @param message 微信通知信息
+ */
+export declare interface ServerHandlers {
+    [key: string]: ServerHandler[];
+}
+/**
+ * 服务端通知处理回调函数
+ * @param message 微信通知信息
+ */
+export declare type ServerHandler = (message: object) => void;
+/**
+ * Payment通知错误处理
+ * @param message 错误信息
+ */
+export declare type PaymentFailHandler = (message: string) => void;
+/**
+ * Payment业务错误处理
+ * @param message 错误信息
+ */
+export declare type PaymentAlertHandler = (message: string) => void;
+/**
+ * Payment支付结果处理回调函数
+ * @param message 微信通知信息
+ * @param fail 通知错误处理函数
+ */
+export declare type PaymentPaidHandler = (message: object, fail: PaymentFailHandler) => void;
+/**
+ * Payment退款结果处理回调函数
+ * @param message 微信通知信息
+ * @param reqInfo 微信通知信息中 req_info 解密后的信息
+ * @param fail 通知错误处理函数
+ */
+export declare type PaymentRefundedHandler = (message: object, reqInfo: object, fail: PaymentFailHandler) => void;
+/**
+ * Payment扫码支付结果处理回调函数
+ * @param message 微信通知信息
+ * @param fail 通知错误处理函数
+ * @param alert 业务错误处理函数
+ */
+export declare type PaymentScannedHandler = (message: object, fail: PaymentFailHandler, alert: PaymentAlertHandler) => void;

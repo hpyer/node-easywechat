@@ -17,6 +17,7 @@ const BaseClient_1 = __importDefault(require("../../Core/BaseClient"));
 const Utils_1 = require("../../Core/Utils");
 const Messages_1 = require("../../Core/Messages");
 const StreamResponse_1 = __importDefault(require("../../Core/Http/StreamResponse"));
+const form_data_1 = __importDefault(require("form-data"));
 class MaterialClient extends BaseClient_1.default {
     constructor() {
         super(...arguments);
@@ -65,7 +66,7 @@ class MaterialClient extends BaseClient_1.default {
     uploadArticleImage(file) {
         return this.upload('news_image', file);
     }
-    upload(type, file, formData = {}) {
+    upload(type, file, form = {}) {
         if (!file) {
             throw new Error(`File does not exist, or the file is unreadable: '${file}'`);
         }
@@ -75,11 +76,12 @@ class MaterialClient extends BaseClient_1.default {
         if (!Utils_1.inArray(type, this.allowTypes)) {
             throw new Error(`Unsupported media type: '${type}'`);
         }
-        if (!formData || !Utils_1.isObject(formData)) {
-            formData = {};
+        let formData = new form_data_1.default();
+        formData.append('media', file);
+        formData.append('type', type);
+        for (let key in form) {
+            formData.append(key, form[key]);
         }
-        formData['media'] = file;
-        formData['type'] = type;
         return this.httpPost(this.getApiByType(type), formData);
     }
     getApiByType(type) {
@@ -142,8 +144,7 @@ class MaterialClient extends BaseClient_1.default {
             let res = yield this.requestRaw({
                 url: 'cgi-bin/material/get_material',
                 method: 'POST',
-                json: true,
-                body: {
+                data: {
                     media_id,
                 }
             });

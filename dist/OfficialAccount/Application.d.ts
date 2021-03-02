@@ -4,7 +4,6 @@ import Encryptor from '../Core/Encryptor';
 import Guard from './Server/Guard';
 import UserClient from './User/UserClient';
 import TagClient from './User/TagClient';
-import OAuthClient from './OAuth/OAuthClient';
 import MenuClient from './Menu/MenuClient';
 import TemplateMessageClient from './TemplateMessage/TemplateMessageClient';
 import MaterialClient from './Material/MaterialClient';
@@ -28,6 +27,7 @@ import MediaClient from '../BaseService/Media/MediaClient';
 import QrcodeClient from '../BaseService/Qrcode/QrcodeClient';
 import UrlClient from '../BaseService/Url/UrlClient';
 import { EasyWechatConfig } from '../Core/Types';
+import WeChat from 'node-socialite/dist/Providers/WeChat';
 export default class OfficialAccount extends BaseApplication {
     protected defaultConfig: EasyWechatConfig;
     access_token: AccessToken;
@@ -35,7 +35,7 @@ export default class OfficialAccount extends BaseApplication {
     server: Guard;
     user: UserClient;
     user_tag: TagClient;
-    oauth: OAuthClient;
+    oauth: WeChat;
     menu: MenuClient;
     template_message: TemplateMessageClient;
     material: MaterialClient;

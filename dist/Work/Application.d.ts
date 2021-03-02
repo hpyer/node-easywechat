@@ -22,7 +22,6 @@ import Guard from './Server/Guard';
 import UserClient from './User/UserClient';
 import TagClient from './User/TagClient';
 import MiniProgram from './MiniProgram/Application';
-import OAuthClient from './OAuth/OAuthClient';
 import ExternalContactClient from './ExternalContact/Client';
 import ExternalContactWayClient from './ExternalContact/ContactWayClient';
 import ExternalStatisticsClient from './ExternalContact/StatisticsClient';
@@ -30,6 +29,7 @@ import ExternalMessageClient from './ExternalContact/MessageClient';
 import ExternalSchoolClient from './ExternalContact/SchoolClient';
 import ExternalMomentClient from './ExternalContact/MomentClient';
 import CorpGroupClient from './CorpGroup/CorpGroupClient';
+import WeWork from 'node-socialite/dist/Providers/WeWork';
 export default class Work extends BaseApplication {
     protected defaultConfig: EasyWechatConfig;
     oa: OAClient;
@@ -60,7 +60,7 @@ export default class Work extends BaseApplication {
     server: Guard;
     user: UserClient;
     tag: TagClient;
-    oauth: OAuthClient;
+    oauth: WeWork;
     constructor(config?: EasyWechatConfig, prepends?: Object, id?: String);
     registerProviders(): void;
     miniProgram(): MiniProgram;

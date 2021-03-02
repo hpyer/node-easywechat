@@ -16,8 +16,8 @@ const HttpMixin_1 = __importDefault(require("../../Core/Mixins/HttpMixin"));
 const Utils_1 = require("../../Core/Utils");
 const xml2js_1 = __importDefault(require("xml2js"));
 const fs_1 = __importDefault(require("fs"));
-const raw_body_1 = __importDefault(require("raw-body"));
 const Response_1 = __importDefault(require("../../Core/Http/Response"));
+const https_1 = __importDefault(require("https"));
 class BaseClient {
     constructor(app) {
         this.app = null;
@@ -54,18 +54,21 @@ class BaseClient {
             let payload = Utils_1.merge(Utils_1.merge({}, options), {
                 url: endpoint,
                 method,
-                body: XmlBuilder.buildObject(localParams)
+                responseType: 'text',
+                data: XmlBuilder.buildObject(localParams)
             });
-            return this.doRequest(payload, returnResponse)
-                .then((body) => __awaiter(this, void 0, void 0, function* () {
-                if (!returnResponse) {
-                    try {
-                        body = yield this.parseXml(body);
-                    }
-                    catch (e) { }
+            let response = yield this.doRequest(payload);
+            if (returnResponse) {
+                return response;
+            }
+            else {
+                let body = response.data;
+                try {
+                    body = yield this.parseXml(body);
                 }
+                catch (e) { }
                 return body;
-            }));
+            }
         });
     }
     parseXml(xml) {
@@ -79,19 +82,18 @@ class BaseClient {
     }
     safeRequest(endpoint, params = {}, method = 'post', options = {}) {
         options = Utils_1.merge(Utils_1.merge({}, options), {
-            agentOptions: {
+            httpsAgent: new https_1.default.Agent({
                 pfx: fs_1.default.readFileSync(this.app.config.cert_path),
                 passphrase: this.app.config.mch_id,
-            }
+            }),
         });
         return this.request(endpoint, params, method, options);
     }
     requestRaw(endpoint, params = {}, method = 'post', options = {}) {
         return __awaiter(this, void 0, void 0, function* () {
-            options['encoding'] = null;
+            options.responseType = 'arraybuffer';
             let res = yield this.request(endpoint, params, method, options, true);
-            let body = yield raw_body_1.default(res);
-            return new Response_1.default(body, res.statusCode, res.headers);
+            return new Response_1.default(res.data, res.status, res.headers);
         });
     }
     wrap(endpoint) {
@@ -101,7 +103,7 @@ class BaseClient {
         return __awaiter(this, void 0, void 0, function* () {
             if (!this.serverIp) {
                 let res = yield this.doRequest({
-                    baseUrl: '',
+                    baseURL: '',
                     url: 'https://api.ipify.org?format=json',
                     method: 'GET',
                 });
@@ -116,8 +118,10 @@ class BaseClient {
         return this.app.request.getClientIp();
     }
     // Rewrite by HttpMixin
-    doRequest(payload, returnResponse = false) {
-        return __awaiter(this, void 0, void 0, function* () { });
+    doRequest(payload) {
+        return __awaiter(this, void 0, void 0, function* () {
+            return null;
+        });
     }
 }
 ;

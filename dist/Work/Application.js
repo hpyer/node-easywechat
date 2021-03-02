@@ -36,8 +36,6 @@ const UserClient_1 = __importDefault(require("./User/UserClient"));
 const TagClient_1 = __importDefault(require("./User/TagClient"));
 const FinallResult_1 = __importDefault(require("../Core/Decorators/FinallResult"));
 const Application_1 = __importDefault(require("./MiniProgram/Application"));
-const OAuthClient_1 = __importDefault(require("./OAuth/OAuthClient"));
-const AccessTokenDelegate_1 = __importDefault(require("./OAuth/AccessTokenDelegate"));
 const Client_1 = __importDefault(require("./ExternalContact/Client"));
 const ContactWayClient_1 = __importDefault(require("./ExternalContact/ContactWayClient"));
 const StatisticsClient_1 = __importDefault(require("./ExternalContact/StatisticsClient"));
@@ -45,12 +43,13 @@ const MessageClient_2 = __importDefault(require("./ExternalContact/MessageClient
 const SchoolClient_1 = __importDefault(require("./ExternalContact/SchoolClient"));
 const MomentClient_1 = __importDefault(require("./ExternalContact/MomentClient"));
 const CorpGroupClient_1 = __importDefault(require("./CorpGroup/CorpGroupClient"));
+const node_socialite_1 = require("node-socialite");
 class Work extends BaseApplication_1.default {
     constructor(config = {}, prepends = {}, id = null) {
         super(config, prepends, id);
         this.defaultConfig = {
             http: {
-                baseUrl: 'https://qyapi.weixin.qq.com/',
+                baseURL: 'https://qyapi.weixin.qq.com/',
             },
         };
         this.oa = null;
@@ -190,18 +189,36 @@ class Work extends BaseApplication_1.default {
             });
         }
         this.offsetSet('oauth', function (app) {
-            let client = new OAuthClient_1.default(app);
-            let scope = 'snsapi_base';
-            if (app.config.oauth && app.config.oauth.scope) {
-                scope = app.config.oauth.scope;
+            let socialiteConfig = {
+                wework: {
+                    client_id: app['config']['corp_id'],
+                    client_secret: app['config']['secret'],
+                    corp_id: app['config']['corp_id'],
+                    corp_secret: app['config']['secret'],
+                    redirect_url: ''
+                }
+            };
+            if (app['config']['oauth'] && typeof app['config']['oauth']['callback'] != 'undefined') {
+                socialiteConfig.wework.redirect_url = app['config']['oauth']['callback'];
             }
-            if (scope) {
-                client.scopes(scope);
+            let socialite = new node_socialite_1.SocialiteManager(socialiteConfig).create('wework');
+            let scopes = 'snsapi_base';
+            if (app['config']['oauth'] && typeof app['config']['oauth']['scopes'] != 'undefined') {
+                scopes = app['config']['oauth']['scopes'] || '';
+            }
+            if (scopes) {
+                socialite.scopes(scopes);
             }
             else {
-                client.setAgentId(app.config.agent_id);
+                socialite.setAgentId(app['config']['agent_id']);
             }
-            return client.setToken(new AccessTokenDelegate_1.default(app));
+            socialite['state'] = function () {
+                throw new Error('Please use withState() instead.');
+            };
+            socialite['user'] = function () {
+                throw new Error('Please use userFromCode() instead.');
+            };
+            return socialite;
         });
     }
     miniProgram() {

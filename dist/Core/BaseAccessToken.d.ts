@@ -1,5 +1,6 @@
 import BaseApplication from './BaseApplication';
 import HttpMixin from './Mixins/HttpMixin';
+import { AxiosRequestConfig, AxiosResponse } from 'axios';
 /**
  * 授权后的AccessToken对象
  */
@@ -82,7 +83,7 @@ declare abstract class BaseAccessToken implements HttpMixin {
      */
     getRefreshedToken(): Promise<AccessToken>;
     getTokenKey(): string;
-    applyToRequest(payload: object): Promise<object>;
-    doRequest(payload: object, returnResponse?: Boolean): Promise<any>;
+    applyToRequest(payload: AxiosRequestConfig): Promise<object>;
+    doRequest(payload: AxiosRequestConfig): Promise<AxiosResponse<any>>;
 }
 export default BaseAccessToken;

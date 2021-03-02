@@ -26,7 +26,7 @@ class MediaClient extends BaseClient_1.default {
             let res = yield this.requestRaw({
                 url: 'cgi-bin/media/get',
                 method: 'GET',
-                qs: {
+                params: {
                     media_id: mediaId,
                 }
             });

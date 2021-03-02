@@ -16,6 +16,7 @@ const HttpMixin_1 = __importDefault(require("./Mixins/HttpMixin"));
 const Utils_1 = require("./Utils");
 const fs_1 = __importDefault(require("fs"));
 const Response_1 = __importDefault(require("./Http/Response"));
+const form_data_1 = __importDefault(require("form-data"));
 class BaseClient {
     constructor(app, accessToken = null) {
         this.accessToken = null;
@@ -32,73 +33,75 @@ class BaseClient {
     }
     request(payload, returnResponse = false) {
         return __awaiter(this, void 0, void 0, function* () {
-            if (!payload['method']) {
-                payload['method'] = 'POST';
+            payload = payload || {};
+            if (!payload.method) {
+                payload.method = 'POST';
             }
-            if (!payload['qs']) {
-                payload['qs'] = {};
+            if (!payload.params) {
+                payload.params = {};
             }
             if (this.accessToken) {
                 payload = yield this.accessToken.applyToRequest(payload);
             }
-            return this.doRequest(payload, returnResponse);
+            let response = yield this.doRequest(payload);
+            return returnResponse ? response : response.data;
         });
     }
     httpUpload(url, files = {}, form = {}, query = {}) {
-        let formData = {};
+        let formData = new form_data_1.default;
         for (let name in files) {
             if (Utils_1.isString(files[name])) {
-                formData[name] = fs_1.default.createReadStream(files[name]);
+                formData.append(name, fs_1.default.createReadStream(files[name]));
             }
             else {
-                formData[name] = files[name];
+                formData.append(name, files[name]);
             }
         }
-        formData = Utils_1.merge(formData, form);
+        for (let name in form) {
+            formData.append(name, form[name]);
+        }
         return this.request({
             url,
-            formData,
+            data: formData,
             method: 'POST',
-            qs: query,
+            params: query,
         });
     }
     httpGet(url, query = {}) {
-        let payload = {
+        return this.request({
             url,
             method: 'GET',
-            qs: query,
-        };
-        return this.request(payload);
+            params: query,
+        });
     }
     httpPost(url, formData = {}) {
-        let payload = {
+        return this.request({
             url,
             method: 'POST',
-            formData,
-        };
-        return this.request(payload);
+            data: formData,
+        });
     }
     httpPostJson(url, data = {}, query = {}) {
-        let payload = {
+        return this.request({
             url,
             method: 'POST',
-            json: true,
-            body: data,
-            qs: query,
-        };
-        return this.request(payload);
+            data: data,
+            params: query,
+        });
     }
     requestRaw(payload) {
         return __awaiter(this, void 0, void 0, function* () {
             payload = payload || {};
-            payload['encoding'] = null;
+            payload.responseType = 'arraybuffer';
             let res = yield this.request(payload, true);
-            return new Response_1.default(res.body, res.statusCode, res.headers);
+            return new Response_1.default(res.data, res.status, res.headers);
         });
     }
     // Rewrite by HttpMixin
-    doRequest(payload, returnResponse = false) {
-        return __awaiter(this, void 0, void 0, function* () { });
+    doRequest(payload) {
+        return __awaiter(this, void 0, void 0, function* () {
+            return null;
+        });
     }
 }
 ;

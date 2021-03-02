@@ -22,12 +22,8 @@ class JssdkClient extends JssdkClient_1.default {
             if (!refresh && (yield cacher.has(cacheKey))) {
                 return yield cacher.get(cacheKey);
             }
-            let res = yield this.request({
-                url: this.ticketEndpoint,
-                method: 'get',
-                qs: {
-                    type,
-                },
+            let res = yield this.httpGet(this.ticketEndpoint, {
+                type,
             });
             yield cacher.set(cacheKey, res, res['expires_in'] - 500);
             if (!cacher.has(cacheKey)) {

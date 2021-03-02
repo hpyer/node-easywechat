@@ -233,7 +233,7 @@ class ServerGuard {
      */
     getMessage() {
         return __awaiter(this, void 0, void 0, function* () {
-            let content = yield this.app['request'].getContent();
+            let content = yield this.app.request.getContent();
             let message = yield this.parseMessage(content ? content.toString() : '');
             // console.log('message', message, typeof message);
             // if (!message) {
@@ -300,17 +300,17 @@ class ServerGuard {
 exports.default = ServerGuard;
 ServerGuard.SUCCESS_EMPTY_RESPONSE = 'success';
 ServerGuard.MESSAGE_TYPE_MAPPING = {
-    text: Messages_1.Message.TEXT,
-    image: Messages_1.Message.IMAGE,
-    voice: Messages_1.Message.VOICE,
-    video: Messages_1.Message.VIDEO,
-    shortvideo: Messages_1.Message.SHORT_VIDEO,
-    location: Messages_1.Message.LOCATION,
-    link: Messages_1.Message.LINK,
-    device_event: Messages_1.Message.DEVICE_EVENT,
-    device_text: Messages_1.Message.DEVICE_TEXT,
-    event: Messages_1.Message.EVENT,
-    file: Messages_1.Message.FILE,
-    miniprogrampage: Messages_1.Message.MINIPROGRAM_PAGE,
+    text: Messages_1.Message.TEXT + '',
+    image: Messages_1.Message.IMAGE + '',
+    voice: Messages_1.Message.VOICE + '',
+    video: Messages_1.Message.VIDEO + '',
+    shortvideo: Messages_1.Message.SHORT_VIDEO + '',
+    location: Messages_1.Message.LOCATION + '',
+    link: Messages_1.Message.LINK + '',
+    device_event: Messages_1.Message.DEVICE_EVENT + '',
+    device_text: Messages_1.Message.DEVICE_TEXT + '',
+    event: Messages_1.Message.EVENT + '',
+    file: Messages_1.Message.FILE + '',
+    miniprogrampage: Messages_1.Message.MINIPROGRAM_PAGE + '',
 };
 ;

@@ -60,8 +60,7 @@ class AppCodeClient extends BaseClient_1.default {
             let res = yield this.requestRaw({
                 url: api,
                 method: 'POST',
-                json: true,
-                body: params
+                data: params
             });
             if (res.getHeader('content-disposition').indexOf('attachment') > -1) {
                 return StreamResponse_1.default.buildFromResponse(res);

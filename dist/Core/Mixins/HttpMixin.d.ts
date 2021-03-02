@@ -1,3 +1,4 @@
+import { AxiosRequestConfig, AxiosResponse } from 'axios';
 export default class HttpMixin {
-    doRequest(payload: object, returnResponse?: Boolean): Promise<any>;
+    doRequest(payload: AxiosRequestConfig): Promise<AxiosResponse<any>>;
 }

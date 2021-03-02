@@ -122,13 +122,13 @@ class BaseAccessToken {
                 method: this.requestMethod,
             };
             if (this.requestMethod == 'POST') {
-                payload['json'] = true;
-                payload['body'] = credentials;
+                payload.data = credentials;
             }
             else {
-                payload['qs'] = credentials;
+                payload.params = credentials;
             }
-            return yield this.doRequest(payload);
+            let response = yield this.doRequest(payload);
+            return response.data;
         });
     }
     ;
@@ -187,16 +187,18 @@ class BaseAccessToken {
     }
     applyToRequest(payload) {
         return __awaiter(this, void 0, void 0, function* () {
-            payload['qs'] = payload['qs'] || {};
-            if (!payload['qs'][this.queryName || this.tokenKey]) {
-                payload['qs'][this.queryName || this.tokenKey] = (yield this.getToken())[this.tokenKey];
+            payload.params = payload.params || {};
+            if (!payload.params[this.queryName || this.tokenKey]) {
+                payload.params[this.queryName || this.tokenKey] = (yield this.getToken())[this.tokenKey];
             }
             return payload;
         });
     }
     // Rewrite by HttpMixin
-    doRequest(payload, returnResponse = false) {
-        return __awaiter(this, void 0, void 0, function* () { });
+    doRequest(payload) {
+        return __awaiter(this, void 0, void 0, function* () {
+            return null;
+        });
     }
 }
 ;
