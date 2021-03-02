@@ -6,10 +6,10 @@ class TestUnit extends BaseClientTest {
   test() {
 
     it('buildConfig()', async () => {
-      this.mockResponse(JSON.stringify({
+      this.mockResponse({
         ticket: 'mock-ticket',
         expires_in: 7200,
-      }));
+      });
 
       let res = await this.app.jssdk.buildConfig(['api1', 'api2'], false, false, false, ['tag1', 'tag2'], 'http://www.exapmle.com');
 
@@ -22,10 +22,10 @@ class TestUnit extends BaseClientTest {
     });
 
     it('setUrl()', async () => {
-      this.mockResponse(JSON.stringify({
+      this.mockResponse({
         ticket: 'mock-ticket',
         expires_in: 7200,
-      }));
+      });
 
       this.app.jssdk.setUrl('http://www.exapmle2.com');
       let res = await this.app.jssdk.buildConfig(['api1', 'api2'], true, true, false);

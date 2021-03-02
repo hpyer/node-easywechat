@@ -1,7 +1,7 @@
 
 const EasyWechat = require('../dist');
 const Sinon = require('sinon');
-const request = require('request');
+const axios = require('axios');
 const assert = require('assert');
 
 /**
@@ -52,16 +52,38 @@ module.exports = class BaseClientTest {
    * 配置模拟请求的响应结果
    * @param {string} body 响应结果
    * @param {object} headers 响应 headers
-   * @param {number} statusCode 响应状态码，默认：200
+   * @param {number} status 响应状态码，默认：200
    */
-  mockResponse(body, headers = null, statusCode=200) {
-    this._get.yields(null, {statusCode, headers}, body);
-    this._post.yields(null, {statusCode, headers}, body);
-    this._head.yields(null, {statusCode, headers}, body);
-    this._options.yields(null, {statusCode, headers}, body);
-    this._put.yields(null, {statusCode, headers}, body);
-    this._patch.yields(null, {statusCode, headers}, body);
-    this._delete.yields(null, {statusCode, headers}, body);
+  mockResponse(body, headers = null, status = 200) {
+    this._request.resolves({
+      status,
+      headers,
+      data: body,
+    });
+
+    return this;
+  }
+
+  /**
+   * 配置多次模拟请求的响应结果
+   * @param {object[]} responses [{body: xxxx, headers: {a: '111'}, status: 200}]
+   */
+  mockResponseMulti(responses) {
+    for (let i = 0; i < responses.length; i++) {
+      let response = responses[i];
+      if (typeof response.body == 'undefined' && typeof response.status == 'undefined' && typeof response.headers == 'undefined') {
+        response = {
+          body: response,
+          status: 200,
+          headers: null,
+        }
+      }
+      this._request.onCall(i).resolves({
+        status: response.status || 200,
+        headers: response.headers || null,
+        data: response.body,
+      });
+    }
 
     return this;
   }
@@ -75,6 +97,13 @@ module.exports = class BaseClientTest {
     let args = [...arguments];
     let method = args.shift();
     return this.app[this.module][method].apply(this.app[this.module], args);
+  }
+
+  /**
+   * 重置模拟请求
+   */
+  mockRest() {
+    this._request.reset();
   }
 
   /**
@@ -93,23 +122,11 @@ module.exports = class BaseClientTest {
       describe(this.module, () => {
 
         before(() => {
-          this._get = Sinon.stub(request, 'get');
-          this._post = Sinon.stub(request, 'post');
-          this._head = Sinon.stub(request, 'head');
-          this._options = Sinon.stub(request, 'options');
-          this._put = Sinon.stub(request, 'put');
-          this._patch = Sinon.stub(request, 'patch');
-          this._delete = Sinon.stub(request, 'delete');
+          this._request = Sinon.stub(axios, 'request');
         });
 
         after(() => {
-          request.get.restore();
-          request.post.restore();
-          request.head.restore();
-          request.options.restore();
-          request.put.restore();
-          request.patch.restore();
-          request.delete.restore();
+          axios.request.restore();
         });
 
         this.test();

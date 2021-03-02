@@ -17,12 +17,12 @@ class TestUnit extends BaseClientTest {
 
     let access_token = null;
     it(`Should fetch AccessToken`, async () => {
-      this.mockResponse(JSON.stringify({
+      this.mockResponse({
         openid: 'fake-openid',
         access_token: 'fake-access-token',
         refresh_token: 'fake-refresh-token',
         expires_in: 7200,
-      }));
+      });
       access_token = await this.mockRequest('getToken');
 
       this.assert.strictEqual(access_token.openid, 'fake-openid');
@@ -32,12 +32,12 @@ class TestUnit extends BaseClientTest {
     });
 
     it(`Should fetch User`, async () => {
-      this.mockResponse(JSON.stringify({
+      this.mockResponse({
         errcode: 0,
         openid: 'fake-openid',
         nickname: 'fake-nickname',
         headimgurl: 'fake-headimgurl',
-      }));
+      });
       let user = await this.mockRequest('user', 'fake-code', access_token);
 
       this.assert.strictEqual(user.id, 'fake-openid');
