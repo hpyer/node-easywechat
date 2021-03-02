@@ -137,7 +137,6 @@ class EasyWechat {
       StreamResponse: StreamResponse,
     }
 
-    this.Message = Messages;
     this.Messages = Messages;
   }
 
