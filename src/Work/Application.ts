@@ -25,8 +25,6 @@ import UserClient from './User/UserClient';
 import TagClient from './User/TagClient';
 import FinallResult from '../Core/Decorators/FinallResult';
 import MiniProgram from './MiniProgram/Application';
-import OAuthClient from './OAuth/OAuthClient';
-import AccessTokenDelegate from './OAuth/AccessTokenDelegate';
 import ExternalContactClient from './ExternalContact/Client';
 import ExternalContactWayClient from './ExternalContact/ContactWayClient';
 import ExternalStatisticsClient from './ExternalContact/StatisticsClient';
@@ -34,6 +32,8 @@ import ExternalMessageClient from './ExternalContact/MessageClient';
 import ExternalSchoolClient from './ExternalContact/SchoolClient';
 import ExternalMomentClient from './ExternalContact/MomentClient';
 import CorpGroupClient from './CorpGroup/CorpGroupClient';
+import { SocialiteManager } from 'node-socialite';
+import WeWork from 'node-socialite/dist/Providers/WeWork';
 
 export default class Work extends BaseApplication
 {
@@ -71,7 +71,7 @@ export default class Work extends BaseApplication
   public server: Guard = null;
   public user: UserClient = null;
   public tag: TagClient = null;
-  public oauth: OAuthClient = null;
+  public oauth: WeWork = null;
 
   constructor(config: EasyWechatConfig = {}, prepends: Object = {}, id: String = null)
   {
@@ -186,18 +186,41 @@ export default class Work extends BaseApplication
       });
     }
     this.offsetSet('oauth', function (app) {
-      let client = new OAuthClient(app);
-      let scope = 'snsapi_base';
-      if (app.config.oauth && app.config.oauth.scope) {
-        scope = app.config.oauth.scope;
+      let socialiteConfig = {
+        wework: {
+          client_id: app['config']['corp_id'],
+          client_secret: app['config']['secret'],
+          corp_id: app['config']['corp_id'],
+          corp_secret: app['config']['secret'],
+          redirect_url: ''
+        }
+      };
+      if (app['config']['oauth'] && typeof app['config']['oauth']['callback'] != 'undefined') {
+        socialiteConfig.wework.redirect_url = app['config']['oauth']['callback'];
       }
-      if (scope) {
-        client.scopes(scope);
+
+      let socialite = new SocialiteManager(socialiteConfig).create('wework');
+
+      let scopes = 'snsapi_base';
+      if (app['config']['oauth'] && typeof app['config']['oauth']['scopes'] != 'undefined') {
+        scopes = app['config']['oauth']['scopes'] || '';
+      }
+
+      if (scopes) {
+        socialite.scopes(scopes);
       }
       else {
-        client.setAgentId(app.config.agent_id);
+        socialite.setAgentId(app['config']['agent_id']);
       }
-      return client.setToken(new AccessTokenDelegate(app));
+
+      socialite['state'] = function () {
+        throw new Error('Please use withState() instead.');
+      };
+      socialite['user'] = function () {
+        throw new Error('Please use userFromCode() instead.');
+      };
+
+      return socialite;
     });
 
   }

@@ -7,7 +7,6 @@ import Guard from './Server/Guard';
 import FinallResult from '../Core/Decorators/FinallResult';
 import UserClient from './User/UserClient';
 import TagClient from './User/TagClient';
-import OAuthClient from './OAuth/OAuthClient';
 import MenuClient from './Menu/MenuClient';
 import TemplateMessageClient from './TemplateMessage/TemplateMessageClient';
 import MaterialClient from './Material/MaterialClient';
@@ -31,6 +30,8 @@ import MediaClient from '../BaseService/Media/MediaClient';
 import QrcodeClient from '../BaseService/Qrcode/QrcodeClient';
 import UrlClient from '../BaseService/Url/UrlClient';
 import { EasyWechatConfig } from '../Core/Types';
+import { SocialiteManager } from 'node-socialite';
+import WeChat from 'node-socialite/dist/Providers/WeChat';
 
 export default class OfficialAccount extends BaseApplication
 {
@@ -48,7 +49,7 @@ export default class OfficialAccount extends BaseApplication
   public server: Guard = null;
   public user: UserClient = null;
   public user_tag: TagClient = null;
-  public oauth: OAuthClient = null;
+  public oauth: WeChat = null;
   public menu: MenuClient = null;
   public template_message: TemplateMessageClient = null;
   public material: MaterialClient = null;
@@ -113,7 +114,43 @@ export default class OfficialAccount extends BaseApplication
     });
     if (!this.oauth) {
       this.offsetSet('oauth', function (app) {
-        return new OAuthClient(app);
+        let socialiteConfig = {
+          wechat: {
+            client_id: app['config']['app_id'],
+            client_secret: app['config']['secret'],
+            redirect_url: '',
+          }
+        };
+        if (app['config']['oauth'] && typeof app['config']['oauth']['callback'] != 'undefined') {
+          socialiteConfig.wechat.redirect_url = app['config']['oauth']['callback'];
+        }
+
+        if (app['config']['component_app_id'] && app['config']['component_app_token']) {
+          socialiteConfig.wechat['component'] = {
+            id: app['config']['component_app_id'],
+            token: app['config']['component_app_token'],
+          }
+        }
+
+        let socialite = new SocialiteManager(socialiteConfig).create('wechat');
+
+        let scopes = 'snsapi_userinfo';
+        if (app['config']['oauth'] && typeof app['config']['oauth']['scopes'] != 'undefined') {
+          scopes = app['config']['oauth']['scopes'] || 'snsapi_userinfo';
+        }
+        socialite.scopes(scopes);
+
+        socialite['state'] = function () {
+          throw new Error('Please use withState() instead.');
+        };
+        socialite['getToken'] = function () {
+          throw new Error('Please use tokenFromCode() instead.');
+        };
+        socialite['user'] = function () {
+          throw new Error('Please use userFromCode() instead.');
+        };
+
+        return socialite;
       });
     }
     this.offsetSet('menu', function (app) {
