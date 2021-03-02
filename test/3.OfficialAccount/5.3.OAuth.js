@@ -7,42 +7,55 @@ class TestUnit extends BaseClientTest {
 
     it(`Should redirect to the config url`, async () => {
       let url = await this.app.oauth.redirect();
-      this.assert.strictEqual(url, 'https://open.weixin.qq.com/connect/oauth2/authorize?appid=abc%40123&redirect_uri=http%3A%2F%2Fwww.example.com%2Fwx%2Flogin%2Fcallback&response_type=code&scope=snsapi_userinfo&state=&connect_redirect=1#wechat_redirect');
+      this.assert.strictEqual(url, 'https://open.weixin.qq.com/connect/oauth2/authorize?appid=abc%40123&redirect_uri=http%3A%2F%2Fwww.example.com%2Fwx%2Flogin%2Fcallback&scope=snsapi_userinfo&response_type=code&connect_redirect=1#wechat_redirect');
     });
 
     it(`Should redirect with custom data`, async () => {
-      let url = await this.app.oauth.scopes('test_scope').state('test_state').redirect('http://www.test.com/wx/login/callback');
-      this.assert.strictEqual(url, 'https://open.weixin.qq.com/connect/oauth2/authorize?appid=abc%40123&redirect_uri=http%3A%2F%2Fwww.test.com%2Fwx%2Flogin%2Fcallback&response_type=code&scope=test_scope&state=test_state&connect_redirect=1#wechat_redirect');
+      let url = await this.app.oauth.scopes('test_scope').withState('test_state').redirect('http://www.test.com/wx/login/callback');
+      this.assert.strictEqual(url, 'https://open.weixin.qq.com/connect/oauth2/authorize?appid=abc%40123&redirect_uri=http%3A%2F%2Fwww.test.com%2Fwx%2Flogin%2Fcallback&scope=test_scope&response_type=code&connect_redirect=1&state=test_state#wechat_redirect');
     });
 
-    let access_token = null;
-    it(`Should fetch AccessToken`, async () => {
-      this.mockResponse({
-        openid: 'fake-openid',
-        access_token: 'fake-access-token',
-        refresh_token: 'fake-refresh-token',
-        expires_in: 7200,
-      });
-      access_token = await this.mockRequest('getToken');
+    it(`Should fetch user from code`, async () => {
 
-      this.assert.strictEqual(access_token.openid, 'fake-openid');
-      this.assert.strictEqual(access_token.access_token, 'fake-access-token');
-      this.assert.strictEqual(access_token.refresh_token, 'fake-refresh-token');
-      this.assert.strictEqual(access_token.expires_in, 7200);
-    });
+      this.mockRest();
 
-    it(`Should fetch User`, async () => {
-      this.mockResponse({
-        errcode: 0,
-        openid: 'fake-openid',
-        nickname: 'fake-nickname',
-        headimgurl: 'fake-headimgurl',
-      });
-      let user = await this.mockRequest('user', 'fake-code', access_token);
+      this.mockResponseMulti([
+        {
+          openid: 'fake-openid',
+          access_token: 'fake-access-token',
+          refresh_token: 'fake-refresh-token',
+          expires_in: 7200,
+        },
+        {
+          openid: 'fake-openid',
+          nickname: 'fake-nickname',
+          headimgurl: 'fake-avatar',
+        },
+      ]);
+      let user = await this.app.oauth.userFromCode('123456');
 
       this.assert.strictEqual(user.id, 'fake-openid');
       this.assert.strictEqual(user.nickname, 'fake-nickname');
-      this.assert.strictEqual(user.avatar, 'fake-headimgurl');
+      this.assert.strictEqual(user.name, 'fake-nickname');
+      this.assert.strictEqual(user.avatar, 'fake-avatar');
+      this.assert.strictEqual(user.access_token, 'fake-access-token');
+      this.assert.strictEqual(user.refresh_token, 'fake-refresh-token');
+    });
+
+    it(`Should throw error while calling old APIs.`, async () => {
+      try {
+        this.app.oauth.state('test');
+      }
+      catch (e) {
+        this.assert.strictEqual(e.message, 'Please use withState() instead.');
+      }
+
+      try {
+        this.app.oauth.user();
+      }
+      catch (e) {
+        this.assert.strictEqual(e.message, 'Please use userFromCode() instead.');
+      }
     });
 
   }
