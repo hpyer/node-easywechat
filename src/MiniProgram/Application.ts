@@ -26,6 +26,7 @@ import MediaClient from '../BaseService/Media/MediaClient';
 import ContentSecurityClient from '../BaseService/ContentSecurity/ContentSecurityClient';
 import { EasyWechatConfig } from '../Core/Types';
 import UrlSchemeClient from './UrlScheme/UrlSchemeClient';
+import RiskControlClient from './RiskControl/RiskControlClient';
 
 export default class MiniProgram extends BaseApplication
 {
@@ -54,6 +55,7 @@ export default class MiniProgram extends BaseApplication
   public media: MediaClient = null;
   public content_security: ContentSecurityClient = null;
   public url_scheme: UrlSchemeClient = null;
+  public risk_control: RiskControlClient = null;
 
   constructor(config: EasyWechatConfig = {}, prepends: Object = {}, id: String = null)
   {
@@ -146,6 +148,9 @@ export default class MiniProgram extends BaseApplication
     });
     this.offsetSet('url_scheme', function (app) {
       return new UrlSchemeClient(app);
+    });
+    this.offsetSet('risk_control', function (app) {
+      return new RiskControlClient(app);
     });
 
     // BaseService
