@@ -25,6 +25,7 @@ import SearchClient from './Search/SearchClient';
 import MediaClient from '../BaseService/Media/MediaClient';
 import ContentSecurityClient from '../BaseService/ContentSecurity/ContentSecurityClient';
 import { EasyWechatConfig } from '../Core/Types';
+import UrlSchemeClient from './UrlScheme/UrlSchemeClient';
 
 export default class MiniProgram extends BaseApplication
 {
@@ -52,6 +53,7 @@ export default class MiniProgram extends BaseApplication
   public search: SearchClient = null;
   public media: MediaClient = null;
   public content_security: ContentSecurityClient = null;
+  public url_scheme: UrlSchemeClient = null;
 
   constructor(config: EasyWechatConfig = {}, prepends: Object = {}, id: String = null)
   {
@@ -141,6 +143,9 @@ export default class MiniProgram extends BaseApplication
     });
     this.offsetSet('search', function (app) {
       return new SearchClient(app);
+    });
+    this.offsetSet('url_scheme', function (app) {
+      return new UrlSchemeClient(app);
     });
 
     // BaseService
