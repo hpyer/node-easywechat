@@ -6,14 +6,13 @@ import { inArray, merge } from '../../Core/Utils';
 export default class MessageClient extends BaseClient
 {
 
-  protected required: string[] = ['content', 'media_id', 'title', 'url', 'pic_media_id', 'appid', 'page'];
+  protected required: string[] = ['content', 'title', 'url', 'pic_media_id', 'appid', 'page'];
 
   protected textMessage: object = {
     content: '',
   };
 
   protected imageMessage: object = {
-    media_id: '',
   };
 
   protected linkMessage: object = {
