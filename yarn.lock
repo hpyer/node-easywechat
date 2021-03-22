@@ -514,10 +514,10 @@ node-rsa@^1.1.1:
   dependencies:
     asn1 "^0.2.4"
 
-node-socialite@^1.0.1:
-  version "1.0.1"
-  resolved "https://registry.yarnpkg.com/node-socialite/-/node-socialite-1.0.1.tgz#5a64c5ecda0f0ba100ecb441e99d03d4a52a2b0a"
-  integrity sha512-OCZtC8+BHqAV/7N2nurBe3uzYnBqcDRbMUwwB9koASsdLOs9jSFScalojlsTFX0GJ4k6+JdLx15aOjaxe5754Q==
+node-socialite@^1.2.0:
+  version "1.2.0"
+  resolved "https://registry.npm.taobao.org/node-socialite/download/node-socialite-1.2.0.tgz#beeb665ef3d085e1f21fb6f612b4bb5108363783"
+  integrity sha1-vutmXvPQheHyH7b2ErS7UQg2N4M=
   dependencies:
     axios "^0.21.1"
     qs "^6.9.6"
