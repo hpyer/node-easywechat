@@ -36,6 +36,10 @@ const RealtimeLogClient_1 = __importDefault(require("./RealtimeLog/RealtimeLogCl
 const SearchClient_1 = __importDefault(require("./Search/SearchClient"));
 const MediaClient_1 = __importDefault(require("../BaseService/Media/MediaClient"));
 const ContentSecurityClient_1 = __importDefault(require("../BaseService/ContentSecurity/ContentSecurityClient"));
+const UrlSchemeClient_1 = __importDefault(require("./UrlScheme/UrlSchemeClient"));
+const RiskControlClient_1 = __importDefault(require("./RiskControl/RiskControlClient"));
+const LiveClient_1 = __importDefault(require("./Live/LiveClient"));
+const BroadcastClient_1 = __importDefault(require("./Broadcast/BroadcastClient"));
 class MiniProgram extends BaseApplication_1.default {
     constructor(config = {}, prepends = {}, id = null) {
         super(config, prepends, id);
@@ -62,6 +66,10 @@ class MiniProgram extends BaseApplication_1.default {
         this.search = null;
         this.media = null;
         this.content_security = null;
+        this.url_scheme = null;
+        this.risk_control = null;
+        this.live = null;
+        this.broadcast = null;
         this.registerProviders();
     }
     registerProviders() {
@@ -145,6 +153,18 @@ class MiniProgram extends BaseApplication_1.default {
         });
         this.offsetSet('search', function (app) {
             return new SearchClient_1.default(app);
+        });
+        this.offsetSet('url_scheme', function (app) {
+            return new UrlSchemeClient_1.default(app);
+        });
+        this.offsetSet('risk_control', function (app) {
+            return new RiskControlClient_1.default(app);
+        });
+        this.offsetSet('live', function (app) {
+            return new LiveClient_1.default(app);
+        });
+        this.offsetSet('broadcast', function (app) {
+            return new BroadcastClient_1.default(app);
         });
         // BaseService
         this.offsetSet('media', function (app) {
