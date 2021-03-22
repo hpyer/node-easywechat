@@ -4,7 +4,7 @@
   "description": "EasyWechat SDK for Node.js (NOT OFFICIAL)",
   "main": "dist/index.js",
   "scripts": {
-    "build": "rm -rf dist && tsc",
+    "build": "rm -rf dist && node_modules/.bin/tsc",
     "test": "mocha ./test/**/*.js"
   },
   "repository": {
@@ -20,7 +20,8 @@
   "devDependencies": {
     "@types/node": "^12.12.7",
     "mocha": "^8.3.0",
-    "sinon": "^9.2.4"
+    "sinon": "^9.2.4",
+    "typescript": "^4.2.3"
   },
   "dependencies": {
     "axios": "^0.21.1",
