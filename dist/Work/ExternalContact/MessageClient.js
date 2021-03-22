@@ -8,13 +8,11 @@ const Utils_1 = require("../../Core/Utils");
 class MessageClient extends BaseClient_1.default {
     constructor() {
         super(...arguments);
-        this.required = ['content', 'media_id', 'title', 'url', 'pic_media_id', 'appid', 'page'];
+        this.required = ['content', 'title', 'url', 'pic_media_id', 'appid', 'page'];
         this.textMessage = {
             content: '',
         };
-        this.imageMessage = {
-            media_id: '',
-        };
+        this.imageMessage = {};
         this.linkMessage = {
             title: '',
             picurl: '',
