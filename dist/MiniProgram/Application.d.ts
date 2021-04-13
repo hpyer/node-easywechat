@@ -23,6 +23,10 @@ import SearchClient from './Search/SearchClient';
 import MediaClient from '../BaseService/Media/MediaClient';
 import ContentSecurityClient from '../BaseService/ContentSecurity/ContentSecurityClient';
 import { EasyWechatConfig } from '../Core/Types';
+import UrlSchemeClient from './UrlScheme/UrlSchemeClient';
+import RiskControlClient from './RiskControl/RiskControlClient';
+import LiveClient from './Live/LiveClient';
+import BroadcastClient from './Broadcast/BroadcastClient';
 export default class MiniProgram extends BaseApplication {
     access_token: AccessToken;
     auth: AuthClient;
@@ -47,6 +51,10 @@ export default class MiniProgram extends BaseApplication {
     search: SearchClient;
     media: MediaClient;
     content_security: ContentSecurityClient;
+    url_scheme: UrlSchemeClient;
+    risk_control: RiskControlClient;
+    live: LiveClient;
+    broadcast: BroadcastClient;
     constructor(config?: EasyWechatConfig, prepends?: Object, id?: String);
     registerProviders(): void;
     getPaidUnionid(): Promise<any>;

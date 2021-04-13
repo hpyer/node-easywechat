@@ -1,10 +1,10 @@
 {
   "name": "node-easywechat2",
-  "version": "2.5.0",
+  "version": "2.6.0",
   "description": "EasyWechat SDK for Node.js (NOT OFFICIAL)",
   "main": "dist/index.js",
   "scripts": {
-    "build": "rm -rf dist && tsc",
+    "build": "rm -rf dist && node_modules/.bin/tsc",
     "test": "mocha ./test/**/*.js"
   },
   "repository": {
@@ -20,13 +20,14 @@
   "devDependencies": {
     "@types/node": "^12.12.7",
     "mocha": "^8.3.0",
-    "sinon": "^9.2.4"
+    "sinon": "^9.2.4",
+    "typescript": "^4.2.3"
   },
   "dependencies": {
     "axios": "^0.21.1",
     "form-data": "^4.0.0",
     "node-rsa": "^1.1.1",
-    "node-socialite": "^1.0.1",
+    "node-socialite": "^1.2.0",
     "qs": "^6.9.6",
     "raw-body": "^2.4.1",
     "xml2js": "^0.4.23"
