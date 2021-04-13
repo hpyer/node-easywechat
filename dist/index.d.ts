@@ -96,6 +96,12 @@ declare class EasyWechat {
      */
     Messages: typeof Messages;
     constructor();
+    /**
+     * 声明配置项
+     * @param config
+     * @returns
+     */
+    defineConfig: (config: EasyWechatConfig) => EasyWechatConfig;
 }
 declare const _default: EasyWechat;
 export = _default;

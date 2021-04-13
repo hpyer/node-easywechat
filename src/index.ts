@@ -138,7 +138,17 @@ class EasyWechat {
     }
 
     this.Messages = Messages;
+
   }
+
+  /**
+   * 声明配置项
+   * @param config
+   * @returns
+   */
+  defineConfig = function (config: EasyWechatConfig): EasyWechatConfig {
+    return config;
+  };
 
 };
 

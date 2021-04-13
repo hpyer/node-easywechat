@@ -48,6 +48,14 @@ function getInstance(service, config) {
 ;
 class EasyWechat {
     constructor() {
+        /**
+         * 声明配置项
+         * @param config
+         * @returns
+         */
+        this.defineConfig = function (config) {
+            return config;
+        };
         this.Factory = {
             OfficialAccount: Application_1.default,
             BaseService: Application_2.default,
