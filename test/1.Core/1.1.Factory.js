@@ -5,11 +5,21 @@ const EasyWechat = require('../../dist');
 describe('Factory', function () {
 
   describe('OfficialAccount', function () {
-    let config = {
+    let config = EasyWechat.defineConfig({
       app_id: 'corpid@123',
-    };
+    });
     let app = new EasyWechat.Factory.OfficialAccount(config);
-    let appFromMake = EasyWechat.Factory.getInstance('OfficialAccount', config);
+
+    /**
+     *
+     * @param {string} service
+     * @param {import('../../dist/Core/Types').EasyWechatConfig} cfg
+     * @returns
+     */
+    const getInstance = (service, cfg) => {
+      return EasyWechat.Factory.getInstance(service, cfg);
+    };
+    let appFromMake = getInstance('OfficialAccount', config);
 
     it('Should instance of EasyWechat.Factory.OfficialAccount', function () {
       assert.strictEqual(app instanceof EasyWechat.Factory.OfficialAccount, true);
@@ -23,9 +33,9 @@ describe('Factory', function () {
   });
 
   describe('MiniProgram', function () {
-    let config = {
+    let config = EasyWechat.defineConfig({
       app_id: 'corpid@456',
-    };
+    });
     let app = new EasyWechat.Factory.MiniProgram(config);
 
     it('Should instance of EasyWechat.Factory.MiniProgram', function () {
@@ -38,9 +48,9 @@ describe('Factory', function () {
   });
 
   describe('Payment', function () {
-    let config = {
+    let config = EasyWechat.defineConfig({
       app_id: 'corpid@789',
-    };
+    });
     let app = new EasyWechat.Factory.Payment(config);
 
     it('Should instance of EasyWechat.Factory.Payment', function () {
@@ -53,9 +63,9 @@ describe('Factory', function () {
   });
 
   describe('OpenPlatform', function () {
-    let config = {
+    let config = EasyWechat.defineConfig({
       app_id: 'corpid@111',
-    };
+    });
     let app = new EasyWechat.Factory.OpenPlatform(config);
 
     it('Should instance of EasyWechat.Factory.OpenPlatform', function () {
