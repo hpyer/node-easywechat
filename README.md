@@ -10,7 +10,7 @@
 
 ### 安装
 
-`npm install -S node-easywechat@1`
+`npm install -S node-easywechat@first`
 
 ### 使用示例
 
