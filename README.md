@@ -1,7 +1,7 @@
 
 ## EasyWechat for Node.js
 
-[![Build Status](https://www.travis-ci.com/hpyer/node-easywechat.svg?branch=develop)](https://www.travis-ci.com/hpyer/node-easywechat) [![npm](https://img.shields.io/npm/v/node-easywechat2.svg)](https://www.npmjs.com/package/node-easywechat2) [![License](https://img.shields.io/npm/l/node-easywechat2.svg)](LICENSE)
+[![Build Status](https://www.travis-ci.com/hpyer/node-easywechat.svg?branch=develop)](https://www.travis-ci.com/hpyer/node-easywechat) [![npm](https://img.shields.io/npm/v/node-easywechat.svg)](https://www.npmjs.com/package/node-easywechat) [![License](https://img.shields.io/npm/l/node-easywechat.svg)](LICENSE)
 
 **注：2.x分支针对 EasyWechat 的 5.x版本(由于4.x与5.x的结构基本一致，就不升级大版本了)。若您需要 EasyWechat 的 3.x版本，请切换到 [1.x](https://github.com/hpyer/node-easywechat/tree/1.x) 分支。**
 
@@ -12,11 +12,11 @@
 
 ### 安装
 
-`npm install -S node-easywechat2`
+`npm install -S node-easywechat`
 
 ### 使用说明
 
-绝大部分API都可以根据 [EasyWechat 的文档](https://www.easywechat.com/docs) 来使用。小部分（如获取请求相关数据、返回响应数据、支付证书等）的操作，由于语言环境的不同，会有不同处理。具体可以查看 [node-easywechat-demo](https://github.com/hpyer/node-easywechat-demo/tree/2.x) 以及下方的[自定义模块说明](#自定义模块模块替换使用方法) 。如果仍有疑问，请提issue，谢谢～
+绝大部分API都可以根据 [EasyWechat 的文档](https://www.easywechat.com/docs) 来使用。小部分（如获取请求相关数据、返回响应数据、支付证书等）的操作，由于语言环境的不同，会有不同处理。具体可以查看 [node-easywechat-demo](https://github.com/hpyer/node-easywechat-demo/) 以及下方的[自定义模块说明](#自定义模块模块替换使用方法) 。如果仍有疑问，请提issue，谢谢～
 
 ```js
 // 公众号
@@ -141,7 +141,7 @@ let app = EasyWechat.Factory.getInstance('OficialAccount', {
 
 ```js
 // 创建实例
-const Easywechat = require('node-easywechat2');
+const Easywechat = require('node-easywechat');
 let officialAccount = new Easywechat.Factory.OfficialAccount({
   ...
 });
