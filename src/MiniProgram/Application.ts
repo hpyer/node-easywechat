@@ -29,6 +29,7 @@ import UrlSchemeClient from './UrlScheme/UrlSchemeClient';
 import RiskControlClient from './RiskControl/RiskControlClient';
 import LiveClient from './Live/LiveClient';
 import BroadcastClient from './Broadcast/BroadcastClient';
+import UnionClient from './Union/UnionClient';
 
 export default class MiniProgram extends BaseApplication
 {
@@ -60,6 +61,7 @@ export default class MiniProgram extends BaseApplication
   public risk_control: RiskControlClient = null;
   public live: LiveClient = null;
   public broadcast: BroadcastClient = null;
+  public union: UnionClient = null;
 
   constructor(config: EasyWechatConfig = {}, prepends: Object = {}, id: String = null)
   {
@@ -161,6 +163,9 @@ export default class MiniProgram extends BaseApplication
     });
     this.offsetSet('broadcast', function (app) {
       return new BroadcastClient(app);
+    });
+    this.offsetSet('union', function (app) {
+      return new UnionClient(app);
     });
 
     // BaseService
