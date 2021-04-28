@@ -40,6 +40,7 @@ const Client_1 = __importDefault(require("./ExternalContact/Client"));
 const ContactWayClient_1 = __importDefault(require("./ExternalContact/ContactWayClient"));
 const StatisticsClient_1 = __importDefault(require("./ExternalContact/StatisticsClient"));
 const MessageClient_2 = __importDefault(require("./ExternalContact/MessageClient"));
+const MessageTemplateClient_1 = __importDefault(require("./ExternalContact/MessageTemplateClient"));
 const SchoolClient_1 = __importDefault(require("./ExternalContact/SchoolClient"));
 const MomentClient_1 = __importDefault(require("./ExternalContact/MomentClient"));
 const CorpGroupClient_1 = __importDefault(require("./CorpGroup/CorpGroupClient"));
@@ -64,6 +65,7 @@ class Work extends BaseApplication_1.default {
         this.contact_way = null;
         this.external_contact_statistics = null;
         this.external_contact_message = null;
+        this.external_contact_message_template = null;
         this.school = null;
         this.external_contact_moment = null;
         this.group_robot = null;
@@ -122,6 +124,9 @@ class Work extends BaseApplication_1.default {
         });
         this.offsetSet('external_contact_message', function (app) {
             return new MessageClient_2.default(app);
+        });
+        this.offsetSet('external_contact_message_template', function (app) {
+            return new MessageTemplateClient_1.default(app);
         });
         this.offsetSet('school', function (app) {
             return new SchoolClient_1.default(app);

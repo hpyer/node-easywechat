@@ -26,6 +26,7 @@ import ExternalContactClient from './ExternalContact/Client';
 import ExternalContactWayClient from './ExternalContact/ContactWayClient';
 import ExternalStatisticsClient from './ExternalContact/StatisticsClient';
 import ExternalMessageClient from './ExternalContact/MessageClient';
+import ExternalMessageTemplateClient from './ExternalContact/MessageTemplateClient';
 import ExternalSchoolClient from './ExternalContact/SchoolClient';
 import ExternalMomentClient from './ExternalContact/MomentClient';
 import CorpGroupClient from './CorpGroup/CorpGroupClient';
@@ -44,6 +45,7 @@ export default class Work extends BaseApplication {
     contact_way: ExternalContactWayClient;
     external_contact_statistics: ExternalStatisticsClient;
     external_contact_message: ExternalMessageClient;
+    external_contact_message_template: ExternalMessageTemplateClient;
     school: ExternalSchoolClient;
     external_contact_moment: ExternalMomentClient;
     group_robot: GroupRobotClient;

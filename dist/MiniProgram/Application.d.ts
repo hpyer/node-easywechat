@@ -27,6 +27,7 @@ import UrlSchemeClient from './UrlScheme/UrlSchemeClient';
 import RiskControlClient from './RiskControl/RiskControlClient';
 import LiveClient from './Live/LiveClient';
 import BroadcastClient from './Broadcast/BroadcastClient';
+import UnionClient from './Union/UnionClient';
 export default class MiniProgram extends BaseApplication {
     access_token: AccessToken;
     auth: AuthClient;
@@ -55,6 +56,7 @@ export default class MiniProgram extends BaseApplication {
     risk_control: RiskControlClient;
     live: LiveClient;
     broadcast: BroadcastClient;
+    union: UnionClient;
     constructor(config?: EasyWechatConfig, prepends?: Object, id?: String);
     registerProviders(): void;
     getPaidUnionid(): Promise<any>;

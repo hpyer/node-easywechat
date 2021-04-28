@@ -40,6 +40,7 @@ const UrlSchemeClient_1 = __importDefault(require("./UrlScheme/UrlSchemeClient")
 const RiskControlClient_1 = __importDefault(require("./RiskControl/RiskControlClient"));
 const LiveClient_1 = __importDefault(require("./Live/LiveClient"));
 const BroadcastClient_1 = __importDefault(require("./Broadcast/BroadcastClient"));
+const UnionClient_1 = __importDefault(require("./Union/UnionClient"));
 class MiniProgram extends BaseApplication_1.default {
     constructor(config = {}, prepends = {}, id = null) {
         super(config, prepends, id);
@@ -70,6 +71,7 @@ class MiniProgram extends BaseApplication_1.default {
         this.risk_control = null;
         this.live = null;
         this.broadcast = null;
+        this.union = null;
         this.registerProviders();
     }
     registerProviders() {
@@ -165,6 +167,9 @@ class MiniProgram extends BaseApplication_1.default {
         });
         this.offsetSet('broadcast', function (app) {
             return new BroadcastClient_1.default(app);
+        });
+        this.offsetSet('union', function (app) {
+            return new UnionClient_1.default(app);
         });
         // BaseService
         this.offsetSet('media', function (app) {
