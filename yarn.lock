@@ -548,10 +548,10 @@ node-rsa@^1.1.1:
   dependencies:
     asn1 "^0.2.4"
 
-node-socialite@^1.2.0:
-  version "1.2.0"
-  resolved "https://registry.npm.taobao.org/node-socialite/download/node-socialite-1.2.0.tgz#beeb665ef3d085e1f21fb6f612b4bb5108363783"
-  integrity sha1-vutmXvPQheHyH7b2ErS7UQg2N4M=
+node-socialite@^1.2.1:
+  version "1.2.1"
+  resolved "https://registry.nlark.com/node-socialite/download/node-socialite-1.2.1.tgz#66356a3378f29cee6818086a3deb926be55c9831"
+  integrity sha1-ZjVqM3jynO5oGAhqPeuSa+VcmDE=
   dependencies:
     axios "^0.21.1"
     qs "^6.9.6"
