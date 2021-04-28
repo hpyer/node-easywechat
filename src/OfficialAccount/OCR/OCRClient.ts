@@ -21,7 +21,7 @@ export default class OCRClient extends BaseClient
       throw new Error(`Unsupported type: '${type}'`);
     }
 
-    return this.httpGet('cv/ocr/idcard', {
+    return this.httpPost('cv/ocr/idcard', {
       type,
       img_url,
     });
@@ -33,7 +33,7 @@ export default class OCRClient extends BaseClient
    */
   bankCard(img_url: string): Promise<any>
   {
-    return this.httpGet('cv/ocr/bankcard', {
+    return this.httpPost('cv/ocr/bankcard', {
       img_url,
     });
   }
@@ -44,7 +44,51 @@ export default class OCRClient extends BaseClient
    */
   vehicleLicense(img_url: string): Promise<any>
   {
-    return this.httpGet('cv/ocr/driving', {
+    return this.httpPost('cv/ocr/drivinglicense', {
+      img_url,
+    });
+  }
+
+  /**
+   * 驾驶证识别
+   * @param img_url 图片url
+   */
+  driving(img_url: string): Promise<any>
+  {
+    return this.httpPost('cv/ocr/driving', {
+      img_url,
+    });
+  }
+
+  /**
+   * 营业执照识别
+   * @param img_url 图片url
+   */
+  bizLicense(img_url: string): Promise<any>
+  {
+    return this.httpPost('cv/ocr/bizlicense', {
+      img_url,
+    });
+  }
+
+  /**
+   * 通用印刷体识别
+   * @param img_url 图片url
+   */
+  common(img_url: string): Promise<any>
+  {
+    return this.httpPost('cv/ocr/comm', {
+      img_url,
+    });
+  }
+
+  /**
+   * 车牌识别
+   * @param img_url 图片url
+   */
+  plateNumber(img_url: string): Promise<any>
+  {
+    return this.httpPost('cv/ocr/platenum', {
       img_url,
     });
   }
