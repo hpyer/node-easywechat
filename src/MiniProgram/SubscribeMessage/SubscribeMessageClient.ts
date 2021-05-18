@@ -11,6 +11,7 @@ export default class SubscribeMessageClient extends BaseClient
     template_id: '',
     page: '',
     data: '',
+    miniprogram_state: 'formal',
   };
 
   protected required = ['touser', 'template_id', 'data'];
