@@ -21,6 +21,7 @@ const UserClient_1 = __importDefault(require("./User/UserClient"));
 const TagClient_1 = __importDefault(require("./User/TagClient"));
 const MenuClient_1 = __importDefault(require("./Menu/MenuClient"));
 const TemplateMessageClient_1 = __importDefault(require("./TemplateMessage/TemplateMessageClient"));
+const SubscribeMessageClient_1 = __importDefault(require("./SubscribeMessage/SubscribeMessageClient"));
 const MaterialClient_1 = __importDefault(require("./Material/MaterialClient"));
 const CustomerServiceClient_1 = __importDefault(require("./CustomerService/CustomerServiceClient"));
 const CustomerServiceSession_1 = __importDefault(require("./CustomerService/CustomerServiceSession"));
@@ -61,6 +62,7 @@ class OfficialAccount extends BaseApplication_1.default {
         this.oauth = null;
         this.menu = null;
         this.template_message = null;
+        this.subscribe_message = null;
         this.material = null;
         this.customer_service = null;
         this.customer_service_session = null;
@@ -156,6 +158,9 @@ class OfficialAccount extends BaseApplication_1.default {
         });
         this.offsetSet('template_message', function (app) {
             return new TemplateMessageClient_1.default(app);
+        });
+        this.offsetSet('subscribe_message', function (app) {
+            return new SubscribeMessageClient_1.default(app);
         });
         this.offsetSet('material', function (app) {
             return new MaterialClient_1.default(app);

@@ -6,6 +6,7 @@ import UserClient from './User/UserClient';
 import TagClient from './User/TagClient';
 import MenuClient from './Menu/MenuClient';
 import TemplateMessageClient from './TemplateMessage/TemplateMessageClient';
+import SubscribeMessageClient from './SubscribeMessage/SubscribeMessageClient';
 import MaterialClient from './Material/MaterialClient';
 import CustomerServiceClient from './CustomerService/CustomerServiceClient';
 import CustomerServiceSession from './CustomerService/CustomerServiceSession';
@@ -38,6 +39,7 @@ export default class OfficialAccount extends BaseApplication {
     oauth: WeChat;
     menu: MenuClient;
     template_message: TemplateMessageClient;
+    subscribe_message: SubscribeMessageClient;
     material: MaterialClient;
     customer_service: CustomerServiceClient;
     customer_service_session: CustomerServiceSession;

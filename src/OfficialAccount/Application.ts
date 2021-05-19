@@ -9,6 +9,7 @@ import UserClient from './User/UserClient';
 import TagClient from './User/TagClient';
 import MenuClient from './Menu/MenuClient';
 import TemplateMessageClient from './TemplateMessage/TemplateMessageClient';
+import SubscribeMessageClient from './SubscribeMessage/SubscribeMessageClient';
 import MaterialClient from './Material/MaterialClient';
 import CustomerServiceClient from './CustomerService/CustomerServiceClient';
 import CustomerServiceSession from './CustomerService/CustomerServiceSession';
@@ -52,6 +53,7 @@ export default class OfficialAccount extends BaseApplication
   public oauth: WeChat = null;
   public menu: MenuClient = null;
   public template_message: TemplateMessageClient = null;
+  public subscribe_message: SubscribeMessageClient = null;
   public material: MaterialClient = null;
   public customer_service: CustomerServiceClient = null;
   public customer_service_session: CustomerServiceSession = null;
@@ -158,6 +160,9 @@ export default class OfficialAccount extends BaseApplication
     });
     this.offsetSet('template_message', function (app) {
       return new TemplateMessageClient(app);
+    });
+    this.offsetSet('subscribe_message', function (app) {
+      return new SubscribeMessageClient(app);
     });
     this.offsetSet('material', function (app) {
       return new MaterialClient(app);
