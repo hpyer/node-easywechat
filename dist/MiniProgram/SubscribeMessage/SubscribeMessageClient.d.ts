@@ -5,6 +5,7 @@ export default class SubscribeMessageClient extends BaseClient {
         template_id: string;
         page: string;
         data: string;
+        miniprogram_state: string;
     };
     protected required: string[];
     /**

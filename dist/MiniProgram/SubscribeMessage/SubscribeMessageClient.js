@@ -13,6 +13,7 @@ class SubscribeMessageClient extends BaseClient_1.default {
             template_id: '',
             page: '',
             data: '',
+            miniprogram_state: 'formal',
         };
         this.required = ['touser', 'template_id', 'data'];
     }
