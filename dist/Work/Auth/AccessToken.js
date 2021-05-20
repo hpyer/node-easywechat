@@ -16,14 +16,19 @@ const BaseAccessToken_1 = __importDefault(require("../../Core/BaseAccessToken"))
 class AccessToken extends BaseAccessToken_1.default {
     constructor() {
         super(...arguments);
-        this.endpointToGetToken = 'https://api.weixin.qq.com/cgi-bin/token';
+        this.endpointToGetToken = 'cgi-bin/gettoken';
     }
     getCredentials() {
         return __awaiter(this, void 0, void 0, function* () {
+            if (!this.app.config.corp_id) {
+                throw new Error('Please set `corp_id` in config');
+            }
+            if (!this.app.config.secret) {
+                throw new Error('Please set `secret` in config');
+            }
             return {
-                grant_type: 'client_credential',
-                appid: this.app.config.app_id,
-                secret: this.app.config.secret,
+                corpid: this.app.config.corp_id,
+                corpsecret: this.app.config.secret,
             };
         });
     }

@@ -44,7 +44,7 @@ export declare interface EasyWechatConfig {
     app_id?: string;
     /**
      * 应用 secret
-     * @scope BaseService | OfficialAccount | MiniProgram
+     * @scope BaseService | OfficialAccount | MiniProgram | Work
      */
     secret?: string;
     /**
