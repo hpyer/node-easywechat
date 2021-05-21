@@ -19,8 +19,11 @@ export class Message
   static TRANSFER: number = 4096;
   static EVENT: number = 1048576;
   static MINIPROGRAM_PAGE: number = 2097152;
+  static MINIPROGRAM_NOTICE = 4194304;
+  static MARKDOWN = 8388608;
   static ALL: number = Message.TEXT | Message.IMAGE | Message.VOICE | Message.VIDEO | Message.SHORT_VIDEO | Message.LOCATION | Message.LINK
-    | Message.DEVICE_EVENT | Message.DEVICE_TEXT | Message.FILE | Message.TEXT_CARD | Message.TRANSFER | Message.EVENT | Message.MINIPROGRAM_PAGE;
+    | Message.DEVICE_EVENT | Message.DEVICE_TEXT | Message.FILE | Message.TEXT_CARD | Message.TRANSFER | Message.EVENT
+    | Message.MINIPROGRAM_PAGE | Message.MINIPROGRAM_NOTICE | Message.MARKDOWN;
 
 
   protected type: string;
