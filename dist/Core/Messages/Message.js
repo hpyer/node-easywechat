@@ -139,6 +139,9 @@ Message.TEXT_CARD = 2048;
 Message.TRANSFER = 4096;
 Message.EVENT = 1048576;
 Message.MINIPROGRAM_PAGE = 2097152;
+Message.MINIPROGRAM_NOTICE = 4194304;
+Message.MARKDOWN = 8388608;
 Message.ALL = Message.TEXT | Message.IMAGE | Message.VOICE | Message.VIDEO | Message.SHORT_VIDEO | Message.LOCATION | Message.LINK
-    | Message.DEVICE_EVENT | Message.DEVICE_TEXT | Message.FILE | Message.TEXT_CARD | Message.TRANSFER | Message.EVENT | Message.MINIPROGRAM_PAGE;
+    | Message.DEVICE_EVENT | Message.DEVICE_TEXT | Message.FILE | Message.TEXT_CARD | Message.TRANSFER | Message.EVENT
+    | Message.MINIPROGRAM_PAGE | Message.MINIPROGRAM_NOTICE | Message.MARKDOWN;
 ;

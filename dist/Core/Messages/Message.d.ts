@@ -13,6 +13,8 @@ export declare class Message {
     static TRANSFER: number;
     static EVENT: number;
     static MINIPROGRAM_PAGE: number;
+    static MINIPROGRAM_NOTICE: number;
+    static MARKDOWN: number;
     static ALL: number;
     protected type: string;
     protected id: number;
