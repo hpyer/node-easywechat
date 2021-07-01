@@ -60,5 +60,11 @@ export default class DataCubeClient extends BaseClient {
      * @param to 结束日期，开始日期与结束日期相差的天数限定为0/6/29，分别表示查询最近1/7/30天数据，允许的最大值为昨天，格式：20170313
      */
     userPortrait(from: string, to: string): Promise<any>;
+    /**
+     * 获取小程序启动性能，运行性能等数据
+     * @param from 开始日期，格式：20170313
+     * @param to 结束日期，格式：20170313
+     */
+    devicePerformanceData(from: string, to: string, module: string, networktype?: string, device_level?: string, device?: string): Promise<any>;
     protected query(api: string, from: string, to: string): Promise<any>;
 }
