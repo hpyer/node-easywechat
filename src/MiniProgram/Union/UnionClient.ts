@@ -61,4 +61,8 @@ export default class UnionClient extends BaseClient {
     });
   }
 
+  getFeaturedProducts(params: object): Promise<any> {
+    return this.httpGet('union/promoter/product/select', params);
+  }
+
 }
