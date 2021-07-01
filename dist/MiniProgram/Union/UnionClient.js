@@ -53,5 +53,8 @@ class UnionClient extends BaseClient_1.default {
             commissionStatus,
         });
     }
+    getFeaturedProducts(params) {
+        return this.httpGet('union/promoter/product/select', params);
+    }
 }
 exports.default = UnionClient;

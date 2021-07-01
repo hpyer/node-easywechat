@@ -14,17 +14,26 @@ class CodeTemplateClient extends BaseClient_1.default {
     /**
      * 将草稿添加到代码模板库
      * @param draftId 草稿 ID
+     * @param templateType 默认值是0，对应普通模板；可选1，对应标准模板库
      */
-    createFromDraft(draftId) {
+    createFromDraft(draftId, templateType = 0) {
         return this.httpPostJson('wxa/addtotemplate', {
             draft_id: draftId,
+            template_type: templateType,
         });
     }
     /**
      * 获取代码模板列表
+     * @param templateType 默认值是0，对应普通模板；可选1，对应标准模板库
      */
-    list() {
-        return this.httpGet('wxa/gettemplatelist');
+    list(templateType = null) {
+        let query = null;
+        if (templateType !== null) {
+            query = {
+                template_type: templateType,
+            };
+        }
+        return this.httpGet('wxa/gettemplatelist', query);
     }
     /**
      * 删除指定代码模板

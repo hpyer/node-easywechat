@@ -9,4 +9,5 @@ export default class UnionClient extends BaseClient {
     getProductMaterial(pid: string, productList: object[]): Promise<any>;
     getOrderInfo(orderIdList: string[]): Promise<any>;
     searchOrder(page?: number, startTimestamp?: string, endTimestamp?: string, commissionStatus?: string): Promise<any>;
+    getFeaturedProducts(params: object): Promise<any>;
 }

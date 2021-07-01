@@ -111,7 +111,14 @@ class MediaClient extends BaseClient_1.default {
             if (res.getHeader('content-disposition').indexOf('attachment') > -1) {
                 return StreamResponse_1.default.buildFromResponse(res);
             }
-            return res.getContent().toString();
+            let content = res.getContent();
+            if (typeof content === 'string') {
+                try {
+                    content = JSON.parse(content);
+                }
+                catch (e) { }
+            }
+            return content;
         });
     }
     /**
@@ -130,7 +137,14 @@ class MediaClient extends BaseClient_1.default {
             if (res.getHeader('content-disposition').indexOf('attachment') > -1) {
                 return StreamResponse_1.default.buildFromResponse(res);
             }
-            return res.getContent();
+            let content = res.getContent();
+            if (typeof content === 'string') {
+                try {
+                    content = JSON.parse(content);
+                }
+                catch (e) { }
+            }
+            return content;
         });
     }
 }
