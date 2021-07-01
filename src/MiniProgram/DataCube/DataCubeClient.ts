@@ -105,6 +105,28 @@ export default class DataCubeClient extends BaseClient
     return this.query('datacube/getweanalysisappiduserportrait', from, to);
   }
 
+  /**
+   * 获取小程序启动性能，运行性能等数据
+   * @param from 开始日期，格式：20170313
+   * @param to 结束日期，格式：20170313
+   */
+  devicePerformanceData(from: string, to: string, module: string, networktype: string = '-1', device_level: string = '-1', device: string = '-1'): Promise<any>
+  {
+    let payload = {
+      time: {
+        end_timestamp: to,
+        begin_timestamp: from,
+      },
+      module,
+      params: [
+        {field: 'networktype', value: networktype},
+        {field: 'device_level', value: device_level},
+        {field: 'device', value: device},
+      ]
+    };
+    return this.httpPostJson('wxa/business/performance/boot', payload);
+  }
+
   protected query(api: string, from: string, to: string): Promise<any>
   {
     let params = {
