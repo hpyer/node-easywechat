@@ -1,10 +1,8 @@
 'use strict';
 
-import Fs from 'fs';
 import BaseClient from '../../Core/BaseClient';
-import { inArray, isString } from '../../Core/Utils';
+import { inArray } from '../../Core/Utils';
 import StreamResponse from '../../Core/Http/StreamResponse';
-import FormData from 'form-data';
 
 export default class MediaClient extends BaseClient
 {
@@ -114,7 +112,14 @@ export default class MediaClient extends BaseClient
       return StreamResponse.buildFromResponse(res);
     }
 
-    return res.getContent().toString();
+    let content = res.getContent();
+    if (typeof content === 'string') {
+      try {
+        content = JSON.parse(content);
+      }
+      catch (e) { }
+    }
+    return content;
   }
 
   /**
@@ -135,7 +140,14 @@ export default class MediaClient extends BaseClient
       return StreamResponse.buildFromResponse(res);
     }
 
-    return res.getContent();
+    let content = res.getContent();
+    if (typeof content === 'string') {
+      try {
+        content = JSON.parse(content);
+      }
+      catch (e) { }
+    }
+    return content;
   }
 
 }

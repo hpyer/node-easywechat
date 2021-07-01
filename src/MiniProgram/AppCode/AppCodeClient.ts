@@ -58,7 +58,14 @@ export default class AppCodeClient extends BaseClient
       return StreamResponse.buildFromResponse(res);
     }
 
-    return res.getContent();
+    let content = res.getContent();
+    if (typeof content === 'string') {
+      try {
+        content = JSON.parse(content);
+      }
+      catch (e) { }
+    }
+    return content;
   }
 
 }
