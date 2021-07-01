@@ -6,7 +6,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const BaseClient_1 = __importDefault(require("../../Core/BaseClient"));
 class RiskControlClient extends BaseClient_1.default {
     getUserRiskRank(params) {
-        return this.httpPost('wxa/getuserriskrank', params);
+        return this.httpPostJson('wxa/getuserriskrank', params);
     }
 }
 exports.default = RiskControlClient;
