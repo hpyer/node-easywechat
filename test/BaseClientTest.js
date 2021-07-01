@@ -54,7 +54,7 @@ module.exports = class BaseClientTest {
    * @param {object} headers 响应 headers
    * @param {number} status 响应状态码，默认：200
    */
-  mockResponse(body, headers = null, status = 200) {
+  mockResponse(body, headers = {}, status = 200) {
     this._request.resolves({
       status,
       headers,
