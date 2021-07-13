@@ -30,6 +30,21 @@ class RedpackClient extends BaseClient_1.default {
         return this.safeRequest('mmpaymkttransfers/gethbinfo', params);
     }
     /**
+     * 发送小程序红包
+     * @param data 红包参数
+     */
+    sendMiniprogramNormal(data) {
+        return __awaiter(this, void 0, void 0, function* () {
+            let params = Utils_1.merge(Utils_1.merge({}, data), {
+                notify_way: 'MINI_PROGRAM_JSAPI',
+                wxappid: this.app.config.app_id,
+                total_num: 1,
+                client_ip: data['client_ip'] || (yield this.getServerIp()),
+            });
+            return yield this.safeRequest('mmpaymkttransfers/sendminiprogramhb', params);
+        });
+    }
+    /**
      * 发送普通红包
      * @param data 红包参数
      */

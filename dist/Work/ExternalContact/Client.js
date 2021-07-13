@@ -18,20 +18,68 @@ class ExternalContactClient extends BaseClient_1.default {
             external_userid: externalUserId,
         });
     }
-    batchGetUsers(data) {
-        return this.httpPostJson('cgi-bin/externalcontact/batch/get_by_user', data);
+    batchGet(userId, cursor = '', limit = 1) {
+        return this.httpPostJson('cgi-bin/externalcontact/batch/get_by_user', {
+            userid: userId,
+            cursor,
+            limit,
+        });
+    }
+    batchGetByUser(userId, cursor = '', limit = 1) {
+        return this.httpPostJson('cgi-bin/externalcontact/batch/get_by_user', {
+            userid: userId,
+            cursor,
+            limit,
+        });
     }
     remark(data) {
         return this.httpPostJson('cgi-bin/externalcontact/remark', data);
     }
-    getUnassigned(pageId = 0, pageSize = 1000) {
+    getUnassigned(pageId = 0, pageSize = 1000, cursor = null) {
         return this.httpPostJson('cgi-bin/externalcontact/get_unassigned_list', {
             page_id: pageId,
             page_size: pageSize,
+            cursor,
         });
     }
-    transfer(externalUserId, handoverUserId, takeoverUserId) {
-        return this.httpPostJson('cgi-bin/externalcontact/get_unassigned_list', {
+    transfer(externalUserId, handoverUserId, takeoverUserId, transferSuccessMessage) {
+        return this.httpPostJson('cgi-bin/externalcontact/transfer', {
+            external_userid: externalUserId,
+            handover_userid: handoverUserId,
+            takeover_userid: takeoverUserId,
+            transfer_success_msg: transferSuccessMessage,
+        });
+    }
+    transferCustomer(externalUserId, handoverUserId, takeoverUserId, transferSuccessMessage) {
+        return this.httpPostJson('cgi-bin/externalcontact/transfer_customer', {
+            external_userid: externalUserId,
+            handover_userid: handoverUserId,
+            takeover_userid: takeoverUserId,
+            transfer_success_msg: transferSuccessMessage,
+        });
+    }
+    resignedTransferCustomer(externalUserId, handoverUserId, takeoverUserId) {
+        return this.httpPostJson('cgi-bin/externalcontact/resigned/transfer_customer', {
+            external_userid: externalUserId,
+            handover_userid: handoverUserId,
+            takeover_userid: takeoverUserId,
+        });
+    }
+    transferGroupChat(chatIds, newOwner) {
+        return this.httpPostJson('cgi-bin/externalcontact/groupchat/transfer', {
+            chat_id_list: chatIds,
+            new_owner: newOwner,
+        });
+    }
+    transferResult(handoverUserId, takeoverUserId, cursor = null) {
+        return this.httpPostJson('cgi-bin/externalcontact/resigned/transfer_result', {
+            handover_userid: handoverUserId,
+            takeover_userid: takeoverUserId,
+            cursor,
+        });
+    }
+    getTransferResult(externalUserId, handoverUserId, takeoverUserId) {
+        return this.httpPostJson('cgi-bin/externalcontact/get_transfer_result', {
             external_userid: externalUserId,
             handover_userid: handoverUserId,
             takeover_userid: takeoverUserId,
@@ -45,20 +93,26 @@ class ExternalContactClient extends BaseClient_1.default {
             chat_id: chatId,
         });
     }
-    getCorpTags(tagIds) {
+    getCorpTags(tagIds, groupIds) {
         return this.httpPostJson('cgi-bin/externalcontact/get_corp_tag_list', {
             tag_id: tagIds,
+            group_id: groupIds,
         });
     }
     addCorpTag(data) {
         return this.httpPostJson('cgi-bin/externalcontact/add_corp_tag', data);
     }
-    updateCorpTag(id, name, order = 1) {
-        return this.httpPostJson('cgi-bin/externalcontact/edit_corp_tag', {
+    updateCorpTag(id, name = null, order = null) {
+        let params = {
             id,
-            name,
-            order,
-        });
+        };
+        if (name !== null) {
+            params['name'] = name;
+        }
+        if (order !== null) {
+            params['order'] = order;
+        }
+        return this.httpPostJson('cgi-bin/externalcontact/edit_corp_tag', params);
     }
     deleteCorpTag(tagId, groupId) {
         return this.httpPostJson('cgi-bin/externalcontact/del_corp_tag', {

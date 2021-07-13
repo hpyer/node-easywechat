@@ -6,6 +6,11 @@ export default class RedpackClient extends BaseClient {
      */
     info(mchBillno: any): Promise<any>;
     /**
+     * 发送小程序红包
+     * @param data 红包参数
+     */
+    sendMiniprogramNormal(data: object): Promise<any>;
+    /**
      * 发送普通红包
      * @param data 红包参数
      */
