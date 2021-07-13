@@ -1,7 +1,6 @@
 'use strict';
 
 import BaseClient from '../../Core/BaseClient';
-import { merge } from '../../Core/Utils';
 
 export default class ExternalContactClient extends BaseClient
 {
@@ -25,9 +24,22 @@ export default class ExternalContactClient extends BaseClient
     });
   }
 
-  batchGetUsers(data: object): Promise<any>
+  batchGet(userId: string, cursor: string = '', limit: number = 1): Promise<any>
   {
-    return this.httpPostJson('cgi-bin/externalcontact/batch/get_by_user', data);
+    return this.httpPostJson('cgi-bin/externalcontact/batch/get_by_user', {
+      userid: userId,
+      cursor,
+      limit,
+    });
+  }
+
+  batchGetByUser(userId: string, cursor: string = '', limit: number = 1): Promise<any>
+  {
+    return this.httpPostJson('cgi-bin/externalcontact/batch/get_by_user', {
+      userid: userId,
+      cursor,
+      limit,
+    });
   }
 
   remark(data: object): Promise<any>
@@ -35,17 +47,64 @@ export default class ExternalContactClient extends BaseClient
     return this.httpPostJson('cgi-bin/externalcontact/remark', data);
   }
 
-  getUnassigned(pageId: number = 0, pageSize: number = 1000): Promise<any>
+  getUnassigned(pageId: number = 0, pageSize: number = 1000, cursor: string = null): Promise<any>
   {
     return this.httpPostJson('cgi-bin/externalcontact/get_unassigned_list', {
       page_id: pageId,
       page_size: pageSize,
+      cursor,
     });
   }
 
-  transfer(externalUserId: string, handoverUserId: string, takeoverUserId: string): Promise<any>
+  transfer(externalUserId: string, handoverUserId: string, takeoverUserId: string, transferSuccessMessage: string): Promise<any>
   {
-    return this.httpPostJson('cgi-bin/externalcontact/get_unassigned_list', {
+    return this.httpPostJson('cgi-bin/externalcontact/transfer', {
+      external_userid: externalUserId,
+      handover_userid: handoverUserId,
+      takeover_userid: takeoverUserId,
+      transfer_success_msg: transferSuccessMessage,
+    });
+  }
+
+  transferCustomer(externalUserId: string, handoverUserId: string, takeoverUserId: string, transferSuccessMessage: string): Promise<any>
+  {
+    return this.httpPostJson('cgi-bin/externalcontact/transfer_customer', {
+      external_userid: externalUserId,
+      handover_userid: handoverUserId,
+      takeover_userid: takeoverUserId,
+      transfer_success_msg: transferSuccessMessage,
+    });
+  }
+
+  resignedTransferCustomer(externalUserId: string, handoverUserId: string, takeoverUserId: string): Promise<any>
+  {
+    return this.httpPostJson('cgi-bin/externalcontact/resigned/transfer_customer', {
+      external_userid: externalUserId,
+      handover_userid: handoverUserId,
+      takeover_userid: takeoverUserId,
+    });
+  }
+
+  transferGroupChat(chatIds: string[], newOwner: string): Promise<any>
+  {
+    return this.httpPostJson('cgi-bin/externalcontact/groupchat/transfer', {
+      chat_id_list: chatIds,
+      new_owner: newOwner,
+    });
+  }
+
+  transferResult(handoverUserId: string, takeoverUserId: string, cursor: string = null): Promise<any>
+  {
+    return this.httpPostJson('cgi-bin/externalcontact/resigned/transfer_result', {
+      handover_userid: handoverUserId,
+      takeover_userid: takeoverUserId,
+      cursor,
+    });
+  }
+
+  getTransferResult(externalUserId: string, handoverUserId: string, takeoverUserId: string): Promise<any>
+  {
+    return this.httpPostJson('cgi-bin/externalcontact/get_transfer_result', {
       external_userid: externalUserId,
       handover_userid: handoverUserId,
       takeover_userid: takeoverUserId,
@@ -64,10 +123,11 @@ export default class ExternalContactClient extends BaseClient
     });
   }
 
-  getCorpTags(tagIds: string[]): Promise<any>
+  getCorpTags(tagIds: string[], groupIds: string[]): Promise<any>
   {
     return this.httpPostJson('cgi-bin/externalcontact/get_corp_tag_list', {
       tag_id: tagIds,
+      group_id: groupIds,
     });
   }
 
@@ -76,13 +136,18 @@ export default class ExternalContactClient extends BaseClient
     return this.httpPostJson('cgi-bin/externalcontact/add_corp_tag', data);
   }
 
-  updateCorpTag(id: string, name: string, order: number = 1): Promise<any>
+  updateCorpTag(id: string, name: string = null, order: number = null): Promise<any>
   {
-    return this.httpPostJson('cgi-bin/externalcontact/edit_corp_tag', {
+    let params = {
       id,
-      name,
-      order,
-    });
+    };
+    if (name !== null) {
+      params['name'] = name;
+    }
+    if (order !== null) {
+      params['order'] = order;
+    }
+    return this.httpPostJson('cgi-bin/externalcontact/edit_corp_tag', params);
   }
 
   deleteCorpTag(tagId: string[], groupId: string[]): Promise<any>
