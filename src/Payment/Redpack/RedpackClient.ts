@@ -25,6 +25,22 @@ export default class RedpackClient extends BaseClient
   }
 
   /**
+   * 发送小程序红包
+   * @param data 红包参数
+   */
+  async sendMiniprogramNormal(data: object): Promise<any>
+  {
+    let params = merge(merge({}, data), {
+      notify_way: 'MINI_PROGRAM_JSAPI',
+      wxappid: this.app.config.app_id,
+      total_num: 1,
+      client_ip: data['client_ip'] || await this.getServerIp(),
+    });
+
+    return await this.safeRequest('mmpaymkttransfers/sendminiprogramhb', params);
+  }
+
+  /**
    * 发送普通红包
    * @param data 红包参数
    */
