@@ -14,6 +14,14 @@ export default class ExpressClient extends BaseClient
   }
 
   /**
+   * 获取所有绑定的物流账号
+   */
+  getAllAccount(): Promise<any>
+  {
+    return this.httpGet('cgi-bin/express/business/account/getall');
+  }
+
+  /**
    * 生成运单
    * @param params 订单信息
    */
