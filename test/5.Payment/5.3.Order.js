@@ -9,7 +9,7 @@ class TestUnit extends BaseClientTest {
   test() {
 
     it('unify()', async () => {
-      this.mockResponse('mock-result');
+      this.mockResponse('{"ip":"123.123.123.123"}');
 
       let resp = null;
       let server_ip = await this.app.order.getServerIp();
@@ -18,6 +18,7 @@ class TestUnit extends BaseClientTest {
         appid: 'wx123456',
       };
 
+      this.mockResponse('mock-result');
       order.trade_type = 'NATIVE';
       resp = await this.mockRequest('unify', order);
       this.assert.strictEqual(resp, 'mock-result');
@@ -33,7 +34,7 @@ class TestUnit extends BaseClientTest {
     });
 
     it('unify() with contract', async () => {
-      this.mockResponse('mock-result');
+      this.mockResponse('{"ip":"123.123.123.123"}');
 
       let resp = null;
       let server_ip = await this.app.order.getServerIp();
@@ -44,6 +45,8 @@ class TestUnit extends BaseClientTest {
         contract_mchid: 'foo-merchant-id',
         request_serial: 123,
       };
+
+      this.mockResponse('mock-result');
 
       order.trade_type = 'NATIVE';
       resp = await this.mockRequest('unify', order, true);
