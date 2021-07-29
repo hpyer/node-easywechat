@@ -40,9 +40,8 @@ class BaseClient {
                 base['sub_appid'] = '';
             }
             let localParams = Utils_1.merge(Utils_1.merge(base, this.prepends()), params);
-            localParams['sign_type'] = localParams['sign_type'] || 'MD5';
             let secretKey = yield this.app.getKey(endpoint);
-            localParams['sign'] = Utils_1.makeSignature(localParams, secretKey, localParams['sign_type']);
+            localParams['sign'] = Utils_1.makeSignature(localParams, secretKey, localParams['sign_type'] || 'MD5');
             let XmlBuilder = new xml2js_1.default.Builder({
                 cdata: true,
                 renderOpts: {
@@ -106,9 +105,15 @@ class BaseClient {
                     baseURL: '',
                     url: 'https://api.ipify.org?format=json',
                     method: 'GET',
+                    responseType: 'json',
                 });
-                if (res && res['ip']) {
-                    this.serverIp = res['ip'];
+                let body = null;
+                try {
+                    body = JSON.parse(res.data);
+                }
+                catch (e) { }
+                if (body && body['ip']) {
+                    this.serverIp = body['ip'];
                 }
             }
             return this.serverIp;

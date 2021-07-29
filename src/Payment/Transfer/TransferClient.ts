@@ -41,7 +41,7 @@ export default class TransferClient extends BaseClient
    * 企业付款到用户零钱
    * @param params 付款信息
    */
-  toBalance(params: object): Promise<any>
+  async toBalance(params: object): Promise<any>
   {
     let base = {
       mch_id: null,
@@ -50,7 +50,7 @@ export default class TransferClient extends BaseClient
     };
 
     if (!params['spbill_create_ip']) {
-      params['spbill_create_ip'] = this.getServerIp();
+      params['spbill_create_ip'] = await this.getServerIp();
     }
 
     return this.safeRequest('mmpaymkttransfers/promotion/transfers', merge(base, params));

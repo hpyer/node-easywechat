@@ -40,10 +40,9 @@ class BaseClient implements HttpMixin
     }
 
     let localParams = merge(merge(base, this.prepends()), params);
-    localParams['sign_type'] = localParams['sign_type'] || 'MD5';
 
     let secretKey = await this.app.getKey(endpoint);
-    localParams['sign'] = makeSignature(localParams, secretKey, localParams['sign_type']);
+    localParams['sign'] = makeSignature(localParams, secretKey, localParams['sign_type'] || 'MD5');
 
     let XmlBuilder = new Xml2js.Builder({
       cdata: true,
@@ -112,9 +111,15 @@ class BaseClient implements HttpMixin
         baseURL: '',
         url: 'https://api.ipify.org?format=json',
         method: 'GET',
+        responseType: 'json',
       });
-      if (res && res['ip']) {
-        this.serverIp = res['ip'];
+      let body = null;
+      try {
+        body = JSON.parse(res.data);
+      }
+      catch (e) { }
+      if (body && body['ip']) {
+        this.serverIp = body['ip'];
       }
     }
 

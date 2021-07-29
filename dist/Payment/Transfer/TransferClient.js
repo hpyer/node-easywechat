@@ -1,4 +1,13 @@
 'use strict';
+var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
+    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
+    return new (P || (P = Promise))(function (resolve, reject) {
+        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
+        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
+        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
+        step((generator = generator.apply(thisArg, _arguments || [])).next());
+    });
+};
 var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
@@ -36,15 +45,17 @@ class TransferClient extends BaseClient_1.default {
      * @param params 付款信息
      */
     toBalance(params) {
-        let base = {
-            mch_id: null,
-            mchid: this.app.config.mch_id,
-            mch_appid: this.app.config.app_id,
-        };
-        if (!params['spbill_create_ip']) {
-            params['spbill_create_ip'] = this.getServerIp();
-        }
-        return this.safeRequest('mmpaymkttransfers/promotion/transfers', Utils_1.merge(base, params));
+        return __awaiter(this, void 0, void 0, function* () {
+            let base = {
+                mch_id: null,
+                mchid: this.app.config.mch_id,
+                mch_appid: this.app.config.app_id,
+            };
+            if (!params['spbill_create_ip']) {
+                params['spbill_create_ip'] = yield this.getServerIp();
+            }
+            return this.safeRequest('mmpaymkttransfers/promotion/transfers', Utils_1.merge(base, params));
+        });
     }
     /**
      * 企业付款到银行卡
