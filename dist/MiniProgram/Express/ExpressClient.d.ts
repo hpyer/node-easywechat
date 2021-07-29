@@ -5,6 +5,10 @@ export default class ExpressClient extends BaseClient {
      */
     listProviders(): Promise<any>;
     /**
+     * 获取所有绑定的物流账号
+     */
+    getAllAccount(): Promise<any>;
+    /**
      * 生成运单
      * @param params 订单信息
      */
