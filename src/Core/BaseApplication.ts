@@ -83,11 +83,15 @@ export default abstract class BaseApplicatioin
       return app.getConfig();
     });
 
-    this.log = function () {
-      let args = arguments;
-      args[0] = 'NodeEasywechat2: ' + args[0];
-      return console.log.apply(null, arguments);
-    };
+    this.offsetSet('log', function (app) {
+      return function () {
+        if (!app['config']['debug']) return true;
+
+        let args = arguments;
+        args[0] = 'NodeEasywechat2: ' + args[0];
+        return console.log.apply(null, arguments);
+      };
+    });
 
     if (!this.request) {
       this.request = new Request;

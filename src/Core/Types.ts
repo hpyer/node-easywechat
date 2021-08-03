@@ -42,6 +42,12 @@ export declare interface EasyWechatConfigCacheFile {
  */
 export declare interface EasyWechatConfig {
   /**
+   * 是否开启调试，开启后会在控制台输出日志，默认：false
+   * @scope ALL
+   */
+  debug?: boolean;
+
+  /**
    * 应用 id
    * @scope ALL
    */
