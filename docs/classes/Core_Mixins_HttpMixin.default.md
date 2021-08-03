@@ -44,4 +44,4 @@
 
 #### Defined in
 
-[Core/Mixins/HttpMixin.ts:11](https://github.com/hpyer/node-easywechat/blob/d6465cc/src/Core/Mixins/HttpMixin.ts#L11)
+[Core/Mixins/HttpMixin.ts:11](https://github.com/hpyer/node-easywechat/blob/3eacadb/src/Core/Mixins/HttpMixin.ts#L11)

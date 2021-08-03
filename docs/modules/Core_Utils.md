@@ -53,7 +53,7 @@
 
 #### Defined in
 
-[Core/Utils.ts:220](https://github.com/hpyer/node-easywechat/blob/d6465cc/src/Core/Utils.ts#L220)
+[Core/Utils.ts:220](https://github.com/hpyer/node-easywechat/blob/3eacadb/src/Core/Utils.ts#L220)
 
 ___
 
@@ -76,7 +76,7 @@ ___
 
 #### Defined in
 
-[Core/Utils.ts:230](https://github.com/hpyer/node-easywechat/blob/d6465cc/src/Core/Utils.ts#L230)
+[Core/Utils.ts:230](https://github.com/hpyer/node-easywechat/blob/3eacadb/src/Core/Utils.ts#L230)
 
 ___
 
@@ -97,7 +97,7 @@ ___
 
 #### Defined in
 
-[Core/Utils.ts:161](https://github.com/hpyer/node-easywechat/blob/d6465cc/src/Core/Utils.ts#L161)
+[Core/Utils.ts:161](https://github.com/hpyer/node-easywechat/blob/3eacadb/src/Core/Utils.ts#L161)
 
 ___
 
@@ -118,7 +118,7 @@ ___
 
 #### Defined in
 
-[Core/Utils.ts:57](https://github.com/hpyer/node-easywechat/blob/d6465cc/src/Core/Utils.ts#L57)
+[Core/Utils.ts:57](https://github.com/hpyer/node-easywechat/blob/3eacadb/src/Core/Utils.ts#L57)
 
 ___
 
@@ -139,7 +139,7 @@ ___
 
 #### Defined in
 
-[Core/Utils.ts:35](https://github.com/hpyer/node-easywechat/blob/d6465cc/src/Core/Utils.ts#L35)
+[Core/Utils.ts:35](https://github.com/hpyer/node-easywechat/blob/3eacadb/src/Core/Utils.ts#L35)
 
 ___
 
@@ -161,7 +161,7 @@ ___
 
 #### Defined in
 
-[Core/Utils.ts:40](https://github.com/hpyer/node-easywechat/blob/d6465cc/src/Core/Utils.ts#L40)
+[Core/Utils.ts:40](https://github.com/hpyer/node-easywechat/blob/3eacadb/src/Core/Utils.ts#L40)
 
 ___
 
@@ -181,7 +181,7 @@ ___
 
 #### Defined in
 
-[Core/Utils.ts:45](https://github.com/hpyer/node-easywechat/blob/d6465cc/src/Core/Utils.ts#L45)
+[Core/Utils.ts:45](https://github.com/hpyer/node-easywechat/blob/3eacadb/src/Core/Utils.ts#L45)
 
 ___
 
@@ -203,7 +203,7 @@ ___
 
 #### Defined in
 
-[Core/Utils.ts:143](https://github.com/hpyer/node-easywechat/blob/d6465cc/src/Core/Utils.ts#L143)
+[Core/Utils.ts:143](https://github.com/hpyer/node-easywechat/blob/3eacadb/src/Core/Utils.ts#L143)
 
 ___
 
@@ -223,7 +223,7 @@ ___
 
 #### Defined in
 
-[Core/Utils.ts:112](https://github.com/hpyer/node-easywechat/blob/d6465cc/src/Core/Utils.ts#L112)
+[Core/Utils.ts:112](https://github.com/hpyer/node-easywechat/blob/3eacadb/src/Core/Utils.ts#L112)
 
 ___
 
@@ -243,7 +243,7 @@ ___
 
 #### Defined in
 
-[Core/Utils.ts:124](https://github.com/hpyer/node-easywechat/blob/d6465cc/src/Core/Utils.ts#L124)
+[Core/Utils.ts:124](https://github.com/hpyer/node-easywechat/blob/3eacadb/src/Core/Utils.ts#L124)
 
 ___
 
@@ -263,7 +263,7 @@ ___
 
 #### Defined in
 
-[Core/Utils.ts:138](https://github.com/hpyer/node-easywechat/blob/d6465cc/src/Core/Utils.ts#L138)
+[Core/Utils.ts:138](https://github.com/hpyer/node-easywechat/blob/3eacadb/src/Core/Utils.ts#L138)
 
 ___
 
@@ -283,7 +283,7 @@ ___
 
 #### Defined in
 
-[Core/Utils.ts:128](https://github.com/hpyer/node-easywechat/blob/d6465cc/src/Core/Utils.ts#L128)
+[Core/Utils.ts:128](https://github.com/hpyer/node-easywechat/blob/3eacadb/src/Core/Utils.ts#L128)
 
 ___
 
@@ -303,7 +303,7 @@ ___
 
 #### Defined in
 
-[Core/Utils.ts:133](https://github.com/hpyer/node-easywechat/blob/d6465cc/src/Core/Utils.ts#L133)
+[Core/Utils.ts:133](https://github.com/hpyer/node-easywechat/blob/3eacadb/src/Core/Utils.ts#L133)
 
 ___
 
@@ -323,7 +323,7 @@ ___
 
 #### Defined in
 
-[Core/Utils.ts:116](https://github.com/hpyer/node-easywechat/blob/d6465cc/src/Core/Utils.ts#L116)
+[Core/Utils.ts:116](https://github.com/hpyer/node-easywechat/blob/3eacadb/src/Core/Utils.ts#L116)
 
 ___
 
@@ -343,7 +343,7 @@ ___
 
 #### Defined in
 
-[Core/Utils.ts:120](https://github.com/hpyer/node-easywechat/blob/d6465cc/src/Core/Utils.ts#L120)
+[Core/Utils.ts:120](https://github.com/hpyer/node-easywechat/blob/3eacadb/src/Core/Utils.ts#L120)
 
 ___
 
@@ -363,7 +363,7 @@ ___
 
 #### Defined in
 
-[Core/Utils.ts:108](https://github.com/hpyer/node-easywechat/blob/d6465cc/src/Core/Utils.ts#L108)
+[Core/Utils.ts:108](https://github.com/hpyer/node-easywechat/blob/3eacadb/src/Core/Utils.ts#L108)
 
 ___
 
@@ -385,7 +385,7 @@ ___
 
 #### Defined in
 
-[Core/Utils.ts:77](https://github.com/hpyer/node-easywechat/blob/d6465cc/src/Core/Utils.ts#L77)
+[Core/Utils.ts:77](https://github.com/hpyer/node-easywechat/blob/3eacadb/src/Core/Utils.ts#L77)
 
 ___
 
@@ -406,7 +406,7 @@ ___
 
 #### Defined in
 
-[Core/Utils.ts:6](https://github.com/hpyer/node-easywechat/blob/d6465cc/src/Core/Utils.ts#L6)
+[Core/Utils.ts:6](https://github.com/hpyer/node-easywechat/blob/3eacadb/src/Core/Utils.ts#L6)
 
 ___
 
@@ -427,7 +427,7 @@ ___
 
 #### Defined in
 
-[Core/Utils.ts:62](https://github.com/hpyer/node-easywechat/blob/d6465cc/src/Core/Utils.ts#L62)
+[Core/Utils.ts:62](https://github.com/hpyer/node-easywechat/blob/3eacadb/src/Core/Utils.ts#L62)
 
 ___
 
@@ -447,7 +447,7 @@ ___
 
 #### Defined in
 
-[Core/Utils.ts:67](https://github.com/hpyer/node-easywechat/blob/d6465cc/src/Core/Utils.ts#L67)
+[Core/Utils.ts:67](https://github.com/hpyer/node-easywechat/blob/3eacadb/src/Core/Utils.ts#L67)
 
 ___
 
@@ -467,7 +467,7 @@ ___
 
 #### Defined in
 
-[Core/Utils.ts:199](https://github.com/hpyer/node-easywechat/blob/d6465cc/src/Core/Utils.ts#L199)
+[Core/Utils.ts:199](https://github.com/hpyer/node-easywechat/blob/3eacadb/src/Core/Utils.ts#L199)
 
 ___
 
@@ -487,7 +487,7 @@ ___
 
 #### Defined in
 
-[Core/Utils.ts:193](https://github.com/hpyer/node-easywechat/blob/d6465cc/src/Core/Utils.ts#L193)
+[Core/Utils.ts:193](https://github.com/hpyer/node-easywechat/blob/3eacadb/src/Core/Utils.ts#L193)
 
 ___
 
@@ -507,7 +507,7 @@ ___
 
 #### Defined in
 
-[Core/Utils.ts:179](https://github.com/hpyer/node-easywechat/blob/d6465cc/src/Core/Utils.ts#L179)
+[Core/Utils.ts:179](https://github.com/hpyer/node-easywechat/blob/3eacadb/src/Core/Utils.ts#L179)
 
 ___
 
@@ -527,7 +527,7 @@ ___
 
 #### Defined in
 
-[Core/Utils.ts:187](https://github.com/hpyer/node-easywechat/blob/d6465cc/src/Core/Utils.ts#L187)
+[Core/Utils.ts:187](https://github.com/hpyer/node-easywechat/blob/3eacadb/src/Core/Utils.ts#L187)
 
 ___
 
@@ -547,4 +547,4 @@ ___
 
 #### Defined in
 
-[Core/Utils.ts:171](https://github.com/hpyer/node-easywechat/blob/d6465cc/src/Core/Utils.ts#L171)
+[Core/Utils.ts:171](https://github.com/hpyer/node-easywechat/blob/3eacadb/src/Core/Utils.ts#L171)

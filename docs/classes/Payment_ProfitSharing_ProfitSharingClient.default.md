@@ -57,7 +57,7 @@
 
 #### Defined in
 
-[Payment/Core/BaseClient.ts:18](https://github.com/hpyer/node-easywechat/blob/d6465cc/src/Payment/Core/BaseClient.ts#L18)
+[Payment/Core/BaseClient.ts:18](https://github.com/hpyer/node-easywechat/blob/3eacadb/src/Payment/Core/BaseClient.ts#L18)
 
 ## Properties
 
@@ -71,7 +71,7 @@
 
 #### Defined in
 
-[Payment/Core/BaseClient.ts:14](https://github.com/hpyer/node-easywechat/blob/d6465cc/src/Payment/Core/BaseClient.ts#L14)
+[Payment/Core/BaseClient.ts:14](https://github.com/hpyer/node-easywechat/blob/3eacadb/src/Payment/Core/BaseClient.ts#L14)
 
 ___
 
@@ -85,7 +85,7 @@ ___
 
 #### Defined in
 
-[Payment/Core/BaseClient.ts:16](https://github.com/hpyer/node-easywechat/blob/d6465cc/src/Payment/Core/BaseClient.ts#L16)
+[Payment/Core/BaseClient.ts:16](https://github.com/hpyer/node-easywechat/blob/3eacadb/src/Payment/Core/BaseClient.ts#L16)
 
 ## Methods
 
@@ -105,7 +105,7 @@ ___
 
 #### Defined in
 
-[Payment/ProfitSharing/ProfitSharingClient.ts:15](https://github.com/hpyer/node-easywechat/blob/d6465cc/src/Payment/ProfitSharing/ProfitSharingClient.ts#L15)
+[Payment/ProfitSharing/ProfitSharingClient.ts:15](https://github.com/hpyer/node-easywechat/blob/3eacadb/src/Payment/ProfitSharing/ProfitSharingClient.ts#L15)
 
 ___
 
@@ -125,7 +125,7 @@ ___
 
 #### Defined in
 
-[Payment/ProfitSharing/ProfitSharingClient.ts:25](https://github.com/hpyer/node-easywechat/blob/d6465cc/src/Payment/ProfitSharing/ProfitSharingClient.ts#L25)
+[Payment/ProfitSharing/ProfitSharingClient.ts:25](https://github.com/hpyer/node-easywechat/blob/3eacadb/src/Payment/ProfitSharing/ProfitSharingClient.ts#L25)
 
 ___
 
@@ -149,7 +149,7 @@ ___
 
 #### Defined in
 
-[Payment/Core/BaseClient.ts:136](https://github.com/hpyer/node-easywechat/blob/d6465cc/src/Payment/Core/BaseClient.ts#L136)
+[Payment/Core/BaseClient.ts:136](https://github.com/hpyer/node-easywechat/blob/3eacadb/src/Payment/Core/BaseClient.ts#L136)
 
 ___
 
@@ -167,7 +167,7 @@ ___
 
 #### Defined in
 
-[Payment/Core/BaseClient.ts:129](https://github.com/hpyer/node-easywechat/blob/d6465cc/src/Payment/Core/BaseClient.ts#L129)
+[Payment/Core/BaseClient.ts:129](https://github.com/hpyer/node-easywechat/blob/3eacadb/src/Payment/Core/BaseClient.ts#L129)
 
 ___
 
@@ -185,7 +185,7 @@ ___
 
 #### Defined in
 
-[Payment/Core/BaseClient.ts:107](https://github.com/hpyer/node-easywechat/blob/d6465cc/src/Payment/Core/BaseClient.ts#L107)
+[Payment/Core/BaseClient.ts:107](https://github.com/hpyer/node-easywechat/blob/3eacadb/src/Payment/Core/BaseClient.ts#L107)
 
 ___
 
@@ -205,7 +205,7 @@ ___
 
 #### Defined in
 
-[Payment/ProfitSharing/ProfitSharingClient.ts:59](https://github.com/hpyer/node-easywechat/blob/d6465cc/src/Payment/ProfitSharing/ProfitSharingClient.ts#L59)
+[Payment/ProfitSharing/ProfitSharingClient.ts:59](https://github.com/hpyer/node-easywechat/blob/3eacadb/src/Payment/ProfitSharing/ProfitSharingClient.ts#L59)
 
 ___
 
@@ -227,7 +227,7 @@ ___
 
 #### Defined in
 
-[Payment/ProfitSharing/ProfitSharingClient.ts:47](https://github.com/hpyer/node-easywechat/blob/d6465cc/src/Payment/ProfitSharing/ProfitSharingClient.ts#L47)
+[Payment/ProfitSharing/ProfitSharingClient.ts:47](https://github.com/hpyer/node-easywechat/blob/3eacadb/src/Payment/ProfitSharing/ProfitSharingClient.ts#L47)
 
 ___
 
@@ -251,7 +251,7 @@ ___
 
 #### Defined in
 
-[Payment/Core/BaseClient.ts:76](https://github.com/hpyer/node-easywechat/blob/d6465cc/src/Payment/Core/BaseClient.ts#L76)
+[Payment/Core/BaseClient.ts:76](https://github.com/hpyer/node-easywechat/blob/3eacadb/src/Payment/Core/BaseClient.ts#L76)
 
 ___
 
@@ -269,7 +269,7 @@ ___
 
 #### Defined in
 
-[Payment/ProfitSharing/ProfitSharingClient.ts:8](https://github.com/hpyer/node-easywechat/blob/d6465cc/src/Payment/ProfitSharing/ProfitSharingClient.ts#L8)
+[Payment/ProfitSharing/ProfitSharingClient.ts:8](https://github.com/hpyer/node-easywechat/blob/3eacadb/src/Payment/ProfitSharing/ProfitSharingClient.ts#L8)
 
 ___
 
@@ -290,7 +290,7 @@ ___
 
 #### Defined in
 
-[Payment/ProfitSharing/ProfitSharingClient.ts:67](https://github.com/hpyer/node-easywechat/blob/d6465cc/src/Payment/ProfitSharing/ProfitSharingClient.ts#L67)
+[Payment/ProfitSharing/ProfitSharingClient.ts:67](https://github.com/hpyer/node-easywechat/blob/3eacadb/src/Payment/ProfitSharing/ProfitSharingClient.ts#L67)
 
 ___
 
@@ -318,7 +318,7 @@ ___
 
 #### Defined in
 
-[Payment/Core/BaseClient.ts:28](https://github.com/hpyer/node-easywechat/blob/d6465cc/src/Payment/Core/BaseClient.ts#L28)
+[Payment/Core/BaseClient.ts:28](https://github.com/hpyer/node-easywechat/blob/3eacadb/src/Payment/Core/BaseClient.ts#L28)
 
 ___
 
@@ -345,7 +345,7 @@ ___
 
 #### Defined in
 
-[Payment/Core/BaseClient.ts:95](https://github.com/hpyer/node-easywechat/blob/d6465cc/src/Payment/Core/BaseClient.ts#L95)
+[Payment/Core/BaseClient.ts:95](https://github.com/hpyer/node-easywechat/blob/3eacadb/src/Payment/Core/BaseClient.ts#L95)
 
 ___
 
@@ -372,7 +372,7 @@ ___
 
 #### Defined in
 
-[Payment/Core/BaseClient.ts:84](https://github.com/hpyer/node-easywechat/blob/d6465cc/src/Payment/Core/BaseClient.ts#L84)
+[Payment/Core/BaseClient.ts:84](https://github.com/hpyer/node-easywechat/blob/3eacadb/src/Payment/Core/BaseClient.ts#L84)
 
 ___
 
@@ -394,7 +394,7 @@ ___
 
 #### Defined in
 
-[Payment/ProfitSharing/ProfitSharingClient.ts:35](https://github.com/hpyer/node-easywechat/blob/d6465cc/src/Payment/ProfitSharing/ProfitSharingClient.ts#L35)
+[Payment/ProfitSharing/ProfitSharingClient.ts:35](https://github.com/hpyer/node-easywechat/blob/3eacadb/src/Payment/ProfitSharing/ProfitSharingClient.ts#L35)
 
 ___
 
@@ -418,4 +418,4 @@ ___
 
 #### Defined in
 
-[Payment/Core/BaseClient.ts:102](https://github.com/hpyer/node-easywechat/blob/d6465cc/src/Payment/Core/BaseClient.ts#L102)
+[Payment/Core/BaseClient.ts:102](https://github.com/hpyer/node-easywechat/blob/3eacadb/src/Payment/Core/BaseClient.ts#L102)

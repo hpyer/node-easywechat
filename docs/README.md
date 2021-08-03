@@ -141,6 +141,8 @@ let app = EasyWechat.Factory.getInstance('OficialAccount', {
 
 ##### 日志模块（log）
 
+> 注：自 `2.6.10` 版本起，配置项中新增了 `debug` 字段，默认为 `false`。设置为 `true` 时，程序才会打印相关日志。所以，如果你只是希望关闭日志的话，更新到 `2.6.10` 即可。
+
 ```js
 // 创建实例
 const Easywechat = require('node-easywechat');
@@ -149,10 +151,13 @@ let officialAccount = new Easywechat.Factory.OfficialAccount({
 });
 
 // 自定义日志处理方法
-const myLogger = () => {
+const myLogger = (app) => {
   // 注意：这里返回的方法不能使用箭头函数，否则会导致获取到的 arguments 异常
   // 若需要关闭日志，则返回空的函数即可
   return function() {
+    // 判断是否开启了 debug
+    if (!app['config']['debug']) return true;
+
     let args = arguments;
     args[0] = 'myLogger: ' + args[0];
     return console.log.apply(null, arguments);

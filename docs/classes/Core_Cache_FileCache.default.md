@@ -41,7 +41,7 @@
 
 #### Defined in
 
-[Core/Cache/FileCache.ts:18](https://github.com/hpyer/node-easywechat/blob/d6465cc/src/Core/Cache/FileCache.ts#L18)
+[Core/Cache/FileCache.ts:18](https://github.com/hpyer/node-easywechat/blob/3eacadb/src/Core/Cache/FileCache.ts#L18)
 
 ## Properties
 
@@ -51,7 +51,7 @@
 
 #### Defined in
 
-[Core/Cache/FileCache.ts:11](https://github.com/hpyer/node-easywechat/blob/d6465cc/src/Core/Cache/FileCache.ts#L11)
+[Core/Cache/FileCache.ts:11](https://github.com/hpyer/node-easywechat/blob/3eacadb/src/Core/Cache/FileCache.ts#L11)
 
 ## Methods
 
@@ -75,7 +75,7 @@ CacheInterface.delete
 
 #### Defined in
 
-[Core/Cache/FileCache.ts:107](https://github.com/hpyer/node-easywechat/blob/d6465cc/src/Core/Cache/FileCache.ts#L107)
+[Core/Cache/FileCache.ts:107](https://github.com/hpyer/node-easywechat/blob/3eacadb/src/Core/Cache/FileCache.ts#L107)
 
 ___
 
@@ -99,7 +99,7 @@ CacheInterface.get
 
 #### Defined in
 
-[Core/Cache/FileCache.ts:60](https://github.com/hpyer/node-easywechat/blob/d6465cc/src/Core/Cache/FileCache.ts#L60)
+[Core/Cache/FileCache.ts:60](https://github.com/hpyer/node-easywechat/blob/3eacadb/src/Core/Cache/FileCache.ts#L60)
 
 ___
 
@@ -119,7 +119,7 @@ ___
 
 #### Defined in
 
-[Core/Cache/FileCache.ts:48](https://github.com/hpyer/node-easywechat/blob/d6465cc/src/Core/Cache/FileCache.ts#L48)
+[Core/Cache/FileCache.ts:48](https://github.com/hpyer/node-easywechat/blob/3eacadb/src/Core/Cache/FileCache.ts#L48)
 
 ___
 
@@ -139,7 +139,7 @@ ___
 
 #### Defined in
 
-[Core/Cache/FileCache.ts:43](https://github.com/hpyer/node-easywechat/blob/d6465cc/src/Core/Cache/FileCache.ts#L43)
+[Core/Cache/FileCache.ts:43](https://github.com/hpyer/node-easywechat/blob/3eacadb/src/Core/Cache/FileCache.ts#L43)
 
 ___
 
@@ -163,7 +163,7 @@ CacheInterface.has
 
 #### Defined in
 
-[Core/Cache/FileCache.ts:73](https://github.com/hpyer/node-easywechat/blob/d6465cc/src/Core/Cache/FileCache.ts#L73)
+[Core/Cache/FileCache.ts:73](https://github.com/hpyer/node-easywechat/blob/3eacadb/src/Core/Cache/FileCache.ts#L73)
 
 ___
 
@@ -189,4 +189,4 @@ CacheInterface.set
 
 #### Defined in
 
-[Core/Cache/FileCache.ts:87](https://github.com/hpyer/node-easywechat/blob/d6465cc/src/Core/Cache/FileCache.ts#L87)
+[Core/Cache/FileCache.ts:87](https://github.com/hpyer/node-easywechat/blob/3eacadb/src/Core/Cache/FileCache.ts#L87)

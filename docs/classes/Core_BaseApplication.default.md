@@ -65,7 +65,7 @@
 
 #### Defined in
 
-[Core/BaseApplication.ts:39](https://github.com/hpyer/node-easywechat/blob/d6465cc/src/Core/BaseApplication.ts#L39)
+[Core/BaseApplication.ts:39](https://github.com/hpyer/node-easywechat/blob/3eacadb/src/Core/BaseApplication.ts#L39)
 
 ## Properties
 
@@ -77,7 +77,7 @@
 
 #### Defined in
 
-[Core/BaseApplication.ts:37](https://github.com/hpyer/node-easywechat/blob/d6465cc/src/Core/BaseApplication.ts#L37)
+[Core/BaseApplication.ts:37](https://github.com/hpyer/node-easywechat/blob/3eacadb/src/Core/BaseApplication.ts#L37)
 
 ___
 
@@ -89,7 +89,7 @@ ___
 
 #### Defined in
 
-[Core/BaseApplication.ts:20](https://github.com/hpyer/node-easywechat/blob/d6465cc/src/Core/BaseApplication.ts#L20)
+[Core/BaseApplication.ts:20](https://github.com/hpyer/node-easywechat/blob/3eacadb/src/Core/BaseApplication.ts#L20)
 
 ___
 
@@ -101,7 +101,7 @@ ___
 
 #### Defined in
 
-[Core/BaseApplication.ts:24](https://github.com/hpyer/node-easywechat/blob/d6465cc/src/Core/BaseApplication.ts#L24)
+[Core/BaseApplication.ts:24](https://github.com/hpyer/node-easywechat/blob/3eacadb/src/Core/BaseApplication.ts#L24)
 
 ___
 
@@ -111,7 +111,7 @@ ___
 
 #### Defined in
 
-[Core/BaseApplication.ts:13](https://github.com/hpyer/node-easywechat/blob/d6465cc/src/Core/BaseApplication.ts#L13)
+[Core/BaseApplication.ts:13](https://github.com/hpyer/node-easywechat/blob/3eacadb/src/Core/BaseApplication.ts#L13)
 
 ___
 
@@ -121,7 +121,7 @@ ___
 
 #### Defined in
 
-[Core/BaseApplication.ts:15](https://github.com/hpyer/node-easywechat/blob/d6465cc/src/Core/BaseApplication.ts#L15)
+[Core/BaseApplication.ts:15](https://github.com/hpyer/node-easywechat/blob/3eacadb/src/Core/BaseApplication.ts#L15)
 
 ___
 
@@ -133,7 +133,7 @@ ___
 
 #### Defined in
 
-[Core/BaseApplication.ts:28](https://github.com/hpyer/node-easywechat/blob/d6465cc/src/Core/BaseApplication.ts#L28)
+[Core/BaseApplication.ts:28](https://github.com/hpyer/node-easywechat/blob/3eacadb/src/Core/BaseApplication.ts#L28)
 
 ___
 
@@ -145,7 +145,7 @@ ___
 
 #### Defined in
 
-[Core/BaseApplication.ts:32](https://github.com/hpyer/node-easywechat/blob/d6465cc/src/Core/BaseApplication.ts#L32)
+[Core/BaseApplication.ts:32](https://github.com/hpyer/node-easywechat/blob/3eacadb/src/Core/BaseApplication.ts#L32)
 
 ___
 
@@ -155,7 +155,7 @@ ___
 
 #### Defined in
 
-[Core/BaseApplication.ts:14](https://github.com/hpyer/node-easywechat/blob/d6465cc/src/Core/BaseApplication.ts#L14)
+[Core/BaseApplication.ts:14](https://github.com/hpyer/node-easywechat/blob/3eacadb/src/Core/BaseApplication.ts#L14)
 
 ## Methods
 
@@ -171,7 +171,7 @@ ___
 
 #### Defined in
 
-[Core/BaseApplication.ts:157](https://github.com/hpyer/node-easywechat/blob/d6465cc/src/Core/BaseApplication.ts#L157)
+[Core/BaseApplication.ts:161](https://github.com/hpyer/node-easywechat/blob/3eacadb/src/Core/BaseApplication.ts#L161)
 
 ___
 
@@ -194,7 +194,7 @@ ___
 
 #### Defined in
 
-[Core/BaseApplication.ts:102](https://github.com/hpyer/node-easywechat/blob/d6465cc/src/Core/BaseApplication.ts#L102)
+[Core/BaseApplication.ts:106](https://github.com/hpyer/node-easywechat/blob/3eacadb/src/Core/BaseApplication.ts#L106)
 
 ___
 
@@ -210,7 +210,7 @@ ___
 
 #### Defined in
 
-[Core/BaseApplication.ts:145](https://github.com/hpyer/node-easywechat/blob/d6465cc/src/Core/BaseApplication.ts#L145)
+[Core/BaseApplication.ts:149](https://github.com/hpyer/node-easywechat/blob/3eacadb/src/Core/BaseApplication.ts#L149)
 
 ___
 
@@ -226,7 +226,7 @@ ___
 
 #### Defined in
 
-[Core/BaseApplication.ts:64](https://github.com/hpyer/node-easywechat/blob/d6465cc/src/Core/BaseApplication.ts#L64)
+[Core/BaseApplication.ts:64](https://github.com/hpyer/node-easywechat/blob/3eacadb/src/Core/BaseApplication.ts#L64)
 
 ___
 
@@ -240,7 +240,7 @@ ___
 
 #### Defined in
 
-[Core/BaseApplication.ts:53](https://github.com/hpyer/node-easywechat/blob/d6465cc/src/Core/BaseApplication.ts#L53)
+[Core/BaseApplication.ts:53](https://github.com/hpyer/node-easywechat/blob/3eacadb/src/Core/BaseApplication.ts#L53)
 
 ___
 
@@ -263,7 +263,7 @@ ___
 
 #### Defined in
 
-[Core/BaseApplication.ts:134](https://github.com/hpyer/node-easywechat/blob/d6465cc/src/Core/BaseApplication.ts#L134)
+[Core/BaseApplication.ts:138](https://github.com/hpyer/node-easywechat/blob/3eacadb/src/Core/BaseApplication.ts#L138)
 
 ___
 
@@ -285,7 +285,7 @@ ___
 
 #### Defined in
 
-[Core/BaseApplication.ts:124](https://github.com/hpyer/node-easywechat/blob/d6465cc/src/Core/BaseApplication.ts#L124)
+[Core/BaseApplication.ts:128](https://github.com/hpyer/node-easywechat/blob/3eacadb/src/Core/BaseApplication.ts#L128)
 
 ___
 
@@ -308,7 +308,7 @@ ___
 
 #### Defined in
 
-[Core/BaseApplication.ts:113](https://github.com/hpyer/node-easywechat/blob/d6465cc/src/Core/BaseApplication.ts#L113)
+[Core/BaseApplication.ts:117](https://github.com/hpyer/node-easywechat/blob/3eacadb/src/Core/BaseApplication.ts#L117)
 
 ___
 
@@ -324,4 +324,4 @@ ___
 
 #### Defined in
 
-[Core/BaseApplication.ts:80](https://github.com/hpyer/node-easywechat/blob/d6465cc/src/Core/BaseApplication.ts#L80)
+[Core/BaseApplication.ts:80](https://github.com/hpyer/node-easywechat/blob/3eacadb/src/Core/BaseApplication.ts#L80)

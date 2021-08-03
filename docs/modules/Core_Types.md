@@ -44,7 +44,7 @@ Payment业务错误处理
 
 #### Defined in
 
-[Core/Types.ts:192](https://github.com/hpyer/node-easywechat/blob/d6465cc/src/Core/Types.ts#L192)
+[Core/Types.ts:198](https://github.com/hpyer/node-easywechat/blob/3eacadb/src/Core/Types.ts#L198)
 
 ___
 
@@ -70,7 +70,7 @@ Payment通知错误处理
 
 #### Defined in
 
-[Core/Types.ts:186](https://github.com/hpyer/node-easywechat/blob/d6465cc/src/Core/Types.ts#L186)
+[Core/Types.ts:192](https://github.com/hpyer/node-easywechat/blob/3eacadb/src/Core/Types.ts#L192)
 
 ___
 
@@ -97,7 +97,7 @@ Payment支付结果处理回调函数
 
 #### Defined in
 
-[Core/Types.ts:199](https://github.com/hpyer/node-easywechat/blob/d6465cc/src/Core/Types.ts#L199)
+[Core/Types.ts:205](https://github.com/hpyer/node-easywechat/blob/3eacadb/src/Core/Types.ts#L205)
 
 ___
 
@@ -125,7 +125,7 @@ Payment退款结果处理回调函数
 
 #### Defined in
 
-[Core/Types.ts:207](https://github.com/hpyer/node-easywechat/blob/d6465cc/src/Core/Types.ts#L207)
+[Core/Types.ts:213](https://github.com/hpyer/node-easywechat/blob/3eacadb/src/Core/Types.ts#L213)
 
 ___
 
@@ -153,7 +153,7 @@ Payment扫码支付结果处理回调函数
 
 #### Defined in
 
-[Core/Types.ts:215](https://github.com/hpyer/node-easywechat/blob/d6465cc/src/Core/Types.ts#L215)
+[Core/Types.ts:221](https://github.com/hpyer/node-easywechat/blob/3eacadb/src/Core/Types.ts#L221)
 
 ___
 
@@ -179,4 +179,4 @@ ___
 
 #### Defined in
 
-[Core/Types.ts:180](https://github.com/hpyer/node-easywechat/blob/d6465cc/src/Core/Types.ts#L180)
+[Core/Types.ts:186](https://github.com/hpyer/node-easywechat/blob/3eacadb/src/Core/Types.ts#L186)

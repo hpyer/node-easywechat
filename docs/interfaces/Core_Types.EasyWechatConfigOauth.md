@@ -23,7 +23,7 @@
 
 #### Defined in
 
-[Core/Types.ts:15](https://github.com/hpyer/node-easywechat/blob/d6465cc/src/Core/Types.ts#L15)
+[Core/Types.ts:15](https://github.com/hpyer/node-easywechat/blob/3eacadb/src/Core/Types.ts#L15)
 
 ___
 
@@ -35,4 +35,4 @@ ___
 
 #### Defined in
 
-[Core/Types.ts:10](https://github.com/hpyer/node-easywechat/blob/d6465cc/src/Core/Types.ts#L10)
+[Core/Types.ts:10](https://github.com/hpyer/node-easywechat/blob/3eacadb/src/Core/Types.ts#L10)

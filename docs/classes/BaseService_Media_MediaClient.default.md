@@ -63,7 +63,7 @@
 
 #### Defined in
 
-[Core/BaseClient.ts:17](https://github.com/hpyer/node-easywechat/blob/d6465cc/src/Core/BaseClient.ts#L17)
+[Core/BaseClient.ts:17](https://github.com/hpyer/node-easywechat/blob/3eacadb/src/Core/BaseClient.ts#L17)
 
 ## Properties
 
@@ -77,7 +77,7 @@
 
 #### Defined in
 
-[Core/BaseClient.ts:14](https://github.com/hpyer/node-easywechat/blob/d6465cc/src/Core/BaseClient.ts#L14)
+[Core/BaseClient.ts:14](https://github.com/hpyer/node-easywechat/blob/3eacadb/src/Core/BaseClient.ts#L14)
 
 ___
 
@@ -87,7 +87,7 @@ ___
 
 #### Defined in
 
-[BaseService/Media/MediaClient.ts:10](https://github.com/hpyer/node-easywechat/blob/d6465cc/src/BaseService/Media/MediaClient.ts#L10)
+[BaseService/Media/MediaClient.ts:10](https://github.com/hpyer/node-easywechat/blob/3eacadb/src/BaseService/Media/MediaClient.ts#L10)
 
 ___
 
@@ -101,7 +101,7 @@ ___
 
 #### Defined in
 
-[Core/BaseClient.ts:15](https://github.com/hpyer/node-easywechat/blob/d6465cc/src/Core/BaseClient.ts#L15)
+[Core/BaseClient.ts:15](https://github.com/hpyer/node-easywechat/blob/3eacadb/src/Core/BaseClient.ts#L15)
 
 ___
 
@@ -111,7 +111,7 @@ ___
 
 #### Defined in
 
-[BaseService/Media/MediaClient.ts:9](https://github.com/hpyer/node-easywechat/blob/d6465cc/src/BaseService/Media/MediaClient.ts#L9)
+[BaseService/Media/MediaClient.ts:9](https://github.com/hpyer/node-easywechat/blob/3eacadb/src/BaseService/Media/MediaClient.ts#L9)
 
 ## Methods
 
@@ -135,7 +135,7 @@ ___
 
 #### Defined in
 
-[BaseService/Media/MediaClient.ts:88](https://github.com/hpyer/node-easywechat/blob/d6465cc/src/BaseService/Media/MediaClient.ts#L88)
+[BaseService/Media/MediaClient.ts:88](https://github.com/hpyer/node-easywechat/blob/3eacadb/src/BaseService/Media/MediaClient.ts#L88)
 
 ___
 
@@ -159,7 +159,7 @@ ___
 
 #### Defined in
 
-[Core/BaseClient.ts:114](https://github.com/hpyer/node-easywechat/blob/d6465cc/src/Core/BaseClient.ts#L114)
+[Core/BaseClient.ts:114](https://github.com/hpyer/node-easywechat/blob/3eacadb/src/Core/BaseClient.ts#L114)
 
 ___
 
@@ -181,7 +181,7 @@ ___
 
 #### Defined in
 
-[BaseService/Media/MediaClient.ts:101](https://github.com/hpyer/node-easywechat/blob/d6465cc/src/BaseService/Media/MediaClient.ts#L101)
+[BaseService/Media/MediaClient.ts:101](https://github.com/hpyer/node-easywechat/blob/3eacadb/src/BaseService/Media/MediaClient.ts#L101)
 
 ___
 
@@ -199,7 +199,7 @@ ___
 
 #### Defined in
 
-[Core/BaseClient.ts:30](https://github.com/hpyer/node-easywechat/blob/d6465cc/src/Core/BaseClient.ts#L30)
+[Core/BaseClient.ts:30](https://github.com/hpyer/node-easywechat/blob/3eacadb/src/Core/BaseClient.ts#L30)
 
 ___
 
@@ -221,7 +221,7 @@ ___
 
 #### Defined in
 
-[BaseService/Media/MediaClient.ts:129](https://github.com/hpyer/node-easywechat/blob/d6465cc/src/BaseService/Media/MediaClient.ts#L129)
+[BaseService/Media/MediaClient.ts:129](https://github.com/hpyer/node-easywechat/blob/3eacadb/src/BaseService/Media/MediaClient.ts#L129)
 
 ___
 
@@ -246,7 +246,7 @@ ___
 
 #### Defined in
 
-[Core/BaseClient.ts:76](https://github.com/hpyer/node-easywechat/blob/d6465cc/src/Core/BaseClient.ts#L76)
+[Core/BaseClient.ts:76](https://github.com/hpyer/node-easywechat/blob/3eacadb/src/Core/BaseClient.ts#L76)
 
 ___
 
@@ -271,7 +271,7 @@ ___
 
 #### Defined in
 
-[Core/BaseClient.ts:85](https://github.com/hpyer/node-easywechat/blob/d6465cc/src/Core/BaseClient.ts#L85)
+[Core/BaseClient.ts:85](https://github.com/hpyer/node-easywechat/blob/3eacadb/src/Core/BaseClient.ts#L85)
 
 ___
 
@@ -297,7 +297,7 @@ ___
 
 #### Defined in
 
-[Core/BaseClient.ts:94](https://github.com/hpyer/node-easywechat/blob/d6465cc/src/Core/BaseClient.ts#L94)
+[Core/BaseClient.ts:94](https://github.com/hpyer/node-easywechat/blob/3eacadb/src/Core/BaseClient.ts#L94)
 
 ___
 
@@ -324,7 +324,7 @@ ___
 
 #### Defined in
 
-[Core/BaseClient.ts:51](https://github.com/hpyer/node-easywechat/blob/d6465cc/src/Core/BaseClient.ts#L51)
+[Core/BaseClient.ts:51](https://github.com/hpyer/node-easywechat/blob/3eacadb/src/Core/BaseClient.ts#L51)
 
 ___
 
@@ -349,7 +349,7 @@ ___
 
 #### Defined in
 
-[Core/BaseClient.ts:35](https://github.com/hpyer/node-easywechat/blob/d6465cc/src/Core/BaseClient.ts#L35)
+[Core/BaseClient.ts:35](https://github.com/hpyer/node-easywechat/blob/3eacadb/src/Core/BaseClient.ts#L35)
 
 ___
 
@@ -373,7 +373,7 @@ ___
 
 #### Defined in
 
-[Core/BaseClient.ts:104](https://github.com/hpyer/node-easywechat/blob/d6465cc/src/Core/BaseClient.ts#L104)
+[Core/BaseClient.ts:104](https://github.com/hpyer/node-easywechat/blob/3eacadb/src/Core/BaseClient.ts#L104)
 
 ___
 
@@ -397,7 +397,7 @@ ___
 
 #### Defined in
 
-[Core/BaseClient.ts:23](https://github.com/hpyer/node-easywechat/blob/d6465cc/src/Core/BaseClient.ts#L23)
+[Core/BaseClient.ts:23](https://github.com/hpyer/node-easywechat/blob/3eacadb/src/Core/BaseClient.ts#L23)
 
 ___
 
@@ -420,7 +420,7 @@ ___
 
 #### Defined in
 
-[BaseService/Media/MediaClient.ts:50](https://github.com/hpyer/node-easywechat/blob/d6465cc/src/BaseService/Media/MediaClient.ts#L50)
+[BaseService/Media/MediaClient.ts:50](https://github.com/hpyer/node-easywechat/blob/3eacadb/src/BaseService/Media/MediaClient.ts#L50)
 
 ___
 
@@ -442,7 +442,7 @@ ___
 
 #### Defined in
 
-[BaseService/Media/MediaClient.ts:16](https://github.com/hpyer/node-easywechat/blob/d6465cc/src/BaseService/Media/MediaClient.ts#L16)
+[BaseService/Media/MediaClient.ts:16](https://github.com/hpyer/node-easywechat/blob/3eacadb/src/BaseService/Media/MediaClient.ts#L16)
 
 ___
 
@@ -464,7 +464,7 @@ ___
 
 #### Defined in
 
-[BaseService/Media/MediaClient.ts:40](https://github.com/hpyer/node-easywechat/blob/d6465cc/src/BaseService/Media/MediaClient.ts#L40)
+[BaseService/Media/MediaClient.ts:40](https://github.com/hpyer/node-easywechat/blob/3eacadb/src/BaseService/Media/MediaClient.ts#L40)
 
 ___
 
@@ -486,7 +486,7 @@ ___
 
 #### Defined in
 
-[BaseService/Media/MediaClient.ts:24](https://github.com/hpyer/node-easywechat/blob/d6465cc/src/BaseService/Media/MediaClient.ts#L24)
+[BaseService/Media/MediaClient.ts:24](https://github.com/hpyer/node-easywechat/blob/3eacadb/src/BaseService/Media/MediaClient.ts#L24)
 
 ___
 
@@ -510,7 +510,7 @@ ___
 
 #### Defined in
 
-[BaseService/Media/MediaClient.ts:73](https://github.com/hpyer/node-easywechat/blob/d6465cc/src/BaseService/Media/MediaClient.ts#L73)
+[BaseService/Media/MediaClient.ts:73](https://github.com/hpyer/node-easywechat/blob/3eacadb/src/BaseService/Media/MediaClient.ts#L73)
 
 ___
 
@@ -532,4 +532,4 @@ ___
 
 #### Defined in
 
-[BaseService/Media/MediaClient.ts:32](https://github.com/hpyer/node-easywechat/blob/d6465cc/src/BaseService/Media/MediaClient.ts#L32)
+[BaseService/Media/MediaClient.ts:32](https://github.com/hpyer/node-easywechat/blob/3eacadb/src/BaseService/Media/MediaClient.ts#L32)

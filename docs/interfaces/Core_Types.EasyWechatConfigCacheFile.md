@@ -25,7 +25,7 @@
 
 #### Defined in
 
-[Core/Types.ts:29](https://github.com/hpyer/node-easywechat/blob/d6465cc/src/Core/Types.ts#L29)
+[Core/Types.ts:29](https://github.com/hpyer/node-easywechat/blob/3eacadb/src/Core/Types.ts#L29)
 
 ___
 
@@ -37,7 +37,7 @@ ___
 
 #### Defined in
 
-[Core/Types.ts:37](https://github.com/hpyer/node-easywechat/blob/d6465cc/src/Core/Types.ts#L37)
+[Core/Types.ts:37](https://github.com/hpyer/node-easywechat/blob/3eacadb/src/Core/Types.ts#L37)
 
 ___
 
@@ -49,7 +49,7 @@ ___
 
 #### Defined in
 
-[Core/Types.ts:33](https://github.com/hpyer/node-easywechat/blob/d6465cc/src/Core/Types.ts#L33)
+[Core/Types.ts:33](https://github.com/hpyer/node-easywechat/blob/3eacadb/src/Core/Types.ts#L33)
 
 ___
 
@@ -61,4 +61,4 @@ ___
 
 #### Defined in
 
-[Core/Types.ts:25](https://github.com/hpyer/node-easywechat/blob/d6465cc/src/Core/Types.ts#L25)
+[Core/Types.ts:25](https://github.com/hpyer/node-easywechat/blob/3eacadb/src/Core/Types.ts#L25)

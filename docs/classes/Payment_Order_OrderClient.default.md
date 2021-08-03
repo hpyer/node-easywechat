@@ -56,7 +56,7 @@
 
 #### Defined in
 
-[Payment/Core/BaseClient.ts:18](https://github.com/hpyer/node-easywechat/blob/d6465cc/src/Payment/Core/BaseClient.ts#L18)
+[Payment/Core/BaseClient.ts:18](https://github.com/hpyer/node-easywechat/blob/3eacadb/src/Payment/Core/BaseClient.ts#L18)
 
 ## Properties
 
@@ -70,7 +70,7 @@
 
 #### Defined in
 
-[Payment/Core/BaseClient.ts:14](https://github.com/hpyer/node-easywechat/blob/d6465cc/src/Payment/Core/BaseClient.ts#L14)
+[Payment/Core/BaseClient.ts:14](https://github.com/hpyer/node-easywechat/blob/3eacadb/src/Payment/Core/BaseClient.ts#L14)
 
 ___
 
@@ -84,7 +84,7 @@ ___
 
 #### Defined in
 
-[Payment/Core/BaseClient.ts:16](https://github.com/hpyer/node-easywechat/blob/d6465cc/src/Payment/Core/BaseClient.ts#L16)
+[Payment/Core/BaseClient.ts:16](https://github.com/hpyer/node-easywechat/blob/3eacadb/src/Payment/Core/BaseClient.ts#L16)
 
 ## Methods
 
@@ -106,7 +106,7 @@ ___
 
 #### Defined in
 
-[Payment/Order/OrderClient.ts:70](https://github.com/hpyer/node-easywechat/blob/d6465cc/src/Payment/Order/OrderClient.ts#L70)
+[Payment/Order/OrderClient.ts:70](https://github.com/hpyer/node-easywechat/blob/3eacadb/src/Payment/Order/OrderClient.ts#L70)
 
 ___
 
@@ -130,7 +130,7 @@ ___
 
 #### Defined in
 
-[Payment/Core/BaseClient.ts:136](https://github.com/hpyer/node-easywechat/blob/d6465cc/src/Payment/Core/BaseClient.ts#L136)
+[Payment/Core/BaseClient.ts:136](https://github.com/hpyer/node-easywechat/blob/3eacadb/src/Payment/Core/BaseClient.ts#L136)
 
 ___
 
@@ -148,7 +148,7 @@ ___
 
 #### Defined in
 
-[Payment/Core/BaseClient.ts:129](https://github.com/hpyer/node-easywechat/blob/d6465cc/src/Payment/Core/BaseClient.ts#L129)
+[Payment/Core/BaseClient.ts:129](https://github.com/hpyer/node-easywechat/blob/3eacadb/src/Payment/Core/BaseClient.ts#L129)
 
 ___
 
@@ -166,7 +166,7 @@ ___
 
 #### Defined in
 
-[Payment/Core/BaseClient.ts:107](https://github.com/hpyer/node-easywechat/blob/d6465cc/src/Payment/Core/BaseClient.ts#L107)
+[Payment/Core/BaseClient.ts:107](https://github.com/hpyer/node-easywechat/blob/3eacadb/src/Payment/Core/BaseClient.ts#L107)
 
 ___
 
@@ -190,7 +190,7 @@ ___
 
 #### Defined in
 
-[Payment/Core/BaseClient.ts:76](https://github.com/hpyer/node-easywechat/blob/d6465cc/src/Payment/Core/BaseClient.ts#L76)
+[Payment/Core/BaseClient.ts:76](https://github.com/hpyer/node-easywechat/blob/3eacadb/src/Payment/Core/BaseClient.ts#L76)
 
 ___
 
@@ -208,7 +208,7 @@ ___
 
 #### Defined in
 
-[Payment/Core/BaseClient.ts:23](https://github.com/hpyer/node-easywechat/blob/d6465cc/src/Payment/Core/BaseClient.ts#L23)
+[Payment/Core/BaseClient.ts:23](https://github.com/hpyer/node-easywechat/blob/3eacadb/src/Payment/Core/BaseClient.ts#L23)
 
 ___
 
@@ -228,7 +228,7 @@ ___
 
 #### Defined in
 
-[Payment/Order/OrderClient.ts:59](https://github.com/hpyer/node-easywechat/blob/d6465cc/src/Payment/Order/OrderClient.ts#L59)
+[Payment/Order/OrderClient.ts:59](https://github.com/hpyer/node-easywechat/blob/3eacadb/src/Payment/Order/OrderClient.ts#L59)
 
 ___
 
@@ -250,7 +250,7 @@ ___
 
 #### Defined in
 
-[Payment/Order/OrderClient.ts:39](https://github.com/hpyer/node-easywechat/blob/d6465cc/src/Payment/Order/OrderClient.ts#L39)
+[Payment/Order/OrderClient.ts:39](https://github.com/hpyer/node-easywechat/blob/3eacadb/src/Payment/Order/OrderClient.ts#L39)
 
 ___
 
@@ -272,7 +272,7 @@ ___
 
 #### Defined in
 
-[Payment/Order/OrderClient.ts:51](https://github.com/hpyer/node-easywechat/blob/d6465cc/src/Payment/Order/OrderClient.ts#L51)
+[Payment/Order/OrderClient.ts:51](https://github.com/hpyer/node-easywechat/blob/3eacadb/src/Payment/Order/OrderClient.ts#L51)
 
 ___
 
@@ -300,7 +300,7 @@ ___
 
 #### Defined in
 
-[Payment/Core/BaseClient.ts:28](https://github.com/hpyer/node-easywechat/blob/d6465cc/src/Payment/Core/BaseClient.ts#L28)
+[Payment/Core/BaseClient.ts:28](https://github.com/hpyer/node-easywechat/blob/3eacadb/src/Payment/Core/BaseClient.ts#L28)
 
 ___
 
@@ -327,7 +327,7 @@ ___
 
 #### Defined in
 
-[Payment/Core/BaseClient.ts:95](https://github.com/hpyer/node-easywechat/blob/d6465cc/src/Payment/Core/BaseClient.ts#L95)
+[Payment/Core/BaseClient.ts:95](https://github.com/hpyer/node-easywechat/blob/3eacadb/src/Payment/Core/BaseClient.ts#L95)
 
 ___
 
@@ -354,7 +354,7 @@ ___
 
 #### Defined in
 
-[Payment/Core/BaseClient.ts:84](https://github.com/hpyer/node-easywechat/blob/d6465cc/src/Payment/Core/BaseClient.ts#L84)
+[Payment/Core/BaseClient.ts:84](https://github.com/hpyer/node-easywechat/blob/3eacadb/src/Payment/Core/BaseClient.ts#L84)
 
 ___
 
@@ -377,7 +377,7 @@ ___
 
 #### Defined in
 
-[Payment/Order/OrderClient.ts:14](https://github.com/hpyer/node-easywechat/blob/d6465cc/src/Payment/Order/OrderClient.ts#L14)
+[Payment/Order/OrderClient.ts:14](https://github.com/hpyer/node-easywechat/blob/3eacadb/src/Payment/Order/OrderClient.ts#L14)
 
 ___
 
@@ -401,4 +401,4 @@ ___
 
 #### Defined in
 
-[Payment/Core/BaseClient.ts:102](https://github.com/hpyer/node-easywechat/blob/d6465cc/src/Payment/Core/BaseClient.ts#L102)
+[Payment/Core/BaseClient.ts:102](https://github.com/hpyer/node-easywechat/blob/3eacadb/src/Payment/Core/BaseClient.ts#L102)

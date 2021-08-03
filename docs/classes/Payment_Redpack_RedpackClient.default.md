@@ -55,7 +55,7 @@
 
 #### Defined in
 
-[Payment/Core/BaseClient.ts:18](https://github.com/hpyer/node-easywechat/blob/d6465cc/src/Payment/Core/BaseClient.ts#L18)
+[Payment/Core/BaseClient.ts:18](https://github.com/hpyer/node-easywechat/blob/3eacadb/src/Payment/Core/BaseClient.ts#L18)
 
 ## Properties
 
@@ -69,7 +69,7 @@
 
 #### Defined in
 
-[Payment/Core/BaseClient.ts:14](https://github.com/hpyer/node-easywechat/blob/d6465cc/src/Payment/Core/BaseClient.ts#L14)
+[Payment/Core/BaseClient.ts:14](https://github.com/hpyer/node-easywechat/blob/3eacadb/src/Payment/Core/BaseClient.ts#L14)
 
 ___
 
@@ -83,7 +83,7 @@ ___
 
 #### Defined in
 
-[Payment/Core/BaseClient.ts:16](https://github.com/hpyer/node-easywechat/blob/d6465cc/src/Payment/Core/BaseClient.ts#L16)
+[Payment/Core/BaseClient.ts:16](https://github.com/hpyer/node-easywechat/blob/3eacadb/src/Payment/Core/BaseClient.ts#L16)
 
 ## Methods
 
@@ -107,7 +107,7 @@ ___
 
 #### Defined in
 
-[Payment/Core/BaseClient.ts:136](https://github.com/hpyer/node-easywechat/blob/d6465cc/src/Payment/Core/BaseClient.ts#L136)
+[Payment/Core/BaseClient.ts:136](https://github.com/hpyer/node-easywechat/blob/3eacadb/src/Payment/Core/BaseClient.ts#L136)
 
 ___
 
@@ -125,7 +125,7 @@ ___
 
 #### Defined in
 
-[Payment/Core/BaseClient.ts:129](https://github.com/hpyer/node-easywechat/blob/d6465cc/src/Payment/Core/BaseClient.ts#L129)
+[Payment/Core/BaseClient.ts:129](https://github.com/hpyer/node-easywechat/blob/3eacadb/src/Payment/Core/BaseClient.ts#L129)
 
 ___
 
@@ -143,7 +143,7 @@ ___
 
 #### Defined in
 
-[Payment/Core/BaseClient.ts:107](https://github.com/hpyer/node-easywechat/blob/d6465cc/src/Payment/Core/BaseClient.ts#L107)
+[Payment/Core/BaseClient.ts:107](https://github.com/hpyer/node-easywechat/blob/3eacadb/src/Payment/Core/BaseClient.ts#L107)
 
 ___
 
@@ -165,7 +165,7 @@ ___
 
 #### Defined in
 
-[Payment/Redpack/RedpackClient.ts:13](https://github.com/hpyer/node-easywechat/blob/d6465cc/src/Payment/Redpack/RedpackClient.ts#L13)
+[Payment/Redpack/RedpackClient.ts:13](https://github.com/hpyer/node-easywechat/blob/3eacadb/src/Payment/Redpack/RedpackClient.ts#L13)
 
 ___
 
@@ -189,7 +189,7 @@ ___
 
 #### Defined in
 
-[Payment/Core/BaseClient.ts:76](https://github.com/hpyer/node-easywechat/blob/d6465cc/src/Payment/Core/BaseClient.ts#L76)
+[Payment/Core/BaseClient.ts:76](https://github.com/hpyer/node-easywechat/blob/3eacadb/src/Payment/Core/BaseClient.ts#L76)
 
 ___
 
@@ -207,7 +207,7 @@ ___
 
 #### Defined in
 
-[Payment/Core/BaseClient.ts:23](https://github.com/hpyer/node-easywechat/blob/d6465cc/src/Payment/Core/BaseClient.ts#L23)
+[Payment/Core/BaseClient.ts:23](https://github.com/hpyer/node-easywechat/blob/3eacadb/src/Payment/Core/BaseClient.ts#L23)
 
 ___
 
@@ -235,7 +235,7 @@ ___
 
 #### Defined in
 
-[Payment/Core/BaseClient.ts:28](https://github.com/hpyer/node-easywechat/blob/d6465cc/src/Payment/Core/BaseClient.ts#L28)
+[Payment/Core/BaseClient.ts:28](https://github.com/hpyer/node-easywechat/blob/3eacadb/src/Payment/Core/BaseClient.ts#L28)
 
 ___
 
@@ -262,7 +262,7 @@ ___
 
 #### Defined in
 
-[Payment/Core/BaseClient.ts:95](https://github.com/hpyer/node-easywechat/blob/d6465cc/src/Payment/Core/BaseClient.ts#L95)
+[Payment/Core/BaseClient.ts:95](https://github.com/hpyer/node-easywechat/blob/3eacadb/src/Payment/Core/BaseClient.ts#L95)
 
 ___
 
@@ -289,7 +289,7 @@ ___
 
 #### Defined in
 
-[Payment/Core/BaseClient.ts:84](https://github.com/hpyer/node-easywechat/blob/d6465cc/src/Payment/Core/BaseClient.ts#L84)
+[Payment/Core/BaseClient.ts:84](https://github.com/hpyer/node-easywechat/blob/3eacadb/src/Payment/Core/BaseClient.ts#L84)
 
 ___
 
@@ -311,7 +311,7 @@ ___
 
 #### Defined in
 
-[Payment/Redpack/RedpackClient.ts:62](https://github.com/hpyer/node-easywechat/blob/d6465cc/src/Payment/Redpack/RedpackClient.ts#L62)
+[Payment/Redpack/RedpackClient.ts:62](https://github.com/hpyer/node-easywechat/blob/3eacadb/src/Payment/Redpack/RedpackClient.ts#L62)
 
 ___
 
@@ -333,7 +333,7 @@ ___
 
 #### Defined in
 
-[Payment/Redpack/RedpackClient.ts:31](https://github.com/hpyer/node-easywechat/blob/d6465cc/src/Payment/Redpack/RedpackClient.ts#L31)
+[Payment/Redpack/RedpackClient.ts:31](https://github.com/hpyer/node-easywechat/blob/3eacadb/src/Payment/Redpack/RedpackClient.ts#L31)
 
 ___
 
@@ -355,7 +355,7 @@ ___
 
 #### Defined in
 
-[Payment/Redpack/RedpackClient.ts:47](https://github.com/hpyer/node-easywechat/blob/d6465cc/src/Payment/Redpack/RedpackClient.ts#L47)
+[Payment/Redpack/RedpackClient.ts:47](https://github.com/hpyer/node-easywechat/blob/3eacadb/src/Payment/Redpack/RedpackClient.ts#L47)
 
 ___
 
@@ -379,4 +379,4 @@ ___
 
 #### Defined in
 
-[Payment/Core/BaseClient.ts:102](https://github.com/hpyer/node-easywechat/blob/d6465cc/src/Payment/Core/BaseClient.ts#L102)
+[Payment/Core/BaseClient.ts:102](https://github.com/hpyer/node-easywechat/blob/3eacadb/src/Payment/Core/BaseClient.ts#L102)

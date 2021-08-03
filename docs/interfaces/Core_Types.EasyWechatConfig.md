@@ -16,6 +16,7 @@
 - [cert\_path](Core_Types.EasyWechatConfig.md#cert_path)
 - [contract\_notify\_url](Core_Types.EasyWechatConfig.md#contract_notify_url)
 - [corp\_id](Core_Types.EasyWechatConfig.md#corp_id)
+- [debug](Core_Types.EasyWechatConfig.md#debug)
 - [device\_type](Core_Types.EasyWechatConfig.md#device_type)
 - [file\_cache](Core_Types.EasyWechatConfig.md#file_cache)
 - [http](Core_Types.EasyWechatConfig.md#http)
@@ -43,7 +44,7 @@
 
 #### Defined in
 
-[Core/Types.ts:77](https://github.com/hpyer/node-easywechat/blob/d6465cc/src/Core/Types.ts#L77)
+[Core/Types.ts:83](https://github.com/hpyer/node-easywechat/blob/3eacadb/src/Core/Types.ts#L83)
 
 ___
 
@@ -57,7 +58,7 @@ ___
 
 #### Defined in
 
-[Core/Types.ts:164](https://github.com/hpyer/node-easywechat/blob/d6465cc/src/Core/Types.ts#L164)
+[Core/Types.ts:170](https://github.com/hpyer/node-easywechat/blob/3eacadb/src/Core/Types.ts#L170)
 
 ___
 
@@ -71,7 +72,7 @@ ___
 
 #### Defined in
 
-[Core/Types.ts:48](https://github.com/hpyer/node-easywechat/blob/d6465cc/src/Core/Types.ts#L48)
+[Core/Types.ts:54](https://github.com/hpyer/node-easywechat/blob/3eacadb/src/Core/Types.ts#L54)
 
 ___
 
@@ -85,7 +86,7 @@ pfx 证书路径（敏感接口（如退款、发送红包等）需要）
 
 #### Defined in
 
-[Core/Types.ts:115](https://github.com/hpyer/node-easywechat/blob/d6465cc/src/Core/Types.ts#L115)
+[Core/Types.ts:121](https://github.com/hpyer/node-easywechat/blob/3eacadb/src/Core/Types.ts#L121)
 
 ___
 
@@ -99,7 +100,7 @@ ___
 
 #### Defined in
 
-[Core/Types.ts:132](https://github.com/hpyer/node-easywechat/blob/d6465cc/src/Core/Types.ts#L132)
+[Core/Types.ts:138](https://github.com/hpyer/node-easywechat/blob/3eacadb/src/Core/Types.ts#L138)
 
 ___
 
@@ -113,7 +114,21 @@ ___
 
 #### Defined in
 
-[Core/Types.ts:158](https://github.com/hpyer/node-easywechat/blob/d6465cc/src/Core/Types.ts#L158)
+[Core/Types.ts:164](https://github.com/hpyer/node-easywechat/blob/3eacadb/src/Core/Types.ts#L164)
+
+___
+
+### debug
+
+• `Optional` **debug**: `boolean`
+
+是否开启调试，开启后会在控制台输出日志，默认：false
+
+**`scope`** ALL
+
+#### Defined in
+
+[Core/Types.ts:48](https://github.com/hpyer/node-easywechat/blob/3eacadb/src/Core/Types.ts#L48)
 
 ___
 
@@ -127,7 +142,7 @@ ___
 
 #### Defined in
 
-[Core/Types.ts:151](https://github.com/hpyer/node-easywechat/blob/d6465cc/src/Core/Types.ts#L151)
+[Core/Types.ts:157](https://github.com/hpyer/node-easywechat/blob/3eacadb/src/Core/Types.ts#L157)
 
 ___
 
@@ -141,7 +156,7 @@ ___
 
 #### Defined in
 
-[Core/Types.ts:65](https://github.com/hpyer/node-easywechat/blob/d6465cc/src/Core/Types.ts#L65)
+[Core/Types.ts:71](https://github.com/hpyer/node-easywechat/blob/3eacadb/src/Core/Types.ts#L71)
 
 ___
 
@@ -155,7 +170,7 @@ ___
 
 #### Defined in
 
-[Core/Types.ts:59](https://github.com/hpyer/node-easywechat/blob/d6465cc/src/Core/Types.ts#L59)
+[Core/Types.ts:65](https://github.com/hpyer/node-easywechat/blob/3eacadb/src/Core/Types.ts#L65)
 
 ___
 
@@ -169,7 +184,7 @@ ___
 
 #### Defined in
 
-[Core/Types.ts:91](https://github.com/hpyer/node-easywechat/blob/d6465cc/src/Core/Types.ts#L91)
+[Core/Types.ts:97](https://github.com/hpyer/node-easywechat/blob/3eacadb/src/Core/Types.ts#L97)
 
 ___
 
@@ -183,7 +198,7 @@ ___
 
 #### Defined in
 
-[Core/Types.ts:103](https://github.com/hpyer/node-easywechat/blob/d6465cc/src/Core/Types.ts#L103)
+[Core/Types.ts:109](https://github.com/hpyer/node-easywechat/blob/3eacadb/src/Core/Types.ts#L109)
 
 ___
 
@@ -197,7 +212,7 @@ ___
 
 #### Defined in
 
-[Core/Types.ts:127](https://github.com/hpyer/node-easywechat/blob/d6465cc/src/Core/Types.ts#L127)
+[Core/Types.ts:133](https://github.com/hpyer/node-easywechat/blob/3eacadb/src/Core/Types.ts#L133)
 
 ___
 
@@ -211,7 +226,7 @@ ___
 
 #### Defined in
 
-[Core/Types.ts:83](https://github.com/hpyer/node-easywechat/blob/d6465cc/src/Core/Types.ts#L83)
+[Core/Types.ts:89](https://github.com/hpyer/node-easywechat/blob/3eacadb/src/Core/Types.ts#L89)
 
 ___
 
@@ -225,7 +240,7 @@ ___
 
 #### Defined in
 
-[Core/Types.ts:145](https://github.com/hpyer/node-easywechat/blob/d6465cc/src/Core/Types.ts#L145)
+[Core/Types.ts:151](https://github.com/hpyer/node-easywechat/blob/3eacadb/src/Core/Types.ts#L151)
 
 ___
 
@@ -239,7 +254,7 @@ ___
 
 #### Defined in
 
-[Core/Types.ts:121](https://github.com/hpyer/node-easywechat/blob/d6465cc/src/Core/Types.ts#L121)
+[Core/Types.ts:127](https://github.com/hpyer/node-easywechat/blob/3eacadb/src/Core/Types.ts#L127)
 
 ___
 
@@ -253,7 +268,7 @@ ___
 
 #### Defined in
 
-[Core/Types.ts:138](https://github.com/hpyer/node-easywechat/blob/d6465cc/src/Core/Types.ts#L138)
+[Core/Types.ts:144](https://github.com/hpyer/node-easywechat/blob/3eacadb/src/Core/Types.ts#L144)
 
 ___
 
@@ -267,7 +282,7 @@ ___
 
 #### Defined in
 
-[Core/Types.ts:53](https://github.com/hpyer/node-easywechat/blob/d6465cc/src/Core/Types.ts#L53)
+[Core/Types.ts:59](https://github.com/hpyer/node-easywechat/blob/3eacadb/src/Core/Types.ts#L59)
 
 ___
 
@@ -281,7 +296,7 @@ ___
 
 #### Defined in
 
-[Core/Types.ts:97](https://github.com/hpyer/node-easywechat/blob/d6465cc/src/Core/Types.ts#L97)
+[Core/Types.ts:103](https://github.com/hpyer/node-easywechat/blob/3eacadb/src/Core/Types.ts#L103)
 
 ___
 
@@ -295,7 +310,7 @@ ___
 
 #### Defined in
 
-[Core/Types.ts:109](https://github.com/hpyer/node-easywechat/blob/d6465cc/src/Core/Types.ts#L109)
+[Core/Types.ts:115](https://github.com/hpyer/node-easywechat/blob/3eacadb/src/Core/Types.ts#L115)
 
 ___
 
@@ -309,4 +324,4 @@ ___
 
 #### Defined in
 
-[Core/Types.ts:71](https://github.com/hpyer/node-easywechat/blob/d6465cc/src/Core/Types.ts#L71)
+[Core/Types.ts:77](https://github.com/hpyer/node-easywechat/blob/3eacadb/src/Core/Types.ts#L77)

@@ -55,7 +55,7 @@
 
 #### Defined in
 
-[Core/Http/Request.ts:22](https://github.com/hpyer/node-easywechat/blob/d6465cc/src/Core/Http/Request.ts#L22)
+[Core/Http/Request.ts:22](https://github.com/hpyer/node-easywechat/blob/3eacadb/src/Core/Http/Request.ts#L22)
 
 ## Properties
 
@@ -65,7 +65,7 @@
 
 #### Defined in
 
-[Core/Http/Request.ts:18](https://github.com/hpyer/node-easywechat/blob/d6465cc/src/Core/Http/Request.ts#L18)
+[Core/Http/Request.ts:18](https://github.com/hpyer/node-easywechat/blob/3eacadb/src/Core/Http/Request.ts#L18)
 
 ___
 
@@ -75,7 +75,7 @@ ___
 
 #### Defined in
 
-[Core/Http/Request.ts:19](https://github.com/hpyer/node-easywechat/blob/d6465cc/src/Core/Http/Request.ts#L19)
+[Core/Http/Request.ts:19](https://github.com/hpyer/node-easywechat/blob/3eacadb/src/Core/Http/Request.ts#L19)
 
 ___
 
@@ -85,7 +85,7 @@ ___
 
 #### Defined in
 
-[Core/Http/Request.ts:16](https://github.com/hpyer/node-easywechat/blob/d6465cc/src/Core/Http/Request.ts#L16)
+[Core/Http/Request.ts:16](https://github.com/hpyer/node-easywechat/blob/3eacadb/src/Core/Http/Request.ts#L16)
 
 ___
 
@@ -95,7 +95,7 @@ ___
 
 #### Defined in
 
-[Core/Http/Request.ts:15](https://github.com/hpyer/node-easywechat/blob/d6465cc/src/Core/Http/Request.ts#L15)
+[Core/Http/Request.ts:15](https://github.com/hpyer/node-easywechat/blob/3eacadb/src/Core/Http/Request.ts#L15)
 
 ___
 
@@ -105,7 +105,7 @@ ___
 
 #### Defined in
 
-[Core/Http/Request.ts:20](https://github.com/hpyer/node-easywechat/blob/d6465cc/src/Core/Http/Request.ts#L20)
+[Core/Http/Request.ts:20](https://github.com/hpyer/node-easywechat/blob/3eacadb/src/Core/Http/Request.ts#L20)
 
 ___
 
@@ -115,7 +115,7 @@ ___
 
 #### Defined in
 
-[Core/Http/Request.ts:14](https://github.com/hpyer/node-easywechat/blob/d6465cc/src/Core/Http/Request.ts#L14)
+[Core/Http/Request.ts:14](https://github.com/hpyer/node-easywechat/blob/3eacadb/src/Core/Http/Request.ts#L14)
 
 ___
 
@@ -125,7 +125,7 @@ ___
 
 #### Defined in
 
-[Core/Http/Request.ts:17](https://github.com/hpyer/node-easywechat/blob/d6465cc/src/Core/Http/Request.ts#L17)
+[Core/Http/Request.ts:17](https://github.com/hpyer/node-easywechat/blob/3eacadb/src/Core/Http/Request.ts#L17)
 
 ___
 
@@ -135,7 +135,7 @@ ___
 
 #### Defined in
 
-[Core/Http/Request.ts:12](https://github.com/hpyer/node-easywechat/blob/d6465cc/src/Core/Http/Request.ts#L12)
+[Core/Http/Request.ts:12](https://github.com/hpyer/node-easywechat/blob/3eacadb/src/Core/Http/Request.ts#L12)
 
 ___
 
@@ -145,7 +145,7 @@ ___
 
 #### Defined in
 
-[Core/Http/Request.ts:13](https://github.com/hpyer/node-easywechat/blob/d6465cc/src/Core/Http/Request.ts#L13)
+[Core/Http/Request.ts:13](https://github.com/hpyer/node-easywechat/blob/3eacadb/src/Core/Http/Request.ts#L13)
 
 ## Methods
 
@@ -169,7 +169,7 @@ RequestInterface.get
 
 #### Defined in
 
-[Core/Http/Request.ts:118](https://github.com/hpyer/node-easywechat/blob/d6465cc/src/Core/Http/Request.ts#L118)
+[Core/Http/Request.ts:118](https://github.com/hpyer/node-easywechat/blob/3eacadb/src/Core/Http/Request.ts#L118)
 
 ___
 
@@ -183,7 +183,7 @@ ___
 
 #### Defined in
 
-[Core/Http/Request.ts:148](https://github.com/hpyer/node-easywechat/blob/d6465cc/src/Core/Http/Request.ts#L148)
+[Core/Http/Request.ts:148](https://github.com/hpyer/node-easywechat/blob/3eacadb/src/Core/Http/Request.ts#L148)
 
 ___
 
@@ -197,7 +197,7 @@ ___
 
 #### Defined in
 
-[Core/Http/Request.ts:154](https://github.com/hpyer/node-easywechat/blob/d6465cc/src/Core/Http/Request.ts#L154)
+[Core/Http/Request.ts:154](https://github.com/hpyer/node-easywechat/blob/3eacadb/src/Core/Http/Request.ts#L154)
 
 ___
 
@@ -215,7 +215,7 @@ RequestInterface.getClientIp
 
 #### Defined in
 
-[Core/Http/Request.ts:188](https://github.com/hpyer/node-easywechat/blob/d6465cc/src/Core/Http/Request.ts#L188)
+[Core/Http/Request.ts:188](https://github.com/hpyer/node-easywechat/blob/3eacadb/src/Core/Http/Request.ts#L188)
 
 ___
 
@@ -233,7 +233,7 @@ RequestInterface.getContent
 
 #### Defined in
 
-[Core/Http/Request.ts:160](https://github.com/hpyer/node-easywechat/blob/d6465cc/src/Core/Http/Request.ts#L160)
+[Core/Http/Request.ts:160](https://github.com/hpyer/node-easywechat/blob/3eacadb/src/Core/Http/Request.ts#L160)
 
 ___
 
@@ -251,7 +251,7 @@ RequestInterface.getContentType
 
 #### Defined in
 
-[Core/Http/Request.ts:176](https://github.com/hpyer/node-easywechat/blob/d6465cc/src/Core/Http/Request.ts#L176)
+[Core/Http/Request.ts:176](https://github.com/hpyer/node-easywechat/blob/3eacadb/src/Core/Http/Request.ts#L176)
 
 ___
 
@@ -269,7 +269,7 @@ RequestInterface.getHeaders
 
 #### Defined in
 
-[Core/Http/Request.ts:182](https://github.com/hpyer/node-easywechat/blob/d6465cc/src/Core/Http/Request.ts#L182)
+[Core/Http/Request.ts:182](https://github.com/hpyer/node-easywechat/blob/3eacadb/src/Core/Http/Request.ts#L182)
 
 ___
 
@@ -287,7 +287,7 @@ RequestInterface.getMethod
 
 #### Defined in
 
-[Core/Http/Request.ts:112](https://github.com/hpyer/node-easywechat/blob/d6465cc/src/Core/Http/Request.ts#L112)
+[Core/Http/Request.ts:112](https://github.com/hpyer/node-easywechat/blob/3eacadb/src/Core/Http/Request.ts#L112)
 
 ___
 
@@ -305,7 +305,7 @@ RequestInterface.getUri
 
 #### Defined in
 
-[Core/Http/Request.ts:170](https://github.com/hpyer/node-easywechat/blob/d6465cc/src/Core/Http/Request.ts#L170)
+[Core/Http/Request.ts:170](https://github.com/hpyer/node-easywechat/blob/3eacadb/src/Core/Http/Request.ts#L170)
 
 ___
 
@@ -319,7 +319,7 @@ ___
 
 #### Defined in
 
-[Core/Http/Request.ts:107](https://github.com/hpyer/node-easywechat/blob/d6465cc/src/Core/Http/Request.ts#L107)
+[Core/Http/Request.ts:107](https://github.com/hpyer/node-easywechat/blob/3eacadb/src/Core/Http/Request.ts#L107)
 
 ___
 
@@ -343,4 +343,4 @@ RequestInterface.post
 
 #### Defined in
 
-[Core/Http/Request.ts:125](https://github.com/hpyer/node-easywechat/blob/d6465cc/src/Core/Http/Request.ts#L125)
+[Core/Http/Request.ts:125](https://github.com/hpyer/node-easywechat/blob/3eacadb/src/Core/Http/Request.ts#L125)
