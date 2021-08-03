@@ -38,11 +38,6 @@ module.exports = class BaseClientTest {
      */
     this.app = EasyWechat.Factory.getInstance(service, config);
 
-    // 关闭请求日志
-    this.app.rebind('log', () => {
-      return function () { };
-    });
-
     if (autoRun) {
       this.run();
     }
