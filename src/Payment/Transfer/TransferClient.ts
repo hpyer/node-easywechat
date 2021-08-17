@@ -2,7 +2,7 @@
 
 import BaseClient from '../Core/BaseClient';
 import Fs from 'fs';
-import NodeRsa from 'node-rsa';
+import RSA from '../../Core/Rsa';
 import { merge } from '../../Core/Utils';
 
 export default class TransferClient extends BaseClient
@@ -68,8 +68,9 @@ export default class TransferClient extends BaseClient
       }
     });
 
-    let publicKey = Fs.readFileSync(this.app.config.rsa_public_key_path).toString();
-    let rsa = new NodeRsa(publicKey);
+    let publicKey = Fs.readFileSync(this.app.config.rsa_public_key_path);
+    let rsa = new RSA;
+    rsa.setPublicKey(publicKey);
     params['enc_bank_no'] = rsa.encrypt(params['enc_bank_no'], 'hex');
     params['enc_true_name'] = rsa.encrypt(params['enc_true_name'], 'hex');
 
