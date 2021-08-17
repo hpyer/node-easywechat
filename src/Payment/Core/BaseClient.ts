@@ -44,19 +44,11 @@ class BaseClient implements HttpMixin
     let secretKey = await this.app.getKey(endpoint);
     localParams['sign'] = makeSignature(localParams, secretKey, localParams['sign_type'] || 'MD5');
 
-    let XmlBuilder = new Xml2js.Builder({
-      cdata: true,
-      renderOpts: {
-        pretty: false,
-        indent: '',
-        newline: '',
-      }
-    });
     let payload = merge(merge({}, options), {
       url: endpoint,
       method,
       responseType: 'text',
-      data: XmlBuilder.buildObject(localParams)
+      data: this.buildXml(localParams)
     });
 
     let response = await this.doRequest(payload);
@@ -71,6 +63,19 @@ class BaseClient implements HttpMixin
       catch (e) { }
       return body;
     }
+  }
+
+  buildXml(data: object): string
+  {
+    let XmlBuilder = new Xml2js.Builder({
+      cdata: true,
+      renderOpts: {
+        pretty: false,
+        indent: '',
+        newline: '',
+      }
+    });
+    return XmlBuilder.buildObject(data);
   }
 
   async parseXml(xml: string): Promise<any>
