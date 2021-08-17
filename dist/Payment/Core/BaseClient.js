@@ -42,19 +42,11 @@ class BaseClient {
             let localParams = Utils_1.merge(Utils_1.merge(base, this.prepends()), params);
             let secretKey = yield this.app.getKey(endpoint);
             localParams['sign'] = Utils_1.makeSignature(localParams, secretKey, localParams['sign_type'] || 'MD5');
-            let XmlBuilder = new xml2js_1.default.Builder({
-                cdata: true,
-                renderOpts: {
-                    pretty: false,
-                    indent: '',
-                    newline: '',
-                }
-            });
             let payload = Utils_1.merge(Utils_1.merge({}, options), {
                 url: endpoint,
                 method,
                 responseType: 'text',
-                data: XmlBuilder.buildObject(localParams)
+                data: this.buildXml(localParams)
             });
             let response = yield this.doRequest(payload);
             if (returnResponse) {
@@ -69,6 +61,17 @@ class BaseClient {
                 return body;
             }
         });
+    }
+    buildXml(data) {
+        let XmlBuilder = new xml2js_1.default.Builder({
+            cdata: true,
+            renderOpts: {
+                pretty: false,
+                indent: '',
+                newline: '',
+            }
+        });
+        return XmlBuilder.buildObject(data);
     }
     parseXml(xml) {
         return __awaiter(this, void 0, void 0, function* () {

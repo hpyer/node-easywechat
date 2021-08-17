@@ -7,6 +7,7 @@ declare class BaseClient implements HttpMixin {
     constructor(app: BaseApplication);
     protected prepends(): {};
     protected request(endpoint: string, params?: object, method?: string, options?: AxiosRequestConfig, returnResponse?: boolean): Promise<AxiosResponse<any>>;
+    buildXml(data: object): string;
     parseXml(xml: string): Promise<any>;
     protected safeRequest(endpoint: string, params?: object, method?: string, options?: AxiosRequestConfig): Promise<any>;
     protected requestRaw(endpoint: string, params?: object, method?: string, options?: AxiosRequestConfig): Promise<any>;
