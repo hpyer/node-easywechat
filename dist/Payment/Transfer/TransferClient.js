@@ -14,7 +14,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const BaseClient_1 = __importDefault(require("../Core/BaseClient"));
 const fs_1 = __importDefault(require("fs"));
-const node_rsa_1 = __importDefault(require("node-rsa"));
+const Rsa_1 = __importDefault(require("../../Core/Rsa"));
 const Utils_1 = require("../../Core/Utils");
 class TransferClient extends BaseClient_1.default {
     /**
@@ -67,8 +67,9 @@ class TransferClient extends BaseClient_1.default {
                 throw new Error(`${key} is required.`);
             }
         });
-        let publicKey = fs_1.default.readFileSync(this.app.config.rsa_public_key_path).toString();
-        let rsa = new node_rsa_1.default(publicKey);
+        let publicKey = fs_1.default.readFileSync(this.app.config.rsa_public_key_path);
+        let rsa = new Rsa_1.default;
+        rsa.setPublicKey(publicKey);
         params['enc_bank_no'] = rsa.encrypt(params['enc_bank_no'], 'hex');
         params['enc_true_name'] = rsa.encrypt(params['enc_true_name'], 'hex');
         return this.safeRequest('mmpaymkttransfers/pay_bank', params);
