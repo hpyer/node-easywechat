@@ -92,7 +92,7 @@ new TestUnit('Payment', 'transfer', {
   key: '88888888888888888888888888888888',
   mch_id: '888888',
   cert_path: Path.resolve(__dirname, '../temp/test.pfx'),
-  rsa_public_key_path: Path.resolve(__dirname, '../temp/test.pem'),
+  rsa_public_key_path: Path.resolve(__dirname, '../temp/test_public_key.pem'),
   notify_url: 'http://www.example.com/wx/notify/paied',
   contract_notify_url: 'http://www.example.com/wx/notify/contract',
 });
