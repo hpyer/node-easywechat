@@ -1,6 +1,6 @@
 const assert = require('assert');
 
-const RSA = require('../../dist/Core/Rsa').default;
+const RSA = require('../../dist/Core/RSA').default;
 const Path = require('path');
 const Fs = require('fs');
 
