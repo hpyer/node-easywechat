@@ -2,7 +2,7 @@
 
 import BaseClient from '../Core/BaseClient';
 import Fs from 'fs';
-import RSA from '../../Core/Rsa';
+import RSA from '../../Core/RSA';
 import { merge } from '../../Core/Utils';
 
 export default class TransferClient extends BaseClient
