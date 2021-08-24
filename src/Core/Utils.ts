@@ -2,6 +2,7 @@
 
 import Crypto from 'crypto';
 import Qs from 'qs';
+import Xml2js from 'xml2js';
 
 export const merge = (target: any, source: any): any => {
   if (isObject(source)) {
@@ -217,23 +218,24 @@ export const singleItem = function (obj: any): any
   return obj;
 };
 
-export const AesDecrypt = function (ciphertext, key, iv = '', method = 'AES-256-ECB')
+export const parseXml = async function(xml: string): Promise<any>
 {
-  iv = iv || '';
-  var decipher = Crypto.createDecipheriv(method, key, iv);
-  decipher.setAutoPadding(true)
-  var plaintext = decipher.update(ciphertext, 'base64', 'utf8');
-  plaintext += decipher.final('utf8');
-  return plaintext;
+  let res = await Xml2js.parseStringPromise(xml);
+  res = singleItem(res);
+  if(res['xml']) res = res['xml'];
+  return res;
 }
 
-export const AesEncrypt = function (data, key, iv = '', method = 'AES-256-ECB')
+export const buildXml = function(data: object, rootName: string = 'xml'): string
 {
-  iv = iv || '';
-  var chunks = [];
-  var cipher = Crypto.createCipheriv(method, key, iv);
-  cipher.setAutoPadding(true);
-  chunks.push(cipher.update(data, 'utf8', 'base64'));
-  chunks.push(cipher.final('base64'));
-  return chunks.join('');
+  let XmlBuilder = new Xml2js.Builder({
+    cdata: true,
+    rootName,
+    renderOpts: {
+      pretty: false,
+      indent: '',
+      newline: '',
+    }
+  });
+  return XmlBuilder.buildObject(data);
 }

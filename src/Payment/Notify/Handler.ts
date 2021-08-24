@@ -1,9 +1,9 @@
 'use strict';
 
 import BaseApplicatioin from "../../Payment/Application";
-import Xml2js from 'xml2js';
-import { makeSignature, AesDecrypt, createHash, merge } from "../../Core/Utils";
+import { makeSignature, createHash, merge, buildXml } from "../../Core/Utils";
 import Response from "../../Core/Http/Response";
+import { AES } from "../../Core/AES";
 
 export default class Handler
 {
@@ -64,15 +64,7 @@ export default class Handler
       attributes['sign'] = makeSignature(attributes, await this.app.getKey())
     }
 
-    let XmlBuilder = new Xml2js.Builder({
-      cdata: true,
-      renderOpts: {
-        pretty: false,
-        indent: '',
-        newline: '',
-      }
-    });
-    return new Response(XmlBuilder.buildObject(attributes));
+    return new Response(Buffer.from(buildXml(attributes)));
   }
 
   async getMessage(): Promise<object>
@@ -98,7 +90,7 @@ export default class Handler
       return null;
     }
 
-    return AesDecrypt(message[key], createHash(this.app.config.key, 'md5'), '', 'AES-256-ECB');
+    return AES.decrypt(Buffer.from(message[key], 'base64'), createHash(this.app.config.key, 'md5'), '', true, 'aes-256-ecb').toString();
   }
 
   protected async validate(message: object): Promise<void>

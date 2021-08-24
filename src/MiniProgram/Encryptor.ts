@@ -1,7 +1,7 @@
 'use strict';
 
-import Crypto from 'crypto';
 import BaseEncryptor from '../Core/Encryptor';
+import { AES } from '../Core/AES';
 
 export default class Encryptor extends BaseEncryptor
 {
@@ -11,13 +11,7 @@ export default class Encryptor extends BaseEncryptor
     let decoded = null;
     try {
       // 解密
-      let decipher = Crypto.createDecipheriv('aes-128-cbc', Buffer.from(sessionKey, 'base64'), Buffer.from(iv, 'base64'));
-      // 设置自动 padding 为 true，删除填充补位
-      decipher.setAutoPadding(true);
-
-      decoded = decipher.update(Buffer.from(encryptData, 'base64'), 'binary', 'utf8');
-      decoded += decipher.final('utf8');
-
+      decoded = AES.decrypt(Buffer.from(encryptData, 'base64'), Buffer.from(sessionKey, 'base64'), Buffer.from(iv, 'base64'), true, 'aes-128-cbc').toString('utf8');
       decoded = JSON.parse(decoded);
     }
     catch (e) {

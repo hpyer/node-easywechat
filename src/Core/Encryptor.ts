@@ -1,7 +1,9 @@
 'use strict';
 
 import Crypto from 'crypto';
-import { getTimestamp } from './Utils';
+import { buildXml, createHash, getTimestamp } from './Utils';
+import { AES } from './AES';
+import { PKCS7 } from './PKCS';
 
 export default class Encryptor
 {
@@ -25,12 +27,10 @@ export default class Encryptor
   signature(...args): string
   {
     args.sort();
-    let shasum = Crypto.createHash('sha1');
-    shasum.update(args.join(''));
-    return shasum.digest('hex');
+    return createHash(args.join(''), 'sha1');
   }
 
-  encrypt(text, nonce = null, timestamp = null): object
+  encrypt(text: string, nonce: string = null, timestamp: number = null): string
   {
     let encrypted = '';
     try {
@@ -41,12 +41,9 @@ export default class Encryptor
       let msgLength = Buffer.alloc(4);
       msgLength.writeUInt32BE(msg.length, 0);
 
-      let encoded = this.pkcs7Pad(Buffer.concat([randomString, msgLength, msg, Buffer.from(this.appId)]), this.blockSize);
+      let encoded = PKCS7.pad(Buffer.concat([randomString, msgLength, msg, Buffer.from(this.appId)]), this.blockSize);
 
-      let cipher = Crypto.createCipheriv('aes-256-cbc', this.aesKey, this.aesKey.slice(0, 16));
-      cipher.setAutoPadding(false);
-
-      encrypted = Buffer.concat([cipher.update(encoded), cipher.final()]).toString('base64');
+      encrypted = AES.encrypt(encoded, this.aesKey, this.aesKey.slice(0, 16), false, 'aes-256-cbc').toString('base64');
     }
     catch (e) {
       throw new Error('Fail to encrypt data');
@@ -55,26 +52,26 @@ export default class Encryptor
     if (!nonce) nonce = this.appId.slice(0, 10);
     if (!timestamp) timestamp = getTimestamp();
 
-    return {
+    let response = {
       Encrypt: encrypted,
       MsgSignature: this.signature(this.token, timestamp, nonce, encrypted),
       TimeStamp: timestamp,
       Nonce: nonce,
-    }
+    };
+
+    return buildXml(response);
   }
 
-  decrypt(text, msgSignature, nonce, timestamp): string
+  decrypt(text: string, msgSignature: string, nonce: string, timestamp: number): string
   {
     let signature = this.signature(this.token, nonce, timestamp, text);
     if (signature !== msgSignature) {
       throw new Error('Invalid Signature.');
     }
 
-    let decipher = Crypto.createDecipheriv('aes-256-cbc', this.aesKey, this.aesKey.slice(0, 16));
-    decipher.setAutoPadding(false);
-    let deciphered = Buffer.concat([decipher.update(text, 'base64'), decipher.final()]);
+    let deciphered = AES.decrypt(Buffer.from(text, 'base64'), this.aesKey, this.aesKey.slice(0, 16), false, 'aes-256-cbc');
 
-    deciphered = this.pkcs7Unpad(deciphered);
+    deciphered = PKCS7.unpad(deciphered, this.blockSize);
     let content = deciphered.slice(16);
     let length = content.slice(0, 4).readUInt32BE(0);
 
@@ -83,41 +80,6 @@ export default class Encryptor
     }
 
     return content.slice(4, length + 4).toString();
-  }
-
-  /**
-   * 删除解密后明文的补位字符
-   * @param {Buffer} text 解密后的明文
-   * @return {Buffer}
-   */
-  pkcs7Unpad(text: Buffer): Buffer
-  {
-    var pad = text[text.length - 1];
-
-    if (pad < 1 || pad > this.blockSize) {
-      pad = 0;
-    }
-
-    return text.slice(0, text.length - pad);
-  }
-
-  /**
-   * 对需要加密的明文进行填充补位
-   * @param {Buffer} text 需要进行填充补位操作的明文
-   * @return {Buffer}
-   */
-  pkcs7Pad(text: Buffer, blockSize: number): Buffer
-  {
-    if (blockSize > 256) {
-      throw new Error('blockSize may not be more than 256');
-    }
-    //计算需要填充的位数
-    let amountToPad = blockSize - (text.length % blockSize);
-
-    let result = Buffer.alloc(amountToPad);
-    result.fill(amountToPad);
-
-    return Buffer.concat([text, result]);
   }
 
 };
