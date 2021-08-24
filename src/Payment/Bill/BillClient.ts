@@ -2,7 +2,7 @@
 
 import BaseClient from '../Core/BaseClient';
 import StreamResponse from '../../Core/Http/StreamResponse';
-import { merge } from '../../Core/Utils';
+import { merge, parseXml } from '../../Core/Utils';
 
 export default class BillClient extends BaseClient
 {
@@ -28,7 +28,7 @@ export default class BillClient extends BaseClient
 
     let content = res.getContent().toString();
     if (content && content.indexOf('<xml>') === 0) {
-      return await this.parseXml(content);
+      return await parseXml(content);
     }
 
     return StreamResponse.buildFromResponse(res);

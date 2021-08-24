@@ -3,8 +3,7 @@
 import Response from './Http/Response';
 import BaseApplication from './BaseApplication';
 import { Message, Text, News, NewsItem, Raw as RawMessage } from './Messages';
-import { createHash, isString, isNumber, isArray, getTimestamp } from './Utils';
-import Xml2js from 'xml2js';
+import { createHash, isString, isNumber, isArray, getTimestamp, parseXml } from './Utils';
 import FinallResult from './Decorators/FinallResult';
 import TerminateResult from './Decorators/TerminateResult';
 import { ServerHandler, ServerHandlers } from './Types';
@@ -238,15 +237,7 @@ export default class ServerGuard
 
     if (await this.isSafeMode()) {
       this.app['log']('Messages safe mode is enabled.');
-      let XmlBuilder = new Xml2js.Builder({
-        cdata: true,
-        renderOpts: {
-          pretty: false,
-          indent: '',
-          newline: '',
-        }
-      });
-      return XmlBuilder.buildObject(this.app['encryptor'].encrypt(res));
+      return this.app['encryptor'].encrypt(res);
     }
 
     return res;
@@ -313,7 +304,7 @@ export default class ServerGuard
         return {};
       }
       else if (0 === content.indexOf('<')) {
-        content = await this.parseXmlMessage(content);
+        content = await parseXml(content);
       } else {
         // Handle JSON format.
         try {
@@ -326,30 +317,6 @@ export default class ServerGuard
     } catch (e) {
       throw new Error(`Invalid message content: ${content}`);
     }
-  }
-
-  protected parseXmlMessage(xml): Promise<any>
-  {
-    return new Promise((resolve, reject) => {
-      Xml2js.parseString(xml, (err, result) => {
-        if (err) {
-          reject(err);
-        }
-        else {
-          let message
-          if (result && result.xml) {
-            message = {}
-            for (let k in result.xml) {
-              message[k] = result.xml[k][0];
-            }
-          }
-          resolve(message);
-        }
-      })
-    })
-    .catch((err) => {
-      this.app['log']('server.parseMessage()', err)
-    });
   }
 
   protected async decryptMessage(message: object): Promise<string>

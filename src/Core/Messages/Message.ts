@@ -1,7 +1,6 @@
 'use strict';
 
-import Xml2js from 'xml2js';
-import { merge, isArray, inArray } from "../Utils";
+import { merge, isArray, inArray, buildXml } from "../Utils";
 
 export class Message
 {
@@ -57,15 +56,7 @@ export class Message
     if (returnAsObject) {
       return data;
     }
-    let XmlBuilder = new Xml2js.Builder({
-      cdata: true,
-      renderOpts: {
-        pretty: false,
-        indent: '',
-        newline: '',
-      }
-    });
-    return XmlBuilder.buildObject(data);
+    return buildXml(data);
   }
 
   toXmlArray(): void

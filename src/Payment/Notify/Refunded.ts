@@ -1,9 +1,8 @@
 'use strict';
 
 import Handler from './Handler';
-import Xml2js from 'xml2js';
 import Response from '../../Core/Http/Response';
-import { singleItem } from '../../Core/Utils';
+import { parseXml } from '../../Core/Utils';
 import { PaymentRefundedHandler } from '../../Core/Types';
 
 export default class RefundedHandler extends Handler
@@ -26,15 +25,7 @@ export default class RefundedHandler extends Handler
 
   async reqInfo(): Promise<any>
   {
-    return await this.parseXml(await this.decryptMessage('req_info'));
-  }
-
-  async parseXml(xml: string): Promise<any>
-  {
-    let res = await Xml2js.parseStringPromise(xml);
-    res = singleItem(res);
-    if (res['xml']) res = res['xml'];
-    return res;
+    return await parseXml(await this.decryptMessage('req_info'));
   }
 
 }

@@ -2,8 +2,7 @@
 
 import BaseApplication from '../../Payment/Application';
 import HttpMixin from '../../Core/Mixins/HttpMixin';
-import { merge, applyMixins, randomString, makeSignature, singleItem } from '../../Core/Utils';
-import Xml2js from 'xml2js';
+import { merge, applyMixins, randomString, makeSignature, buildXml, parseXml } from '../../Core/Utils';
 import Fs from 'fs';
 import Response from '../../Core/Http/Response';
 import Https from 'https';
@@ -48,7 +47,7 @@ class BaseClient implements HttpMixin
       url: endpoint,
       method,
       responseType: 'text',
-      data: this.buildXml(localParams)
+      data: buildXml(localParams)
     });
 
     let response = await this.doRequest(payload);
@@ -58,32 +57,11 @@ class BaseClient implements HttpMixin
     else {
       let body = response.data;
       try {
-        body = await this.parseXml(body);
+        body = await parseXml(body);
       }
       catch (e) { }
       return body;
     }
-  }
-
-  buildXml(data: object): string
-  {
-    let XmlBuilder = new Xml2js.Builder({
-      cdata: true,
-      renderOpts: {
-        pretty: false,
-        indent: '',
-        newline: '',
-      }
-    });
-    return XmlBuilder.buildObject(data);
-  }
-
-  async parseXml(xml: string): Promise<any>
-  {
-    let res = await Xml2js.parseStringPromise(xml);
-    res = singleItem(res);
-    if (res['xml']) res = res['xml'];
-    return res;
   }
 
   protected safeRequest(endpoint: string, params: object = {}, method: string = 'post', options: AxiosRequestConfig = {}): Promise<any>

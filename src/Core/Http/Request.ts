@@ -3,9 +3,8 @@
 import Url from 'url';
 import { IncomingMessage } from 'http';
 import RequestInterface from '../Contracts/RequestInterface';
-import { isIp, parseQueryString, isObject, isString, singleItem } from '../Utils';
+import { isIp, parseQueryString, isObject, isString, singleItem, parseXml } from '../Utils';
 import RawBody from 'raw-body';
-import Xml2js from 'xml2js';
 
 export default class Request implements RequestInterface
 {
@@ -39,16 +38,14 @@ export default class Request implements RequestInterface
           this._content = Buffer.from(JSON.stringify(content));
           this._contentType = 'application/json';
         }
-        else if (isString(content)) {
+        else if (typeof content === 'string') {
           try {
             this._post = JSON.parse(<string> content);
             this._contentType = 'application/json';
           }
           catch (e) {
             if ((<string> content).substr(0,1) === '<') {
-              Xml2js.parseString(content, (err, res) => {
-                res = singleItem(res);
-                if (res['xml']) res = res['xml'];
+              parseXml(content).then(res => {
                 this._post = res;
                 this._contentType = 'text/xml';
               });
