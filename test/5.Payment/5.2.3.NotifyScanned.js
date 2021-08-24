@@ -1,8 +1,7 @@
 
 const BaseClientTest = require('../BaseClientTest');
 const EasyWechat = require('../../dist');
-const Utils = require('../../dist/Core/Utils');
-const Xml2js = require('xml2js');
+const { parseXml } = require('../../dist/Core/Utils');
 
 class TestUnit extends BaseClientTest {
 
@@ -43,19 +42,17 @@ class TestUnit extends BaseClientTest {
     });
 
     it(`Should response SUCCESS`, async () => {
-      let res = await Xml2js.parseStringPromise(response.content);
-      res = Utils.singleItem(res);
-      if (res['xml']) res = res['xml'];
+      let res = await parseXml(response.content);
 
-      this.assert.strictEqual(res.root.return_code !== undefined, true);
-      this.assert.strictEqual(res.root.return_msg !== undefined, true);
-      this.assert.strictEqual(res.root.result_code !== undefined, true);
-      this.assert.strictEqual(res.root.err_code_des !== undefined, true);
-      this.assert.strictEqual(res.root.appid !== undefined, true);
-      this.assert.strictEqual(res.root.mch_id !== undefined, true);
-      this.assert.strictEqual(res.root.nonce_str !== undefined, true);
-      this.assert.strictEqual(res.root.prepay_id, 'prepay-id');
-      this.assert.strictEqual(res.root.sign !== undefined, true);
+      this.assert.strictEqual(res.return_code !== undefined, true);
+      this.assert.strictEqual(res.return_msg !== undefined, true);
+      this.assert.strictEqual(res.result_code !== undefined, true);
+      this.assert.strictEqual(res.err_code_des !== undefined, true);
+      this.assert.strictEqual(res.appid !== undefined, true);
+      this.assert.strictEqual(res.mch_id !== undefined, true);
+      this.assert.strictEqual(res.nonce_str !== undefined, true);
+      this.assert.strictEqual(res.prepay_id, 'prepay-id');
+      this.assert.strictEqual(res.sign !== undefined, true);
     });
 
     it(`Should response FAIL with custom error message`, async () => {
@@ -63,14 +60,12 @@ class TestUnit extends BaseClientTest {
         setFail('custom_error');
       });
 
-      let res = await Xml2js.parseStringPromise(response.content);
-      res = Utils.singleItem(res);
-      if (res['xml']) res = res['xml'];
-      this.assert.strictEqual(res.root.return_code, 'FAIL');
-      this.assert.strictEqual(res.root.return_msg, 'custom_error');
-      this.assert.strictEqual(res.root.result_code, 'FAIL');
-      this.assert.strictEqual(res.root.err_code_des, '');
-      this.assert.strictEqual(res.root.sign !== undefined, true);
+      let res = await parseXml(response.content);
+      this.assert.strictEqual(res.return_code, 'FAIL');
+      this.assert.strictEqual(res.return_msg, 'custom_error');
+      this.assert.strictEqual(res.result_code, 'FAIL');
+      this.assert.strictEqual(res.err_code_des, '');
+      this.assert.strictEqual(res.sign !== undefined, true);
     });
 
   }

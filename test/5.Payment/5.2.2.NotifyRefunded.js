@@ -1,8 +1,7 @@
 
 const BaseClientTest = require('../BaseClientTest');
 const EasyWechat = require('../../dist');
-const Utils = require('../../dist/Core/Utils');
-const Xml2js = require('xml2js');
+const { parseXml } = require('../../dist/Core/Utils');
 
 class TestUnit extends BaseClientTest {
 
@@ -44,14 +43,10 @@ class TestUnit extends BaseClientTest {
     });
 
     it(`Should response SUCCESS`, async () => {
-      let res = await Xml2js.parseStringPromise(response.content);
-      res = Utils.singleItem(res);
-      if (res['xml']) res = res['xml'];
+      let res = await parseXml(response.content);
       this.assert.deepStrictEqual(res, {
-        root: {
-          return_code: 'SUCCESS',
-          return_msg: '',
-        }
+        return_code: 'SUCCESS',
+        return_msg: '',
       });
     });
 
@@ -60,14 +55,10 @@ class TestUnit extends BaseClientTest {
         return false;
       });
 
-      let res = await Xml2js.parseStringPromise(response.content);
-      res = Utils.singleItem(res);
-      if (res['xml']) res = res['xml'];
+      let res = await parseXml(response.content);
       this.assert.deepStrictEqual(res, {
-        root: {
-          return_code: 'FAIL',
-          return_msg: '',
-        }
+        return_code: 'FAIL',
+        return_msg: '',
       });
     });
 
@@ -75,14 +66,10 @@ class TestUnit extends BaseClientTest {
       response = await this.app.handleRefundedNotify(async (message, reqInfo, setFail) => {
       });
 
-      let res = await Xml2js.parseStringPromise(response.content);
-      res = Utils.singleItem(res);
-      if (res['xml']) res = res['xml'];
+      let res = await parseXml(response.content);
       this.assert.deepStrictEqual(res, {
-        root: {
-          return_code: 'FAIL',
-          return_msg: '',
-        }
+        return_code: 'FAIL',
+        return_msg: '',
       });
     });
 
@@ -91,14 +78,10 @@ class TestUnit extends BaseClientTest {
         setFail('custom_error');
       });
 
-      let res = await Xml2js.parseStringPromise(response.content);
-      res = Utils.singleItem(res);
-      if (res['xml']) res = res['xml'];
+      let res = await parseXml(response.content);
       this.assert.deepStrictEqual(res, {
-        root: {
-          return_code: 'FAIL',
-          return_msg: 'custom_error',
-        }
+        return_code: 'FAIL',
+        return_msg: 'custom_error',
       });
     });
 

@@ -1,6 +1,5 @@
 
 const BaseClientTest = require('../BaseClientTest');
-const EasyWechat = require('../../dist');
 const Path = require('path');
 
 class TestUnit extends BaseClientTest {
