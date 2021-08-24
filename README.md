@@ -1,7 +1,7 @@
 
 ## EasyWechat for Node.js
 
-[![Build Status](https://www.travis-ci.com/hpyer/node-easywechat.svg?branch=develop)](https://www.travis-ci.com/hpyer/node-easywechat) [![npm](https://img.shields.io/npm/v/node-easywechat.svg)](https://www.npmjs.com/package/node-easywechat) [![License](https://img.shields.io/npm/l/node-easywechat.svg)](LICENSE)
+[![Build Status](https://app.travis-ci.com/hpyer/node-easywechat.svg?branch=develop)](https://app.travis-ci.com/hpyer/node-easywechat) [![npm](https://img.shields.io/npm/v/node-easywechat.svg)](https://www.npmjs.com/package/node-easywechat) [![License](https://img.shields.io/npm/l/node-easywechat.svg)](LICENSE)
 
 **注：2.x分支针对 EasyWechat 的 5.x版本(由于4.x与5.x的结构基本一致，就不升级大版本了)。若您需要 EasyWechat 的 3.x版本，请切换到 [1.x](https://github.com/hpyer/node-easywechat/tree/1.x) 分支。**
 
