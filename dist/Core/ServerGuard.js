@@ -15,7 +15,6 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const Response_1 = __importDefault(require("./Http/Response"));
 const Messages_1 = require("./Messages");
 const Utils_1 = require("./Utils");
-const xml2js_1 = __importDefault(require("xml2js"));
 const FinallResult_1 = __importDefault(require("./Decorators/FinallResult"));
 const TerminateResult_1 = __importDefault(require("./Decorators/TerminateResult"));
 class ServerGuard {
@@ -190,15 +189,7 @@ class ServerGuard {
             let res = message.transformToXml(prepends);
             if (yield this.isSafeMode()) {
                 this.app['log']('Messages safe mode is enabled.');
-                let XmlBuilder = new xml2js_1.default.Builder({
-                    cdata: true,
-                    renderOpts: {
-                        pretty: false,
-                        indent: '',
-                        newline: '',
-                    }
-                });
-                return XmlBuilder.buildObject(this.app['encryptor'].encrypt(res));
+                return this.app['encryptor'].encrypt(res);
             }
             return res;
         });
@@ -253,7 +244,7 @@ class ServerGuard {
                     return {};
                 }
                 else if (0 === content.indexOf('<')) {
-                    content = yield this.parseXmlMessage(content);
+                    content = yield Utils_1.parseXml(content);
                 }
                 else {
                     // Handle JSON format.
@@ -267,28 +258,6 @@ class ServerGuard {
             catch (e) {
                 throw new Error(`Invalid message content: ${content}`);
             }
-        });
-    }
-    parseXmlMessage(xml) {
-        return new Promise((resolve, reject) => {
-            xml2js_1.default.parseString(xml, (err, result) => {
-                if (err) {
-                    reject(err);
-                }
-                else {
-                    let message;
-                    if (result && result.xml) {
-                        message = {};
-                        for (let k in result.xml) {
-                            message[k] = result.xml[k][0];
-                        }
-                    }
-                    resolve(message);
-                }
-            });
-        })
-            .catch((err) => {
-            this.app['log']('server.parseMessage()', err);
         });
     }
     decryptMessage(message) {

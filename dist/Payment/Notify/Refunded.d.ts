@@ -4,5 +4,4 @@ import { PaymentRefundedHandler } from '../../Core/Types';
 export default class RefundedHandler extends Handler {
     handle(closure: PaymentRefundedHandler): Promise<Response>;
     reqInfo(): Promise<any>;
-    parseXml(xml: string): Promise<any>;
 }

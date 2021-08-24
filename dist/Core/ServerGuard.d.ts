@@ -49,6 +49,5 @@ export default class ServerGuard {
      */
     getMessage(): Promise<object>;
     protected parseMessage(content: string): Promise<any>;
-    protected parseXmlMessage(xml: any): Promise<any>;
     protected decryptMessage(message: object): Promise<string>;
 }

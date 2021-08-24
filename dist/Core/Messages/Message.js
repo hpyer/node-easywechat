@@ -1,10 +1,6 @@
 'use strict';
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.Message = void 0;
-const xml2js_1 = __importDefault(require("xml2js"));
 const Utils_1 = require("../Utils");
 class Message {
     constructor(attributes = {}) {
@@ -27,15 +23,7 @@ class Message {
         if (returnAsObject) {
             return data;
         }
-        let XmlBuilder = new xml2js_1.default.Builder({
-            cdata: true,
-            renderOpts: {
-                pretty: false,
-                indent: '',
-                newline: '',
-            }
-        });
-        return XmlBuilder.buildObject(data);
+        return Utils_1.buildXml(data);
     }
     toXmlArray() {
         throw new Error(`Class "${this.constructor.name}" cannot support transform to XML message.`);

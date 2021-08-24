@@ -14,7 +14,6 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const HttpMixin_1 = __importDefault(require("../../Core/Mixins/HttpMixin"));
 const Utils_1 = require("../../Core/Utils");
-const xml2js_1 = __importDefault(require("xml2js"));
 const fs_1 = __importDefault(require("fs"));
 const Response_1 = __importDefault(require("../../Core/Http/Response"));
 const https_1 = __importDefault(require("https"));
@@ -46,7 +45,7 @@ class BaseClient {
                 url: endpoint,
                 method,
                 responseType: 'text',
-                data: this.buildXml(localParams)
+                data: Utils_1.buildXml(localParams)
             });
             let response = yield this.doRequest(payload);
             if (returnResponse) {
@@ -55,31 +54,11 @@ class BaseClient {
             else {
                 let body = response.data;
                 try {
-                    body = yield this.parseXml(body);
+                    body = yield Utils_1.parseXml(body);
                 }
                 catch (e) { }
                 return body;
             }
-        });
-    }
-    buildXml(data) {
-        let XmlBuilder = new xml2js_1.default.Builder({
-            cdata: true,
-            renderOpts: {
-                pretty: false,
-                indent: '',
-                newline: '',
-            }
-        });
-        return XmlBuilder.buildObject(data);
-    }
-    parseXml(xml) {
-        return __awaiter(this, void 0, void 0, function* () {
-            let res = yield xml2js_1.default.parseStringPromise(xml);
-            res = Utils_1.singleItem(res);
-            if (res['xml'])
-                res = res['xml'];
-            return res;
         });
     }
     safeRequest(endpoint, params = {}, method = 'post', options = {}) {

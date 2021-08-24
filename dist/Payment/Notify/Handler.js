@@ -12,9 +12,9 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-const xml2js_1 = __importDefault(require("xml2js"));
 const Utils_1 = require("../../Core/Utils");
 const Response_1 = __importDefault(require("../../Core/Http/Response"));
+const AES_1 = require("../../Core/AES");
 class Handler {
     constructor(app) {
         this.SUCCESS = 'SUCCESS';
@@ -54,15 +54,7 @@ class Handler {
             if (this.sign) {
                 attributes['sign'] = Utils_1.makeSignature(attributes, yield this.app.getKey());
             }
-            let XmlBuilder = new xml2js_1.default.Builder({
-                cdata: true,
-                renderOpts: {
-                    pretty: false,
-                    indent: '',
-                    newline: '',
-                }
-            });
-            return new Response_1.default(XmlBuilder.buildObject(attributes));
+            return new Response_1.default(Buffer.from(Utils_1.buildXml(attributes)));
         });
     }
     getMessage() {
@@ -84,7 +76,7 @@ class Handler {
             if (!message[key]) {
                 return null;
             }
-            return Utils_1.AesDecrypt(message[key], Utils_1.createHash(this.app.config.key, 'md5'), '', 'AES-256-ECB');
+            return AES_1.AES.decrypt(Buffer.from(message[key], 'base64'), Utils_1.createHash(this.app.config.key, 'md5'), '', true, 'aes-256-ecb').toString();
         });
     }
     validate(message) {

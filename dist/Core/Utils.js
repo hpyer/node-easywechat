@@ -1,11 +1,21 @@
 'use strict';
+var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
+    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
+    return new (P || (P = Promise))(function (resolve, reject) {
+        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
+        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
+        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
+        step((generator = generator.apply(thisArg, _arguments || [])).next());
+    });
+};
 var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.AesEncrypt = exports.AesDecrypt = exports.singleItem = exports.strCamel = exports.strStudly = exports.strLcwords = exports.strUcwords = exports.applyMixins = exports.inArray = exports.isIp = exports.isIpv6 = exports.isIpv4 = exports.isFunction = exports.isObject = exports.isNumber = exports.isArray = exports.isString = exports.makeSignature = exports.randomString = exports.parseQueryString = exports.buildQueryString = exports.getTimestamp = exports.createHmac = exports.createHash = exports.merge = void 0;
+exports.buildXml = exports.parseXml = exports.singleItem = exports.strCamel = exports.strStudly = exports.strLcwords = exports.strUcwords = exports.applyMixins = exports.inArray = exports.isIp = exports.isIpv6 = exports.isIpv4 = exports.isFunction = exports.isObject = exports.isNumber = exports.isArray = exports.isString = exports.makeSignature = exports.randomString = exports.parseQueryString = exports.buildQueryString = exports.getTimestamp = exports.createHmac = exports.createHash = exports.merge = void 0;
 const crypto_1 = __importDefault(require("crypto"));
 const qs_1 = __importDefault(require("qs"));
+const xml2js_1 = __importDefault(require("xml2js"));
 const merge = (target, source) => {
     if (exports.isObject(source)) {
         if (source.constructor !== Object) {
@@ -208,22 +218,26 @@ const singleItem = function (obj) {
     return obj;
 };
 exports.singleItem = singleItem;
-const AesDecrypt = function (ciphertext, key, iv = '', method = 'AES-256-ECB') {
-    iv = iv || '';
-    var decipher = crypto_1.default.createDecipheriv(method, key, iv);
-    decipher.setAutoPadding(true);
-    var plaintext = decipher.update(ciphertext, 'base64', 'utf8');
-    plaintext += decipher.final('utf8');
-    return plaintext;
+const parseXml = function (xml) {
+    return __awaiter(this, void 0, void 0, function* () {
+        let res = yield xml2js_1.default.parseStringPromise(xml);
+        res = exports.singleItem(res);
+        if (res['xml'])
+            res = res['xml'];
+        return res;
+    });
 };
-exports.AesDecrypt = AesDecrypt;
-const AesEncrypt = function (data, key, iv = '', method = 'AES-256-ECB') {
-    iv = iv || '';
-    var chunks = [];
-    var cipher = crypto_1.default.createCipheriv(method, key, iv);
-    cipher.setAutoPadding(true);
-    chunks.push(cipher.update(data, 'utf8', 'base64'));
-    chunks.push(cipher.final('base64'));
-    return chunks.join('');
+exports.parseXml = parseXml;
+const buildXml = function (data, rootName = 'xml') {
+    let XmlBuilder = new xml2js_1.default.Builder({
+        cdata: true,
+        rootName,
+        renderOpts: {
+            pretty: false,
+            indent: '',
+            newline: '',
+        }
+    });
+    return XmlBuilder.buildObject(data);
 };
-exports.AesEncrypt = AesEncrypt;
+exports.buildXml = buildXml;

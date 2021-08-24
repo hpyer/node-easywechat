@@ -34,7 +34,7 @@ class BillClient extends BaseClient_1.default {
             let res = yield this.requestRaw(this.wrap('pay/downloadbill'), params);
             let content = res.getContent().toString();
             if (content && content.indexOf('<xml>') === 0) {
-                return yield this.parseXml(content);
+                return yield Utils_1.parseXml(content);
             }
             return StreamResponse_1.default.buildFromResponse(res);
         });

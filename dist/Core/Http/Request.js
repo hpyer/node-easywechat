@@ -15,7 +15,6 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const url_1 = __importDefault(require("url"));
 const Utils_1 = require("../Utils");
 const raw_body_1 = __importDefault(require("raw-body"));
-const xml2js_1 = __importDefault(require("xml2js"));
 class Request {
     constructor(req = null, content = null) {
         this._req = null;
@@ -42,17 +41,14 @@ class Request {
                     this._content = Buffer.from(JSON.stringify(content));
                     this._contentType = 'application/json';
                 }
-                else if (Utils_1.isString(content)) {
+                else if (typeof content === 'string') {
                     try {
                         this._post = JSON.parse(content);
                         this._contentType = 'application/json';
                     }
                     catch (e) {
                         if (content.substr(0, 1) === '<') {
-                            xml2js_1.default.parseString(content, (err, res) => {
-                                res = Utils_1.singleItem(res);
-                                if (res['xml'])
-                                    res = res['xml'];
+                            Utils_1.parseXml(content).then(res => {
                                 this._post = res;
                                 this._contentType = 'text/xml';
                             });
