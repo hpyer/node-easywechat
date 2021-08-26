@@ -38,12 +38,12 @@ export default class Client extends BaseClient
 
   /**
    * 获取JSSDK的配置
-   * @param {Array<string>} jsApiList API列表
-   * @param {Boolean} debug 是否调试模式，默认：false
-   * @param {Boolean} beta 是否测试模式，默认：false
-   * @param {Boolean} json true时返回JSON字符串，默认：true
-   * @param {Array<string>} openTagList 开放标签列表，默认：[]
-   * @param {string} url 请求URL，默认：当前URL
+   * @param jsApiList API列表
+   * @param debug 是否调试模式，默认：false
+   * @param beta 是否测试模式，默认：false
+   * @param json true时返回JSON字符串，默认：true
+   * @param openTagList 开放标签列表，默认：[]
+   * @param url 请求URL，默认：当前URL
    */
   async buildConfig(jsApiList: Array<string>, debug: Boolean = false, beta: Boolean = false, json: Boolean = true, openTagList: Array<string> = [], url: string = ''): Promise<any>
   {
@@ -56,11 +56,11 @@ export default class Client extends BaseClient
 
   /**
    * 获取JSSDK的配置对象
-   * @param {Array<string>} jsApiList API列表
-   * @param {Boolean} debug 是否调试模式，默认：false
-   * @param {Boolean} beta 是否测试模式，默认：false
-   * @param {Array<string>} openTagList 开放标签列表，默认：[]
-   * @param {string} url 请求URL，默认：当前URL
+   * @param jsApiList API列表
+   * @param debug 是否调试模式，默认：false
+   * @param beta 是否测试模式，默认：false
+   * @param openTagList 开放标签列表，默认：[]
+   * @param url 请求URL，默认：当前URL
    */
   getConfigArray(jsApiList: Array<string>, debug: Boolean = false, beta: Boolean = false, openTagList: Array<string> = [], url: string = ''): Promise<any>
   {
@@ -69,9 +69,9 @@ export default class Client extends BaseClient
 
   /**
    * 获取签名配置
-   * @param {string} url 完整的URL地址
-   * @param {string} nonce 随机字符串，默认：随机10位
-   * @param {string} timestamp 时间戳，默认：当前时间
+   * @param url 完整的URL地址
+   * @param nonce 随机字符串，默认：随机10位
+   * @param timestamp 时间戳，默认：当前时间
    */
   async configSignature(url: string = '', nonce: string = '', timestamp: string = ''): Promise<object>
   {
@@ -107,7 +107,7 @@ export default class Client extends BaseClient
 
   /**
    * 设置当前URL
-   * @param {string} url 完整的URL地址
+   * @param url 完整的URL地址
    */
   setUrl(url: string): this
   {
