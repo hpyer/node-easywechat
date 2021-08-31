@@ -37,4 +37,22 @@ describe('Aes', function () {
     assert.strictEqual(decrypt, data);
   });
 
+  it('Should encrypt empty data and equeal to `GvpmmdtYwexXIPhySs9Tlg==`', function () {
+    data = '';
+    key = '0123456789abcdef0123456789abcdef';
+    iv = '0123456789abcdef';
+    let aad = '';
+    let encrypt = AES_GCM.encrypt(data, key, iv, aad, 'aes-256-gcm').toString('base64');
+    assert.strictEqual(encrypt, 'GvpmmdtYwexXIPhySs9Tlg==');
+  });
+
+  it('Should encrypt data=`hello`, aad=`world` and equeal to `APoZlYpivU3HjbAiB4CvW1rAFr8J`', function () {
+    data = 'hello';
+    key = '0123456789abcdef0123456789abcdef';
+    iv = '0123456789abcdef';
+    let aad = 'world';
+    let encrypt = AES_GCM.encrypt(data, key, iv, aad, 'aes-256-gcm').toString('base64');
+    assert.strictEqual(encrypt, 'APoZlYpivU3HjbAiB4CvW1rAFr8J');
+  });
+
 });
