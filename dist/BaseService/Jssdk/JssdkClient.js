@@ -46,12 +46,12 @@ class Client extends BaseClient_1.default {
     }
     /**
      * 获取JSSDK的配置
-     * @param {Array<string>} jsApiList API列表
-     * @param {Boolean} debug 是否调试模式，默认：false
-     * @param {Boolean} beta 是否测试模式，默认：false
-     * @param {Boolean} json true时返回JSON字符串，默认：true
-     * @param {Array<string>} openTagList 开放标签列表，默认：[]
-     * @param {string} url 请求URL，默认：当前URL
+     * @param jsApiList API列表
+     * @param debug 是否调试模式，默认：false
+     * @param beta 是否测试模式，默认：false
+     * @param json true时返回JSON字符串，默认：true
+     * @param openTagList 开放标签列表，默认：[]
+     * @param url 请求URL，默认：当前URL
      */
     buildConfig(jsApiList, debug = false, beta = false, json = true, openTagList = [], url = '') {
         return __awaiter(this, void 0, void 0, function* () {
@@ -63,20 +63,20 @@ class Client extends BaseClient_1.default {
     }
     /**
      * 获取JSSDK的配置对象
-     * @param {Array<string>} jsApiList API列表
-     * @param {Boolean} debug 是否调试模式，默认：false
-     * @param {Boolean} beta 是否测试模式，默认：false
-     * @param {Array<string>} openTagList 开放标签列表，默认：[]
-     * @param {string} url 请求URL，默认：当前URL
+     * @param jsApiList API列表
+     * @param debug 是否调试模式，默认：false
+     * @param beta 是否测试模式，默认：false
+     * @param openTagList 开放标签列表，默认：[]
+     * @param url 请求URL，默认：当前URL
      */
     getConfigArray(jsApiList, debug = false, beta = false, openTagList = [], url = '') {
         return this.buildConfig(jsApiList, debug, beta, false, openTagList, url);
     }
     /**
      * 获取签名配置
-     * @param {string} url 完整的URL地址
-     * @param {string} nonce 随机字符串，默认：随机10位
-     * @param {string} timestamp 时间戳，默认：当前时间
+     * @param url 完整的URL地址
+     * @param nonce 随机字符串，默认：随机10位
+     * @param timestamp 时间戳，默认：当前时间
      */
     configSignature(url = '', nonce = '', timestamp = '') {
         return __awaiter(this, void 0, void 0, function* () {
@@ -106,7 +106,7 @@ class Client extends BaseClient_1.default {
     }
     /**
      * 设置当前URL
-     * @param {string} url 完整的URL地址
+     * @param url 完整的URL地址
      */
     setUrl(url) {
         this.url = url;

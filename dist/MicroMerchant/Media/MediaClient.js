@@ -12,36 +12,22 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-const BaseClient_1 = __importDefault(require("../../Core/BaseClient"));
-class ContentSecurityClient extends BaseClient_1.default {
-    constructor() {
-        super(...arguments);
-        this.baseUrl = 'https://api.weixin.qq.com/wxa/';
-    }
-    /**
-     * 校验一段文本是否含有违法内容
-     * @param text 待校验文本
-     */
-    checkText(text) {
-        return __awaiter(this, void 0, void 0, function* () {
-            return yield this.httpPostJson('msg_sec_check', {
-                content: text,
-            });
-        });
-    }
-    /**
-     * 校验一张图片是否含有敏感信息
-     * @param file 文件路径或可读stream
-     */
-    checkImage(file) {
+const Utils_1 = require("../../Core/Utils");
+const BaseClient_1 = __importDefault(require("../Core/BaseClient"));
+class MediaClient extends BaseClient_1.default {
+    upload(file) {
         return __awaiter(this, void 0, void 0, function* () {
             if (!file) {
                 throw new Error(`File does not exist, or the file is unreadable: '${file}'`);
             }
-            return yield this.httpUpload('img_sec_check', {
-                media: file,
-            });
+            let form = {
+                media_hash: yield Utils_1.md5File(file),
+                sign_type: 'HMAC-SHA256',
+            };
+            return this.httpUpload('secapi/mch/uploadmedia', {
+                media: file
+            }, form);
         });
     }
 }
-exports.default = ContentSecurityClient;
+exports.default = MediaClient;

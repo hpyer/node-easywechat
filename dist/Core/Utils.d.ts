@@ -1,6 +1,12 @@
+import Stream from 'stream';
 export declare const merge: (target: any, source: any) => any;
 export declare const createHash: (str: string, type?: string) => any;
 export declare const createHmac: (str: string, key: string, type?: string) => any;
+/**
+ * 计算文件的 md5 值
+ * @param path 文件路径或文件可读流
+ */
+export declare const md5File: (path: string | Stream.Readable) => Promise<string>;
 export declare const getTimestamp: (datetime?: string) => number;
 export declare const buildQueryString: (data: object, options?: object) => string;
 export declare const parseQueryString: (data: string, options?: object) => object;

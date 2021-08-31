@@ -12,10 +12,12 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.buildXml = exports.parseXml = exports.singleItem = exports.strCamel = exports.strStudly = exports.strLcwords = exports.strUcwords = exports.applyMixins = exports.inArray = exports.isIp = exports.isIpv6 = exports.isIpv4 = exports.isFunction = exports.isObject = exports.isNumber = exports.isArray = exports.isString = exports.makeSignature = exports.randomString = exports.parseQueryString = exports.buildQueryString = exports.getTimestamp = exports.createHmac = exports.createHash = exports.merge = void 0;
+exports.buildXml = exports.parseXml = exports.singleItem = exports.strCamel = exports.strStudly = exports.strLcwords = exports.strUcwords = exports.applyMixins = exports.inArray = exports.isIp = exports.isIpv6 = exports.isIpv4 = exports.isFunction = exports.isObject = exports.isNumber = exports.isArray = exports.isString = exports.makeSignature = exports.randomString = exports.parseQueryString = exports.buildQueryString = exports.getTimestamp = exports.md5File = exports.createHmac = exports.createHash = exports.merge = void 0;
 const crypto_1 = __importDefault(require("crypto"));
 const qs_1 = __importDefault(require("qs"));
 const xml2js_1 = __importDefault(require("xml2js"));
+const stream_1 = __importDefault(require("stream"));
+const fs_1 = __importDefault(require("fs"));
 const merge = (target, source) => {
     if (exports.isObject(source)) {
         if (source.constructor !== Object) {
@@ -53,6 +55,31 @@ const createHmac = function (str, key, type = 'sha256') {
     return crypto_1.default.createHmac(type, key).update(str).digest('hex');
 };
 exports.createHmac = createHmac;
+/**
+ * 计算文件的 md5 值
+ * @param path 文件路径或文件可读流
+ */
+const md5File = function (path) {
+    return new Promise((reslove, reject) => {
+        let stream;
+        if (exports.isString(path)) {
+            stream = fs_1.default.createReadStream(path);
+        }
+        else {
+            stream = new stream_1.default.PassThrough();
+            path.pipe(stream);
+        }
+        let md5sum = crypto_1.default.createHash('md5');
+        stream.on('data', function (chunk) {
+            md5sum.update(chunk);
+        });
+        stream.on('end', function () {
+            let str = md5sum.digest('hex').toUpperCase();
+            reslove(str);
+        });
+    });
+};
+exports.md5File = md5File;
 const getTimestamp = function (datetime = null) {
     let time;
     try {

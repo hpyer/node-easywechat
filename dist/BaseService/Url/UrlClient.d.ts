@@ -5,5 +5,5 @@ export default class UrlClient extends BaseClient {
      * 获取短网址
      * @param long_url 原始URL地址
      */
-    shorten(long_url: any): Promise<any>;
+    shorten(long_url: string): Promise<any>;
 }

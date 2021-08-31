@@ -4,6 +4,7 @@ import MiniProgram from './MiniProgram/Application';
 import OpenPlatform from './OpenPlatform/Application';
 import Payment from './Payment/Application';
 import Work from './Work/Application';
+import MicroMerchant from './MicroMerchant/Application';
 import CacheInterface from './Core/Contracts/CacheInterface';
 import FinallResult from './Core/Decorators/FinallResult';
 import TerminateResult from './Core/Decorators/TerminateResult';
@@ -23,6 +24,7 @@ declare function getInstance(service: 'MiniProgram', config?: EasyWechatConfig):
 declare function getInstance(service: 'OpenPlatform', config?: EasyWechatConfig): OpenPlatform;
 declare function getInstance(service: 'Payment', config?: EasyWechatConfig): Payment;
 declare function getInstance(service: 'Work', config?: EasyWechatConfig): Work;
+declare function getInstance(service: 'MicroMerchant', config?: EasyWechatConfig): MicroMerchant;
 declare class EasyWechat {
     /**
      * 实例工厂
@@ -52,6 +54,10 @@ declare class EasyWechat {
          * 企业微信类
          */
         Work: typeof Work;
+        /**
+         * 小微商户类
+         */
+        MicroMerchant: typeof MicroMerchant;
         /**
          * 通用获取实例方法
          * @param service 服务名称，可选值：'BaseService' | 'OfficialAccount' | 'MiniProgram' | 'OpenPlatform' | 'Payment'
