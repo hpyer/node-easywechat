@@ -84,7 +84,7 @@
 
 #### Defined in
 
-[Payment/Application.ts:54](https://github.com/hpyer/node-easywechat/blob/b017670/src/Payment/Application.ts#L54)
+[Payment/Application.ts:54](https://github.com/hpyer/node-easywechat/blob/e4961d7/src/Payment/Application.ts#L54)
 
 ## Properties
 
@@ -100,7 +100,7 @@
 
 #### Defined in
 
-[Payment/Application.ts:51](https://github.com/hpyer/node-easywechat/blob/b017670/src/Payment/Application.ts#L51)
+[Payment/Application.ts:51](https://github.com/hpyer/node-easywechat/blob/e4961d7/src/Payment/Application.ts#L51)
 
 ___
 
@@ -110,7 +110,7 @@ ___
 
 #### Defined in
 
-[Payment/Application.ts:38](https://github.com/hpyer/node-easywechat/blob/b017670/src/Payment/Application.ts#L38)
+[Payment/Application.ts:38](https://github.com/hpyer/node-easywechat/blob/e4961d7/src/Payment/Application.ts#L38)
 
 ___
 
@@ -120,7 +120,7 @@ ___
 
 #### Defined in
 
-[Payment/Application.ts:39](https://github.com/hpyer/node-easywechat/blob/b017670/src/Payment/Application.ts#L39)
+[Payment/Application.ts:39](https://github.com/hpyer/node-easywechat/blob/e4961d7/src/Payment/Application.ts#L39)
 
 ___
 
@@ -136,7 +136,7 @@ ___
 
 #### Defined in
 
-[Core/BaseApplication.ts:20](https://github.com/hpyer/node-easywechat/blob/b017670/src/Core/BaseApplication.ts#L20)
+[Core/BaseApplication.ts:20](https://github.com/hpyer/node-easywechat/blob/e4961d7/src/Core/BaseApplication.ts#L20)
 
 ___
 
@@ -152,7 +152,7 @@ ___
 
 #### Defined in
 
-[Core/BaseApplication.ts:24](https://github.com/hpyer/node-easywechat/blob/b017670/src/Core/BaseApplication.ts#L24)
+[Core/BaseApplication.ts:24](https://github.com/hpyer/node-easywechat/blob/e4961d7/src/Core/BaseApplication.ts#L24)
 
 ___
 
@@ -162,7 +162,7 @@ ___
 
 #### Defined in
 
-[Payment/Application.ts:40](https://github.com/hpyer/node-easywechat/blob/b017670/src/Payment/Application.ts#L40)
+[Payment/Application.ts:40](https://github.com/hpyer/node-easywechat/blob/e4961d7/src/Payment/Application.ts#L40)
 
 ___
 
@@ -176,7 +176,7 @@ ___
 
 #### Defined in
 
-[Payment/Application.ts:28](https://github.com/hpyer/node-easywechat/blob/b017670/src/Payment/Application.ts#L28)
+[Payment/Application.ts:28](https://github.com/hpyer/node-easywechat/blob/e4961d7/src/Payment/Application.ts#L28)
 
 ___
 
@@ -190,7 +190,7 @@ ___
 
 #### Defined in
 
-[Core/BaseApplication.ts:15](https://github.com/hpyer/node-easywechat/blob/b017670/src/Core/BaseApplication.ts#L15)
+[Core/BaseApplication.ts:15](https://github.com/hpyer/node-easywechat/blob/e4961d7/src/Core/BaseApplication.ts#L15)
 
 ___
 
@@ -200,7 +200,7 @@ ___
 
 #### Defined in
 
-[Payment/Application.ts:41](https://github.com/hpyer/node-easywechat/blob/b017670/src/Payment/Application.ts#L41)
+[Payment/Application.ts:41](https://github.com/hpyer/node-easywechat/blob/e4961d7/src/Payment/Application.ts#L41)
 
 ___
 
@@ -216,7 +216,7 @@ ___
 
 #### Defined in
 
-[Core/BaseApplication.ts:28](https://github.com/hpyer/node-easywechat/blob/b017670/src/Core/BaseApplication.ts#L28)
+[Core/BaseApplication.ts:28](https://github.com/hpyer/node-easywechat/blob/e4961d7/src/Core/BaseApplication.ts#L28)
 
 ___
 
@@ -226,7 +226,7 @@ ___
 
 #### Defined in
 
-[Payment/Application.ts:42](https://github.com/hpyer/node-easywechat/blob/b017670/src/Payment/Application.ts#L42)
+[Payment/Application.ts:42](https://github.com/hpyer/node-easywechat/blob/e4961d7/src/Payment/Application.ts#L42)
 
 ___
 
@@ -236,7 +236,7 @@ ___
 
 #### Defined in
 
-[Payment/Application.ts:43](https://github.com/hpyer/node-easywechat/blob/b017670/src/Payment/Application.ts#L43)
+[Payment/Application.ts:43](https://github.com/hpyer/node-easywechat/blob/e4961d7/src/Payment/Application.ts#L43)
 
 ___
 
@@ -246,7 +246,7 @@ ___
 
 #### Defined in
 
-[Payment/Application.ts:50](https://github.com/hpyer/node-easywechat/blob/b017670/src/Payment/Application.ts#L50)
+[Payment/Application.ts:50](https://github.com/hpyer/node-easywechat/blob/e4961d7/src/Payment/Application.ts#L50)
 
 ___
 
@@ -256,7 +256,7 @@ ___
 
 #### Defined in
 
-[Payment/Application.ts:44](https://github.com/hpyer/node-easywechat/blob/b017670/src/Payment/Application.ts#L44)
+[Payment/Application.ts:44](https://github.com/hpyer/node-easywechat/blob/e4961d7/src/Payment/Application.ts#L44)
 
 ___
 
@@ -266,7 +266,7 @@ ___
 
 #### Defined in
 
-[Payment/Application.ts:45](https://github.com/hpyer/node-easywechat/blob/b017670/src/Payment/Application.ts#L45)
+[Payment/Application.ts:45](https://github.com/hpyer/node-easywechat/blob/e4961d7/src/Payment/Application.ts#L45)
 
 ___
 
@@ -282,7 +282,7 @@ ___
 
 #### Defined in
 
-[Core/BaseApplication.ts:32](https://github.com/hpyer/node-easywechat/blob/b017670/src/Core/BaseApplication.ts#L32)
+[Core/BaseApplication.ts:32](https://github.com/hpyer/node-easywechat/blob/e4961d7/src/Core/BaseApplication.ts#L32)
 
 ___
 
@@ -292,7 +292,7 @@ ___
 
 #### Defined in
 
-[Payment/Application.ts:46](https://github.com/hpyer/node-easywechat/blob/b017670/src/Payment/Application.ts#L46)
+[Payment/Application.ts:46](https://github.com/hpyer/node-easywechat/blob/e4961d7/src/Payment/Application.ts#L46)
 
 ___
 
@@ -302,7 +302,7 @@ ___
 
 #### Defined in
 
-[Payment/Application.ts:47](https://github.com/hpyer/node-easywechat/blob/b017670/src/Payment/Application.ts#L47)
+[Payment/Application.ts:47](https://github.com/hpyer/node-easywechat/blob/e4961d7/src/Payment/Application.ts#L47)
 
 ___
 
@@ -312,7 +312,7 @@ ___
 
 #### Defined in
 
-[Payment/Application.ts:49](https://github.com/hpyer/node-easywechat/blob/b017670/src/Payment/Application.ts#L49)
+[Payment/Application.ts:49](https://github.com/hpyer/node-easywechat/blob/e4961d7/src/Payment/Application.ts#L49)
 
 ___
 
@@ -322,7 +322,7 @@ ___
 
 #### Defined in
 
-[Payment/Application.ts:48](https://github.com/hpyer/node-easywechat/blob/b017670/src/Payment/Application.ts#L48)
+[Payment/Application.ts:48](https://github.com/hpyer/node-easywechat/blob/e4961d7/src/Payment/Application.ts#L48)
 
 ___
 
@@ -332,7 +332,7 @@ ___
 
 #### Defined in
 
-[Payment/Application.ts:52](https://github.com/hpyer/node-easywechat/blob/b017670/src/Payment/Application.ts#L52)
+[Payment/Application.ts:52](https://github.com/hpyer/node-easywechat/blob/e4961d7/src/Payment/Application.ts#L52)
 
 ___
 
@@ -346,7 +346,7 @@ ___
 
 #### Defined in
 
-[Core/BaseApplication.ts:14](https://github.com/hpyer/node-easywechat/blob/b017670/src/Core/BaseApplication.ts#L14)
+[Core/BaseApplication.ts:14](https://github.com/hpyer/node-easywechat/blob/e4961d7/src/Core/BaseApplication.ts#L14)
 
 ## Methods
 
@@ -362,7 +362,7 @@ ___
 
 #### Defined in
 
-[Payment/Application.ts:219](https://github.com/hpyer/node-easywechat/blob/b017670/src/Payment/Application.ts#L219)
+[Payment/Application.ts:219](https://github.com/hpyer/node-easywechat/blob/e4961d7/src/Payment/Application.ts#L219)
 
 ___
 
@@ -382,7 +382,7 @@ ___
 
 #### Defined in
 
-[Payment/Application.ts:133](https://github.com/hpyer/node-easywechat/blob/b017670/src/Payment/Application.ts#L133)
+[Payment/Application.ts:133](https://github.com/hpyer/node-easywechat/blob/e4961d7/src/Payment/Application.ts#L133)
 
 ___
 
@@ -402,7 +402,7 @@ ___
 
 #### Defined in
 
-[Core/BaseApplication.ts:161](https://github.com/hpyer/node-easywechat/blob/b017670/src/Core/BaseApplication.ts#L161)
+[Core/BaseApplication.ts:161](https://github.com/hpyer/node-easywechat/blob/e4961d7/src/Core/BaseApplication.ts#L161)
 
 ___
 
@@ -429,7 +429,7 @@ ___
 
 #### Defined in
 
-[Core/BaseApplication.ts:106](https://github.com/hpyer/node-easywechat/blob/b017670/src/Core/BaseApplication.ts#L106)
+[Core/BaseApplication.ts:106](https://github.com/hpyer/node-easywechat/blob/e4961d7/src/Core/BaseApplication.ts#L106)
 
 ___
 
@@ -449,7 +449,7 @@ ___
 
 #### Defined in
 
-[Core/BaseApplication.ts:149](https://github.com/hpyer/node-easywechat/blob/b017670/src/Core/BaseApplication.ts#L149)
+[Core/BaseApplication.ts:149](https://github.com/hpyer/node-easywechat/blob/e4961d7/src/Core/BaseApplication.ts#L149)
 
 ___
 
@@ -469,7 +469,7 @@ ___
 
 #### Defined in
 
-[Core/BaseApplication.ts:64](https://github.com/hpyer/node-easywechat/blob/b017670/src/Core/BaseApplication.ts#L64)
+[Core/BaseApplication.ts:64](https://github.com/hpyer/node-easywechat/blob/e4961d7/src/Core/BaseApplication.ts#L64)
 
 ___
 
@@ -487,7 +487,7 @@ ___
 
 #### Defined in
 
-[Core/BaseApplication.ts:53](https://github.com/hpyer/node-easywechat/blob/b017670/src/Core/BaseApplication.ts#L53)
+[Core/BaseApplication.ts:53](https://github.com/hpyer/node-easywechat/blob/e4961d7/src/Core/BaseApplication.ts#L53)
 
 ___
 
@@ -507,7 +507,7 @@ ___
 
 #### Defined in
 
-[Payment/Application.ts:159](https://github.com/hpyer/node-easywechat/blob/b017670/src/Payment/Application.ts#L159)
+[Payment/Application.ts:159](https://github.com/hpyer/node-easywechat/blob/e4961d7/src/Payment/Application.ts#L159)
 
 ___
 
@@ -529,7 +529,7 @@ ___
 
 #### Defined in
 
-[Payment/Application.ts:182](https://github.com/hpyer/node-easywechat/blob/b017670/src/Payment/Application.ts#L182)
+[Payment/Application.ts:182](https://github.com/hpyer/node-easywechat/blob/e4961d7/src/Payment/Application.ts#L182)
 
 ___
 
@@ -551,7 +551,7 @@ ___
 
 #### Defined in
 
-[Payment/Application.ts:190](https://github.com/hpyer/node-easywechat/blob/b017670/src/Payment/Application.ts#L190)
+[Payment/Application.ts:190](https://github.com/hpyer/node-easywechat/blob/e4961d7/src/Payment/Application.ts#L190)
 
 ___
 
@@ -573,7 +573,7 @@ ___
 
 #### Defined in
 
-[Payment/Application.ts:198](https://github.com/hpyer/node-easywechat/blob/b017670/src/Payment/Application.ts#L198)
+[Payment/Application.ts:198](https://github.com/hpyer/node-easywechat/blob/e4961d7/src/Payment/Application.ts#L198)
 
 ___
 
@@ -589,7 +589,7 @@ ___
 
 #### Defined in
 
-[Payment/Application.ts:154](https://github.com/hpyer/node-easywechat/blob/b017670/src/Payment/Application.ts#L154)
+[Payment/Application.ts:154](https://github.com/hpyer/node-easywechat/blob/e4961d7/src/Payment/Application.ts#L154)
 
 ___
 
@@ -616,7 +616,7 @@ ___
 
 #### Defined in
 
-[Core/BaseApplication.ts:138](https://github.com/hpyer/node-easywechat/blob/b017670/src/Core/BaseApplication.ts#L138)
+[Core/BaseApplication.ts:138](https://github.com/hpyer/node-easywechat/blob/e4961d7/src/Core/BaseApplication.ts#L138)
 
 ___
 
@@ -642,7 +642,7 @@ ___
 
 #### Defined in
 
-[Core/BaseApplication.ts:128](https://github.com/hpyer/node-easywechat/blob/b017670/src/Core/BaseApplication.ts#L128)
+[Core/BaseApplication.ts:128](https://github.com/hpyer/node-easywechat/blob/e4961d7/src/Core/BaseApplication.ts#L128)
 
 ___
 
@@ -658,7 +658,7 @@ ___
 
 #### Defined in
 
-[Payment/Application.ts:210](https://github.com/hpyer/node-easywechat/blob/b017670/src/Payment/Application.ts#L210)
+[Payment/Application.ts:210](https://github.com/hpyer/node-easywechat/blob/e4961d7/src/Payment/Application.ts#L210)
 
 ___
 
@@ -685,7 +685,7 @@ ___
 
 #### Defined in
 
-[Core/BaseApplication.ts:117](https://github.com/hpyer/node-easywechat/blob/b017670/src/Core/BaseApplication.ts#L117)
+[Core/BaseApplication.ts:117](https://github.com/hpyer/node-easywechat/blob/e4961d7/src/Core/BaseApplication.ts#L117)
 
 ___
 
@@ -705,7 +705,7 @@ ___
 
 #### Defined in
 
-[Core/BaseApplication.ts:80](https://github.com/hpyer/node-easywechat/blob/b017670/src/Core/BaseApplication.ts#L80)
+[Core/BaseApplication.ts:80](https://github.com/hpyer/node-easywechat/blob/e4961d7/src/Core/BaseApplication.ts#L80)
 
 ___
 
@@ -719,7 +719,7 @@ ___
 
 #### Defined in
 
-[Payment/Application.ts:61](https://github.com/hpyer/node-easywechat/blob/b017670/src/Payment/Application.ts#L61)
+[Payment/Application.ts:61](https://github.com/hpyer/node-easywechat/blob/e4961d7/src/Payment/Application.ts#L61)
 
 ___
 
@@ -739,7 +739,7 @@ ___
 
 #### Defined in
 
-[Payment/Application.ts:118](https://github.com/hpyer/node-easywechat/blob/b017670/src/Payment/Application.ts#L118)
+[Payment/Application.ts:118](https://github.com/hpyer/node-easywechat/blob/e4961d7/src/Payment/Application.ts#L118)
 
 ___
 
@@ -762,4 +762,4 @@ ___
 
 #### Defined in
 
-[Payment/Application.ts:143](https://github.com/hpyer/node-easywechat/blob/b017670/src/Payment/Application.ts#L143)
+[Payment/Application.ts:143](https://github.com/hpyer/node-easywechat/blob/e4961d7/src/Payment/Application.ts#L143)

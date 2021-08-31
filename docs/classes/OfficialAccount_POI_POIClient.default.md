@@ -59,7 +59,7 @@
 
 #### Defined in
 
-[Core/BaseClient.ts:17](https://github.com/hpyer/node-easywechat/blob/b017670/src/Core/BaseClient.ts#L17)
+[Core/BaseClient.ts:17](https://github.com/hpyer/node-easywechat/blob/e4961d7/src/Core/BaseClient.ts#L17)
 
 ## Properties
 
@@ -73,7 +73,7 @@
 
 #### Defined in
 
-[Core/BaseClient.ts:14](https://github.com/hpyer/node-easywechat/blob/b017670/src/Core/BaseClient.ts#L14)
+[Core/BaseClient.ts:14](https://github.com/hpyer/node-easywechat/blob/e4961d7/src/Core/BaseClient.ts#L14)
 
 ___
 
@@ -87,7 +87,7 @@ ___
 
 #### Defined in
 
-[Core/BaseClient.ts:15](https://github.com/hpyer/node-easywechat/blob/b017670/src/Core/BaseClient.ts#L15)
+[Core/BaseClient.ts:15](https://github.com/hpyer/node-easywechat/blob/e4961d7/src/Core/BaseClient.ts#L15)
 
 ## Methods
 
@@ -103,7 +103,7 @@ ___
 
 #### Defined in
 
-[OfficialAccount/POI/POIClient.ts:10](https://github.com/hpyer/node-easywechat/blob/b017670/src/OfficialAccount/POI/POIClient.ts#L10)
+[OfficialAccount/POI/POIClient.ts:10](https://github.com/hpyer/node-easywechat/blob/e4961d7/src/OfficialAccount/POI/POIClient.ts#L10)
 
 ___
 
@@ -125,7 +125,7 @@ ___
 
 #### Defined in
 
-[OfficialAccount/POI/POIClient.ts:43](https://github.com/hpyer/node-easywechat/blob/b017670/src/OfficialAccount/POI/POIClient.ts#L43)
+[OfficialAccount/POI/POIClient.ts:43](https://github.com/hpyer/node-easywechat/blob/e4961d7/src/OfficialAccount/POI/POIClient.ts#L43)
 
 ___
 
@@ -147,7 +147,7 @@ ___
 
 #### Defined in
 
-[OfficialAccount/POI/POIClient.ts:56](https://github.com/hpyer/node-easywechat/blob/b017670/src/OfficialAccount/POI/POIClient.ts#L56)
+[OfficialAccount/POI/POIClient.ts:56](https://github.com/hpyer/node-easywechat/blob/e4961d7/src/OfficialAccount/POI/POIClient.ts#L56)
 
 ___
 
@@ -169,7 +169,7 @@ ___
 
 #### Defined in
 
-[OfficialAccount/POI/POIClient.ts:81](https://github.com/hpyer/node-easywechat/blob/b017670/src/OfficialAccount/POI/POIClient.ts#L81)
+[OfficialAccount/POI/POIClient.ts:81](https://github.com/hpyer/node-easywechat/blob/e4961d7/src/OfficialAccount/POI/POIClient.ts#L81)
 
 ___
 
@@ -193,7 +193,7 @@ ___
 
 #### Defined in
 
-[Core/BaseClient.ts:114](https://github.com/hpyer/node-easywechat/blob/b017670/src/Core/BaseClient.ts#L114)
+[Core/BaseClient.ts:114](https://github.com/hpyer/node-easywechat/blob/e4961d7/src/Core/BaseClient.ts#L114)
 
 ___
 
@@ -215,7 +215,7 @@ ___
 
 #### Defined in
 
-[OfficialAccount/POI/POIClient.ts:19](https://github.com/hpyer/node-easywechat/blob/b017670/src/OfficialAccount/POI/POIClient.ts#L19)
+[OfficialAccount/POI/POIClient.ts:19](https://github.com/hpyer/node-easywechat/blob/e4961d7/src/OfficialAccount/POI/POIClient.ts#L19)
 
 ___
 
@@ -233,7 +233,7 @@ ___
 
 #### Defined in
 
-[Core/BaseClient.ts:30](https://github.com/hpyer/node-easywechat/blob/b017670/src/Core/BaseClient.ts#L30)
+[Core/BaseClient.ts:30](https://github.com/hpyer/node-easywechat/blob/e4961d7/src/Core/BaseClient.ts#L30)
 
 ___
 
@@ -258,7 +258,7 @@ ___
 
 #### Defined in
 
-[Core/BaseClient.ts:76](https://github.com/hpyer/node-easywechat/blob/b017670/src/Core/BaseClient.ts#L76)
+[Core/BaseClient.ts:76](https://github.com/hpyer/node-easywechat/blob/e4961d7/src/Core/BaseClient.ts#L76)
 
 ___
 
@@ -283,7 +283,7 @@ ___
 
 #### Defined in
 
-[Core/BaseClient.ts:85](https://github.com/hpyer/node-easywechat/blob/b017670/src/Core/BaseClient.ts#L85)
+[Core/BaseClient.ts:85](https://github.com/hpyer/node-easywechat/blob/e4961d7/src/Core/BaseClient.ts#L85)
 
 ___
 
@@ -309,7 +309,7 @@ ___
 
 #### Defined in
 
-[Core/BaseClient.ts:94](https://github.com/hpyer/node-easywechat/blob/b017670/src/Core/BaseClient.ts#L94)
+[Core/BaseClient.ts:94](https://github.com/hpyer/node-easywechat/blob/e4961d7/src/Core/BaseClient.ts#L94)
 
 ___
 
@@ -336,7 +336,7 @@ ___
 
 #### Defined in
 
-[Core/BaseClient.ts:51](https://github.com/hpyer/node-easywechat/blob/b017670/src/Core/BaseClient.ts#L51)
+[Core/BaseClient.ts:51](https://github.com/hpyer/node-easywechat/blob/e4961d7/src/Core/BaseClient.ts#L51)
 
 ___
 
@@ -359,7 +359,7 @@ ___
 
 #### Defined in
 
-[OfficialAccount/POI/POIClient.ts:31](https://github.com/hpyer/node-easywechat/blob/b017670/src/OfficialAccount/POI/POIClient.ts#L31)
+[OfficialAccount/POI/POIClient.ts:31](https://github.com/hpyer/node-easywechat/blob/e4961d7/src/OfficialAccount/POI/POIClient.ts#L31)
 
 ___
 
@@ -384,7 +384,7 @@ ___
 
 #### Defined in
 
-[Core/BaseClient.ts:35](https://github.com/hpyer/node-easywechat/blob/b017670/src/Core/BaseClient.ts#L35)
+[Core/BaseClient.ts:35](https://github.com/hpyer/node-easywechat/blob/e4961d7/src/Core/BaseClient.ts#L35)
 
 ___
 
@@ -408,7 +408,7 @@ ___
 
 #### Defined in
 
-[Core/BaseClient.ts:104](https://github.com/hpyer/node-easywechat/blob/b017670/src/Core/BaseClient.ts#L104)
+[Core/BaseClient.ts:104](https://github.com/hpyer/node-easywechat/blob/e4961d7/src/Core/BaseClient.ts#L104)
 
 ___
 
@@ -432,7 +432,7 @@ ___
 
 #### Defined in
 
-[Core/BaseClient.ts:23](https://github.com/hpyer/node-easywechat/blob/b017670/src/Core/BaseClient.ts#L23)
+[Core/BaseClient.ts:23](https://github.com/hpyer/node-easywechat/blob/e4961d7/src/Core/BaseClient.ts#L23)
 
 ___
 
@@ -455,4 +455,4 @@ ___
 
 #### Defined in
 
-[OfficialAccount/POI/POIClient.ts:67](https://github.com/hpyer/node-easywechat/blob/b017670/src/OfficialAccount/POI/POIClient.ts#L67)
+[OfficialAccount/POI/POIClient.ts:67](https://github.com/hpyer/node-easywechat/blob/e4961d7/src/OfficialAccount/POI/POIClient.ts#L67)

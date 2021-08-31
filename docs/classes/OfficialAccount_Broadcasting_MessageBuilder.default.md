@@ -41,7 +41,7 @@
 
 #### Defined in
 
-[OfficialAccount/Broadcasting/MessageBuilder.ts:11](https://github.com/hpyer/node-easywechat/blob/b017670/src/OfficialAccount/Broadcasting/MessageBuilder.ts#L11)
+[OfficialAccount/Broadcasting/MessageBuilder.ts:11](https://github.com/hpyer/node-easywechat/blob/e4961d7/src/OfficialAccount/Broadcasting/MessageBuilder.ts#L11)
 
 ___
 
@@ -51,7 +51,7 @@ ___
 
 #### Defined in
 
-[OfficialAccount/Broadcasting/MessageBuilder.ts:10](https://github.com/hpyer/node-easywechat/blob/b017670/src/OfficialAccount/Broadcasting/MessageBuilder.ts#L10)
+[OfficialAccount/Broadcasting/MessageBuilder.ts:10](https://github.com/hpyer/node-easywechat/blob/e4961d7/src/OfficialAccount/Broadcasting/MessageBuilder.ts#L10)
 
 ___
 
@@ -61,7 +61,7 @@ ___
 
 #### Defined in
 
-[OfficialAccount/Broadcasting/MessageBuilder.ts:9](https://github.com/hpyer/node-easywechat/blob/b017670/src/OfficialAccount/Broadcasting/MessageBuilder.ts#L9)
+[OfficialAccount/Broadcasting/MessageBuilder.ts:9](https://github.com/hpyer/node-easywechat/blob/e4961d7/src/OfficialAccount/Broadcasting/MessageBuilder.ts#L9)
 
 ## Methods
 
@@ -81,7 +81,7 @@ ___
 
 #### Defined in
 
-[OfficialAccount/Broadcasting/MessageBuilder.ts:60](https://github.com/hpyer/node-easywechat/blob/b017670/src/OfficialAccount/Broadcasting/MessageBuilder.ts#L60)
+[OfficialAccount/Broadcasting/MessageBuilder.ts:60](https://github.com/hpyer/node-easywechat/blob/e4961d7/src/OfficialAccount/Broadcasting/MessageBuilder.ts#L60)
 
 ___
 
@@ -102,7 +102,7 @@ ___
 
 #### Defined in
 
-[OfficialAccount/Broadcasting/MessageBuilder.ts:77](https://github.com/hpyer/node-easywechat/blob/b017670/src/OfficialAccount/Broadcasting/MessageBuilder.ts#L77)
+[OfficialAccount/Broadcasting/MessageBuilder.ts:77](https://github.com/hpyer/node-easywechat/blob/e4961d7/src/OfficialAccount/Broadcasting/MessageBuilder.ts#L77)
 
 ___
 
@@ -122,7 +122,7 @@ ___
 
 #### Defined in
 
-[OfficialAccount/Broadcasting/MessageBuilder.ts:13](https://github.com/hpyer/node-easywechat/blob/b017670/src/OfficialAccount/Broadcasting/MessageBuilder.ts#L13)
+[OfficialAccount/Broadcasting/MessageBuilder.ts:13](https://github.com/hpyer/node-easywechat/blob/e4961d7/src/OfficialAccount/Broadcasting/MessageBuilder.ts#L13)
 
 ___
 
@@ -142,7 +142,7 @@ ___
 
 #### Defined in
 
-[OfficialAccount/Broadcasting/MessageBuilder.ts:19](https://github.com/hpyer/node-easywechat/blob/b017670/src/OfficialAccount/Broadcasting/MessageBuilder.ts#L19)
+[OfficialAccount/Broadcasting/MessageBuilder.ts:19](https://github.com/hpyer/node-easywechat/blob/e4961d7/src/OfficialAccount/Broadcasting/MessageBuilder.ts#L19)
 
 ___
 
@@ -156,7 +156,7 @@ ___
 
 #### Defined in
 
-[OfficialAccount/Broadcasting/MessageBuilder.ts:44](https://github.com/hpyer/node-easywechat/blob/b017670/src/OfficialAccount/Broadcasting/MessageBuilder.ts#L44)
+[OfficialAccount/Broadcasting/MessageBuilder.ts:44](https://github.com/hpyer/node-easywechat/blob/e4961d7/src/OfficialAccount/Broadcasting/MessageBuilder.ts#L44)
 
 ___
 
@@ -176,7 +176,7 @@ ___
 
 #### Defined in
 
-[OfficialAccount/Broadcasting/MessageBuilder.ts:25](https://github.com/hpyer/node-easywechat/blob/b017670/src/OfficialAccount/Broadcasting/MessageBuilder.ts#L25)
+[OfficialAccount/Broadcasting/MessageBuilder.ts:25](https://github.com/hpyer/node-easywechat/blob/e4961d7/src/OfficialAccount/Broadcasting/MessageBuilder.ts#L25)
 
 ___
 
@@ -196,7 +196,7 @@ ___
 
 #### Defined in
 
-[OfficialAccount/Broadcasting/MessageBuilder.ts:36](https://github.com/hpyer/node-easywechat/blob/b017670/src/OfficialAccount/Broadcasting/MessageBuilder.ts#L36)
+[OfficialAccount/Broadcasting/MessageBuilder.ts:36](https://github.com/hpyer/node-easywechat/blob/e4961d7/src/OfficialAccount/Broadcasting/MessageBuilder.ts#L36)
 
 ___
 
@@ -216,4 +216,4 @@ ___
 
 #### Defined in
 
-[OfficialAccount/Broadcasting/MessageBuilder.ts:54](https://github.com/hpyer/node-easywechat/blob/b017670/src/OfficialAccount/Broadcasting/MessageBuilder.ts#L54)
+[OfficialAccount/Broadcasting/MessageBuilder.ts:54](https://github.com/hpyer/node-easywechat/blob/e4961d7/src/OfficialAccount/Broadcasting/MessageBuilder.ts#L54)

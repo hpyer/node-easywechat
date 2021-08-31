@@ -65,7 +65,7 @@
 
 #### Defined in
 
-[Core/BaseAccessToken.ts:90](https://github.com/hpyer/node-easywechat/blob/b017670/src/Core/BaseAccessToken.ts#L90)
+[Core/BaseAccessToken.ts:90](https://github.com/hpyer/node-easywechat/blob/e4961d7/src/Core/BaseAccessToken.ts#L90)
 
 ## Properties
 
@@ -75,7 +75,7 @@
 
 #### Defined in
 
-[Core/BaseAccessToken.ts:88](https://github.com/hpyer/node-easywechat/blob/b017670/src/Core/BaseAccessToken.ts#L88)
+[Core/BaseAccessToken.ts:88](https://github.com/hpyer/node-easywechat/blob/e4961d7/src/Core/BaseAccessToken.ts#L88)
 
 ___
 
@@ -85,7 +85,7 @@ ___
 
 #### Defined in
 
-[Core/BaseAccessToken.ts:87](https://github.com/hpyer/node-easywechat/blob/b017670/src/Core/BaseAccessToken.ts#L87)
+[Core/BaseAccessToken.ts:87](https://github.com/hpyer/node-easywechat/blob/e4961d7/src/Core/BaseAccessToken.ts#L87)
 
 ___
 
@@ -95,7 +95,7 @@ ___
 
 #### Defined in
 
-[Core/BaseAccessToken.ts:85](https://github.com/hpyer/node-easywechat/blob/b017670/src/Core/BaseAccessToken.ts#L85)
+[Core/BaseAccessToken.ts:85](https://github.com/hpyer/node-easywechat/blob/e4961d7/src/Core/BaseAccessToken.ts#L85)
 
 ___
 
@@ -105,7 +105,7 @@ ___
 
 #### Defined in
 
-[Core/BaseAccessToken.ts:83](https://github.com/hpyer/node-easywechat/blob/b017670/src/Core/BaseAccessToken.ts#L83)
+[Core/BaseAccessToken.ts:83](https://github.com/hpyer/node-easywechat/blob/e4961d7/src/Core/BaseAccessToken.ts#L83)
 
 ___
 
@@ -115,7 +115,7 @@ ___
 
 #### Defined in
 
-[Core/BaseAccessToken.ts:84](https://github.com/hpyer/node-easywechat/blob/b017670/src/Core/BaseAccessToken.ts#L84)
+[Core/BaseAccessToken.ts:84](https://github.com/hpyer/node-easywechat/blob/e4961d7/src/Core/BaseAccessToken.ts#L84)
 
 ___
 
@@ -125,7 +125,7 @@ ___
 
 #### Defined in
 
-[Core/BaseAccessToken.ts:86](https://github.com/hpyer/node-easywechat/blob/b017670/src/Core/BaseAccessToken.ts#L86)
+[Core/BaseAccessToken.ts:86](https://github.com/hpyer/node-easywechat/blob/e4961d7/src/Core/BaseAccessToken.ts#L86)
 
 ## Methods
 
@@ -145,7 +145,7 @@ ___
 
 #### Defined in
 
-[Core/BaseAccessToken.ts:190](https://github.com/hpyer/node-easywechat/blob/b017670/src/Core/BaseAccessToken.ts#L190)
+[Core/BaseAccessToken.ts:190](https://github.com/hpyer/node-easywechat/blob/e4961d7/src/Core/BaseAccessToken.ts#L190)
 
 ___
 
@@ -169,7 +169,7 @@ HttpMixin.doRequest
 
 #### Defined in
 
-[Core/BaseAccessToken.ts:201](https://github.com/hpyer/node-easywechat/blob/b017670/src/Core/BaseAccessToken.ts#L201)
+[Core/BaseAccessToken.ts:201](https://github.com/hpyer/node-easywechat/blob/e4961d7/src/Core/BaseAccessToken.ts#L201)
 
 ___
 
@@ -183,7 +183,7 @@ ___
 
 #### Defined in
 
-[Core/BaseAccessToken.ts:108](https://github.com/hpyer/node-easywechat/blob/b017670/src/Core/BaseAccessToken.ts#L108)
+[Core/BaseAccessToken.ts:108](https://github.com/hpyer/node-easywechat/blob/e4961d7/src/Core/BaseAccessToken.ts#L108)
 
 ___
 
@@ -197,7 +197,7 @@ ___
 
 #### Defined in
 
-[Core/BaseAccessToken.ts:95](https://github.com/hpyer/node-easywechat/blob/b017670/src/Core/BaseAccessToken.ts#L95)
+[Core/BaseAccessToken.ts:95](https://github.com/hpyer/node-easywechat/blob/e4961d7/src/Core/BaseAccessToken.ts#L95)
 
 ___
 
@@ -211,7 +211,7 @@ ___
 
 #### Defined in
 
-[Core/BaseAccessToken.ts:100](https://github.com/hpyer/node-easywechat/blob/b017670/src/Core/BaseAccessToken.ts#L100)
+[Core/BaseAccessToken.ts:100](https://github.com/hpyer/node-easywechat/blob/e4961d7/src/Core/BaseAccessToken.ts#L100)
 
 ___
 
@@ -227,7 +227,7 @@ ___
 
 #### Defined in
 
-[Core/BaseAccessToken.ts:180](https://github.com/hpyer/node-easywechat/blob/b017670/src/Core/BaseAccessToken.ts#L180)
+[Core/BaseAccessToken.ts:180](https://github.com/hpyer/node-easywechat/blob/e4961d7/src/Core/BaseAccessToken.ts#L180)
 
 ___
 
@@ -249,7 +249,7 @@ ___
 
 #### Defined in
 
-[Core/BaseAccessToken.ts:133](https://github.com/hpyer/node-easywechat/blob/b017670/src/Core/BaseAccessToken.ts#L133)
+[Core/BaseAccessToken.ts:133](https://github.com/hpyer/node-easywechat/blob/e4961d7/src/Core/BaseAccessToken.ts#L133)
 
 ___
 
@@ -263,7 +263,7 @@ ___
 
 #### Defined in
 
-[Core/BaseAccessToken.ts:185](https://github.com/hpyer/node-easywechat/blob/b017670/src/Core/BaseAccessToken.ts#L185)
+[Core/BaseAccessToken.ts:185](https://github.com/hpyer/node-easywechat/blob/e4961d7/src/Core/BaseAccessToken.ts#L185)
 
 ___
 
@@ -279,7 +279,7 @@ ___
 
 #### Defined in
 
-[Core/BaseAccessToken.ts:171](https://github.com/hpyer/node-easywechat/blob/b017670/src/Core/BaseAccessToken.ts#L171)
+[Core/BaseAccessToken.ts:171](https://github.com/hpyer/node-easywechat/blob/e4961d7/src/Core/BaseAccessToken.ts#L171)
 
 ___
 
@@ -299,7 +299,7 @@ ___
 
 #### Defined in
 
-[Core/BaseAccessToken.ts:113](https://github.com/hpyer/node-easywechat/blob/b017670/src/Core/BaseAccessToken.ts#L113)
+[Core/BaseAccessToken.ts:113](https://github.com/hpyer/node-easywechat/blob/e4961d7/src/Core/BaseAccessToken.ts#L113)
 
 ___
 
@@ -322,4 +322,4 @@ ___
 
 #### Defined in
 
-[Core/BaseAccessToken.ts:154](https://github.com/hpyer/node-easywechat/blob/b017670/src/Core/BaseAccessToken.ts#L154)
+[Core/BaseAccessToken.ts:154](https://github.com/hpyer/node-easywechat/blob/e4961d7/src/Core/BaseAccessToken.ts#L154)

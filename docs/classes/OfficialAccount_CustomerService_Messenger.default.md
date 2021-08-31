@@ -43,7 +43,7 @@
 
 #### Defined in
 
-[OfficialAccount/CustomerService/Messenger.ts:17](https://github.com/hpyer/node-easywechat/blob/b017670/src/OfficialAccount/CustomerService/Messenger.ts#L17)
+[OfficialAccount/CustomerService/Messenger.ts:17](https://github.com/hpyer/node-easywechat/blob/e4961d7/src/OfficialAccount/CustomerService/Messenger.ts#L17)
 
 ## Properties
 
@@ -53,7 +53,7 @@
 
 #### Defined in
 
-[OfficialAccount/CustomerService/Messenger.ts:9](https://github.com/hpyer/node-easywechat/blob/b017670/src/OfficialAccount/CustomerService/Messenger.ts#L9)
+[OfficialAccount/CustomerService/Messenger.ts:9](https://github.com/hpyer/node-easywechat/blob/e4961d7/src/OfficialAccount/CustomerService/Messenger.ts#L9)
 
 ___
 
@@ -63,7 +63,7 @@ ___
 
 #### Defined in
 
-[OfficialAccount/CustomerService/Messenger.ts:11](https://github.com/hpyer/node-easywechat/blob/b017670/src/OfficialAccount/CustomerService/Messenger.ts#L11)
+[OfficialAccount/CustomerService/Messenger.ts:11](https://github.com/hpyer/node-easywechat/blob/e4961d7/src/OfficialAccount/CustomerService/Messenger.ts#L11)
 
 ___
 
@@ -73,7 +73,7 @@ ___
 
 #### Defined in
 
-[OfficialAccount/CustomerService/Messenger.ts:13](https://github.com/hpyer/node-easywechat/blob/b017670/src/OfficialAccount/CustomerService/Messenger.ts#L13)
+[OfficialAccount/CustomerService/Messenger.ts:13](https://github.com/hpyer/node-easywechat/blob/e4961d7/src/OfficialAccount/CustomerService/Messenger.ts#L13)
 
 ___
 
@@ -83,7 +83,7 @@ ___
 
 #### Defined in
 
-[OfficialAccount/CustomerService/Messenger.ts:15](https://github.com/hpyer/node-easywechat/blob/b017670/src/OfficialAccount/CustomerService/Messenger.ts#L15)
+[OfficialAccount/CustomerService/Messenger.ts:15](https://github.com/hpyer/node-easywechat/blob/e4961d7/src/OfficialAccount/CustomerService/Messenger.ts#L15)
 
 ## Methods
 
@@ -103,7 +103,7 @@ ___
 
 #### Defined in
 
-[OfficialAccount/CustomerService/Messenger.ts:31](https://github.com/hpyer/node-easywechat/blob/b017670/src/OfficialAccount/CustomerService/Messenger.ts#L31)
+[OfficialAccount/CustomerService/Messenger.ts:31](https://github.com/hpyer/node-easywechat/blob/e4961d7/src/OfficialAccount/CustomerService/Messenger.ts#L31)
 
 ___
 
@@ -123,7 +123,7 @@ ___
 
 #### Defined in
 
-[OfficialAccount/CustomerService/Messenger.ts:37](https://github.com/hpyer/node-easywechat/blob/b017670/src/OfficialAccount/CustomerService/Messenger.ts#L37)
+[OfficialAccount/CustomerService/Messenger.ts:37](https://github.com/hpyer/node-easywechat/blob/e4961d7/src/OfficialAccount/CustomerService/Messenger.ts#L37)
 
 ___
 
@@ -137,7 +137,7 @@ ___
 
 #### Defined in
 
-[OfficialAccount/CustomerService/Messenger.ts:73](https://github.com/hpyer/node-easywechat/blob/b017670/src/OfficialAccount/CustomerService/Messenger.ts#L73)
+[OfficialAccount/CustomerService/Messenger.ts:73](https://github.com/hpyer/node-easywechat/blob/e4961d7/src/OfficialAccount/CustomerService/Messenger.ts#L73)
 
 ___
 
@@ -151,7 +151,7 @@ ___
 
 #### Defined in
 
-[OfficialAccount/CustomerService/Messenger.ts:88](https://github.com/hpyer/node-easywechat/blob/b017670/src/OfficialAccount/CustomerService/Messenger.ts#L88)
+[OfficialAccount/CustomerService/Messenger.ts:88](https://github.com/hpyer/node-easywechat/blob/e4961d7/src/OfficialAccount/CustomerService/Messenger.ts#L88)
 
 ___
 
@@ -165,7 +165,7 @@ ___
 
 #### Defined in
 
-[OfficialAccount/CustomerService/Messenger.ts:83](https://github.com/hpyer/node-easywechat/blob/b017670/src/OfficialAccount/CustomerService/Messenger.ts#L83)
+[OfficialAccount/CustomerService/Messenger.ts:83](https://github.com/hpyer/node-easywechat/blob/e4961d7/src/OfficialAccount/CustomerService/Messenger.ts#L83)
 
 ___
 
@@ -179,7 +179,7 @@ ___
 
 #### Defined in
 
-[OfficialAccount/CustomerService/Messenger.ts:78](https://github.com/hpyer/node-easywechat/blob/b017670/src/OfficialAccount/CustomerService/Messenger.ts#L78)
+[OfficialAccount/CustomerService/Messenger.ts:78](https://github.com/hpyer/node-easywechat/blob/e4961d7/src/OfficialAccount/CustomerService/Messenger.ts#L78)
 
 ___
 
@@ -199,7 +199,7 @@ ___
 
 #### Defined in
 
-[OfficialAccount/CustomerService/Messenger.ts:22](https://github.com/hpyer/node-easywechat/blob/b017670/src/OfficialAccount/CustomerService/Messenger.ts#L22)
+[OfficialAccount/CustomerService/Messenger.ts:22](https://github.com/hpyer/node-easywechat/blob/e4961d7/src/OfficialAccount/CustomerService/Messenger.ts#L22)
 
 ___
 
@@ -213,7 +213,7 @@ ___
 
 #### Defined in
 
-[OfficialAccount/CustomerService/Messenger.ts:48](https://github.com/hpyer/node-easywechat/blob/b017670/src/OfficialAccount/CustomerService/Messenger.ts#L48)
+[OfficialAccount/CustomerService/Messenger.ts:48](https://github.com/hpyer/node-easywechat/blob/e4961d7/src/OfficialAccount/CustomerService/Messenger.ts#L48)
 
 ___
 
@@ -233,4 +233,4 @@ ___
 
 #### Defined in
 
-[OfficialAccount/CustomerService/Messenger.ts:42](https://github.com/hpyer/node-easywechat/blob/b017670/src/OfficialAccount/CustomerService/Messenger.ts#L42)
+[OfficialAccount/CustomerService/Messenger.ts:42](https://github.com/hpyer/node-easywechat/blob/e4961d7/src/OfficialAccount/CustomerService/Messenger.ts#L42)

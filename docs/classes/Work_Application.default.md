@@ -91,7 +91,7 @@
 
 #### Defined in
 
-[Work/Application.ts:78](https://github.com/hpyer/node-easywechat/blob/b017670/src/Work/Application.ts#L78)
+[Work/Application.ts:78](https://github.com/hpyer/node-easywechat/blob/e4961d7/src/Work/Application.ts#L78)
 
 ## Properties
 
@@ -107,7 +107,7 @@
 
 #### Defined in
 
-[Work/Application.ts:48](https://github.com/hpyer/node-easywechat/blob/b017670/src/Work/Application.ts#L48)
+[Work/Application.ts:48](https://github.com/hpyer/node-easywechat/blob/e4961d7/src/Work/Application.ts#L48)
 
 ___
 
@@ -117,7 +117,7 @@ ___
 
 #### Defined in
 
-[Work/Application.ts:49](https://github.com/hpyer/node-easywechat/blob/b017670/src/Work/Application.ts#L49)
+[Work/Application.ts:49](https://github.com/hpyer/node-easywechat/blob/e4961d7/src/Work/Application.ts#L49)
 
 ___
 
@@ -127,7 +127,7 @@ ___
 
 #### Defined in
 
-[Work/Application.ts:50](https://github.com/hpyer/node-easywechat/blob/b017670/src/Work/Application.ts#L50)
+[Work/Application.ts:50](https://github.com/hpyer/node-easywechat/blob/e4961d7/src/Work/Application.ts#L50)
 
 ___
 
@@ -143,7 +143,7 @@ ___
 
 #### Defined in
 
-[Core/BaseApplication.ts:20](https://github.com/hpyer/node-easywechat/blob/b017670/src/Core/BaseApplication.ts#L20)
+[Core/BaseApplication.ts:20](https://github.com/hpyer/node-easywechat/blob/e4961d7/src/Core/BaseApplication.ts#L20)
 
 ___
 
@@ -153,7 +153,7 @@ ___
 
 #### Defined in
 
-[Work/Application.ts:51](https://github.com/hpyer/node-easywechat/blob/b017670/src/Work/Application.ts#L51)
+[Work/Application.ts:51](https://github.com/hpyer/node-easywechat/blob/e4961d7/src/Work/Application.ts#L51)
 
 ___
 
@@ -163,7 +163,7 @@ ___
 
 #### Defined in
 
-[Work/Application.ts:52](https://github.com/hpyer/node-easywechat/blob/b017670/src/Work/Application.ts#L52)
+[Work/Application.ts:52](https://github.com/hpyer/node-easywechat/blob/e4961d7/src/Work/Application.ts#L52)
 
 ___
 
@@ -179,7 +179,7 @@ ___
 
 #### Defined in
 
-[Core/BaseApplication.ts:24](https://github.com/hpyer/node-easywechat/blob/b017670/src/Core/BaseApplication.ts#L24)
+[Core/BaseApplication.ts:24](https://github.com/hpyer/node-easywechat/blob/e4961d7/src/Core/BaseApplication.ts#L24)
 
 ___
 
@@ -189,7 +189,7 @@ ___
 
 #### Defined in
 
-[Work/Application.ts:56](https://github.com/hpyer/node-easywechat/blob/b017670/src/Work/Application.ts#L56)
+[Work/Application.ts:56](https://github.com/hpyer/node-easywechat/blob/e4961d7/src/Work/Application.ts#L56)
 
 ___
 
@@ -199,7 +199,7 @@ ___
 
 #### Defined in
 
-[Work/Application.ts:53](https://github.com/hpyer/node-easywechat/blob/b017670/src/Work/Application.ts#L53)
+[Work/Application.ts:53](https://github.com/hpyer/node-easywechat/blob/e4961d7/src/Work/Application.ts#L53)
 
 ___
 
@@ -213,7 +213,7 @@ ___
 
 #### Defined in
 
-[Work/Application.ts:41](https://github.com/hpyer/node-easywechat/blob/b017670/src/Work/Application.ts#L41)
+[Work/Application.ts:41](https://github.com/hpyer/node-easywechat/blob/e4961d7/src/Work/Application.ts#L41)
 
 ___
 
@@ -223,7 +223,7 @@ ___
 
 #### Defined in
 
-[Work/Application.ts:54](https://github.com/hpyer/node-easywechat/blob/b017670/src/Work/Application.ts#L54)
+[Work/Application.ts:54](https://github.com/hpyer/node-easywechat/blob/e4961d7/src/Work/Application.ts#L54)
 
 ___
 
@@ -233,7 +233,7 @@ ___
 
 #### Defined in
 
-[Work/Application.ts:72](https://github.com/hpyer/node-easywechat/blob/b017670/src/Work/Application.ts#L72)
+[Work/Application.ts:72](https://github.com/hpyer/node-easywechat/blob/e4961d7/src/Work/Application.ts#L72)
 
 ___
 
@@ -243,7 +243,7 @@ ___
 
 #### Defined in
 
-[Work/Application.ts:55](https://github.com/hpyer/node-easywechat/blob/b017670/src/Work/Application.ts#L55)
+[Work/Application.ts:55](https://github.com/hpyer/node-easywechat/blob/e4961d7/src/Work/Application.ts#L55)
 
 ___
 
@@ -253,7 +253,7 @@ ___
 
 #### Defined in
 
-[Work/Application.ts:58](https://github.com/hpyer/node-easywechat/blob/b017670/src/Work/Application.ts#L58)
+[Work/Application.ts:58](https://github.com/hpyer/node-easywechat/blob/e4961d7/src/Work/Application.ts#L58)
 
 ___
 
@@ -263,7 +263,7 @@ ___
 
 #### Defined in
 
-[Work/Application.ts:59](https://github.com/hpyer/node-easywechat/blob/b017670/src/Work/Application.ts#L59)
+[Work/Application.ts:59](https://github.com/hpyer/node-easywechat/blob/e4961d7/src/Work/Application.ts#L59)
 
 ___
 
@@ -273,7 +273,7 @@ ___
 
 #### Defined in
 
-[Work/Application.ts:61](https://github.com/hpyer/node-easywechat/blob/b017670/src/Work/Application.ts#L61)
+[Work/Application.ts:61](https://github.com/hpyer/node-easywechat/blob/e4961d7/src/Work/Application.ts#L61)
 
 ___
 
@@ -283,7 +283,7 @@ ___
 
 #### Defined in
 
-[Work/Application.ts:57](https://github.com/hpyer/node-easywechat/blob/b017670/src/Work/Application.ts#L57)
+[Work/Application.ts:57](https://github.com/hpyer/node-easywechat/blob/e4961d7/src/Work/Application.ts#L57)
 
 ___
 
@@ -293,7 +293,7 @@ ___
 
 #### Defined in
 
-[Work/Application.ts:62](https://github.com/hpyer/node-easywechat/blob/b017670/src/Work/Application.ts#L62)
+[Work/Application.ts:62](https://github.com/hpyer/node-easywechat/blob/e4961d7/src/Work/Application.ts#L62)
 
 ___
 
@@ -303,7 +303,7 @@ ___
 
 #### Defined in
 
-[Work/Application.ts:63](https://github.com/hpyer/node-easywechat/blob/b017670/src/Work/Application.ts#L63)
+[Work/Application.ts:63](https://github.com/hpyer/node-easywechat/blob/e4961d7/src/Work/Application.ts#L63)
 
 ___
 
@@ -317,7 +317,7 @@ ___
 
 #### Defined in
 
-[Core/BaseApplication.ts:15](https://github.com/hpyer/node-easywechat/blob/b017670/src/Core/BaseApplication.ts#L15)
+[Core/BaseApplication.ts:15](https://github.com/hpyer/node-easywechat/blob/e4961d7/src/Core/BaseApplication.ts#L15)
 
 ___
 
@@ -327,7 +327,7 @@ ___
 
 #### Defined in
 
-[Work/Application.ts:64](https://github.com/hpyer/node-easywechat/blob/b017670/src/Work/Application.ts#L64)
+[Work/Application.ts:64](https://github.com/hpyer/node-easywechat/blob/e4961d7/src/Work/Application.ts#L64)
 
 ___
 
@@ -337,7 +337,7 @@ ___
 
 #### Defined in
 
-[Work/Application.ts:65](https://github.com/hpyer/node-easywechat/blob/b017670/src/Work/Application.ts#L65)
+[Work/Application.ts:65](https://github.com/hpyer/node-easywechat/blob/e4961d7/src/Work/Application.ts#L65)
 
 ___
 
@@ -347,7 +347,7 @@ ___
 
 #### Defined in
 
-[Work/Application.ts:66](https://github.com/hpyer/node-easywechat/blob/b017670/src/Work/Application.ts#L66)
+[Work/Application.ts:66](https://github.com/hpyer/node-easywechat/blob/e4961d7/src/Work/Application.ts#L66)
 
 ___
 
@@ -363,7 +363,7 @@ ___
 
 #### Defined in
 
-[Core/BaseApplication.ts:28](https://github.com/hpyer/node-easywechat/blob/b017670/src/Core/BaseApplication.ts#L28)
+[Core/BaseApplication.ts:28](https://github.com/hpyer/node-easywechat/blob/e4961d7/src/Core/BaseApplication.ts#L28)
 
 ___
 
@@ -373,7 +373,7 @@ ___
 
 #### Defined in
 
-[Work/Application.ts:67](https://github.com/hpyer/node-easywechat/blob/b017670/src/Work/Application.ts#L67)
+[Work/Application.ts:67](https://github.com/hpyer/node-easywechat/blob/e4961d7/src/Work/Application.ts#L67)
 
 ___
 
@@ -383,7 +383,7 @@ ___
 
 #### Defined in
 
-[Work/Application.ts:68](https://github.com/hpyer/node-easywechat/blob/b017670/src/Work/Application.ts#L68)
+[Work/Application.ts:68](https://github.com/hpyer/node-easywechat/blob/e4961d7/src/Work/Application.ts#L68)
 
 ___
 
@@ -393,7 +393,7 @@ ___
 
 #### Defined in
 
-[Work/Application.ts:69](https://github.com/hpyer/node-easywechat/blob/b017670/src/Work/Application.ts#L69)
+[Work/Application.ts:69](https://github.com/hpyer/node-easywechat/blob/e4961d7/src/Work/Application.ts#L69)
 
 ___
 
@@ -403,7 +403,7 @@ ___
 
 #### Defined in
 
-[Work/Application.ts:70](https://github.com/hpyer/node-easywechat/blob/b017670/src/Work/Application.ts#L70)
+[Work/Application.ts:70](https://github.com/hpyer/node-easywechat/blob/e4961d7/src/Work/Application.ts#L70)
 
 ___
 
@@ -413,7 +413,7 @@ ___
 
 #### Defined in
 
-[Work/Application.ts:71](https://github.com/hpyer/node-easywechat/blob/b017670/src/Work/Application.ts#L71)
+[Work/Application.ts:71](https://github.com/hpyer/node-easywechat/blob/e4961d7/src/Work/Application.ts#L71)
 
 ___
 
@@ -423,7 +423,7 @@ ___
 
 #### Defined in
 
-[Work/Application.ts:47](https://github.com/hpyer/node-easywechat/blob/b017670/src/Work/Application.ts#L47)
+[Work/Application.ts:47](https://github.com/hpyer/node-easywechat/blob/e4961d7/src/Work/Application.ts#L47)
 
 ___
 
@@ -433,7 +433,7 @@ ___
 
 #### Defined in
 
-[Work/Application.ts:76](https://github.com/hpyer/node-easywechat/blob/b017670/src/Work/Application.ts#L76)
+[Work/Application.ts:76](https://github.com/hpyer/node-easywechat/blob/e4961d7/src/Work/Application.ts#L76)
 
 ___
 
@@ -449,7 +449,7 @@ ___
 
 #### Defined in
 
-[Core/BaseApplication.ts:32](https://github.com/hpyer/node-easywechat/blob/b017670/src/Core/BaseApplication.ts#L32)
+[Core/BaseApplication.ts:32](https://github.com/hpyer/node-easywechat/blob/e4961d7/src/Core/BaseApplication.ts#L32)
 
 ___
 
@@ -459,7 +459,7 @@ ___
 
 #### Defined in
 
-[Work/Application.ts:60](https://github.com/hpyer/node-easywechat/blob/b017670/src/Work/Application.ts#L60)
+[Work/Application.ts:60](https://github.com/hpyer/node-easywechat/blob/e4961d7/src/Work/Application.ts#L60)
 
 ___
 
@@ -469,7 +469,7 @@ ___
 
 #### Defined in
 
-[Work/Application.ts:73](https://github.com/hpyer/node-easywechat/blob/b017670/src/Work/Application.ts#L73)
+[Work/Application.ts:73](https://github.com/hpyer/node-easywechat/blob/e4961d7/src/Work/Application.ts#L73)
 
 ___
 
@@ -479,7 +479,7 @@ ___
 
 #### Defined in
 
-[Work/Application.ts:75](https://github.com/hpyer/node-easywechat/blob/b017670/src/Work/Application.ts#L75)
+[Work/Application.ts:75](https://github.com/hpyer/node-easywechat/blob/e4961d7/src/Work/Application.ts#L75)
 
 ___
 
@@ -489,7 +489,7 @@ ___
 
 #### Defined in
 
-[Work/Application.ts:74](https://github.com/hpyer/node-easywechat/blob/b017670/src/Work/Application.ts#L74)
+[Work/Application.ts:74](https://github.com/hpyer/node-easywechat/blob/e4961d7/src/Work/Application.ts#L74)
 
 ___
 
@@ -503,7 +503,7 @@ ___
 
 #### Defined in
 
-[Core/BaseApplication.ts:14](https://github.com/hpyer/node-easywechat/blob/b017670/src/Core/BaseApplication.ts#L14)
+[Core/BaseApplication.ts:14](https://github.com/hpyer/node-easywechat/blob/e4961d7/src/Core/BaseApplication.ts#L14)
 
 ## Methods
 
@@ -523,7 +523,7 @@ ___
 
 #### Defined in
 
-[Core/BaseApplication.ts:161](https://github.com/hpyer/node-easywechat/blob/b017670/src/Core/BaseApplication.ts#L161)
+[Core/BaseApplication.ts:161](https://github.com/hpyer/node-easywechat/blob/e4961d7/src/Core/BaseApplication.ts#L161)
 
 ___
 
@@ -550,7 +550,7 @@ ___
 
 #### Defined in
 
-[Core/BaseApplication.ts:106](https://github.com/hpyer/node-easywechat/blob/b017670/src/Core/BaseApplication.ts#L106)
+[Core/BaseApplication.ts:106](https://github.com/hpyer/node-easywechat/blob/e4961d7/src/Core/BaseApplication.ts#L106)
 
 ___
 
@@ -570,7 +570,7 @@ ___
 
 #### Defined in
 
-[Core/BaseApplication.ts:149](https://github.com/hpyer/node-easywechat/blob/b017670/src/Core/BaseApplication.ts#L149)
+[Core/BaseApplication.ts:149](https://github.com/hpyer/node-easywechat/blob/e4961d7/src/Core/BaseApplication.ts#L149)
 
 ___
 
@@ -584,7 +584,7 @@ ___
 
 #### Defined in
 
-[Work/Application.ts:239](https://github.com/hpyer/node-easywechat/blob/b017670/src/Work/Application.ts#L239)
+[Work/Application.ts:239](https://github.com/hpyer/node-easywechat/blob/e4961d7/src/Work/Application.ts#L239)
 
 ___
 
@@ -604,7 +604,7 @@ ___
 
 #### Defined in
 
-[Core/BaseApplication.ts:64](https://github.com/hpyer/node-easywechat/blob/b017670/src/Core/BaseApplication.ts#L64)
+[Core/BaseApplication.ts:64](https://github.com/hpyer/node-easywechat/blob/e4961d7/src/Core/BaseApplication.ts#L64)
 
 ___
 
@@ -622,7 +622,7 @@ ___
 
 #### Defined in
 
-[Core/BaseApplication.ts:53](https://github.com/hpyer/node-easywechat/blob/b017670/src/Core/BaseApplication.ts#L53)
+[Core/BaseApplication.ts:53](https://github.com/hpyer/node-easywechat/blob/e4961d7/src/Core/BaseApplication.ts#L53)
 
 ___
 
@@ -636,7 +636,7 @@ ___
 
 #### Defined in
 
-[Work/Application.ts:233](https://github.com/hpyer/node-easywechat/blob/b017670/src/Work/Application.ts#L233)
+[Work/Application.ts:233](https://github.com/hpyer/node-easywechat/blob/e4961d7/src/Work/Application.ts#L233)
 
 ___
 
@@ -663,7 +663,7 @@ ___
 
 #### Defined in
 
-[Core/BaseApplication.ts:138](https://github.com/hpyer/node-easywechat/blob/b017670/src/Core/BaseApplication.ts#L138)
+[Core/BaseApplication.ts:138](https://github.com/hpyer/node-easywechat/blob/e4961d7/src/Core/BaseApplication.ts#L138)
 
 ___
 
@@ -689,7 +689,7 @@ ___
 
 #### Defined in
 
-[Core/BaseApplication.ts:128](https://github.com/hpyer/node-easywechat/blob/b017670/src/Core/BaseApplication.ts#L128)
+[Core/BaseApplication.ts:128](https://github.com/hpyer/node-easywechat/blob/e4961d7/src/Core/BaseApplication.ts#L128)
 
 ___
 
@@ -716,7 +716,7 @@ ___
 
 #### Defined in
 
-[Core/BaseApplication.ts:117](https://github.com/hpyer/node-easywechat/blob/b017670/src/Core/BaseApplication.ts#L117)
+[Core/BaseApplication.ts:117](https://github.com/hpyer/node-easywechat/blob/e4961d7/src/Core/BaseApplication.ts#L117)
 
 ___
 
@@ -736,7 +736,7 @@ ___
 
 #### Defined in
 
-[Core/BaseApplication.ts:80](https://github.com/hpyer/node-easywechat/blob/b017670/src/Core/BaseApplication.ts#L80)
+[Core/BaseApplication.ts:80](https://github.com/hpyer/node-easywechat/blob/e4961d7/src/Core/BaseApplication.ts#L80)
 
 ___
 
@@ -750,4 +750,4 @@ ___
 
 #### Defined in
 
-[Work/Application.ts:85](https://github.com/hpyer/node-easywechat/blob/b017670/src/Work/Application.ts#L85)
+[Work/Application.ts:85](https://github.com/hpyer/node-easywechat/blob/e4961d7/src/Work/Application.ts#L85)

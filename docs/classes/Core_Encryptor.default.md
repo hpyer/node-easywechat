@@ -46,7 +46,7 @@
 
 #### Defined in
 
-[Core/Encryptor.ts:15](https://github.com/hpyer/node-easywechat/blob/b017670/src/Core/Encryptor.ts#L15)
+[Core/Encryptor.ts:15](https://github.com/hpyer/node-easywechat/blob/e4961d7/src/Core/Encryptor.ts#L15)
 
 ## Properties
 
@@ -56,7 +56,7 @@
 
 #### Defined in
 
-[Core/Encryptor.ts:12](https://github.com/hpyer/node-easywechat/blob/b017670/src/Core/Encryptor.ts#L12)
+[Core/Encryptor.ts:12](https://github.com/hpyer/node-easywechat/blob/e4961d7/src/Core/Encryptor.ts#L12)
 
 ___
 
@@ -66,7 +66,7 @@ ___
 
 #### Defined in
 
-[Core/Encryptor.ts:10](https://github.com/hpyer/node-easywechat/blob/b017670/src/Core/Encryptor.ts#L10)
+[Core/Encryptor.ts:10](https://github.com/hpyer/node-easywechat/blob/e4961d7/src/Core/Encryptor.ts#L10)
 
 ___
 
@@ -76,7 +76,7 @@ ___
 
 #### Defined in
 
-[Core/Encryptor.ts:13](https://github.com/hpyer/node-easywechat/blob/b017670/src/Core/Encryptor.ts#L13)
+[Core/Encryptor.ts:13](https://github.com/hpyer/node-easywechat/blob/e4961d7/src/Core/Encryptor.ts#L13)
 
 ___
 
@@ -86,7 +86,7 @@ ___
 
 #### Defined in
 
-[Core/Encryptor.ts:11](https://github.com/hpyer/node-easywechat/blob/b017670/src/Core/Encryptor.ts#L11)
+[Core/Encryptor.ts:11](https://github.com/hpyer/node-easywechat/blob/e4961d7/src/Core/Encryptor.ts#L11)
 
 ## Methods
 
@@ -109,7 +109,7 @@ ___
 
 #### Defined in
 
-[Core/Encryptor.ts:65](https://github.com/hpyer/node-easywechat/blob/b017670/src/Core/Encryptor.ts#L65)
+[Core/Encryptor.ts:65](https://github.com/hpyer/node-easywechat/blob/e4961d7/src/Core/Encryptor.ts#L65)
 
 ___
 
@@ -131,7 +131,7 @@ ___
 
 #### Defined in
 
-[Core/Encryptor.ts:33](https://github.com/hpyer/node-easywechat/blob/b017670/src/Core/Encryptor.ts#L33)
+[Core/Encryptor.ts:33](https://github.com/hpyer/node-easywechat/blob/e4961d7/src/Core/Encryptor.ts#L33)
 
 ___
 
@@ -145,7 +145,7 @@ ___
 
 #### Defined in
 
-[Core/Encryptor.ts:22](https://github.com/hpyer/node-easywechat/blob/b017670/src/Core/Encryptor.ts#L22)
+[Core/Encryptor.ts:22](https://github.com/hpyer/node-easywechat/blob/e4961d7/src/Core/Encryptor.ts#L22)
 
 ___
 
@@ -165,4 +165,4 @@ ___
 
 #### Defined in
 
-[Core/Encryptor.ts:27](https://github.com/hpyer/node-easywechat/blob/b017670/src/Core/Encryptor.ts#L27)
+[Core/Encryptor.ts:27](https://github.com/hpyer/node-easywechat/blob/e4961d7/src/Core/Encryptor.ts#L27)

@@ -89,7 +89,7 @@
 
 #### Defined in
 
-[Core/BaseClient.ts:17](https://github.com/hpyer/node-easywechat/blob/b017670/src/Core/BaseClient.ts#L17)
+[Core/BaseClient.ts:17](https://github.com/hpyer/node-easywechat/blob/e4961d7/src/Core/BaseClient.ts#L17)
 
 ## Properties
 
@@ -103,7 +103,7 @@
 
 #### Defined in
 
-[Core/BaseClient.ts:14](https://github.com/hpyer/node-easywechat/blob/b017670/src/Core/BaseClient.ts#L14)
+[Core/BaseClient.ts:14](https://github.com/hpyer/node-easywechat/blob/e4961d7/src/Core/BaseClient.ts#L14)
 
 ___
 
@@ -117,7 +117,7 @@ ___
 
 #### Defined in
 
-[Core/BaseClient.ts:15](https://github.com/hpyer/node-easywechat/blob/b017670/src/Core/BaseClient.ts#L15)
+[Core/BaseClient.ts:15](https://github.com/hpyer/node-easywechat/blob/e4961d7/src/Core/BaseClient.ts#L15)
 
 ## Methods
 
@@ -137,7 +137,7 @@ ___
 
 #### Defined in
 
-[MiniProgram/Broadcast/BroadcastClient.ts:88](https://github.com/hpyer/node-easywechat/blob/b017670/src/MiniProgram/Broadcast/BroadcastClient.ts#L88)
+[MiniProgram/Broadcast/BroadcastClient.ts:88](https://github.com/hpyer/node-easywechat/blob/e4961d7/src/MiniProgram/Broadcast/BroadcastClient.ts#L88)
 
 ___
 
@@ -157,7 +157,7 @@ ___
 
 #### Defined in
 
-[MiniProgram/Broadcast/BroadcastClient.ts:48](https://github.com/hpyer/node-easywechat/blob/b017670/src/MiniProgram/Broadcast/BroadcastClient.ts#L48)
+[MiniProgram/Broadcast/BroadcastClient.ts:48](https://github.com/hpyer/node-easywechat/blob/e4961d7/src/MiniProgram/Broadcast/BroadcastClient.ts#L48)
 
 ___
 
@@ -177,7 +177,7 @@ ___
 
 #### Defined in
 
-[MiniProgram/Broadcast/BroadcastClient.ts:136](https://github.com/hpyer/node-easywechat/blob/b017670/src/MiniProgram/Broadcast/BroadcastClient.ts#L136)
+[MiniProgram/Broadcast/BroadcastClient.ts:136](https://github.com/hpyer/node-easywechat/blob/e4961d7/src/MiniProgram/Broadcast/BroadcastClient.ts#L136)
 
 ___
 
@@ -197,7 +197,7 @@ ___
 
 #### Defined in
 
-[MiniProgram/Broadcast/BroadcastClient.ts:104](https://github.com/hpyer/node-easywechat/blob/b017670/src/MiniProgram/Broadcast/BroadcastClient.ts#L104)
+[MiniProgram/Broadcast/BroadcastClient.ts:104](https://github.com/hpyer/node-easywechat/blob/e4961d7/src/MiniProgram/Broadcast/BroadcastClient.ts#L104)
 
 ___
 
@@ -217,7 +217,7 @@ ___
 
 #### Defined in
 
-[MiniProgram/Broadcast/BroadcastClient.ts:7](https://github.com/hpyer/node-easywechat/blob/b017670/src/MiniProgram/Broadcast/BroadcastClient.ts#L7)
+[MiniProgram/Broadcast/BroadcastClient.ts:7](https://github.com/hpyer/node-easywechat/blob/e4961d7/src/MiniProgram/Broadcast/BroadcastClient.ts#L7)
 
 ___
 
@@ -237,7 +237,7 @@ ___
 
 #### Defined in
 
-[MiniProgram/Broadcast/BroadcastClient.ts:68](https://github.com/hpyer/node-easywechat/blob/b017670/src/MiniProgram/Broadcast/BroadcastClient.ts#L68)
+[MiniProgram/Broadcast/BroadcastClient.ts:68](https://github.com/hpyer/node-easywechat/blob/e4961d7/src/MiniProgram/Broadcast/BroadcastClient.ts#L68)
 
 ___
 
@@ -257,7 +257,7 @@ ___
 
 #### Defined in
 
-[MiniProgram/Broadcast/BroadcastClient.ts:26](https://github.com/hpyer/node-easywechat/blob/b017670/src/MiniProgram/Broadcast/BroadcastClient.ts#L26)
+[MiniProgram/Broadcast/BroadcastClient.ts:26](https://github.com/hpyer/node-easywechat/blob/e4961d7/src/MiniProgram/Broadcast/BroadcastClient.ts#L26)
 
 ___
 
@@ -277,7 +277,7 @@ ___
 
 #### Defined in
 
-[MiniProgram/Broadcast/BroadcastClient.ts:96](https://github.com/hpyer/node-easywechat/blob/b017670/src/MiniProgram/Broadcast/BroadcastClient.ts#L96)
+[MiniProgram/Broadcast/BroadcastClient.ts:96](https://github.com/hpyer/node-easywechat/blob/e4961d7/src/MiniProgram/Broadcast/BroadcastClient.ts#L96)
 
 ___
 
@@ -297,7 +297,7 @@ ___
 
 #### Defined in
 
-[MiniProgram/Broadcast/BroadcastClient.ts:160](https://github.com/hpyer/node-easywechat/blob/b017670/src/MiniProgram/Broadcast/BroadcastClient.ts#L160)
+[MiniProgram/Broadcast/BroadcastClient.ts:160](https://github.com/hpyer/node-easywechat/blob/e4961d7/src/MiniProgram/Broadcast/BroadcastClient.ts#L160)
 
 ___
 
@@ -317,7 +317,7 @@ ___
 
 #### Defined in
 
-[MiniProgram/Broadcast/BroadcastClient.ts:72](https://github.com/hpyer/node-easywechat/blob/b017670/src/MiniProgram/Broadcast/BroadcastClient.ts#L72)
+[MiniProgram/Broadcast/BroadcastClient.ts:72](https://github.com/hpyer/node-easywechat/blob/e4961d7/src/MiniProgram/Broadcast/BroadcastClient.ts#L72)
 
 ___
 
@@ -337,7 +337,7 @@ ___
 
 #### Defined in
 
-[MiniProgram/Broadcast/BroadcastClient.ts:140](https://github.com/hpyer/node-easywechat/blob/b017670/src/MiniProgram/Broadcast/BroadcastClient.ts#L140)
+[MiniProgram/Broadcast/BroadcastClient.ts:140](https://github.com/hpyer/node-easywechat/blob/e4961d7/src/MiniProgram/Broadcast/BroadcastClient.ts#L140)
 
 ___
 
@@ -357,7 +357,7 @@ ___
 
 #### Defined in
 
-[MiniProgram/Broadcast/BroadcastClient.ts:112](https://github.com/hpyer/node-easywechat/blob/b017670/src/MiniProgram/Broadcast/BroadcastClient.ts#L112)
+[MiniProgram/Broadcast/BroadcastClient.ts:112](https://github.com/hpyer/node-easywechat/blob/e4961d7/src/MiniProgram/Broadcast/BroadcastClient.ts#L112)
 
 ___
 
@@ -381,7 +381,7 @@ ___
 
 #### Defined in
 
-[Core/BaseClient.ts:114](https://github.com/hpyer/node-easywechat/blob/b017670/src/Core/BaseClient.ts#L114)
+[Core/BaseClient.ts:114](https://github.com/hpyer/node-easywechat/blob/e4961d7/src/Core/BaseClient.ts#L114)
 
 ___
 
@@ -401,7 +401,7 @@ ___
 
 #### Defined in
 
-[MiniProgram/Broadcast/BroadcastClient.ts:172](https://github.com/hpyer/node-easywechat/blob/b017670/src/MiniProgram/Broadcast/BroadcastClient.ts#L172)
+[MiniProgram/Broadcast/BroadcastClient.ts:172](https://github.com/hpyer/node-easywechat/blob/e4961d7/src/MiniProgram/Broadcast/BroadcastClient.ts#L172)
 
 ___
 
@@ -419,7 +419,7 @@ ___
 
 #### Defined in
 
-[Core/BaseClient.ts:30](https://github.com/hpyer/node-easywechat/blob/b017670/src/Core/BaseClient.ts#L30)
+[Core/BaseClient.ts:30](https://github.com/hpyer/node-easywechat/blob/e4961d7/src/Core/BaseClient.ts#L30)
 
 ___
 
@@ -439,7 +439,7 @@ ___
 
 #### Defined in
 
-[MiniProgram/Broadcast/BroadcastClient.ts:44](https://github.com/hpyer/node-easywechat/blob/b017670/src/MiniProgram/Broadcast/BroadcastClient.ts#L44)
+[MiniProgram/Broadcast/BroadcastClient.ts:44](https://github.com/hpyer/node-easywechat/blob/e4961d7/src/MiniProgram/Broadcast/BroadcastClient.ts#L44)
 
 ___
 
@@ -459,7 +459,7 @@ ___
 
 #### Defined in
 
-[MiniProgram/Broadcast/BroadcastClient.ts:100](https://github.com/hpyer/node-easywechat/blob/b017670/src/MiniProgram/Broadcast/BroadcastClient.ts#L100)
+[MiniProgram/Broadcast/BroadcastClient.ts:100](https://github.com/hpyer/node-easywechat/blob/e4961d7/src/MiniProgram/Broadcast/BroadcastClient.ts#L100)
 
 ___
 
@@ -479,7 +479,7 @@ ___
 
 #### Defined in
 
-[MiniProgram/Broadcast/BroadcastClient.ts:148](https://github.com/hpyer/node-easywechat/blob/b017670/src/MiniProgram/Broadcast/BroadcastClient.ts#L148)
+[MiniProgram/Broadcast/BroadcastClient.ts:148](https://github.com/hpyer/node-easywechat/blob/e4961d7/src/MiniProgram/Broadcast/BroadcastClient.ts#L148)
 
 ___
 
@@ -499,7 +499,7 @@ ___
 
 #### Defined in
 
-[MiniProgram/Broadcast/BroadcastClient.ts:38](https://github.com/hpyer/node-easywechat/blob/b017670/src/MiniProgram/Broadcast/BroadcastClient.ts#L38)
+[MiniProgram/Broadcast/BroadcastClient.ts:38](https://github.com/hpyer/node-easywechat/blob/e4961d7/src/MiniProgram/Broadcast/BroadcastClient.ts#L38)
 
 ___
 
@@ -521,7 +521,7 @@ ___
 
 #### Defined in
 
-[MiniProgram/Broadcast/BroadcastClient.ts:59](https://github.com/hpyer/node-easywechat/blob/b017670/src/MiniProgram/Broadcast/BroadcastClient.ts#L59)
+[MiniProgram/Broadcast/BroadcastClient.ts:59](https://github.com/hpyer/node-easywechat/blob/e4961d7/src/MiniProgram/Broadcast/BroadcastClient.ts#L59)
 
 ___
 
@@ -541,7 +541,7 @@ ___
 
 #### Defined in
 
-[MiniProgram/Broadcast/BroadcastClient.ts:80](https://github.com/hpyer/node-easywechat/blob/b017670/src/MiniProgram/Broadcast/BroadcastClient.ts#L80)
+[MiniProgram/Broadcast/BroadcastClient.ts:80](https://github.com/hpyer/node-easywechat/blob/e4961d7/src/MiniProgram/Broadcast/BroadcastClient.ts#L80)
 
 ___
 
@@ -561,7 +561,7 @@ ___
 
 #### Defined in
 
-[MiniProgram/Broadcast/BroadcastClient.ts:144](https://github.com/hpyer/node-easywechat/blob/b017670/src/MiniProgram/Broadcast/BroadcastClient.ts#L144)
+[MiniProgram/Broadcast/BroadcastClient.ts:144](https://github.com/hpyer/node-easywechat/blob/e4961d7/src/MiniProgram/Broadcast/BroadcastClient.ts#L144)
 
 ___
 
@@ -582,7 +582,7 @@ ___
 
 #### Defined in
 
-[MiniProgram/Broadcast/BroadcastClient.ts:52](https://github.com/hpyer/node-easywechat/blob/b017670/src/MiniProgram/Broadcast/BroadcastClient.ts#L52)
+[MiniProgram/Broadcast/BroadcastClient.ts:52](https://github.com/hpyer/node-easywechat/blob/e4961d7/src/MiniProgram/Broadcast/BroadcastClient.ts#L52)
 
 ___
 
@@ -602,7 +602,7 @@ ___
 
 #### Defined in
 
-[MiniProgram/Broadcast/BroadcastClient.ts:84](https://github.com/hpyer/node-easywechat/blob/b017670/src/MiniProgram/Broadcast/BroadcastClient.ts#L84)
+[MiniProgram/Broadcast/BroadcastClient.ts:84](https://github.com/hpyer/node-easywechat/blob/e4961d7/src/MiniProgram/Broadcast/BroadcastClient.ts#L84)
 
 ___
 
@@ -622,7 +622,7 @@ ___
 
 #### Defined in
 
-[MiniProgram/Broadcast/BroadcastClient.ts:116](https://github.com/hpyer/node-easywechat/blob/b017670/src/MiniProgram/Broadcast/BroadcastClient.ts#L116)
+[MiniProgram/Broadcast/BroadcastClient.ts:116](https://github.com/hpyer/node-easywechat/blob/e4961d7/src/MiniProgram/Broadcast/BroadcastClient.ts#L116)
 
 ___
 
@@ -647,7 +647,7 @@ ___
 
 #### Defined in
 
-[Core/BaseClient.ts:76](https://github.com/hpyer/node-easywechat/blob/b017670/src/Core/BaseClient.ts#L76)
+[Core/BaseClient.ts:76](https://github.com/hpyer/node-easywechat/blob/e4961d7/src/Core/BaseClient.ts#L76)
 
 ___
 
@@ -672,7 +672,7 @@ ___
 
 #### Defined in
 
-[Core/BaseClient.ts:85](https://github.com/hpyer/node-easywechat/blob/b017670/src/Core/BaseClient.ts#L85)
+[Core/BaseClient.ts:85](https://github.com/hpyer/node-easywechat/blob/e4961d7/src/Core/BaseClient.ts#L85)
 
 ___
 
@@ -698,7 +698,7 @@ ___
 
 #### Defined in
 
-[Core/BaseClient.ts:94](https://github.com/hpyer/node-easywechat/blob/b017670/src/Core/BaseClient.ts#L94)
+[Core/BaseClient.ts:94](https://github.com/hpyer/node-easywechat/blob/e4961d7/src/Core/BaseClient.ts#L94)
 
 ___
 
@@ -725,7 +725,7 @@ ___
 
 #### Defined in
 
-[Core/BaseClient.ts:51](https://github.com/hpyer/node-easywechat/blob/b017670/src/Core/BaseClient.ts#L51)
+[Core/BaseClient.ts:51](https://github.com/hpyer/node-easywechat/blob/e4961d7/src/Core/BaseClient.ts#L51)
 
 ___
 
@@ -745,7 +745,7 @@ ___
 
 #### Defined in
 
-[MiniProgram/Broadcast/BroadcastClient.ts:164](https://github.com/hpyer/node-easywechat/blob/b017670/src/MiniProgram/Broadcast/BroadcastClient.ts#L164)
+[MiniProgram/Broadcast/BroadcastClient.ts:164](https://github.com/hpyer/node-easywechat/blob/e4961d7/src/MiniProgram/Broadcast/BroadcastClient.ts#L164)
 
 ___
 
@@ -765,7 +765,7 @@ ___
 
 #### Defined in
 
-[MiniProgram/Broadcast/BroadcastClient.ts:152](https://github.com/hpyer/node-easywechat/blob/b017670/src/MiniProgram/Broadcast/BroadcastClient.ts#L152)
+[MiniProgram/Broadcast/BroadcastClient.ts:152](https://github.com/hpyer/node-easywechat/blob/e4961d7/src/MiniProgram/Broadcast/BroadcastClient.ts#L152)
 
 ___
 
@@ -790,7 +790,7 @@ ___
 
 #### Defined in
 
-[Core/BaseClient.ts:35](https://github.com/hpyer/node-easywechat/blob/b017670/src/Core/BaseClient.ts#L35)
+[Core/BaseClient.ts:35](https://github.com/hpyer/node-easywechat/blob/e4961d7/src/Core/BaseClient.ts#L35)
 
 ___
 
@@ -814,7 +814,7 @@ ___
 
 #### Defined in
 
-[Core/BaseClient.ts:104](https://github.com/hpyer/node-easywechat/blob/b017670/src/Core/BaseClient.ts#L104)
+[Core/BaseClient.ts:104](https://github.com/hpyer/node-easywechat/blob/e4961d7/src/Core/BaseClient.ts#L104)
 
 ___
 
@@ -835,7 +835,7 @@ ___
 
 #### Defined in
 
-[MiniProgram/Broadcast/BroadcastClient.ts:13](https://github.com/hpyer/node-easywechat/blob/b017670/src/MiniProgram/Broadcast/BroadcastClient.ts#L13)
+[MiniProgram/Broadcast/BroadcastClient.ts:13](https://github.com/hpyer/node-easywechat/blob/e4961d7/src/MiniProgram/Broadcast/BroadcastClient.ts#L13)
 
 ___
 
@@ -855,7 +855,7 @@ ___
 
 #### Defined in
 
-[MiniProgram/Broadcast/BroadcastClient.ts:20](https://github.com/hpyer/node-easywechat/blob/b017670/src/MiniProgram/Broadcast/BroadcastClient.ts#L20)
+[MiniProgram/Broadcast/BroadcastClient.ts:20](https://github.com/hpyer/node-easywechat/blob/e4961d7/src/MiniProgram/Broadcast/BroadcastClient.ts#L20)
 
 ___
 
@@ -879,7 +879,7 @@ ___
 
 #### Defined in
 
-[Core/BaseClient.ts:23](https://github.com/hpyer/node-easywechat/blob/b017670/src/Core/BaseClient.ts#L23)
+[Core/BaseClient.ts:23](https://github.com/hpyer/node-easywechat/blob/e4961d7/src/Core/BaseClient.ts#L23)
 
 ___
 
@@ -899,7 +899,7 @@ ___
 
 #### Defined in
 
-[MiniProgram/Broadcast/BroadcastClient.ts:168](https://github.com/hpyer/node-easywechat/blob/b017670/src/MiniProgram/Broadcast/BroadcastClient.ts#L168)
+[MiniProgram/Broadcast/BroadcastClient.ts:168](https://github.com/hpyer/node-easywechat/blob/e4961d7/src/MiniProgram/Broadcast/BroadcastClient.ts#L168)
 
 ___
 
@@ -919,7 +919,7 @@ ___
 
 #### Defined in
 
-[MiniProgram/Broadcast/BroadcastClient.ts:32](https://github.com/hpyer/node-easywechat/blob/b017670/src/MiniProgram/Broadcast/BroadcastClient.ts#L32)
+[MiniProgram/Broadcast/BroadcastClient.ts:32](https://github.com/hpyer/node-easywechat/blob/e4961d7/src/MiniProgram/Broadcast/BroadcastClient.ts#L32)
 
 ___
 
@@ -939,7 +939,7 @@ ___
 
 #### Defined in
 
-[MiniProgram/Broadcast/BroadcastClient.ts:92](https://github.com/hpyer/node-easywechat/blob/b017670/src/MiniProgram/Broadcast/BroadcastClient.ts#L92)
+[MiniProgram/Broadcast/BroadcastClient.ts:92](https://github.com/hpyer/node-easywechat/blob/e4961d7/src/MiniProgram/Broadcast/BroadcastClient.ts#L92)
 
 ___
 
@@ -959,7 +959,7 @@ ___
 
 #### Defined in
 
-[MiniProgram/Broadcast/BroadcastClient.ts:132](https://github.com/hpyer/node-easywechat/blob/b017670/src/MiniProgram/Broadcast/BroadcastClient.ts#L132)
+[MiniProgram/Broadcast/BroadcastClient.ts:132](https://github.com/hpyer/node-easywechat/blob/e4961d7/src/MiniProgram/Broadcast/BroadcastClient.ts#L132)
 
 ___
 
@@ -979,7 +979,7 @@ ___
 
 #### Defined in
 
-[MiniProgram/Broadcast/BroadcastClient.ts:120](https://github.com/hpyer/node-easywechat/blob/b017670/src/MiniProgram/Broadcast/BroadcastClient.ts#L120)
+[MiniProgram/Broadcast/BroadcastClient.ts:120](https://github.com/hpyer/node-easywechat/blob/e4961d7/src/MiniProgram/Broadcast/BroadcastClient.ts#L120)
 
 ___
 
@@ -999,7 +999,7 @@ ___
 
 #### Defined in
 
-[MiniProgram/Broadcast/BroadcastClient.ts:156](https://github.com/hpyer/node-easywechat/blob/b017670/src/MiniProgram/Broadcast/BroadcastClient.ts#L156)
+[MiniProgram/Broadcast/BroadcastClient.ts:156](https://github.com/hpyer/node-easywechat/blob/e4961d7/src/MiniProgram/Broadcast/BroadcastClient.ts#L156)
 
 ___
 
@@ -1019,7 +1019,7 @@ ___
 
 #### Defined in
 
-[MiniProgram/Broadcast/BroadcastClient.ts:128](https://github.com/hpyer/node-easywechat/blob/b017670/src/MiniProgram/Broadcast/BroadcastClient.ts#L128)
+[MiniProgram/Broadcast/BroadcastClient.ts:128](https://github.com/hpyer/node-easywechat/blob/e4961d7/src/MiniProgram/Broadcast/BroadcastClient.ts#L128)
 
 ___
 
@@ -1039,7 +1039,7 @@ ___
 
 #### Defined in
 
-[MiniProgram/Broadcast/BroadcastClient.ts:76](https://github.com/hpyer/node-easywechat/blob/b017670/src/MiniProgram/Broadcast/BroadcastClient.ts#L76)
+[MiniProgram/Broadcast/BroadcastClient.ts:76](https://github.com/hpyer/node-easywechat/blob/e4961d7/src/MiniProgram/Broadcast/BroadcastClient.ts#L76)
 
 ___
 
@@ -1059,7 +1059,7 @@ ___
 
 #### Defined in
 
-[MiniProgram/Broadcast/BroadcastClient.ts:124](https://github.com/hpyer/node-easywechat/blob/b017670/src/MiniProgram/Broadcast/BroadcastClient.ts#L124)
+[MiniProgram/Broadcast/BroadcastClient.ts:124](https://github.com/hpyer/node-easywechat/blob/e4961d7/src/MiniProgram/Broadcast/BroadcastClient.ts#L124)
 
 ___
 
@@ -1079,4 +1079,4 @@ ___
 
 #### Defined in
 
-[MiniProgram/Broadcast/BroadcastClient.ts:108](https://github.com/hpyer/node-easywechat/blob/b017670/src/MiniProgram/Broadcast/BroadcastClient.ts#L108)
+[MiniProgram/Broadcast/BroadcastClient.ts:108](https://github.com/hpyer/node-easywechat/blob/e4961d7/src/MiniProgram/Broadcast/BroadcastClient.ts#L108)

@@ -77,7 +77,7 @@
 
 #### Defined in
 
-[Core/BaseClient.ts:17](https://github.com/hpyer/node-easywechat/blob/b017670/src/Core/BaseClient.ts#L17)
+[Core/BaseClient.ts:17](https://github.com/hpyer/node-easywechat/blob/e4961d7/src/Core/BaseClient.ts#L17)
 
 ## Properties
 
@@ -91,7 +91,7 @@
 
 #### Defined in
 
-[Core/BaseClient.ts:14](https://github.com/hpyer/node-easywechat/blob/b017670/src/Core/BaseClient.ts#L14)
+[Core/BaseClient.ts:14](https://github.com/hpyer/node-easywechat/blob/e4961d7/src/Core/BaseClient.ts#L14)
 
 ___
 
@@ -105,7 +105,7 @@ ___
 
 #### Defined in
 
-[Core/BaseClient.ts:15](https://github.com/hpyer/node-easywechat/blob/b017670/src/Core/BaseClient.ts#L15)
+[Core/BaseClient.ts:15](https://github.com/hpyer/node-easywechat/blob/e4961d7/src/Core/BaseClient.ts#L15)
 
 ## Methods
 
@@ -125,7 +125,7 @@ ___
 
 #### Defined in
 
-[Work/ExternalContact/SchoolClient.ts:145](https://github.com/hpyer/node-easywechat/blob/b017670/src/Work/ExternalContact/SchoolClient.ts#L145)
+[Work/ExternalContact/SchoolClient.ts:145](https://github.com/hpyer/node-easywechat/blob/e4961d7/src/Work/ExternalContact/SchoolClient.ts#L145)
 
 ___
 
@@ -145,7 +145,7 @@ ___
 
 #### Defined in
 
-[Work/ExternalContact/SchoolClient.ts:89](https://github.com/hpyer/node-easywechat/blob/b017670/src/Work/ExternalContact/SchoolClient.ts#L89)
+[Work/ExternalContact/SchoolClient.ts:89](https://github.com/hpyer/node-easywechat/blob/e4961d7/src/Work/ExternalContact/SchoolClient.ts#L89)
 
 ___
 
@@ -165,7 +165,7 @@ ___
 
 #### Defined in
 
-[Work/ExternalContact/SchoolClient.ts:159](https://github.com/hpyer/node-easywechat/blob/b017670/src/Work/ExternalContact/SchoolClient.ts#L159)
+[Work/ExternalContact/SchoolClient.ts:159](https://github.com/hpyer/node-easywechat/blob/e4961d7/src/Work/ExternalContact/SchoolClient.ts#L159)
 
 ___
 
@@ -185,7 +185,7 @@ ___
 
 #### Defined in
 
-[Work/ExternalContact/SchoolClient.ts:103](https://github.com/hpyer/node-easywechat/blob/b017670/src/Work/ExternalContact/SchoolClient.ts#L103)
+[Work/ExternalContact/SchoolClient.ts:103](https://github.com/hpyer/node-easywechat/blob/e4961d7/src/Work/ExternalContact/SchoolClient.ts#L103)
 
 ___
 
@@ -205,7 +205,7 @@ ___
 
 #### Defined in
 
-[Work/ExternalContact/SchoolClient.ts:152](https://github.com/hpyer/node-easywechat/blob/b017670/src/Work/ExternalContact/SchoolClient.ts#L152)
+[Work/ExternalContact/SchoolClient.ts:152](https://github.com/hpyer/node-easywechat/blob/e4961d7/src/Work/ExternalContact/SchoolClient.ts#L152)
 
 ___
 
@@ -225,7 +225,7 @@ ___
 
 #### Defined in
 
-[Work/ExternalContact/SchoolClient.ts:96](https://github.com/hpyer/node-easywechat/blob/b017670/src/Work/ExternalContact/SchoolClient.ts#L96)
+[Work/ExternalContact/SchoolClient.ts:96](https://github.com/hpyer/node-easywechat/blob/e4961d7/src/Work/ExternalContact/SchoolClient.ts#L96)
 
 ___
 
@@ -245,7 +245,7 @@ ___
 
 #### Defined in
 
-[Work/ExternalContact/SchoolClient.ts:210](https://github.com/hpyer/node-easywechat/blob/b017670/src/Work/ExternalContact/SchoolClient.ts#L210)
+[Work/ExternalContact/SchoolClient.ts:210](https://github.com/hpyer/node-easywechat/blob/e4961d7/src/Work/ExternalContact/SchoolClient.ts#L210)
 
 ___
 
@@ -271,7 +271,7 @@ ___
 
 #### Defined in
 
-[Work/ExternalContact/SchoolClient.ts:9](https://github.com/hpyer/node-easywechat/blob/b017670/src/Work/ExternalContact/SchoolClient.ts#L9)
+[Work/ExternalContact/SchoolClient.ts:9](https://github.com/hpyer/node-easywechat/blob/e4961d7/src/Work/ExternalContact/SchoolClient.ts#L9)
 
 ___
 
@@ -294,7 +294,7 @@ ___
 
 #### Defined in
 
-[Work/ExternalContact/SchoolClient.ts:110](https://github.com/hpyer/node-easywechat/blob/b017670/src/Work/ExternalContact/SchoolClient.ts#L110)
+[Work/ExternalContact/SchoolClient.ts:110](https://github.com/hpyer/node-easywechat/blob/e4961d7/src/Work/ExternalContact/SchoolClient.ts#L110)
 
 ___
 
@@ -316,7 +316,7 @@ ___
 
 #### Defined in
 
-[Work/ExternalContact/SchoolClient.ts:55](https://github.com/hpyer/node-easywechat/blob/b017670/src/Work/ExternalContact/SchoolClient.ts#L55)
+[Work/ExternalContact/SchoolClient.ts:55](https://github.com/hpyer/node-easywechat/blob/e4961d7/src/Work/ExternalContact/SchoolClient.ts#L55)
 
 ___
 
@@ -336,7 +336,7 @@ ___
 
 #### Defined in
 
-[Work/ExternalContact/SchoolClient.ts:38](https://github.com/hpyer/node-easywechat/blob/b017670/src/Work/ExternalContact/SchoolClient.ts#L38)
+[Work/ExternalContact/SchoolClient.ts:38](https://github.com/hpyer/node-easywechat/blob/e4961d7/src/Work/ExternalContact/SchoolClient.ts#L38)
 
 ___
 
@@ -356,7 +356,7 @@ ___
 
 #### Defined in
 
-[Work/ExternalContact/SchoolClient.ts:138](https://github.com/hpyer/node-easywechat/blob/b017670/src/Work/ExternalContact/SchoolClient.ts#L138)
+[Work/ExternalContact/SchoolClient.ts:138](https://github.com/hpyer/node-easywechat/blob/e4961d7/src/Work/ExternalContact/SchoolClient.ts#L138)
 
 ___
 
@@ -376,7 +376,7 @@ ___
 
 #### Defined in
 
-[Work/ExternalContact/SchoolClient.ts:82](https://github.com/hpyer/node-easywechat/blob/b017670/src/Work/ExternalContact/SchoolClient.ts#L82)
+[Work/ExternalContact/SchoolClient.ts:82](https://github.com/hpyer/node-easywechat/blob/e4961d7/src/Work/ExternalContact/SchoolClient.ts#L82)
 
 ___
 
@@ -400,7 +400,7 @@ ___
 
 #### Defined in
 
-[Core/BaseClient.ts:114](https://github.com/hpyer/node-easywechat/blob/b017670/src/Core/BaseClient.ts#L114)
+[Core/BaseClient.ts:114](https://github.com/hpyer/node-easywechat/blob/e4961d7/src/Core/BaseClient.ts#L114)
 
 ___
 
@@ -420,7 +420,7 @@ ___
 
 #### Defined in
 
-[Work/ExternalContact/SchoolClient.ts:217](https://github.com/hpyer/node-easywechat/blob/b017670/src/Work/ExternalContact/SchoolClient.ts#L217)
+[Work/ExternalContact/SchoolClient.ts:217](https://github.com/hpyer/node-easywechat/blob/e4961d7/src/Work/ExternalContact/SchoolClient.ts#L217)
 
 ___
 
@@ -438,7 +438,7 @@ ___
 
 #### Defined in
 
-[Core/BaseClient.ts:30](https://github.com/hpyer/node-easywechat/blob/b017670/src/Core/BaseClient.ts#L30)
+[Core/BaseClient.ts:30](https://github.com/hpyer/node-easywechat/blob/e4961d7/src/Core/BaseClient.ts#L30)
 
 ___
 
@@ -458,7 +458,7 @@ ___
 
 #### Defined in
 
-[Work/ExternalContact/SchoolClient.ts:45](https://github.com/hpyer/node-easywechat/blob/b017670/src/Work/ExternalContact/SchoolClient.ts#L45)
+[Work/ExternalContact/SchoolClient.ts:45](https://github.com/hpyer/node-easywechat/blob/e4961d7/src/Work/ExternalContact/SchoolClient.ts#L45)
 
 ___
 
@@ -479,7 +479,7 @@ ___
 
 #### Defined in
 
-[Work/ExternalContact/SchoolClient.ts:173](https://github.com/hpyer/node-easywechat/blob/b017670/src/Work/ExternalContact/SchoolClient.ts#L173)
+[Work/ExternalContact/SchoolClient.ts:173](https://github.com/hpyer/node-easywechat/blob/e4961d7/src/Work/ExternalContact/SchoolClient.ts#L173)
 
 ___
 
@@ -493,7 +493,7 @@ ___
 
 #### Defined in
 
-[Work/ExternalContact/SchoolClient.ts:193](https://github.com/hpyer/node-easywechat/blob/b017670/src/Work/ExternalContact/SchoolClient.ts#L193)
+[Work/ExternalContact/SchoolClient.ts:193](https://github.com/hpyer/node-easywechat/blob/e4961d7/src/Work/ExternalContact/SchoolClient.ts#L193)
 
 ___
 
@@ -507,7 +507,7 @@ ___
 
 #### Defined in
 
-[Work/ExternalContact/SchoolClient.ts:181](https://github.com/hpyer/node-easywechat/blob/b017670/src/Work/ExternalContact/SchoolClient.ts#L181)
+[Work/ExternalContact/SchoolClient.ts:181](https://github.com/hpyer/node-easywechat/blob/e4961d7/src/Work/ExternalContact/SchoolClient.ts#L181)
 
 ___
 
@@ -521,7 +521,7 @@ ___
 
 #### Defined in
 
-[Work/ExternalContact/SchoolClient.ts:205](https://github.com/hpyer/node-easywechat/blob/b017670/src/Work/ExternalContact/SchoolClient.ts#L205)
+[Work/ExternalContact/SchoolClient.ts:205](https://github.com/hpyer/node-easywechat/blob/e4961d7/src/Work/ExternalContact/SchoolClient.ts#L205)
 
 ___
 
@@ -541,7 +541,7 @@ ___
 
 #### Defined in
 
-[Work/ExternalContact/SchoolClient.ts:166](https://github.com/hpyer/node-easywechat/blob/b017670/src/Work/ExternalContact/SchoolClient.ts#L166)
+[Work/ExternalContact/SchoolClient.ts:166](https://github.com/hpyer/node-easywechat/blob/e4961d7/src/Work/ExternalContact/SchoolClient.ts#L166)
 
 ___
 
@@ -566,7 +566,7 @@ ___
 
 #### Defined in
 
-[Core/BaseClient.ts:76](https://github.com/hpyer/node-easywechat/blob/b017670/src/Core/BaseClient.ts#L76)
+[Core/BaseClient.ts:76](https://github.com/hpyer/node-easywechat/blob/e4961d7/src/Core/BaseClient.ts#L76)
 
 ___
 
@@ -591,7 +591,7 @@ ___
 
 #### Defined in
 
-[Core/BaseClient.ts:85](https://github.com/hpyer/node-easywechat/blob/b017670/src/Core/BaseClient.ts#L85)
+[Core/BaseClient.ts:85](https://github.com/hpyer/node-easywechat/blob/e4961d7/src/Core/BaseClient.ts#L85)
 
 ___
 
@@ -617,7 +617,7 @@ ___
 
 #### Defined in
 
-[Core/BaseClient.ts:94](https://github.com/hpyer/node-easywechat/blob/b017670/src/Core/BaseClient.ts#L94)
+[Core/BaseClient.ts:94](https://github.com/hpyer/node-easywechat/blob/e4961d7/src/Core/BaseClient.ts#L94)
 
 ___
 
@@ -644,7 +644,7 @@ ___
 
 #### Defined in
 
-[Core/BaseClient.ts:51](https://github.com/hpyer/node-easywechat/blob/b017670/src/Core/BaseClient.ts#L51)
+[Core/BaseClient.ts:51](https://github.com/hpyer/node-easywechat/blob/e4961d7/src/Core/BaseClient.ts#L51)
 
 ___
 
@@ -669,7 +669,7 @@ ___
 
 #### Defined in
 
-[Core/BaseClient.ts:35](https://github.com/hpyer/node-easywechat/blob/b017670/src/Core/BaseClient.ts#L35)
+[Core/BaseClient.ts:35](https://github.com/hpyer/node-easywechat/blob/e4961d7/src/Core/BaseClient.ts#L35)
 
 ___
 
@@ -693,7 +693,7 @@ ___
 
 #### Defined in
 
-[Core/BaseClient.ts:104](https://github.com/hpyer/node-easywechat/blob/b017670/src/Core/BaseClient.ts#L104)
+[Core/BaseClient.ts:104](https://github.com/hpyer/node-easywechat/blob/e4961d7/src/Core/BaseClient.ts#L104)
 
 ___
 
@@ -717,7 +717,7 @@ ___
 
 #### Defined in
 
-[Core/BaseClient.ts:23](https://github.com/hpyer/node-easywechat/blob/b017670/src/Core/BaseClient.ts#L23)
+[Core/BaseClient.ts:23](https://github.com/hpyer/node-easywechat/blob/e4961d7/src/Core/BaseClient.ts#L23)
 
 ___
 
@@ -737,7 +737,7 @@ ___
 
 #### Defined in
 
-[Work/ExternalContact/SchoolClient.ts:186](https://github.com/hpyer/node-easywechat/blob/b017670/src/Work/ExternalContact/SchoolClient.ts#L186)
+[Work/ExternalContact/SchoolClient.ts:186](https://github.com/hpyer/node-easywechat/blob/e4961d7/src/Work/ExternalContact/SchoolClient.ts#L186)
 
 ___
 
@@ -757,7 +757,7 @@ ___
 
 #### Defined in
 
-[Work/ExternalContact/SchoolClient.ts:198](https://github.com/hpyer/node-easywechat/blob/b017670/src/Work/ExternalContact/SchoolClient.ts#L198)
+[Work/ExternalContact/SchoolClient.ts:198](https://github.com/hpyer/node-easywechat/blob/e4961d7/src/Work/ExternalContact/SchoolClient.ts#L198)
 
 ___
 
@@ -784,7 +784,7 @@ ___
 
 #### Defined in
 
-[Work/ExternalContact/SchoolClient.ts:23](https://github.com/hpyer/node-easywechat/blob/b017670/src/Work/ExternalContact/SchoolClient.ts#L23)
+[Work/ExternalContact/SchoolClient.ts:23](https://github.com/hpyer/node-easywechat/blob/e4961d7/src/Work/ExternalContact/SchoolClient.ts#L23)
 
 ___
 
@@ -807,7 +807,7 @@ ___
 
 #### Defined in
 
-[Work/ExternalContact/SchoolClient.ts:121](https://github.com/hpyer/node-easywechat/blob/b017670/src/Work/ExternalContact/SchoolClient.ts#L121)
+[Work/ExternalContact/SchoolClient.ts:121](https://github.com/hpyer/node-easywechat/blob/e4961d7/src/Work/ExternalContact/SchoolClient.ts#L121)
 
 ___
 
@@ -830,4 +830,4 @@ ___
 
 #### Defined in
 
-[Work/ExternalContact/SchoolClient.ts:65](https://github.com/hpyer/node-easywechat/blob/b017670/src/Work/ExternalContact/SchoolClient.ts#L65)
+[Work/ExternalContact/SchoolClient.ts:65](https://github.com/hpyer/node-easywechat/blob/e4961d7/src/Work/ExternalContact/SchoolClient.ts#L65)

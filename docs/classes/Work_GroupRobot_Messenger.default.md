@@ -36,7 +36,7 @@
 
 #### Defined in
 
-[Work/GroupRobot/Messenger.ts:14](https://github.com/hpyer/node-easywechat/blob/b017670/src/Work/GroupRobot/Messenger.ts#L14)
+[Work/GroupRobot/Messenger.ts:14](https://github.com/hpyer/node-easywechat/blob/e4961d7/src/Work/GroupRobot/Messenger.ts#L14)
 
 ## Properties
 
@@ -46,7 +46,7 @@
 
 #### Defined in
 
-[Work/GroupRobot/Messenger.ts:10](https://github.com/hpyer/node-easywechat/blob/b017670/src/Work/GroupRobot/Messenger.ts#L10)
+[Work/GroupRobot/Messenger.ts:10](https://github.com/hpyer/node-easywechat/blob/e4961d7/src/Work/GroupRobot/Messenger.ts#L10)
 
 ___
 
@@ -56,7 +56,7 @@ ___
 
 #### Defined in
 
-[Work/GroupRobot/Messenger.ts:12](https://github.com/hpyer/node-easywechat/blob/b017670/src/Work/GroupRobot/Messenger.ts#L12)
+[Work/GroupRobot/Messenger.ts:12](https://github.com/hpyer/node-easywechat/blob/e4961d7/src/Work/GroupRobot/Messenger.ts#L12)
 
 ___
 
@@ -66,7 +66,7 @@ ___
 
 #### Defined in
 
-[Work/GroupRobot/Messenger.ts:8](https://github.com/hpyer/node-easywechat/blob/b017670/src/Work/GroupRobot/Messenger.ts#L8)
+[Work/GroupRobot/Messenger.ts:8](https://github.com/hpyer/node-easywechat/blob/e4961d7/src/Work/GroupRobot/Messenger.ts#L8)
 
 ## Methods
 
@@ -86,7 +86,7 @@ ___
 
 #### Defined in
 
-[Work/GroupRobot/Messenger.ts:41](https://github.com/hpyer/node-easywechat/blob/b017670/src/Work/GroupRobot/Messenger.ts#L41)
+[Work/GroupRobot/Messenger.ts:41](https://github.com/hpyer/node-easywechat/blob/e4961d7/src/Work/GroupRobot/Messenger.ts#L41)
 
 ___
 
@@ -106,7 +106,7 @@ ___
 
 #### Defined in
 
-[Work/GroupRobot/Messenger.ts:19](https://github.com/hpyer/node-easywechat/blob/b017670/src/Work/GroupRobot/Messenger.ts#L19)
+[Work/GroupRobot/Messenger.ts:19](https://github.com/hpyer/node-easywechat/blob/e4961d7/src/Work/GroupRobot/Messenger.ts#L19)
 
 ___
 
@@ -126,4 +126,4 @@ ___
 
 #### Defined in
 
-[Work/GroupRobot/Messenger.ts:34](https://github.com/hpyer/node-easywechat/blob/b017670/src/Work/GroupRobot/Messenger.ts#L34)
+[Work/GroupRobot/Messenger.ts:34](https://github.com/hpyer/node-easywechat/blob/e4961d7/src/Work/GroupRobot/Messenger.ts#L34)

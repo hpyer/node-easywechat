@@ -78,7 +78,7 @@
 
 #### Defined in
 
-[Core/BaseClient.ts:17](https://github.com/hpyer/node-easywechat/blob/b017670/src/Core/BaseClient.ts#L17)
+[Core/BaseClient.ts:17](https://github.com/hpyer/node-easywechat/blob/e4961d7/src/Core/BaseClient.ts#L17)
 
 ## Properties
 
@@ -88,7 +88,7 @@
 
 #### Defined in
 
-[OfficialAccount/Broadcasting/BroadcastingClient.ts:12](https://github.com/hpyer/node-easywechat/blob/b017670/src/OfficialAccount/Broadcasting/BroadcastingClient.ts#L12)
+[OfficialAccount/Broadcasting/BroadcastingClient.ts:12](https://github.com/hpyer/node-easywechat/blob/e4961d7/src/OfficialAccount/Broadcasting/BroadcastingClient.ts#L12)
 
 ___
 
@@ -98,7 +98,7 @@ ___
 
 #### Defined in
 
-[OfficialAccount/Broadcasting/BroadcastingClient.ts:11](https://github.com/hpyer/node-easywechat/blob/b017670/src/OfficialAccount/Broadcasting/BroadcastingClient.ts#L11)
+[OfficialAccount/Broadcasting/BroadcastingClient.ts:11](https://github.com/hpyer/node-easywechat/blob/e4961d7/src/OfficialAccount/Broadcasting/BroadcastingClient.ts#L11)
 
 ___
 
@@ -112,7 +112,7 @@ ___
 
 #### Defined in
 
-[Core/BaseClient.ts:14](https://github.com/hpyer/node-easywechat/blob/b017670/src/Core/BaseClient.ts#L14)
+[Core/BaseClient.ts:14](https://github.com/hpyer/node-easywechat/blob/e4961d7/src/Core/BaseClient.ts#L14)
 
 ___
 
@@ -126,7 +126,7 @@ ___
 
 #### Defined in
 
-[Core/BaseClient.ts:15](https://github.com/hpyer/node-easywechat/blob/b017670/src/Core/BaseClient.ts#L15)
+[Core/BaseClient.ts:15](https://github.com/hpyer/node-easywechat/blob/e4961d7/src/Core/BaseClient.ts#L15)
 
 ## Methods
 
@@ -148,7 +148,7 @@ ___
 
 #### Defined in
 
-[OfficialAccount/Broadcasting/BroadcastingClient.ts:34](https://github.com/hpyer/node-easywechat/blob/b017670/src/OfficialAccount/Broadcasting/BroadcastingClient.ts#L34)
+[OfficialAccount/Broadcasting/BroadcastingClient.ts:34](https://github.com/hpyer/node-easywechat/blob/e4961d7/src/OfficialAccount/Broadcasting/BroadcastingClient.ts#L34)
 
 ___
 
@@ -172,7 +172,7 @@ ___
 
 #### Defined in
 
-[Core/BaseClient.ts:114](https://github.com/hpyer/node-easywechat/blob/b017670/src/Core/BaseClient.ts#L114)
+[Core/BaseClient.ts:114](https://github.com/hpyer/node-easywechat/blob/e4961d7/src/Core/BaseClient.ts#L114)
 
 ___
 
@@ -190,7 +190,7 @@ ___
 
 #### Defined in
 
-[Core/BaseClient.ts:30](https://github.com/hpyer/node-easywechat/blob/b017670/src/Core/BaseClient.ts#L30)
+[Core/BaseClient.ts:30](https://github.com/hpyer/node-easywechat/blob/e4961d7/src/Core/BaseClient.ts#L30)
 
 ___
 
@@ -215,7 +215,7 @@ ___
 
 #### Defined in
 
-[Core/BaseClient.ts:76](https://github.com/hpyer/node-easywechat/blob/b017670/src/Core/BaseClient.ts#L76)
+[Core/BaseClient.ts:76](https://github.com/hpyer/node-easywechat/blob/e4961d7/src/Core/BaseClient.ts#L76)
 
 ___
 
@@ -240,7 +240,7 @@ ___
 
 #### Defined in
 
-[Core/BaseClient.ts:85](https://github.com/hpyer/node-easywechat/blob/b017670/src/Core/BaseClient.ts#L85)
+[Core/BaseClient.ts:85](https://github.com/hpyer/node-easywechat/blob/e4961d7/src/Core/BaseClient.ts#L85)
 
 ___
 
@@ -266,7 +266,7 @@ ___
 
 #### Defined in
 
-[Core/BaseClient.ts:94](https://github.com/hpyer/node-easywechat/blob/b017670/src/Core/BaseClient.ts#L94)
+[Core/BaseClient.ts:94](https://github.com/hpyer/node-easywechat/blob/e4961d7/src/Core/BaseClient.ts#L94)
 
 ___
 
@@ -293,7 +293,7 @@ ___
 
 #### Defined in
 
-[Core/BaseClient.ts:51](https://github.com/hpyer/node-easywechat/blob/b017670/src/Core/BaseClient.ts#L51)
+[Core/BaseClient.ts:51](https://github.com/hpyer/node-easywechat/blob/e4961d7/src/Core/BaseClient.ts#L51)
 
 ___
 
@@ -313,7 +313,7 @@ ___
 
 #### Defined in
 
-[OfficialAccount/Broadcasting/BroadcastingClient.ts:25](https://github.com/hpyer/node-easywechat/blob/b017670/src/OfficialAccount/Broadcasting/BroadcastingClient.ts#L25)
+[OfficialAccount/Broadcasting/BroadcastingClient.ts:25](https://github.com/hpyer/node-easywechat/blob/e4961d7/src/OfficialAccount/Broadcasting/BroadcastingClient.ts#L25)
 
 ___
 
@@ -337,7 +337,7 @@ ___
 
 #### Defined in
 
-[OfficialAccount/Broadcasting/BroadcastingClient.ts:202](https://github.com/hpyer/node-easywechat/blob/b017670/src/OfficialAccount/Broadcasting/BroadcastingClient.ts#L202)
+[OfficialAccount/Broadcasting/BroadcastingClient.ts:202](https://github.com/hpyer/node-easywechat/blob/e4961d7/src/OfficialAccount/Broadcasting/BroadcastingClient.ts#L202)
 
 ___
 
@@ -360,7 +360,7 @@ ___
 
 #### Defined in
 
-[OfficialAccount/Broadcasting/BroadcastingClient.ts:263](https://github.com/hpyer/node-easywechat/blob/b017670/src/OfficialAccount/Broadcasting/BroadcastingClient.ts#L263)
+[OfficialAccount/Broadcasting/BroadcastingClient.ts:263](https://github.com/hpyer/node-easywechat/blob/e4961d7/src/OfficialAccount/Broadcasting/BroadcastingClient.ts#L263)
 
 ___
 
@@ -384,7 +384,7 @@ ___
 
 #### Defined in
 
-[OfficialAccount/Broadcasting/BroadcastingClient.ts:192](https://github.com/hpyer/node-easywechat/blob/b017670/src/OfficialAccount/Broadcasting/BroadcastingClient.ts#L192)
+[OfficialAccount/Broadcasting/BroadcastingClient.ts:192](https://github.com/hpyer/node-easywechat/blob/e4961d7/src/OfficialAccount/Broadcasting/BroadcastingClient.ts#L192)
 
 ___
 
@@ -407,7 +407,7 @@ ___
 
 #### Defined in
 
-[OfficialAccount/Broadcasting/BroadcastingClient.ts:253](https://github.com/hpyer/node-easywechat/blob/b017670/src/OfficialAccount/Broadcasting/BroadcastingClient.ts#L253)
+[OfficialAccount/Broadcasting/BroadcastingClient.ts:253](https://github.com/hpyer/node-easywechat/blob/e4961d7/src/OfficialAccount/Broadcasting/BroadcastingClient.ts#L253)
 
 ___
 
@@ -431,7 +431,7 @@ ___
 
 #### Defined in
 
-[OfficialAccount/Broadcasting/BroadcastingClient.ts:140](https://github.com/hpyer/node-easywechat/blob/b017670/src/OfficialAccount/Broadcasting/BroadcastingClient.ts#L140)
+[OfficialAccount/Broadcasting/BroadcastingClient.ts:140](https://github.com/hpyer/node-easywechat/blob/e4961d7/src/OfficialAccount/Broadcasting/BroadcastingClient.ts#L140)
 
 ___
 
@@ -455,7 +455,7 @@ ___
 
 #### Defined in
 
-[OfficialAccount/Broadcasting/BroadcastingClient.ts:162](https://github.com/hpyer/node-easywechat/blob/b017670/src/OfficialAccount/Broadcasting/BroadcastingClient.ts#L162)
+[OfficialAccount/Broadcasting/BroadcastingClient.ts:162](https://github.com/hpyer/node-easywechat/blob/e4961d7/src/OfficialAccount/Broadcasting/BroadcastingClient.ts#L162)
 
 ___
 
@@ -478,7 +478,7 @@ ___
 
 #### Defined in
 
-[OfficialAccount/Broadcasting/BroadcastingClient.ts:223](https://github.com/hpyer/node-easywechat/blob/b017670/src/OfficialAccount/Broadcasting/BroadcastingClient.ts#L223)
+[OfficialAccount/Broadcasting/BroadcastingClient.ts:223](https://github.com/hpyer/node-easywechat/blob/e4961d7/src/OfficialAccount/Broadcasting/BroadcastingClient.ts#L223)
 
 ___
 
@@ -502,7 +502,7 @@ ___
 
 #### Defined in
 
-[OfficialAccount/Broadcasting/BroadcastingClient.ts:152](https://github.com/hpyer/node-easywechat/blob/b017670/src/OfficialAccount/Broadcasting/BroadcastingClient.ts#L152)
+[OfficialAccount/Broadcasting/BroadcastingClient.ts:152](https://github.com/hpyer/node-easywechat/blob/e4961d7/src/OfficialAccount/Broadcasting/BroadcastingClient.ts#L152)
 
 ___
 
@@ -525,7 +525,7 @@ ___
 
 #### Defined in
 
-[OfficialAccount/Broadcasting/BroadcastingClient.ts:213](https://github.com/hpyer/node-easywechat/blob/b017670/src/OfficialAccount/Broadcasting/BroadcastingClient.ts#L213)
+[OfficialAccount/Broadcasting/BroadcastingClient.ts:213](https://github.com/hpyer/node-easywechat/blob/e4961d7/src/OfficialAccount/Broadcasting/BroadcastingClient.ts#L213)
 
 ___
 
@@ -549,7 +549,7 @@ ___
 
 #### Defined in
 
-[OfficialAccount/Broadcasting/BroadcastingClient.ts:182](https://github.com/hpyer/node-easywechat/blob/b017670/src/OfficialAccount/Broadcasting/BroadcastingClient.ts#L182)
+[OfficialAccount/Broadcasting/BroadcastingClient.ts:182](https://github.com/hpyer/node-easywechat/blob/e4961d7/src/OfficialAccount/Broadcasting/BroadcastingClient.ts#L182)
 
 ___
 
@@ -572,7 +572,7 @@ ___
 
 #### Defined in
 
-[OfficialAccount/Broadcasting/BroadcastingClient.ts:243](https://github.com/hpyer/node-easywechat/blob/b017670/src/OfficialAccount/Broadcasting/BroadcastingClient.ts#L243)
+[OfficialAccount/Broadcasting/BroadcastingClient.ts:243](https://github.com/hpyer/node-easywechat/blob/e4961d7/src/OfficialAccount/Broadcasting/BroadcastingClient.ts#L243)
 
 ___
 
@@ -596,7 +596,7 @@ ___
 
 #### Defined in
 
-[OfficialAccount/Broadcasting/BroadcastingClient.ts:172](https://github.com/hpyer/node-easywechat/blob/b017670/src/OfficialAccount/Broadcasting/BroadcastingClient.ts#L172)
+[OfficialAccount/Broadcasting/BroadcastingClient.ts:172](https://github.com/hpyer/node-easywechat/blob/e4961d7/src/OfficialAccount/Broadcasting/BroadcastingClient.ts#L172)
 
 ___
 
@@ -619,7 +619,7 @@ ___
 
 #### Defined in
 
-[OfficialAccount/Broadcasting/BroadcastingClient.ts:233](https://github.com/hpyer/node-easywechat/blob/b017670/src/OfficialAccount/Broadcasting/BroadcastingClient.ts#L233)
+[OfficialAccount/Broadcasting/BroadcastingClient.ts:233](https://github.com/hpyer/node-easywechat/blob/e4961d7/src/OfficialAccount/Broadcasting/BroadcastingClient.ts#L233)
 
 ___
 
@@ -644,7 +644,7 @@ ___
 
 #### Defined in
 
-[Core/BaseClient.ts:35](https://github.com/hpyer/node-easywechat/blob/b017670/src/Core/BaseClient.ts#L35)
+[Core/BaseClient.ts:35](https://github.com/hpyer/node-easywechat/blob/e4961d7/src/Core/BaseClient.ts#L35)
 
 ___
 
@@ -668,7 +668,7 @@ ___
 
 #### Defined in
 
-[Core/BaseClient.ts:104](https://github.com/hpyer/node-easywechat/blob/b017670/src/Core/BaseClient.ts#L104)
+[Core/BaseClient.ts:104](https://github.com/hpyer/node-easywechat/blob/e4961d7/src/Core/BaseClient.ts#L104)
 
 ___
 
@@ -688,7 +688,7 @@ ___
 
 #### Defined in
 
-[OfficialAccount/Broadcasting/BroadcastingClient.ts:14](https://github.com/hpyer/node-easywechat/blob/b017670/src/OfficialAccount/Broadcasting/BroadcastingClient.ts#L14)
+[OfficialAccount/Broadcasting/BroadcastingClient.ts:14](https://github.com/hpyer/node-easywechat/blob/e4961d7/src/OfficialAccount/Broadcasting/BroadcastingClient.ts#L14)
 
 ___
 
@@ -712,7 +712,7 @@ ___
 
 #### Defined in
 
-[OfficialAccount/Broadcasting/BroadcastingClient.ts:128](https://github.com/hpyer/node-easywechat/blob/b017670/src/OfficialAccount/Broadcasting/BroadcastingClient.ts#L128)
+[OfficialAccount/Broadcasting/BroadcastingClient.ts:128](https://github.com/hpyer/node-easywechat/blob/e4961d7/src/OfficialAccount/Broadcasting/BroadcastingClient.ts#L128)
 
 ___
 
@@ -736,7 +736,7 @@ ___
 
 #### Defined in
 
-[OfficialAccount/Broadcasting/BroadcastingClient.ts:118](https://github.com/hpyer/node-easywechat/blob/b017670/src/OfficialAccount/Broadcasting/BroadcastingClient.ts#L118)
+[OfficialAccount/Broadcasting/BroadcastingClient.ts:118](https://github.com/hpyer/node-easywechat/blob/e4961d7/src/OfficialAccount/Broadcasting/BroadcastingClient.ts#L118)
 
 ___
 
@@ -760,7 +760,7 @@ ___
 
 #### Defined in
 
-[OfficialAccount/Broadcasting/BroadcastingClient.ts:58](https://github.com/hpyer/node-easywechat/blob/b017670/src/OfficialAccount/Broadcasting/BroadcastingClient.ts#L58)
+[OfficialAccount/Broadcasting/BroadcastingClient.ts:58](https://github.com/hpyer/node-easywechat/blob/e4961d7/src/OfficialAccount/Broadcasting/BroadcastingClient.ts#L58)
 
 ___
 
@@ -784,7 +784,7 @@ ___
 
 #### Defined in
 
-[OfficialAccount/Broadcasting/BroadcastingClient.ts:88](https://github.com/hpyer/node-easywechat/blob/b017670/src/OfficialAccount/Broadcasting/BroadcastingClient.ts#L88)
+[OfficialAccount/Broadcasting/BroadcastingClient.ts:88](https://github.com/hpyer/node-easywechat/blob/e4961d7/src/OfficialAccount/Broadcasting/BroadcastingClient.ts#L88)
 
 ___
 
@@ -808,7 +808,7 @@ ___
 
 #### Defined in
 
-[OfficialAccount/Broadcasting/BroadcastingClient.ts:78](https://github.com/hpyer/node-easywechat/blob/b017670/src/OfficialAccount/Broadcasting/BroadcastingClient.ts#L78)
+[OfficialAccount/Broadcasting/BroadcastingClient.ts:78](https://github.com/hpyer/node-easywechat/blob/e4961d7/src/OfficialAccount/Broadcasting/BroadcastingClient.ts#L78)
 
 ___
 
@@ -832,7 +832,7 @@ ___
 
 #### Defined in
 
-[OfficialAccount/Broadcasting/BroadcastingClient.ts:108](https://github.com/hpyer/node-easywechat/blob/b017670/src/OfficialAccount/Broadcasting/BroadcastingClient.ts#L108)
+[OfficialAccount/Broadcasting/BroadcastingClient.ts:108](https://github.com/hpyer/node-easywechat/blob/e4961d7/src/OfficialAccount/Broadcasting/BroadcastingClient.ts#L108)
 
 ___
 
@@ -856,7 +856,7 @@ ___
 
 #### Defined in
 
-[OfficialAccount/Broadcasting/BroadcastingClient.ts:98](https://github.com/hpyer/node-easywechat/blob/b017670/src/OfficialAccount/Broadcasting/BroadcastingClient.ts#L98)
+[OfficialAccount/Broadcasting/BroadcastingClient.ts:98](https://github.com/hpyer/node-easywechat/blob/e4961d7/src/OfficialAccount/Broadcasting/BroadcastingClient.ts#L98)
 
 ___
 
@@ -880,7 +880,7 @@ ___
 
 #### Defined in
 
-[Core/BaseClient.ts:23](https://github.com/hpyer/node-easywechat/blob/b017670/src/Core/BaseClient.ts#L23)
+[Core/BaseClient.ts:23](https://github.com/hpyer/node-easywechat/blob/e4961d7/src/Core/BaseClient.ts#L23)
 
 ___
 
@@ -902,4 +902,4 @@ ___
 
 #### Defined in
 
-[OfficialAccount/Broadcasting/BroadcastingClient.ts:45](https://github.com/hpyer/node-easywechat/blob/b017670/src/OfficialAccount/Broadcasting/BroadcastingClient.ts#L45)
+[OfficialAccount/Broadcasting/BroadcastingClient.ts:45](https://github.com/hpyer/node-easywechat/blob/e4961d7/src/OfficialAccount/Broadcasting/BroadcastingClient.ts#L45)

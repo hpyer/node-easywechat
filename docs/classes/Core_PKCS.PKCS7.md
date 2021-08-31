@@ -42,7 +42,7 @@
 
 #### Defined in
 
-[Core/PKCS.ts:10](https://github.com/hpyer/node-easywechat/blob/b017670/src/Core/PKCS.ts#L10)
+[Core/PKCS.ts:10](https://github.com/hpyer/node-easywechat/blob/e4961d7/src/Core/PKCS.ts#L10)
 
 ___
 
@@ -65,4 +65,4 @@ ___
 
 #### Defined in
 
-[Core/PKCS.ts:32](https://github.com/hpyer/node-easywechat/blob/b017670/src/Core/PKCS.ts#L32)
+[Core/PKCS.ts:32](https://github.com/hpyer/node-easywechat/blob/e4961d7/src/Core/PKCS.ts#L32)

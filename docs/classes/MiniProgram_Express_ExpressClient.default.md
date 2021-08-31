@@ -61,7 +61,7 @@
 
 #### Defined in
 
-[Core/BaseClient.ts:17](https://github.com/hpyer/node-easywechat/blob/b017670/src/Core/BaseClient.ts#L17)
+[Core/BaseClient.ts:17](https://github.com/hpyer/node-easywechat/blob/e4961d7/src/Core/BaseClient.ts#L17)
 
 ## Properties
 
@@ -75,7 +75,7 @@
 
 #### Defined in
 
-[Core/BaseClient.ts:14](https://github.com/hpyer/node-easywechat/blob/b017670/src/Core/BaseClient.ts#L14)
+[Core/BaseClient.ts:14](https://github.com/hpyer/node-easywechat/blob/e4961d7/src/Core/BaseClient.ts#L14)
 
 ___
 
@@ -89,7 +89,7 @@ ___
 
 #### Defined in
 
-[Core/BaseClient.ts:15](https://github.com/hpyer/node-easywechat/blob/b017670/src/Core/BaseClient.ts#L15)
+[Core/BaseClient.ts:15](https://github.com/hpyer/node-easywechat/blob/e4961d7/src/Core/BaseClient.ts#L15)
 
 ## Methods
 
@@ -111,7 +111,7 @@ ___
 
 #### Defined in
 
-[MiniProgram/Express/ExpressClient.ts:77](https://github.com/hpyer/node-easywechat/blob/b017670/src/MiniProgram/Express/ExpressClient.ts#L77)
+[MiniProgram/Express/ExpressClient.ts:77](https://github.com/hpyer/node-easywechat/blob/e4961d7/src/MiniProgram/Express/ExpressClient.ts#L77)
 
 ___
 
@@ -133,7 +133,7 @@ ___
 
 #### Defined in
 
-[MiniProgram/Express/ExpressClient.ts:28](https://github.com/hpyer/node-easywechat/blob/b017670/src/MiniProgram/Express/ExpressClient.ts#L28)
+[MiniProgram/Express/ExpressClient.ts:28](https://github.com/hpyer/node-easywechat/blob/e4961d7/src/MiniProgram/Express/ExpressClient.ts#L28)
 
 ___
 
@@ -155,7 +155,7 @@ ___
 
 #### Defined in
 
-[MiniProgram/Express/ExpressClient.ts:37](https://github.com/hpyer/node-easywechat/blob/b017670/src/MiniProgram/Express/ExpressClient.ts#L37)
+[MiniProgram/Express/ExpressClient.ts:37](https://github.com/hpyer/node-easywechat/blob/e4961d7/src/MiniProgram/Express/ExpressClient.ts#L37)
 
 ___
 
@@ -179,7 +179,7 @@ ___
 
 #### Defined in
 
-[Core/BaseClient.ts:114](https://github.com/hpyer/node-easywechat/blob/b017670/src/Core/BaseClient.ts#L114)
+[Core/BaseClient.ts:114](https://github.com/hpyer/node-easywechat/blob/e4961d7/src/Core/BaseClient.ts#L114)
 
 ___
 
@@ -197,7 +197,7 @@ ___
 
 #### Defined in
 
-[Core/BaseClient.ts:30](https://github.com/hpyer/node-easywechat/blob/b017670/src/Core/BaseClient.ts#L30)
+[Core/BaseClient.ts:30](https://github.com/hpyer/node-easywechat/blob/e4961d7/src/Core/BaseClient.ts#L30)
 
 ___
 
@@ -213,7 +213,7 @@ ___
 
 #### Defined in
 
-[MiniProgram/Express/ExpressClient.ts:19](https://github.com/hpyer/node-easywechat/blob/b017670/src/MiniProgram/Express/ExpressClient.ts#L19)
+[MiniProgram/Express/ExpressClient.ts:19](https://github.com/hpyer/node-easywechat/blob/e4961d7/src/MiniProgram/Express/ExpressClient.ts#L19)
 
 ___
 
@@ -236,7 +236,7 @@ ___
 
 #### Defined in
 
-[MiniProgram/Express/ExpressClient.ts:65](https://github.com/hpyer/node-easywechat/blob/b017670/src/MiniProgram/Express/ExpressClient.ts#L65)
+[MiniProgram/Express/ExpressClient.ts:65](https://github.com/hpyer/node-easywechat/blob/e4961d7/src/MiniProgram/Express/ExpressClient.ts#L65)
 
 ___
 
@@ -258,7 +258,7 @@ ___
 
 #### Defined in
 
-[MiniProgram/Express/ExpressClient.ts:46](https://github.com/hpyer/node-easywechat/blob/b017670/src/MiniProgram/Express/ExpressClient.ts#L46)
+[MiniProgram/Express/ExpressClient.ts:46](https://github.com/hpyer/node-easywechat/blob/e4961d7/src/MiniProgram/Express/ExpressClient.ts#L46)
 
 ___
 
@@ -280,7 +280,7 @@ ___
 
 #### Defined in
 
-[MiniProgram/Express/ExpressClient.ts:55](https://github.com/hpyer/node-easywechat/blob/b017670/src/MiniProgram/Express/ExpressClient.ts#L55)
+[MiniProgram/Express/ExpressClient.ts:55](https://github.com/hpyer/node-easywechat/blob/e4961d7/src/MiniProgram/Express/ExpressClient.ts#L55)
 
 ___
 
@@ -305,7 +305,7 @@ ___
 
 #### Defined in
 
-[Core/BaseClient.ts:76](https://github.com/hpyer/node-easywechat/blob/b017670/src/Core/BaseClient.ts#L76)
+[Core/BaseClient.ts:76](https://github.com/hpyer/node-easywechat/blob/e4961d7/src/Core/BaseClient.ts#L76)
 
 ___
 
@@ -330,7 +330,7 @@ ___
 
 #### Defined in
 
-[Core/BaseClient.ts:85](https://github.com/hpyer/node-easywechat/blob/b017670/src/Core/BaseClient.ts#L85)
+[Core/BaseClient.ts:85](https://github.com/hpyer/node-easywechat/blob/e4961d7/src/Core/BaseClient.ts#L85)
 
 ___
 
@@ -356,7 +356,7 @@ ___
 
 #### Defined in
 
-[Core/BaseClient.ts:94](https://github.com/hpyer/node-easywechat/blob/b017670/src/Core/BaseClient.ts#L94)
+[Core/BaseClient.ts:94](https://github.com/hpyer/node-easywechat/blob/e4961d7/src/Core/BaseClient.ts#L94)
 
 ___
 
@@ -383,7 +383,7 @@ ___
 
 #### Defined in
 
-[Core/BaseClient.ts:51](https://github.com/hpyer/node-easywechat/blob/b017670/src/Core/BaseClient.ts#L51)
+[Core/BaseClient.ts:51](https://github.com/hpyer/node-easywechat/blob/e4961d7/src/Core/BaseClient.ts#L51)
 
 ___
 
@@ -399,7 +399,7 @@ ___
 
 #### Defined in
 
-[MiniProgram/Express/ExpressClient.ts:11](https://github.com/hpyer/node-easywechat/blob/b017670/src/MiniProgram/Express/ExpressClient.ts#L11)
+[MiniProgram/Express/ExpressClient.ts:11](https://github.com/hpyer/node-easywechat/blob/e4961d7/src/MiniProgram/Express/ExpressClient.ts#L11)
 
 ___
 
@@ -424,7 +424,7 @@ ___
 
 #### Defined in
 
-[Core/BaseClient.ts:35](https://github.com/hpyer/node-easywechat/blob/b017670/src/Core/BaseClient.ts#L35)
+[Core/BaseClient.ts:35](https://github.com/hpyer/node-easywechat/blob/e4961d7/src/Core/BaseClient.ts#L35)
 
 ___
 
@@ -448,7 +448,7 @@ ___
 
 #### Defined in
 
-[Core/BaseClient.ts:104](https://github.com/hpyer/node-easywechat/blob/b017670/src/Core/BaseClient.ts#L104)
+[Core/BaseClient.ts:104](https://github.com/hpyer/node-easywechat/blob/e4961d7/src/Core/BaseClient.ts#L104)
 
 ___
 
@@ -472,7 +472,7 @@ ___
 
 #### Defined in
 
-[Core/BaseClient.ts:23](https://github.com/hpyer/node-easywechat/blob/b017670/src/Core/BaseClient.ts#L23)
+[Core/BaseClient.ts:23](https://github.com/hpyer/node-easywechat/blob/e4961d7/src/Core/BaseClient.ts#L23)
 
 ___
 
@@ -494,4 +494,4 @@ ___
 
 #### Defined in
 
-[MiniProgram/Express/ExpressClient.ts:89](https://github.com/hpyer/node-easywechat/blob/b017670/src/MiniProgram/Express/ExpressClient.ts#L89)
+[MiniProgram/Express/ExpressClient.ts:89](https://github.com/hpyer/node-easywechat/blob/e4961d7/src/MiniProgram/Express/ExpressClient.ts#L89)

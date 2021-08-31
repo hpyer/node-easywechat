@@ -72,7 +72,7 @@
 
 #### Defined in
 
-[Core/BaseClient.ts:17](https://github.com/hpyer/node-easywechat/blob/b017670/src/Core/BaseClient.ts#L17)
+[Core/BaseClient.ts:17](https://github.com/hpyer/node-easywechat/blob/e4961d7/src/Core/BaseClient.ts#L17)
 
 ## Properties
 
@@ -86,7 +86,7 @@
 
 #### Defined in
 
-[Core/BaseClient.ts:14](https://github.com/hpyer/node-easywechat/blob/b017670/src/Core/BaseClient.ts#L14)
+[Core/BaseClient.ts:14](https://github.com/hpyer/node-easywechat/blob/e4961d7/src/Core/BaseClient.ts#L14)
 
 ___
 
@@ -100,7 +100,7 @@ ___
 
 #### Defined in
 
-[Core/BaseClient.ts:15](https://github.com/hpyer/node-easywechat/blob/b017670/src/Core/BaseClient.ts#L15)
+[Core/BaseClient.ts:15](https://github.com/hpyer/node-easywechat/blob/e4961d7/src/Core/BaseClient.ts#L15)
 
 ## Methods
 
@@ -120,7 +120,7 @@ ___
 
 #### Defined in
 
-[Work/ExternalContact/Client.ts:134](https://github.com/hpyer/node-easywechat/blob/b017670/src/Work/ExternalContact/Client.ts#L134)
+[Work/ExternalContact/Client.ts:134](https://github.com/hpyer/node-easywechat/blob/e4961d7/src/Work/ExternalContact/Client.ts#L134)
 
 ___
 
@@ -142,7 +142,7 @@ ___
 
 #### Defined in
 
-[Work/ExternalContact/Client.ts:27](https://github.com/hpyer/node-easywechat/blob/b017670/src/Work/ExternalContact/Client.ts#L27)
+[Work/ExternalContact/Client.ts:27](https://github.com/hpyer/node-easywechat/blob/e4961d7/src/Work/ExternalContact/Client.ts#L27)
 
 ___
 
@@ -164,7 +164,7 @@ ___
 
 #### Defined in
 
-[Work/ExternalContact/Client.ts:36](https://github.com/hpyer/node-easywechat/blob/b017670/src/Work/ExternalContact/Client.ts#L36)
+[Work/ExternalContact/Client.ts:36](https://github.com/hpyer/node-easywechat/blob/e4961d7/src/Work/ExternalContact/Client.ts#L36)
 
 ___
 
@@ -185,7 +185,7 @@ ___
 
 #### Defined in
 
-[Work/ExternalContact/Client.ts:153](https://github.com/hpyer/node-easywechat/blob/b017670/src/Work/ExternalContact/Client.ts#L153)
+[Work/ExternalContact/Client.ts:153](https://github.com/hpyer/node-easywechat/blob/e4961d7/src/Work/ExternalContact/Client.ts#L153)
 
 ___
 
@@ -209,7 +209,7 @@ ___
 
 #### Defined in
 
-[Core/BaseClient.ts:114](https://github.com/hpyer/node-easywechat/blob/b017670/src/Core/BaseClient.ts#L114)
+[Core/BaseClient.ts:114](https://github.com/hpyer/node-easywechat/blob/e4961d7/src/Core/BaseClient.ts#L114)
 
 ___
 
@@ -229,7 +229,7 @@ ___
 
 #### Defined in
 
-[Work/ExternalContact/Client.ts:20](https://github.com/hpyer/node-easywechat/blob/b017670/src/Work/ExternalContact/Client.ts#L20)
+[Work/ExternalContact/Client.ts:20](https://github.com/hpyer/node-easywechat/blob/e4961d7/src/Work/ExternalContact/Client.ts#L20)
 
 ___
 
@@ -247,7 +247,7 @@ ___
 
 #### Defined in
 
-[Core/BaseClient.ts:30](https://github.com/hpyer/node-easywechat/blob/b017670/src/Core/BaseClient.ts#L30)
+[Core/BaseClient.ts:30](https://github.com/hpyer/node-easywechat/blob/e4961d7/src/Core/BaseClient.ts#L30)
 
 ___
 
@@ -268,7 +268,7 @@ ___
 
 #### Defined in
 
-[Work/ExternalContact/Client.ts:126](https://github.com/hpyer/node-easywechat/blob/b017670/src/Work/ExternalContact/Client.ts#L126)
+[Work/ExternalContact/Client.ts:126](https://github.com/hpyer/node-easywechat/blob/e4961d7/src/Work/ExternalContact/Client.ts#L126)
 
 ___
 
@@ -282,7 +282,7 @@ ___
 
 #### Defined in
 
-[Work/ExternalContact/Client.ts:8](https://github.com/hpyer/node-easywechat/blob/b017670/src/Work/ExternalContact/Client.ts#L8)
+[Work/ExternalContact/Client.ts:8](https://github.com/hpyer/node-easywechat/blob/e4961d7/src/Work/ExternalContact/Client.ts#L8)
 
 ___
 
@@ -302,7 +302,7 @@ ___
 
 #### Defined in
 
-[Work/ExternalContact/Client.ts:119](https://github.com/hpyer/node-easywechat/blob/b017670/src/Work/ExternalContact/Client.ts#L119)
+[Work/ExternalContact/Client.ts:119](https://github.com/hpyer/node-easywechat/blob/e4961d7/src/Work/ExternalContact/Client.ts#L119)
 
 ___
 
@@ -322,7 +322,7 @@ ___
 
 #### Defined in
 
-[Work/ExternalContact/Client.ts:114](https://github.com/hpyer/node-easywechat/blob/b017670/src/Work/ExternalContact/Client.ts#L114)
+[Work/ExternalContact/Client.ts:114](https://github.com/hpyer/node-easywechat/blob/e4961d7/src/Work/ExternalContact/Client.ts#L114)
 
 ___
 
@@ -344,7 +344,7 @@ ___
 
 #### Defined in
 
-[Work/ExternalContact/Client.ts:105](https://github.com/hpyer/node-easywechat/blob/b017670/src/Work/ExternalContact/Client.ts#L105)
+[Work/ExternalContact/Client.ts:105](https://github.com/hpyer/node-easywechat/blob/e4961d7/src/Work/ExternalContact/Client.ts#L105)
 
 ___
 
@@ -366,7 +366,7 @@ ___
 
 #### Defined in
 
-[Work/ExternalContact/Client.ts:50](https://github.com/hpyer/node-easywechat/blob/b017670/src/Work/ExternalContact/Client.ts#L50)
+[Work/ExternalContact/Client.ts:50](https://github.com/hpyer/node-easywechat/blob/e4961d7/src/Work/ExternalContact/Client.ts#L50)
 
 ___
 
@@ -391,7 +391,7 @@ ___
 
 #### Defined in
 
-[Core/BaseClient.ts:76](https://github.com/hpyer/node-easywechat/blob/b017670/src/Core/BaseClient.ts#L76)
+[Core/BaseClient.ts:76](https://github.com/hpyer/node-easywechat/blob/e4961d7/src/Core/BaseClient.ts#L76)
 
 ___
 
@@ -416,7 +416,7 @@ ___
 
 #### Defined in
 
-[Core/BaseClient.ts:85](https://github.com/hpyer/node-easywechat/blob/b017670/src/Core/BaseClient.ts#L85)
+[Core/BaseClient.ts:85](https://github.com/hpyer/node-easywechat/blob/e4961d7/src/Core/BaseClient.ts#L85)
 
 ___
 
@@ -442,7 +442,7 @@ ___
 
 #### Defined in
 
-[Core/BaseClient.ts:94](https://github.com/hpyer/node-easywechat/blob/b017670/src/Core/BaseClient.ts#L94)
+[Core/BaseClient.ts:94](https://github.com/hpyer/node-easywechat/blob/e4961d7/src/Core/BaseClient.ts#L94)
 
 ___
 
@@ -469,7 +469,7 @@ ___
 
 #### Defined in
 
-[Core/BaseClient.ts:51](https://github.com/hpyer/node-easywechat/blob/b017670/src/Core/BaseClient.ts#L51)
+[Core/BaseClient.ts:51](https://github.com/hpyer/node-easywechat/blob/e4961d7/src/Core/BaseClient.ts#L51)
 
 ___
 
@@ -489,7 +489,7 @@ ___
 
 #### Defined in
 
-[Work/ExternalContact/Client.ts:13](https://github.com/hpyer/node-easywechat/blob/b017670/src/Work/ExternalContact/Client.ts#L13)
+[Work/ExternalContact/Client.ts:13](https://github.com/hpyer/node-easywechat/blob/e4961d7/src/Work/ExternalContact/Client.ts#L13)
 
 ___
 
@@ -509,7 +509,7 @@ ___
 
 #### Defined in
 
-[Work/ExternalContact/Client.ts:161](https://github.com/hpyer/node-easywechat/blob/b017670/src/Work/ExternalContact/Client.ts#L161)
+[Work/ExternalContact/Client.ts:161](https://github.com/hpyer/node-easywechat/blob/e4961d7/src/Work/ExternalContact/Client.ts#L161)
 
 ___
 
@@ -529,7 +529,7 @@ ___
 
 #### Defined in
 
-[Work/ExternalContact/Client.ts:45](https://github.com/hpyer/node-easywechat/blob/b017670/src/Work/ExternalContact/Client.ts#L45)
+[Work/ExternalContact/Client.ts:45](https://github.com/hpyer/node-easywechat/blob/e4961d7/src/Work/ExternalContact/Client.ts#L45)
 
 ___
 
@@ -554,7 +554,7 @@ ___
 
 #### Defined in
 
-[Core/BaseClient.ts:35](https://github.com/hpyer/node-easywechat/blob/b017670/src/Core/BaseClient.ts#L35)
+[Core/BaseClient.ts:35](https://github.com/hpyer/node-easywechat/blob/e4961d7/src/Core/BaseClient.ts#L35)
 
 ___
 
@@ -578,7 +578,7 @@ ___
 
 #### Defined in
 
-[Core/BaseClient.ts:104](https://github.com/hpyer/node-easywechat/blob/b017670/src/Core/BaseClient.ts#L104)
+[Core/BaseClient.ts:104](https://github.com/hpyer/node-easywechat/blob/e4961d7/src/Core/BaseClient.ts#L104)
 
 ___
 
@@ -600,7 +600,7 @@ ___
 
 #### Defined in
 
-[Work/ExternalContact/Client.ts:79](https://github.com/hpyer/node-easywechat/blob/b017670/src/Work/ExternalContact/Client.ts#L79)
+[Work/ExternalContact/Client.ts:79](https://github.com/hpyer/node-easywechat/blob/e4961d7/src/Work/ExternalContact/Client.ts#L79)
 
 ___
 
@@ -624,7 +624,7 @@ ___
 
 #### Defined in
 
-[Core/BaseClient.ts:23](https://github.com/hpyer/node-easywechat/blob/b017670/src/Core/BaseClient.ts#L23)
+[Core/BaseClient.ts:23](https://github.com/hpyer/node-easywechat/blob/e4961d7/src/Core/BaseClient.ts#L23)
 
 ___
 
@@ -647,7 +647,7 @@ ___
 
 #### Defined in
 
-[Work/ExternalContact/Client.ts:59](https://github.com/hpyer/node-easywechat/blob/b017670/src/Work/ExternalContact/Client.ts#L59)
+[Work/ExternalContact/Client.ts:59](https://github.com/hpyer/node-easywechat/blob/e4961d7/src/Work/ExternalContact/Client.ts#L59)
 
 ___
 
@@ -670,7 +670,7 @@ ___
 
 #### Defined in
 
-[Work/ExternalContact/Client.ts:69](https://github.com/hpyer/node-easywechat/blob/b017670/src/Work/ExternalContact/Client.ts#L69)
+[Work/ExternalContact/Client.ts:69](https://github.com/hpyer/node-easywechat/blob/e4961d7/src/Work/ExternalContact/Client.ts#L69)
 
 ___
 
@@ -691,7 +691,7 @@ ___
 
 #### Defined in
 
-[Work/ExternalContact/Client.ts:88](https://github.com/hpyer/node-easywechat/blob/b017670/src/Work/ExternalContact/Client.ts#L88)
+[Work/ExternalContact/Client.ts:88](https://github.com/hpyer/node-easywechat/blob/e4961d7/src/Work/ExternalContact/Client.ts#L88)
 
 ___
 
@@ -713,7 +713,7 @@ ___
 
 #### Defined in
 
-[Work/ExternalContact/Client.ts:96](https://github.com/hpyer/node-easywechat/blob/b017670/src/Work/ExternalContact/Client.ts#L96)
+[Work/ExternalContact/Client.ts:96](https://github.com/hpyer/node-easywechat/blob/e4961d7/src/Work/ExternalContact/Client.ts#L96)
 
 ___
 
@@ -735,4 +735,4 @@ ___
 
 #### Defined in
 
-[Work/ExternalContact/Client.ts:139](https://github.com/hpyer/node-easywechat/blob/b017670/src/Work/ExternalContact/Client.ts#L139)
+[Work/ExternalContact/Client.ts:139](https://github.com/hpyer/node-easywechat/blob/e4961d7/src/Work/ExternalContact/Client.ts#L139)
