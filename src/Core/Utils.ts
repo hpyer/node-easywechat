@@ -3,6 +3,8 @@
 import Crypto from 'crypto';
 import Qs from 'qs';
 import Xml2js from 'xml2js';
+import Stream from 'stream';
+import Fs from 'fs';
 
 export const merge = (target: any, source: any): any => {
   if (isObject(source)) {
@@ -42,6 +44,31 @@ export const createHmac = function (str: string, key: string, type: string = 'sh
 {
   return Crypto.createHmac(type, key).update(str).digest('hex');
 };
+
+/**
+ * 计算文件的 md5 值
+ * @param path 文件路径或文件可读流
+ */
+export const md5File = function (path: string | Stream.Readable): Promise<string> {
+  return new Promise((reslove, reject) => {
+    let stream;
+    if (isString(path)) {
+      stream = Fs.createReadStream(path as string);
+    }
+    else {
+      stream = new Stream.PassThrough();
+      (path as Stream.Readable).pipe(stream);
+    }
+    let md5sum = Crypto.createHash('md5');
+    stream.on('data', function (chunk) {
+      md5sum.update(chunk);
+    });
+    stream.on('end', function () {
+      let str = md5sum.digest('hex').toUpperCase();
+      reslove(str);
+    });
+  });
+}
 
 export const getTimestamp = function (datetime: string = null): number
 {

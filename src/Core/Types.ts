@@ -92,7 +92,7 @@ export declare interface EasyWechatConfig {
 
   /**
    * 微信支付签名密钥
-   * @scope Payment
+   * @scope Payment | MicroMerchant
    */
   key?: string;
 
@@ -104,19 +104,19 @@ export declare interface EasyWechatConfig {
 
   /**
    * 商户号
-   * @scope Payment
+   * @scope Payment | MicroMerchant
    */
   mch_id?: string;
 
   /**
    * 子商户号
-   * @scope Payment
+   * @scope Payment | MicroMerchant
    */
   sub_mch_id?: string;
 
   /**
    * pfx 证书路径（敏感接口（如退款、发送红包等）需要）
-   * @scope Payment
+   * @scope Payment | MicroMerchant
    */
   cert_path?: string;
 
@@ -142,6 +142,30 @@ export declare interface EasyWechatConfig {
    * @scope Payment
    */
   sandbox?: boolean;
+
+  /**
+   * 获取证书接口获取到的平台证书序列号
+   * @scope MicroMerchant
+   */
+  serial_no?: string;
+
+  /**
+   * 获取证书接口获取到的证书内容
+   * @scope MicroMerchant
+   */
+  certificate?: string;
+
+  /**
+   * 服务商的公众账号 ID
+   * @scope MicroMerchant
+   */
+  appid?: string;
+
+  /**
+   * APIv3 密钥
+   * @scope MicroMerchant
+   */
+  apiv3_key?: string;
 
 
   /**

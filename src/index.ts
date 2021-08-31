@@ -7,6 +7,7 @@ import MiniProgram from './MiniProgram/Application';
 import OpenPlatform from './OpenPlatform/Application';
 import Payment from './Payment/Application';
 import Work from './Work/Application';
+import MicroMerchant from './MicroMerchant/Application';
 import CacheInterface from './Core/Contracts/CacheInterface';
 import FinallResult from './Core/Decorators/FinallResult';
 import TerminateResult from './Core/Decorators/TerminateResult';
@@ -27,7 +28,8 @@ function getInstance(service: 'MiniProgram', config ?: EasyWechatConfig): MiniPr
 function getInstance(service: 'OpenPlatform', config ?: EasyWechatConfig): OpenPlatform;
 function getInstance(service: 'Payment', config?: EasyWechatConfig): Payment;
 function getInstance(service: 'Work', config?: EasyWechatConfig): Work;
-function getInstance(service: 'OfficialAccount' | 'BaseService' | 'MiniProgram' | 'OpenPlatform' | 'Payment' | 'Work', config ?: EasyWechatConfig) {
+function getInstance(service: 'MicroMerchant', config?: EasyWechatConfig): MicroMerchant;
+function getInstance(service: 'OfficialAccount' | 'BaseService' | 'MiniProgram' | 'OpenPlatform' | 'Payment' | 'Work' | 'MicroMerchant', config ?: EasyWechatConfig) {
   try {
     let s = strStudly(service);
     let applicationClass = this[s];
@@ -67,6 +69,10 @@ class EasyWechat {
      * 企业微信类
      */
     Work: typeof Work;
+    /**
+     * 小微商户类
+     */
+    MicroMerchant: typeof MicroMerchant;
 
 
     /**
@@ -122,6 +128,7 @@ class EasyWechat {
       OpenPlatform: OpenPlatform,
       Payment: Payment,
       Work: Work,
+      MicroMerchant: MicroMerchant,
       getInstance: getInstance,
     };
 
