@@ -20,7 +20,7 @@ class TestUnit extends BaseClientTest {
   }
 }
 
-new TestUnit('Work', 'oauth', {
+new TestUnit('Work', 'constuctor', {
   corp_id: 'abc@123',
   agent_id: '100000',
   secret: '123456',
