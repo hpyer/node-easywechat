@@ -29,8 +29,6 @@
 - [decryptData](MiniProgram_Encryptor.default.md#decryptdata)
 - [encrypt](MiniProgram_Encryptor.default.md#encrypt)
 - [getToken](MiniProgram_Encryptor.default.md#gettoken)
-- [pkcs7Pad](MiniProgram_Encryptor.default.md#pkcs7pad)
-- [pkcs7Unpad](MiniProgram_Encryptor.default.md#pkcs7unpad)
 - [signature](MiniProgram_Encryptor.default.md#signature)
 
 ## Constructors
@@ -53,7 +51,7 @@
 
 #### Defined in
 
-[Core/Encryptor.ts:13](https://github.com/hpyer/node-easywechat/blob/3eacadb/src/Core/Encryptor.ts#L13)
+[Core/Encryptor.ts:15](https://github.com/hpyer/node-easywechat/blob/b017670/src/Core/Encryptor.ts#L15)
 
 ## Properties
 
@@ -67,7 +65,7 @@
 
 #### Defined in
 
-[Core/Encryptor.ts:10](https://github.com/hpyer/node-easywechat/blob/3eacadb/src/Core/Encryptor.ts#L10)
+[Core/Encryptor.ts:12](https://github.com/hpyer/node-easywechat/blob/b017670/src/Core/Encryptor.ts#L12)
 
 ___
 
@@ -81,7 +79,7 @@ ___
 
 #### Defined in
 
-[Core/Encryptor.ts:8](https://github.com/hpyer/node-easywechat/blob/3eacadb/src/Core/Encryptor.ts#L8)
+[Core/Encryptor.ts:10](https://github.com/hpyer/node-easywechat/blob/b017670/src/Core/Encryptor.ts#L10)
 
 ___
 
@@ -95,7 +93,7 @@ ___
 
 #### Defined in
 
-[Core/Encryptor.ts:11](https://github.com/hpyer/node-easywechat/blob/3eacadb/src/Core/Encryptor.ts#L11)
+[Core/Encryptor.ts:13](https://github.com/hpyer/node-easywechat/blob/b017670/src/Core/Encryptor.ts#L13)
 
 ___
 
@@ -109,7 +107,7 @@ ___
 
 #### Defined in
 
-[Core/Encryptor.ts:9](https://github.com/hpyer/node-easywechat/blob/3eacadb/src/Core/Encryptor.ts#L9)
+[Core/Encryptor.ts:11](https://github.com/hpyer/node-easywechat/blob/b017670/src/Core/Encryptor.ts#L11)
 
 ## Methods
 
@@ -121,10 +119,10 @@ ___
 
 | Name | Type |
 | :------ | :------ |
-| `text` | `any` |
-| `msgSignature` | `any` |
-| `nonce` | `any` |
-| `timestamp` | `any` |
+| `text` | `string` |
+| `msgSignature` | `string` |
+| `nonce` | `string` |
+| `timestamp` | `number` |
 
 #### Returns
 
@@ -136,7 +134,7 @@ ___
 
 #### Defined in
 
-[Core/Encryptor.ts:66](https://github.com/hpyer/node-easywechat/blob/3eacadb/src/Core/Encryptor.ts#L66)
+[Core/Encryptor.ts:65](https://github.com/hpyer/node-easywechat/blob/b017670/src/Core/Encryptor.ts#L65)
 
 ___
 
@@ -158,25 +156,25 @@ ___
 
 #### Defined in
 
-[MiniProgram/Encryptor.ts:9](https://github.com/hpyer/node-easywechat/blob/3eacadb/src/MiniProgram/Encryptor.ts#L9)
+[MiniProgram/Encryptor.ts:9](https://github.com/hpyer/node-easywechat/blob/b017670/src/MiniProgram/Encryptor.ts#L9)
 
 ___
 
 ### encrypt
 
-▸ **encrypt**(`text`, `nonce?`, `timestamp?`): `object`
+▸ **encrypt**(`text`, `nonce?`, `timestamp?`): `string`
 
 #### Parameters
 
 | Name | Type | Default value |
 | :------ | :------ | :------ |
-| `text` | `any` | `undefined` |
-| `nonce` | `any` | `null` |
-| `timestamp` | `any` | `null` |
+| `text` | `string` | `undefined` |
+| `nonce` | `string` | `null` |
+| `timestamp` | `number` | `null` |
 
 #### Returns
 
-`object`
+`string`
 
 #### Inherited from
 
@@ -184,7 +182,7 @@ ___
 
 #### Defined in
 
-[Core/Encryptor.ts:33](https://github.com/hpyer/node-easywechat/blob/3eacadb/src/Core/Encryptor.ts#L33)
+[Core/Encryptor.ts:33](https://github.com/hpyer/node-easywechat/blob/b017670/src/Core/Encryptor.ts#L33)
 
 ___
 
@@ -202,60 +200,7 @@ ___
 
 #### Defined in
 
-[Core/Encryptor.ts:20](https://github.com/hpyer/node-easywechat/blob/3eacadb/src/Core/Encryptor.ts#L20)
-
-___
-
-### pkcs7Pad
-
-▸ **pkcs7Pad**(`text`, `blockSize`): `Buffer`
-
-对需要加密的明文进行填充补位
-
-#### Parameters
-
-| Name | Type | Description |
-| :------ | :------ | :------ |
-| `text` | `Buffer` | 需要进行填充补位操作的明文 |
-| `blockSize` | `number` | - |
-
-#### Returns
-
-`Buffer`
-
-#### Inherited from
-
-[default](Core_Encryptor.default.md).[pkcs7Pad](Core_Encryptor.default.md#pkcs7pad)
-
-#### Defined in
-
-[Core/Encryptor.ts:109](https://github.com/hpyer/node-easywechat/blob/3eacadb/src/Core/Encryptor.ts#L109)
-
-___
-
-### pkcs7Unpad
-
-▸ **pkcs7Unpad**(`text`): `Buffer`
-
-删除解密后明文的补位字符
-
-#### Parameters
-
-| Name | Type | Description |
-| :------ | :------ | :------ |
-| `text` | `Buffer` | 解密后的明文 |
-
-#### Returns
-
-`Buffer`
-
-#### Inherited from
-
-[default](Core_Encryptor.default.md).[pkcs7Unpad](Core_Encryptor.default.md#pkcs7unpad)
-
-#### Defined in
-
-[Core/Encryptor.ts:93](https://github.com/hpyer/node-easywechat/blob/3eacadb/src/Core/Encryptor.ts#L93)
+[Core/Encryptor.ts:22](https://github.com/hpyer/node-easywechat/blob/b017670/src/Core/Encryptor.ts#L22)
 
 ___
 
@@ -279,4 +224,4 @@ ___
 
 #### Defined in
 
-[Core/Encryptor.ts:25](https://github.com/hpyer/node-easywechat/blob/3eacadb/src/Core/Encryptor.ts#L25)
+[Core/Encryptor.ts:27](https://github.com/hpyer/node-easywechat/blob/b017670/src/Core/Encryptor.ts#L27)

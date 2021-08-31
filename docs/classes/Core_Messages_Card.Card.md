@@ -84,7 +84,7 @@
 
 #### Defined in
 
-[Core/Messages/Card.ts:13](https://github.com/hpyer/node-easywechat/blob/3eacadb/src/Core/Messages/Card.ts#L13)
+[Core/Messages/Card.ts:13](https://github.com/hpyer/node-easywechat/blob/b017670/src/Core/Messages/Card.ts#L13)
 
 ## Properties
 
@@ -98,7 +98,7 @@
 
 #### Defined in
 
-[Core/Messages/Message.ts:113](https://github.com/hpyer/node-easywechat/blob/3eacadb/src/Core/Messages/Message.ts#L113)
+[Core/Messages/Message.ts:104](https://github.com/hpyer/node-easywechat/blob/b017670/src/Core/Messages/Message.ts#L104)
 
 ___
 
@@ -112,7 +112,7 @@ ___
 
 #### Defined in
 
-[Core/Messages/Message.ts:32](https://github.com/hpyer/node-easywechat/blob/3eacadb/src/Core/Messages/Message.ts#L32)
+[Core/Messages/Message.ts:31](https://github.com/hpyer/node-easywechat/blob/b017670/src/Core/Messages/Message.ts#L31)
 
 ___
 
@@ -126,7 +126,7 @@ ___
 
 #### Defined in
 
-[Core/Messages/Message.ts:30](https://github.com/hpyer/node-easywechat/blob/3eacadb/src/Core/Messages/Message.ts#L30)
+[Core/Messages/Message.ts:29](https://github.com/hpyer/node-easywechat/blob/b017670/src/Core/Messages/Message.ts#L29)
 
 ___
 
@@ -140,7 +140,7 @@ ___
 
 #### Defined in
 
-[Core/Messages/Message.ts:34](https://github.com/hpyer/node-easywechat/blob/3eacadb/src/Core/Messages/Message.ts#L34)
+[Core/Messages/Message.ts:33](https://github.com/hpyer/node-easywechat/blob/b017670/src/Core/Messages/Message.ts#L33)
 
 ___
 
@@ -154,7 +154,7 @@ ___
 
 #### Defined in
 
-[Core/Messages/Card.ts:9](https://github.com/hpyer/node-easywechat/blob/3eacadb/src/Core/Messages/Card.ts#L9)
+[Core/Messages/Card.ts:9](https://github.com/hpyer/node-easywechat/blob/b017670/src/Core/Messages/Card.ts#L9)
 
 ___
 
@@ -168,7 +168,7 @@ ___
 
 #### Defined in
 
-[Core/Messages/Message.ts:115](https://github.com/hpyer/node-easywechat/blob/3eacadb/src/Core/Messages/Message.ts#L115)
+[Core/Messages/Message.ts:106](https://github.com/hpyer/node-easywechat/blob/b017670/src/Core/Messages/Message.ts#L106)
 
 ___
 
@@ -182,7 +182,7 @@ ___
 
 #### Defined in
 
-[Core/Messages/Message.ts:31](https://github.com/hpyer/node-easywechat/blob/3eacadb/src/Core/Messages/Message.ts#L31)
+[Core/Messages/Message.ts:30](https://github.com/hpyer/node-easywechat/blob/b017670/src/Core/Messages/Message.ts#L30)
 
 ___
 
@@ -196,7 +196,7 @@ ___
 
 #### Defined in
 
-[Core/Messages/Card.ts:8](https://github.com/hpyer/node-easywechat/blob/3eacadb/src/Core/Messages/Card.ts#L8)
+[Core/Messages/Card.ts:8](https://github.com/hpyer/node-easywechat/blob/b017670/src/Core/Messages/Card.ts#L8)
 
 ___
 
@@ -210,7 +210,7 @@ ___
 
 #### Defined in
 
-[Core/Messages/Message.ts:24](https://github.com/hpyer/node-easywechat/blob/3eacadb/src/Core/Messages/Message.ts#L24)
+[Core/Messages/Message.ts:23](https://github.com/hpyer/node-easywechat/blob/b017670/src/Core/Messages/Message.ts#L23)
 
 ___
 
@@ -224,7 +224,7 @@ ___
 
 #### Defined in
 
-[Core/Messages/Message.ts:15](https://github.com/hpyer/node-easywechat/blob/3eacadb/src/Core/Messages/Message.ts#L15)
+[Core/Messages/Message.ts:14](https://github.com/hpyer/node-easywechat/blob/b017670/src/Core/Messages/Message.ts#L14)
 
 ___
 
@@ -238,7 +238,7 @@ ___
 
 #### Defined in
 
-[Core/Messages/Message.ts:16](https://github.com/hpyer/node-easywechat/blob/3eacadb/src/Core/Messages/Message.ts#L16)
+[Core/Messages/Message.ts:15](https://github.com/hpyer/node-easywechat/blob/b017670/src/Core/Messages/Message.ts#L15)
 
 ___
 
@@ -252,7 +252,7 @@ ___
 
 #### Defined in
 
-[Core/Messages/Message.ts:20](https://github.com/hpyer/node-easywechat/blob/3eacadb/src/Core/Messages/Message.ts#L20)
+[Core/Messages/Message.ts:19](https://github.com/hpyer/node-easywechat/blob/b017670/src/Core/Messages/Message.ts#L19)
 
 ___
 
@@ -266,7 +266,7 @@ ___
 
 #### Defined in
 
-[Core/Messages/Message.ts:17](https://github.com/hpyer/node-easywechat/blob/3eacadb/src/Core/Messages/Message.ts#L17)
+[Core/Messages/Message.ts:16](https://github.com/hpyer/node-easywechat/blob/b017670/src/Core/Messages/Message.ts#L16)
 
 ___
 
@@ -280,7 +280,7 @@ ___
 
 #### Defined in
 
-[Core/Messages/Message.ts:9](https://github.com/hpyer/node-easywechat/blob/3eacadb/src/Core/Messages/Message.ts#L9)
+[Core/Messages/Message.ts:8](https://github.com/hpyer/node-easywechat/blob/b017670/src/Core/Messages/Message.ts#L8)
 
 ___
 
@@ -294,7 +294,7 @@ ___
 
 #### Defined in
 
-[Core/Messages/Message.ts:14](https://github.com/hpyer/node-easywechat/blob/3eacadb/src/Core/Messages/Message.ts#L14)
+[Core/Messages/Message.ts:13](https://github.com/hpyer/node-easywechat/blob/b017670/src/Core/Messages/Message.ts#L13)
 
 ___
 
@@ -308,7 +308,7 @@ ___
 
 #### Defined in
 
-[Core/Messages/Message.ts:13](https://github.com/hpyer/node-easywechat/blob/3eacadb/src/Core/Messages/Message.ts#L13)
+[Core/Messages/Message.ts:12](https://github.com/hpyer/node-easywechat/blob/b017670/src/Core/Messages/Message.ts#L12)
 
 ___
 
@@ -322,7 +322,7 @@ ___
 
 #### Defined in
 
-[Core/Messages/Message.ts:23](https://github.com/hpyer/node-easywechat/blob/3eacadb/src/Core/Messages/Message.ts#L23)
+[Core/Messages/Message.ts:22](https://github.com/hpyer/node-easywechat/blob/b017670/src/Core/Messages/Message.ts#L22)
 
 ___
 
@@ -336,7 +336,7 @@ ___
 
 #### Defined in
 
-[Core/Messages/Message.ts:22](https://github.com/hpyer/node-easywechat/blob/3eacadb/src/Core/Messages/Message.ts#L22)
+[Core/Messages/Message.ts:21](https://github.com/hpyer/node-easywechat/blob/b017670/src/Core/Messages/Message.ts#L21)
 
 ___
 
@@ -350,7 +350,7 @@ ___
 
 #### Defined in
 
-[Core/Messages/Message.ts:21](https://github.com/hpyer/node-easywechat/blob/3eacadb/src/Core/Messages/Message.ts#L21)
+[Core/Messages/Message.ts:20](https://github.com/hpyer/node-easywechat/blob/b017670/src/Core/Messages/Message.ts#L20)
 
 ___
 
@@ -364,7 +364,7 @@ ___
 
 #### Defined in
 
-[Core/Messages/Message.ts:12](https://github.com/hpyer/node-easywechat/blob/3eacadb/src/Core/Messages/Message.ts#L12)
+[Core/Messages/Message.ts:11](https://github.com/hpyer/node-easywechat/blob/b017670/src/Core/Messages/Message.ts#L11)
 
 ___
 
@@ -378,7 +378,7 @@ ___
 
 #### Defined in
 
-[Core/Messages/Message.ts:8](https://github.com/hpyer/node-easywechat/blob/3eacadb/src/Core/Messages/Message.ts#L8)
+[Core/Messages/Message.ts:7](https://github.com/hpyer/node-easywechat/blob/b017670/src/Core/Messages/Message.ts#L7)
 
 ___
 
@@ -392,7 +392,7 @@ ___
 
 #### Defined in
 
-[Core/Messages/Message.ts:18](https://github.com/hpyer/node-easywechat/blob/3eacadb/src/Core/Messages/Message.ts#L18)
+[Core/Messages/Message.ts:17](https://github.com/hpyer/node-easywechat/blob/b017670/src/Core/Messages/Message.ts#L17)
 
 ___
 
@@ -406,7 +406,7 @@ ___
 
 #### Defined in
 
-[Core/Messages/Message.ts:19](https://github.com/hpyer/node-easywechat/blob/3eacadb/src/Core/Messages/Message.ts#L19)
+[Core/Messages/Message.ts:18](https://github.com/hpyer/node-easywechat/blob/b017670/src/Core/Messages/Message.ts#L18)
 
 ___
 
@@ -420,7 +420,7 @@ ___
 
 #### Defined in
 
-[Core/Messages/Message.ts:11](https://github.com/hpyer/node-easywechat/blob/3eacadb/src/Core/Messages/Message.ts#L11)
+[Core/Messages/Message.ts:10](https://github.com/hpyer/node-easywechat/blob/b017670/src/Core/Messages/Message.ts#L10)
 
 ___
 
@@ -434,7 +434,7 @@ ___
 
 #### Defined in
 
-[Core/Messages/Message.ts:10](https://github.com/hpyer/node-easywechat/blob/3eacadb/src/Core/Messages/Message.ts#L10)
+[Core/Messages/Message.ts:9](https://github.com/hpyer/node-easywechat/blob/b017670/src/Core/Messages/Message.ts#L9)
 
 ## Methods
 
@@ -452,7 +452,7 @@ ___
 
 #### Defined in
 
-[Core/Messages/Message.ts:179](https://github.com/hpyer/node-easywechat/blob/3eacadb/src/Core/Messages/Message.ts#L179)
+[Core/Messages/Message.ts:170](https://github.com/hpyer/node-easywechat/blob/b017670/src/Core/Messages/Message.ts#L170)
 
 ___
 
@@ -470,7 +470,7 @@ ___
 
 #### Defined in
 
-[Core/Messages/Message.ts:196](https://github.com/hpyer/node-easywechat/blob/3eacadb/src/Core/Messages/Message.ts#L196)
+[Core/Messages/Message.ts:187](https://github.com/hpyer/node-easywechat/blob/b017670/src/Core/Messages/Message.ts#L187)
 
 ___
 
@@ -495,7 +495,7 @@ ___
 
 #### Defined in
 
-[Core/Messages/Message.ts:143](https://github.com/hpyer/node-easywechat/blob/3eacadb/src/Core/Messages/Message.ts#L143)
+[Core/Messages/Message.ts:134](https://github.com/hpyer/node-easywechat/blob/b017670/src/Core/Messages/Message.ts#L134)
 
 ___
 
@@ -520,7 +520,7 @@ ___
 
 #### Defined in
 
-[Core/Messages/Message.ts:138](https://github.com/hpyer/node-easywechat/blob/3eacadb/src/Core/Messages/Message.ts#L138)
+[Core/Messages/Message.ts:129](https://github.com/hpyer/node-easywechat/blob/b017670/src/Core/Messages/Message.ts#L129)
 
 ___
 
@@ -538,7 +538,7 @@ ___
 
 #### Defined in
 
-[Core/Messages/Message.ts:186](https://github.com/hpyer/node-easywechat/blob/3eacadb/src/Core/Messages/Message.ts#L186)
+[Core/Messages/Message.ts:177](https://github.com/hpyer/node-easywechat/blob/b017670/src/Core/Messages/Message.ts#L177)
 
 ___
 
@@ -556,7 +556,7 @@ ___
 
 #### Defined in
 
-[Core/Messages/Message.ts:41](https://github.com/hpyer/node-easywechat/blob/3eacadb/src/Core/Messages/Message.ts#L41)
+[Core/Messages/Message.ts:40](https://github.com/hpyer/node-easywechat/blob/b017670/src/Core/Messages/Message.ts#L40)
 
 ___
 
@@ -580,7 +580,7 @@ ___
 
 #### Defined in
 
-[Core/Messages/Message.ts:148](https://github.com/hpyer/node-easywechat/blob/3eacadb/src/Core/Messages/Message.ts#L148)
+[Core/Messages/Message.ts:139](https://github.com/hpyer/node-easywechat/blob/b017670/src/Core/Messages/Message.ts#L139)
 
 ___
 
@@ -604,7 +604,7 @@ ___
 
 #### Defined in
 
-[Core/Messages/Message.ts:191](https://github.com/hpyer/node-easywechat/blob/3eacadb/src/Core/Messages/Message.ts#L191)
+[Core/Messages/Message.ts:182](https://github.com/hpyer/node-easywechat/blob/b017670/src/Core/Messages/Message.ts#L182)
 
 ___
 
@@ -628,7 +628,7 @@ ___
 
 #### Defined in
 
-[Core/Messages/Message.ts:158](https://github.com/hpyer/node-easywechat/blob/3eacadb/src/Core/Messages/Message.ts#L158)
+[Core/Messages/Message.ts:149](https://github.com/hpyer/node-easywechat/blob/b017670/src/Core/Messages/Message.ts#L149)
 
 ___
 
@@ -652,7 +652,7 @@ ___
 
 #### Defined in
 
-[Core/Messages/Message.ts:165](https://github.com/hpyer/node-easywechat/blob/3eacadb/src/Core/Messages/Message.ts#L165)
+[Core/Messages/Message.ts:156](https://github.com/hpyer/node-easywechat/blob/b017670/src/Core/Messages/Message.ts#L156)
 
 ___
 
@@ -677,7 +677,7 @@ ___
 
 #### Defined in
 
-[Core/Messages/Message.ts:96](https://github.com/hpyer/node-easywechat/blob/3eacadb/src/Core/Messages/Message.ts#L96)
+[Core/Messages/Message.ts:87](https://github.com/hpyer/node-easywechat/blob/b017670/src/Core/Messages/Message.ts#L87)
 
 ___
 
@@ -702,7 +702,7 @@ ___
 
 #### Defined in
 
-[Core/Messages/Message.ts:131](https://github.com/hpyer/node-easywechat/blob/3eacadb/src/Core/Messages/Message.ts#L131)
+[Core/Messages/Message.ts:122](https://github.com/hpyer/node-easywechat/blob/b017670/src/Core/Messages/Message.ts#L122)
 
 ___
 
@@ -727,7 +727,7 @@ ___
 
 #### Defined in
 
-[Core/Messages/Message.ts:124](https://github.com/hpyer/node-easywechat/blob/3eacadb/src/Core/Messages/Message.ts#L124)
+[Core/Messages/Message.ts:115](https://github.com/hpyer/node-easywechat/blob/b017670/src/Core/Messages/Message.ts#L115)
 
 ___
 
@@ -751,7 +751,7 @@ ___
 
 #### Defined in
 
-[Core/Messages/Message.ts:117](https://github.com/hpyer/node-easywechat/blob/3eacadb/src/Core/Messages/Message.ts#L117)
+[Core/Messages/Message.ts:108](https://github.com/hpyer/node-easywechat/blob/b017670/src/Core/Messages/Message.ts#L108)
 
 ___
 
@@ -775,7 +775,7 @@ ___
 
 #### Defined in
 
-[Core/Messages/Message.ts:46](https://github.com/hpyer/node-easywechat/blob/3eacadb/src/Core/Messages/Message.ts#L46)
+[Core/Messages/Message.ts:45](https://github.com/hpyer/node-easywechat/blob/b017670/src/Core/Messages/Message.ts#L45)
 
 ___
 
@@ -793,7 +793,7 @@ ___
 
 #### Defined in
 
-[Core/Messages/Message.ts:71](https://github.com/hpyer/node-easywechat/blob/3eacadb/src/Core/Messages/Message.ts#L71)
+[Core/Messages/Message.ts:62](https://github.com/hpyer/node-easywechat/blob/b017670/src/Core/Messages/Message.ts#L62)
 
 ___
 
@@ -818,7 +818,7 @@ ___
 
 #### Defined in
 
-[Core/Messages/Message.ts:81](https://github.com/hpyer/node-easywechat/blob/3eacadb/src/Core/Messages/Message.ts#L81)
+[Core/Messages/Message.ts:72](https://github.com/hpyer/node-easywechat/blob/b017670/src/Core/Messages/Message.ts#L72)
 
 ___
 
@@ -842,7 +842,7 @@ ___
 
 #### Defined in
 
-[Core/Messages/Message.ts:76](https://github.com/hpyer/node-easywechat/blob/3eacadb/src/Core/Messages/Message.ts#L76)
+[Core/Messages/Message.ts:67](https://github.com/hpyer/node-easywechat/blob/b017670/src/Core/Messages/Message.ts#L67)
 
 ___
 
@@ -867,4 +867,4 @@ ___
 
 #### Defined in
 
-[Core/Messages/Message.ts:51](https://github.com/hpyer/node-easywechat/blob/3eacadb/src/Core/Messages/Message.ts#L51)
+[Core/Messages/Message.ts:50](https://github.com/hpyer/node-easywechat/blob/b017670/src/Core/Messages/Message.ts#L50)

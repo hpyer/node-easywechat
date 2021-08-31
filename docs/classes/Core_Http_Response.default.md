@@ -49,7 +49,7 @@
 
 #### Defined in
 
-[Core/Http/Response.ts:9](https://github.com/hpyer/node-easywechat/blob/3eacadb/src/Core/Http/Response.ts#L9)
+[Core/Http/Response.ts:9](https://github.com/hpyer/node-easywechat/blob/b017670/src/Core/Http/Response.ts#L9)
 
 ## Properties
 
@@ -59,7 +59,7 @@
 
 #### Defined in
 
-[Core/Http/Response.ts:5](https://github.com/hpyer/node-easywechat/blob/3eacadb/src/Core/Http/Response.ts#L5)
+[Core/Http/Response.ts:5](https://github.com/hpyer/node-easywechat/blob/b017670/src/Core/Http/Response.ts#L5)
 
 ___
 
@@ -69,7 +69,7 @@ ___
 
 #### Defined in
 
-[Core/Http/Response.ts:7](https://github.com/hpyer/node-easywechat/blob/3eacadb/src/Core/Http/Response.ts#L7)
+[Core/Http/Response.ts:7](https://github.com/hpyer/node-easywechat/blob/b017670/src/Core/Http/Response.ts#L7)
 
 ___
 
@@ -79,7 +79,7 @@ ___
 
 #### Defined in
 
-[Core/Http/Response.ts:6](https://github.com/hpyer/node-easywechat/blob/3eacadb/src/Core/Http/Response.ts#L6)
+[Core/Http/Response.ts:6](https://github.com/hpyer/node-easywechat/blob/b017670/src/Core/Http/Response.ts#L6)
 
 ## Methods
 
@@ -100,7 +100,7 @@ ___
 
 #### Defined in
 
-[Core/Http/Response.ts:36](https://github.com/hpyer/node-easywechat/blob/3eacadb/src/Core/Http/Response.ts#L36)
+[Core/Http/Response.ts:36](https://github.com/hpyer/node-easywechat/blob/b017670/src/Core/Http/Response.ts#L36)
 
 ___
 
@@ -114,7 +114,7 @@ ___
 
 #### Defined in
 
-[Core/Http/Response.ts:21](https://github.com/hpyer/node-easywechat/blob/3eacadb/src/Core/Http/Response.ts#L21)
+[Core/Http/Response.ts:21](https://github.com/hpyer/node-easywechat/blob/b017670/src/Core/Http/Response.ts#L21)
 
 ___
 
@@ -134,7 +134,7 @@ ___
 
 #### Defined in
 
-[Core/Http/Response.ts:51](https://github.com/hpyer/node-easywechat/blob/3eacadb/src/Core/Http/Response.ts#L51)
+[Core/Http/Response.ts:51](https://github.com/hpyer/node-easywechat/blob/b017670/src/Core/Http/Response.ts#L51)
 
 ___
 
@@ -148,7 +148,7 @@ ___
 
 #### Defined in
 
-[Core/Http/Response.ts:46](https://github.com/hpyer/node-easywechat/blob/3eacadb/src/Core/Http/Response.ts#L46)
+[Core/Http/Response.ts:46](https://github.com/hpyer/node-easywechat/blob/b017670/src/Core/Http/Response.ts#L46)
 
 ___
 
@@ -162,7 +162,7 @@ ___
 
 #### Defined in
 
-[Core/Http/Response.ts:31](https://github.com/hpyer/node-easywechat/blob/3eacadb/src/Core/Http/Response.ts#L31)
+[Core/Http/Response.ts:31](https://github.com/hpyer/node-easywechat/blob/b017670/src/Core/Http/Response.ts#L31)
 
 ___
 
@@ -182,7 +182,7 @@ ___
 
 #### Defined in
 
-[Core/Http/Response.ts:16](https://github.com/hpyer/node-easywechat/blob/3eacadb/src/Core/Http/Response.ts#L16)
+[Core/Http/Response.ts:16](https://github.com/hpyer/node-easywechat/blob/b017670/src/Core/Http/Response.ts#L16)
 
 ___
 
@@ -202,7 +202,7 @@ ___
 
 #### Defined in
 
-[Core/Http/Response.ts:41](https://github.com/hpyer/node-easywechat/blob/3eacadb/src/Core/Http/Response.ts#L41)
+[Core/Http/Response.ts:41](https://github.com/hpyer/node-easywechat/blob/b017670/src/Core/Http/Response.ts#L41)
 
 ___
 
@@ -222,4 +222,4 @@ ___
 
 #### Defined in
 
-[Core/Http/Response.ts:26](https://github.com/hpyer/node-easywechat/blob/3eacadb/src/Core/Http/Response.ts#L26)
+[Core/Http/Response.ts:26](https://github.com/hpyer/node-easywechat/blob/b017670/src/Core/Http/Response.ts#L26)

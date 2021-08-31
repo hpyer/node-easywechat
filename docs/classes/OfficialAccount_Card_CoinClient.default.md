@@ -59,7 +59,7 @@
 
 #### Defined in
 
-[Core/BaseClient.ts:17](https://github.com/hpyer/node-easywechat/blob/3eacadb/src/Core/BaseClient.ts#L17)
+[Core/BaseClient.ts:17](https://github.com/hpyer/node-easywechat/blob/b017670/src/Core/BaseClient.ts#L17)
 
 ## Properties
 
@@ -73,7 +73,7 @@
 
 #### Defined in
 
-[Core/BaseClient.ts:14](https://github.com/hpyer/node-easywechat/blob/3eacadb/src/Core/BaseClient.ts#L14)
+[Core/BaseClient.ts:14](https://github.com/hpyer/node-easywechat/blob/b017670/src/Core/BaseClient.ts#L14)
 
 ___
 
@@ -87,7 +87,7 @@ ___
 
 #### Defined in
 
-[Core/BaseClient.ts:15](https://github.com/hpyer/node-easywechat/blob/3eacadb/src/Core/BaseClient.ts#L15)
+[Core/BaseClient.ts:15](https://github.com/hpyer/node-easywechat/blob/b017670/src/Core/BaseClient.ts#L15)
 
 ## Methods
 
@@ -101,7 +101,7 @@ ___
 
 #### Defined in
 
-[OfficialAccount/Card/CoinClient.ts:8](https://github.com/hpyer/node-easywechat/blob/3eacadb/src/OfficialAccount/Card/CoinClient.ts#L8)
+[OfficialAccount/Card/CoinClient.ts:8](https://github.com/hpyer/node-easywechat/blob/b017670/src/OfficialAccount/Card/CoinClient.ts#L8)
 
 ___
 
@@ -123,7 +123,7 @@ ___
 
 #### Defined in
 
-[OfficialAccount/Card/CoinClient.ts:45](https://github.com/hpyer/node-easywechat/blob/3eacadb/src/OfficialAccount/Card/CoinClient.ts#L45)
+[OfficialAccount/Card/CoinClient.ts:45](https://github.com/hpyer/node-easywechat/blob/b017670/src/OfficialAccount/Card/CoinClient.ts#L45)
 
 ___
 
@@ -147,7 +147,7 @@ ___
 
 #### Defined in
 
-[Core/BaseClient.ts:114](https://github.com/hpyer/node-easywechat/blob/3eacadb/src/Core/BaseClient.ts#L114)
+[Core/BaseClient.ts:114](https://github.com/hpyer/node-easywechat/blob/b017670/src/Core/BaseClient.ts#L114)
 
 ___
 
@@ -165,7 +165,7 @@ ___
 
 #### Defined in
 
-[Core/BaseClient.ts:30](https://github.com/hpyer/node-easywechat/blob/3eacadb/src/Core/BaseClient.ts#L30)
+[Core/BaseClient.ts:30](https://github.com/hpyer/node-easywechat/blob/b017670/src/Core/BaseClient.ts#L30)
 
 ___
 
@@ -186,7 +186,7 @@ ___
 
 #### Defined in
 
-[OfficialAccount/Card/CoinClient.ts:18](https://github.com/hpyer/node-easywechat/blob/3eacadb/src/OfficialAccount/Card/CoinClient.ts#L18)
+[OfficialAccount/Card/CoinClient.ts:18](https://github.com/hpyer/node-easywechat/blob/b017670/src/OfficialAccount/Card/CoinClient.ts#L18)
 
 ___
 
@@ -211,7 +211,7 @@ ___
 
 #### Defined in
 
-[Core/BaseClient.ts:76](https://github.com/hpyer/node-easywechat/blob/3eacadb/src/Core/BaseClient.ts#L76)
+[Core/BaseClient.ts:76](https://github.com/hpyer/node-easywechat/blob/b017670/src/Core/BaseClient.ts#L76)
 
 ___
 
@@ -236,7 +236,7 @@ ___
 
 #### Defined in
 
-[Core/BaseClient.ts:85](https://github.com/hpyer/node-easywechat/blob/3eacadb/src/Core/BaseClient.ts#L85)
+[Core/BaseClient.ts:85](https://github.com/hpyer/node-easywechat/blob/b017670/src/Core/BaseClient.ts#L85)
 
 ___
 
@@ -262,7 +262,7 @@ ___
 
 #### Defined in
 
-[Core/BaseClient.ts:94](https://github.com/hpyer/node-easywechat/blob/3eacadb/src/Core/BaseClient.ts#L94)
+[Core/BaseClient.ts:94](https://github.com/hpyer/node-easywechat/blob/b017670/src/Core/BaseClient.ts#L94)
 
 ___
 
@@ -289,7 +289,7 @@ ___
 
 #### Defined in
 
-[Core/BaseClient.ts:51](https://github.com/hpyer/node-easywechat/blob/3eacadb/src/Core/BaseClient.ts#L51)
+[Core/BaseClient.ts:51](https://github.com/hpyer/node-easywechat/blob/b017670/src/Core/BaseClient.ts#L51)
 
 ___
 
@@ -309,7 +309,7 @@ ___
 
 #### Defined in
 
-[OfficialAccount/Card/CoinClient.ts:33](https://github.com/hpyer/node-easywechat/blob/3eacadb/src/OfficialAccount/Card/CoinClient.ts#L33)
+[OfficialAccount/Card/CoinClient.ts:33](https://github.com/hpyer/node-easywechat/blob/b017670/src/OfficialAccount/Card/CoinClient.ts#L33)
 
 ___
 
@@ -329,7 +329,7 @@ ___
 
 #### Defined in
 
-[OfficialAccount/Card/CoinClient.ts:40](https://github.com/hpyer/node-easywechat/blob/3eacadb/src/OfficialAccount/Card/CoinClient.ts#L40)
+[OfficialAccount/Card/CoinClient.ts:40](https://github.com/hpyer/node-easywechat/blob/b017670/src/OfficialAccount/Card/CoinClient.ts#L40)
 
 ___
 
@@ -349,7 +349,7 @@ ___
 
 #### Defined in
 
-[OfficialAccount/Card/CoinClient.ts:26](https://github.com/hpyer/node-easywechat/blob/3eacadb/src/OfficialAccount/Card/CoinClient.ts#L26)
+[OfficialAccount/Card/CoinClient.ts:26](https://github.com/hpyer/node-easywechat/blob/b017670/src/OfficialAccount/Card/CoinClient.ts#L26)
 
 ___
 
@@ -374,7 +374,7 @@ ___
 
 #### Defined in
 
-[Core/BaseClient.ts:35](https://github.com/hpyer/node-easywechat/blob/3eacadb/src/Core/BaseClient.ts#L35)
+[Core/BaseClient.ts:35](https://github.com/hpyer/node-easywechat/blob/b017670/src/Core/BaseClient.ts#L35)
 
 ___
 
@@ -398,7 +398,7 @@ ___
 
 #### Defined in
 
-[Core/BaseClient.ts:104](https://github.com/hpyer/node-easywechat/blob/3eacadb/src/Core/BaseClient.ts#L104)
+[Core/BaseClient.ts:104](https://github.com/hpyer/node-easywechat/blob/b017670/src/Core/BaseClient.ts#L104)
 
 ___
 
@@ -422,7 +422,7 @@ ___
 
 #### Defined in
 
-[Core/BaseClient.ts:23](https://github.com/hpyer/node-easywechat/blob/3eacadb/src/Core/BaseClient.ts#L23)
+[Core/BaseClient.ts:23](https://github.com/hpyer/node-easywechat/blob/b017670/src/Core/BaseClient.ts#L23)
 
 ___
 
@@ -436,4 +436,4 @@ ___
 
 #### Defined in
 
-[OfficialAccount/Card/CoinClient.ts:13](https://github.com/hpyer/node-easywechat/blob/3eacadb/src/OfficialAccount/Card/CoinClient.ts#L13)
+[OfficialAccount/Card/CoinClient.ts:13](https://github.com/hpyer/node-easywechat/blob/b017670/src/OfficialAccount/Card/CoinClient.ts#L13)

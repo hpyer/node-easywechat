@@ -67,7 +67,7 @@
 
 #### Defined in
 
-[Core/BaseClient.ts:17](https://github.com/hpyer/node-easywechat/blob/3eacadb/src/Core/BaseClient.ts#L17)
+[Core/BaseClient.ts:17](https://github.com/hpyer/node-easywechat/blob/b017670/src/Core/BaseClient.ts#L17)
 
 ## Properties
 
@@ -81,7 +81,7 @@
 
 #### Defined in
 
-[Core/BaseClient.ts:14](https://github.com/hpyer/node-easywechat/blob/3eacadb/src/Core/BaseClient.ts#L14)
+[Core/BaseClient.ts:14](https://github.com/hpyer/node-easywechat/blob/b017670/src/Core/BaseClient.ts#L14)
 
 ___
 
@@ -95,7 +95,7 @@ ___
 
 #### Defined in
 
-[Core/BaseClient.ts:15](https://github.com/hpyer/node-easywechat/blob/3eacadb/src/Core/BaseClient.ts#L15)
+[Core/BaseClient.ts:15](https://github.com/hpyer/node-easywechat/blob/b017670/src/Core/BaseClient.ts#L15)
 
 ___
 
@@ -109,7 +109,7 @@ ___
 
 #### Defined in
 
-[BaseService/Jssdk/JssdkClient.ts:9](https://github.com/hpyer/node-easywechat/blob/3eacadb/src/BaseService/Jssdk/JssdkClient.ts#L9)
+[BaseService/Jssdk/JssdkClient.ts:9](https://github.com/hpyer/node-easywechat/blob/b017670/src/BaseService/Jssdk/JssdkClient.ts#L9)
 
 ___
 
@@ -123,7 +123,7 @@ ___
 
 #### Defined in
 
-[BaseService/Jssdk/JssdkClient.ts:8](https://github.com/hpyer/node-easywechat/blob/3eacadb/src/BaseService/Jssdk/JssdkClient.ts#L8)
+[BaseService/Jssdk/JssdkClient.ts:8](https://github.com/hpyer/node-easywechat/blob/b017670/src/BaseService/Jssdk/JssdkClient.ts#L8)
 
 ## Methods
 
@@ -145,7 +145,7 @@ ___
 
 #### Defined in
 
-[Payment/Jssdk/JssdkClient.ts:47](https://github.com/hpyer/node-easywechat/blob/3eacadb/src/Payment/Jssdk/JssdkClient.ts#L47)
+[Payment/Jssdk/JssdkClient.ts:47](https://github.com/hpyer/node-easywechat/blob/b017670/src/Payment/Jssdk/JssdkClient.ts#L47)
 
 ___
 
@@ -168,7 +168,7 @@ ___
 
 #### Defined in
 
-[Payment/Jssdk/JssdkClient.ts:15](https://github.com/hpyer/node-easywechat/blob/3eacadb/src/Payment/Jssdk/JssdkClient.ts#L15)
+[Payment/Jssdk/JssdkClient.ts:15](https://github.com/hpyer/node-easywechat/blob/b017670/src/Payment/Jssdk/JssdkClient.ts#L15)
 
 ___
 
@@ -199,7 +199,7 @@ ___
 
 #### Defined in
 
-[BaseService/Jssdk/JssdkClient.ts:48](https://github.com/hpyer/node-easywechat/blob/3eacadb/src/BaseService/Jssdk/JssdkClient.ts#L48)
+[BaseService/Jssdk/JssdkClient.ts:48](https://github.com/hpyer/node-easywechat/blob/b017670/src/BaseService/Jssdk/JssdkClient.ts#L48)
 
 ___
 
@@ -227,7 +227,7 @@ ___
 
 #### Defined in
 
-[BaseService/Jssdk/JssdkClient.ts:76](https://github.com/hpyer/node-easywechat/blob/3eacadb/src/BaseService/Jssdk/JssdkClient.ts#L76)
+[BaseService/Jssdk/JssdkClient.ts:76](https://github.com/hpyer/node-easywechat/blob/b017670/src/BaseService/Jssdk/JssdkClient.ts#L76)
 
 ___
 
@@ -251,7 +251,7 @@ ___
 
 #### Defined in
 
-[BaseService/Jssdk/JssdkClient.ts:97](https://github.com/hpyer/node-easywechat/blob/3eacadb/src/BaseService/Jssdk/JssdkClient.ts#L97)
+[BaseService/Jssdk/JssdkClient.ts:97](https://github.com/hpyer/node-easywechat/blob/b017670/src/BaseService/Jssdk/JssdkClient.ts#L97)
 
 ___
 
@@ -275,7 +275,7 @@ ___
 
 #### Defined in
 
-[Core/BaseClient.ts:114](https://github.com/hpyer/node-easywechat/blob/3eacadb/src/Core/BaseClient.ts#L114)
+[Core/BaseClient.ts:114](https://github.com/hpyer/node-easywechat/blob/b017670/src/Core/BaseClient.ts#L114)
 
 ___
 
@@ -293,7 +293,7 @@ ___
 
 #### Defined in
 
-[Core/BaseClient.ts:30](https://github.com/hpyer/node-easywechat/blob/3eacadb/src/Core/BaseClient.ts#L30)
+[Core/BaseClient.ts:30](https://github.com/hpyer/node-easywechat/blob/b017670/src/Core/BaseClient.ts#L30)
 
 ___
 
@@ -313,7 +313,7 @@ ___
 
 #### Defined in
 
-[BaseService/Jssdk/JssdkClient.ts:130](https://github.com/hpyer/node-easywechat/blob/3eacadb/src/BaseService/Jssdk/JssdkClient.ts#L130)
+[BaseService/Jssdk/JssdkClient.ts:130](https://github.com/hpyer/node-easywechat/blob/b017670/src/BaseService/Jssdk/JssdkClient.ts#L130)
 
 ___
 
@@ -343,7 +343,7 @@ ___
 
 #### Defined in
 
-[BaseService/Jssdk/JssdkClient.ts:65](https://github.com/hpyer/node-easywechat/blob/3eacadb/src/BaseService/Jssdk/JssdkClient.ts#L65)
+[BaseService/Jssdk/JssdkClient.ts:65](https://github.com/hpyer/node-easywechat/blob/b017670/src/BaseService/Jssdk/JssdkClient.ts#L65)
 
 ___
 
@@ -370,7 +370,7 @@ ___
 
 #### Defined in
 
-[BaseService/Jssdk/JssdkClient.ts:16](https://github.com/hpyer/node-easywechat/blob/3eacadb/src/BaseService/Jssdk/JssdkClient.ts#L16)
+[BaseService/Jssdk/JssdkClient.ts:16](https://github.com/hpyer/node-easywechat/blob/b017670/src/BaseService/Jssdk/JssdkClient.ts#L16)
 
 ___
 
@@ -397,7 +397,7 @@ ___
 
 #### Defined in
 
-[BaseService/Jssdk/JssdkClient.ts:92](https://github.com/hpyer/node-easywechat/blob/3eacadb/src/BaseService/Jssdk/JssdkClient.ts#L92)
+[BaseService/Jssdk/JssdkClient.ts:92](https://github.com/hpyer/node-easywechat/blob/b017670/src/BaseService/Jssdk/JssdkClient.ts#L92)
 
 ___
 
@@ -417,7 +417,7 @@ ___
 
 #### Defined in
 
-[BaseService/Jssdk/JssdkClient.ts:122](https://github.com/hpyer/node-easywechat/blob/3eacadb/src/BaseService/Jssdk/JssdkClient.ts#L122)
+[BaseService/Jssdk/JssdkClient.ts:122](https://github.com/hpyer/node-easywechat/blob/b017670/src/BaseService/Jssdk/JssdkClient.ts#L122)
 
 ___
 
@@ -442,7 +442,7 @@ ___
 
 #### Defined in
 
-[Core/BaseClient.ts:76](https://github.com/hpyer/node-easywechat/blob/3eacadb/src/Core/BaseClient.ts#L76)
+[Core/BaseClient.ts:76](https://github.com/hpyer/node-easywechat/blob/b017670/src/Core/BaseClient.ts#L76)
 
 ___
 
@@ -467,7 +467,7 @@ ___
 
 #### Defined in
 
-[Core/BaseClient.ts:85](https://github.com/hpyer/node-easywechat/blob/3eacadb/src/Core/BaseClient.ts#L85)
+[Core/BaseClient.ts:85](https://github.com/hpyer/node-easywechat/blob/b017670/src/Core/BaseClient.ts#L85)
 
 ___
 
@@ -493,7 +493,7 @@ ___
 
 #### Defined in
 
-[Core/BaseClient.ts:94](https://github.com/hpyer/node-easywechat/blob/3eacadb/src/Core/BaseClient.ts#L94)
+[Core/BaseClient.ts:94](https://github.com/hpyer/node-easywechat/blob/b017670/src/Core/BaseClient.ts#L94)
 
 ___
 
@@ -520,7 +520,7 @@ ___
 
 #### Defined in
 
-[Core/BaseClient.ts:51](https://github.com/hpyer/node-easywechat/blob/3eacadb/src/Core/BaseClient.ts#L51)
+[Core/BaseClient.ts:51](https://github.com/hpyer/node-easywechat/blob/b017670/src/Core/BaseClient.ts#L51)
 
 ___
 
@@ -545,7 +545,7 @@ ___
 
 #### Defined in
 
-[Core/BaseClient.ts:35](https://github.com/hpyer/node-easywechat/blob/3eacadb/src/Core/BaseClient.ts#L35)
+[Core/BaseClient.ts:35](https://github.com/hpyer/node-easywechat/blob/b017670/src/Core/BaseClient.ts#L35)
 
 ___
 
@@ -569,7 +569,7 @@ ___
 
 #### Defined in
 
-[Core/BaseClient.ts:104](https://github.com/hpyer/node-easywechat/blob/3eacadb/src/Core/BaseClient.ts#L104)
+[Core/BaseClient.ts:104](https://github.com/hpyer/node-easywechat/blob/b017670/src/Core/BaseClient.ts#L104)
 
 ___
 
@@ -591,7 +591,7 @@ ___
 
 #### Defined in
 
-[Payment/Jssdk/JssdkClient.ts:34](https://github.com/hpyer/node-easywechat/blob/3eacadb/src/Payment/Jssdk/JssdkClient.ts#L34)
+[Payment/Jssdk/JssdkClient.ts:34](https://github.com/hpyer/node-easywechat/blob/b017670/src/Payment/Jssdk/JssdkClient.ts#L34)
 
 ___
 
@@ -615,7 +615,7 @@ ___
 
 #### Defined in
 
-[Core/BaseClient.ts:23](https://github.com/hpyer/node-easywechat/blob/3eacadb/src/Core/BaseClient.ts#L23)
+[Core/BaseClient.ts:23](https://github.com/hpyer/node-easywechat/blob/b017670/src/Core/BaseClient.ts#L23)
 
 ___
 
@@ -641,7 +641,7 @@ ___
 
 #### Defined in
 
-[BaseService/Jssdk/JssdkClient.ts:112](https://github.com/hpyer/node-easywechat/blob/3eacadb/src/BaseService/Jssdk/JssdkClient.ts#L112)
+[BaseService/Jssdk/JssdkClient.ts:112](https://github.com/hpyer/node-easywechat/blob/b017670/src/BaseService/Jssdk/JssdkClient.ts#L112)
 
 ___
 
@@ -664,4 +664,4 @@ ___
 
 #### Defined in
 
-[Payment/Jssdk/JssdkClient.ts:68](https://github.com/hpyer/node-easywechat/blob/3eacadb/src/Payment/Jssdk/JssdkClient.ts#L68)
+[Payment/Jssdk/JssdkClient.ts:68](https://github.com/hpyer/node-easywechat/blob/b017670/src/Payment/Jssdk/JssdkClient.ts#L68)

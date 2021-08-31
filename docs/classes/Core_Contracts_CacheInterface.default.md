@@ -45,7 +45,7 @@
 
 #### Defined in
 
-[Core/Contracts/CacheInterface.ts:20](https://github.com/hpyer/node-easywechat/blob/3eacadb/src/Core/Contracts/CacheInterface.ts#L20)
+[Core/Contracts/CacheInterface.ts:20](https://github.com/hpyer/node-easywechat/blob/b017670/src/Core/Contracts/CacheInterface.ts#L20)
 
 ___
 
@@ -65,7 +65,7 @@ ___
 
 #### Defined in
 
-[Core/Contracts/CacheInterface.ts:5](https://github.com/hpyer/node-easywechat/blob/3eacadb/src/Core/Contracts/CacheInterface.ts#L5)
+[Core/Contracts/CacheInterface.ts:5](https://github.com/hpyer/node-easywechat/blob/b017670/src/Core/Contracts/CacheInterface.ts#L5)
 
 ___
 
@@ -85,7 +85,7 @@ ___
 
 #### Defined in
 
-[Core/Contracts/CacheInterface.ts:10](https://github.com/hpyer/node-easywechat/blob/3eacadb/src/Core/Contracts/CacheInterface.ts#L10)
+[Core/Contracts/CacheInterface.ts:10](https://github.com/hpyer/node-easywechat/blob/b017670/src/Core/Contracts/CacheInterface.ts#L10)
 
 ___
 
@@ -107,4 +107,4 @@ ___
 
 #### Defined in
 
-[Core/Contracts/CacheInterface.ts:15](https://github.com/hpyer/node-easywechat/blob/3eacadb/src/Core/Contracts/CacheInterface.ts#L15)
+[Core/Contracts/CacheInterface.ts:15](https://github.com/hpyer/node-easywechat/blob/b017670/src/Core/Contracts/CacheInterface.ts#L15)

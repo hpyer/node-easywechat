@@ -55,7 +55,7 @@
 
 #### Defined in
 
-[Core/BaseClient.ts:17](https://github.com/hpyer/node-easywechat/blob/3eacadb/src/Core/BaseClient.ts#L17)
+[Core/BaseClient.ts:17](https://github.com/hpyer/node-easywechat/blob/b017670/src/Core/BaseClient.ts#L17)
 
 ## Properties
 
@@ -69,7 +69,7 @@
 
 #### Defined in
 
-[Core/BaseClient.ts:14](https://github.com/hpyer/node-easywechat/blob/3eacadb/src/Core/BaseClient.ts#L14)
+[Core/BaseClient.ts:14](https://github.com/hpyer/node-easywechat/blob/b017670/src/Core/BaseClient.ts#L14)
 
 ___
 
@@ -83,7 +83,7 @@ ___
 
 #### Defined in
 
-[Core/BaseClient.ts:15](https://github.com/hpyer/node-easywechat/blob/3eacadb/src/Core/BaseClient.ts#L15)
+[Core/BaseClient.ts:15](https://github.com/hpyer/node-easywechat/blob/b017670/src/Core/BaseClient.ts#L15)
 
 ## Methods
 
@@ -97,7 +97,7 @@ ___
 
 #### Defined in
 
-[MiniProgram/ActivityMessage/ActivityMessageClient.ts:9](https://github.com/hpyer/node-easywechat/blob/3eacadb/src/MiniProgram/ActivityMessage/ActivityMessageClient.ts#L9)
+[MiniProgram/ActivityMessage/ActivityMessageClient.ts:9](https://github.com/hpyer/node-easywechat/blob/b017670/src/MiniProgram/ActivityMessage/ActivityMessageClient.ts#L9)
 
 ___
 
@@ -121,7 +121,7 @@ ___
 
 #### Defined in
 
-[Core/BaseClient.ts:114](https://github.com/hpyer/node-easywechat/blob/3eacadb/src/Core/BaseClient.ts#L114)
+[Core/BaseClient.ts:114](https://github.com/hpyer/node-easywechat/blob/b017670/src/Core/BaseClient.ts#L114)
 
 ___
 
@@ -141,7 +141,7 @@ ___
 
 #### Defined in
 
-[MiniProgram/ActivityMessage/ActivityMessageClient.ts:31](https://github.com/hpyer/node-easywechat/blob/3eacadb/src/MiniProgram/ActivityMessage/ActivityMessageClient.ts#L31)
+[MiniProgram/ActivityMessage/ActivityMessageClient.ts:31](https://github.com/hpyer/node-easywechat/blob/b017670/src/MiniProgram/ActivityMessage/ActivityMessageClient.ts#L31)
 
 ___
 
@@ -159,7 +159,7 @@ ___
 
 #### Defined in
 
-[Core/BaseClient.ts:30](https://github.com/hpyer/node-easywechat/blob/3eacadb/src/Core/BaseClient.ts#L30)
+[Core/BaseClient.ts:30](https://github.com/hpyer/node-easywechat/blob/b017670/src/Core/BaseClient.ts#L30)
 
 ___
 
@@ -184,7 +184,7 @@ ___
 
 #### Defined in
 
-[Core/BaseClient.ts:76](https://github.com/hpyer/node-easywechat/blob/3eacadb/src/Core/BaseClient.ts#L76)
+[Core/BaseClient.ts:76](https://github.com/hpyer/node-easywechat/blob/b017670/src/Core/BaseClient.ts#L76)
 
 ___
 
@@ -209,7 +209,7 @@ ___
 
 #### Defined in
 
-[Core/BaseClient.ts:85](https://github.com/hpyer/node-easywechat/blob/3eacadb/src/Core/BaseClient.ts#L85)
+[Core/BaseClient.ts:85](https://github.com/hpyer/node-easywechat/blob/b017670/src/Core/BaseClient.ts#L85)
 
 ___
 
@@ -235,7 +235,7 @@ ___
 
 #### Defined in
 
-[Core/BaseClient.ts:94](https://github.com/hpyer/node-easywechat/blob/3eacadb/src/Core/BaseClient.ts#L94)
+[Core/BaseClient.ts:94](https://github.com/hpyer/node-easywechat/blob/b017670/src/Core/BaseClient.ts#L94)
 
 ___
 
@@ -262,7 +262,7 @@ ___
 
 #### Defined in
 
-[Core/BaseClient.ts:51](https://github.com/hpyer/node-easywechat/blob/3eacadb/src/Core/BaseClient.ts#L51)
+[Core/BaseClient.ts:51](https://github.com/hpyer/node-easywechat/blob/b017670/src/Core/BaseClient.ts#L51)
 
 ___
 
@@ -287,7 +287,7 @@ ___
 
 #### Defined in
 
-[Core/BaseClient.ts:35](https://github.com/hpyer/node-easywechat/blob/3eacadb/src/Core/BaseClient.ts#L35)
+[Core/BaseClient.ts:35](https://github.com/hpyer/node-easywechat/blob/b017670/src/Core/BaseClient.ts#L35)
 
 ___
 
@@ -311,7 +311,7 @@ ___
 
 #### Defined in
 
-[Core/BaseClient.ts:104](https://github.com/hpyer/node-easywechat/blob/3eacadb/src/Core/BaseClient.ts#L104)
+[Core/BaseClient.ts:104](https://github.com/hpyer/node-easywechat/blob/b017670/src/Core/BaseClient.ts#L104)
 
 ___
 
@@ -335,7 +335,7 @@ ___
 
 #### Defined in
 
-[Core/BaseClient.ts:23](https://github.com/hpyer/node-easywechat/blob/3eacadb/src/Core/BaseClient.ts#L23)
+[Core/BaseClient.ts:23](https://github.com/hpyer/node-easywechat/blob/b017670/src/Core/BaseClient.ts#L23)
 
 ___
 
@@ -357,4 +357,4 @@ ___
 
 #### Defined in
 
-[MiniProgram/ActivityMessage/ActivityMessageClient.ts:14](https://github.com/hpyer/node-easywechat/blob/3eacadb/src/MiniProgram/ActivityMessage/ActivityMessageClient.ts#L14)
+[MiniProgram/ActivityMessage/ActivityMessageClient.ts:14](https://github.com/hpyer/node-easywechat/blob/b017670/src/MiniProgram/ActivityMessage/ActivityMessageClient.ts#L14)

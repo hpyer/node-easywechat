@@ -70,7 +70,7 @@
 
 #### Defined in
 
-[Core/BaseClient.ts:17](https://github.com/hpyer/node-easywechat/blob/3eacadb/src/Core/BaseClient.ts#L17)
+[Core/BaseClient.ts:17](https://github.com/hpyer/node-easywechat/blob/b017670/src/Core/BaseClient.ts#L17)
 
 ## Properties
 
@@ -84,7 +84,7 @@
 
 #### Defined in
 
-[Core/BaseClient.ts:14](https://github.com/hpyer/node-easywechat/blob/3eacadb/src/Core/BaseClient.ts#L14)
+[Core/BaseClient.ts:14](https://github.com/hpyer/node-easywechat/blob/b017670/src/Core/BaseClient.ts#L14)
 
 ___
 
@@ -98,7 +98,7 @@ ___
 
 #### Defined in
 
-[Core/BaseClient.ts:15](https://github.com/hpyer/node-easywechat/blob/3eacadb/src/Core/BaseClient.ts#L15)
+[Core/BaseClient.ts:15](https://github.com/hpyer/node-easywechat/blob/b017670/src/Core/BaseClient.ts#L15)
 
 ## Methods
 
@@ -120,7 +120,7 @@ ___
 
 #### Defined in
 
-[OpenPlatform/Authorizer/MiniProgram/Code/CodeClient.ts:115](https://github.com/hpyer/node-easywechat/blob/3eacadb/src/OpenPlatform/Authorizer/MiniProgram/Code/CodeClient.ts#L115)
+[OpenPlatform/Authorizer/MiniProgram/Code/CodeClient.ts:115](https://github.com/hpyer/node-easywechat/blob/b017670/src/OpenPlatform/Authorizer/MiniProgram/Code/CodeClient.ts#L115)
 
 ___
 
@@ -145,7 +145,7 @@ ___
 
 #### Defined in
 
-[OpenPlatform/Authorizer/MiniProgram/Code/CodeClient.ts:15](https://github.com/hpyer/node-easywechat/blob/3eacadb/src/OpenPlatform/Authorizer/MiniProgram/Code/CodeClient.ts#L15)
+[OpenPlatform/Authorizer/MiniProgram/Code/CodeClient.ts:15](https://github.com/hpyer/node-easywechat/blob/b017670/src/OpenPlatform/Authorizer/MiniProgram/Code/CodeClient.ts#L15)
 
 ___
 
@@ -169,7 +169,7 @@ ___
 
 #### Defined in
 
-[Core/BaseClient.ts:114](https://github.com/hpyer/node-easywechat/blob/3eacadb/src/Core/BaseClient.ts#L114)
+[Core/BaseClient.ts:114](https://github.com/hpyer/node-easywechat/blob/b017670/src/Core/BaseClient.ts#L114)
 
 ___
 
@@ -187,7 +187,7 @@ ___
 
 #### Defined in
 
-[Core/BaseClient.ts:30](https://github.com/hpyer/node-easywechat/blob/3eacadb/src/Core/BaseClient.ts#L30)
+[Core/BaseClient.ts:30](https://github.com/hpyer/node-easywechat/blob/b017670/src/Core/BaseClient.ts#L30)
 
 ___
 
@@ -209,7 +209,7 @@ ___
 
 #### Defined in
 
-[OpenPlatform/Authorizer/MiniProgram/Code/CodeClient.ts:72](https://github.com/hpyer/node-easywechat/blob/3eacadb/src/OpenPlatform/Authorizer/MiniProgram/Code/CodeClient.ts#L72)
+[OpenPlatform/Authorizer/MiniProgram/Code/CodeClient.ts:72](https://github.com/hpyer/node-easywechat/blob/b017670/src/OpenPlatform/Authorizer/MiniProgram/Code/CodeClient.ts#L72)
 
 ___
 
@@ -225,7 +225,7 @@ ___
 
 #### Defined in
 
-[OpenPlatform/Authorizer/MiniProgram/Code/CodeClient.ts:43](https://github.com/hpyer/node-easywechat/blob/3eacadb/src/OpenPlatform/Authorizer/MiniProgram/Code/CodeClient.ts#L43)
+[OpenPlatform/Authorizer/MiniProgram/Code/CodeClient.ts:43](https://github.com/hpyer/node-easywechat/blob/b017670/src/OpenPlatform/Authorizer/MiniProgram/Code/CodeClient.ts#L43)
 
 ___
 
@@ -241,7 +241,7 @@ ___
 
 #### Defined in
 
-[OpenPlatform/Authorizer/MiniProgram/Code/CodeClient.ts:144](https://github.com/hpyer/node-easywechat/blob/3eacadb/src/OpenPlatform/Authorizer/MiniProgram/Code/CodeClient.ts#L144)
+[OpenPlatform/Authorizer/MiniProgram/Code/CodeClient.ts:144](https://github.com/hpyer/node-easywechat/blob/b017670/src/OpenPlatform/Authorizer/MiniProgram/Code/CodeClient.ts#L144)
 
 ___
 
@@ -257,7 +257,7 @@ ___
 
 #### Defined in
 
-[OpenPlatform/Authorizer/MiniProgram/Code/CodeClient.ts:82](https://github.com/hpyer/node-easywechat/blob/3eacadb/src/OpenPlatform/Authorizer/MiniProgram/Code/CodeClient.ts#L82)
+[OpenPlatform/Authorizer/MiniProgram/Code/CodeClient.ts:82](https://github.com/hpyer/node-easywechat/blob/b017670/src/OpenPlatform/Authorizer/MiniProgram/Code/CodeClient.ts#L82)
 
 ___
 
@@ -273,7 +273,7 @@ ___
 
 #### Defined in
 
-[OpenPlatform/Authorizer/MiniProgram/Code/CodeClient.ts:51](https://github.com/hpyer/node-easywechat/blob/3eacadb/src/OpenPlatform/Authorizer/MiniProgram/Code/CodeClient.ts#L51)
+[OpenPlatform/Authorizer/MiniProgram/Code/CodeClient.ts:51](https://github.com/hpyer/node-easywechat/blob/b017670/src/OpenPlatform/Authorizer/MiniProgram/Code/CodeClient.ts#L51)
 
 ___
 
@@ -295,7 +295,7 @@ ___
 
 #### Defined in
 
-[OpenPlatform/Authorizer/MiniProgram/Code/CodeClient.ts:29](https://github.com/hpyer/node-easywechat/blob/3eacadb/src/OpenPlatform/Authorizer/MiniProgram/Code/CodeClient.ts#L29)
+[OpenPlatform/Authorizer/MiniProgram/Code/CodeClient.ts:29](https://github.com/hpyer/node-easywechat/blob/b017670/src/OpenPlatform/Authorizer/MiniProgram/Code/CodeClient.ts#L29)
 
 ___
 
@@ -311,7 +311,7 @@ ___
 
 #### Defined in
 
-[OpenPlatform/Authorizer/MiniProgram/Code/CodeClient.ts:152](https://github.com/hpyer/node-easywechat/blob/3eacadb/src/OpenPlatform/Authorizer/MiniProgram/Code/CodeClient.ts#L152)
+[OpenPlatform/Authorizer/MiniProgram/Code/CodeClient.ts:152](https://github.com/hpyer/node-easywechat/blob/b017670/src/OpenPlatform/Authorizer/MiniProgram/Code/CodeClient.ts#L152)
 
 ___
 
@@ -333,7 +333,7 @@ ___
 
 #### Defined in
 
-[OpenPlatform/Authorizer/MiniProgram/Code/CodeClient.ts:126](https://github.com/hpyer/node-easywechat/blob/3eacadb/src/OpenPlatform/Authorizer/MiniProgram/Code/CodeClient.ts#L126)
+[OpenPlatform/Authorizer/MiniProgram/Code/CodeClient.ts:126](https://github.com/hpyer/node-easywechat/blob/b017670/src/OpenPlatform/Authorizer/MiniProgram/Code/CodeClient.ts#L126)
 
 ___
 
@@ -358,7 +358,7 @@ ___
 
 #### Defined in
 
-[Core/BaseClient.ts:76](https://github.com/hpyer/node-easywechat/blob/3eacadb/src/Core/BaseClient.ts#L76)
+[Core/BaseClient.ts:76](https://github.com/hpyer/node-easywechat/blob/b017670/src/Core/BaseClient.ts#L76)
 
 ___
 
@@ -383,7 +383,7 @@ ___
 
 #### Defined in
 
-[Core/BaseClient.ts:85](https://github.com/hpyer/node-easywechat/blob/3eacadb/src/Core/BaseClient.ts#L85)
+[Core/BaseClient.ts:85](https://github.com/hpyer/node-easywechat/blob/b017670/src/Core/BaseClient.ts#L85)
 
 ___
 
@@ -409,7 +409,7 @@ ___
 
 #### Defined in
 
-[Core/BaseClient.ts:94](https://github.com/hpyer/node-easywechat/blob/3eacadb/src/Core/BaseClient.ts#L94)
+[Core/BaseClient.ts:94](https://github.com/hpyer/node-easywechat/blob/b017670/src/Core/BaseClient.ts#L94)
 
 ___
 
@@ -436,7 +436,7 @@ ___
 
 #### Defined in
 
-[Core/BaseClient.ts:51](https://github.com/hpyer/node-easywechat/blob/3eacadb/src/Core/BaseClient.ts#L51)
+[Core/BaseClient.ts:51](https://github.com/hpyer/node-easywechat/blob/b017670/src/Core/BaseClient.ts#L51)
 
 ___
 
@@ -452,7 +452,7 @@ ___
 
 #### Defined in
 
-[OpenPlatform/Authorizer/MiniProgram/Code/CodeClient.ts:171](https://github.com/hpyer/node-easywechat/blob/3eacadb/src/OpenPlatform/Authorizer/MiniProgram/Code/CodeClient.ts#L171)
+[OpenPlatform/Authorizer/MiniProgram/Code/CodeClient.ts:171](https://github.com/hpyer/node-easywechat/blob/b017670/src/OpenPlatform/Authorizer/MiniProgram/Code/CodeClient.ts#L171)
 
 ___
 
@@ -468,7 +468,7 @@ ___
 
 #### Defined in
 
-[OpenPlatform/Authorizer/MiniProgram/Code/CodeClient.ts:90](https://github.com/hpyer/node-easywechat/blob/3eacadb/src/OpenPlatform/Authorizer/MiniProgram/Code/CodeClient.ts#L90)
+[OpenPlatform/Authorizer/MiniProgram/Code/CodeClient.ts:90](https://github.com/hpyer/node-easywechat/blob/b017670/src/OpenPlatform/Authorizer/MiniProgram/Code/CodeClient.ts#L90)
 
 ___
 
@@ -493,7 +493,7 @@ ___
 
 #### Defined in
 
-[Core/BaseClient.ts:35](https://github.com/hpyer/node-easywechat/blob/3eacadb/src/Core/BaseClient.ts#L35)
+[Core/BaseClient.ts:35](https://github.com/hpyer/node-easywechat/blob/b017670/src/Core/BaseClient.ts#L35)
 
 ___
 
@@ -517,7 +517,7 @@ ___
 
 #### Defined in
 
-[Core/BaseClient.ts:104](https://github.com/hpyer/node-easywechat/blob/3eacadb/src/Core/BaseClient.ts#L104)
+[Core/BaseClient.ts:104](https://github.com/hpyer/node-easywechat/blob/b017670/src/Core/BaseClient.ts#L104)
 
 ___
 
@@ -533,7 +533,7 @@ ___
 
 #### Defined in
 
-[OpenPlatform/Authorizer/MiniProgram/Code/CodeClient.ts:136](https://github.com/hpyer/node-easywechat/blob/3eacadb/src/OpenPlatform/Authorizer/MiniProgram/Code/CodeClient.ts#L136)
+[OpenPlatform/Authorizer/MiniProgram/Code/CodeClient.ts:136](https://github.com/hpyer/node-easywechat/blob/b017670/src/OpenPlatform/Authorizer/MiniProgram/Code/CodeClient.ts#L136)
 
 ___
 
@@ -549,7 +549,7 @@ ___
 
 #### Defined in
 
-[OpenPlatform/Authorizer/MiniProgram/Code/CodeClient.ts:106](https://github.com/hpyer/node-easywechat/blob/3eacadb/src/OpenPlatform/Authorizer/MiniProgram/Code/CodeClient.ts#L106)
+[OpenPlatform/Authorizer/MiniProgram/Code/CodeClient.ts:106](https://github.com/hpyer/node-easywechat/blob/b017670/src/OpenPlatform/Authorizer/MiniProgram/Code/CodeClient.ts#L106)
 
 ___
 
@@ -573,7 +573,7 @@ ___
 
 #### Defined in
 
-[Core/BaseClient.ts:23](https://github.com/hpyer/node-easywechat/blob/3eacadb/src/Core/BaseClient.ts#L23)
+[Core/BaseClient.ts:23](https://github.com/hpyer/node-easywechat/blob/b017670/src/Core/BaseClient.ts#L23)
 
 ___
 
@@ -595,7 +595,7 @@ ___
 
 #### Defined in
 
-[OpenPlatform/Authorizer/MiniProgram/Code/CodeClient.ts:161](https://github.com/hpyer/node-easywechat/blob/3eacadb/src/OpenPlatform/Authorizer/MiniProgram/Code/CodeClient.ts#L161)
+[OpenPlatform/Authorizer/MiniProgram/Code/CodeClient.ts:161](https://github.com/hpyer/node-easywechat/blob/b017670/src/OpenPlatform/Authorizer/MiniProgram/Code/CodeClient.ts#L161)
 
 ___
 
@@ -617,7 +617,7 @@ ___
 
 #### Defined in
 
-[OpenPlatform/Authorizer/MiniProgram/Code/CodeClient.ts:180](https://github.com/hpyer/node-easywechat/blob/3eacadb/src/OpenPlatform/Authorizer/MiniProgram/Code/CodeClient.ts#L180)
+[OpenPlatform/Authorizer/MiniProgram/Code/CodeClient.ts:180](https://github.com/hpyer/node-easywechat/blob/b017670/src/OpenPlatform/Authorizer/MiniProgram/Code/CodeClient.ts#L180)
 
 ___
 
@@ -641,7 +641,7 @@ ___
 
 #### Defined in
 
-[OpenPlatform/Authorizer/MiniProgram/Code/CodeClient.ts:59](https://github.com/hpyer/node-easywechat/blob/3eacadb/src/OpenPlatform/Authorizer/MiniProgram/Code/CodeClient.ts#L59)
+[OpenPlatform/Authorizer/MiniProgram/Code/CodeClient.ts:59](https://github.com/hpyer/node-easywechat/blob/b017670/src/OpenPlatform/Authorizer/MiniProgram/Code/CodeClient.ts#L59)
 
 ___
 
@@ -657,4 +657,4 @@ ___
 
 #### Defined in
 
-[OpenPlatform/Authorizer/MiniProgram/Code/CodeClient.ts:98](https://github.com/hpyer/node-easywechat/blob/3eacadb/src/OpenPlatform/Authorizer/MiniProgram/Code/CodeClient.ts#L98)
+[OpenPlatform/Authorizer/MiniProgram/Code/CodeClient.ts:98](https://github.com/hpyer/node-easywechat/blob/b017670/src/OpenPlatform/Authorizer/MiniProgram/Code/CodeClient.ts#L98)

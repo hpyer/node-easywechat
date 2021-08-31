@@ -62,7 +62,7 @@
 
 #### Defined in
 
-[Core/BaseClient.ts:17](https://github.com/hpyer/node-easywechat/blob/3eacadb/src/Core/BaseClient.ts#L17)
+[Core/BaseClient.ts:17](https://github.com/hpyer/node-easywechat/blob/b017670/src/Core/BaseClient.ts#L17)
 
 ## Properties
 
@@ -76,7 +76,7 @@
 
 #### Defined in
 
-[Core/BaseClient.ts:14](https://github.com/hpyer/node-easywechat/blob/3eacadb/src/Core/BaseClient.ts#L14)
+[Core/BaseClient.ts:14](https://github.com/hpyer/node-easywechat/blob/b017670/src/Core/BaseClient.ts#L14)
 
 ___
 
@@ -90,7 +90,7 @@ ___
 
 #### Defined in
 
-[Core/BaseClient.ts:15](https://github.com/hpyer/node-easywechat/blob/3eacadb/src/Core/BaseClient.ts#L15)
+[Core/BaseClient.ts:15](https://github.com/hpyer/node-easywechat/blob/b017670/src/Core/BaseClient.ts#L15)
 
 ## Methods
 
@@ -110,7 +110,7 @@ ___
 
 #### Defined in
 
-[MiniProgram/Union/UnionClient.ts:7](https://github.com/hpyer/node-easywechat/blob/3eacadb/src/MiniProgram/Union/UnionClient.ts#L7)
+[MiniProgram/Union/UnionClient.ts:7](https://github.com/hpyer/node-easywechat/blob/b017670/src/MiniProgram/Union/UnionClient.ts#L7)
 
 ___
 
@@ -131,7 +131,7 @@ ___
 
 #### Defined in
 
-[MiniProgram/Union/UnionClient.ts:13](https://github.com/hpyer/node-easywechat/blob/3eacadb/src/MiniProgram/Union/UnionClient.ts#L13)
+[MiniProgram/Union/UnionClient.ts:13](https://github.com/hpyer/node-easywechat/blob/b017670/src/MiniProgram/Union/UnionClient.ts#L13)
 
 ___
 
@@ -155,7 +155,7 @@ ___
 
 #### Defined in
 
-[Core/BaseClient.ts:114](https://github.com/hpyer/node-easywechat/blob/3eacadb/src/Core/BaseClient.ts#L114)
+[Core/BaseClient.ts:114](https://github.com/hpyer/node-easywechat/blob/b017670/src/Core/BaseClient.ts#L114)
 
 ___
 
@@ -173,7 +173,7 @@ ___
 
 #### Defined in
 
-[Core/BaseClient.ts:30](https://github.com/hpyer/node-easywechat/blob/3eacadb/src/Core/BaseClient.ts#L30)
+[Core/BaseClient.ts:30](https://github.com/hpyer/node-easywechat/blob/b017670/src/Core/BaseClient.ts#L30)
 
 ___
 
@@ -193,7 +193,7 @@ ___
 
 #### Defined in
 
-[MiniProgram/Union/UnionClient.ts:64](https://github.com/hpyer/node-easywechat/blob/3eacadb/src/MiniProgram/Union/UnionClient.ts#L64)
+[MiniProgram/Union/UnionClient.ts:64](https://github.com/hpyer/node-easywechat/blob/b017670/src/MiniProgram/Union/UnionClient.ts#L64)
 
 ___
 
@@ -213,7 +213,7 @@ ___
 
 #### Defined in
 
-[MiniProgram/Union/UnionClient.ts:49](https://github.com/hpyer/node-easywechat/blob/3eacadb/src/MiniProgram/Union/UnionClient.ts#L49)
+[MiniProgram/Union/UnionClient.ts:49](https://github.com/hpyer/node-easywechat/blob/b017670/src/MiniProgram/Union/UnionClient.ts#L49)
 
 ___
 
@@ -227,7 +227,7 @@ ___
 
 #### Defined in
 
-[MiniProgram/Union/UnionClient.ts:34](https://github.com/hpyer/node-easywechat/blob/3eacadb/src/MiniProgram/Union/UnionClient.ts#L34)
+[MiniProgram/Union/UnionClient.ts:34](https://github.com/hpyer/node-easywechat/blob/b017670/src/MiniProgram/Union/UnionClient.ts#L34)
 
 ___
 
@@ -247,7 +247,7 @@ ___
 
 #### Defined in
 
-[MiniProgram/Union/UnionClient.ts:38](https://github.com/hpyer/node-easywechat/blob/3eacadb/src/MiniProgram/Union/UnionClient.ts#L38)
+[MiniProgram/Union/UnionClient.ts:38](https://github.com/hpyer/node-easywechat/blob/b017670/src/MiniProgram/Union/UnionClient.ts#L38)
 
 ___
 
@@ -268,7 +268,7 @@ ___
 
 #### Defined in
 
-[MiniProgram/Union/UnionClient.ts:42](https://github.com/hpyer/node-easywechat/blob/3eacadb/src/MiniProgram/Union/UnionClient.ts#L42)
+[MiniProgram/Union/UnionClient.ts:42](https://github.com/hpyer/node-easywechat/blob/b017670/src/MiniProgram/Union/UnionClient.ts#L42)
 
 ___
 
@@ -289,7 +289,7 @@ ___
 
 #### Defined in
 
-[MiniProgram/Union/UnionClient.ts:27](https://github.com/hpyer/node-easywechat/blob/3eacadb/src/MiniProgram/Union/UnionClient.ts#L27)
+[MiniProgram/Union/UnionClient.ts:27](https://github.com/hpyer/node-easywechat/blob/b017670/src/MiniProgram/Union/UnionClient.ts#L27)
 
 ___
 
@@ -314,7 +314,7 @@ ___
 
 #### Defined in
 
-[Core/BaseClient.ts:76](https://github.com/hpyer/node-easywechat/blob/3eacadb/src/Core/BaseClient.ts#L76)
+[Core/BaseClient.ts:76](https://github.com/hpyer/node-easywechat/blob/b017670/src/Core/BaseClient.ts#L76)
 
 ___
 
@@ -339,7 +339,7 @@ ___
 
 #### Defined in
 
-[Core/BaseClient.ts:85](https://github.com/hpyer/node-easywechat/blob/3eacadb/src/Core/BaseClient.ts#L85)
+[Core/BaseClient.ts:85](https://github.com/hpyer/node-easywechat/blob/b017670/src/Core/BaseClient.ts#L85)
 
 ___
 
@@ -365,7 +365,7 @@ ___
 
 #### Defined in
 
-[Core/BaseClient.ts:94](https://github.com/hpyer/node-easywechat/blob/3eacadb/src/Core/BaseClient.ts#L94)
+[Core/BaseClient.ts:94](https://github.com/hpyer/node-easywechat/blob/b017670/src/Core/BaseClient.ts#L94)
 
 ___
 
@@ -392,7 +392,7 @@ ___
 
 #### Defined in
 
-[Core/BaseClient.ts:51](https://github.com/hpyer/node-easywechat/blob/3eacadb/src/Core/BaseClient.ts#L51)
+[Core/BaseClient.ts:51](https://github.com/hpyer/node-easywechat/blob/b017670/src/Core/BaseClient.ts#L51)
 
 ___
 
@@ -417,7 +417,7 @@ ___
 
 #### Defined in
 
-[Core/BaseClient.ts:35](https://github.com/hpyer/node-easywechat/blob/3eacadb/src/Core/BaseClient.ts#L35)
+[Core/BaseClient.ts:35](https://github.com/hpyer/node-easywechat/blob/b017670/src/Core/BaseClient.ts#L35)
 
 ___
 
@@ -441,7 +441,7 @@ ___
 
 #### Defined in
 
-[Core/BaseClient.ts:104](https://github.com/hpyer/node-easywechat/blob/3eacadb/src/Core/BaseClient.ts#L104)
+[Core/BaseClient.ts:104](https://github.com/hpyer/node-easywechat/blob/b017670/src/Core/BaseClient.ts#L104)
 
 ___
 
@@ -464,7 +464,7 @@ ___
 
 #### Defined in
 
-[MiniProgram/Union/UnionClient.ts:55](https://github.com/hpyer/node-easywechat/blob/3eacadb/src/MiniProgram/Union/UnionClient.ts#L55)
+[MiniProgram/Union/UnionClient.ts:55](https://github.com/hpyer/node-easywechat/blob/b017670/src/MiniProgram/Union/UnionClient.ts#L55)
 
 ___
 
@@ -488,7 +488,7 @@ ___
 
 #### Defined in
 
-[Core/BaseClient.ts:23](https://github.com/hpyer/node-easywechat/blob/3eacadb/src/Core/BaseClient.ts#L23)
+[Core/BaseClient.ts:23](https://github.com/hpyer/node-easywechat/blob/b017670/src/Core/BaseClient.ts#L23)
 
 ___
 
@@ -509,4 +509,4 @@ ___
 
 #### Defined in
 
-[MiniProgram/Union/UnionClient.ts:20](https://github.com/hpyer/node-easywechat/blob/3eacadb/src/MiniProgram/Union/UnionClient.ts#L20)
+[MiniProgram/Union/UnionClient.ts:20](https://github.com/hpyer/node-easywechat/blob/b017670/src/MiniProgram/Union/UnionClient.ts#L20)

@@ -12,8 +12,11 @@
 
 - [aes\_key](Core_Types.EasyWechatConfig.md#aes_key)
 - [agent\_id](Core_Types.EasyWechatConfig.md#agent_id)
+- [apiv3\_key](Core_Types.EasyWechatConfig.md#apiv3_key)
 - [app\_id](Core_Types.EasyWechatConfig.md#app_id)
+- [appid](Core_Types.EasyWechatConfig.md#appid)
 - [cert\_path](Core_Types.EasyWechatConfig.md#cert_path)
+- [certificate](Core_Types.EasyWechatConfig.md#certificate)
 - [contract\_notify\_url](Core_Types.EasyWechatConfig.md#contract_notify_url)
 - [corp\_id](Core_Types.EasyWechatConfig.md#corp_id)
 - [debug](Core_Types.EasyWechatConfig.md#debug)
@@ -28,6 +31,7 @@
 - [rsa\_public\_key\_path](Core_Types.EasyWechatConfig.md#rsa_public_key_path)
 - [sandbox](Core_Types.EasyWechatConfig.md#sandbox)
 - [secret](Core_Types.EasyWechatConfig.md#secret)
+- [serial\_no](Core_Types.EasyWechatConfig.md#serial_no)
 - [sub\_appid](Core_Types.EasyWechatConfig.md#sub_appid)
 - [sub\_mch\_id](Core_Types.EasyWechatConfig.md#sub_mch_id)
 - [token](Core_Types.EasyWechatConfig.md#token)
@@ -44,7 +48,7 @@
 
 #### Defined in
 
-[Core/Types.ts:83](https://github.com/hpyer/node-easywechat/blob/3eacadb/src/Core/Types.ts#L83)
+[Core/Types.ts:83](https://github.com/hpyer/node-easywechat/blob/b017670/src/Core/Types.ts#L83)
 
 ___
 
@@ -58,7 +62,21 @@ ___
 
 #### Defined in
 
-[Core/Types.ts:170](https://github.com/hpyer/node-easywechat/blob/3eacadb/src/Core/Types.ts#L170)
+[Core/Types.ts:194](https://github.com/hpyer/node-easywechat/blob/b017670/src/Core/Types.ts#L194)
+
+___
+
+### apiv3\_key
+
+• `Optional` **apiv3\_key**: `string`
+
+APIv3 密钥
+
+**`scope`** MicroMerchant
+
+#### Defined in
+
+[Core/Types.ts:168](https://github.com/hpyer/node-easywechat/blob/b017670/src/Core/Types.ts#L168)
 
 ___
 
@@ -72,7 +90,21 @@ ___
 
 #### Defined in
 
-[Core/Types.ts:54](https://github.com/hpyer/node-easywechat/blob/3eacadb/src/Core/Types.ts#L54)
+[Core/Types.ts:54](https://github.com/hpyer/node-easywechat/blob/b017670/src/Core/Types.ts#L54)
+
+___
+
+### appid
+
+• `Optional` **appid**: `string`
+
+服务商的公众账号 ID
+
+**`scope`** MicroMerchant
+
+#### Defined in
+
+[Core/Types.ts:162](https://github.com/hpyer/node-easywechat/blob/b017670/src/Core/Types.ts#L162)
 
 ___
 
@@ -82,11 +114,25 @@ ___
 
 pfx 证书路径（敏感接口（如退款、发送红包等）需要）
 
-**`scope`** Payment
+**`scope`** Payment | MicroMerchant
 
 #### Defined in
 
-[Core/Types.ts:121](https://github.com/hpyer/node-easywechat/blob/3eacadb/src/Core/Types.ts#L121)
+[Core/Types.ts:121](https://github.com/hpyer/node-easywechat/blob/b017670/src/Core/Types.ts#L121)
+
+___
+
+### certificate
+
+• `Optional` **certificate**: `string`
+
+获取证书接口获取到的证书内容
+
+**`scope`** MicroMerchant
+
+#### Defined in
+
+[Core/Types.ts:156](https://github.com/hpyer/node-easywechat/blob/b017670/src/Core/Types.ts#L156)
 
 ___
 
@@ -100,7 +146,7 @@ ___
 
 #### Defined in
 
-[Core/Types.ts:138](https://github.com/hpyer/node-easywechat/blob/3eacadb/src/Core/Types.ts#L138)
+[Core/Types.ts:138](https://github.com/hpyer/node-easywechat/blob/b017670/src/Core/Types.ts#L138)
 
 ___
 
@@ -114,7 +160,7 @@ ___
 
 #### Defined in
 
-[Core/Types.ts:164](https://github.com/hpyer/node-easywechat/blob/3eacadb/src/Core/Types.ts#L164)
+[Core/Types.ts:188](https://github.com/hpyer/node-easywechat/blob/b017670/src/Core/Types.ts#L188)
 
 ___
 
@@ -128,7 +174,7 @@ ___
 
 #### Defined in
 
-[Core/Types.ts:48](https://github.com/hpyer/node-easywechat/blob/3eacadb/src/Core/Types.ts#L48)
+[Core/Types.ts:48](https://github.com/hpyer/node-easywechat/blob/b017670/src/Core/Types.ts#L48)
 
 ___
 
@@ -142,7 +188,7 @@ ___
 
 #### Defined in
 
-[Core/Types.ts:157](https://github.com/hpyer/node-easywechat/blob/3eacadb/src/Core/Types.ts#L157)
+[Core/Types.ts:181](https://github.com/hpyer/node-easywechat/blob/b017670/src/Core/Types.ts#L181)
 
 ___
 
@@ -156,7 +202,7 @@ ___
 
 #### Defined in
 
-[Core/Types.ts:71](https://github.com/hpyer/node-easywechat/blob/3eacadb/src/Core/Types.ts#L71)
+[Core/Types.ts:71](https://github.com/hpyer/node-easywechat/blob/b017670/src/Core/Types.ts#L71)
 
 ___
 
@@ -170,7 +216,7 @@ ___
 
 #### Defined in
 
-[Core/Types.ts:65](https://github.com/hpyer/node-easywechat/blob/3eacadb/src/Core/Types.ts#L65)
+[Core/Types.ts:65](https://github.com/hpyer/node-easywechat/blob/b017670/src/Core/Types.ts#L65)
 
 ___
 
@@ -180,11 +226,11 @@ ___
 
 微信支付签名密钥
 
-**`scope`** Payment
+**`scope`** Payment | MicroMerchant
 
 #### Defined in
 
-[Core/Types.ts:97](https://github.com/hpyer/node-easywechat/blob/3eacadb/src/Core/Types.ts#L97)
+[Core/Types.ts:97](https://github.com/hpyer/node-easywechat/blob/b017670/src/Core/Types.ts#L97)
 
 ___
 
@@ -194,11 +240,11 @@ ___
 
 商户号
 
-**`scope`** Payment
+**`scope`** Payment | MicroMerchant
 
 #### Defined in
 
-[Core/Types.ts:109](https://github.com/hpyer/node-easywechat/blob/3eacadb/src/Core/Types.ts#L109)
+[Core/Types.ts:109](https://github.com/hpyer/node-easywechat/blob/b017670/src/Core/Types.ts#L109)
 
 ___
 
@@ -212,7 +258,7 @@ ___
 
 #### Defined in
 
-[Core/Types.ts:133](https://github.com/hpyer/node-easywechat/blob/3eacadb/src/Core/Types.ts#L133)
+[Core/Types.ts:133](https://github.com/hpyer/node-easywechat/blob/b017670/src/Core/Types.ts#L133)
 
 ___
 
@@ -226,7 +272,7 @@ ___
 
 #### Defined in
 
-[Core/Types.ts:89](https://github.com/hpyer/node-easywechat/blob/3eacadb/src/Core/Types.ts#L89)
+[Core/Types.ts:89](https://github.com/hpyer/node-easywechat/blob/b017670/src/Core/Types.ts#L89)
 
 ___
 
@@ -240,7 +286,7 @@ ___
 
 #### Defined in
 
-[Core/Types.ts:151](https://github.com/hpyer/node-easywechat/blob/3eacadb/src/Core/Types.ts#L151)
+[Core/Types.ts:175](https://github.com/hpyer/node-easywechat/blob/b017670/src/Core/Types.ts#L175)
 
 ___
 
@@ -254,7 +300,7 @@ ___
 
 #### Defined in
 
-[Core/Types.ts:127](https://github.com/hpyer/node-easywechat/blob/3eacadb/src/Core/Types.ts#L127)
+[Core/Types.ts:127](https://github.com/hpyer/node-easywechat/blob/b017670/src/Core/Types.ts#L127)
 
 ___
 
@@ -268,7 +314,7 @@ ___
 
 #### Defined in
 
-[Core/Types.ts:144](https://github.com/hpyer/node-easywechat/blob/3eacadb/src/Core/Types.ts#L144)
+[Core/Types.ts:144](https://github.com/hpyer/node-easywechat/blob/b017670/src/Core/Types.ts#L144)
 
 ___
 
@@ -282,7 +328,21 @@ ___
 
 #### Defined in
 
-[Core/Types.ts:59](https://github.com/hpyer/node-easywechat/blob/3eacadb/src/Core/Types.ts#L59)
+[Core/Types.ts:59](https://github.com/hpyer/node-easywechat/blob/b017670/src/Core/Types.ts#L59)
+
+___
+
+### serial\_no
+
+• `Optional` **serial\_no**: `string`
+
+获取证书接口获取到的平台证书序列号
+
+**`scope`** MicroMerchant
+
+#### Defined in
+
+[Core/Types.ts:150](https://github.com/hpyer/node-easywechat/blob/b017670/src/Core/Types.ts#L150)
 
 ___
 
@@ -296,7 +356,7 @@ ___
 
 #### Defined in
 
-[Core/Types.ts:103](https://github.com/hpyer/node-easywechat/blob/3eacadb/src/Core/Types.ts#L103)
+[Core/Types.ts:103](https://github.com/hpyer/node-easywechat/blob/b017670/src/Core/Types.ts#L103)
 
 ___
 
@@ -306,11 +366,11 @@ ___
 
 子商户号
 
-**`scope`** Payment
+**`scope`** Payment | MicroMerchant
 
 #### Defined in
 
-[Core/Types.ts:115](https://github.com/hpyer/node-easywechat/blob/3eacadb/src/Core/Types.ts#L115)
+[Core/Types.ts:115](https://github.com/hpyer/node-easywechat/blob/b017670/src/Core/Types.ts#L115)
 
 ___
 
@@ -324,4 +384,4 @@ ___
 
 #### Defined in
 
-[Core/Types.ts:77](https://github.com/hpyer/node-easywechat/blob/3eacadb/src/Core/Types.ts#L77)
+[Core/Types.ts:77](https://github.com/hpyer/node-easywechat/blob/b017670/src/Core/Types.ts#L77)

@@ -24,7 +24,7 @@
 
 #### Defined in
 
-[OpenPlatform/Server/OpenPlatformGuard.ts:6](https://github.com/hpyer/node-easywechat/blob/3eacadb/src/OpenPlatform/Server/OpenPlatformGuard.ts#L6)
+[OpenPlatform/Server/OpenPlatformGuard.ts:6](https://github.com/hpyer/node-easywechat/blob/b017670/src/OpenPlatform/Server/OpenPlatformGuard.ts#L6)
 
 ___
 
@@ -34,7 +34,7 @@ ___
 
 #### Defined in
 
-[OpenPlatform/Server/OpenPlatformGuard.ts:9](https://github.com/hpyer/node-easywechat/blob/3eacadb/src/OpenPlatform/Server/OpenPlatformGuard.ts#L9)
+[OpenPlatform/Server/OpenPlatformGuard.ts:9](https://github.com/hpyer/node-easywechat/blob/b017670/src/OpenPlatform/Server/OpenPlatformGuard.ts#L9)
 
 ___
 
@@ -44,7 +44,7 @@ ___
 
 #### Defined in
 
-[OpenPlatform/Server/OpenPlatformGuard.ts:10](https://github.com/hpyer/node-easywechat/blob/3eacadb/src/OpenPlatform/Server/OpenPlatformGuard.ts#L10)
+[OpenPlatform/Server/OpenPlatformGuard.ts:10](https://github.com/hpyer/node-easywechat/blob/b017670/src/OpenPlatform/Server/OpenPlatformGuard.ts#L10)
 
 ___
 
@@ -54,7 +54,7 @@ ___
 
 #### Defined in
 
-[OpenPlatform/Server/OpenPlatformGuard.ts:7](https://github.com/hpyer/node-easywechat/blob/3eacadb/src/OpenPlatform/Server/OpenPlatformGuard.ts#L7)
+[OpenPlatform/Server/OpenPlatformGuard.ts:7](https://github.com/hpyer/node-easywechat/blob/b017670/src/OpenPlatform/Server/OpenPlatformGuard.ts#L7)
 
 ___
 
@@ -64,4 +64,4 @@ ___
 
 #### Defined in
 
-[OpenPlatform/Server/OpenPlatformGuard.ts:8](https://github.com/hpyer/node-easywechat/blob/3eacadb/src/OpenPlatform/Server/OpenPlatformGuard.ts#L8)
+[OpenPlatform/Server/OpenPlatformGuard.ts:8](https://github.com/hpyer/node-easywechat/blob/b017670/src/OpenPlatform/Server/OpenPlatformGuard.ts#L8)
