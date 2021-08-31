@@ -28,7 +28,7 @@
 
 #### Defined in
 
-[Core/Decorators/TerminateResult.ts:7](https://github.com/hpyer/node-easywechat/blob/e4961d7/src/Core/Decorators/TerminateResult.ts#L7)
+[Core/Decorators/TerminateResult.ts:7](https://github.com/hpyer/node-easywechat/blob/a144a0f/src/Core/Decorators/TerminateResult.ts#L7)
 
 ## Properties
 
@@ -38,4 +38,4 @@
 
 #### Defined in
 
-[Core/Decorators/TerminateResult.ts:5](https://github.com/hpyer/node-easywechat/blob/e4961d7/src/Core/Decorators/TerminateResult.ts#L5)
+[Core/Decorators/TerminateResult.ts:5](https://github.com/hpyer/node-easywechat/blob/a144a0f/src/Core/Decorators/TerminateResult.ts#L5)

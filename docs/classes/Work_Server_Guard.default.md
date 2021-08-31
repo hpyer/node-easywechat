@@ -65,7 +65,7 @@
 
 #### Defined in
 
-[Core/ServerGuard.ts:37](https://github.com/hpyer/node-easywechat/blob/e4961d7/src/Core/ServerGuard.ts#L37)
+[Core/ServerGuard.ts:37](https://github.com/hpyer/node-easywechat/blob/a144a0f/src/Core/ServerGuard.ts#L37)
 
 ## Properties
 
@@ -79,7 +79,7 @@
 
 #### Defined in
 
-[Core/ServerGuard.ts:32](https://github.com/hpyer/node-easywechat/blob/e4961d7/src/Core/ServerGuard.ts#L32)
+[Core/ServerGuard.ts:32](https://github.com/hpyer/node-easywechat/blob/a144a0f/src/Core/ServerGuard.ts#L32)
 
 ___
 
@@ -93,7 +93,7 @@ ___
 
 #### Defined in
 
-[Core/ServerGuard.ts:30](https://github.com/hpyer/node-easywechat/blob/e4961d7/src/Core/ServerGuard.ts#L30)
+[Core/ServerGuard.ts:30](https://github.com/hpyer/node-easywechat/blob/a144a0f/src/Core/ServerGuard.ts#L30)
 
 ___
 
@@ -107,7 +107,7 @@ ___
 
 #### Defined in
 
-[Core/ServerGuard.ts:34](https://github.com/hpyer/node-easywechat/blob/e4961d7/src/Core/ServerGuard.ts#L34)
+[Core/ServerGuard.ts:34](https://github.com/hpyer/node-easywechat/blob/a144a0f/src/Core/ServerGuard.ts#L34)
 
 ___
 
@@ -121,7 +121,7 @@ ___
 
 #### Defined in
 
-[Core/ServerGuard.ts:15](https://github.com/hpyer/node-easywechat/blob/e4961d7/src/Core/ServerGuard.ts#L15)
+[Core/ServerGuard.ts:15](https://github.com/hpyer/node-easywechat/blob/a144a0f/src/Core/ServerGuard.ts#L15)
 
 ___
 
@@ -135,7 +135,7 @@ ___
 
 #### Defined in
 
-[Core/ServerGuard.ts:13](https://github.com/hpyer/node-easywechat/blob/e4961d7/src/Core/ServerGuard.ts#L13)
+[Core/ServerGuard.ts:13](https://github.com/hpyer/node-easywechat/blob/a144a0f/src/Core/ServerGuard.ts#L13)
 
 ## Methods
 
@@ -160,7 +160,7 @@ ___
 
 #### Defined in
 
-[Core/ServerGuard.ts:115](https://github.com/hpyer/node-easywechat/blob/e4961d7/src/Core/ServerGuard.ts#L115)
+[Core/ServerGuard.ts:115](https://github.com/hpyer/node-easywechat/blob/a144a0f/src/Core/ServerGuard.ts#L115)
 
 ___
 
@@ -186,7 +186,7 @@ ___
 
 #### Defined in
 
-[Core/ServerGuard.ts:227](https://github.com/hpyer/node-easywechat/blob/e4961d7/src/Core/ServerGuard.ts#L227)
+[Core/ServerGuard.ts:227](https://github.com/hpyer/node-easywechat/blob/a144a0f/src/Core/ServerGuard.ts#L227)
 
 ___
 
@@ -212,7 +212,7 @@ ___
 
 #### Defined in
 
-[Core/ServerGuard.ts:198](https://github.com/hpyer/node-easywechat/blob/e4961d7/src/Core/ServerGuard.ts#L198)
+[Core/ServerGuard.ts:198](https://github.com/hpyer/node-easywechat/blob/a144a0f/src/Core/ServerGuard.ts#L198)
 
 ___
 
@@ -236,7 +236,7 @@ ___
 
 #### Defined in
 
-[Core/ServerGuard.ts:322](https://github.com/hpyer/node-easywechat/blob/e4961d7/src/Core/ServerGuard.ts#L322)
+[Core/ServerGuard.ts:322](https://github.com/hpyer/node-easywechat/blob/a144a0f/src/Core/ServerGuard.ts#L322)
 
 ___
 
@@ -261,7 +261,7 @@ ___
 
 #### Defined in
 
-[Core/ServerGuard.ts:74](https://github.com/hpyer/node-easywechat/blob/e4961d7/src/Core/ServerGuard.ts#L74)
+[Core/ServerGuard.ts:74](https://github.com/hpyer/node-easywechat/blob/a144a0f/src/Core/ServerGuard.ts#L74)
 
 ___
 
@@ -279,7 +279,7 @@ ___
 
 #### Defined in
 
-[Core/ServerGuard.ts:169](https://github.com/hpyer/node-easywechat/blob/e4961d7/src/Core/ServerGuard.ts#L169)
+[Core/ServerGuard.ts:169](https://github.com/hpyer/node-easywechat/blob/a144a0f/src/Core/ServerGuard.ts#L169)
 
 ___
 
@@ -299,7 +299,7 @@ ___
 
 #### Defined in
 
-[Core/ServerGuard.ts:281](https://github.com/hpyer/node-easywechat/blob/e4961d7/src/Core/ServerGuard.ts#L281)
+[Core/ServerGuard.ts:281](https://github.com/hpyer/node-easywechat/blob/a144a0f/src/Core/ServerGuard.ts#L281)
 
 ___
 
@@ -317,7 +317,7 @@ ___
 
 #### Defined in
 
-[Core/ServerGuard.ts:246](https://github.com/hpyer/node-easywechat/blob/e4961d7/src/Core/ServerGuard.ts#L246)
+[Core/ServerGuard.ts:246](https://github.com/hpyer/node-easywechat/blob/a144a0f/src/Core/ServerGuard.ts#L246)
 
 ___
 
@@ -335,7 +335,7 @@ ___
 
 #### Defined in
 
-[Core/ServerGuard.ts:265](https://github.com/hpyer/node-easywechat/blob/e4961d7/src/Core/ServerGuard.ts#L265)
+[Core/ServerGuard.ts:265](https://github.com/hpyer/node-easywechat/blob/a144a0f/src/Core/ServerGuard.ts#L265)
 
 ___
 
@@ -353,7 +353,7 @@ ___
 
 #### Defined in
 
-[Work/Server/Guard.ts:12](https://github.com/hpyer/node-easywechat/blob/e4961d7/src/Work/Server/Guard.ts#L12)
+[Work/Server/Guard.ts:12](https://github.com/hpyer/node-easywechat/blob/a144a0f/src/Work/Server/Guard.ts#L12)
 
 ___
 
@@ -378,7 +378,7 @@ ___
 
 #### Defined in
 
-[Core/ServerGuard.ts:79](https://github.com/hpyer/node-easywechat/blob/e4961d7/src/Core/ServerGuard.ts#L79)
+[Core/ServerGuard.ts:79](https://github.com/hpyer/node-easywechat/blob/a144a0f/src/Core/ServerGuard.ts#L79)
 
 ___
 
@@ -405,7 +405,7 @@ ___
 
 #### Defined in
 
-[Core/ServerGuard.ts:56](https://github.com/hpyer/node-easywechat/blob/e4961d7/src/Core/ServerGuard.ts#L56)
+[Core/ServerGuard.ts:56](https://github.com/hpyer/node-easywechat/blob/a144a0f/src/Core/ServerGuard.ts#L56)
 
 ___
 
@@ -432,7 +432,7 @@ ___
 
 #### Defined in
 
-[Core/ServerGuard.ts:47](https://github.com/hpyer/node-easywechat/blob/e4961d7/src/Core/ServerGuard.ts#L47)
+[Core/ServerGuard.ts:47](https://github.com/hpyer/node-easywechat/blob/a144a0f/src/Core/ServerGuard.ts#L47)
 
 ___
 
@@ -456,7 +456,7 @@ ___
 
 #### Defined in
 
-[Core/ServerGuard.ts:300](https://github.com/hpyer/node-easywechat/blob/e4961d7/src/Core/ServerGuard.ts#L300)
+[Core/ServerGuard.ts:300](https://github.com/hpyer/node-easywechat/blob/a144a0f/src/Core/ServerGuard.ts#L300)
 
 ___
 
@@ -483,7 +483,7 @@ ___
 
 #### Defined in
 
-[Core/ServerGuard.ts:66](https://github.com/hpyer/node-easywechat/blob/e4961d7/src/Core/ServerGuard.ts#L66)
+[Core/ServerGuard.ts:66](https://github.com/hpyer/node-easywechat/blob/a144a0f/src/Core/ServerGuard.ts#L66)
 
 ___
 
@@ -501,7 +501,7 @@ ___
 
 #### Defined in
 
-[Core/ServerGuard.ts:175](https://github.com/hpyer/node-easywechat/blob/e4961d7/src/Core/ServerGuard.ts#L175)
+[Core/ServerGuard.ts:175](https://github.com/hpyer/node-easywechat/blob/a144a0f/src/Core/ServerGuard.ts#L175)
 
 ___
 
@@ -521,7 +521,7 @@ ___
 
 #### Defined in
 
-[Core/ServerGuard.ts:132](https://github.com/hpyer/node-easywechat/blob/e4961d7/src/Core/ServerGuard.ts#L132)
+[Core/ServerGuard.ts:132](https://github.com/hpyer/node-easywechat/blob/a144a0f/src/Core/ServerGuard.ts#L132)
 
 ___
 
@@ -539,7 +539,7 @@ ___
 
 #### Defined in
 
-[Work/Server/Guard.ts:17](https://github.com/hpyer/node-easywechat/blob/e4961d7/src/Work/Server/Guard.ts#L17)
+[Work/Server/Guard.ts:17](https://github.com/hpyer/node-easywechat/blob/a144a0f/src/Work/Server/Guard.ts#L17)
 
 ___
 
@@ -563,7 +563,7 @@ ___
 
 #### Defined in
 
-[Core/ServerGuard.ts:258](https://github.com/hpyer/node-easywechat/blob/e4961d7/src/Core/ServerGuard.ts#L258)
+[Core/ServerGuard.ts:258](https://github.com/hpyer/node-easywechat/blob/a144a0f/src/Core/ServerGuard.ts#L258)
 
 ___
 
@@ -581,4 +581,4 @@ ___
 
 #### Defined in
 
-[Work/Server/Guard.ts:7](https://github.com/hpyer/node-easywechat/blob/e4961d7/src/Work/Server/Guard.ts#L7)
+[Work/Server/Guard.ts:7](https://github.com/hpyer/node-easywechat/blob/a144a0f/src/Work/Server/Guard.ts#L7)

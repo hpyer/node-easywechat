@@ -47,7 +47,7 @@ GCM模式解密
 
 #### Defined in
 
-[Core/AES.ts:84](https://github.com/hpyer/node-easywechat/blob/e4961d7/src/Core/AES.ts#L84)
+[Core/AES.ts:84](https://github.com/hpyer/node-easywechat/blob/a144a0f/src/Core/AES.ts#L84)
 
 ___
 
@@ -75,4 +75,4 @@ GCM模式加密
 
 #### Defined in
 
-[Core/AES.ts:65](https://github.com/hpyer/node-easywechat/blob/e4961d7/src/Core/AES.ts#L65)
+[Core/AES.ts:65](https://github.com/hpyer/node-easywechat/blob/a144a0f/src/Core/AES.ts#L65)

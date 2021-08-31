@@ -49,7 +49,7 @@
 
 #### Defined in
 
-[Core/Contracts/RequestInterface.ts:10](https://github.com/hpyer/node-easywechat/blob/e4961d7/src/Core/Contracts/RequestInterface.ts#L10)
+[Core/Contracts/RequestInterface.ts:10](https://github.com/hpyer/node-easywechat/blob/a144a0f/src/Core/Contracts/RequestInterface.ts#L10)
 
 ___
 
@@ -63,7 +63,7 @@ ___
 
 #### Defined in
 
-[Core/Contracts/RequestInterface.ts:40](https://github.com/hpyer/node-easywechat/blob/e4961d7/src/Core/Contracts/RequestInterface.ts#L40)
+[Core/Contracts/RequestInterface.ts:40](https://github.com/hpyer/node-easywechat/blob/a144a0f/src/Core/Contracts/RequestInterface.ts#L40)
 
 ___
 
@@ -77,7 +77,7 @@ ___
 
 #### Defined in
 
-[Core/Contracts/RequestInterface.ts:20](https://github.com/hpyer/node-easywechat/blob/e4961d7/src/Core/Contracts/RequestInterface.ts#L20)
+[Core/Contracts/RequestInterface.ts:20](https://github.com/hpyer/node-easywechat/blob/a144a0f/src/Core/Contracts/RequestInterface.ts#L20)
 
 ___
 
@@ -91,7 +91,7 @@ ___
 
 #### Defined in
 
-[Core/Contracts/RequestInterface.ts:30](https://github.com/hpyer/node-easywechat/blob/e4961d7/src/Core/Contracts/RequestInterface.ts#L30)
+[Core/Contracts/RequestInterface.ts:30](https://github.com/hpyer/node-easywechat/blob/a144a0f/src/Core/Contracts/RequestInterface.ts#L30)
 
 ___
 
@@ -105,7 +105,7 @@ ___
 
 #### Defined in
 
-[Core/Contracts/RequestInterface.ts:35](https://github.com/hpyer/node-easywechat/blob/e4961d7/src/Core/Contracts/RequestInterface.ts#L35)
+[Core/Contracts/RequestInterface.ts:35](https://github.com/hpyer/node-easywechat/blob/a144a0f/src/Core/Contracts/RequestInterface.ts#L35)
 
 ___
 
@@ -119,7 +119,7 @@ ___
 
 #### Defined in
 
-[Core/Contracts/RequestInterface.ts:5](https://github.com/hpyer/node-easywechat/blob/e4961d7/src/Core/Contracts/RequestInterface.ts#L5)
+[Core/Contracts/RequestInterface.ts:5](https://github.com/hpyer/node-easywechat/blob/a144a0f/src/Core/Contracts/RequestInterface.ts#L5)
 
 ___
 
@@ -133,7 +133,7 @@ ___
 
 #### Defined in
 
-[Core/Contracts/RequestInterface.ts:25](https://github.com/hpyer/node-easywechat/blob/e4961d7/src/Core/Contracts/RequestInterface.ts#L25)
+[Core/Contracts/RequestInterface.ts:25](https://github.com/hpyer/node-easywechat/blob/a144a0f/src/Core/Contracts/RequestInterface.ts#L25)
 
 ___
 
@@ -153,4 +153,4 @@ ___
 
 #### Defined in
 
-[Core/Contracts/RequestInterface.ts:15](https://github.com/hpyer/node-easywechat/blob/e4961d7/src/Core/Contracts/RequestInterface.ts#L15)
+[Core/Contracts/RequestInterface.ts:15](https://github.com/hpyer/node-easywechat/blob/a144a0f/src/Core/Contracts/RequestInterface.ts#L15)

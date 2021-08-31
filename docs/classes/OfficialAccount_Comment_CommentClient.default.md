@@ -60,7 +60,7 @@
 
 #### Defined in
 
-[Core/BaseClient.ts:17](https://github.com/hpyer/node-easywechat/blob/e4961d7/src/Core/BaseClient.ts#L17)
+[Core/BaseClient.ts:17](https://github.com/hpyer/node-easywechat/blob/a144a0f/src/Core/BaseClient.ts#L17)
 
 ## Properties
 
@@ -74,7 +74,7 @@
 
 #### Defined in
 
-[Core/BaseClient.ts:14](https://github.com/hpyer/node-easywechat/blob/e4961d7/src/Core/BaseClient.ts#L14)
+[Core/BaseClient.ts:14](https://github.com/hpyer/node-easywechat/blob/a144a0f/src/Core/BaseClient.ts#L14)
 
 ___
 
@@ -88,7 +88,7 @@ ___
 
 #### Defined in
 
-[Core/BaseClient.ts:15](https://github.com/hpyer/node-easywechat/blob/e4961d7/src/Core/BaseClient.ts#L15)
+[Core/BaseClient.ts:15](https://github.com/hpyer/node-easywechat/blob/a144a0f/src/Core/BaseClient.ts#L15)
 
 ## Methods
 
@@ -111,7 +111,7 @@ ___
 
 #### Defined in
 
-[OfficialAccount/Comment/CommentClient.ts:26](https://github.com/hpyer/node-easywechat/blob/e4961d7/src/OfficialAccount/Comment/CommentClient.ts#L26)
+[OfficialAccount/Comment/CommentClient.ts:26](https://github.com/hpyer/node-easywechat/blob/a144a0f/src/OfficialAccount/Comment/CommentClient.ts#L26)
 
 ___
 
@@ -135,7 +135,7 @@ ___
 
 #### Defined in
 
-[OfficialAccount/Comment/CommentClient.ts:89](https://github.com/hpyer/node-easywechat/blob/e4961d7/src/OfficialAccount/Comment/CommentClient.ts#L89)
+[OfficialAccount/Comment/CommentClient.ts:89](https://github.com/hpyer/node-easywechat/blob/a144a0f/src/OfficialAccount/Comment/CommentClient.ts#L89)
 
 ___
 
@@ -159,7 +159,7 @@ ___
 
 #### Defined in
 
-[OfficialAccount/Comment/CommentClient.ts:121](https://github.com/hpyer/node-easywechat/blob/e4961d7/src/OfficialAccount/Comment/CommentClient.ts#L121)
+[OfficialAccount/Comment/CommentClient.ts:121](https://github.com/hpyer/node-easywechat/blob/a144a0f/src/OfficialAccount/Comment/CommentClient.ts#L121)
 
 ___
 
@@ -183,7 +183,7 @@ ___
 
 #### Defined in
 
-[Core/BaseClient.ts:114](https://github.com/hpyer/node-easywechat/blob/e4961d7/src/Core/BaseClient.ts#L114)
+[Core/BaseClient.ts:114](https://github.com/hpyer/node-easywechat/blob/a144a0f/src/Core/BaseClient.ts#L114)
 
 ___
 
@@ -201,7 +201,7 @@ ___
 
 #### Defined in
 
-[Core/BaseClient.ts:30](https://github.com/hpyer/node-easywechat/blob/e4961d7/src/Core/BaseClient.ts#L30)
+[Core/BaseClient.ts:30](https://github.com/hpyer/node-easywechat/blob/a144a0f/src/Core/BaseClient.ts#L30)
 
 ___
 
@@ -226,7 +226,7 @@ ___
 
 #### Defined in
 
-[Core/BaseClient.ts:76](https://github.com/hpyer/node-easywechat/blob/e4961d7/src/Core/BaseClient.ts#L76)
+[Core/BaseClient.ts:76](https://github.com/hpyer/node-easywechat/blob/a144a0f/src/Core/BaseClient.ts#L76)
 
 ___
 
@@ -251,7 +251,7 @@ ___
 
 #### Defined in
 
-[Core/BaseClient.ts:85](https://github.com/hpyer/node-easywechat/blob/e4961d7/src/Core/BaseClient.ts#L85)
+[Core/BaseClient.ts:85](https://github.com/hpyer/node-easywechat/blob/a144a0f/src/Core/BaseClient.ts#L85)
 
 ___
 
@@ -277,7 +277,7 @@ ___
 
 #### Defined in
 
-[Core/BaseClient.ts:94](https://github.com/hpyer/node-easywechat/blob/e4961d7/src/Core/BaseClient.ts#L94)
+[Core/BaseClient.ts:94](https://github.com/hpyer/node-easywechat/blob/a144a0f/src/Core/BaseClient.ts#L94)
 
 ___
 
@@ -304,7 +304,7 @@ ___
 
 #### Defined in
 
-[Core/BaseClient.ts:51](https://github.com/hpyer/node-easywechat/blob/e4961d7/src/Core/BaseClient.ts#L51)
+[Core/BaseClient.ts:51](https://github.com/hpyer/node-easywechat/blob/a144a0f/src/Core/BaseClient.ts#L51)
 
 ___
 
@@ -330,7 +330,7 @@ ___
 
 #### Defined in
 
-[OfficialAccount/Comment/CommentClient.ts:42](https://github.com/hpyer/node-easywechat/blob/e4961d7/src/OfficialAccount/Comment/CommentClient.ts#L42)
+[OfficialAccount/Comment/CommentClient.ts:42](https://github.com/hpyer/node-easywechat/blob/a144a0f/src/OfficialAccount/Comment/CommentClient.ts#L42)
 
 ___
 
@@ -354,7 +354,7 @@ ___
 
 #### Defined in
 
-[OfficialAccount/Comment/CommentClient.ts:59](https://github.com/hpyer/node-easywechat/blob/e4961d7/src/OfficialAccount/Comment/CommentClient.ts#L59)
+[OfficialAccount/Comment/CommentClient.ts:59](https://github.com/hpyer/node-easywechat/blob/a144a0f/src/OfficialAccount/Comment/CommentClient.ts#L59)
 
 ___
 
@@ -377,7 +377,7 @@ ___
 
 #### Defined in
 
-[OfficialAccount/Comment/CommentClient.ts:13](https://github.com/hpyer/node-easywechat/blob/e4961d7/src/OfficialAccount/Comment/CommentClient.ts#L13)
+[OfficialAccount/Comment/CommentClient.ts:13](https://github.com/hpyer/node-easywechat/blob/a144a0f/src/OfficialAccount/Comment/CommentClient.ts#L13)
 
 ___
 
@@ -402,7 +402,7 @@ ___
 
 #### Defined in
 
-[OfficialAccount/Comment/CommentClient.ts:105](https://github.com/hpyer/node-easywechat/blob/e4961d7/src/OfficialAccount/Comment/CommentClient.ts#L105)
+[OfficialAccount/Comment/CommentClient.ts:105](https://github.com/hpyer/node-easywechat/blob/a144a0f/src/OfficialAccount/Comment/CommentClient.ts#L105)
 
 ___
 
@@ -427,7 +427,7 @@ ___
 
 #### Defined in
 
-[Core/BaseClient.ts:35](https://github.com/hpyer/node-easywechat/blob/e4961d7/src/Core/BaseClient.ts#L35)
+[Core/BaseClient.ts:35](https://github.com/hpyer/node-easywechat/blob/a144a0f/src/Core/BaseClient.ts#L35)
 
 ___
 
@@ -451,7 +451,7 @@ ___
 
 #### Defined in
 
-[Core/BaseClient.ts:104](https://github.com/hpyer/node-easywechat/blob/e4961d7/src/Core/BaseClient.ts#L104)
+[Core/BaseClient.ts:104](https://github.com/hpyer/node-easywechat/blob/a144a0f/src/Core/BaseClient.ts#L104)
 
 ___
 
@@ -475,7 +475,7 @@ ___
 
 #### Defined in
 
-[Core/BaseClient.ts:23](https://github.com/hpyer/node-easywechat/blob/e4961d7/src/Core/BaseClient.ts#L23)
+[Core/BaseClient.ts:23](https://github.com/hpyer/node-easywechat/blob/a144a0f/src/Core/BaseClient.ts#L23)
 
 ___
 
@@ -499,4 +499,4 @@ ___
 
 #### Defined in
 
-[OfficialAccount/Comment/CommentClient.ts:74](https://github.com/hpyer/node-easywechat/blob/e4961d7/src/OfficialAccount/Comment/CommentClient.ts#L74)
+[OfficialAccount/Comment/CommentClient.ts:74](https://github.com/hpyer/node-easywechat/blob/a144a0f/src/OfficialAccount/Comment/CommentClient.ts#L74)

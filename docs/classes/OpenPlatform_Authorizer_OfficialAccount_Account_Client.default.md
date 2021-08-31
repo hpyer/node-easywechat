@@ -59,7 +59,7 @@
 
 #### Defined in
 
-[OpenPlatform/Authorizer/OfficialAccount/Account/Client.ts:13](https://github.com/hpyer/node-easywechat/blob/e4961d7/src/OpenPlatform/Authorizer/OfficialAccount/Account/Client.ts#L13)
+[OpenPlatform/Authorizer/OfficialAccount/Account/Client.ts:13](https://github.com/hpyer/node-easywechat/blob/a144a0f/src/OpenPlatform/Authorizer/OfficialAccount/Account/Client.ts#L13)
 
 ## Properties
 
@@ -73,7 +73,7 @@
 
 #### Defined in
 
-[Core/BaseClient.ts:14](https://github.com/hpyer/node-easywechat/blob/e4961d7/src/Core/BaseClient.ts#L14)
+[Core/BaseClient.ts:14](https://github.com/hpyer/node-easywechat/blob/a144a0f/src/Core/BaseClient.ts#L14)
 
 ___
 
@@ -87,7 +87,7 @@ ___
 
 #### Defined in
 
-[Core/BaseClient.ts:15](https://github.com/hpyer/node-easywechat/blob/e4961d7/src/Core/BaseClient.ts#L15)
+[Core/BaseClient.ts:15](https://github.com/hpyer/node-easywechat/blob/a144a0f/src/Core/BaseClient.ts#L15)
 
 ___
 
@@ -97,7 +97,7 @@ ___
 
 #### Defined in
 
-[OpenPlatform/Authorizer/OfficialAccount/Account/Client.ts:11](https://github.com/hpyer/node-easywechat/blob/e4961d7/src/OpenPlatform/Authorizer/OfficialAccount/Account/Client.ts#L11)
+[OpenPlatform/Authorizer/OfficialAccount/Account/Client.ts:11](https://github.com/hpyer/node-easywechat/blob/a144a0f/src/OpenPlatform/Authorizer/OfficialAccount/Account/Client.ts#L11)
 
 ## Methods
 
@@ -123,7 +123,7 @@ ___
 
 #### Defined in
 
-[OpenPlatform/Authorizer/Aggregate/Account/Client.ts:22](https://github.com/hpyer/node-easywechat/blob/e4961d7/src/OpenPlatform/Authorizer/Aggregate/Account/Client.ts#L22)
+[OpenPlatform/Authorizer/Aggregate/Account/Client.ts:22](https://github.com/hpyer/node-easywechat/blob/a144a0f/src/OpenPlatform/Authorizer/Aggregate/Account/Client.ts#L22)
 
 ___
 
@@ -143,7 +143,7 @@ ___
 
 #### Defined in
 
-[OpenPlatform/Authorizer/Aggregate/Account/Client.ts:11](https://github.com/hpyer/node-easywechat/blob/e4961d7/src/OpenPlatform/Authorizer/Aggregate/Account/Client.ts#L11)
+[OpenPlatform/Authorizer/Aggregate/Account/Client.ts:11](https://github.com/hpyer/node-easywechat/blob/a144a0f/src/OpenPlatform/Authorizer/Aggregate/Account/Client.ts#L11)
 
 ___
 
@@ -167,7 +167,7 @@ ___
 
 #### Defined in
 
-[Core/BaseClient.ts:114](https://github.com/hpyer/node-easywechat/blob/e4961d7/src/Core/BaseClient.ts#L114)
+[Core/BaseClient.ts:114](https://github.com/hpyer/node-easywechat/blob/a144a0f/src/Core/BaseClient.ts#L114)
 
 ___
 
@@ -185,7 +185,7 @@ ___
 
 #### Defined in
 
-[Core/BaseClient.ts:30](https://github.com/hpyer/node-easywechat/blob/e4961d7/src/Core/BaseClient.ts#L30)
+[Core/BaseClient.ts:30](https://github.com/hpyer/node-easywechat/blob/a144a0f/src/Core/BaseClient.ts#L30)
 
 ___
 
@@ -205,7 +205,7 @@ ___
 
 #### Defined in
 
-[OpenPlatform/Authorizer/Aggregate/Account/Client.ts:45](https://github.com/hpyer/node-easywechat/blob/e4961d7/src/OpenPlatform/Authorizer/Aggregate/Account/Client.ts#L45)
+[OpenPlatform/Authorizer/Aggregate/Account/Client.ts:45](https://github.com/hpyer/node-easywechat/blob/a144a0f/src/OpenPlatform/Authorizer/Aggregate/Account/Client.ts#L45)
 
 ___
 
@@ -228,7 +228,7 @@ ___
 
 #### Defined in
 
-[OpenPlatform/Authorizer/OfficialAccount/Account/Client.ts:25](https://github.com/hpyer/node-easywechat/blob/e4961d7/src/OpenPlatform/Authorizer/OfficialAccount/Account/Client.ts#L25)
+[OpenPlatform/Authorizer/OfficialAccount/Account/Client.ts:25](https://github.com/hpyer/node-easywechat/blob/a144a0f/src/OpenPlatform/Authorizer/OfficialAccount/Account/Client.ts#L25)
 
 ___
 
@@ -253,7 +253,7 @@ ___
 
 #### Defined in
 
-[Core/BaseClient.ts:76](https://github.com/hpyer/node-easywechat/blob/e4961d7/src/Core/BaseClient.ts#L76)
+[Core/BaseClient.ts:76](https://github.com/hpyer/node-easywechat/blob/a144a0f/src/Core/BaseClient.ts#L76)
 
 ___
 
@@ -278,7 +278,7 @@ ___
 
 #### Defined in
 
-[Core/BaseClient.ts:85](https://github.com/hpyer/node-easywechat/blob/e4961d7/src/Core/BaseClient.ts#L85)
+[Core/BaseClient.ts:85](https://github.com/hpyer/node-easywechat/blob/a144a0f/src/Core/BaseClient.ts#L85)
 
 ___
 
@@ -304,7 +304,7 @@ ___
 
 #### Defined in
 
-[Core/BaseClient.ts:94](https://github.com/hpyer/node-easywechat/blob/e4961d7/src/Core/BaseClient.ts#L94)
+[Core/BaseClient.ts:94](https://github.com/hpyer/node-easywechat/blob/a144a0f/src/Core/BaseClient.ts#L94)
 
 ___
 
@@ -331,7 +331,7 @@ ___
 
 #### Defined in
 
-[Core/BaseClient.ts:51](https://github.com/hpyer/node-easywechat/blob/e4961d7/src/Core/BaseClient.ts#L51)
+[Core/BaseClient.ts:51](https://github.com/hpyer/node-easywechat/blob/a144a0f/src/Core/BaseClient.ts#L51)
 
 ___
 
@@ -353,7 +353,7 @@ ___
 
 #### Defined in
 
-[OpenPlatform/Authorizer/OfficialAccount/Account/Client.ts:40](https://github.com/hpyer/node-easywechat/blob/e4961d7/src/OpenPlatform/Authorizer/OfficialAccount/Account/Client.ts#L40)
+[OpenPlatform/Authorizer/OfficialAccount/Account/Client.ts:40](https://github.com/hpyer/node-easywechat/blob/a144a0f/src/OpenPlatform/Authorizer/OfficialAccount/Account/Client.ts#L40)
 
 ___
 
@@ -378,7 +378,7 @@ ___
 
 #### Defined in
 
-[Core/BaseClient.ts:35](https://github.com/hpyer/node-easywechat/blob/e4961d7/src/Core/BaseClient.ts#L35)
+[Core/BaseClient.ts:35](https://github.com/hpyer/node-easywechat/blob/a144a0f/src/Core/BaseClient.ts#L35)
 
 ___
 
@@ -402,7 +402,7 @@ ___
 
 #### Defined in
 
-[Core/BaseClient.ts:104](https://github.com/hpyer/node-easywechat/blob/e4961d7/src/Core/BaseClient.ts#L104)
+[Core/BaseClient.ts:104](https://github.com/hpyer/node-easywechat/blob/a144a0f/src/Core/BaseClient.ts#L104)
 
 ___
 
@@ -426,7 +426,7 @@ ___
 
 #### Defined in
 
-[Core/BaseClient.ts:23](https://github.com/hpyer/node-easywechat/blob/e4961d7/src/Core/BaseClient.ts#L23)
+[Core/BaseClient.ts:23](https://github.com/hpyer/node-easywechat/blob/a144a0f/src/Core/BaseClient.ts#L23)
 
 ___
 
@@ -452,4 +452,4 @@ ___
 
 #### Defined in
 
-[OpenPlatform/Authorizer/Aggregate/Account/Client.ts:34](https://github.com/hpyer/node-easywechat/blob/e4961d7/src/OpenPlatform/Authorizer/Aggregate/Account/Client.ts#L34)
+[OpenPlatform/Authorizer/Aggregate/Account/Client.ts:34](https://github.com/hpyer/node-easywechat/blob/a144a0f/src/OpenPlatform/Authorizer/Aggregate/Account/Client.ts#L34)

@@ -64,7 +64,7 @@
 
 #### Defined in
 
-[Core/BaseClient.ts:17](https://github.com/hpyer/node-easywechat/blob/e4961d7/src/Core/BaseClient.ts#L17)
+[Core/BaseClient.ts:17](https://github.com/hpyer/node-easywechat/blob/a144a0f/src/Core/BaseClient.ts#L17)
 
 ## Properties
 
@@ -78,7 +78,7 @@
 
 #### Defined in
 
-[Core/BaseClient.ts:14](https://github.com/hpyer/node-easywechat/blob/e4961d7/src/Core/BaseClient.ts#L14)
+[Core/BaseClient.ts:14](https://github.com/hpyer/node-easywechat/blob/a144a0f/src/Core/BaseClient.ts#L14)
 
 ___
 
@@ -92,7 +92,7 @@ ___
 
 #### Defined in
 
-[Core/BaseClient.ts:15](https://github.com/hpyer/node-easywechat/blob/e4961d7/src/Core/BaseClient.ts#L15)
+[Core/BaseClient.ts:15](https://github.com/hpyer/node-easywechat/blob/a144a0f/src/Core/BaseClient.ts#L15)
 
 ## Methods
 
@@ -113,7 +113,7 @@ ___
 
 #### Defined in
 
-[OfficialAccount/CustomerService/CustomerServiceClient.ts:20](https://github.com/hpyer/node-easywechat/blob/e4961d7/src/OfficialAccount/CustomerService/CustomerServiceClient.ts#L20)
+[OfficialAccount/CustomerService/CustomerServiceClient.ts:20](https://github.com/hpyer/node-easywechat/blob/a144a0f/src/OfficialAccount/CustomerService/CustomerServiceClient.ts#L20)
 
 ___
 
@@ -133,7 +133,7 @@ ___
 
 #### Defined in
 
-[OfficialAccount/CustomerService/CustomerServiceClient.ts:38](https://github.com/hpyer/node-easywechat/blob/e4961d7/src/OfficialAccount/CustomerService/CustomerServiceClient.ts#L38)
+[OfficialAccount/CustomerService/CustomerServiceClient.ts:38](https://github.com/hpyer/node-easywechat/blob/a144a0f/src/OfficialAccount/CustomerService/CustomerServiceClient.ts#L38)
 
 ___
 
@@ -157,7 +157,7 @@ ___
 
 #### Defined in
 
-[Core/BaseClient.ts:114](https://github.com/hpyer/node-easywechat/blob/e4961d7/src/Core/BaseClient.ts#L114)
+[Core/BaseClient.ts:114](https://github.com/hpyer/node-easywechat/blob/a144a0f/src/Core/BaseClient.ts#L114)
 
 ___
 
@@ -175,7 +175,7 @@ ___
 
 #### Defined in
 
-[Core/BaseClient.ts:30](https://github.com/hpyer/node-easywechat/blob/e4961d7/src/Core/BaseClient.ts#L30)
+[Core/BaseClient.ts:30](https://github.com/hpyer/node-easywechat/blob/a144a0f/src/Core/BaseClient.ts#L30)
 
 ___
 
@@ -195,7 +195,7 @@ ___
 
 #### Defined in
 
-[OfficialAccount/CustomerService/CustomerServiceClient.ts:83](https://github.com/hpyer/node-easywechat/blob/e4961d7/src/OfficialAccount/CustomerService/CustomerServiceClient.ts#L83)
+[OfficialAccount/CustomerService/CustomerServiceClient.ts:83](https://github.com/hpyer/node-easywechat/blob/a144a0f/src/OfficialAccount/CustomerService/CustomerServiceClient.ts#L83)
 
 ___
 
@@ -220,7 +220,7 @@ ___
 
 #### Defined in
 
-[Core/BaseClient.ts:76](https://github.com/hpyer/node-easywechat/blob/e4961d7/src/Core/BaseClient.ts#L76)
+[Core/BaseClient.ts:76](https://github.com/hpyer/node-easywechat/blob/a144a0f/src/Core/BaseClient.ts#L76)
 
 ___
 
@@ -245,7 +245,7 @@ ___
 
 #### Defined in
 
-[Core/BaseClient.ts:85](https://github.com/hpyer/node-easywechat/blob/e4961d7/src/Core/BaseClient.ts#L85)
+[Core/BaseClient.ts:85](https://github.com/hpyer/node-easywechat/blob/a144a0f/src/Core/BaseClient.ts#L85)
 
 ___
 
@@ -271,7 +271,7 @@ ___
 
 #### Defined in
 
-[Core/BaseClient.ts:94](https://github.com/hpyer/node-easywechat/blob/e4961d7/src/Core/BaseClient.ts#L94)
+[Core/BaseClient.ts:94](https://github.com/hpyer/node-easywechat/blob/a144a0f/src/Core/BaseClient.ts#L94)
 
 ___
 
@@ -298,7 +298,7 @@ ___
 
 #### Defined in
 
-[Core/BaseClient.ts:51](https://github.com/hpyer/node-easywechat/blob/e4961d7/src/Core/BaseClient.ts#L51)
+[Core/BaseClient.ts:51](https://github.com/hpyer/node-easywechat/blob/a144a0f/src/Core/BaseClient.ts#L51)
 
 ___
 
@@ -319,7 +319,7 @@ ___
 
 #### Defined in
 
-[OfficialAccount/CustomerService/CustomerServiceClient.ts:46](https://github.com/hpyer/node-easywechat/blob/e4961d7/src/OfficialAccount/CustomerService/CustomerServiceClient.ts#L46)
+[OfficialAccount/CustomerService/CustomerServiceClient.ts:46](https://github.com/hpyer/node-easywechat/blob/a144a0f/src/OfficialAccount/CustomerService/CustomerServiceClient.ts#L46)
 
 ___
 
@@ -333,7 +333,7 @@ ___
 
 #### Defined in
 
-[OfficialAccount/CustomerService/CustomerServiceClient.ts:10](https://github.com/hpyer/node-easywechat/blob/e4961d7/src/OfficialAccount/CustomerService/CustomerServiceClient.ts#L10)
+[OfficialAccount/CustomerService/CustomerServiceClient.ts:10](https://github.com/hpyer/node-easywechat/blob/a144a0f/src/OfficialAccount/CustomerService/CustomerServiceClient.ts#L10)
 
 ___
 
@@ -353,7 +353,7 @@ ___
 
 #### Defined in
 
-[OfficialAccount/CustomerService/CustomerServiceClient.ts:64](https://github.com/hpyer/node-easywechat/blob/e4961d7/src/OfficialAccount/CustomerService/CustomerServiceClient.ts#L64)
+[OfficialAccount/CustomerService/CustomerServiceClient.ts:64](https://github.com/hpyer/node-easywechat/blob/a144a0f/src/OfficialAccount/CustomerService/CustomerServiceClient.ts#L64)
 
 ___
 
@@ -376,7 +376,7 @@ ___
 
 #### Defined in
 
-[OfficialAccount/CustomerService/CustomerServiceClient.ts:91](https://github.com/hpyer/node-easywechat/blob/e4961d7/src/OfficialAccount/CustomerService/CustomerServiceClient.ts#L91)
+[OfficialAccount/CustomerService/CustomerServiceClient.ts:91](https://github.com/hpyer/node-easywechat/blob/a144a0f/src/OfficialAccount/CustomerService/CustomerServiceClient.ts#L91)
 
 ___
 
@@ -390,7 +390,7 @@ ___
 
 #### Defined in
 
-[OfficialAccount/CustomerService/CustomerServiceClient.ts:15](https://github.com/hpyer/node-easywechat/blob/e4961d7/src/OfficialAccount/CustomerService/CustomerServiceClient.ts#L15)
+[OfficialAccount/CustomerService/CustomerServiceClient.ts:15](https://github.com/hpyer/node-easywechat/blob/a144a0f/src/OfficialAccount/CustomerService/CustomerServiceClient.ts#L15)
 
 ___
 
@@ -415,7 +415,7 @@ ___
 
 #### Defined in
 
-[Core/BaseClient.ts:35](https://github.com/hpyer/node-easywechat/blob/e4961d7/src/Core/BaseClient.ts#L35)
+[Core/BaseClient.ts:35](https://github.com/hpyer/node-easywechat/blob/a144a0f/src/Core/BaseClient.ts#L35)
 
 ___
 
@@ -439,7 +439,7 @@ ___
 
 #### Defined in
 
-[Core/BaseClient.ts:104](https://github.com/hpyer/node-easywechat/blob/e4961d7/src/Core/BaseClient.ts#L104)
+[Core/BaseClient.ts:104](https://github.com/hpyer/node-easywechat/blob/a144a0f/src/Core/BaseClient.ts#L104)
 
 ___
 
@@ -459,7 +459,7 @@ ___
 
 #### Defined in
 
-[OfficialAccount/CustomerService/CustomerServiceClient.ts:70](https://github.com/hpyer/node-easywechat/blob/e4961d7/src/OfficialAccount/CustomerService/CustomerServiceClient.ts#L70)
+[OfficialAccount/CustomerService/CustomerServiceClient.ts:70](https://github.com/hpyer/node-easywechat/blob/a144a0f/src/OfficialAccount/CustomerService/CustomerServiceClient.ts#L70)
 
 ___
 
@@ -483,7 +483,7 @@ ___
 
 #### Defined in
 
-[Core/BaseClient.ts:23](https://github.com/hpyer/node-easywechat/blob/e4961d7/src/Core/BaseClient.ts#L23)
+[Core/BaseClient.ts:23](https://github.com/hpyer/node-easywechat/blob/a144a0f/src/Core/BaseClient.ts#L23)
 
 ___
 
@@ -504,7 +504,7 @@ ___
 
 #### Defined in
 
-[OfficialAccount/CustomerService/CustomerServiceClient.ts:55](https://github.com/hpyer/node-easywechat/blob/e4961d7/src/OfficialAccount/CustomerService/CustomerServiceClient.ts#L55)
+[OfficialAccount/CustomerService/CustomerServiceClient.ts:55](https://github.com/hpyer/node-easywechat/blob/a144a0f/src/OfficialAccount/CustomerService/CustomerServiceClient.ts#L55)
 
 ___
 
@@ -524,7 +524,7 @@ ___
 
 #### Defined in
 
-[OfficialAccount/CustomerService/CustomerServiceClient.ts:75](https://github.com/hpyer/node-easywechat/blob/e4961d7/src/OfficialAccount/CustomerService/CustomerServiceClient.ts#L75)
+[OfficialAccount/CustomerService/CustomerServiceClient.ts:75](https://github.com/hpyer/node-easywechat/blob/a144a0f/src/OfficialAccount/CustomerService/CustomerServiceClient.ts#L75)
 
 ___
 
@@ -545,4 +545,4 @@ ___
 
 #### Defined in
 
-[OfficialAccount/CustomerService/CustomerServiceClient.ts:29](https://github.com/hpyer/node-easywechat/blob/e4961d7/src/OfficialAccount/CustomerService/CustomerServiceClient.ts#L29)
+[OfficialAccount/CustomerService/CustomerServiceClient.ts:29](https://github.com/hpyer/node-easywechat/blob/a144a0f/src/OfficialAccount/CustomerService/CustomerServiceClient.ts#L29)

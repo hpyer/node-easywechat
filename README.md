@@ -46,6 +46,11 @@ let openPlatform = new EasyWechat.Factory.Work({
   // ...
 });
 
+// 小微商户
+let microMerchant = new EasyWechat.Factory.MicroMerchant({
+  // ...
+});
+
 // 通用方式
 let app = EasyWechat.Factory.getInstance('OficialAccount', {
   // ...
@@ -124,6 +129,24 @@ let app = EasyWechat.Factory.getInstance('OficialAccount', {
 }
 ```
 
+``` js
+// 小微商户配置
+{
+  // 商户号
+  mch_id: 'your-mch-id',
+  // 签名密钥
+  key: 'key-for-signature',
+  // V3版本签名密钥
+  apiv3_key: 'apiv3_key-for-signature',
+  // 证书地址，Node.js 只需要 .pfx 证书文件即可
+  cert_path: 'path/to/your/cert.pfx', // XXX: 绝对路径！！！！
+
+  // 以下两项配置在获取证书接口时可为空，在调用入驻接口前请先调用获取证书接口获取以下两项配置,如果获取过证书可以直接在这里配置，也可参照本文档获取平台证书章节中示例
+  // serial_no: '获取证书接口获取到的平台证书序列号',
+  // certificate: '获取证书接口获取到的证书内容'
+}
+```
+
 ### 模块支持情况
 
 - [x] 公众号模块
@@ -132,7 +155,7 @@ let app = EasyWechat.Factory.getInstance('OficialAccount', {
 - [x] 开放平台
 - [x] 企业微信
 - [ ] 企业微信开放平台
-- [ ] 小微商户
+- [x] 小微商户
 - [x] 自定义
 
 ### 自定义模块（模块替换）使用方法

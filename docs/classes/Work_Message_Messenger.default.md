@@ -43,7 +43,7 @@
 
 #### Defined in
 
-[Work/Message/Messenger.ts:21](https://github.com/hpyer/node-easywechat/blob/e4961d7/src/Work/Message/Messenger.ts#L21)
+[Work/Message/Messenger.ts:21](https://github.com/hpyer/node-easywechat/blob/a144a0f/src/Work/Message/Messenger.ts#L21)
 
 ## Properties
 
@@ -53,7 +53,7 @@
 
 #### Defined in
 
-[Work/Message/Messenger.ts:17](https://github.com/hpyer/node-easywechat/blob/e4961d7/src/Work/Message/Messenger.ts#L17)
+[Work/Message/Messenger.ts:17](https://github.com/hpyer/node-easywechat/blob/a144a0f/src/Work/Message/Messenger.ts#L17)
 
 ___
 
@@ -63,7 +63,7 @@ ___
 
 #### Defined in
 
-[Work/Message/Messenger.ts:11](https://github.com/hpyer/node-easywechat/blob/e4961d7/src/Work/Message/Messenger.ts#L11)
+[Work/Message/Messenger.ts:11](https://github.com/hpyer/node-easywechat/blob/a144a0f/src/Work/Message/Messenger.ts#L11)
 
 ___
 
@@ -73,7 +73,7 @@ ___
 
 #### Defined in
 
-[Work/Message/Messenger.ts:9](https://github.com/hpyer/node-easywechat/blob/e4961d7/src/Work/Message/Messenger.ts#L9)
+[Work/Message/Messenger.ts:9](https://github.com/hpyer/node-easywechat/blob/a144a0f/src/Work/Message/Messenger.ts#L9)
 
 ___
 
@@ -83,7 +83,7 @@ ___
 
 #### Defined in
 
-[Work/Message/Messenger.ts:19](https://github.com/hpyer/node-easywechat/blob/e4961d7/src/Work/Message/Messenger.ts#L19)
+[Work/Message/Messenger.ts:19](https://github.com/hpyer/node-easywechat/blob/a144a0f/src/Work/Message/Messenger.ts#L19)
 
 ___
 
@@ -93,7 +93,7 @@ ___
 
 #### Defined in
 
-[Work/Message/Messenger.ts:13](https://github.com/hpyer/node-easywechat/blob/e4961d7/src/Work/Message/Messenger.ts#L13)
+[Work/Message/Messenger.ts:13](https://github.com/hpyer/node-easywechat/blob/a144a0f/src/Work/Message/Messenger.ts#L13)
 
 ## Methods
 
@@ -113,7 +113,7 @@ ___
 
 #### Defined in
 
-[Work/Message/Messenger.ts:41](https://github.com/hpyer/node-easywechat/blob/e4961d7/src/Work/Message/Messenger.ts#L41)
+[Work/Message/Messenger.ts:41](https://github.com/hpyer/node-easywechat/blob/a144a0f/src/Work/Message/Messenger.ts#L41)
 
 ___
 
@@ -133,7 +133,7 @@ ___
 
 #### Defined in
 
-[Work/Message/Messenger.ts:82](https://github.com/hpyer/node-easywechat/blob/e4961d7/src/Work/Message/Messenger.ts#L82)
+[Work/Message/Messenger.ts:82](https://github.com/hpyer/node-easywechat/blob/a144a0f/src/Work/Message/Messenger.ts#L82)
 
 ___
 
@@ -153,7 +153,7 @@ ___
 
 #### Defined in
 
-[Work/Message/Messenger.ts:26](https://github.com/hpyer/node-easywechat/blob/e4961d7/src/Work/Message/Messenger.ts#L26)
+[Work/Message/Messenger.ts:26](https://github.com/hpyer/node-easywechat/blob/a144a0f/src/Work/Message/Messenger.ts#L26)
 
 ___
 
@@ -174,7 +174,7 @@ ___
 
 #### Defined in
 
-[Work/Message/Messenger.ts:55](https://github.com/hpyer/node-easywechat/blob/e4961d7/src/Work/Message/Messenger.ts#L55)
+[Work/Message/Messenger.ts:55](https://github.com/hpyer/node-easywechat/blob/a144a0f/src/Work/Message/Messenger.ts#L55)
 
 ___
 
@@ -188,7 +188,7 @@ ___
 
 #### Defined in
 
-[Work/Message/Messenger.ts:48](https://github.com/hpyer/node-easywechat/blob/e4961d7/src/Work/Message/Messenger.ts#L48)
+[Work/Message/Messenger.ts:48](https://github.com/hpyer/node-easywechat/blob/a144a0f/src/Work/Message/Messenger.ts#L48)
 
 ___
 
@@ -208,7 +208,7 @@ ___
 
 #### Defined in
 
-[Work/Message/Messenger.ts:72](https://github.com/hpyer/node-easywechat/blob/e4961d7/src/Work/Message/Messenger.ts#L72)
+[Work/Message/Messenger.ts:72](https://github.com/hpyer/node-easywechat/blob/a144a0f/src/Work/Message/Messenger.ts#L72)
 
 ___
 
@@ -228,7 +228,7 @@ ___
 
 #### Defined in
 
-[Work/Message/Messenger.ts:77](https://github.com/hpyer/node-easywechat/blob/e4961d7/src/Work/Message/Messenger.ts#L77)
+[Work/Message/Messenger.ts:77](https://github.com/hpyer/node-easywechat/blob/a144a0f/src/Work/Message/Messenger.ts#L77)
 
 ___
 
@@ -248,4 +248,4 @@ ___
 
 #### Defined in
 
-[Work/Message/Messenger.ts:67](https://github.com/hpyer/node-easywechat/blob/e4961d7/src/Work/Message/Messenger.ts#L67)
+[Work/Message/Messenger.ts:67](https://github.com/hpyer/node-easywechat/blob/a144a0f/src/Work/Message/Messenger.ts#L67)

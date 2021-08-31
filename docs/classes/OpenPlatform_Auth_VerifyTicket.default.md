@@ -34,7 +34,7 @@
 
 #### Defined in
 
-[OpenPlatform/Auth/VerifyTicket.ts:10](https://github.com/hpyer/node-easywechat/blob/e4961d7/src/OpenPlatform/Auth/VerifyTicket.ts#L10)
+[OpenPlatform/Auth/VerifyTicket.ts:10](https://github.com/hpyer/node-easywechat/blob/a144a0f/src/OpenPlatform/Auth/VerifyTicket.ts#L10)
 
 ## Properties
 
@@ -44,7 +44,7 @@
 
 #### Defined in
 
-[OpenPlatform/Auth/VerifyTicket.ts:8](https://github.com/hpyer/node-easywechat/blob/e4961d7/src/OpenPlatform/Auth/VerifyTicket.ts#L8)
+[OpenPlatform/Auth/VerifyTicket.ts:8](https://github.com/hpyer/node-easywechat/blob/a144a0f/src/OpenPlatform/Auth/VerifyTicket.ts#L8)
 
 ## Methods
 
@@ -58,7 +58,7 @@
 
 #### Defined in
 
-[OpenPlatform/Auth/VerifyTicket.ts:39](https://github.com/hpyer/node-easywechat/blob/e4961d7/src/OpenPlatform/Auth/VerifyTicket.ts#L39)
+[OpenPlatform/Auth/VerifyTicket.ts:39](https://github.com/hpyer/node-easywechat/blob/a144a0f/src/OpenPlatform/Auth/VerifyTicket.ts#L39)
 
 ___
 
@@ -72,7 +72,7 @@ ___
 
 #### Defined in
 
-[OpenPlatform/Auth/VerifyTicket.ts:28](https://github.com/hpyer/node-easywechat/blob/e4961d7/src/OpenPlatform/Auth/VerifyTicket.ts#L28)
+[OpenPlatform/Auth/VerifyTicket.ts:28](https://github.com/hpyer/node-easywechat/blob/a144a0f/src/OpenPlatform/Auth/VerifyTicket.ts#L28)
 
 ___
 
@@ -92,4 +92,4 @@ ___
 
 #### Defined in
 
-[OpenPlatform/Auth/VerifyTicket.ts:15](https://github.com/hpyer/node-easywechat/blob/e4961d7/src/OpenPlatform/Auth/VerifyTicket.ts#L15)
+[OpenPlatform/Auth/VerifyTicket.ts:15](https://github.com/hpyer/node-easywechat/blob/a144a0f/src/OpenPlatform/Auth/VerifyTicket.ts#L15)

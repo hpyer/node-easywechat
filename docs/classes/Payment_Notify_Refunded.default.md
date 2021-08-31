@@ -57,7 +57,7 @@
 
 #### Defined in
 
-[Payment/Notify/Handler.ts:27](https://github.com/hpyer/node-easywechat/blob/e4961d7/src/Payment/Notify/Handler.ts#L27)
+[Payment/Notify/Handler.ts:27](https://github.com/hpyer/node-easywechat/blob/a144a0f/src/Payment/Notify/Handler.ts#L27)
 
 ## Properties
 
@@ -71,7 +71,7 @@
 
 #### Defined in
 
-[Payment/Notify/Handler.ts:12](https://github.com/hpyer/node-easywechat/blob/e4961d7/src/Payment/Notify/Handler.ts#L12)
+[Payment/Notify/Handler.ts:12](https://github.com/hpyer/node-easywechat/blob/a144a0f/src/Payment/Notify/Handler.ts#L12)
 
 ___
 
@@ -85,7 +85,7 @@ ___
 
 #### Defined in
 
-[Payment/Notify/Handler.ts:11](https://github.com/hpyer/node-easywechat/blob/e4961d7/src/Payment/Notify/Handler.ts#L11)
+[Payment/Notify/Handler.ts:11](https://github.com/hpyer/node-easywechat/blob/a144a0f/src/Payment/Notify/Handler.ts#L11)
 
 ___
 
@@ -99,7 +99,7 @@ ___
 
 #### Defined in
 
-[Payment/Notify/Handler.ts:14](https://github.com/hpyer/node-easywechat/blob/e4961d7/src/Payment/Notify/Handler.ts#L14)
+[Payment/Notify/Handler.ts:14](https://github.com/hpyer/node-easywechat/blob/a144a0f/src/Payment/Notify/Handler.ts#L14)
 
 ___
 
@@ -113,7 +113,7 @@ ___
 
 #### Defined in
 
-[Payment/Notify/Handler.ts:20](https://github.com/hpyer/node-easywechat/blob/e4961d7/src/Payment/Notify/Handler.ts#L20)
+[Payment/Notify/Handler.ts:20](https://github.com/hpyer/node-easywechat/blob/a144a0f/src/Payment/Notify/Handler.ts#L20)
 
 ___
 
@@ -127,7 +127,7 @@ ___
 
 #### Defined in
 
-[Payment/Notify/Handler.ts:22](https://github.com/hpyer/node-easywechat/blob/e4961d7/src/Payment/Notify/Handler.ts#L22)
+[Payment/Notify/Handler.ts:22](https://github.com/hpyer/node-easywechat/blob/a144a0f/src/Payment/Notify/Handler.ts#L22)
 
 ___
 
@@ -141,7 +141,7 @@ ___
 
 #### Defined in
 
-[Payment/Notify/Handler.ts:18](https://github.com/hpyer/node-easywechat/blob/e4961d7/src/Payment/Notify/Handler.ts#L18)
+[Payment/Notify/Handler.ts:18](https://github.com/hpyer/node-easywechat/blob/a144a0f/src/Payment/Notify/Handler.ts#L18)
 
 ___
 
@@ -155,7 +155,7 @@ ___
 
 #### Defined in
 
-[Payment/Notify/Handler.ts:16](https://github.com/hpyer/node-easywechat/blob/e4961d7/src/Payment/Notify/Handler.ts#L16)
+[Payment/Notify/Handler.ts:16](https://github.com/hpyer/node-easywechat/blob/a144a0f/src/Payment/Notify/Handler.ts#L16)
 
 ___
 
@@ -169,7 +169,7 @@ ___
 
 #### Defined in
 
-[Payment/Notify/Handler.ts:24](https://github.com/hpyer/node-easywechat/blob/e4961d7/src/Payment/Notify/Handler.ts#L24)
+[Payment/Notify/Handler.ts:24](https://github.com/hpyer/node-easywechat/blob/a144a0f/src/Payment/Notify/Handler.ts#L24)
 
 ## Methods
 
@@ -193,7 +193,7 @@ ___
 
 #### Defined in
 
-[Payment/Notify/Handler.ts:86](https://github.com/hpyer/node-easywechat/blob/e4961d7/src/Payment/Notify/Handler.ts#L86)
+[Payment/Notify/Handler.ts:86](https://github.com/hpyer/node-easywechat/blob/a144a0f/src/Payment/Notify/Handler.ts#L86)
 
 ___
 
@@ -211,7 +211,7 @@ ___
 
 #### Defined in
 
-[Payment/Notify/Handler.ts:70](https://github.com/hpyer/node-easywechat/blob/e4961d7/src/Payment/Notify/Handler.ts#L70)
+[Payment/Notify/Handler.ts:70](https://github.com/hpyer/node-easywechat/blob/a144a0f/src/Payment/Notify/Handler.ts#L70)
 
 ___
 
@@ -235,7 +235,7 @@ ___
 
 #### Defined in
 
-[Payment/Notify/Refunded.ts:10](https://github.com/hpyer/node-easywechat/blob/e4961d7/src/Payment/Notify/Refunded.ts#L10)
+[Payment/Notify/Refunded.ts:10](https://github.com/hpyer/node-easywechat/blob/a144a0f/src/Payment/Notify/Refunded.ts#L10)
 
 ___
 
@@ -249,7 +249,7 @@ ___
 
 #### Defined in
 
-[Payment/Notify/Refunded.ts:26](https://github.com/hpyer/node-easywechat/blob/e4961d7/src/Payment/Notify/Refunded.ts#L26)
+[Payment/Notify/Refunded.ts:26](https://github.com/hpyer/node-easywechat/blob/a144a0f/src/Payment/Notify/Refunded.ts#L26)
 
 ___
 
@@ -274,7 +274,7 @@ ___
 
 #### Defined in
 
-[Payment/Notify/Handler.ts:46](https://github.com/hpyer/node-easywechat/blob/e4961d7/src/Payment/Notify/Handler.ts#L46)
+[Payment/Notify/Handler.ts:46](https://github.com/hpyer/node-easywechat/blob/a144a0f/src/Payment/Notify/Handler.ts#L46)
 
 ___
 
@@ -300,7 +300,7 @@ ___
 
 #### Defined in
 
-[Payment/Notify/Handler.ts:41](https://github.com/hpyer/node-easywechat/blob/e4961d7/src/Payment/Notify/Handler.ts#L41)
+[Payment/Notify/Handler.ts:41](https://github.com/hpyer/node-easywechat/blob/a144a0f/src/Payment/Notify/Handler.ts#L41)
 
 ___
 
@@ -324,7 +324,7 @@ ___
 
 #### Defined in
 
-[Payment/Notify/Handler.ts:105](https://github.com/hpyer/node-easywechat/blob/e4961d7/src/Payment/Notify/Handler.ts#L105)
+[Payment/Notify/Handler.ts:105](https://github.com/hpyer/node-easywechat/blob/a144a0f/src/Payment/Notify/Handler.ts#L105)
 
 ___
 
@@ -342,7 +342,7 @@ ___
 
 #### Defined in
 
-[Payment/Notify/Handler.ts:54](https://github.com/hpyer/node-easywechat/blob/e4961d7/src/Payment/Notify/Handler.ts#L54)
+[Payment/Notify/Handler.ts:54](https://github.com/hpyer/node-easywechat/blob/a144a0f/src/Payment/Notify/Handler.ts#L54)
 
 ___
 
@@ -366,4 +366,4 @@ ___
 
 #### Defined in
 
-[Payment/Notify/Handler.ts:96](https://github.com/hpyer/node-easywechat/blob/e4961d7/src/Payment/Notify/Handler.ts#L96)
+[Payment/Notify/Handler.ts:96](https://github.com/hpyer/node-easywechat/blob/a144a0f/src/Payment/Notify/Handler.ts#L96)

@@ -63,7 +63,7 @@
 
 #### Defined in
 
-[OfficialAccount/ShakeAround/ShakeAround.ts:24](https://github.com/hpyer/node-easywechat/blob/e4961d7/src/OfficialAccount/ShakeAround/ShakeAround.ts#L24)
+[OfficialAccount/ShakeAround/ShakeAround.ts:24](https://github.com/hpyer/node-easywechat/blob/a144a0f/src/OfficialAccount/ShakeAround/ShakeAround.ts#L24)
 
 ## Properties
 
@@ -77,7 +77,7 @@
 
 #### Defined in
 
-[Core/BaseClient.ts:14](https://github.com/hpyer/node-easywechat/blob/e4961d7/src/Core/BaseClient.ts#L14)
+[Core/BaseClient.ts:14](https://github.com/hpyer/node-easywechat/blob/a144a0f/src/Core/BaseClient.ts#L14)
 
 ___
 
@@ -91,7 +91,7 @@ ___
 
 #### Defined in
 
-[Core/BaseClient.ts:15](https://github.com/hpyer/node-easywechat/blob/e4961d7/src/Core/BaseClient.ts#L15)
+[Core/BaseClient.ts:15](https://github.com/hpyer/node-easywechat/blob/a144a0f/src/Core/BaseClient.ts#L15)
 
 ___
 
@@ -101,7 +101,7 @@ ___
 
 #### Defined in
 
-[OfficialAccount/ShakeAround/ShakeAround.ts:16](https://github.com/hpyer/node-easywechat/blob/e4961d7/src/OfficialAccount/ShakeAround/ShakeAround.ts#L16)
+[OfficialAccount/ShakeAround/ShakeAround.ts:16](https://github.com/hpyer/node-easywechat/blob/a144a0f/src/OfficialAccount/ShakeAround/ShakeAround.ts#L16)
 
 ___
 
@@ -111,7 +111,7 @@ ___
 
 #### Defined in
 
-[OfficialAccount/ShakeAround/ShakeAround.ts:17](https://github.com/hpyer/node-easywechat/blob/e4961d7/src/OfficialAccount/ShakeAround/ShakeAround.ts#L17)
+[OfficialAccount/ShakeAround/ShakeAround.ts:17](https://github.com/hpyer/node-easywechat/blob/a144a0f/src/OfficialAccount/ShakeAround/ShakeAround.ts#L17)
 
 ___
 
@@ -121,7 +121,7 @@ ___
 
 #### Defined in
 
-[OfficialAccount/ShakeAround/ShakeAround.ts:20](https://github.com/hpyer/node-easywechat/blob/e4961d7/src/OfficialAccount/ShakeAround/ShakeAround.ts#L20)
+[OfficialAccount/ShakeAround/ShakeAround.ts:20](https://github.com/hpyer/node-easywechat/blob/a144a0f/src/OfficialAccount/ShakeAround/ShakeAround.ts#L20)
 
 ___
 
@@ -131,7 +131,7 @@ ___
 
 #### Defined in
 
-[OfficialAccount/ShakeAround/ShakeAround.ts:19](https://github.com/hpyer/node-easywechat/blob/e4961d7/src/OfficialAccount/ShakeAround/ShakeAround.ts#L19)
+[OfficialAccount/ShakeAround/ShakeAround.ts:19](https://github.com/hpyer/node-easywechat/blob/a144a0f/src/OfficialAccount/ShakeAround/ShakeAround.ts#L19)
 
 ___
 
@@ -141,7 +141,7 @@ ___
 
 #### Defined in
 
-[OfficialAccount/ShakeAround/ShakeAround.ts:18](https://github.com/hpyer/node-easywechat/blob/e4961d7/src/OfficialAccount/ShakeAround/ShakeAround.ts#L18)
+[OfficialAccount/ShakeAround/ShakeAround.ts:18](https://github.com/hpyer/node-easywechat/blob/a144a0f/src/OfficialAccount/ShakeAround/ShakeAround.ts#L18)
 
 ___
 
@@ -151,7 +151,7 @@ ___
 
 #### Defined in
 
-[OfficialAccount/ShakeAround/ShakeAround.ts:21](https://github.com/hpyer/node-easywechat/blob/e4961d7/src/OfficialAccount/ShakeAround/ShakeAround.ts#L21)
+[OfficialAccount/ShakeAround/ShakeAround.ts:21](https://github.com/hpyer/node-easywechat/blob/a144a0f/src/OfficialAccount/ShakeAround/ShakeAround.ts#L21)
 
 ___
 
@@ -161,7 +161,7 @@ ___
 
 #### Defined in
 
-[OfficialAccount/ShakeAround/ShakeAround.ts:22](https://github.com/hpyer/node-easywechat/blob/e4961d7/src/OfficialAccount/ShakeAround/ShakeAround.ts#L22)
+[OfficialAccount/ShakeAround/ShakeAround.ts:22](https://github.com/hpyer/node-easywechat/blob/a144a0f/src/OfficialAccount/ShakeAround/ShakeAround.ts#L22)
 
 ## Methods
 
@@ -185,7 +185,7 @@ ___
 
 #### Defined in
 
-[Core/BaseClient.ts:114](https://github.com/hpyer/node-easywechat/blob/e4961d7/src/Core/BaseClient.ts#L114)
+[Core/BaseClient.ts:114](https://github.com/hpyer/node-easywechat/blob/a144a0f/src/Core/BaseClient.ts#L114)
 
 ___
 
@@ -203,7 +203,7 @@ ___
 
 #### Defined in
 
-[Core/BaseClient.ts:30](https://github.com/hpyer/node-easywechat/blob/e4961d7/src/Core/BaseClient.ts#L30)
+[Core/BaseClient.ts:30](https://github.com/hpyer/node-easywechat/blob/a144a0f/src/Core/BaseClient.ts#L30)
 
 ___
 
@@ -228,7 +228,7 @@ ___
 
 #### Defined in
 
-[Core/BaseClient.ts:76](https://github.com/hpyer/node-easywechat/blob/e4961d7/src/Core/BaseClient.ts#L76)
+[Core/BaseClient.ts:76](https://github.com/hpyer/node-easywechat/blob/a144a0f/src/Core/BaseClient.ts#L76)
 
 ___
 
@@ -253,7 +253,7 @@ ___
 
 #### Defined in
 
-[Core/BaseClient.ts:85](https://github.com/hpyer/node-easywechat/blob/e4961d7/src/Core/BaseClient.ts#L85)
+[Core/BaseClient.ts:85](https://github.com/hpyer/node-easywechat/blob/a144a0f/src/Core/BaseClient.ts#L85)
 
 ___
 
@@ -279,7 +279,7 @@ ___
 
 #### Defined in
 
-[Core/BaseClient.ts:94](https://github.com/hpyer/node-easywechat/blob/e4961d7/src/Core/BaseClient.ts#L94)
+[Core/BaseClient.ts:94](https://github.com/hpyer/node-easywechat/blob/a144a0f/src/Core/BaseClient.ts#L94)
 
 ___
 
@@ -306,7 +306,7 @@ ___
 
 #### Defined in
 
-[Core/BaseClient.ts:51](https://github.com/hpyer/node-easywechat/blob/e4961d7/src/Core/BaseClient.ts#L51)
+[Core/BaseClient.ts:51](https://github.com/hpyer/node-easywechat/blob/a144a0f/src/Core/BaseClient.ts#L51)
 
 ___
 
@@ -332,7 +332,7 @@ ___
 
 #### Defined in
 
-[OfficialAccount/ShakeAround/Client.ts:20](https://github.com/hpyer/node-easywechat/blob/e4961d7/src/OfficialAccount/ShakeAround/Client.ts#L20)
+[OfficialAccount/ShakeAround/Client.ts:20](https://github.com/hpyer/node-easywechat/blob/a144a0f/src/OfficialAccount/ShakeAround/Client.ts#L20)
 
 ___
 
@@ -357,7 +357,7 @@ ___
 
 #### Defined in
 
-[Core/BaseClient.ts:35](https://github.com/hpyer/node-easywechat/blob/e4961d7/src/Core/BaseClient.ts#L35)
+[Core/BaseClient.ts:35](https://github.com/hpyer/node-easywechat/blob/a144a0f/src/Core/BaseClient.ts#L35)
 
 ___
 
@@ -381,7 +381,7 @@ ___
 
 #### Defined in
 
-[Core/BaseClient.ts:104](https://github.com/hpyer/node-easywechat/blob/e4961d7/src/Core/BaseClient.ts#L104)
+[Core/BaseClient.ts:104](https://github.com/hpyer/node-easywechat/blob/a144a0f/src/Core/BaseClient.ts#L104)
 
 ___
 
@@ -405,7 +405,7 @@ ___
 
 #### Defined in
 
-[Core/BaseClient.ts:23](https://github.com/hpyer/node-easywechat/blob/e4961d7/src/Core/BaseClient.ts#L23)
+[Core/BaseClient.ts:23](https://github.com/hpyer/node-easywechat/blob/a144a0f/src/Core/BaseClient.ts#L23)
 
 ___
 
@@ -425,7 +425,7 @@ ___
 
 #### Defined in
 
-[OfficialAccount/ShakeAround/Client.ts:11](https://github.com/hpyer/node-easywechat/blob/e4961d7/src/OfficialAccount/ShakeAround/Client.ts#L11)
+[OfficialAccount/ShakeAround/Client.ts:11](https://github.com/hpyer/node-easywechat/blob/a144a0f/src/OfficialAccount/ShakeAround/Client.ts#L11)
 
 ___
 
@@ -452,7 +452,7 @@ ___
 
 #### Defined in
 
-[OfficialAccount/ShakeAround/Client.ts:30](https://github.com/hpyer/node-easywechat/blob/e4961d7/src/OfficialAccount/ShakeAround/Client.ts#L30)
+[OfficialAccount/ShakeAround/Client.ts:30](https://github.com/hpyer/node-easywechat/blob/a144a0f/src/OfficialAccount/ShakeAround/Client.ts#L30)
 
 ___
 
@@ -478,4 +478,4 @@ ___
 
 #### Defined in
 
-[OfficialAccount/ShakeAround/Client.ts:45](https://github.com/hpyer/node-easywechat/blob/e4961d7/src/OfficialAccount/ShakeAround/Client.ts#L45)
+[OfficialAccount/ShakeAround/Client.ts:45](https://github.com/hpyer/node-easywechat/blob/a144a0f/src/OfficialAccount/ShakeAround/Client.ts#L45)

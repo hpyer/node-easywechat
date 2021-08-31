@@ -47,7 +47,7 @@
 
 #### Defined in
 
-[Core/AES.ts:36](https://github.com/hpyer/node-easywechat/blob/e4961d7/src/Core/AES.ts#L36)
+[Core/AES.ts:36](https://github.com/hpyer/node-easywechat/blob/a144a0f/src/Core/AES.ts#L36)
 
 ___
 
@@ -75,4 +75,4 @@ ___
 
 #### Defined in
 
-[Core/AES.ts:15](https://github.com/hpyer/node-easywechat/blob/e4961d7/src/Core/AES.ts#L15)
+[Core/AES.ts:15](https://github.com/hpyer/node-easywechat/blob/a144a0f/src/Core/AES.ts#L15)

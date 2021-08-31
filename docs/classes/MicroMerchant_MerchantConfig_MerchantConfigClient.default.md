@@ -58,7 +58,7 @@
 
 #### Defined in
 
-[Payment/Core/BaseClient.ts:17](https://github.com/hpyer/node-easywechat/blob/e4961d7/src/Payment/Core/BaseClient.ts#L17)
+[Payment/Core/BaseClient.ts:17](https://github.com/hpyer/node-easywechat/blob/a144a0f/src/Payment/Core/BaseClient.ts#L17)
 
 ## Properties
 
@@ -72,7 +72,7 @@
 
 #### Defined in
 
-[Payment/Core/BaseClient.ts:13](https://github.com/hpyer/node-easywechat/blob/e4961d7/src/Payment/Core/BaseClient.ts#L13)
+[Payment/Core/BaseClient.ts:13](https://github.com/hpyer/node-easywechat/blob/a144a0f/src/Payment/Core/BaseClient.ts#L13)
 
 ___
 
@@ -86,7 +86,7 @@ ___
 
 #### Defined in
 
-[Payment/Core/BaseClient.ts:15](https://github.com/hpyer/node-easywechat/blob/e4961d7/src/Payment/Core/BaseClient.ts#L15)
+[Payment/Core/BaseClient.ts:15](https://github.com/hpyer/node-easywechat/blob/a144a0f/src/Payment/Core/BaseClient.ts#L15)
 
 ## Methods
 
@@ -106,7 +106,7 @@ ___
 
 #### Defined in
 
-[MicroMerchant/MerchantConfig/MerchantConfigClient.ts:46](https://github.com/hpyer/node-easywechat/blob/e4961d7/src/MicroMerchant/MerchantConfig/MerchantConfigClient.ts#L46)
+[MicroMerchant/MerchantConfig/MerchantConfigClient.ts:46](https://github.com/hpyer/node-easywechat/blob/a144a0f/src/MicroMerchant/MerchantConfig/MerchantConfigClient.ts#L46)
 
 ___
 
@@ -128,7 +128,7 @@ ___
 
 #### Defined in
 
-[MicroMerchant/MerchantConfig/MerchantConfigClient.ts:28](https://github.com/hpyer/node-easywechat/blob/e4961d7/src/MicroMerchant/MerchantConfig/MerchantConfigClient.ts#L28)
+[MicroMerchant/MerchantConfig/MerchantConfigClient.ts:28](https://github.com/hpyer/node-easywechat/blob/a144a0f/src/MicroMerchant/MerchantConfig/MerchantConfigClient.ts#L28)
 
 ___
 
@@ -150,7 +150,7 @@ ___
 
 #### Defined in
 
-[MicroMerchant/MerchantConfig/MerchantConfigClient.ts:37](https://github.com/hpyer/node-easywechat/blob/e4961d7/src/MicroMerchant/MerchantConfig/MerchantConfigClient.ts#L37)
+[MicroMerchant/MerchantConfig/MerchantConfigClient.ts:37](https://github.com/hpyer/node-easywechat/blob/a144a0f/src/MicroMerchant/MerchantConfig/MerchantConfigClient.ts#L37)
 
 ___
 
@@ -174,7 +174,7 @@ ___
 
 #### Defined in
 
-[Payment/Core/BaseClient.ts:119](https://github.com/hpyer/node-easywechat/blob/e4961d7/src/Payment/Core/BaseClient.ts#L119)
+[Payment/Core/BaseClient.ts:119](https://github.com/hpyer/node-easywechat/blob/a144a0f/src/Payment/Core/BaseClient.ts#L119)
 
 ___
 
@@ -192,7 +192,7 @@ ___
 
 #### Defined in
 
-[Payment/Core/BaseClient.ts:112](https://github.com/hpyer/node-easywechat/blob/e4961d7/src/Payment/Core/BaseClient.ts#L112)
+[Payment/Core/BaseClient.ts:112](https://github.com/hpyer/node-easywechat/blob/a144a0f/src/Payment/Core/BaseClient.ts#L112)
 
 ___
 
@@ -213,7 +213,7 @@ ___
 
 #### Defined in
 
-[MicroMerchant/MerchantConfig/MerchantConfigClient.ts:51](https://github.com/hpyer/node-easywechat/blob/e4961d7/src/MicroMerchant/MerchantConfig/MerchantConfigClient.ts#L51)
+[MicroMerchant/MerchantConfig/MerchantConfigClient.ts:51](https://github.com/hpyer/node-easywechat/blob/a144a0f/src/MicroMerchant/MerchantConfig/MerchantConfigClient.ts#L51)
 
 ___
 
@@ -231,7 +231,7 @@ ___
 
 #### Defined in
 
-[MicroMerchant/Core/BaseClient.ts:96](https://github.com/hpyer/node-easywechat/blob/e4961d7/src/MicroMerchant/Core/BaseClient.ts#L96)
+[MicroMerchant/Core/BaseClient.ts:96](https://github.com/hpyer/node-easywechat/blob/a144a0f/src/MicroMerchant/Core/BaseClient.ts#L96)
 
 ___
 
@@ -249,7 +249,7 @@ ___
 
 #### Defined in
 
-[Payment/Core/BaseClient.ts:90](https://github.com/hpyer/node-easywechat/blob/e4961d7/src/Payment/Core/BaseClient.ts#L90)
+[Payment/Core/BaseClient.ts:90](https://github.com/hpyer/node-easywechat/blob/a144a0f/src/Payment/Core/BaseClient.ts#L90)
 
 ___
 
@@ -277,7 +277,7 @@ ___
 
 #### Defined in
 
-[MicroMerchant/Core/BaseClient.ts:13](https://github.com/hpyer/node-easywechat/blob/e4961d7/src/MicroMerchant/Core/BaseClient.ts#L13)
+[MicroMerchant/Core/BaseClient.ts:13](https://github.com/hpyer/node-easywechat/blob/a144a0f/src/MicroMerchant/Core/BaseClient.ts#L13)
 
 ___
 
@@ -295,7 +295,7 @@ ___
 
 #### Defined in
 
-[Payment/Core/BaseClient.ts:22](https://github.com/hpyer/node-easywechat/blob/e4961d7/src/Payment/Core/BaseClient.ts#L22)
+[Payment/Core/BaseClient.ts:22](https://github.com/hpyer/node-easywechat/blob/a144a0f/src/Payment/Core/BaseClient.ts#L22)
 
 ___
 
@@ -319,7 +319,7 @@ ___
 
 #### Defined in
 
-[MicroMerchant/Core/BaseClient.ts:70](https://github.com/hpyer/node-easywechat/blob/e4961d7/src/MicroMerchant/Core/BaseClient.ts#L70)
+[MicroMerchant/Core/BaseClient.ts:70](https://github.com/hpyer/node-easywechat/blob/a144a0f/src/MicroMerchant/Core/BaseClient.ts#L70)
 
 ___
 
@@ -347,7 +347,7 @@ ___
 
 #### Defined in
 
-[MicroMerchant/Core/BaseClient.ts:38](https://github.com/hpyer/node-easywechat/blob/e4961d7/src/MicroMerchant/Core/BaseClient.ts#L38)
+[MicroMerchant/Core/BaseClient.ts:38](https://github.com/hpyer/node-easywechat/blob/a144a0f/src/MicroMerchant/Core/BaseClient.ts#L38)
 
 ___
 
@@ -374,7 +374,7 @@ ___
 
 #### Defined in
 
-[Payment/Core/BaseClient.ts:78](https://github.com/hpyer/node-easywechat/blob/e4961d7/src/Payment/Core/BaseClient.ts#L78)
+[Payment/Core/BaseClient.ts:78](https://github.com/hpyer/node-easywechat/blob/a144a0f/src/Payment/Core/BaseClient.ts#L78)
 
 ___
 
@@ -401,7 +401,7 @@ ___
 
 #### Defined in
 
-[Payment/Core/BaseClient.ts:67](https://github.com/hpyer/node-easywechat/blob/e4961d7/src/Payment/Core/BaseClient.ts#L67)
+[Payment/Core/BaseClient.ts:67](https://github.com/hpyer/node-easywechat/blob/a144a0f/src/Payment/Core/BaseClient.ts#L67)
 
 ___
 
@@ -424,7 +424,7 @@ ___
 
 #### Defined in
 
-[MicroMerchant/MerchantConfig/MerchantConfigClient.ts:9](https://github.com/hpyer/node-easywechat/blob/e4961d7/src/MicroMerchant/MerchantConfig/MerchantConfigClient.ts#L9)
+[MicroMerchant/MerchantConfig/MerchantConfigClient.ts:9](https://github.com/hpyer/node-easywechat/blob/a144a0f/src/MicroMerchant/MerchantConfig/MerchantConfigClient.ts#L9)
 
 ___
 
@@ -448,4 +448,4 @@ ___
 
 #### Defined in
 
-[Payment/Core/BaseClient.ts:85](https://github.com/hpyer/node-easywechat/blob/e4961d7/src/Payment/Core/BaseClient.ts#L85)
+[Payment/Core/BaseClient.ts:85](https://github.com/hpyer/node-easywechat/blob/a144a0f/src/Payment/Core/BaseClient.ts#L85)

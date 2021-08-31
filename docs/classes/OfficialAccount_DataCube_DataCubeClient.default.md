@@ -74,7 +74,7 @@
 
 #### Defined in
 
-[Core/BaseClient.ts:17](https://github.com/hpyer/node-easywechat/blob/e4961d7/src/Core/BaseClient.ts#L17)
+[Core/BaseClient.ts:17](https://github.com/hpyer/node-easywechat/blob/a144a0f/src/Core/BaseClient.ts#L17)
 
 ## Properties
 
@@ -88,7 +88,7 @@
 
 #### Defined in
 
-[Core/BaseClient.ts:14](https://github.com/hpyer/node-easywechat/blob/e4961d7/src/Core/BaseClient.ts#L14)
+[Core/BaseClient.ts:14](https://github.com/hpyer/node-easywechat/blob/a144a0f/src/Core/BaseClient.ts#L14)
 
 ___
 
@@ -102,7 +102,7 @@ ___
 
 #### Defined in
 
-[Core/BaseClient.ts:15](https://github.com/hpyer/node-easywechat/blob/e4961d7/src/Core/BaseClient.ts#L15)
+[Core/BaseClient.ts:15](https://github.com/hpyer/node-easywechat/blob/a144a0f/src/Core/BaseClient.ts#L15)
 
 ## Methods
 
@@ -125,7 +125,7 @@ ___
 
 #### Defined in
 
-[OfficialAccount/DataCube/DataCubeClient.ts:34](https://github.com/hpyer/node-easywechat/blob/e4961d7/src/OfficialAccount/DataCube/DataCubeClient.ts#L34)
+[OfficialAccount/DataCube/DataCubeClient.ts:34](https://github.com/hpyer/node-easywechat/blob/a144a0f/src/OfficialAccount/DataCube/DataCubeClient.ts#L34)
 
 ___
 
@@ -148,7 +148,7 @@ ___
 
 #### Defined in
 
-[OfficialAccount/DataCube/DataCubeClient.ts:44](https://github.com/hpyer/node-easywechat/blob/e4961d7/src/OfficialAccount/DataCube/DataCubeClient.ts#L44)
+[OfficialAccount/DataCube/DataCubeClient.ts:44](https://github.com/hpyer/node-easywechat/blob/a144a0f/src/OfficialAccount/DataCube/DataCubeClient.ts#L44)
 
 ___
 
@@ -172,7 +172,7 @@ ___
 
 #### Defined in
 
-[OfficialAccount/DataCube/DataCubeClient.ts:185](https://github.com/hpyer/node-easywechat/blob/e4961d7/src/OfficialAccount/DataCube/DataCubeClient.ts#L185)
+[OfficialAccount/DataCube/DataCubeClient.ts:185](https://github.com/hpyer/node-easywechat/blob/a144a0f/src/OfficialAccount/DataCube/DataCubeClient.ts#L185)
 
 ___
 
@@ -196,7 +196,7 @@ ___
 
 #### Defined in
 
-[Core/BaseClient.ts:114](https://github.com/hpyer/node-easywechat/blob/e4961d7/src/Core/BaseClient.ts#L114)
+[Core/BaseClient.ts:114](https://github.com/hpyer/node-easywechat/blob/a144a0f/src/Core/BaseClient.ts#L114)
 
 ___
 
@@ -221,7 +221,7 @@ ___
 
 #### Defined in
 
-[OfficialAccount/DataCube/DataCubeClient.ts:200](https://github.com/hpyer/node-easywechat/blob/e4961d7/src/OfficialAccount/DataCube/DataCubeClient.ts#L200)
+[OfficialAccount/DataCube/DataCubeClient.ts:200](https://github.com/hpyer/node-easywechat/blob/a144a0f/src/OfficialAccount/DataCube/DataCubeClient.ts#L200)
 
 ___
 
@@ -239,7 +239,7 @@ ___
 
 #### Defined in
 
-[Core/BaseClient.ts:30](https://github.com/hpyer/node-easywechat/blob/e4961d7/src/Core/BaseClient.ts#L30)
+[Core/BaseClient.ts:30](https://github.com/hpyer/node-easywechat/blob/a144a0f/src/Core/BaseClient.ts#L30)
 
 ___
 
@@ -264,7 +264,7 @@ ___
 
 #### Defined in
 
-[Core/BaseClient.ts:76](https://github.com/hpyer/node-easywechat/blob/e4961d7/src/Core/BaseClient.ts#L76)
+[Core/BaseClient.ts:76](https://github.com/hpyer/node-easywechat/blob/a144a0f/src/Core/BaseClient.ts#L76)
 
 ___
 
@@ -289,7 +289,7 @@ ___
 
 #### Defined in
 
-[Core/BaseClient.ts:85](https://github.com/hpyer/node-easywechat/blob/e4961d7/src/Core/BaseClient.ts#L85)
+[Core/BaseClient.ts:85](https://github.com/hpyer/node-easywechat/blob/a144a0f/src/Core/BaseClient.ts#L85)
 
 ___
 
@@ -315,7 +315,7 @@ ___
 
 #### Defined in
 
-[Core/BaseClient.ts:94](https://github.com/hpyer/node-easywechat/blob/e4961d7/src/Core/BaseClient.ts#L94)
+[Core/BaseClient.ts:94](https://github.com/hpyer/node-easywechat/blob/a144a0f/src/Core/BaseClient.ts#L94)
 
 ___
 
@@ -342,7 +342,7 @@ ___
 
 #### Defined in
 
-[Core/BaseClient.ts:51](https://github.com/hpyer/node-easywechat/blob/e4961d7/src/Core/BaseClient.ts#L51)
+[Core/BaseClient.ts:51](https://github.com/hpyer/node-easywechat/blob/a144a0f/src/Core/BaseClient.ts#L51)
 
 ___
 
@@ -365,7 +365,7 @@ ___
 
 #### Defined in
 
-[OfficialAccount/DataCube/DataCubeClient.ts:164](https://github.com/hpyer/node-easywechat/blob/e4961d7/src/OfficialAccount/DataCube/DataCubeClient.ts#L164)
+[OfficialAccount/DataCube/DataCubeClient.ts:164](https://github.com/hpyer/node-easywechat/blob/a144a0f/src/OfficialAccount/DataCube/DataCubeClient.ts#L164)
 
 ___
 
@@ -388,7 +388,7 @@ ___
 
 #### Defined in
 
-[OfficialAccount/DataCube/DataCubeClient.ts:174](https://github.com/hpyer/node-easywechat/blob/e4961d7/src/OfficialAccount/DataCube/DataCubeClient.ts#L174)
+[OfficialAccount/DataCube/DataCubeClient.ts:174](https://github.com/hpyer/node-easywechat/blob/a144a0f/src/OfficialAccount/DataCube/DataCubeClient.ts#L174)
 
 ___
 
@@ -412,7 +412,7 @@ ___
 
 #### Defined in
 
-[OfficialAccount/DataCube/DataCubeClient.ts:215](https://github.com/hpyer/node-easywechat/blob/e4961d7/src/OfficialAccount/DataCube/DataCubeClient.ts#L215)
+[OfficialAccount/DataCube/DataCubeClient.ts:215](https://github.com/hpyer/node-easywechat/blob/a144a0f/src/OfficialAccount/DataCube/DataCubeClient.ts#L215)
 
 ___
 
@@ -436,7 +436,7 @@ ___
 
 #### Defined in
 
-[OfficialAccount/DataCube/DataCubeClient.ts:229](https://github.com/hpyer/node-easywechat/blob/e4961d7/src/OfficialAccount/DataCube/DataCubeClient.ts#L229)
+[OfficialAccount/DataCube/DataCubeClient.ts:229](https://github.com/hpyer/node-easywechat/blob/a144a0f/src/OfficialAccount/DataCube/DataCubeClient.ts#L229)
 
 ___
 
@@ -459,7 +459,7 @@ ___
 
 #### Defined in
 
-[OfficialAccount/DataCube/DataCubeClient.ts:237](https://github.com/hpyer/node-easywechat/blob/e4961d7/src/OfficialAccount/DataCube/DataCubeClient.ts#L237)
+[OfficialAccount/DataCube/DataCubeClient.ts:237](https://github.com/hpyer/node-easywechat/blob/a144a0f/src/OfficialAccount/DataCube/DataCubeClient.ts#L237)
 
 ___
 
@@ -484,7 +484,7 @@ ___
 
 #### Defined in
 
-[Core/BaseClient.ts:35](https://github.com/hpyer/node-easywechat/blob/e4961d7/src/Core/BaseClient.ts#L35)
+[Core/BaseClient.ts:35](https://github.com/hpyer/node-easywechat/blob/a144a0f/src/Core/BaseClient.ts#L35)
 
 ___
 
@@ -508,7 +508,7 @@ ___
 
 #### Defined in
 
-[Core/BaseClient.ts:104](https://github.com/hpyer/node-easywechat/blob/e4961d7/src/Core/BaseClient.ts#L104)
+[Core/BaseClient.ts:104](https://github.com/hpyer/node-easywechat/blob/a144a0f/src/Core/BaseClient.ts#L104)
 
 ___
 
@@ -532,7 +532,7 @@ ___
 
 #### Defined in
 
-[Core/BaseClient.ts:23](https://github.com/hpyer/node-easywechat/blob/e4961d7/src/Core/BaseClient.ts#L23)
+[Core/BaseClient.ts:23](https://github.com/hpyer/node-easywechat/blob/a144a0f/src/Core/BaseClient.ts#L23)
 
 ___
 
@@ -555,7 +555,7 @@ ___
 
 #### Defined in
 
-[OfficialAccount/DataCube/DataCubeClient.ts:154](https://github.com/hpyer/node-easywechat/blob/e4961d7/src/OfficialAccount/DataCube/DataCubeClient.ts#L154)
+[OfficialAccount/DataCube/DataCubeClient.ts:154](https://github.com/hpyer/node-easywechat/blob/a144a0f/src/OfficialAccount/DataCube/DataCubeClient.ts#L154)
 
 ___
 
@@ -578,7 +578,7 @@ ___
 
 #### Defined in
 
-[OfficialAccount/DataCube/DataCubeClient.ts:134](https://github.com/hpyer/node-easywechat/blob/e4961d7/src/OfficialAccount/DataCube/DataCubeClient.ts#L134)
+[OfficialAccount/DataCube/DataCubeClient.ts:134](https://github.com/hpyer/node-easywechat/blob/a144a0f/src/OfficialAccount/DataCube/DataCubeClient.ts#L134)
 
 ___
 
@@ -601,7 +601,7 @@ ___
 
 #### Defined in
 
-[OfficialAccount/DataCube/DataCubeClient.ts:144](https://github.com/hpyer/node-easywechat/blob/e4961d7/src/OfficialAccount/DataCube/DataCubeClient.ts#L144)
+[OfficialAccount/DataCube/DataCubeClient.ts:144](https://github.com/hpyer/node-easywechat/blob/a144a0f/src/OfficialAccount/DataCube/DataCubeClient.ts#L144)
 
 ___
 
@@ -624,7 +624,7 @@ ___
 
 #### Defined in
 
-[OfficialAccount/DataCube/DataCubeClient.ts:104](https://github.com/hpyer/node-easywechat/blob/e4961d7/src/OfficialAccount/DataCube/DataCubeClient.ts#L104)
+[OfficialAccount/DataCube/DataCubeClient.ts:104](https://github.com/hpyer/node-easywechat/blob/a144a0f/src/OfficialAccount/DataCube/DataCubeClient.ts#L104)
 
 ___
 
@@ -647,7 +647,7 @@ ___
 
 #### Defined in
 
-[OfficialAccount/DataCube/DataCubeClient.ts:124](https://github.com/hpyer/node-easywechat/blob/e4961d7/src/OfficialAccount/DataCube/DataCubeClient.ts#L124)
+[OfficialAccount/DataCube/DataCubeClient.ts:124](https://github.com/hpyer/node-easywechat/blob/a144a0f/src/OfficialAccount/DataCube/DataCubeClient.ts#L124)
 
 ___
 
@@ -670,7 +670,7 @@ ___
 
 #### Defined in
 
-[OfficialAccount/DataCube/DataCubeClient.ts:94](https://github.com/hpyer/node-easywechat/blob/e4961d7/src/OfficialAccount/DataCube/DataCubeClient.ts#L94)
+[OfficialAccount/DataCube/DataCubeClient.ts:94](https://github.com/hpyer/node-easywechat/blob/a144a0f/src/OfficialAccount/DataCube/DataCubeClient.ts#L94)
 
 ___
 
@@ -693,7 +693,7 @@ ___
 
 #### Defined in
 
-[OfficialAccount/DataCube/DataCubeClient.ts:114](https://github.com/hpyer/node-easywechat/blob/e4961d7/src/OfficialAccount/DataCube/DataCubeClient.ts#L114)
+[OfficialAccount/DataCube/DataCubeClient.ts:114](https://github.com/hpyer/node-easywechat/blob/a144a0f/src/OfficialAccount/DataCube/DataCubeClient.ts#L114)
 
 ___
 
@@ -716,7 +716,7 @@ ___
 
 #### Defined in
 
-[OfficialAccount/DataCube/DataCubeClient.ts:24](https://github.com/hpyer/node-easywechat/blob/e4961d7/src/OfficialAccount/DataCube/DataCubeClient.ts#L24)
+[OfficialAccount/DataCube/DataCubeClient.ts:24](https://github.com/hpyer/node-easywechat/blob/a144a0f/src/OfficialAccount/DataCube/DataCubeClient.ts#L24)
 
 ___
 
@@ -739,7 +739,7 @@ ___
 
 #### Defined in
 
-[OfficialAccount/DataCube/DataCubeClient.ts:64](https://github.com/hpyer/node-easywechat/blob/e4961d7/src/OfficialAccount/DataCube/DataCubeClient.ts#L64)
+[OfficialAccount/DataCube/DataCubeClient.ts:64](https://github.com/hpyer/node-easywechat/blob/a144a0f/src/OfficialAccount/DataCube/DataCubeClient.ts#L64)
 
 ___
 
@@ -762,7 +762,7 @@ ___
 
 #### Defined in
 
-[OfficialAccount/DataCube/DataCubeClient.ts:54](https://github.com/hpyer/node-easywechat/blob/e4961d7/src/OfficialAccount/DataCube/DataCubeClient.ts#L54)
+[OfficialAccount/DataCube/DataCubeClient.ts:54](https://github.com/hpyer/node-easywechat/blob/a144a0f/src/OfficialAccount/DataCube/DataCubeClient.ts#L54)
 
 ___
 
@@ -785,7 +785,7 @@ ___
 
 #### Defined in
 
-[OfficialAccount/DataCube/DataCubeClient.ts:84](https://github.com/hpyer/node-easywechat/blob/e4961d7/src/OfficialAccount/DataCube/DataCubeClient.ts#L84)
+[OfficialAccount/DataCube/DataCubeClient.ts:84](https://github.com/hpyer/node-easywechat/blob/a144a0f/src/OfficialAccount/DataCube/DataCubeClient.ts#L84)
 
 ___
 
@@ -808,7 +808,7 @@ ___
 
 #### Defined in
 
-[OfficialAccount/DataCube/DataCubeClient.ts:74](https://github.com/hpyer/node-easywechat/blob/e4961d7/src/OfficialAccount/DataCube/DataCubeClient.ts#L74)
+[OfficialAccount/DataCube/DataCubeClient.ts:74](https://github.com/hpyer/node-easywechat/blob/a144a0f/src/OfficialAccount/DataCube/DataCubeClient.ts#L74)
 
 ___
 
@@ -831,4 +831,4 @@ ___
 
 #### Defined in
 
-[OfficialAccount/DataCube/DataCubeClient.ts:14](https://github.com/hpyer/node-easywechat/blob/e4961d7/src/OfficialAccount/DataCube/DataCubeClient.ts#L14)
+[OfficialAccount/DataCube/DataCubeClient.ts:14](https://github.com/hpyer/node-easywechat/blob/a144a0f/src/OfficialAccount/DataCube/DataCubeClient.ts#L14)
