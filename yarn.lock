@@ -80,13 +80,6 @@ asynckit@^0.4.0:
   resolved "https://registry.npm.taobao.org/asynckit/download/asynckit-0.4.0.tgz#c79ed97f7f34cb8f2ba1bc9790bcc366474b4b79"
   integrity sha1-x57Zf380y48robyXkLzDZkdLS3k=
 
-axios@^0.21.1:
-  version "0.21.1"
-  resolved "https://registry.npm.taobao.org/axios/download/axios-0.21.1.tgz#22563481962f4d6bde9a76d516ef0e5d3c09b2b8"
-  integrity sha1-IlY0gZYvTWvemnbVFu8OXTwJsrg=
-  dependencies:
-    follow-redirects "^1.10.0"
-
 axios@^0.21.4:
   version "0.21.4"
   resolved "https://registry.nlark.com/axios/download/axios-0.21.4.tgz?cache=0&sync_timestamp=1630942656836&other_urls=https%3A%2F%2Fregistry.nlark.com%2Faxios%2Fdownload%2Faxios-0.21.4.tgz#c67b90dc0568e5c1cf2b0b858c43ba28e2eda575"
@@ -264,11 +257,6 @@ flat@^5.0.2:
   version "5.0.2"
   resolved "https://registry.npm.taobao.org/flat/download/flat-5.0.2.tgz#8ca6fe332069ffa9d324c327198c598259ceb241"
   integrity sha1-jKb+MyBp/6nTJMMnGYxZglnOskE=
-
-follow-redirects@^1.10.0:
-  version "1.13.3"
-  resolved "https://registry.npm.taobao.org/follow-redirects/download/follow-redirects-1.13.3.tgz?cache=0&sync_timestamp=1614436920073&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2Ffollow-redirects%2Fdownload%2Ffollow-redirects-1.13.3.tgz#e5598ad50174c1bc4e872301e82ac2cd97f90267"
-  integrity sha1-5VmK1QF0wbxOhyMB6CrCzZf5Amc=
 
 follow-redirects@^1.14.0:
   version "1.14.3"
@@ -604,13 +592,13 @@ nise@^4.0.4:
     just-extend "^4.0.2"
     path-to-regexp "^1.7.0"
 
-node-socialite@^1.2.3:
-  version "1.2.3"
-  resolved "https://registry.nlark.com/node-socialite/download/node-socialite-1.2.3.tgz#7866eeb1ab8686e502ddb5a41e91dd0dfe1753a8"
-  integrity sha1-eGbusauGhuUC3bWkHpHdDf4XU6g=
+node-socialite@^1.2.4:
+  version "1.2.4"
+  resolved "https://registry.nlark.com/node-socialite/download/node-socialite-1.2.4.tgz?cache=0&sync_timestamp=1631102286660&other_urls=https%3A%2F%2Fregistry.nlark.com%2Fnode-socialite%2Fdownload%2Fnode-socialite-1.2.4.tgz#3b2594c3e2d3526f8d7ddcb820c604ac830d1cfa"
+  integrity sha1-OyWUw+LTUm+Nfdy4IMYErIMNHPo=
   dependencies:
-    axios "^0.21.1"
-    qs "^6.9.6"
+    axios "^0.21.4"
+    qs "^6.10.1"
 
 normalize-path@^3.0.0, normalize-path@~3.0.0:
   version "3.0.0"
@@ -677,7 +665,7 @@ progress@^2.0.3:
   resolved "https://registry.npm.taobao.org/progress/download/progress-2.0.3.tgz#7e8cf8d8f5b8f239c1bc68beb4eb78567d572ef8"
   integrity sha1-foz42PW48jnBvGi+tOt4Vn1XLvg=
 
-qs@^6.10.1, qs@^6.9.6:
+qs@^6.10.1:
   version "6.10.1"
   resolved "https://registry.npm.taobao.org/qs/download/qs-6.10.1.tgz#4931482fa8d647a5aab799c5271d2133b981fb6a"
   integrity sha1-STFIL6jWR6Wqt5nFJx0hM7mB+2o=
