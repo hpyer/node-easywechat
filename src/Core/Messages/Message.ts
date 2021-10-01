@@ -49,9 +49,7 @@ export class Message
 
   transformToXml(appends: object = {}, returnAsObject: boolean = false): any
   {
-    let data = {
-      xml: merge(merge({ MsgType: this.getType() }, this.toXmlArray()), appends)
-    };
+    let data = merge(merge({ MsgType: this.getType() }, this.toXmlArray()), appends);
 
     if (returnAsObject) {
       return data;

@@ -51,6 +51,9 @@ class ServerGuard {
         }
         this.handlers[condition].push(handler);
     }
+    setHandlers(handlers = {}) {
+        this.handlers = handlers;
+    }
     dispatch(event, payload) {
         return this.notify(event, payload);
     }

@@ -71,6 +71,10 @@ export default class ServerGuard
     this.handlers[condition].push(handler);
   }
 
+  setHandlers(handlers: ServerHandlers = {}) {
+    this.handlers = handlers;
+  }
+
   protected dispatch(event: string, payload: any): Promise<any>
   {
     return this.notify(event, payload);

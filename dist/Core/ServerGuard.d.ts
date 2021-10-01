@@ -27,6 +27,7 @@ export default class ServerGuard {
      * @param condition EasyWechat.Messages.Message.xxx，用于处理特定消息类型，默认：* 表示全部
      */
     push(handler: ServerHandler, condition?: string): void;
+    setHandlers(handlers?: ServerHandlers): void;
     protected dispatch(event: string, payload: any): Promise<any>;
     protected notify(event: string, payload: any): Promise<any>;
     protected _callHandler(handler: ServerHandler, payload: any): Promise<any>;

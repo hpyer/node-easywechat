@@ -17,9 +17,7 @@ class Message {
         this.type = type;
     }
     transformToXml(appends = {}, returnAsObject = false) {
-        let data = {
-            xml: Utils_1.merge(Utils_1.merge({ MsgType: this.getType() }, this.toXmlArray()), appends)
-        };
+        let data = Utils_1.merge(Utils_1.merge({ MsgType: this.getType() }, this.toXmlArray()), appends);
         if (returnAsObject) {
             return data;
         }
