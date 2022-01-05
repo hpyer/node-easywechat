@@ -12,6 +12,7 @@ import CustomerServiceClient from '../OfficialAccount/CustomerService/CustomerSe
 import UniformMessageClient from './UniformMessage/UniformMessageClient';
 import ActivityMessageClient from './ActivityMessage/ActivityMessageClient';
 import OpenDataClient from './OpenData/OpenDataClient';
+import PhoneNumberClient from './PhoneNumber/PhoneNumberClient';
 import PluginClient from './Plugin/PluginClient';
 import PluginDevClient from './Plugin/PluginDevClient';
 import MiniProgramBase from './Base/MiniProgramBase';
@@ -46,6 +47,7 @@ export default class MiniProgram extends BaseApplication
   public uniform_message: UniformMessageClient = null;
   public activity_message: ActivityMessageClient = null;
   public open_data: OpenDataClient = null;
+  public phone_number: PhoneNumberClient = null;
   public plugin: PluginClient = null;
   public plugin_dev: PluginDevClient = null;
   public base: MiniProgramBase = null;
@@ -123,6 +125,9 @@ export default class MiniProgram extends BaseApplication
     });
     this.offsetSet('open_data', function (app) {
       return new OpenDataClient(app);
+    });
+    this.offsetSet('phone_number', function (app) {
+      return new PhoneNumberClient(app);
     });
     this.offsetSet('plugin', function (app) {
       return new PluginClient(app);
