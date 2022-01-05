@@ -116,10 +116,11 @@ export default class ExternalContactClient extends BaseClient
     return this.httpPostJson('cgi-bin/externalcontact/groupchat/list', data);
   }
 
-  getGroupChat(chatId: string): Promise<any>
+  getGroupChat(chatId: string, needName: number = 0): Promise<any>
   {
     return this.httpPostJson('cgi-bin/externalcontact/groupchat/get', {
       chat_id: chatId,
+      need_name: needName,
     });
   }
 
