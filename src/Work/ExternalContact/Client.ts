@@ -24,19 +24,19 @@ export default class ExternalContactClient extends BaseClient
     });
   }
 
-  batchGet(userId: string, cursor: string = '', limit: number = 1): Promise<any>
+  batchGet(userIdList: string[], cursor: string = '', limit: number = 1): Promise<any>
   {
     return this.httpPostJson('cgi-bin/externalcontact/batch/get_by_user', {
-      userid: userId,
+      userid_list: userIdList,
       cursor,
       limit,
     });
   }
 
-  batchGetByUser(userId: string, cursor: string = '', limit: number = 1): Promise<any>
+  batchGetByUser(userIdList: string[], cursor: string = '', limit: number = 1): Promise<any>
   {
     return this.httpPostJson('cgi-bin/externalcontact/batch/get_by_user', {
-      userid: userId,
+      userid_list: userIdList,
       cursor,
       limit,
     });
