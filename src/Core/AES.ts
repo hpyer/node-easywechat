@@ -81,7 +81,7 @@ export class AES_GCM {
    * @param aad aad
    * @param method 加密方式，默认：aes-256-gcm
    */
-  static decrypt(ciphertext: NodeJS.ArrayBufferView, key: BinaryLike, iv: BinaryLike = '', aad: string = '', method: CipherGCMTypes = 'aes-256-gcm'): Buffer {
+  static decrypt(ciphertext: WithImplicitCoercion<ArrayBuffer | SharedArrayBuffer>, key: BinaryLike, iv: BinaryLike = '', aad: string = '', method: CipherGCMTypes = 'aes-256-gcm'): Buffer {
     let buf: Buffer = null;
 
     if (typeof ciphertext === 'string') {
