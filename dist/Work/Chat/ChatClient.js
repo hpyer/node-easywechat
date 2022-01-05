@@ -15,7 +15,7 @@ class ChatClient extends BaseClient_1.default {
         return this.httpPostJson('cgi-bin/appchat/create', data);
     }
     update(chatId, data) {
-        let params = Utils_1.merge({
+        let params = (0, Utils_1.merge)({
             chatid: chatId,
         }, data);
         return this.httpPostJson('cgi-bin/appchat/update', params);

@@ -10,7 +10,7 @@ class DepartmentClient extends BaseClient_1.default {
         return this.httpPostJson('cgi-bin/department/create', data);
     }
     update(id, data) {
-        let params = Utils_1.merge({
+        let params = (0, Utils_1.merge)({
             id: id,
         }, data);
         return this.httpPostJson('cgi-bin/department/update', params);

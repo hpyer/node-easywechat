@@ -79,9 +79,9 @@ class Client extends BaseClient_1.default {
         return this.httpPostJson('cgi-bin/message/template/subscribe', params);
     }
     formatMessage(data) {
-        let params = Utils_1.merge(Utils_1.merge({}, this.message), data);
+        let params = (0, Utils_1.merge)((0, Utils_1.merge)({}, this.message), data);
         for (let key in params) {
-            if (Utils_1.inArray(key, this.required) && !params[key]) {
+            if ((0, Utils_1.inArray)(key, this.required) && !params[key]) {
                 throw new Error(`Attribute "${key}" can not be empty!`);
             }
         }
@@ -92,13 +92,13 @@ class Client extends BaseClient_1.default {
         let formatted = {}, value;
         for (let key in data) {
             value = {};
-            if (Utils_1.isArray(data[key]) && data[key].length == 2) {
+            if ((0, Utils_1.isArray)(data[key]) && data[key].length == 2) {
                 value = {
                     value: data[key][0],
                     color: data[key][1],
                 };
             }
-            else if (Utils_1.isObject(data[key]) && data[key]['value']) {
+            else if ((0, Utils_1.isObject)(data[key]) && data[key]['value']) {
                 value = data[key];
             }
             else {

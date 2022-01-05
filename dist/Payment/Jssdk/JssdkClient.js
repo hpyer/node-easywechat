@@ -24,12 +24,12 @@ class JssdkClient extends JssdkClient_1.default {
     bridgeConfig(prepayId, json = true) {
         let params = {
             appId: this.app.config.sub_appid ? this.app.config.sub_appid : this.app.config.app_id,
-            timeStamp: Utils_1.getTimestamp() + '',
-            nonceStr: Utils_1.randomString(16),
+            timeStamp: (0, Utils_1.getTimestamp)() + '',
+            nonceStr: (0, Utils_1.randomString)(16),
             package: `prepay_id=${prepayId}`,
             signType: 'MD5',
         };
-        params['paySign'] = Utils_1.makeSignature(params, this.app.config.key, 'md5');
+        params['paySign'] = (0, Utils_1.makeSignature)(params, this.app.config.key, 'md5');
         return json ? JSON.stringify(params) : params;
     }
     /**
@@ -51,11 +51,11 @@ class JssdkClient extends JssdkClient_1.default {
             appid: this.app.config.app_id,
             partnerid: this.app.config.mch_id,
             prepayid: prepayId,
-            noncestr: Utils_1.randomString(16),
-            timestamp: Utils_1.getTimestamp() + '',
+            noncestr: (0, Utils_1.randomString)(16),
+            timestamp: (0, Utils_1.getTimestamp)() + '',
             package: 'Sign=WXPay',
         };
-        params['sign'] = Utils_1.makeSignature(params, this.app.config.key, 'md5');
+        params['sign'] = (0, Utils_1.makeSignature)(params, this.app.config.key, 'md5');
         return params;
     }
     /**
@@ -71,8 +71,8 @@ class JssdkClient extends JssdkClient_1.default {
             let params = {
                 appId: this.app.config.app_id,
                 scope: 'jsapi_address',
-                timeStamp: Utils_1.getTimestamp() + '',
-                nonceStr: Utils_1.randomString(16),
+                timeStamp: (0, Utils_1.getTimestamp)() + '',
+                nonceStr: (0, Utils_1.randomString)(16),
                 signType: 'SHA1',
             };
             let signParams = {
@@ -82,7 +82,7 @@ class JssdkClient extends JssdkClient_1.default {
                 noncestr: params['nonceStr'],
                 accesstoken: '' + accessToken,
             };
-            params['addrSign'] = Utils_1.makeSignature(signParams, '', 'sha1');
+            params['addrSign'] = (0, Utils_1.makeSignature)(signParams, '', 'sha1');
             return json ? JSON.stringify(params) : params;
         });
     }
@@ -94,8 +94,8 @@ class JssdkClient extends JssdkClient_1.default {
     contractConfig(params, json = false) {
         return __awaiter(this, void 0, void 0, function* () {
             params['appid'] = this.app.config.app_id;
-            params['timestamp'] = Utils_1.getTimestamp() + '';
-            params['sign'] = Utils_1.makeSignature(params, this.app.config.key, 'md5');
+            params['timestamp'] = (0, Utils_1.getTimestamp)() + '';
+            params['sign'] = (0, Utils_1.makeSignature)(params, this.app.config.key, 'md5');
             return json ? JSON.stringify(params) : params;
         });
     }
@@ -108,11 +108,11 @@ class JssdkClient extends JssdkClient_1.default {
         return __awaiter(this, void 0, void 0, function* () {
             let params = {
                 appId: this.app.config.app_id,
-                timeStamp: Utils_1.getTimestamp() + '',
-                nonceStr: Utils_1.randomString(16),
+                timeStamp: (0, Utils_1.getTimestamp)() + '',
+                nonceStr: (0, Utils_1.randomString)(16),
                 package: pkg,
             };
-            params['paySign'] = Utils_1.makeSignature(params, '', 'md5');
+            params['paySign'] = (0, Utils_1.makeSignature)(params, '', 'md5');
             params['signType'] = 'MD5';
             delete params.appId;
             return json ? JSON.stringify(params) : params;

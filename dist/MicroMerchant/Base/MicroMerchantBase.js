@@ -7,11 +7,11 @@ const Utils_1 = require("../../Core/Utils");
 const BaseClient_1 = __importDefault(require("../Core/BaseClient"));
 class MicroMerchantBase extends BaseClient_1.default {
     submitApplication(params) {
-        let newParams = this.processParams(Utils_1.merge(Utils_1.merge({}, params), {
+        let newParams = this.processParams((0, Utils_1.merge)((0, Utils_1.merge)({}, params), {
             version: '3.0',
             cert_sn: '',
             sign_type: 'HMAC-SHA256',
-            nonce_str: Utils_1.randomString(18),
+            nonce_str: (0, Utils_1.randomString)(18),
         }));
         return this.safeRequest('applyment/micro/submit', newParams);
     }
@@ -19,7 +19,7 @@ class MicroMerchantBase extends BaseClient_1.default {
         let params = {
             version: '1.0',
             sign_type: 'HMAC-SHA256',
-            nonce_str: Utils_1.randomString(18),
+            nonce_str: (0, Utils_1.randomString)(18),
         };
         if (applymentId) {
             params['applyment_id'] = applymentId;
@@ -30,12 +30,12 @@ class MicroMerchantBase extends BaseClient_1.default {
         return this.safeRequest('applyment/micro/getstate', params);
     }
     upgrade(params) {
-        let newParams = this.processParams(Utils_1.merge(Utils_1.merge({}, params), {
+        let newParams = this.processParams((0, Utils_1.merge)((0, Utils_1.merge)({}, params), {
             sub_mch_id: params['sub_mch_id'] || this.app.config.sub_mch_id,
             version: '1.0',
             cert_sn: '',
             sign_type: 'HMAC-SHA256',
-            nonce_str: Utils_1.randomString(18),
+            nonce_str: (0, Utils_1.randomString)(18),
         }));
         return this.safeRequest('applyment/micro/submitupgrade', newParams);
     }
@@ -44,7 +44,7 @@ class MicroMerchantBase extends BaseClient_1.default {
             sub_mch_id: subMchId || this.app.config.sub_mch_id,
             version: '1.0',
             sign_type: 'HMAC-SHA256',
-            nonce_str: Utils_1.randomString(18),
+            nonce_str: (0, Utils_1.randomString)(18),
         };
         return this.safeRequest('applyment/micro/getupgradestate', params);
     }

@@ -114,7 +114,7 @@ class Client extends BaseClient_1.default {
                 status: res.getStatusCode(),
                 headers: res.getHeaders(),
                 body: res.getContent(),
-                url: baseUrl + '?' + Utils_1.buildQueryString(params),
+                url: baseUrl + '?' + (0, Utils_1.buildQueryString)(params),
             };
         });
     }

@@ -50,11 +50,11 @@ class Handler {
                 return_code: this.fail === null ? this.SUCCESS : this.FAIL,
                 return_msg: this.fail
             };
-            let attributes = Utils_1.merge(base, this.attributes);
+            let attributes = (0, Utils_1.merge)(base, this.attributes);
             if (this.sign) {
-                attributes['sign'] = Utils_1.makeSignature(attributes, yield this.app.getKey());
+                attributes['sign'] = (0, Utils_1.makeSignature)(attributes, yield this.app.getKey());
             }
-            return new Response_1.default(Buffer.from(Utils_1.buildXml(attributes)));
+            return new Response_1.default(Buffer.from((0, Utils_1.buildXml)(attributes)));
         });
     }
     getMessage() {
@@ -76,13 +76,13 @@ class Handler {
             if (!message[key]) {
                 return null;
             }
-            return AES_1.AES.decrypt(Buffer.from(message[key], 'base64'), Utils_1.createHash(this.app.config.key, 'md5'), '', true, 'aes-256-ecb').toString();
+            return AES_1.AES.decrypt(Buffer.from(message[key], 'base64'), (0, Utils_1.createHash)(this.app.config.key, 'md5'), '', true, 'aes-256-ecb').toString();
         });
     }
     validate(message) {
         return __awaiter(this, void 0, void 0, function* () {
             let sign = message['sign'];
-            if (Utils_1.makeSignature(message, yield this.app.getKey()) !== sign) {
+            if ((0, Utils_1.makeSignature)(message, yield this.app.getKey()) !== sign) {
                 throw new Error('Invalid Sign');
             }
         });

@@ -10,12 +10,12 @@ class UserClient extends BaseClient_1.default {
         return this.httpPostJson('cgi-bin/user/create', data);
     }
     update(id, data) {
-        return this.httpPostJson('cgi-bin/user/update', Utils_1.merge({
+        return this.httpPostJson('cgi-bin/user/update', (0, Utils_1.merge)({
             userid: id,
         }, data));
     }
     delete(userId) {
-        if (Utils_1.isArray(userId)) {
+        if ((0, Utils_1.isArray)(userId)) {
             return this.batchDelete(userId);
         }
         return this.httpGet('cgi-bin/user/delete', {
@@ -69,7 +69,7 @@ class UserClient extends BaseClient_1.default {
         return this.httpPostJson('cgi-bin/batch/invite', params);
     }
     getInvitationQrCode(sizeType = 1) {
-        if (Utils_1.inArray(sizeType, [1, 2, 3, 4])) {
+        if ((0, Utils_1.inArray)(sizeType, [1, 2, 3, 4])) {
             throw new Error('The sizeType must be 1, 2, 3, 4.');
         }
         return this.httpGet('cgi-bin/corp/get_join_qrcode', {

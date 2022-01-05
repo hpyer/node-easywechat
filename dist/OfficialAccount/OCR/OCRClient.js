@@ -19,7 +19,7 @@ class OCRClient extends BaseClient_1.default {
      * @param type
      */
     idCard(img_url, type = 'photo') {
-        if (!Utils_1.inArray(type, this.allowTypes, true)) {
+        if (!(0, Utils_1.inArray)(type, this.allowTypes, true)) {
             throw new Error(`Unsupported type: '${type}'`);
         }
         return this.httpPost('cv/ocr/idcard', {

@@ -36,7 +36,7 @@ class Request {
                 if (Buffer.isBuffer(content)) {
                     this._content = content;
                 }
-                else if (Utils_1.isObject(content)) {
+                else if ((0, Utils_1.isObject)(content)) {
                     this._post = content;
                     this._content = Buffer.from(JSON.stringify(content));
                     this._contentType = 'application/json';
@@ -48,13 +48,13 @@ class Request {
                     }
                     catch (e) {
                         if (content.substr(0, 1) === '<') {
-                            Utils_1.parseXml(content).then(res => {
+                            (0, Utils_1.parseXml)(content).then(res => {
                                 this._post = res;
                                 this._contentType = 'text/xml';
                             });
                         }
                         else {
-                            this._post = Utils_1.parseQueryString(content);
+                            this._post = (0, Utils_1.parseQueryString)(content);
                             this._contentType = 'application/x-www-form-urlencoded';
                         }
                     }
@@ -63,7 +63,7 @@ class Request {
             }
             this._get = url_1.default.parse(req.url, true).query || {};
             // 提取请求ip
-            if (Utils_1.isIp(this._headers['x-client-ip'])) {
+            if ((0, Utils_1.isIp)(this._headers['x-client-ip'])) {
                 this._ip = this._headers['x-client-ip'];
             }
             else if (this._headers['x-forwarded-for']) {
@@ -79,22 +79,22 @@ class Request {
                             ip = tmp[0];
                         }
                     }
-                    if (Utils_1.isIp(ip)) {
+                    if ((0, Utils_1.isIp)(ip)) {
                         break;
                     }
                 }
                 this._ip = ip;
             }
-            else if (Utils_1.isIp(this._headers['x-real-ip'])) {
+            else if ((0, Utils_1.isIp)(this._headers['x-real-ip'])) {
                 this._ip = this._headers['x-real-ip'];
             }
-            else if (Utils_1.isIp(this._headers['x-forwarded'])) {
+            else if ((0, Utils_1.isIp)(this._headers['x-forwarded'])) {
                 this._ip = this._headers['x-forwarded'];
             }
-            else if (Utils_1.isIp(this._headers['forwarded-for'])) {
+            else if ((0, Utils_1.isIp)(this._headers['forwarded-for'])) {
                 this._ip = this._headers['forwarded-for'];
             }
-            else if (Utils_1.isIp(this._headers['client-ip'])) {
+            else if ((0, Utils_1.isIp)(this._headers['client-ip'])) {
                 this._ip = this._headers['client-ip'];
             }
         }
@@ -132,7 +132,7 @@ class Request {
                     catch (e) { }
                 }
                 else if (contentType.indexOf('application/x-www-form-urlencoded') > -1) {
-                    this._post = Utils_1.parseQueryString(this._content.toString());
+                    this._post = (0, Utils_1.parseQueryString)(this._content.toString());
                 }
             }
             return this._post && this._post[key] ? this._post[key] : null;
@@ -155,7 +155,7 @@ class Request {
             if (this._method !== 'POST')
                 return null;
             if (!this._content) {
-                this._content = yield raw_body_1.default(this._req);
+                this._content = yield (0, raw_body_1.default)(this._req);
             }
             return this._content;
         });

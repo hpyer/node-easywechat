@@ -11,7 +11,7 @@ class MerchantConfigClient extends BaseClient_1.default {
             sub_appid: subAppId,
             sub_mch_id: subMchId || this.app.config.sub_mch_id,
             sign_type: 'HMAC-SHA256',
-            nonce_str: Utils_1.randomString(18),
+            nonce_str: (0, Utils_1.randomString)(18),
         };
         if (subscribeAppId) {
             params['subscribe_appid'] = subscribeAppId;

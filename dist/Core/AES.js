@@ -13,7 +13,7 @@ class AES {
      * @param method 加密方式，默认：'aes-256-cbc'
      */
     static encrypt(plaintext, key, iv = '', autoPadding = null, method = 'aes-256-cbc') {
-        let cipher = crypto_1.createCipheriv(method, key, iv);
+        let cipher = (0, crypto_1.createCipheriv)(method, key, iv);
         if (typeof autoPadding === 'boolean') {
             cipher.setAutoPadding(autoPadding);
         }
@@ -32,7 +32,7 @@ class AES {
      * @param method 加密方式，默认：aes-256-cbc
      */
     static decrypt(ciphertext, key, iv = '', autoPadding = null, method = 'aes-256-cbc') {
-        let decipher = crypto_1.createDecipheriv(method, key, iv);
+        let decipher = (0, crypto_1.createDecipheriv)(method, key, iv);
         if (typeof autoPadding === 'boolean') {
             decipher.setAutoPadding(autoPadding);
         }
@@ -58,7 +58,7 @@ class AES_GCM {
      * @param method 加密方式，默认：aes-256-gcm
      */
     static encrypt(plaintext, key, iv = '', aad = '', method = 'aes-256-gcm') {
-        let cipher = crypto_1.createCipheriv(method, key, iv).setAAD(Buffer.from(aad));
+        let cipher = (0, crypto_1.createCipheriv)(method, key, iv).setAAD(Buffer.from(aad));
         return Buffer.concat([
             cipher.update(plaintext),
             cipher.final(),
@@ -84,7 +84,7 @@ class AES_GCM {
         }
         let tag = buf.slice(-16);
         let payload = buf.slice(0, -16);
-        let decipher = crypto_1.createDecipheriv(method, key, iv).setAuthTag(tag).setAAD(Buffer.from(aad));
+        let decipher = (0, crypto_1.createDecipheriv)(method, key, iv).setAuthTag(tag).setAAD(Buffer.from(aad));
         return Buffer.concat([
             decipher.update(payload),
             decipher.final(),

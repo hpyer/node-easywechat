@@ -13,7 +13,7 @@ class AgentClient extends BaseClient_1.default {
         return this.httpGet('cgi-bin/agent/get', params);
     }
     set(agentId, attributes) {
-        let params = Utils_1.merge({
+        let params = (0, Utils_1.merge)({
             agentid: agentId,
         }, attributes);
         return this.httpPostJson('cgi-bin/agent/set', params);

@@ -24,7 +24,7 @@ class StreamResponse extends Response_1.default {
             throw new Error('Invalid media response content.');
         }
         if (!filename) {
-            filename = Utils_1.createHash(content, 'md5');
+            filename = (0, Utils_1.createHash)(content, 'md5');
         }
         fs_1.default.writeFileSync(`${directory}/${filename}`, buffer);
         return filename;

@@ -38,7 +38,7 @@ const StreamResponse_1 = __importDefault(require("./Core/Http/StreamResponse"));
 const Messages = __importStar(require("./Core/Messages"));
 function getInstance(service, config) {
     try {
-        let s = Utils_1.strStudly(service);
+        let s = (0, Utils_1.strStudly)(service);
         let applicationClass = this[s];
         return new applicationClass(config);
     }

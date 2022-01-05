@@ -21,7 +21,7 @@ class MediaClient extends BaseClient_1.default {
                 throw new Error(`File does not exist, or the file is unreadable: '${file}'`);
             }
             let form = {
-                media_hash: yield Utils_1.md5File(file),
+                media_hash: yield (0, Utils_1.md5File)(file),
                 sign_type: 'HMAC-SHA256',
             };
             return this.httpUpload('secapi/mch/uploadmedia', {

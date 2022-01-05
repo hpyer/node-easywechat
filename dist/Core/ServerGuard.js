@@ -166,10 +166,10 @@ class ServerGuard {
             if (message instanceof Messages_1.Raw) {
                 return message.get('content', ServerGuard.SUCCESS_EMPTY_RESPONSE);
             }
-            if (Utils_1.isString(message) || Utils_1.isNumber(message)) {
+            if ((0, Utils_1.isString)(message) || (0, Utils_1.isNumber)(message)) {
                 message = new Messages_1.Text(message + '');
             }
-            if (Utils_1.isArray(message) && message[0] instanceof Messages_1.NewsItem) {
+            if ((0, Utils_1.isArray)(message) && message[0] instanceof Messages_1.NewsItem) {
                 message = new Messages_1.News(message);
             }
             if (message instanceof Messages_1.NewsItem) {
@@ -186,7 +186,7 @@ class ServerGuard {
             let prepends = {
                 ToUserName: to,
                 FromUserName: from,
-                CreateTime: Utils_1.getTimestamp(),
+                CreateTime: (0, Utils_1.getTimestamp)(),
                 MsgType: message.getType(),
             };
             let res = message.transformToXml(prepends);
@@ -209,7 +209,7 @@ class ServerGuard {
     }
     signature(params) {
         params.sort();
-        return Utils_1.createHash(params.join(''), 'sha1');
+        return (0, Utils_1.createHash)(params.join(''), 'sha1');
     }
     handleRequest() {
         return __awaiter(this, void 0, void 0, function* () {
@@ -247,7 +247,7 @@ class ServerGuard {
                     return {};
                 }
                 else if (0 === content.indexOf('<')) {
-                    content = yield Utils_1.parseXml(content);
+                    content = yield (0, Utils_1.parseXml)(content);
                 }
                 else {
                     // Handle JSON format.

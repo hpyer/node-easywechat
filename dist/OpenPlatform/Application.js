@@ -70,7 +70,7 @@ class OpenPlatform extends BaseApplication_1.default {
      */
     getPreAuthorizationUrl(callbackUrl, optional = {}) {
         return __awaiter(this, void 0, void 0, function* () {
-            if (Utils_1.isString(optional)) {
+            if ((0, Utils_1.isString)(optional)) {
                 optional = {
                     pre_auth_code: optional,
                 };
@@ -78,7 +78,7 @@ class OpenPlatform extends BaseApplication_1.default {
             else {
                 optional['pre_auth_code'] = (yield this.createPreAuthorizationCode())['pre_auth_code'];
             }
-            return 'https://mp.weixin.qq.com/cgi-bin/componentloginpage?' + Utils_1.buildQueryString(Utils_1.merge(Utils_1.merge({}, optional), {
+            return 'https://mp.weixin.qq.com/cgi-bin/componentloginpage?' + (0, Utils_1.buildQueryString)((0, Utils_1.merge)((0, Utils_1.merge)({}, optional), {
                 component_appid: this.config['app_id'],
                 redirect_uri: callbackUrl,
             }));
@@ -91,7 +91,7 @@ class OpenPlatform extends BaseApplication_1.default {
      */
     getMobilePreAuthorizationUrl(callbackUrl, optional = {}) {
         return __awaiter(this, void 0, void 0, function* () {
-            if (Utils_1.isString(optional)) {
+            if ((0, Utils_1.isString)(optional)) {
                 optional = {
                     pre_auth_code: optional,
                 };
@@ -99,7 +99,7 @@ class OpenPlatform extends BaseApplication_1.default {
             else {
                 optional['pre_auth_code'] = yield this.createPreAuthorizationCode()['pre_auth_code'];
             }
-            return 'https://mp.weixin.qq.com/safe/bindcomponent?' + Utils_1.buildQueryString(Utils_1.merge(optional, {
+            return 'https://mp.weixin.qq.com/safe/bindcomponent?' + (0, Utils_1.buildQueryString)((0, Utils_1.merge)(optional, {
                 component_appid: this.config['app_id'],
                 redirect_uri: callbackUrl,
                 action: 'bindcomponent',
@@ -108,7 +108,7 @@ class OpenPlatform extends BaseApplication_1.default {
         });
     }
     getAuthorizerConfig(appId, refreshToken = null) {
-        return Utils_1.merge(Utils_1.merge({}, this.config), {
+        return (0, Utils_1.merge)((0, Utils_1.merge)({}, this.config), {
             component_app_id: this.config['app_id'],
             app_id: appId,
             refresh_token: refreshToken,
@@ -139,7 +139,7 @@ class OpenPlatform extends BaseApplication_1.default {
      */
     officialAccount(appId, refreshToken = null, accessToken = null) {
         let that = this;
-        let services = Utils_1.merge(Utils_1.merge({}, this.getReplaceServices(accessToken)), {
+        let services = (0, Utils_1.merge)((0, Utils_1.merge)({}, this.getReplaceServices(accessToken)), {
             encryptor: this.encryptor,
             account: function (app) {
                 return new Client_1.default(app, that);
@@ -159,7 +159,7 @@ class OpenPlatform extends BaseApplication_1.default {
      */
     miniProgram(appId, refreshToken = null, accessToken = null) {
         let that = this;
-        let services = Utils_1.merge(Utils_1.merge({}, this.getReplaceServices(accessToken)), {
+        let services = (0, Utils_1.merge)((0, Utils_1.merge)({}, this.getReplaceServices(accessToken)), {
             auth: function (app) {
                 return new Client_2.default(app, that);
             },

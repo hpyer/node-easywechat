@@ -24,7 +24,7 @@ class FileCache {
             ext: '.cache'
         };
         if (options && typeof options == 'object') {
-            this.options = Utils_1.merge({
+            this.options = (0, Utils_1.merge)({
                 path: './',
                 dirMode: 0o777,
                 fileMode: 0o666,
@@ -52,7 +52,7 @@ class FileCache {
             encoding: 'utf-8',
             flag: 'r'
         }));
-        if (dataItem.lifeTime > 0 && dataItem.lifeTime < Utils_1.getTimestamp()) {
+        if (dataItem.lifeTime > 0 && dataItem.lifeTime < (0, Utils_1.getTimestamp)()) {
             throw new Error('Cache expired.');
         }
         return dataItem.data;
@@ -89,7 +89,7 @@ class FileCache {
             try {
                 let dataItem = {
                     data,
-                    lifeTime: lifeTime > 0 ? lifeTime + Utils_1.getTimestamp() : 0
+                    lifeTime: lifeTime > 0 ? lifeTime + (0, Utils_1.getTimestamp)() : 0
                 };
                 fs_1.default.writeFileSync(file, JSON.stringify(dataItem), {
                     mode: this.options.fileMode,

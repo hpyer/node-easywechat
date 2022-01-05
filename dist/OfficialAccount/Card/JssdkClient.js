@@ -43,8 +43,8 @@ class JssdkClient extends JssdkClient_1.default {
     }
     attachExtension(cardId, extension = {}) {
         return __awaiter(this, void 0, void 0, function* () {
-            let timestamp = Utils_1.getTimestamp();
-            let nonce_str = Utils_1.randomString(6);
+            let timestamp = (0, Utils_1.getTimestamp)();
+            let nonce_str = (0, Utils_1.randomString)(6);
             let ticket = yield this.getTicket()['ticket'];
             let ext = {
                 timestamp,

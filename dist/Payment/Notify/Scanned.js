@@ -41,10 +41,10 @@ class ScannedHandler extends Handler_1.default {
                 result_code: (this.alert === null && this.fail === null) ? this.SUCCESS : this.FAIL,
                 err_code_des: this.alert,
             };
-            if (this.alert === null && Utils_1.isString(result)) {
+            if (this.alert === null && (0, Utils_1.isString)(result)) {
                 attributes['appid'] = this.app.config.app_id;
                 attributes['mch_id'] = this.app.config.mch_id;
-                attributes['nonce_str'] = Utils_1.randomString(16);
+                attributes['nonce_str'] = (0, Utils_1.randomString)(16);
                 attributes['prepay_id'] = result;
             }
             return yield this.respondWith(attributes, true).toResponse();

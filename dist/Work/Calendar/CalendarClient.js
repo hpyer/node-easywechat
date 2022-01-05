@@ -13,7 +13,7 @@ class CalendarClient extends BaseClient_1.default {
         return this.httpPostJson('cgi-bin/oa/calendar/add', params);
     }
     update(id, calendar) {
-        let params = Utils_1.merge({
+        let params = (0, Utils_1.merge)({
             cal_id: id,
         }, calendar);
         return this.httpPostJson('cgi-bin/oa/calendar/update', params);

@@ -29,7 +29,7 @@ class JssdkClient extends JssdkClient_1.default {
     }
     buildAgentConfig(jsApiList, agentId, debug = false, beta = false, json, openTagList = [], url = '') {
         return __awaiter(this, void 0, void 0, function* () {
-            let config = Utils_1.merge({
+            let config = (0, Utils_1.merge)({
                 debug,
                 beta,
                 jsApiList,
@@ -41,8 +41,8 @@ class JssdkClient extends JssdkClient_1.default {
     agentConfigSignature(agentId, url = '', nonce = '', timestamp = '') {
         return __awaiter(this, void 0, void 0, function* () {
             url = url || this.getUrl();
-            nonce = nonce || Utils_1.randomString(10);
-            timestamp = timestamp || Utils_1.getTimestamp() + '';
+            nonce = nonce || (0, Utils_1.randomString)(10);
+            timestamp = timestamp || (0, Utils_1.getTimestamp)() + '';
             let ticket = yield this.getAgentTicket(agentId);
             return {
                 corpid: this.getAppId(),

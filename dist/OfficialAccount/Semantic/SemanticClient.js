@@ -13,7 +13,7 @@ class SemanticClient extends BaseClient_1.default {
      * @param optional 其它参数。属性：latitude，纬度，与城市二选一；longitude，经度，与城市二选一；city，城市，与经纬度二选一；region，区域名称，在城市存在的情况下可省；uid，用户唯一id（非开发者id）；
      */
     query(keyword, categories, optional = {}) {
-        let params = Utils_1.merge({
+        let params = (0, Utils_1.merge)({
             query: keyword,
             category: categories,
             appid: this.app.config.app_id,

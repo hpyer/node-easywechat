@@ -55,7 +55,7 @@ class Client extends BaseClient_1.default {
      */
     buildConfig(jsApiList, debug = false, beta = false, json = true, openTagList = [], url = '') {
         return __awaiter(this, void 0, void 0, function* () {
-            let config = Utils_1.merge({
+            let config = (0, Utils_1.merge)({
                 jsApiList, debug, beta, openTagList
             }, yield this.configSignature(url));
             return json ? JSON.stringify(config) : config;
@@ -81,8 +81,8 @@ class Client extends BaseClient_1.default {
     configSignature(url = '', nonce = '', timestamp = '') {
         return __awaiter(this, void 0, void 0, function* () {
             url = url || this.getUrl();
-            nonce = nonce || Utils_1.randomString(10);
-            timestamp = timestamp || Utils_1.getTimestamp() + '';
+            nonce = nonce || (0, Utils_1.randomString)(10);
+            timestamp = timestamp || (0, Utils_1.getTimestamp)() + '';
             let ticket = yield this.getTicket();
             return {
                 appId: this.getAppId(),
@@ -94,7 +94,7 @@ class Client extends BaseClient_1.default {
         });
     }
     getTicketSignature(ticket, nonce, timestamp, url) {
-        return Utils_1.createHash(`jsapi_ticket=${ticket}&noncestr=${nonce}&timestamp=${timestamp}&url=${url}`, 'sha1');
+        return (0, Utils_1.createHash)(`jsapi_ticket=${ticket}&noncestr=${nonce}&timestamp=${timestamp}&url=${url}`, 'sha1');
     }
     dictionaryOrderSignature(args) {
         let params = [];
@@ -102,7 +102,7 @@ class Client extends BaseClient_1.default {
             params.push(args[i]);
         }
         params.sort();
-        return Utils_1.createHash(params.join(''), 'sha1');
+        return (0, Utils_1.createHash)(params.join(''), 'sha1');
     }
     /**
      * 设置当前URL

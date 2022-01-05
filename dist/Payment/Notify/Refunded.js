@@ -32,7 +32,7 @@ class RefundedHandler extends Handler_1.default {
     }
     reqInfo() {
         return __awaiter(this, void 0, void 0, function* () {
-            return yield Utils_1.parseXml(yield this.decryptMessage('req_info'));
+            return yield (0, Utils_1.parseXml)(yield this.decryptMessage('req_info'));
         });
     }
 }

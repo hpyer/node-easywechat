@@ -5,7 +5,7 @@ const Message_1 = require("./Message");
 const Utils_1 = require("../Utils");
 class Media extends Message_1.Message {
     constructor(mediaId, type = '', attributes = {}) {
-        super(Utils_1.merge({ media_id: mediaId }, attributes));
+        super((0, Utils_1.merge)({ media_id: mediaId }, attributes));
         this.properties = [
             'media_id',
         ];
@@ -21,7 +21,7 @@ class Media extends Message_1.Message {
     }
     toXmlArray() {
         return {
-            [Utils_1.strStudly(this.getType())]: {
+            [(0, Utils_1.strStudly)(this.getType())]: {
                 MediaId: this.get('media_id'),
             }
         };

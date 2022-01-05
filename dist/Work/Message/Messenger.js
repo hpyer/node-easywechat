@@ -32,7 +32,7 @@ class Messenger {
         return this;
     }
     setRecipients(ids, key) {
-        if (Utils_1.isArray(ids)) {
+        if ((0, Utils_1.isArray)(ids)) {
             ids = ids.join('|');
         }
         this.to = {};
@@ -58,7 +58,7 @@ class Messenger {
         if (!this.agentId) {
             throw new Error('No agentid specified.');
         }
-        let data = this.message.transformForJsonRequest(Utils_1.merge({
+        let data = this.message.transformForJsonRequest((0, Utils_1.merge)({
             agentid: this.agentId,
             safe: this.secretive ? 1 : 0,
         }, this.to));

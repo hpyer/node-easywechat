@@ -17,7 +17,7 @@ class OpenDataClient extends BaseClient_1.default {
         let query = {
             openid: openid,
             sig_method: 'hmac_sha256',
-            signature: Utils_1.createHmac(JSON.stringify(data), sessionKey, 'sha256'),
+            signature: (0, Utils_1.createHmac)(JSON.stringify(data), sessionKey, 'sha256'),
         };
         return this.httpPostJson('remove_user_storage', data, query);
     }
@@ -28,7 +28,7 @@ class OpenDataClient extends BaseClient_1.default {
         let query = {
             openid: openid,
             sig_method: 'hmac_sha256',
-            signature: Utils_1.createHmac(JSON.stringify(data), sessionKey, 'sha256'),
+            signature: (0, Utils_1.createHmac)(JSON.stringify(data), sessionKey, 'sha256'),
         };
         return this.httpPostJson('set_user_storage', data, query);
     }

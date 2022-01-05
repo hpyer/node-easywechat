@@ -30,7 +30,7 @@ class OrderClient extends BaseClient_1.default {
             if (isContract) {
                 params['contract_appid'] = this.app.config.app_id;
                 params['contract_mchid'] = this.app.config.mch_id;
-                params['request_serial'] = params['request_serial'] || Utils_1.getTimestamp();
+                params['request_serial'] = params['request_serial'] || (0, Utils_1.getTimestamp)();
                 params['contract_notify_url'] = params['contract_notify_url'] || this.app.config.contract_notify_url;
                 return this.request(this.wrap('pay/contractorder'), params);
             }

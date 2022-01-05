@@ -69,7 +69,7 @@ class MediaClient extends BaseClient_1.default {
         if (!file) {
             throw new Error(`File does not exist, or the file is unreadable: '${file}'`);
         }
-        if (!Utils_1.inArray(type, this.allowTypes)) {
+        if (!(0, Utils_1.inArray)(type, this.allowTypes)) {
             throw new Error(`Unsupported media type: '${type}'`);
         }
         let files = {

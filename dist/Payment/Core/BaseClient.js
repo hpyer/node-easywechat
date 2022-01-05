@@ -30,7 +30,7 @@ class BaseClient {
         return __awaiter(this, void 0, void 0, function* () {
             let base = {
                 mch_id: this.app.config.mch_id,
-                nonce_str: Utils_1.randomString(32),
+                nonce_str: (0, Utils_1.randomString)(32),
             };
             if (this.app.config.sub_mch_id) {
                 base['sub_mch_id'] = '';
@@ -38,14 +38,14 @@ class BaseClient {
             if (this.app.config.sub_appid) {
                 base['sub_appid'] = '';
             }
-            let localParams = Utils_1.merge(Utils_1.merge(base, this.prepends()), params);
+            let localParams = (0, Utils_1.merge)((0, Utils_1.merge)(base, this.prepends()), params);
             let secretKey = yield this.app.getKey(endpoint);
-            localParams['sign'] = Utils_1.makeSignature(localParams, secretKey, localParams['sign_type'] || 'MD5');
-            let payload = Utils_1.merge(Utils_1.merge({}, options), {
+            localParams['sign'] = (0, Utils_1.makeSignature)(localParams, secretKey, localParams['sign_type'] || 'MD5');
+            let payload = (0, Utils_1.merge)((0, Utils_1.merge)({}, options), {
                 url: endpoint,
                 method,
                 responseType: 'text',
-                data: Utils_1.buildXml(localParams)
+                data: (0, Utils_1.buildXml)(localParams)
             });
             let response = yield this.doRequest(payload);
             if (returnResponse) {
@@ -54,7 +54,7 @@ class BaseClient {
             else {
                 let body = response.data;
                 try {
-                    body = yield Utils_1.parseXml(body);
+                    body = yield (0, Utils_1.parseXml)(body);
                 }
                 catch (e) { }
                 return body;
@@ -62,7 +62,7 @@ class BaseClient {
         });
     }
     safeRequest(endpoint, params = {}, method = 'post', options = {}) {
-        options = Utils_1.merge(Utils_1.merge({}, options), {
+        options = (0, Utils_1.merge)((0, Utils_1.merge)({}, options), {
             httpsAgent: new https_1.default.Agent({
                 pfx: fs_1.default.readFileSync(this.app.config.cert_path),
                 passphrase: this.app.config.mch_id,
@@ -112,5 +112,5 @@ class BaseClient {
     }
 }
 ;
-Utils_1.applyMixins(BaseClient, [HttpMixin_1.default]);
+(0, Utils_1.applyMixins)(BaseClient, [HttpMixin_1.default]);
 exports.default = BaseClient;

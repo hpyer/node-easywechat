@@ -193,7 +193,7 @@ class DataCubeClient extends BaseClient_1.default {
         return this.query('datacube/getcardmembercarddetail', from, to, ext);
     }
     query(api, from, to, ext = {}) {
-        let params = Utils_1.merge({
+        let params = (0, Utils_1.merge)({
             begin_date: from,
             end_date: to,
         }, ext);

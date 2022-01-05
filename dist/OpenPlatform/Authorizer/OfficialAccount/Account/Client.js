@@ -23,7 +23,7 @@ class Client extends Client_1.default {
             appid: this.app.config.app_id,
             redirect_uri: callbackUrl,
         };
-        return 'https://mp.weixin.qq.com/cgi-bin/fastregisterauth?' + Utils_1.buildQueryString(query);
+        return 'https://mp.weixin.qq.com/cgi-bin/fastregisterauth?' + (0, Utils_1.buildQueryString)(query);
     }
     /**
      * 第三方平台调用快速注册 API 完成注册

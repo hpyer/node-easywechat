@@ -49,10 +49,10 @@ class BroadcastingClient extends BaseClient_1.default {
      */
     sendMessage(message, reception = null, attributes = {}) {
         let msg = (new MessageBuilder_1.default).message(message).with(attributes).toAll();
-        if (Utils_1.isNumber(reception) && reception > 0) {
+        if ((0, Utils_1.isNumber)(reception) && reception > 0) {
             msg.toTag(reception);
         }
-        else if (Utils_1.isArray(reception)) {
+        else if ((0, Utils_1.isArray)(reception)) {
             msg.toUsers(reception);
         }
         return this.send(msg.build());

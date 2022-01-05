@@ -10,7 +10,7 @@ class ActivityMessageClient extends BaseClient_1.default {
         return this.httpGet('cgi-bin/message/wxopen/activityid/create');
     }
     updateMessage(activityId, state = 0, params = {}) {
-        if (!Utils_1.inArray(state, [0, 1, '0', '1'])) {
+        if (!(0, Utils_1.inArray)(state, [0, 1, '0', '1'])) {
             throw new Error('"state" should be "0" or "1".');
         }
         params = {
@@ -25,10 +25,10 @@ class ActivityMessageClient extends BaseClient_1.default {
     formatParameters(params) {
         let formatted = [];
         for (let key in params) {
-            if (Utils_1.inArray(key, ['member_count', 'room_limit', 'path', 'version_type'])) {
+            if ((0, Utils_1.inArray)(key, ['member_count', 'room_limit', 'path', 'version_type'])) {
                 continue;
             }
-            if (key === 'version_type' && !Utils_1.inArray(params[key], ['develop', 'trial', 'release'])) {
+            if (key === 'version_type' && !(0, Utils_1.inArray)(params[key], ['develop', 'trial', 'release'])) {
                 throw new Error('Invalid value of attribute "version_type".');
             }
             formatted.push({

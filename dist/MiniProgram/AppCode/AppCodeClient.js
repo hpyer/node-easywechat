@@ -23,7 +23,7 @@ class AppCodeClient extends BaseClient_1.default {
      */
     get(path, optional = {}) {
         return __awaiter(this, void 0, void 0, function* () {
-            let params = Utils_1.merge({
+            let params = (0, Utils_1.merge)({
                 path,
             }, optional);
             return yield this.getStream('wxa/getwxacode', params);
@@ -36,7 +36,7 @@ class AppCodeClient extends BaseClient_1.default {
      */
     getUnlimit(scene, optional = {}) {
         return __awaiter(this, void 0, void 0, function* () {
-            let params = Utils_1.merge({
+            let params = (0, Utils_1.merge)({
                 scene,
             }, optional);
             return yield this.getStream('wxa/getwxacodeunlimit', params);

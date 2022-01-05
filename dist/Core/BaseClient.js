@@ -50,7 +50,7 @@ class BaseClient {
     httpUpload(url, files = {}, form = {}, query = {}) {
         let formData = new form_data_1.default;
         for (let name in files) {
-            if (Utils_1.isString(files[name])) {
+            if ((0, Utils_1.isString)(files[name])) {
                 formData.append(name, fs_1.default.createReadStream(files[name]));
             }
             else {
@@ -105,5 +105,5 @@ class BaseClient {
     }
 }
 ;
-Utils_1.applyMixins(BaseClient, [HttpMixin_1.default]);
+(0, Utils_1.applyMixins)(BaseClient, [HttpMixin_1.default]);
 exports.default = BaseClient;

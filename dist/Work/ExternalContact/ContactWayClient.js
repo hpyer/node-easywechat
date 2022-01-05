@@ -7,7 +7,7 @@ const BaseClient_1 = __importDefault(require("../../Core/BaseClient"));
 const Utils_1 = require("../../Core/Utils");
 class ContactWayClient extends BaseClient_1.default {
     create(type, scene, config) {
-        let params = Utils_1.merge({
+        let params = (0, Utils_1.merge)({
             type,
             scene,
         }, config);
@@ -19,7 +19,7 @@ class ContactWayClient extends BaseClient_1.default {
         });
     }
     update(configId, config) {
-        let params = Utils_1.merge({
+        let params = (0, Utils_1.merge)({
             config_id: configId,
         }, config);
         return this.httpPostJson('cgi-bin/externalcontact/update_contact_way', params);

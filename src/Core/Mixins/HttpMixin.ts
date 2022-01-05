@@ -31,7 +31,7 @@ export default class HttpMixin
       opts.headers['Content-Length'] = await new Promise((resolve, reject) => {
         opts.data.getLength((err, length) => {
           if (err) {
-            resolve(0);
+            resolve('0');
           }
           else {
             resolve(length);

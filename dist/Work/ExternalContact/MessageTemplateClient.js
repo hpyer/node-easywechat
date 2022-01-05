@@ -49,7 +49,7 @@ class MessageTemplateClient extends BaseClient_1.default {
         });
     }
     formatMessage(data) {
-        let params = Utils_1.merge({}, data);
+        let params = (0, Utils_1.merge)({}, data);
         if (params['text']) {
             params['text'] = this.formatFields(params['text'], this.textMessage);
         }
@@ -65,9 +65,9 @@ class MessageTemplateClient extends BaseClient_1.default {
         return params;
     }
     formatFields(data, defaults) {
-        let params = Utils_1.merge(Utils_1.merge({}, defaults), data);
+        let params = (0, Utils_1.merge)((0, Utils_1.merge)({}, defaults), data);
         for (let key in params) {
-            if (Utils_1.inArray(key, this.required) && typeof params[key] == undefined && typeof defaults[key] == undefined) {
+            if ((0, Utils_1.inArray)(key, this.required) && typeof params[key] == undefined && typeof defaults[key] == undefined) {
                 throw new Error(`Attribute "${key}" can not be empty!`);
             }
             params[key] = params[key] || defaults[key];

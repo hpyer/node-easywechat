@@ -70,10 +70,10 @@ class MaterialClient extends BaseClient_1.default {
         if (!file) {
             throw new Error(`File does not exist, or the file is unreadable: '${file}'`);
         }
-        if (Utils_1.isString(file)) {
+        if ((0, Utils_1.isString)(file)) {
             file = fs_1.default.createReadStream(file);
         }
-        if (!Utils_1.inArray(type, this.allowTypes)) {
+        if (!(0, Utils_1.inArray)(type, this.allowTypes)) {
             throw new Error(`Unsupported media type: '${type}'`);
         }
         let formData = new form_data_1.default();

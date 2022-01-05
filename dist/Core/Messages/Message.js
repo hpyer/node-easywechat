@@ -17,11 +17,11 @@ class Message {
         this.type = type;
     }
     transformToXml(appends = {}, returnAsObject = false) {
-        let data = Utils_1.merge(Utils_1.merge({ MsgType: this.getType() }, this.toXmlArray()), appends);
+        let data = (0, Utils_1.merge)((0, Utils_1.merge)({ MsgType: this.getType() }, this.toXmlArray()), appends);
         if (returnAsObject) {
             return data;
         }
-        return Utils_1.buildXml(data);
+        return (0, Utils_1.buildXml)(data);
     }
     toXmlArray() {
         throw new Error(`Class "${this.constructor.name}" cannot support transform to XML message.`);
@@ -34,10 +34,10 @@ class Message {
             return this.propertiesToObject({}, this.jsonAliases);
         }
         let messageType = this.getType();
-        let data = Utils_1.merge({
+        let data = (0, Utils_1.merge)({
             msgtype: messageType
         }, appends);
-        data[messageType] = Utils_1.merge(data[messageType] || {}, this.propertiesToObject({}, this.jsonAliases));
+        data[messageType] = (0, Utils_1.merge)(data[messageType] || {}, this.propertiesToObject({}, this.jsonAliases));
         return data;
     }
     propertiesToObject(data, aliases = null) {
@@ -78,7 +78,7 @@ class Message {
         return false;
     }
     merge(attributes) {
-        this.attributes = Utils_1.merge(Utils_1.merge({}, this.attributes), attributes);
+        this.attributes = (0, Utils_1.merge)((0, Utils_1.merge)({}, this.attributes), attributes);
         return this;
     }
     only(keys) {
@@ -97,10 +97,10 @@ class Message {
         return this.attributes;
     }
     getRequired() {
-        return this.required && Utils_1.isArray(this.required) ? this.required : [];
+        return this.required && (0, Utils_1.isArray)(this.required) ? this.required : [];
     }
     isRequired(attribute) {
-        return Utils_1.inArray(attribute, this.getRequired(), true);
+        return (0, Utils_1.inArray)(attribute, this.getRequired(), true);
     }
     checkRequiredAttributes() {
         this.getRequired().forEach(attribute => {

@@ -8,7 +8,7 @@ class Messenger {
         this.client = client;
     }
     message(message) {
-        if (Utils_1.isString(message)) {
+        if ((0, Utils_1.isString)(message)) {
             message = new Messages_1.Text(message);
         }
         this._message = message;

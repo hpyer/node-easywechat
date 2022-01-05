@@ -112,7 +112,7 @@ class BaseAccessToken {
     }
     getCacheKey() {
         return __awaiter(this, void 0, void 0, function* () {
-            return 'easywechat.kernel.access_token.' + Utils_1.createHash(JSON.stringify(yield this.getCredentials()), 'md5');
+            return 'easywechat.kernel.access_token.' + (0, Utils_1.createHash)(JSON.stringify(yield this.getCredentials()), 'md5');
         });
     }
     requestToken(credentials) {
@@ -202,5 +202,5 @@ class BaseAccessToken {
     }
 }
 ;
-Utils_1.applyMixins(BaseAccessToken, [HttpMixin_1.default]);
+(0, Utils_1.applyMixins)(BaseAccessToken, [HttpMixin_1.default]);
 exports.default = BaseAccessToken;

@@ -20,7 +20,7 @@ class CertficatesClient extends BaseClient_1.default {
         return __awaiter(this, void 0, void 0, function* () {
             let params = {
                 sign_type: 'HMAC-SHA256',
-                nonce_str: Utils_1.randomString(18),
+                nonce_str: (0, Utils_1.randomString)(18),
             };
             if (returnRaw) {
                 return yield this.requestRaw('risk/getcertficates', params);

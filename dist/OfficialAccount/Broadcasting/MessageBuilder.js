@@ -50,7 +50,7 @@ class MessageBuilder {
         if (!prepends) {
             prepends = this._to;
         }
-        let message = Utils_1.merge(Utils_1.merge(Utils_1.merge({}, prepends), content), this._attributes);
+        let message = (0, Utils_1.merge)((0, Utils_1.merge)((0, Utils_1.merge)({}, prepends), content), this._attributes);
         return message;
     }
     buildForPreview(by, user) {

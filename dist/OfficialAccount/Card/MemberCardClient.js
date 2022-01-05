@@ -19,7 +19,7 @@ class MemberCardClient extends Client_1.default {
      * @param settings 会员卡激活时的选项
      */
     setActivationForm(cardId, settings) {
-        let params = Utils_1.merge({
+        let params = (0, Utils_1.merge)({
             card_id: cardId,
         }, settings);
         return this.httpPostJson('card/membercard/activateuserform/set', params);

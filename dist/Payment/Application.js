@@ -117,12 +117,12 @@ class Payment extends BaseApplication_1.default {
         let params = {
             appid: this.config.app_id,
             mch_id: this.config.mch_id,
-            time_stamp: Utils_1.getTimestamp(),
-            nonce_str: Utils_1.randomString(16),
+            time_stamp: (0, Utils_1.getTimestamp)(),
+            nonce_str: (0, Utils_1.randomString)(16),
             product_id,
         };
-        params['sign'] = Utils_1.makeSignature(params, this.config.key);
-        return 'weixin://wxpay/bizpayurl?' + Utils_1.buildQueryString(params);
+        params['sign'] = (0, Utils_1.makeSignature)(params, this.config.key);
+        return 'weixin://wxpay/bizpayurl?' + (0, Utils_1.buildQueryString)(params);
     }
     codeUrlScheme(codeUrl) {
         return 'weixin://wxpay/bizpayurl?sr=' + codeUrl;

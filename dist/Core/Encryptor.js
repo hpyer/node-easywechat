@@ -22,7 +22,7 @@ class Encryptor {
     }
     signature(...args) {
         args.sort();
-        return Utils_1.createHash(args.join(''), 'sha1');
+        return (0, Utils_1.createHash)(args.join(''), 'sha1');
     }
     encrypt(text, nonce = null, timestamp = null) {
         let encrypted = '';
@@ -41,14 +41,14 @@ class Encryptor {
         if (!nonce)
             nonce = this.appId.slice(0, 10);
         if (!timestamp)
-            timestamp = Utils_1.getTimestamp();
+            timestamp = (0, Utils_1.getTimestamp)();
         let response = {
             Encrypt: encrypted,
             MsgSignature: this.signature(this.token, timestamp, nonce, encrypted),
             TimeStamp: timestamp,
             Nonce: nonce,
         };
-        return Utils_1.buildXml(response);
+        return (0, Utils_1.buildXml)(response);
     }
     decrypt(text, msgSignature, nonce, timestamp) {
         let signature = this.signature(this.token, nonce, timestamp, text);

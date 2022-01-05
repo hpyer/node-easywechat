@@ -13,7 +13,7 @@ class ScheduleClient extends BaseClient_1.default {
     }
     update(id, schedule) {
         return this.httpPostJson('cgi-bin/oa/schedule/update', {
-            schedule: Utils_1.merge({
+            schedule: (0, Utils_1.merge)({
                 schedule_id: id,
             }, schedule)
         });

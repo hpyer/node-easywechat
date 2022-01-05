@@ -82,7 +82,7 @@ class MicroMerchant extends BaseApplication_1.default {
         delete data['sign'];
         let signType = sign.length > 32 ? 'HMAC-SHA256' : 'MD5';
         let secretKey = this.getKey();
-        if (Utils_1.makeSignature(data, secretKey, signType) === sign) {
+        if ((0, Utils_1.makeSignature)(data, secretKey, signType) === sign) {
             return true;
         }
         throw new Error('return value signature verification error');

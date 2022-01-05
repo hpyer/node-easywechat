@@ -68,8 +68,8 @@ class CustomerServiceClient extends BaseClient_1.default {
     }
     messages(startTime, endTime, msgId = 1, number = 10000) {
         return this.httpPostJson('customservice/msgrecord/getmsglist', {
-            starttime: Utils_1.getTimestamp(startTime),
-            endtime: Utils_1.getTimestamp(endTime),
+            starttime: (0, Utils_1.getTimestamp)(startTime),
+            endtime: (0, Utils_1.getTimestamp)(endTime),
             msgid: msgId,
             number: number,
         });

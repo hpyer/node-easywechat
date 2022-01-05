@@ -21,7 +21,7 @@ class BaseClient extends BaseClient_1.default {
     httpUpload(url, files = {}, form = {}, query = {}, returnResponse = false) {
         let formData = new form_data_1.default;
         for (let name in files) {
-            if (Utils_1.isString(files[name])) {
+            if ((0, Utils_1.isString)(files[name])) {
                 formData.append(name, fs_1.default.createReadStream(files[name]));
             }
             else {
@@ -43,14 +43,14 @@ class BaseClient extends BaseClient_1.default {
             let base = {
                 mch_id: this.app.config.mch_id,
             };
-            let localParams = Utils_1.merge(Utils_1.merge(base, this.prepends()), params);
+            let localParams = (0, Utils_1.merge)((0, Utils_1.merge)(base, this.prepends()), params);
             let secretKey = yield this.app.getKey();
-            localParams['sign'] = Utils_1.makeSignature(localParams, secretKey, localParams['sign_type'] || 'MD5');
-            let payload = Utils_1.merge(Utils_1.merge({}, options), {
+            localParams['sign'] = (0, Utils_1.makeSignature)(localParams, secretKey, localParams['sign_type'] || 'MD5');
+            let payload = (0, Utils_1.merge)((0, Utils_1.merge)({}, options), {
                 url: endpoint,
                 method,
                 responseType: 'text',
-                data: Utils_1.buildXml(localParams)
+                data: (0, Utils_1.buildXml)(localParams)
             });
             let response = yield this.doRequest(payload);
             if (returnResponse) {
@@ -59,7 +59,7 @@ class BaseClient extends BaseClient_1.default {
             else {
                 let body = response.data;
                 try {
-                    body = yield Utils_1.parseXml(body);
+                    body = yield (0, Utils_1.parseXml)(body);
                 }
                 catch (e) { }
                 return body;
@@ -77,11 +77,11 @@ class BaseClient extends BaseClient_1.default {
         }
         let rsa = new RSA_1.default;
         rsa.setPublicKey(certificate);
-        let newParams = Utils_1.merge({}, params);
+        let newParams = (0, Utils_1.merge)({}, params);
         newParams['cert_sn'] = serial_no;
         let sensitive_fields = this.getSensitiveFieldsName();
         for (let k in newParams) {
-            if (Utils_1.inArray(k, sensitive_fields)) {
+            if ((0, Utils_1.inArray)(k, sensitive_fields)) {
                 newParams[k] = rsa.encrypt(newParams[k]);
             }
         }

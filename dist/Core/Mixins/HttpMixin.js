@@ -19,7 +19,7 @@ const form_data_1 = __importDefault(require("form-data"));
 class HttpMixin {
     doRequest(payload) {
         return __awaiter(this, void 0, void 0, function* () {
-            let opts = Utils_1.merge({}, payload || {});
+            let opts = (0, Utils_1.merge)({}, payload || {});
             if (typeof opts.baseURL == 'undefined' && this['baseUrl']) {
                 opts.baseURL = this['baseUrl'];
             }
@@ -33,14 +33,14 @@ class HttpMixin {
                 opts.responseType = 'json';
             }
             if (this['app'] && this['app'] instanceof BaseApplication_1.default) {
-                opts = Utils_1.merge(Utils_1.merge({}, this['app'].config.http || {}), opts);
+                opts = (0, Utils_1.merge)((0, Utils_1.merge)({}, this['app'].config.http || {}), opts);
             }
             if (opts.data && opts.data instanceof form_data_1.default) {
-                opts.headers = Utils_1.merge(opts.headers || {}, opts.data.getHeaders());
+                opts.headers = (0, Utils_1.merge)(opts.headers || {}, opts.data.getHeaders());
                 opts.headers['Content-Length'] = yield new Promise((resolve, reject) => {
                     opts.data.getLength((err, length) => {
                         if (err) {
-                            resolve(0);
+                            resolve('0');
                         }
                         else {
                             resolve(length);

@@ -14,7 +14,7 @@ class RealtimeLogClient extends BaseClient_1.default {
      * @param options 其它参数
      */
     search(date, beginTime, endTime, options = {}) {
-        let params = Utils_1.merge({
+        let params = (0, Utils_1.merge)({
             date: date,
             begintime: beginTime,
             endtime: endTime,

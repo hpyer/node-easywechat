@@ -11,7 +11,7 @@ class NearbyPoiClient extends BaseClient_1.default {
      * @param params 地点信息
      */
     add(params = {}) {
-        params = Utils_1.merge({
+        params = (0, Utils_1.merge)({
             is_comm_nearby: '1',
             poi_id: '',
         }, params);
@@ -23,7 +23,7 @@ class NearbyPoiClient extends BaseClient_1.default {
      * @param params 地点信息
      */
     update(poiId, params = {}) {
-        params = Utils_1.merge({
+        params = (0, Utils_1.merge)({
             is_comm_nearby: '1',
             poi_id: poiId,
         }, params);
@@ -55,7 +55,7 @@ class NearbyPoiClient extends BaseClient_1.default {
      * @param status 0:不展示；1:展示
      */
     setVisibility(poiId = '', status) {
-        if (!Utils_1.inArray(status, [0, 1, '0', '1'])) {
+        if (!(0, Utils_1.inArray)(status, [0, 1, '0', '1'])) {
             throw new Error('status should be 0 or 1.');
         }
         return this.httpPostJson('wxa/setnearbypoishowstatus', {

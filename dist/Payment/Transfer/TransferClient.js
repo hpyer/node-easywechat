@@ -54,7 +54,7 @@ class TransferClient extends BaseClient_1.default {
             if (!params['spbill_create_ip']) {
                 params['spbill_create_ip'] = yield this.getServerIp();
             }
-            return this.safeRequest('mmpaymkttransfers/promotion/transfers', Utils_1.merge(base, params));
+            return this.safeRequest('mmpaymkttransfers/promotion/transfers', (0, Utils_1.merge)(base, params));
         });
     }
     /**

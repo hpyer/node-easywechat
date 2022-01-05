@@ -12,7 +12,7 @@ class MiniProgramBase extends BaseClient_1.default {
      * @param optional 参数。transaction_id：支付交易号；mch_id：商户id；out_trade_no：商家订单号
      */
     getPaidUnionid(openid, optional = {}) {
-        let params = Utils_1.merge({
+        let params = (0, Utils_1.merge)({
             openid,
         }, optional);
         return this.httpGet('wxa/getpaidunionid', params);

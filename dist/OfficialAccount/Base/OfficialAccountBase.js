@@ -22,11 +22,11 @@ class OfficialAccountBase extends BaseClient_1.default {
         return this.httpGet('cgi-bin/getcallbackip');
     }
     checkCallbackUrl(action = 'all', operator = 'DEFAULT') {
-        if (!Utils_1.inArray(action, ['dns', 'ping', 'all'], true)) {
+        if (!(0, Utils_1.inArray)(action, ['dns', 'ping', 'all'], true)) {
             throw new Error('The action must be dns, ping, all.');
         }
         operator = operator.toUpperCase();
-        if (!Utils_1.inArray(operator, ['CHINANET', 'UNICOM', 'CAP', 'DEFAULT'], true)) {
+        if (!(0, Utils_1.inArray)(operator, ['CHINANET', 'UNICOM', 'CAP', 'DEFAULT'], true)) {
             throw new Error('The operator must be CHINANET, UNICOM, CAP, DEFAULT.');
         }
         return this.httpPostJson('cgi-bin/callback/check', {

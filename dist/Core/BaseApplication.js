@@ -34,7 +34,7 @@ class BaseApplicatioin {
         if (new.target === BaseApplicatioin) {
             throw new Error('Can not create instance via BaseApplicatioin.');
         }
-        if (Utils_1.isObject(prepends)) {
+        if ((0, Utils_1.isObject)(prepends)) {
             for (let key in prepends) {
                 this.offsetSet(key, prepends[key]);
             }
@@ -44,7 +44,7 @@ class BaseApplicatioin {
     }
     getId() {
         if (!this.id) {
-            this.id = Utils_1.createHash(JSON.stringify(this.userConfig), 'md5');
+            this.id = (0, Utils_1.createHash)(JSON.stringify(this.userConfig), 'md5');
         }
         return this.id;
     }
@@ -59,7 +59,7 @@ class BaseApplicatioin {
                 baseURL: 'https://api.weixin.qq.com/',
             },
         };
-        return Utils_1.merge(Utils_1.merge(base, this.defaultConfig), this.userConfig);
+        return (0, Utils_1.merge)((0, Utils_1.merge)(base, this.defaultConfig), this.userConfig);
     }
     /**
      * 注册通用模块
@@ -113,7 +113,7 @@ class BaseApplicatioin {
      * @param value 自定义服务模块的实例，可以传入一个闭包，闭包会接收一个指向Application的参数
      */
     offsetSet(id, value) {
-        if (Utils_1.isFunction(value)) {
+        if ((0, Utils_1.isFunction)(value)) {
             value = value(this);
         }
         this[id] = value;

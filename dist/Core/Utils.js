@@ -19,24 +19,24 @@ const xml2js_1 = __importDefault(require("xml2js"));
 const stream_1 = __importDefault(require("stream"));
 const fs_1 = __importDefault(require("fs"));
 const merge = (target, source) => {
-    if (exports.isObject(source)) {
+    if ((0, exports.isObject)(source)) {
         if (source.constructor !== Object) {
             target = source;
         }
         else {
-            if (!target || !exports.isObject(target)) {
+            if (!target || !(0, exports.isObject)(target)) {
                 target = {};
             }
             Object.keys(source).map((k) => {
                 if (!target[k]) {
                     target[k] = null;
                 }
-                target[k] = exports.merge(target[k], source[k]);
+                target[k] = (0, exports.merge)(target[k], source[k]);
             });
         }
     }
-    else if (exports.isArray(source)) {
-        if (!target || !exports.isArray(target)) {
+    else if ((0, exports.isArray)(source)) {
+        if (!target || !(0, exports.isArray)(target)) {
             target = [];
         }
         target = target.concat(target, source);
@@ -62,7 +62,7 @@ exports.createHmac = createHmac;
 const md5File = function (path) {
     return new Promise((reslove, reject) => {
         let stream;
-        if (exports.isString(path)) {
+        if ((0, exports.isString)(path)) {
             stream = fs_1.default.createReadStream(path);
         }
         else {
@@ -83,7 +83,7 @@ exports.md5File = md5File;
 const getTimestamp = function (datetime = null) {
     let time;
     try {
-        time = (exports.isString(datetime) ? new Date(datetime) : new Date).getTime();
+        time = ((0, exports.isString)(datetime) ? new Date(datetime) : new Date).getTime();
     }
     catch (e) {
         return 0;
@@ -127,12 +127,12 @@ const makeSignature = function (params, key = '', type = 'md5') {
     switch (type) {
         case 'sha1':
         case 'md5':
-            sign = exports.createHash(paramsString, type);
+            sign = (0, exports.createHash)(paramsString, type);
             break;
         case 'hmac-sha256':
         case 'hmac_sha256':
             type = type.replace(/^hmac[\-|_]/i, '');
-            sign = exports.createHmac(paramsString, key, type);
+            sign = (0, exports.createHmac)(paramsString, key, type);
             break;
     }
     return (sign + '').toUpperCase();
@@ -171,13 +171,13 @@ const isIpv6 = function (ip) {
 };
 exports.isIpv6 = isIpv6;
 const isIp = function (ip) {
-    return exports.isIpv4(ip) || exports.isIpv6(ip);
+    return (0, exports.isIpv4)(ip) || (0, exports.isIpv6)(ip);
 };
 exports.isIp = isIp;
 const inArray = function (data, arr, strict = false) {
-    if (!exports.isArray(arr))
+    if (!(0, exports.isArray)(arr))
         return strict ? data === arr : data == arr;
-    if (exports.isFunction(arr.findIndex)) {
+    if ((0, exports.isFunction)(arr.findIndex)) {
         return arr.findIndex((o) => { return strict ? o === data : o == data; }) > -1;
     }
     else {
@@ -216,12 +216,12 @@ const strLcwords = function (str) {
 exports.strLcwords = strLcwords;
 // 驼峰（首字母大写），'hello word' => 'HelloWorld'
 const strStudly = function (value) {
-    return exports.strUcwords(value.replace(/[\-|\_]/gi, ' ')).replace(/\s/gi, '');
+    return (0, exports.strUcwords)(value.replace(/[\-|\_]/gi, ' ')).replace(/\s/gi, '');
 };
 exports.strStudly = strStudly;
 // 驼峰（首字母小写），'hello word' => 'helloWorld'
 const strCamel = function (value) {
-    return exports.strLcwords(exports.strStudly(value));
+    return (0, exports.strLcwords)((0, exports.strStudly)(value));
 };
 exports.strCamel = strCamel;
 // 如果只有一个同名、同级节点，则不当作数组
@@ -229,16 +229,16 @@ const singleItem = function (obj) {
     if (typeof obj == 'object') {
         if (typeof obj.length != 'undefined') {
             if (obj.length == 1) {
-                return exports.singleItem(obj[0]);
+                return (0, exports.singleItem)(obj[0]);
             }
             for (let i = 0; i < obj.length; i++) {
-                obj[i] = exports.singleItem(obj[i]);
+                obj[i] = (0, exports.singleItem)(obj[i]);
             }
             return obj;
         }
         else {
             for (let k in obj) {
-                obj[k] = exports.singleItem(obj[k]);
+                obj[k] = (0, exports.singleItem)(obj[k]);
             }
         }
     }
@@ -248,7 +248,7 @@ exports.singleItem = singleItem;
 const parseXml = function (xml) {
     return __awaiter(this, void 0, void 0, function* () {
         let res = yield xml2js_1.default.parseStringPromise(xml);
-        res = exports.singleItem(res);
+        res = (0, exports.singleItem)(res);
         if (res['xml'])
             res = res['xml'];
         return res;

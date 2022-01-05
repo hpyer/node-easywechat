@@ -20,10 +20,10 @@ class RedpackClient extends BaseClient_1.default {
      * @param mchBillno 商户订单号
      */
     info(mchBillno) {
-        let data = Utils_1.isObject(mchBillno) ? mchBillno : {
+        let data = (0, Utils_1.isObject)(mchBillno) ? mchBillno : {
             mch_billno: mchBillno
         };
-        let params = Utils_1.merge(Utils_1.merge({}, data), {
+        let params = (0, Utils_1.merge)((0, Utils_1.merge)({}, data), {
             appid: this.app.config.app_id,
             bill_type: 'MCHT',
         });
@@ -35,7 +35,7 @@ class RedpackClient extends BaseClient_1.default {
      */
     sendMiniprogramNormal(data) {
         return __awaiter(this, void 0, void 0, function* () {
-            let params = Utils_1.merge(Utils_1.merge({}, data), {
+            let params = (0, Utils_1.merge)((0, Utils_1.merge)({}, data), {
                 notify_way: 'MINI_PROGRAM_JSAPI',
                 wxappid: this.app.config.app_id,
                 total_num: 1,
@@ -50,7 +50,7 @@ class RedpackClient extends BaseClient_1.default {
      */
     sendNormal(data) {
         return __awaiter(this, void 0, void 0, function* () {
-            let params = Utils_1.merge(Utils_1.merge({}, data), {
+            let params = (0, Utils_1.merge)((0, Utils_1.merge)({}, data), {
                 wxappid: this.app.config.app_id,
                 total_num: 1,
                 client_ip: data['client_ip'] || (yield this.getServerIp()),
@@ -63,7 +63,7 @@ class RedpackClient extends BaseClient_1.default {
      * @param params 红包参数
      */
     sendGroup(params) {
-        params = Utils_1.merge(params, {
+        params = (0, Utils_1.merge)(params, {
             wxappid: this.app.config.app_id,
             amt_type: 'ALL_RAND',
         });
