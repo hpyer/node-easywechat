@@ -86,5 +86,37 @@ class JssdkClient extends JssdkClient_1.default {
             return json ? JSON.stringify(params) : params;
         });
     }
+    /**
+     * 生成联系人配置
+     * @param params
+     * @param json 是否返回JSON字符串，默认：false
+     */
+    contractConfig(params, json = false) {
+        return __awaiter(this, void 0, void 0, function* () {
+            params['appid'] = this.app.config.app_id;
+            params['timestamp'] = Utils_1.getTimestamp() + '';
+            params['sign'] = Utils_1.makeSignature(params, this.app.config.key, 'md5');
+            return json ? JSON.stringify(params) : params;
+        });
+    }
+    /**
+     * 生成小程序红包配置
+     * @param pkg
+     * @param json 是否返回JSON字符串，默认：false
+     */
+    miniprogramRedpackConfig(pkg, json = false) {
+        return __awaiter(this, void 0, void 0, function* () {
+            let params = {
+                appId: this.app.config.app_id,
+                timeStamp: Utils_1.getTimestamp() + '',
+                nonceStr: Utils_1.randomString(16),
+                package: pkg,
+            };
+            params['paySign'] = Utils_1.makeSignature(params, '', 'md5');
+            params['signType'] = 'MD5';
+            delete params.appId;
+            return json ? JSON.stringify(params) : params;
+        });
+    }
 }
 exports.default = JssdkClient;

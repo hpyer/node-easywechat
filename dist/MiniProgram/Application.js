@@ -24,6 +24,7 @@ const CustomerServiceClient_1 = __importDefault(require("../OfficialAccount/Cust
 const UniformMessageClient_1 = __importDefault(require("./UniformMessage/UniformMessageClient"));
 const ActivityMessageClient_1 = __importDefault(require("./ActivityMessage/ActivityMessageClient"));
 const OpenDataClient_1 = __importDefault(require("./OpenData/OpenDataClient"));
+const PhoneNumberClient_1 = __importDefault(require("./PhoneNumber/PhoneNumberClient"));
 const PluginClient_1 = __importDefault(require("./Plugin/PluginClient"));
 const PluginDevClient_1 = __importDefault(require("./Plugin/PluginDevClient"));
 const MiniProgramBase_1 = __importDefault(require("./Base/MiniProgramBase"));
@@ -36,6 +37,7 @@ const RealtimeLogClient_1 = __importDefault(require("./RealtimeLog/RealtimeLogCl
 const SearchClient_1 = __importDefault(require("./Search/SearchClient"));
 const MediaClient_1 = __importDefault(require("../BaseService/Media/MediaClient"));
 const ContentSecurityClient_1 = __importDefault(require("../BaseService/ContentSecurity/ContentSecurityClient"));
+const UrlLinkClient_1 = __importDefault(require("./UrlLink/UrlLinkClient"));
 const UrlSchemeClient_1 = __importDefault(require("./UrlScheme/UrlSchemeClient"));
 const RiskControlClient_1 = __importDefault(require("./RiskControl/RiskControlClient"));
 const LiveClient_1 = __importDefault(require("./Live/LiveClient"));
@@ -55,6 +57,7 @@ class MiniProgram extends BaseApplication_1.default {
         this.uniform_message = null;
         this.activity_message = null;
         this.open_data = null;
+        this.phone_number = null;
         this.plugin = null;
         this.plugin_dev = null;
         this.base = null;
@@ -67,6 +70,7 @@ class MiniProgram extends BaseApplication_1.default {
         this.search = null;
         this.media = null;
         this.content_security = null;
+        this.url_link = null;
         this.url_scheme = null;
         this.risk_control = null;
         this.live = null;
@@ -126,6 +130,9 @@ class MiniProgram extends BaseApplication_1.default {
         this.offsetSet('open_data', function (app) {
             return new OpenDataClient_1.default(app);
         });
+        this.offsetSet('phone_number', function (app) {
+            return new PhoneNumberClient_1.default(app);
+        });
         this.offsetSet('plugin', function (app) {
             return new PluginClient_1.default(app);
         });
@@ -155,6 +162,9 @@ class MiniProgram extends BaseApplication_1.default {
         });
         this.offsetSet('search', function (app) {
             return new SearchClient_1.default(app);
+        });
+        this.offsetSet('url_link', function (app) {
+            return new UrlLinkClient_1.default(app);
         });
         this.offsetSet('url_scheme', function (app) {
             return new UrlSchemeClient_1.default(app);

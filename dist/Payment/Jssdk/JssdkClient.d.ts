@@ -23,4 +23,16 @@ export default class JssdkClient extends BaseClient {
      * @param json 是否返回json字符串，默认：true
      */
     shareAddressConfig(accessToken: string | AccessToken, json?: Boolean): Promise<any>;
+    /**
+     * 生成联系人配置
+     * @param params
+     * @param json 是否返回JSON字符串，默认：false
+     */
+    contractConfig(params: object, json?: Boolean): Promise<any>;
+    /**
+     * 生成小程序红包配置
+     * @param pkg
+     * @param json 是否返回JSON字符串，默认：false
+     */
+    miniprogramRedpackConfig(pkg: string, json?: Boolean): Promise<any>;
 }

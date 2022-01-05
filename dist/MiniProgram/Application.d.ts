@@ -10,6 +10,7 @@ import CustomerServiceClient from '../OfficialAccount/CustomerService/CustomerSe
 import UniformMessageClient from './UniformMessage/UniformMessageClient';
 import ActivityMessageClient from './ActivityMessage/ActivityMessageClient';
 import OpenDataClient from './OpenData/OpenDataClient';
+import PhoneNumberClient from './PhoneNumber/PhoneNumberClient';
 import PluginClient from './Plugin/PluginClient';
 import PluginDevClient from './Plugin/PluginDevClient';
 import MiniProgramBase from './Base/MiniProgramBase';
@@ -23,6 +24,7 @@ import SearchClient from './Search/SearchClient';
 import MediaClient from '../BaseService/Media/MediaClient';
 import ContentSecurityClient from '../BaseService/ContentSecurity/ContentSecurityClient';
 import { EasyWechatConfig } from '../Core/Types';
+import UrlLinkClient from './UrlLink/UrlLinkClient';
 import UrlSchemeClient from './UrlScheme/UrlSchemeClient';
 import RiskControlClient from './RiskControl/RiskControlClient';
 import LiveClient from './Live/LiveClient';
@@ -40,6 +42,7 @@ export default class MiniProgram extends BaseApplication {
     uniform_message: UniformMessageClient;
     activity_message: ActivityMessageClient;
     open_data: OpenDataClient;
+    phone_number: PhoneNumberClient;
     plugin: PluginClient;
     plugin_dev: PluginDevClient;
     base: MiniProgramBase;
@@ -52,6 +55,7 @@ export default class MiniProgram extends BaseApplication {
     search: SearchClient;
     media: MediaClient;
     content_security: ContentSecurityClient;
+    url_link: UrlLinkClient;
     url_scheme: UrlSchemeClient;
     risk_control: RiskControlClient;
     live: LiveClient;

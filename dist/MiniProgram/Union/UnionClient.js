@@ -56,5 +56,14 @@ class UnionClient extends BaseClient_1.default {
     getFeaturedProducts(params) {
         return this.httpGet('union/promoter/product/select', params);
     }
+    getTargetPlanInfo(params) {
+        return this.httpGet('union/promoter/target/plan_info', params);
+    }
+    applyJoinTargetPlan(params) {
+        return this.httpPostJson('union/promoter/target/apply_target', params);
+    }
+    getTargetPlanStatus(params) {
+        return this.httpGet('union/promoter/target/apply_status', params);
+    }
 }
 exports.default = UnionClient;
