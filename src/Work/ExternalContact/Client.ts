@@ -49,11 +49,17 @@ export default class ExternalContactClient extends BaseClient
 
   getUnassigned(pageId: number = 0, pageSize: number = 1000, cursor: string = null): Promise<any>
   {
-    return this.httpPostJson('cgi-bin/externalcontact/get_unassigned_list', {
+    let params = {
       page_id: pageId,
       page_size: pageSize,
       cursor,
+    };
+    Object.keys(params).map(key => {
+      if (params[key] === null || params[key] === undefined) {
+        delete params[key];
+      }
     });
+    return this.httpPostJson('cgi-bin/externalcontact/get_unassigned_list', params);
   }
 
   transfer(externalUserId: string, handoverUserId: string, takeoverUserId: string, transferSuccessMessage: string): Promise<any>
