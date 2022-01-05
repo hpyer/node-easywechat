@@ -92,4 +92,40 @@ export default class JssdkClient extends BaseClient
     return json ? JSON.stringify(params) : params;
   }
 
+  /**
+   * 生成联系人配置
+   * @param params
+   * @param json 是否返回JSON字符串，默认：false
+   */
+  async contractConfig(params: object, json: Boolean = false): Promise<any>
+  {
+    params['appid'] = this.app.config.app_id;
+    params['timestamp'] = getTimestamp() + '';
+
+    params['sign'] = makeSignature(params, this.app.config.key, 'md5');
+
+    return json ? JSON.stringify(params) : params;
+  }
+
+  /**
+   * 生成小程序红包配置
+   * @param pkg
+   * @param json 是否返回JSON字符串，默认：false
+   */
+  async miniprogramRedpackConfig(pkg: string, json: Boolean = false): Promise<any>
+  {
+    let params = {
+      appId: this.app.config.app_id,
+      timeStamp: getTimestamp() + '',
+      nonceStr: randomString(16),
+      package: pkg,
+    };
+
+    params['paySign'] = makeSignature(params, '', 'md5');
+    params['signType'] = 'MD5';
+    delete params.appId;
+
+    return json ? JSON.stringify(params) : params;
+  }
+
 }
