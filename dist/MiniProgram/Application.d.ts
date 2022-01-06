@@ -21,6 +21,7 @@ import SoterClient from './Soter/SoterClient';
 import SubscribeMessageClient from './SubscribeMessage/SubscribeMessageClient';
 import RealtimeLogClient from './RealtimeLog/RealtimeLogClient';
 import SearchClient from './Search/SearchClient';
+import ShortLinkClient from './ShortLink/ShortLinkClient';
 import MediaClient from '../BaseService/Media/MediaClient';
 import ContentSecurityClient from '../BaseService/ContentSecurity/ContentSecurityClient';
 import { EasyWechatConfig } from '../Core/Types';
@@ -53,6 +54,7 @@ export default class MiniProgram extends BaseApplication {
     subscribe_message: SubscribeMessageClient;
     realtime_log: RealtimeLogClient;
     search: SearchClient;
+    short_link: ShortLinkClient;
     media: MediaClient;
     content_security: ContentSecurityClient;
     url_link: UrlLinkClient;

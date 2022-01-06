@@ -35,6 +35,7 @@ const SoterClient_1 = __importDefault(require("./Soter/SoterClient"));
 const SubscribeMessageClient_1 = __importDefault(require("./SubscribeMessage/SubscribeMessageClient"));
 const RealtimeLogClient_1 = __importDefault(require("./RealtimeLog/RealtimeLogClient"));
 const SearchClient_1 = __importDefault(require("./Search/SearchClient"));
+const ShortLinkClient_1 = __importDefault(require("./ShortLink/ShortLinkClient"));
 const MediaClient_1 = __importDefault(require("../BaseService/Media/MediaClient"));
 const ContentSecurityClient_1 = __importDefault(require("../BaseService/ContentSecurity/ContentSecurityClient"));
 const UrlLinkClient_1 = __importDefault(require("./UrlLink/UrlLinkClient"));
@@ -68,6 +69,7 @@ class MiniProgram extends BaseApplication_1.default {
         this.subscribe_message = null;
         this.realtime_log = null;
         this.search = null;
+        this.short_link = null;
         this.media = null;
         this.content_security = null;
         this.url_link = null;
@@ -162,6 +164,9 @@ class MiniProgram extends BaseApplication_1.default {
         });
         this.offsetSet('search', function (app) {
             return new SearchClient_1.default(app);
+        });
+        this.offsetSet('short_link', function (app) {
+            return new ShortLinkClient_1.default(app);
         });
         this.offsetSet('url_link', function (app) {
             return new UrlLinkClient_1.default(app);
