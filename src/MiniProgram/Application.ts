@@ -23,6 +23,7 @@ import SoterClient from './Soter/SoterClient';
 import SubscribeMessageClient from './SubscribeMessage/SubscribeMessageClient';
 import RealtimeLogClient from './RealtimeLog/RealtimeLogClient';
 import SearchClient from './Search/SearchClient';
+import ShortLinkClient from './ShortLink/ShortLinkClient';
 import MediaClient from '../BaseService/Media/MediaClient';
 import ContentSecurityClient from '../BaseService/ContentSecurity/ContentSecurityClient';
 import { EasyWechatConfig } from '../Core/Types';
@@ -58,6 +59,7 @@ export default class MiniProgram extends BaseApplication
   public subscribe_message: SubscribeMessageClient = null;
   public realtime_log: RealtimeLogClient = null;
   public search: SearchClient = null;
+  public short_link: ShortLinkClient = null;
   public media: MediaClient = null;
   public content_security: ContentSecurityClient = null;
   public url_link: UrlLinkClient = null;
@@ -158,6 +160,9 @@ export default class MiniProgram extends BaseApplication
     });
     this.offsetSet('search', function (app) {
       return new SearchClient(app);
+    });
+    this.offsetSet('short_link', function (app) {
+      return new ShortLinkClient(app);
     });
     this.offsetSet('url_link', function (app) {
       return new UrlLinkClient(app);
