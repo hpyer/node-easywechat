@@ -14,6 +14,9 @@ import GroupRobotClient from './GroupRobot/GroupRobotClient';
 import GroupRobotMessenger from './GroupRobot/Messenger';
 import InvoiceClient from './Invoice/InvoiceClient';
 import JssdkClient from './Jssdk/JssdkClient';
+import KfAccountClient from './Kf/KfAccountClient';
+import KfMessageClient from './Kf/KfMessageClient';
+import KfServicerClient from './Kf/KfServicerClient';
 import LiveClient from './Live/LiveClient';
 import MediaClient from './Media/MediaClient';
 import MenuClient from './Menu/MenuClient';
@@ -65,6 +68,9 @@ export default class Work extends BaseApplication
   public group_robot_messenger: GroupRobotMessenger = null;
   public invoice: InvoiceClient = null;
   public jssdk: JssdkClient = null;
+  public kf_account: KfAccountClient = null;
+  public kf_message: KfMessageClient = null;
+  public kf_servicer: KfServicerClient = null;
   public live: LiveClient = null;
   public media: MediaClient = null;
   public menu: MenuClient = null;
@@ -149,6 +155,15 @@ export default class Work extends BaseApplication
     });
     this.offsetSet('jssdk', function (app) {
       return new JssdkClient(app);
+    });
+    this.offsetSet('kf_account', function (app) {
+      return new KfAccountClient(app);
+    });
+    this.offsetSet('kf_message', function (app) {
+      return new KfMessageClient(app);
+    });
+    this.offsetSet('kf_servicer', function (app) {
+      return new KfServicerClient(app);
     });
     this.offsetSet('live', function (app) {
       return new LiveClient(app);
