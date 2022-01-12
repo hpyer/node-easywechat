@@ -345,5 +345,21 @@ class ExternalContactClient extends BaseClient_1.default {
             opengid,
         });
     }
+    /**
+     * 上传附件资源
+     * @see https://work.weixin.qq.com/api/doc/90000/90135/95098
+     * @param path
+     * @param mediaType
+     * @param attachmentType
+     * @returns
+     */
+    uploadAttachment(path, mediaType, attachmentType) {
+        return this.httpUpload('cgi-bin/media/upload_attachment', {
+            media: path
+        }, {}, {
+            media_type: mediaType,
+            attachment_type: attachmentType,
+        });
+    }
 }
 exports.default = ExternalContactClient;

@@ -17,6 +17,7 @@ const WorkBase_1 = __importDefault(require("./Base/WorkBase"));
 const OAClient_1 = __importDefault(require("./OA/OAClient"));
 const AccessToken_1 = __importDefault(require("./Auth/AccessToken"));
 const AgentClient_1 = __importDefault(require("./Agent/AgentClient"));
+const WorkbenchClient_1 = __importDefault(require("./Agent/WorkbenchClient"));
 const CalendarClient_1 = __importDefault(require("./Calendar/CalendarClient"));
 const ChatClient_1 = __importDefault(require("./Chat/ChatClient"));
 const DepartmentClient_1 = __importDefault(require("./Department/DepartmentClient"));
@@ -24,6 +25,9 @@ const GroupRobotClient_1 = __importDefault(require("./GroupRobot/GroupRobotClien
 const Messenger_1 = __importDefault(require("./GroupRobot/Messenger"));
 const InvoiceClient_1 = __importDefault(require("./Invoice/InvoiceClient"));
 const JssdkClient_1 = __importDefault(require("./Jssdk/JssdkClient"));
+const KfAccountClient_1 = __importDefault(require("./Kf/KfAccountClient"));
+const KfMessageClient_1 = __importDefault(require("./Kf/KfMessageClient"));
+const KfServicerClient_1 = __importDefault(require("./Kf/KfServicerClient"));
 const LiveClient_1 = __importDefault(require("./Live/LiveClient"));
 const MediaClient_1 = __importDefault(require("./Media/MediaClient"));
 const MenuClient_1 = __importDefault(require("./Menu/MenuClient"));
@@ -56,6 +60,7 @@ class Work extends BaseApplication_1.default {
         this.oa = null;
         this.access_token = null;
         this.agent = null;
+        this.agent_workbench = null;
         this.base = null;
         this.calendar = null;
         this.chat = null;
@@ -72,6 +77,9 @@ class Work extends BaseApplication_1.default {
         this.group_robot_messenger = null;
         this.invoice = null;
         this.jssdk = null;
+        this.kf_account = null;
+        this.kf_message = null;
+        this.kf_servicer = null;
         this.live = null;
         this.media = null;
         this.menu = null;
@@ -100,6 +108,9 @@ class Work extends BaseApplication_1.default {
         });
         this.offsetSet('agent', function (app) {
             return new AgentClient_1.default(app);
+        });
+        this.offsetSet('agent_workbench', function (app) {
+            return new WorkbenchClient_1.default(app);
         });
         this.offsetSet('calendar', function (app) {
             return new CalendarClient_1.default(app);
@@ -145,6 +156,15 @@ class Work extends BaseApplication_1.default {
         });
         this.offsetSet('jssdk', function (app) {
             return new JssdkClient_1.default(app);
+        });
+        this.offsetSet('kf_account', function (app) {
+            return new KfAccountClient_1.default(app);
+        });
+        this.offsetSet('kf_message', function (app) {
+            return new KfMessageClient_1.default(app);
+        });
+        this.offsetSet('kf_servicer', function (app) {
+            return new KfServicerClient_1.default(app);
         });
         this.offsetSet('live', function (app) {
             return new LiveClient_1.default(app);

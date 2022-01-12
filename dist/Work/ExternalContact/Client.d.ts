@@ -1,4 +1,6 @@
+/// <reference types="node" />
 import BaseClient from '../../Core/BaseClient';
+import Stream from 'stream';
 export default class ExternalContactClient extends BaseClient {
     /**
      * 获取配置了客户联系功能的成员列表
@@ -208,4 +210,13 @@ export default class ExternalContactClient extends BaseClient {
      * @returns
      */
     opengidToChatid(opengid: string): Promise<any>;
+    /**
+     * 上传附件资源
+     * @see https://work.weixin.qq.com/api/doc/90000/90135/95098
+     * @param path
+     * @param mediaType
+     * @param attachmentType
+     * @returns
+     */
+    uploadAttachment(path: string | Stream.Readable, mediaType: string, attachmentType: string): Promise<any>;
 }
