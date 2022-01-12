@@ -6,6 +6,7 @@ import WorkBase from './Base/WorkBase';
 import OAClient from './OA/OAClient';
 import AccessToken from './Auth/AccessToken';
 import AgentClient from './Agent/AgentClient';
+import WorkbenchClient from './Agent/WorkbenchClient';
 import CalendarClient from './Calendar/CalendarClient';
 import ChatClient from './Chat/ChatClient';
 import DepartmentClient from './Department/DepartmentClient';
@@ -47,6 +48,7 @@ export default class Work extends BaseApplication
   public oa: OAClient = null;
   public access_token: AccessToken = null;
   public agent: AgentClient = null;
+  public agent_workbench: WorkbenchClient = null;
   public base: WorkBase = null;
   public calendar: CalendarClient = null;
   public chat: ChatClient = null;
@@ -99,6 +101,9 @@ export default class Work extends BaseApplication
     });
     this.offsetSet('agent', function (app) {
       return new AgentClient(app);
+    });
+    this.offsetSet('agent_workbench', function (app) {
+      return new WorkbenchClient(app);
     });
     this.offsetSet('calendar', function (app) {
       return new CalendarClient(app);
