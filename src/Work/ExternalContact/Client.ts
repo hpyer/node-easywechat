@@ -1,6 +1,7 @@
 'use strict';
 
 import BaseClient from '../../Core/BaseClient';
+import Stream from 'stream';
 
 export default class ExternalContactClient extends BaseClient
 {
@@ -394,6 +395,24 @@ export default class ExternalContactClient extends BaseClient
   {
     return this.httpPostJson('cgi-bin/externalcontact/opengid_to_chatid', {
       opengid,
+    });
+  }
+
+  /**
+   * 上传附件资源
+   * @see https://work.weixin.qq.com/api/doc/90000/90135/95098
+   * @param path
+   * @param mediaType
+   * @param attachmentType
+   * @returns
+   */
+  uploadAttachment(path: string | Stream.Readable, mediaType: string, attachmentType: string): Promise<any>
+  {
+    return this.httpUpload('cgi-bin/media/upload_attachment', {
+      media: path
+    }, {}, {
+      media_type: mediaType,
+      attachment_type: attachmentType,
     });
   }
 
