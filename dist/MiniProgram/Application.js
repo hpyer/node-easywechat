@@ -35,6 +35,13 @@ const SoterClient_1 = __importDefault(require("./Soter/SoterClient"));
 const SubscribeMessageClient_1 = __importDefault(require("./SubscribeMessage/SubscribeMessageClient"));
 const RealtimeLogClient_1 = __importDefault(require("./RealtimeLog/RealtimeLogClient"));
 const SearchClient_1 = __importDefault(require("./Search/SearchClient"));
+const AccoutClient_1 = __importDefault(require("./Shop/AccoutClient"));
+const AftersaleClient_1 = __importDefault(require("./Shop/AftersaleClient"));
+const BasicClient_1 = __importDefault(require("./Shop/BasicClient"));
+const DeliveryClient_1 = __importDefault(require("./Shop/DeliveryClient"));
+const OrderClient_1 = __importDefault(require("./Shop/OrderClient"));
+const RegisterClient_1 = __importDefault(require("./Shop/RegisterClient"));
+const SpuClient_1 = __importDefault(require("./Shop/SpuClient"));
 const ShortLinkClient_1 = __importDefault(require("./ShortLink/ShortLinkClient"));
 const MediaClient_1 = __importDefault(require("../BaseService/Media/MediaClient"));
 const ContentSecurityClient_1 = __importDefault(require("../BaseService/ContentSecurity/ContentSecurityClient"));
@@ -69,6 +76,13 @@ class MiniProgram extends BaseApplication_1.default {
         this.subscribe_message = null;
         this.realtime_log = null;
         this.search = null;
+        this.shop_account = null;
+        this.shop_aftersale = null;
+        this.shop_basic = null;
+        this.shop_delivery = null;
+        this.shop_order = null;
+        this.shop_register = null;
+        this.shop_spu = null;
         this.short_link = null;
         this.media = null;
         this.content_security = null;
@@ -164,6 +178,27 @@ class MiniProgram extends BaseApplication_1.default {
         });
         this.offsetSet('search', function (app) {
             return new SearchClient_1.default(app);
+        });
+        this.offsetSet('shop_account', function (app) {
+            return new AccoutClient_1.default(app);
+        });
+        this.offsetSet('shop_aftersale', function (app) {
+            return new AftersaleClient_1.default(app);
+        });
+        this.offsetSet('shop_basic', function (app) {
+            return new BasicClient_1.default(app);
+        });
+        this.offsetSet('shop_delivery', function (app) {
+            return new DeliveryClient_1.default(app);
+        });
+        this.offsetSet('shop_order', function (app) {
+            return new OrderClient_1.default(app);
+        });
+        this.offsetSet('shop_register', function (app) {
+            return new RegisterClient_1.default(app);
+        });
+        this.offsetSet('shop_spu', function (app) {
+            return new SpuClient_1.default(app);
         });
         this.offsetSet('short_link', function (app) {
             return new ShortLinkClient_1.default(app);

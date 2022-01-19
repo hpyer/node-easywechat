@@ -23,6 +23,13 @@ import SoterClient from './Soter/SoterClient';
 import SubscribeMessageClient from './SubscribeMessage/SubscribeMessageClient';
 import RealtimeLogClient from './RealtimeLog/RealtimeLogClient';
 import SearchClient from './Search/SearchClient';
+import ShopAccoutClient from './Shop/AccoutClient';
+import ShopAftersaleClient from './Shop/AftersaleClient';
+import ShopBasicClient from './Shop/BasicClient';
+import ShopDeliveryClient from './Shop/DeliveryClient';
+import ShopOrderClient from './Shop/OrderClient';
+import ShopRegisterClient from './Shop/RegisterClient';
+import ShopSpuClient from './Shop/SpuClient';
 import ShortLinkClient from './ShortLink/ShortLinkClient';
 import MediaClient from '../BaseService/Media/MediaClient';
 import ContentSecurityClient from '../BaseService/ContentSecurity/ContentSecurityClient';
@@ -59,6 +66,13 @@ export default class MiniProgram extends BaseApplication
   public subscribe_message: SubscribeMessageClient = null;
   public realtime_log: RealtimeLogClient = null;
   public search: SearchClient = null;
+  public shop_account: ShopAccoutClient = null;
+  public shop_aftersale: ShopAftersaleClient = null;
+  public shop_basic: ShopBasicClient = null;
+  public shop_delivery: ShopDeliveryClient = null;
+  public shop_order: ShopOrderClient = null;
+  public shop_register: ShopRegisterClient = null;
+  public shop_spu: ShopSpuClient = null;
   public short_link: ShortLinkClient = null;
   public media: MediaClient = null;
   public content_security: ContentSecurityClient = null;
@@ -160,6 +174,27 @@ export default class MiniProgram extends BaseApplication
     });
     this.offsetSet('search', function (app) {
       return new SearchClient(app);
+    });
+    this.offsetSet('shop_account', function (app) {
+      return new ShopAccoutClient(app);
+    });
+    this.offsetSet('shop_aftersale', function (app) {
+      return new ShopAftersaleClient(app);
+    });
+    this.offsetSet('shop_basic', function (app) {
+      return new ShopBasicClient(app);
+    });
+    this.offsetSet('shop_delivery', function (app) {
+      return new ShopDeliveryClient(app);
+    });
+    this.offsetSet('shop_order', function (app) {
+      return new ShopOrderClient(app);
+    });
+    this.offsetSet('shop_register', function (app) {
+      return new ShopRegisterClient(app);
+    });
+    this.offsetSet('shop_spu', function (app) {
+      return new ShopSpuClient(app);
     });
     this.offsetSet('short_link', function (app) {
       return new ShortLinkClient(app);
