@@ -153,7 +153,7 @@ export default class ServerGuard
     return res;
   }
 
-  protected async validate(): Promise<this>
+  async validate(): Promise<this>
   {
     if (!this.alwaysValidate && !(await this.isSafeMode())) {
       return this;
@@ -170,7 +170,7 @@ export default class ServerGuard
     return this;
   }
 
-  protected forceValidate(): this
+  forceValidate(): this
   {
     this.alwaysValidate = true;
     return this;

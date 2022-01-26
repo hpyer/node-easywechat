@@ -4,7 +4,7 @@ import ServerGuard from '../../Core/ServerGuard';
 
 export default class Guard extends ServerGuard
 {
-  protected async validate(): Promise<this>
+  async validate(): Promise<this>
   {
     return this;
   }
