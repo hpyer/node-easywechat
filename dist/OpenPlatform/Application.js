@@ -97,9 +97,9 @@ class OpenPlatform extends BaseApplication_1.default {
                 };
             }
             else {
-                optional['pre_auth_code'] = yield this.createPreAuthorizationCode()['pre_auth_code'];
+                optional['pre_auth_code'] = (yield this.createPreAuthorizationCode())['pre_auth_code'];
             }
-            return 'https://mp.weixin.qq.com/safe/bindcomponent?' + (0, Utils_1.buildQueryString)((0, Utils_1.merge)(optional, {
+            return 'https://mp.weixin.qq.com/safe/bindcomponent?' + (0, Utils_1.buildQueryString)((0, Utils_1.merge)((0, Utils_1.merge)({}, optional), {
                 component_appid: this.config['app_id'],
                 redirect_uri: callbackUrl,
                 action: 'bindcomponent',
