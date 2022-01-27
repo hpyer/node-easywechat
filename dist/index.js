@@ -26,9 +26,10 @@ const Application_1 = __importDefault(require("./OfficialAccount/Application"));
 const Application_2 = __importDefault(require("./BaseService/Application"));
 const Application_3 = __importDefault(require("./MiniProgram/Application"));
 const Application_4 = __importDefault(require("./OpenPlatform/Application"));
-const Application_5 = __importDefault(require("./Payment/Application"));
-const Application_6 = __importDefault(require("./Work/Application"));
-const Application_7 = __importDefault(require("./MicroMerchant/Application"));
+const Application_5 = __importDefault(require("./OpenWork/Application"));
+const Application_6 = __importDefault(require("./Payment/Application"));
+const Application_7 = __importDefault(require("./Work/Application"));
+const Application_8 = __importDefault(require("./MicroMerchant/Application"));
 const CacheInterface_1 = __importDefault(require("./Core/Contracts/CacheInterface"));
 const FinallResult_1 = __importDefault(require("./Core/Decorators/FinallResult"));
 const TerminateResult_1 = __importDefault(require("./Core/Decorators/TerminateResult"));
@@ -62,9 +63,10 @@ class EasyWechat {
             BaseService: Application_2.default,
             MiniProgram: Application_3.default,
             OpenPlatform: Application_4.default,
-            Payment: Application_5.default,
-            Work: Application_6.default,
-            MicroMerchant: Application_7.default,
+            OpenWork: Application_5.default,
+            Payment: Application_6.default,
+            Work: Application_7.default,
+            MicroMerchant: Application_8.default,
             getInstance: getInstance,
         };
         this.CacheInterface = CacheInterface_1.default;

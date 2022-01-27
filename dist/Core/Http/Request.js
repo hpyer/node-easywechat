@@ -110,7 +110,7 @@ class Request {
     get(key) {
         if (!this.isValid)
             throw new Error('Please set request first. app.rebind(\'request\', new EasyWechat.Request(ctx.req));');
-        if (this._get[key])
+        if (this._get[key] != undefined)
             return this._get[key];
         return this.post(key);
     }
@@ -135,7 +135,7 @@ class Request {
                     this._post = (0, Utils_1.parseQueryString)(this._content.toString());
                 }
             }
-            return this._post && this._post[key] ? this._post[key] : null;
+            return this._post && this._post[key] != undefined ? this._post[key] : null;
         });
     }
     getAllGet() {

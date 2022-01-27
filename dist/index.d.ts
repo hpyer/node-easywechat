@@ -2,6 +2,7 @@ import OfficialAccount from './OfficialAccount/Application';
 import BaseService from './BaseService/Application';
 import MiniProgram from './MiniProgram/Application';
 import OpenPlatform from './OpenPlatform/Application';
+import OpenWork from './OpenWork/Application';
 import Payment from './Payment/Application';
 import Work from './Work/Application';
 import MicroMerchant from './MicroMerchant/Application';
@@ -15,13 +16,14 @@ import * as Messages from './Core/Messages';
 import { EasyWechatConfig } from './Core/Types';
 /**
  * 通用获取实例方法
- * @param service 服务名称，可选值：'BaseService' | 'OfficialAccount' | 'MiniProgram' | 'OpenPlatform' | 'Payment'
+ * @param service 服务名称，可选值：'BaseService' | 'OfficialAccount' | 'MiniProgram' | 'OpenPlatform' | 'OpenWork' | 'Payment' | 'Work'
  * @param config 对应的配置参数
  */
 declare function getInstance(service: 'OfficialAccount', config?: EasyWechatConfig): OfficialAccount;
 declare function getInstance(service: 'BaseService', config?: EasyWechatConfig): BaseService;
 declare function getInstance(service: 'MiniProgram', config?: EasyWechatConfig): MiniProgram;
 declare function getInstance(service: 'OpenPlatform', config?: EasyWechatConfig): OpenPlatform;
+declare function getInstance(service: 'OpenWork', config?: EasyWechatConfig): OpenWork;
 declare function getInstance(service: 'Payment', config?: EasyWechatConfig): Payment;
 declare function getInstance(service: 'Work', config?: EasyWechatConfig): Work;
 declare function getInstance(service: 'MicroMerchant', config?: EasyWechatConfig): MicroMerchant;
@@ -47,6 +49,10 @@ declare class EasyWechat {
          */
         OpenPlatform: typeof OpenPlatform;
         /**
+         * 企业微信开放平台类
+         */
+        OpenWork: typeof OpenWork;
+        /**
          * 支付类
          */
         Payment: typeof Payment;
@@ -60,7 +66,7 @@ declare class EasyWechat {
         MicroMerchant: typeof MicroMerchant;
         /**
          * 通用获取实例方法
-         * @param service 服务名称，可选值：'BaseService' | 'OfficialAccount' | 'MiniProgram' | 'OpenPlatform' | 'Payment'
+         * @param service 服务名称，可选值：'BaseService' | 'OfficialAccount' | 'MiniProgram' | 'OpenPlatform' | 'OpenWork' | 'Payment' | 'Work'
          * @param config 对应的配置参数
          */
         getInstance: typeof getInstance;

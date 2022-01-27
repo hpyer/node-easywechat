@@ -49,7 +49,7 @@ export declare interface EasyWechatConfig {
     app_id?: string;
     /**
      * 应用 secret
-     * @scope BaseService | OfficialAccount | MiniProgram | Work
+     * @scope BaseService | OfficialAccount | MiniProgram | Work | OpenWork
      */
     secret?: string;
     /**
@@ -64,12 +64,12 @@ export declare interface EasyWechatConfig {
     file_cache?: EasyWechatConfigCacheFile;
     /**
      * 服务端接口验证 token
-     * @scope OfficialAccount | MiniProgram | OpenPlatform
+     * @scope OfficialAccount | MiniProgram | OpenPlatform | OpenWork
      */
     token?: string;
     /**
      * 服务端消息加解密密钥 aes_key
-     * @scope OfficialAccount | MiniProgram | OpenPlatform
+     * @scope OfficialAccount | MiniProgram | OpenPlatform | OpenWork
      */
     aes_key?: string;
     /**
@@ -154,7 +154,7 @@ export declare interface EasyWechatConfig {
     device_type?: string;
     /**
      * 企业id
-     * @scope Work
+     * @scope Work | OpenWork
      */
     corp_id?: string;
     /**
@@ -162,6 +162,36 @@ export declare interface EasyWechatConfig {
      * @scope Work
      */
     agent_id?: string;
+    /**
+     * 应用id
+     * @scope OpenWork
+     */
+    suite_id?: string;
+    /**
+     * 应用secret
+     * @scope OpenWork
+     */
+    suite_secret?: string;
+    /**
+     * 注册定制化模板ID
+     * @scope OpenWork
+     */
+    reg_template_id?: string;
+    /**
+     * 安装应用的回调url（可选）
+     * @scope OpenWork
+     */
+    redirect_uri_install?: string;
+    /**
+     * 单点登录回调url（可选）
+     * @scope OpenWork
+     */
+    redirect_uri_single?: string;
+    /**
+     * 网页授权第三方回调url（可选）
+     * @scope OpenWork
+     */
+    redirect_uri_oauth?: string;
 }
 /**
  * 服务端通知处理回调函数
