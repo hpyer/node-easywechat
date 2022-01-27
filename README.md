@@ -3,9 +3,11 @@
 
 [![Build Status](https://app.travis-ci.com/hpyer/node-easywechat.svg?branch=develop)](https://app.travis-ci.com/hpyer/node-easywechat) [![npm](https://img.shields.io/npm/v/node-easywechat.svg)](https://www.npmjs.com/package/node-easywechat) [![License](https://img.shields.io/npm/l/node-easywechat.svg)](LICENSE)
 
-**注：2.x分支针对 EasyWechat 的 5.x版本(由于4.x与5.x的结构基本一致，就不升级大版本了)。若您需要 EasyWechat 的 3.x版本，请切换到 [1.x](https://github.com/hpyer/node-easywechat/tree/1.x) 分支。**
+**注：2.x分支针对 EasyWechat 的 5.x版本(由于4.x与5.x的结构基本一致，就不升级大版本了)。**
 
-[EasyWechat](https://github.com/overtrue/wechat) 是一个由 `安正超` 大神用 PHP 开发的开源的微信非官方 SDK。其功能强大，使用方便，个人一直很喜欢，所以近日将其在 Node.js 上实现。本人会尽量还原其配置项以及接口的调用方式，但毕竟语言环境不同，具体的实现方式会有些许差别，还请各位开发者见谅。
+~~若您需要 EasyWechat 的 3.x版本，请切换到 [1.x](https://github.com/hpyer/node-easywechat/tree/1.x) 分支。~~ **1.0版本已废弃**
+
+[EasyWechat](https://github.com/w7corp/easywechat) 是一个由 `安正超` 大神用 PHP 开发的开源的微信非官方 SDK（现由微擎团队团队维护）。其功能强大，使用方便，个人一直很喜欢，所以近日将其在 Node.js 上实现。本人会尽量还原其配置项以及接口的调用方式，但毕竟语言环境不同，具体的实现方式会有些许差别，还请各位开发者见谅。
 
 > 注：虽然也使用了 EasyWechat 这个名称，但是和 `安正超` 大神没有任何关系，请各位开发者不要因使用本包产生的疑惑而去打扰大神，如有疑问请在本项目中提 issue，谢谢~
 
@@ -36,7 +38,7 @@ let payment = new EasyWechat.Factory.Payment({
   // ...
 });
 
-// 微信支付
+// 开放平台
 let openPlatform = new EasyWechat.Factory.OpenPlatform({
   // ...
 });
@@ -48,6 +50,11 @@ let openPlatform = new EasyWechat.Factory.Work({
 
 // 小微商户
 let microMerchant = new EasyWechat.Factory.MicroMerchant({
+  // ...
+});
+
+// 企业微信开放平台
+let openWork = new EasyWechat.Factory.OpenWork({
   // ...
 });
 
@@ -147,6 +154,46 @@ let app = EasyWechat.Factory.getInstance('OficialAccount', {
 }
 ```
 
+``` js
+// 开放平台
+{
+  // 开放平台APPID
+  app_id: 'your-app-id',
+  // 开放平台Secret
+  secret: 'your-secret',
+  // 开放平台Token
+  token: 'your-token',
+  // 开放平台AES KEY
+  aes_key: 'your-aes_key',
+}
+```
+
+``` js
+// 企业微信开放平台
+{
+  // 服务商的corpid
+  corp_id: 'your-corp_id',
+  // 服务商的secret
+  secret: 'your-secret',
+  // 应用id
+  suite_id: 'your-suite_id',
+  // 应用secret
+  suite_secret: 'your-suite_secret',
+  // 应用Token
+  token: 'your-token',
+  // 应用AESKey
+  aes_key: 'your-aes_key',
+  // 注册定制化模板ID
+  reg_template_id: 'your-tpl_id',
+  // 安装应用的回调url（可选）
+  redirect_uri_install: 'your-uri_install',
+  // 单点登录回调url（可选）
+  redirect_uri_single: 'your-uri_single',
+  // 网页授权第三方回调url（可选）
+  redirect_uri_oauth: 'your-uri_oauth',
+}
+```
+
 ### 模块支持情况
 
 - [x] 公众号模块
@@ -154,7 +201,7 @@ let app = EasyWechat.Factory.getInstance('OficialAccount', {
 - [x] 小程序
 - [x] 开放平台
 - [x] 企业微信
-- [ ] 企业微信开放平台
+- [x] 企业微信开放平台
 - [x] 小微商户
 - [x] 自定义
 
