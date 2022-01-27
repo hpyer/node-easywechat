@@ -115,7 +115,7 @@ export default class Request implements RequestInterface
   get(key: string): Promise<any>
   {
     if (!this.isValid) throw new Error('Please set request first. app.rebind(\'request\', new EasyWechat.Request(ctx.req));');
-    if (this._get[key]) return this._get[key];
+    if (this._get[key] != undefined) return this._get[key];
     return this.post(key);
   }
 
@@ -139,7 +139,7 @@ export default class Request implements RequestInterface
       }
 
     }
-    return this._post && this._post[key] ? this._post[key] : null;
+    return this._post && this._post[key] != undefined ? this._post[key] : null;
   }
 
   getAllGet(): object

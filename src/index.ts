@@ -5,6 +5,7 @@ import OfficialAccount from './OfficialAccount/Application';
 import BaseService from './BaseService/Application';
 import MiniProgram from './MiniProgram/Application';
 import OpenPlatform from './OpenPlatform/Application';
+import OpenWork from './OpenWork/Application';
 import Payment from './Payment/Application';
 import Work from './Work/Application';
 import MicroMerchant from './MicroMerchant/Application';
@@ -19,17 +20,18 @@ import { EasyWechatConfig } from './Core/Types';
 
 /**
  * 通用获取实例方法
- * @param service 服务名称，可选值：'BaseService' | 'OfficialAccount' | 'MiniProgram' | 'OpenPlatform' | 'Payment'
+ * @param service 服务名称，可选值：'BaseService' | 'OfficialAccount' | 'MiniProgram' | 'OpenPlatform' | 'OpenWork' | 'Payment' | 'Work'
  * @param config 对应的配置参数
  */
 function getInstance(service: 'OfficialAccount', config ?: EasyWechatConfig): OfficialAccount;
 function getInstance(service: 'BaseService', config ?: EasyWechatConfig): BaseService;
 function getInstance(service: 'MiniProgram', config ?: EasyWechatConfig): MiniProgram;
 function getInstance(service: 'OpenPlatform', config ?: EasyWechatConfig): OpenPlatform;
+function getInstance(service: 'OpenWork', config?: EasyWechatConfig): OpenWork;
 function getInstance(service: 'Payment', config?: EasyWechatConfig): Payment;
 function getInstance(service: 'Work', config?: EasyWechatConfig): Work;
 function getInstance(service: 'MicroMerchant', config?: EasyWechatConfig): MicroMerchant;
-function getInstance(service: 'OfficialAccount' | 'BaseService' | 'MiniProgram' | 'OpenPlatform' | 'Payment' | 'Work' | 'MicroMerchant', config ?: EasyWechatConfig) {
+function getInstance(service: 'OfficialAccount' | 'BaseService' | 'MiniProgram' | 'OpenPlatform' | 'OpenWork' | 'Payment' | 'Work' | 'MicroMerchant', config ?: EasyWechatConfig) {
   try {
     let s = strStudly(service);
     let applicationClass = this[s];
@@ -62,6 +64,10 @@ class EasyWechat {
      */
     OpenPlatform: typeof OpenPlatform;
     /**
+     * 企业微信开放平台类
+     */
+    OpenWork: typeof OpenWork;
+    /**
      * 支付类
      */
     Payment: typeof Payment;
@@ -77,7 +83,7 @@ class EasyWechat {
 
     /**
      * 通用获取实例方法
-     * @param service 服务名称，可选值：'BaseService' | 'OfficialAccount' | 'MiniProgram' | 'OpenPlatform' | 'Payment'
+     * @param service 服务名称，可选值：'BaseService' | 'OfficialAccount' | 'MiniProgram' | 'OpenPlatform' | 'OpenWork' | 'Payment' | 'Work'
      * @param config 对应的配置参数
      */
     getInstance: typeof getInstance;
@@ -126,6 +132,7 @@ class EasyWechat {
       BaseService: BaseService,
       MiniProgram: MiniProgram,
       OpenPlatform: OpenPlatform,
+      OpenWork: OpenWork,
       Payment: Payment,
       Work: Work,
       MicroMerchant: MicroMerchant,
