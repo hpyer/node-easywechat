@@ -27,4 +27,7 @@ class TestUnit extends BaseClientTest {
 new TestUnit('Work', 'access_token', {
   corp_id: 'abc@123',
   secret: '123456',
+  file_cache: {
+    path: './test/temp/',
+  },
 });

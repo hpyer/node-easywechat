@@ -81,4 +81,7 @@ class TestUnit extends BaseClientTest {
 new TestUnit('OfficialAccount', 'subscribe_message', {
   app_id: 'abc@123',
   secret: '123456',
+  file_cache: {
+    path: './test/temp/',
+  },
 });

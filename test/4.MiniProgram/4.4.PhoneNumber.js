@@ -33,4 +33,7 @@ class TestUnit extends BaseClientTest {
 new TestUnit('MiniProgram', 'phone_number', {
   app_id: 'abc@123',
   secret: '123456',
+  file_cache: {
+    path: './test/temp/',
+  },
 });
