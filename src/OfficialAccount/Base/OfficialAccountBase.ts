@@ -7,6 +7,17 @@ export default class OfficialAccountBase extends BaseClient
 {
 
   /**
+   * 查询openAPI调用次数
+   * @param cgiPath api的请求地址，例如"/cgi-bin/message/custom/send";不要前缀“https://api.weixin.qq.com” ，也不要漏了"/",否则都会76003的报错
+   */
+  getQuota(cgiPath: string): Promise<any>
+  {
+    return this.httpPostJson('cgi-bin/openapi/quota/get', {
+      cgi_path: cgiPath,
+    });
+  }
+
+  /**
    * 清理接口调用次数
    * 此接口官方有每月调用限制，不可随意调用
    */
