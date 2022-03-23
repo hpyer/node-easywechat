@@ -42,6 +42,7 @@ const FinallResult_1 = __importDefault(require("../Core/Decorators/FinallResult"
 const Application_1 = __importDefault(require("./MiniProgram/Application"));
 const Client_1 = __importDefault(require("./ExternalContact/Client"));
 const ContactWayClient_1 = __importDefault(require("./ExternalContact/ContactWayClient"));
+const GroupChatWayClient_1 = __importDefault(require("./ExternalContact/GroupChatWayClient"));
 const StatisticsClient_1 = __importDefault(require("./ExternalContact/StatisticsClient"));
 const MessageClient_2 = __importDefault(require("./ExternalContact/MessageClient"));
 const MessageTemplateClient_1 = __importDefault(require("./ExternalContact/MessageTemplateClient"));
@@ -68,6 +69,7 @@ class Work extends BaseApplication_1.default {
         this.department = null;
         this.external_contact = null;
         this.contact_way = null;
+        this.group_chat_way = null;
         this.external_contact_statistics = null;
         this.external_contact_message = null;
         this.external_contact_message_template = null;
@@ -129,6 +131,9 @@ class Work extends BaseApplication_1.default {
         });
         this.offsetSet('contact_way', function (app) {
             return new ContactWayClient_1.default(app);
+        });
+        this.offsetSet('group_chat_way', function (app) {
+            return new GroupChatWayClient_1.default(app);
         });
         this.offsetSet('external_contact_statistics', function (app) {
             return new StatisticsClient_1.default(app);

@@ -28,6 +28,7 @@ import TagClient from './User/TagClient';
 import MiniProgram from './MiniProgram/Application';
 import ExternalContactClient from './ExternalContact/Client';
 import ExternalContactWayClient from './ExternalContact/ContactWayClient';
+import ExternalGroupChatWayClient from './ExternalContact/GroupChatWayClient';
 import ExternalStatisticsClient from './ExternalContact/StatisticsClient';
 import ExternalMessageClient from './ExternalContact/MessageClient';
 import ExternalMessageTemplateClient from './ExternalContact/MessageTemplateClient';
@@ -48,6 +49,7 @@ export default class Work extends BaseApplication {
     department: DepartmentClient;
     external_contact: ExternalContactClient;
     contact_way: ExternalContactWayClient;
+    group_chat_way: ExternalGroupChatWayClient;
     external_contact_statistics: ExternalStatisticsClient;
     external_contact_message: ExternalMessageClient;
     external_contact_message_template: ExternalMessageTemplateClient;

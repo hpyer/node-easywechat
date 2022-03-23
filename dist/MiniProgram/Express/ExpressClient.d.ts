@@ -1,6 +1,10 @@
 import BaseClient from '../../Core/BaseClient';
 export default class ExpressClient extends BaseClient {
     /**
+     * 绑定、解绑物流账号
+     */
+    bind(params: object): Promise<any>;
+    /**
      * 获取支持的快递公司列表
      */
     listProviders(): Promise<any>;
@@ -44,4 +48,18 @@ export default class ExpressClient extends BaseClient {
      * @param openid 用户openid
      */
     unbindPrinter(openid?: string): Promise<any>;
+    /**
+     * 创建退货 ID
+     */
+    createReturn(params?: object): Promise<any>;
+    /**
+     * 查询退货 ID 状态
+     * @param returnId 退货id
+     */
+    getReturn(returnId?: string): Promise<any>;
+    /**
+     * 解绑退货 ID
+     * @param returnId 退货id
+     */
+    unbindReturn(returnId?: string): Promise<any>;
 }
