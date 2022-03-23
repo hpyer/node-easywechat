@@ -31,6 +31,7 @@ import FinallResult from '../Core/Decorators/FinallResult';
 import MiniProgram from './MiniProgram/Application';
 import ExternalContactClient from './ExternalContact/Client';
 import ExternalContactWayClient from './ExternalContact/ContactWayClient';
+import ExternalGroupChatWayClient from './ExternalContact/GroupChatWayClient';
 import ExternalStatisticsClient from './ExternalContact/StatisticsClient';
 import ExternalMessageClient from './ExternalContact/MessageClient';
 import ExternalMessageTemplateClient from './ExternalContact/MessageTemplateClient';
@@ -59,6 +60,7 @@ export default class Work extends BaseApplication
   public department: DepartmentClient = null;
   public external_contact: ExternalContactClient = null;
   public contact_way: ExternalContactWayClient = null;
+  public group_chat_way: ExternalGroupChatWayClient = null;
   public external_contact_statistics: ExternalStatisticsClient = null;
   public external_contact_message: ExternalMessageClient = null;
   public external_contact_message_template: ExternalMessageTemplateClient = null;
@@ -128,6 +130,9 @@ export default class Work extends BaseApplication
     });
     this.offsetSet('contact_way', function (app) {
       return new ExternalContactWayClient(app);
+    });
+    this.offsetSet('group_chat_way', function (app) {
+      return new ExternalGroupChatWayClient(app);
     });
     this.offsetSet('external_contact_statistics', function (app) {
       return new ExternalStatisticsClient(app);
