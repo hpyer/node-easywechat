@@ -6,6 +6,17 @@ export default class ExpressClient extends BaseClient
 {
 
   /**
+   * 绑定、解绑物流账号
+   */
+  bind(params: object): Promise<any>
+  {
+    if (!params['type'] || !params['biz_id'] || !params['delivery_id']) {
+      throw new Error('Missing parameter.');
+    }
+    return this.httpPostJson('cgi-bin/express/business/account/bind', params);
+  }
+
+  /**
    * 获取支持的快递公司列表
    */
   listProviders(): Promise<any>
