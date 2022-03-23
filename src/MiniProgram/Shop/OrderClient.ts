@@ -44,6 +44,17 @@ export default class OrderClient extends BaseClient {
   }
 
   /**
+   * 获取订单列表
+   * @see https://developers.weixin.qq.com/miniprogram/dev/platform-capabilities/business-capabilities/ministore/minishopopencomponent2/API/order/get_order_list.html
+   * @param params 查询参数
+   * @returns
+   */
+  getList(params: object): Promise<any>
+  {
+    return this.httpPostJson('shop/order/get_list', params);
+  }
+
+  /**
    * 同步订单支付结果
    * @see https://developers.weixin.qq.com/miniprogram/dev/platform-capabilities/business-capabilities/ministore/minishopopencomponent2/API/order/pay_order.html
    * @param object
