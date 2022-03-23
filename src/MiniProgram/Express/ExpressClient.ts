@@ -105,4 +105,34 @@ export default class ExpressClient extends BaseClient
     });
   }
 
+  /**
+   * 创建退货 ID
+   */
+  createReturn(params: object = {}): Promise<any>
+  {
+    return this.httpPostJson('cgi-bin/express/delivery/return/add', params);
+  }
+
+  /**
+   * 查询退货 ID 状态
+   * @param returnId 退货id
+   */
+  getReturn(returnId: string = ''): Promise<any>
+  {
+    return this.httpPostJson('cgi-bin/express/delivery/return/get', {
+      return_id: returnId,
+    });
+  }
+
+  /**
+   * 解绑退货 ID
+   * @param returnId 退货id
+   */
+  unbindReturn(returnId: string = ''): Promise<any>
+  {
+    return this.httpPostJson('cgi-bin/express/delivery/return/unbind', {
+      return_id: returnId,
+    });
+  }
+
 }
