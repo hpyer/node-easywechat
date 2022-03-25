@@ -11,12 +11,15 @@ class News extends Message_1.Message {
             'items',
         ];
     }
-    propertiesToArray(data, aliases = []) {
+    propertiesToObject(data, aliases = []) {
         let newItems = [];
         try {
             this.get('items').forEach(item => {
                 if (item instanceof NewsItem_1.NewsItem) {
-                    newItems.push(item.toXmlArray());
+                    newItems.push(item.toJsonArray());
+                }
+                else {
+                    newItems.push(item);
                 }
             });
         }
