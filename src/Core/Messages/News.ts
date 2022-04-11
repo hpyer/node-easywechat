@@ -16,13 +16,16 @@ export class News extends Message
     super({ items });
   }
 
-  propertiesToArray(data, aliases = []): object
+  propertiesToObject(data, aliases = []): object
   {
     let newItems: Array<object> = [];
     try {
       this.get('items').forEach(item => {
         if (item instanceof NewsItem) {
-          newItems.push(item.toXmlArray());
+          newItems.push(item.toJsonArray());
+        }
+        else {
+          newItems.push(item);
         }
       });
     }
