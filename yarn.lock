@@ -473,6 +473,11 @@ minimatch@^3.0.4:
   dependencies:
     brace-expansion "^1.1.7"
 
+minimist@^1.2.6:
+  version "1.2.6"
+  resolved "https://registry.npmmirror.com/minimist/-/minimist-1.2.6.tgz#8637a5b759ea0d6e98702cfb3a9283323c93af44"
+  integrity sha512-Jsjnk4bw3YJqYzbdyBiNsPWHPfO++UGG749Cxs6peCu5Xg4nrena6OVxOYxrQTqww0Jmwt+Ref8rggumkTLz9Q==
+
 mocha@^9.2.2:
   version "9.2.2"
   resolved "https://registry.npmmirror.com/mocha/-/mocha-9.2.2.tgz#d70db46bdb93ca57402c809333e5a84977a88fb9"
@@ -556,6 +561,13 @@ p-locate@^5.0.0:
   integrity sha1-g8gxXGeFAF470CGDlBHJ4RDm2DQ=
   dependencies:
     p-limit "^3.0.2"
+
+package-release@^1.0.2:
+  version "1.0.2"
+  resolved "https://registry.npmmirror.com/package-release/-/package-release-1.0.2.tgz#1915cb40fe0e7b88ed6df6432a2c622fdd3ad7a9"
+  integrity sha512-/atN4NM66CZ89lxJg4WX6/vO2ycFlT2jBK+EVO0RRjOI40mFtGoUpjb0jILQ/Eu+6ni6TI4Og0/2yoCf3K/ljg==
+  dependencies:
+    minimist "^1.2.6"
 
 path-exists@^4.0.0:
   version "4.0.0"
