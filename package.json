@@ -1,0 +1,35 @@
+{
+  "name": "node-easywechat",
+  "version": "3.0.0-alpha.1",
+  "description": "EasyWechat SDK for Node.js (NOT OFFICIAL)",
+  "main": "dist/index.js",
+  "scripts": {
+    "build": "rm -rf dist && npx tsc && cp -r src/Types dist/",
+    "test": "npx mocha ./test/ --recursive --extension .test.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:hpyer/node-easywechat.git"
+  },
+  "keywords": [
+    "weixin",
+    "wechat"
+  ],
+  "author": "Hpyer",
+  "license": "MIT",
+  "devDependencies": {
+    "@types/node": "^17.0.23",
+    "axios-mock-adapter": "^1.20.0",
+    "mocha": "^9.2.2",
+    "typescript": "^4.6.3"
+  },
+  "dependencies": {
+    "axios": "^0.26.1",
+    "form-data": "^4.0.0",
+    "merge": "^2.1.1",
+    "node-socialite": "^1.2.5",
+    "qs": "^6.10.3",
+    "raw-body": "^2.5.1",
+    "xml2js": "^0.4.23"
+  }
+}
