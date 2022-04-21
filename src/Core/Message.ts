@@ -6,13 +6,16 @@ import { applyMixins, parseXml } from "./Support/Utils";
 
 class Message
 {
+  /**
+   * 原始消息内容
+   */
   protected originContent: string = '';
 
   constructor(attributes: Record<string, any>, originContent: string = '') {
     this.attributes = attributes;
     this.originContent = originContent;
 
-    return new Proxy(this, {
+    return new Proxy<Message>(this, {
       set: function (obj, key, val) {
         if (typeof obj[key] !== 'undefined') {
           obj[key] = val;
@@ -57,10 +60,18 @@ class Message
     return new Message(attributes, originContent);
   }
 
+  /**
+   * 获取原始消息内容
+   * @returns
+   */
   getOriginalContents(): string {
     return this.originContent;
   }
 
+  /**
+   * 转为字符串
+   * @returns
+   */
   toString(): string {
     return this.toJson();
   }
