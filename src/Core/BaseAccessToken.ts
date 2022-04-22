@@ -2,7 +2,7 @@
 
 import BaseApplication from './BaseApplication';
 import HttpMixin from './Mixins/HttpMixin';
-import { createHash, applyMixins } from './Utils';
+import { createHash, applyMixins, strCamel } from './Utils';
 import { AxiosRequestConfig, AxiosResponse, Method } from 'axios';
 
 /**
@@ -30,20 +30,25 @@ export class AccessToken {
    */
   scope: string = null;
 
-  constructor(info: object = null) {
+  constructor(info: object = null, keysMap: Record<string, string> = {}) {
     if (info) {
-      this.access_token = info['access_token'] || info['accessToken'] || '';
-      this.expires_in = info['expires_in'] || info['expiresIn'] || 0;
-      this.refresh_token = info['refresh_token'] || info['refreshToken'] || '';
-      this.openid = info['openid'] || '';
-      this.scope = info['scope'] || '';
+      Object.keys(info).map(key => {
+        this[key] = info[key] || info[strCamel(key)] || '';
+      });
+
+      if (keysMap) {
+        Object.keys(keysMap).map(key => {
+          let mapKey = keysMap[key];
+          this[key] = info[mapKey] || info[strCamel(mapKey)] || '';
+        });
+      }
     }
   }
 
   /**
    * 获取access_token
    */
-  getToken(): string | Promise<string> {
+  getToken(): string {
     return this.access_token;
   }
   /**
@@ -85,6 +90,7 @@ abstract class BaseAccessToken implements HttpMixin
   protected queryName: string = '';
   protected tokenKey: string = 'access_token';
   protected endpointToGetToken: string = '';
+  protected cachePrefix: string = 'easywechat.kernel.access_token.';
   protected app: BaseApplication = null;
 
   constructor(app: BaseApplication)
@@ -107,7 +113,7 @@ abstract class BaseAccessToken implements HttpMixin
 
   async getCacheKey(): Promise<string>
   {
-    return 'easywechat.kernel.access_token.' + createHash(JSON.stringify(await this.getCredentials()), 'md5');
+    return this.cachePrefix + createHash(JSON.stringify(await this.getCredentials()), 'md5');
   }
 
   async requestToken(credentials: object): Promise<any>
@@ -137,13 +143,22 @@ abstract class BaseAccessToken implements HttpMixin
 
     if (!refresh && await cache.has(cacheKey)) {
       let token = await cache.get(cacheKey);
-      if (token) return new AccessToken(token);
+      if (token) return this.warpAccessToken(token);
     }
 
     let res = await this.requestToken(await this.getCredentials());
     await this.setToken(res, res.expires_in || 7200);
 
-    return res;
+    return this.warpAccessToken(res);
+  }
+
+  /**
+   * 包装为授权后的 AccessToken 对象
+   * @param token 接口返回的数据
+   * @returns
+   */
+  protected warpAccessToken(token: Record<string, any>): AccessToken {
+    return new AccessToken(token);
   }
 
   /**

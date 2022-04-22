@@ -1,11 +1,11 @@
 'use strict';
 
-import BaseAccessToken from '../../../Core/BaseAccessToken';
+import BaseAccessToken, { AccessToken } from '../../../Core/BaseAccessToken';
 import OpenPlatformApplication from '../../Application';
 import BaseApplicatioin from '../../../Core/BaseApplication';
 import { buildQueryString } from '../../../Core/Utils';
 
-export default class AccessToken extends BaseAccessToken
+export default class AuthAccessToken extends BaseAccessToken
 {
   protected requestMethod: string = 'POST';
   protected queryName: string = 'access_token';
@@ -17,6 +17,13 @@ export default class AccessToken extends BaseAccessToken
     super(app);
 
     this.component = component;
+  }
+
+  protected warpAccessToken(token: Record<string, any>): AccessToken {
+    return new AccessToken(token, {
+      access_token: 'authorizer_access_token',
+      refresh_token: 'authorizer_refresh_token',
+    });
   }
 
   protected async getCredentials(): Promise<object>

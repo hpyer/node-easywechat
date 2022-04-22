@@ -1,6 +1,6 @@
 'use strict';
 
-import BaseAccessToken from '../../Core/BaseAccessToken';
+import BaseAccessToken, { AccessToken } from '../../Core/BaseAccessToken';
 
 export default class SuiteAccessToken extends BaseAccessToken
 {
@@ -8,6 +8,12 @@ export default class SuiteAccessToken extends BaseAccessToken
   protected tokenKey: string = 'suite_access_token';
   protected endpointToGetToken: string = 'cgi-bin/service/get_suite_token';
   protected cachePrefix: string = 'easywechat.kernel.suite_access_token.';
+
+  protected warpAccessToken(token: Record<string, any>): AccessToken {
+    return new AccessToken(token, {
+      access_token: 'suite_access_token',
+    });
+  }
 
   protected async getCredentials(): Promise<object>
   {

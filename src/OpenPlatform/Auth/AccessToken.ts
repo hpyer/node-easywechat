@@ -1,12 +1,18 @@
 'use strict';
 
-import BaseAccessToken from '../../Core/BaseAccessToken';
+import BaseAccessToken, { AccessToken } from '../../Core/BaseAccessToken';
 
-export default class AccessToken extends BaseAccessToken
+export default class AuthAccessToken extends BaseAccessToken
 {
   protected requestMethod: string = 'POST';
   protected tokenKey: string = 'component_access_token';
   protected endpointToGetToken: string = 'cgi-bin/component/api_component_token';
+
+  protected warpAccessToken(token: Record<string, any>): AccessToken {
+    return new AccessToken(token, {
+      access_token: 'component_access_token',
+    });
+  }
 
   protected async getCredentials(): Promise<object>
   {
