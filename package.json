@@ -4,6 +4,7 @@
   "description": "EasyWechat SDK for Node.js (NOT OFFICIAL)",
   "main": "dist/index.js",
   "scripts": {
+    "release": "npx package-release",
     "build": "rm -rf dist && npx tsc",
     "test": "npx mocha ./test/**/*.js"
   },
