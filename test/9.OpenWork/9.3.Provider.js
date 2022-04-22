@@ -46,4 +46,7 @@ new TestUnit('OpenWork', 'provider', {
   redirect_uri_install: 'mock-uri_install',
   redirect_uri_single: 'mock-uri_single',
   redirect_uri_oauth: 'mock-oauth',
+  file_cache: {
+    path: './test/temp/',
+  },
 });

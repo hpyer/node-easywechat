@@ -34,4 +34,7 @@ new TestUnit('OpenPlatform', 'constuctor', {
   secret: 'mock-secret',
   token: 'mock-token',
   aes_key: 'mock-aes_key',
+  file_cache: {
+    path: './test/temp/',
+  },
 });
