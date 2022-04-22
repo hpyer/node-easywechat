@@ -15,6 +15,17 @@ class TestUnit extends BaseClientTest {
       });
     })
 
+    it(`Should get component access_token correctly`, async () => {
+      this.mockResponse({
+        component_access_token: 'fake-component-access-token',
+        expires_in: 7200,
+      });
+      await this.app.verify_ticket.setTicket('mock-component-verify_ticket');
+      let accessToken = await this.app.access_token.getToken(true);
+      let token = accessToken.getAccessToken();
+      this.assert.strictEqual(token, 'fake-component-access-token');
+    });
+
   }
 }
 

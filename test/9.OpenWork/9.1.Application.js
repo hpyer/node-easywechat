@@ -15,6 +15,31 @@ class TestUnit extends BaseClientTest {
       });
     })
 
+    it(`Should get provider's access_token correctly`, async () => {
+      this.mockResponse({
+        errcode: 0,
+        errmsg: 'ok',
+        provider_access_token: 'fake-provider-access-token',
+        expires_in: 7200,
+      });
+      let accessToken = await this.app.provider_access_token.getToken(true);
+      let token = accessToken.getAccessToken();
+      this.assert.strictEqual(token, 'fake-provider-access-token');
+    });
+
+    it(`Should get suite's access_token correctly`, async () => {
+      this.mockResponse({
+        errcode: 0,
+        errmsg: 'ok',
+        suite_access_token: 'fake-suite-access-token',
+        expires_in: 7200,
+      });
+      await this.app.suite_ticket.setTicket('mock-suite-ticket');
+      let accessToken = await this.app.suite_access_token.getToken(true);
+      let token = accessToken.getAccessToken();
+      this.assert.strictEqual(token, 'fake-suite-access-token');
+    });
+
   }
 }
 
