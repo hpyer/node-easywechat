@@ -21,7 +21,7 @@ export default class ProviderClient extends BaseClient
    */
   getLoginUrl(redirectUri: string = '', userType: string = 'admin', state: string = ''): string
   {
-    if (!redirectUri) redirectUri = this.app.config.redirect_uri_install;
+    if (!redirectUri) redirectUri = this.app.config.redirect_uri_single;
     if (!state) state = randomString(32);
 
     let params = {
