@@ -59,6 +59,7 @@ export default class ProviderClient extends BaseClient
       if (!response || response.errcode || !response['register_code']) {
         throw new Error('Fail to get register code');
       }
+      registerCode = response['register_code'];
     }
 
     let params = {
