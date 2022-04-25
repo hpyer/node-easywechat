@@ -107,8 +107,8 @@ let app = EasyWechat.Factory.getInstance('OficialAccount', {
   key: 'key-for-signature',
   // 默认回调地址，也可以在下单时单独设置来覆盖它，完整URL，不带参数
   notify_url: 'http://xxx.com/pay/notify',
-  // 证书地址，Node.js 只需要 .pfx 证书文件即可
-  cert_path: 'path/to/your/cert.pfx', // XXX: 绝对路径！！！！
+  // 证书地址，Node.js 只需要 apiclient_cert.p12 证书文件即可
+  cert_path: 'path/to/your/apiclient_cert.p12', // XXX: 绝对路径！！！！
 }
 ```
 
@@ -143,8 +143,8 @@ let app = EasyWechat.Factory.getInstance('OficialAccount', {
   key: 'key-for-signature',
   // V3版本签名密钥
   apiv3_key: 'apiv3_key-for-signature',
-  // 证书地址，Node.js 只需要 .pfx 证书文件即可
-  cert_path: 'path/to/your/cert.pfx', // XXX: 绝对路径！！！！
+  // 证书地址，Node.js 只需要 apiclient_cert.p12 证书文件即可
+  cert_path: 'path/to/your/apiclient_cert.p12', // XXX: 绝对路径！！！！
 
   // 以下两项配置在获取证书接口时可为空，在调用入驻接口前请先调用获取证书接口获取以下两项配置,如果获取过证书可以直接在这里配置，也可参照本文档获取平台证书章节中示例
   // serial_no: '获取证书接口获取到的平台证书序列号',

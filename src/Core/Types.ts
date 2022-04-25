@@ -115,7 +115,7 @@ export declare interface EasyWechatConfig {
   sub_mch_id?: string;
 
   /**
-   * pfx 证书路径（敏感接口（如退款、发送红包等）需要）
+   * apiclient_cert.p12 证书文件路径（敏感接口（如退款、发送红包等）需要）
    * @scope Payment | MicroMerchant
    */
   cert_path?: string;
