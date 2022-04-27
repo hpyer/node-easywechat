@@ -41,7 +41,7 @@ class HttpClientResponse implements HttpClientResponseInterface {
    * @returns
    */
   isFailed(): boolean {
-    if (this.failureJudge) {
+    if (this.is('text') && this.failureJudge) {
       return this.failureJudge(this);
     }
 
@@ -121,6 +121,35 @@ class HttpClientResponse implements HttpClientResponseInterface {
    */
   toDataUrl(): string {
     return 'data:' + this.getHeader('content-type') + ';base64,' + this.response.data;
+  }
+
+  /**
+   * 判断 content-type 是否指定类型
+   * @param type
+   * @returns
+   */
+  is(type: 'json' | 'xml' | 'html' | 'image' | 'audio' | 'video' | 'text'): boolean {
+    let contentType = this.getHeader('content-type');
+    let res = false;
+    switch (type.toLowerCase()) {
+      case 'json':
+        res = contentType.indexOf('/json') > -1; break;
+      case 'xml':
+        res = contentType.indexOf('/xml') > -1; break;
+      case 'html':
+        res = contentType.indexOf('/html') > -1; break;
+      case 'image':
+        res = contentType.indexOf('image/') > -1; break;
+      case 'audio':
+        res = contentType.indexOf('audio/') > -1; break;
+      case 'video':
+        res = contentType.indexOf('video/') > -1; break;
+      case 'text':
+        res = contentType.indexOf('text/') > -1
+            ||contentType.indexOf('/json') > -1
+            ||contentType.indexOf('/xml') > -1; break;
+    }
+    return res;
   }
 
   /**
