@@ -186,26 +186,26 @@ export default class OpenPlatform extends BaseApplication
    * 使用授权码换取接口调用凭据和授权信息
    * @param authCode 授权码, 会在授权成功的回调返回给第三方平台
    */
-  handleAuthorize(): Promise<any>
+  handleAuthorize(...arg): Promise<any>
   {
-    return this.base.handleAuthorize.apply(this.base, arguments);
+    return this.base.handleAuthorize.apply(this.base, arg);
   }
   /**
    * 获取授权方的帐号基本信息
    * @param appId 授权方app_id
    */
-  getAuthorizer(): Promise<any>
+  getAuthorizer(...arg): Promise<any>
   {
-    return this.base.getAuthorizer.apply(this.base, arguments);
+    return this.base.getAuthorizer.apply(this.base, arg);
   }
   /**
    * 设置授权方的选项信息
    * @param appId 授权方app_id
    * @param name 选项名称
    */
-  getAuthorizerOption(): Promise<any>
+  getAuthorizerOption(...arg): Promise<any>
   {
-    return this.base.getAuthorizerOption.apply(this.base, arguments);
+    return this.base.getAuthorizerOption.apply(this.base, arg);
   }
   /**
    * 设置授权方的选项信息
@@ -213,31 +213,31 @@ export default class OpenPlatform extends BaseApplication
    * @param name 选项名称
    * @param value 选项值
    */
-  setAuthorizerOption(): Promise<any>
+  setAuthorizerOption(...arg): Promise<any>
   {
-    return this.base.setAuthorizerOption.apply(this.base, arguments);
+    return this.base.setAuthorizerOption.apply(this.base, arg);
   }
   /**
    * 获取已授权的授权方列表
    * @param offset 起始位置，从0开始
    * @param count 获取记录数，最大500
    */
-  getAuthorizers(): Promise<any>
+  getAuthorizers(...arg): Promise<any>
   {
-    return this.base.getAuthorizers.apply(this.base, arguments);
+    return this.base.getAuthorizers.apply(this.base, arg);
   }
   /**
    * 获取预授权码
    */
-  createPreAuthorizationCode(): Promise<any>
+  createPreAuthorizationCode(...arg): Promise<any>
   {
-    return this.base.createPreAuthorizationCode.apply(this.base, arguments);
+    return this.base.createPreAuthorizationCode.apply(this.base, arg);
   }
   /**
    * 清零调用次数
    */
-  clearQuota(): Promise<any>
+  clearQuota(...arg): Promise<any>
   {
-    return this.base.clearQuota.apply(this.base, arguments);
+    return this.base.clearQuota.apply(this.base, arg);
   }
 };
