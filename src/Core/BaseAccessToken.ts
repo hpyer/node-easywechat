@@ -128,7 +128,7 @@ abstract class BaseAccessToken implements HttpMixin
     else {
       payload.params = credentials;
     }
-    let response =  await this.doRequest(payload);
+    let response = await this.doRequest(payload);
     return response.data;
   };
 
@@ -147,6 +147,9 @@ abstract class BaseAccessToken implements HttpMixin
     }
 
     let res = await this.requestToken(await this.getCredentials());
+    if (res.errmsg) {
+      throw new Error(res.errmsg)
+    }
     await this.setToken(res, res.expires_in || 7200);
 
     return this.warpAccessToken(res);

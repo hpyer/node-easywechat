@@ -6,6 +6,7 @@
   "scripts": {
     "release": "npx package-release",
     "build": "rm -rf dist && npx tsc",
+    "dev": "npx tsc -w",
     "test": "npx mocha ./test/**/*.js"
   },
   "repository": {
