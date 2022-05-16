@@ -10,7 +10,7 @@ export default class AuthAccessToken extends BaseAccessToken
   protected requestMethod: string = 'POST';
   protected queryName: string = 'access_token';
   protected tokenKey: string = 'authorizer_access_token';
-  protected component: OpenPlatformApplication = null;
+  protected component: OpenPlatformApplication;
 
   constructor(app: BaseApplicatioin, component: OpenPlatformApplication)
   {

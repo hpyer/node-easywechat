@@ -20,13 +20,13 @@ import { EasyWechatConfig } from '../Core/Types';
 export default class OpenPlatform extends BaseApplication
 {
 
-  public verify_ticket: VerifyTicket = null;
-  public access_token: AccessToken = null;
-  public base: OpenPlatformBase = null;
-  public encryptor: Encryptor = null;
-  public server: OpenPlatformGuard = null;
-  public code_template: CodeTemplateClient = null;
-  public component: ComponentClient = null;
+  public verify_ticket: VerifyTicket;
+  public access_token: AccessToken;
+  public base: OpenPlatformBase;
+  public encryptor: Encryptor;
+  public server: OpenPlatformGuard;
+  public code_template: CodeTemplateClient;
+  public component: ComponentClient;
 
   constructor(config: EasyWechatConfig = {}, prepends: Object = {}, id: String = null)
   {
