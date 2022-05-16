@@ -25,7 +25,6 @@ export default class MiniProgram extends BaseApplication
   {
     super.registerProviders();
 
-    console.log(this.access_token)
     this.offsetSet('code', function (app) {
       return new CodeClient(app);
     });
