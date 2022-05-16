@@ -19,13 +19,11 @@ export default class MiniProgram extends BaseApplication
   constructor(config: Object = {}, prepends: Object = {}, id: String = null)
   {
     super(config, prepends, id);
-
-    this.registerProviders();
   }
 
   registerProviders(): void
   {
-    this.registerCommonProviders();
+    super.registerProviders();
 
     this.offsetSet('code', function (app) {
       return new CodeClient(app);

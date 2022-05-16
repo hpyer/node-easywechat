@@ -116,7 +116,7 @@ abstract class BaseAccessToken implements HttpMixin
     return this.cachePrefix + createHash(JSON.stringify(await this.getCredentials()), 'md5');
   }
 
-  async requestToken(credentials: object): Promise<any>
+  async requestToken(credentials: object): Promise<Record<string, any>>
   {
     let payload: AxiosRequestConfig = {
       url: await this.getEndpoint(),
@@ -128,7 +128,7 @@ abstract class BaseAccessToken implements HttpMixin
     else {
       payload.params = credentials;
     }
-    let response =  await this.doRequest(payload);
+    let response = await this.doRequest(payload);
     return response.data;
   };
 
@@ -147,6 +147,9 @@ abstract class BaseAccessToken implements HttpMixin
     }
 
     let res = await this.requestToken(await this.getCredentials());
+    if (res.errcode) {
+      throw new Error(res.errmsg);
+    }
     await this.setToken(res, res.expires_in || 7200);
 
     return this.warpAccessToken(res);
@@ -163,15 +166,15 @@ abstract class BaseAccessToken implements HttpMixin
 
   /**
    * 设置Token
-   * @param access_token AccessToken
+   * @param access_token Record<string, any>
    * @param expires_in 有效时间，单位：秒
    */
-  async setToken(access_token: string, expires_in: number = 7200): Promise<this>
+  async setToken(token: Record<string, any>, expires_in: number = 7200): Promise<this>
   {
     let cacheKey = await this.getCacheKey();
     let cache = this.app.getCache();
 
-    await cache.set(cacheKey, access_token, expires_in);
+    await cache.set(cacheKey, token, expires_in);
 
     if (!cache.has(cacheKey)) {
       throw new Error('Failed to cache access token.');
