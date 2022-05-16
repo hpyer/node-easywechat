@@ -35,7 +35,10 @@ class TestUnit extends BaseClientTest {
         'template_message', 'material', 'customer_service', 'customer_service_session',
         'semantic', 'data_cube', 'poi', 'auto_reply', 'broadcasting', 'card', 'device',
         'shake_around', 'store', 'comment', 'ocr', 'goods', 'jssdk', 'media', 'qrcode',
-        'url'
+        'url',
+
+        // OpenPlatform 额外增加的模块
+        'mini_program',
       ].map(module => {
         this.assert.strictEqual(oa_app[module] && typeof oa_app[module] == 'object', true);
       })
@@ -69,6 +72,9 @@ class TestUnit extends BaseClientTest {
         'url_link', 'url_scheme', 'risk_control', 'live', 'broadcast', 'union',
         'shop_account', 'shop_aftersale', 'shop_basic', 'shop_delivery',
         'shop_order', 'shop_register', 'shop_spu',
+
+        // OpenPlatform 额外增加的模块
+        'code', 'domain', 'account', 'setting', 'tester',
       ].map(module => {
         this.assert.strictEqual(mp_app[module] && typeof mp_app[module] == 'object', true);
       })

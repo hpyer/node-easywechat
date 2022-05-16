@@ -11,12 +11,12 @@ export default class OfficialAccount extends BaseApplication
   constructor(config: Object = {}, prepends: Object = {}, id: String = null)
   {
     super(config, prepends, id);
+
+    this.registerExtraProviders();
   }
 
-  registerProviders(): void
+  registerExtraProviders(): void
   {
-    super.registerProviders();
-
     this.offsetSet('mini_program', function (app) {
       return new MiniProgramClient(app);
     });
