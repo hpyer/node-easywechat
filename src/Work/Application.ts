@@ -35,6 +35,8 @@ import ExternalGroupChatWayClient from './ExternalContact/GroupChatWayClient';
 import ExternalStatisticsClient from './ExternalContact/StatisticsClient';
 import ExternalMessageClient from './ExternalContact/MessageClient';
 import ExternalMessageTemplateClient from './ExternalContact/MessageTemplateClient';
+import ExternalInterceptClient from './ExternalContact/InterceptClient';
+import ExternalProductClient from './ExternalContact/ProductClient';
 import ExternalSchoolClient from './ExternalContact/SchoolClient';
 import ExternalMomentClient from './ExternalContact/MomentClient';
 import CorpGroupClient from './CorpGroup/CorpGroupClient';
@@ -64,6 +66,8 @@ export default class Work extends BaseApplication
   public external_contact_statistics: ExternalStatisticsClient;
   public external_contact_message: ExternalMessageClient;
   public external_contact_message_template: ExternalMessageTemplateClient;
+  public external_contact_intercept: ExternalInterceptClient;
+  public external_contact_product: ExternalProductClient;
   public school: ExternalSchoolClient;
   public external_contact_moment: ExternalMomentClient;
   public group_robot: GroupRobotClient;
@@ -142,6 +146,12 @@ export default class Work extends BaseApplication
     });
     this.offsetSet('external_contact_message_template', function (app) {
       return new ExternalMessageTemplateClient(app);
+    });
+    this.offsetSet('external_contact_intercept', function (app) {
+      return new ExternalInterceptClient(app);
+    });
+    this.offsetSet('external_contact_product', function (app) {
+      return new ExternalProductClient(app);
     });
     this.offsetSet('school', function (app) {
       return new ExternalSchoolClient(app);
