@@ -45,35 +45,35 @@ export default class OfficialAccount extends BaseApplication
     },
   };
 
-  public access_token: AccessToken = null;
-  public encryptor: Encryptor = null;
-  public server: Guard = null;
-  public user: UserClient = null;
-  public user_tag: TagClient = null;
-  public oauth: WeChat = null;
-  public menu: MenuClient = null;
-  public template_message: TemplateMessageClient = null;
-  public subscribe_message: SubscribeMessageClient = null;
-  public material: MaterialClient = null;
-  public customer_service: CustomerServiceClient = null;
-  public customer_service_session: CustomerServiceSession = null;
-  public semantic: SemanticClient = null;
-  public data_cube: DataCubeClient = null;
-  public poi: POIClient = null;
-  public auto_reply: AutoReplyClient = null;
-  public broadcasting: BroadcastingClient = null;
-  public card: Card = null;
-  public device: DeviceClient = null;
-  public shake_around: ShakeAround = null;
-  public store: StoreClient = null;
-  public comment: CommentClient = null;
-  public base: OfficialAccountBase = null;
-  public ocr: OCRClient = null;
-  public goods: GoodsClient = null;
-  public jssdk: JssdkClient = null;
-  public media: MediaClient = null;
-  public qrcode: QrcodeClient = null;
-  public url: UrlClient = null;
+  public access_token: AccessToken;
+  public encryptor: Encryptor;
+  public server: Guard;
+  public user: UserClient;
+  public user_tag: TagClient;
+  public oauth: WeChat;
+  public menu: MenuClient;
+  public template_message: TemplateMessageClient;
+  public subscribe_message: SubscribeMessageClient;
+  public material: MaterialClient;
+  public customer_service: CustomerServiceClient;
+  public customer_service_session: CustomerServiceSession;
+  public semantic: SemanticClient;
+  public data_cube: DataCubeClient;
+  public poi: POIClient;
+  public auto_reply: AutoReplyClient;
+  public broadcasting: BroadcastingClient;
+  public card: Card;
+  public device: DeviceClient;
+  public shake_around: ShakeAround;
+  public store: StoreClient;
+  public comment: CommentClient;
+  public base: OfficialAccountBase;
+  public ocr: OCRClient;
+  public goods: GoodsClient;
+  public jssdk: JssdkClient;
+  public media: MediaClient;
+  public qrcode: QrcodeClient;
+  public url: UrlClient;
 
   constructor(config: EasyWechatConfig = {}, prepends: Object = {}, id: String = null)
   {

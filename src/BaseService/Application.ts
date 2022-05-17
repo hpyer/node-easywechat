@@ -15,11 +15,11 @@ export default class BaseService extends BaseApplication
     secret: '',
   };
 
-  public jssdk: JssdkClient = null;
-  public media: MediaClient = null;
-  public qrcode: QrcodeClient = null;
-  public url: UrlClient = null;
-  public content_security: ContentSecurityClient = null;
+  public jssdk: JssdkClient;
+  public media: MediaClient;
+  public qrcode: QrcodeClient;
+  public url: UrlClient;
+  public content_security: ContentSecurityClient;
 
   constructor(config: EasyWechatConfig = null, prepends: Object = {}, id: String = null)
   {

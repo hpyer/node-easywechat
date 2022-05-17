@@ -35,21 +35,21 @@ export default class Payment extends BaseApplication
     },
   };
 
-  public base: PaymentBase = null;
-  public bill: BillClient = null;
-  public coupon: CouponClient = null;
-  public jssdk: JssdkClient = null;
-  public merchant: MerchantClient = null;
-  public order: OrderClient = null;
-  public redpack: RedpackClient = null;
-  public refund: RefundClient = null;
-  public reverse: ReverseClient = null;
-  public sandbox: SandboxClient = null;
-  public transfer: TransferClient = null;
-  public security: SecurityClient = null;
-  public profit_sharing: ProfitSharingClient = null;
-  public access_token: AccessToken = null;
-  public url: UrlClient = null;
+  public base: PaymentBase;
+  public bill: BillClient;
+  public coupon: CouponClient;
+  public jssdk: JssdkClient;
+  public merchant: MerchantClient;
+  public order: OrderClient;
+  public redpack: RedpackClient;
+  public refund: RefundClient;
+  public reverse: ReverseClient;
+  public sandbox: SandboxClient;
+  public transfer: TransferClient;
+  public security: SecurityClient;
+  public profit_sharing: ProfitSharingClient;
+  public access_token: AccessToken;
+  public url: UrlClient;
 
   constructor(config: EasyWechatConfig = {}, prepends: Object = {}, id: String = null)
   {

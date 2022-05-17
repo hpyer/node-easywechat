@@ -25,15 +25,15 @@ export default class OpenWork extends BaseApplication
     },
   };
 
-  public provider_access_token: ProviderAccessToken = null;
-  public suite_access_token: SuiteAccessToken = null;
-  public suite_ticket: SuiteTicket = null;
-  public corp: CorpClient = null;
-  public mini_program: MiniProgramClient = null;
-  public provider: ProviderClient = null;
-  public encryptor_corp: Encryptor = null;
-  public encryptor: Encryptor = null;
-  public server: OpenWorkGuard = null;
+  public provider_access_token: ProviderAccessToken;
+  public suite_access_token: SuiteAccessToken;
+  public suite_ticket: SuiteTicket;
+  public corp: CorpClient;
+  public mini_program: MiniProgramClient;
+  public provider: ProviderClient;
+  public encryptor_corp: Encryptor;
+  public encryptor: Encryptor;
+  public server: OpenWorkGuard;
 
   constructor(config: EasyWechatConfig = {}, prepends: Object = {}, id: String = null)
   {

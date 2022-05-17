@@ -22,12 +22,12 @@ export default class MicroMerchant extends BaseApplication
     },
   };
 
-  public base: MicroMerchantBase = null;
-  public certficates: CertficatesClient = null;
-  public media: MediaClient = null;
-  public merchantConfig: MerchantConfigClient = null;
-  public material: MeterialClient = null;
-  public withdraw: WithdrawClient = null;
+  public base: MicroMerchantBase;
+  public certficates: CertficatesClient;
+  public media: MediaClient;
+  public merchantConfig: MerchantConfigClient;
+  public material: MeterialClient;
+  public withdraw: WithdrawClient;
 
   constructor(config: EasyWechatConfig = {}, prepends: Object = {}, id: String = null)
   {

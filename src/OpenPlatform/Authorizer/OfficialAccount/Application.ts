@@ -6,7 +6,7 @@ import MiniProgramClient from './MiniProgram/MiniProgramClient';
 export default class OfficialAccount extends BaseApplication
 {
 
-  public mini_program: MiniProgramClient = null;
+  public mini_program: MiniProgramClient;
 
   constructor(config: Object = {}, prepends: Object = {}, id: String = null)
   {

@@ -10,11 +10,11 @@ import TesterClient from './Tester/TesterClient';
 export default class MiniProgram extends BaseApplication
 {
 
-  public code: CodeClient = null;
-  public domain: DomainClient = null;
-  public account: AccountClient = null;
-  public setting: SettingClient = null;
-  public tester: TesterClient = null;
+  public code: CodeClient;
+  public domain: DomainClient;
+  public account: AccountClient;
+  public setting: SettingClient;
+  public tester: TesterClient;
 
   constructor(config: Object = {}, prepends: Object = {}, id: String = null)
   {
