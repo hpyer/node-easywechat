@@ -370,6 +370,7 @@ export default class ExternalContactClient extends BaseClient
 
   /**
    * unionid查询external_userid
+   * @deprecated 使用新方法 `(new EasyWechat.Factory.OpenWork).crop.unionidToExternalUserid()`
    * @see https://open.work.weixin.qq.com/api/doc/90001/90143/95327#4.2%20unionid%E6%9F%A5%E8%AF%A2external_userid
    * @param unionid
    * @param openid

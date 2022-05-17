@@ -25,6 +25,24 @@ class TestUnit extends BaseClientTest {
       this.assert.strictEqual(url, 'https://open.weixin.qq.com/connect/oauth2/authorize?appid=mock-suite_id&redirect_uri=mock-uri_oauth&response_type=code&scope=snsapi_userinfo&state=mock-state');
     });
 
+    it('Should return correct response of unionidToExternalUserid()', async () => {
+      this.mockResponse({
+        errcode: 0,
+        errmsg: 'ok',
+        external_userid_info: [
+          { corpid: 'AAA', external_userid: 'aaa'},
+          { corpid: 'BBB', external_userid: 'bbb'},
+        ]
+      });
+
+      let res = await this.mockRequest('unionidToExternalUserid', 'mock-unionid', 'mock-openid');
+
+      this.assert.deepStrictEqual(res.external_userid_info, [
+        { corpid: 'AAA', external_userid: 'aaa' },
+        { corpid: 'BBB', external_userid: 'bbb' },
+      ]);
+    });
+
   }
 }
 

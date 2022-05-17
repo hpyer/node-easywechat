@@ -155,4 +155,21 @@ export default class CorpClient extends BaseClient
     });
   }
 
+  /**
+   * 第三方根据unionid查询external_userid
+   * @see https://developer.work.weixin.qq.com/document/path/95327
+   * @param unionid 微信用户的unionid
+   * @param openid 微信用户的openid
+   * @param corpid 需要换取的企业corpid，不填则拉取所有企业
+   * @returns
+   */
+  unionidToExternalUserid(unionid: string, openid: string, corpid: string = ''): Promise<any>
+  {
+    return this.httpPostJson('cgi-bin/service/externalcontact/unionid_to_external_userid_3rd', {
+      unionid,
+      openid,
+      corpid,
+    });
+  }
+
 }
