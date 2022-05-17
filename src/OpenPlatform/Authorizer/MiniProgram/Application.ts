@@ -3,6 +3,7 @@
 import BaseApplication from '../../../MiniProgram/Application';
 import CodeClient from './Code/CodeClient';
 import DomainClient from './Domain/DomainClient';
+import MaterialClient from './Material/MaterialClient';
 import AccountClient from './Account/AccountClient';
 import SettingClient from './Setting/SettingClient';
 import TesterClient from './Tester/TesterClient';
@@ -12,6 +13,7 @@ export default class MiniProgram extends BaseApplication
 
   public code: CodeClient;
   public domain: DomainClient;
+  public material: MaterialClient;
   public account: AccountClient;
   public setting: SettingClient;
   public tester: TesterClient;
@@ -30,6 +32,9 @@ export default class MiniProgram extends BaseApplication
     });
     this.offsetSet('domain', function (app) {
       return new DomainClient(app);
+    });
+    this.offsetSet('material', function (app) {
+      return new MaterialClient(app);
     });
     this.offsetSet('account', function (app) {
       return new AccountClient(app);
