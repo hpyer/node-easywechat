@@ -11,7 +11,7 @@ export default class InterceptClient extends BaseClient
    * @param params
    * @returns
    */
-  createInterceptRule(params: object): Promise<any>
+  create(params: object): Promise<any>
   {
     return this.httpPostJson('cgi-bin/externalcontact/add_intercept_rule', params);
   }
@@ -21,7 +21,7 @@ export default class InterceptClient extends BaseClient
    * @see https://developer.work.weixin.qq.com/document/path/95097#获取敏感词规则列表
    * @returns
    */
-  getInterceptRules(): Promise<any>
+  gets(): Promise<any>
   {
     return this.httpGet('cgi-bin/externalcontact/get_intercept_rule_list');
   }
@@ -32,7 +32,7 @@ export default class InterceptClient extends BaseClient
    * @param ruleId 规则id
    * @returns
    */
-  getInterceptRuleDetails(ruleId: string): Promise<any>
+  getDetails(ruleId: string): Promise<any>
   {
     return this.httpPostJson('cgi-bin/externalcontact/get_intercept_rule', {
       rule_id: ruleId,
@@ -45,7 +45,7 @@ export default class InterceptClient extends BaseClient
    * @param ruleId
    * @returns
    */
-  deleteInterceptRule(ruleId: string): Promise<any>
+  delete(ruleId: string): Promise<any>
   {
     return this.httpPostJson('cgi-bin/externalcontact/del_intercept_rule', {
       rule_id: ruleId,
