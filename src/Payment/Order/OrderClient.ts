@@ -18,7 +18,9 @@ export default class OrderClient extends BaseClient
     }
 
     params['appid'] = this.app.config.app_id;
-    params['notify_url'] = this.app.config.notify_url;
+    if (!params['notify_url']) {
+      params['notify_url'] = this.app.config.notify_url;
+    }
 
     if (isContract) {
       params['contract_appid'] = this.app.config.app_id;
