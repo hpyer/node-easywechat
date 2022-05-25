@@ -1,7 +1,7 @@
 'use strict';
 
 import BaseApplicatioin from "../../Payment/Application";
-import { makeSignature, createHash, merge, buildXml } from "../../Core/Utils";
+import { makeSignature, createHash, merge, buildXml, parseXml } from "../../Core/Utils";
 import Response from "../../Core/Http/Response";
 import { AES } from "../../Core/AES";
 
@@ -69,7 +69,8 @@ export default class Handler
 
   async getMessage(): Promise<object>
   {
-    let message: object = await this.app.request.getAllPost();
+    let res = await this.app.request.getContent()
+    let message: object= await this.parseMessage(res ? res.toString() : '');
     this.app.log('Payment.Notify.Handler.getMessage', message);
 
     if (!message) {
@@ -81,6 +82,28 @@ export default class Handler
     }
 
     return message;
+  }
+  
+  protected async parseMessage(content: string): Promise<any>
+  {
+    try {
+      if (!content) {
+        return {};
+      }
+      else if (0 === content.indexOf('<')) {
+        content = await parseXml(content);
+      } else {
+        // Handle JSON format.
+        try {
+          content = JSON.parse(content);
+        }
+        catch (e) {}
+      }
+
+      return content;
+    } catch (e) {
+      throw new Error(`Invalid message content: ${content}`);
+    }
   }
 
   async decryptMessage(key: string): Promise<string>
