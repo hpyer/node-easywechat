@@ -264,5 +264,5 @@ export const buildXml = function(data: object, rootName: string = 'xml'): string
       newline: '',
     }
   });
-  return XmlBuilder.buildObject(data);
+  return XmlBuilder.buildObject(data).replace(/<\?([^>]+)\?>/, '');
 }
