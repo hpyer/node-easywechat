@@ -39,22 +39,6 @@ export default class Request implements RequestInterface
           this._contentType = 'application/json';
         }
         else if (typeof content === 'string') {
-          try {
-            this._post = JSON.parse(<string> content);
-            this._contentType = 'application/json';
-          }
-          catch (e) {
-            if ((<string> content).substr(0,1) === '<') {
-              parseXml(content).then(res => {
-                this._post = res;
-                this._contentType = 'text/xml';
-              });
-            }
-            else {
-              this._post = parseQueryString(<string> content);
-              this._contentType = 'application/x-www-form-urlencoded';
-            }
-          }
           this._content = Buffer.from(content);
         }
       }
@@ -123,21 +107,8 @@ export default class Request implements RequestInterface
   {
     if (!this.isValid) throw new Error('Please set request first. app.rebind(\'request\', new EasyWechat.Request(ctx.req));');
     if (this._method !== 'POST') return null;
-    if (!this._content) {
-      this._content = await this.getContent();
-    }
-    if (!this._post && this._content) {
-      let contentType = this._contentType.toLowerCase();
-      if (contentType.indexOf('application/json') > -1) {
-        try {
-          this._post = JSON.parse(this._content.toString());
-        }
-        catch (e) { }
-      }
-      else if (contentType.indexOf('application/x-www-form-urlencoded') > -1) {
-        this._post = parseQueryString(this._content.toString());
-      }
-
+    if (!this._post) {
+      await this._parseContent();
     }
     return this._post && this._post[key] != undefined ? this._post[key] : null;
   }
@@ -148,10 +119,32 @@ export default class Request implements RequestInterface
     return this._get;
   }
 
-  getAllPost(): object
+  async getAllPost(): Promise<object>
   {
     if (!this.isValid) throw new Error('Please set request first. app.rebind(\'request\', new EasyWechat.Request(ctx.req));');
+    if (!this._post) {
+      await this._parseContent();
+    }
     return this._post;
+  }
+
+  private async _parseContent() {
+    let content = (await this.getContent()).toString();
+    try {
+      this._post = JSON.parse(content);
+      this._contentType = 'application/json';
+    }
+    catch (e) {
+      if ((content).substring(0, 1) === '<') {
+        let res = await parseXml(content);
+        this._post = res;
+        this._contentType = 'text/xml';
+      }
+      else {
+        this._post = parseQueryString(content);
+        this._contentType = 'application/x-www-form-urlencoded';
+      }
+    }
   }
 
   async getContent(): Promise<Buffer>
