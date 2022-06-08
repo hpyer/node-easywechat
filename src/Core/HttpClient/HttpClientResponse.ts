@@ -8,15 +8,12 @@ import HttpClientResponseInterface from "./Contracts/HttpClientResponseInterface
 import { parseXml } from "../Support/Utils";
 
 class HttpClientResponse implements HttpClientResponseInterface {
-  protected response: AxiosResponse = null;
-  protected failureJudge: HttpClientFailureJudgeClosure = null;
-  protected throwError: boolean = false;
+  constructor(
+    protected response: AxiosResponse,
+    protected failureJudge: HttpClientFailureJudgeClosure = null,
+    protected throwError: boolean = true
+  ) {}
 
-  constructor(response: AxiosResponse, failureJudge: HttpClientFailureJudgeClosure = null, throwError: boolean = true) {
-    this.response = response;
-    this.failureJudge = failureJudge;
-    this.throwError = throwError;
-  }
   withThrowError(throwError: boolean): this {
     this.throwError = throwError;
     return this;

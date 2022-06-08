@@ -4,18 +4,12 @@ import AccountInterface from "./Contracts/AccountInterface";
 
 class Account implements AccountInterface
 {
-  protected appId: string = null;
-  protected secret: string = null;
-  protected token: string = null;
-  protected aesKey: string = null;
-
-  constructor(appId: string, secret: string, token: string = null, aesKey: string = null)
-  {
-    this.appId = appId;
-    this.secret = secret;
-    this.token = token;
-    this.aesKey = aesKey;
-  }
+  constructor(
+    protected appId: string,
+    protected secret: string,
+    protected token: string = null,
+    protected aesKey: string = null
+  ) {}
 
   getAppId(): string {
     return this.appId;

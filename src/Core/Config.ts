@@ -7,11 +7,9 @@ import Obj from "./Support/Obj";
 
 class Config implements ConfigInterface
 {
-  protected items: OfficialAccountConfig | MiniAppConfig |PayConfig |OpenPlatformConfig |WorkConfig |OpenWorkConfig = {};
-
   protected requiredKeys: string[] = [];
 
-  constructor(items: OfficialAccountConfig | MiniAppConfig |PayConfig |OpenPlatformConfig |WorkConfig |OpenWorkConfig) {
+  constructor(protected items: OfficialAccountConfig | MiniAppConfig |PayConfig |OpenPlatformConfig |WorkConfig |OpenWorkConfig = {}) {
     this.items = merge.recursive(true, items);
     this.checkMissingKeys();
   }

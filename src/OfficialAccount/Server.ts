@@ -14,13 +14,11 @@ import ResponseXmlMessageMixin from '../Core/Mixins/ResponseXmlMessageMixin';
 
 class Server implements ServerInterface
 {
-  protected request: ServerRequestInterface = null;
-  protected encryptor: Encryptor = null;
-
-  constructor(request: ServerRequestInterface = null, encryptor: Encryptor = null) {
+  constructor(
+    protected request: ServerRequestInterface = null,
+    protected encryptor: Encryptor = null
+  ) {
     this.handlers = [];
-    this.request = request;
-    this.encryptor = encryptor;
   }
 
   /**

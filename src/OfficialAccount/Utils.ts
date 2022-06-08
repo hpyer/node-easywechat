@@ -5,12 +5,7 @@ import Application from './Application';
 
 class Utils
 {
-  protected app: Application = null;
-
-  constructor(app: Application)
-  {
-    this.app = app;
-  }
+  constructor(protected app: Application) {}
 
   async buildJsSdkConfig(url: string, jsApiList: string[] = [], openTagList: string[] = [], debug: boolean = false): Promise<Record<string, any>>
   {

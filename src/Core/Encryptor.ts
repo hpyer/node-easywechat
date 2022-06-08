@@ -7,18 +7,17 @@ import PKCS7 from './Support/PKCS';
 
 class Encryptor
 {
-  protected appId: string = null;
-  protected token: string = null;
-  protected aesKey: Buffer = null;
   protected blockSize: number = 32;
-  protected receiveId: string = null;
 
-  constructor(appId: string, token: string, aesKey: string, receiveId: string = null)
-  {
-    this.appId = appId;
-    this.token = token;
-    this.receiveId = receiveId;
-    this.aesKey = Buffer.from(aesKey + '=', 'base64');
+  constructor(
+    protected appId: string = null,
+    protected token: string = null,
+    protected aesKey: string | Buffer = null,
+    protected receiveId: string = null
+  ) {
+    if (typeof this.aesKey === 'string') {
+      this.aesKey = Buffer.from(this.aesKey + '=', 'base64');
+    }
   }
 
   /**

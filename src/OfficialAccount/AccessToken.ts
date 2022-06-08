@@ -8,20 +8,21 @@ import FileCache from "../Core/Cache/FileCache";
 
 class AccessToken implements RefreshableAccessToken
 {
-  protected appId: string = null;
-  protected secret: string = null;
-  protected key: string = null;
-  protected cache: CacheInterface = null;
-  protected httpClient: HttpClientInterface = null;
-
-  constructor(appId: string, secret: string, key: string = null, cache: CacheInterface = null, httpClient: HttpClientInterface = null) {
-    this.appId = appId;
-    this.secret = secret;
-    this.key = key;
-    this.cache = cache || new FileCache();
-    this.httpClient = httpClient || HttpClient.create({
-      baseURL: 'https://api.weixin.qq.com/',
-    });
+  constructor(
+    protected appId: string,
+    protected secret: string,
+    protected key: string = null,
+    protected cache: CacheInterface = null,
+    protected httpClient: HttpClientInterface = null
+  ) {
+    if (!this.cache) {
+      this.cache = new FileCache();
+    }
+    if (!this.httpClient) {
+      this.httpClient = HttpClient.create({
+        baseURL: 'https://api.weixin.qq.com/',
+      });
+    }
   }
 
   /**

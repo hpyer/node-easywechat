@@ -9,15 +9,11 @@ import { buildXml } from '../Support/Utils';
 
 class HttpClient implements HttpClientInterface
 {
-  protected axios: AxiosInstance = null;
-  protected failureJudge: HttpClientFailureJudgeClosure = null;
-  protected throwError: boolean = true;
-
-  constructor(axios: AxiosInstance, failureJudge: HttpClientFailureJudgeClosure = null, throwError: boolean = false) {
-    this.axios = axios;
-    this.failureJudge = failureJudge;
-    this.throwError = throwError;
-  }
+  constructor(
+    protected axios: AxiosInstance,
+    protected failureJudge: HttpClientFailureJudgeClosure = null,
+    protected throwError: boolean = false
+  ) {}
 
   async request(method: Method, url: string, payload: AxiosRequestConfig<any> = {}): Promise<HttpClientResponse> {
     let options: AxiosRequestConfig = merge.recursive(true, payload);
