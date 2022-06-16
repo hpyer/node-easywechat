@@ -18,6 +18,21 @@ declare module 'axios' {
 }
 
 /**
+ * 微信接口响应数据格式
+ */
+export declare interface WeixinResponse extends Record<string, any> {
+  /**
+   * 错误代码
+   */
+  errcode?: string,
+
+  /**
+   * 错误信息
+   */
+  errmsg?: string,
+}
+
+/**
  * 公众号网页授权相关配置
  */
 export declare interface OauthConfig {

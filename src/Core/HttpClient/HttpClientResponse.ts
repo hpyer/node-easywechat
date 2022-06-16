@@ -3,7 +3,7 @@
 import fs from "fs";
 import merge from "merge";
 import { AxiosResponse } from "axios";
-import { HttpClientFailureJudgeClosure } from "../../Types/global";
+import { HttpClientFailureJudgeClosure, WeixinResponse } from "../../Types/global";
 import HttpClientResponseInterface from "./Contracts/HttpClientResponseInterface";
 import { parseXml } from "../Support/Utils";
 
@@ -61,7 +61,7 @@ class HttpClientResponse implements HttpClientResponseInterface {
    * @param throwError
    * @returns
    */
-  async toObject(throwError: boolean = null): Promise<Record<string, any>> {
+  async toObject<T = WeixinResponse>(throwError: boolean = null): Promise<T> {
     throwError = throwError === null ? this.throwError : throwError;
 
     let content = this.response.data;
@@ -71,7 +71,7 @@ class HttpClientResponse implements HttpClientResponseInterface {
 
     let contentType = this.getHeader('content-type') || '';
     if (contentType && (contentType.indexOf('text/xml') > -1 || contentType.indexOf('application/xml') > -1 || content.indexOf('<xml>') > -1)) {
-      return parseXml(content);
+      return parseXml(content) as any;
     }
 
     return content;
