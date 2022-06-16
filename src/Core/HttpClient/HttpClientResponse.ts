@@ -69,9 +69,10 @@ class HttpClientResponse implements HttpClientResponseInterface {
       throw new Error('Response body is empty.');
     }
 
-    let contentType = this.getHeader('content-type') || '';
-    if (contentType && (contentType.indexOf('text/xml') > -1 || contentType.indexOf('application/xml') > -1 || content.indexOf('<xml>') > -1)) {
-      return parseXml(content) as any;
+    if (typeof content === 'string') {
+      if (this.is('xml') && content.indexOf('<xml>') > -1) {
+        return parseXml(content) as any;
+      }
     }
 
     return content;
