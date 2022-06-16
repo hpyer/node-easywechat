@@ -1,6 +1,7 @@
 const BaseTestUnit = require('../BaseTestUnit');
 const Application = require('../../dist/OfficialAccount/Application');
 const Account = require('../../dist/OfficialAccount/Account');
+const AccessTokenAwareClient = require('../../dist/Core/HttpClient/AccessTokenAwareClient');
 const Server = require('../../dist/OfficialAccount/Server');
 const Encryptor = require('../../dist/Core/Encryptor');
 const ServerRequest = require('../../dist/Core/Http/ServerRequest');
@@ -34,6 +35,20 @@ class TestUnit extends BaseTestUnit {
       let account = new Account('mock-account-appid', 'mock-account-secret', 'mock-account-token');
       app.setAccount(account);
       this.assert.deepStrictEqual(app.getAccount(), account);
+    });
+
+    it('Should set and get client successful', async () => {
+      let app = new Application({
+        app_id: 'mock-appid',
+        secret: 'mock-secret',
+        token: 'mock-token',
+      });
+
+      this.assert.strictEqual(app.getClient() instanceof AccessTokenAwareClient, true);
+
+      let client = new AccessTokenAwareClient();
+      app.setClient(client);
+      this.assert.deepStrictEqual(app.getClient(), client);
     });
 
     it('Should set and get encryptor successful', async () => {
