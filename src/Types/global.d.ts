@@ -311,3 +311,12 @@ export declare type PaymentRefundedHandler = (message: Message, reqInfo: object,
  * @param alert 业务错误处理函数
  */
 export declare type PaymentScannedHandler = (message: Message, fail: PaymentFailHandler, alert: PaymentAlertHandler) => void;
+
+/**
+ * 日志处理方法
+ * @param type before：请求前，after：请求后
+ * @param options 请求选项
+ * @param usedTime 请求耗时，单位ms，仅在 type 为 after 时返回
+ * @param response 响应对象，仅在 type 为 after 时返回
+ */
+export declare type LogHandler = (type: 'before' | 'after', options: AxiosRequestConfig, usedTime?: number, response?: AxiosResponse) => void | Promise<void>;

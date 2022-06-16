@@ -4,16 +4,30 @@ import merge from 'merge';
 import Axios, { AxiosInstance, AxiosRequestConfig, Method } from 'axios';
 import HttpClientInterface from './Contracts/HttpClientInterface';
 import HttpClientResponse from './HttpClientResponse';
-import { HttpClientFailureJudgeClosure } from '../../Types/global';
+import { HttpClientFailureJudgeClosure, LogHandler } from '../../Types/global';
 import { buildXml } from '../Support/Utils';
 
 class HttpClient implements HttpClientInterface
 {
+  /**
+   * 日志处理方法
+   */
+  protected logger: LogHandler = null;
+
   constructor(
     protected axios: AxiosInstance,
     protected failureJudge: HttpClientFailureJudgeClosure = null,
     protected throwError: boolean = false
   ) {}
+
+  /**
+   * 设置日志处理方法
+   * @param logger
+   */
+  setLogger(logger: LogHandler): this {
+    this.logger = logger;
+    return this;
+  }
 
   async request(method: Method, url: string, payload: AxiosRequestConfig<any> = {}): Promise<HttpClientResponse> {
     let options: AxiosRequestConfig = merge.recursive(true, payload);
@@ -63,7 +77,15 @@ class HttpClient implements HttpClientInterface
       delete options['json'];
     }
 
+    let starttime = Date.now();
+    if (typeof this.logger === 'function') {
+      await this.logger('before', options);
+    }
     let response = await this.axios.request(options);
+    if (typeof this.logger === 'function') {
+      let usedTime = Date.now() - starttime;
+      await this.logger('after', options, usedTime, response);
+    }
     return new HttpClientResponse(response, this.failureJudge, this.throwError);
   }
 

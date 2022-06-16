@@ -1,5 +1,5 @@
 
-import { OfficialAccountConfig, MiniAppConfig } from './Types/global';
+import { OfficialAccountConfig, MiniAppConfig, LogHandler } from './Types/global';
 import OfficialAccount from './OfficialAccount/Application';
 import MiniApp from './MiniApp/Application';
 import CacheInterface from './Core/Contracts/CacheInterface';
@@ -14,4 +14,5 @@ export {
 
   CacheInterface,
   ServerRequest,
+  LogHandler,
 }
