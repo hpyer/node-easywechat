@@ -12,7 +12,7 @@ abstract class AccessTokenInterface
    * 转成url参数
    * @returns
    */
-  async toQuery(): Promise<object> { return null; }
+  async toQuery(): Promise<Record<string, any>> { return null; }
 };
 
 export = AccessTokenInterface;

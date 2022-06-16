@@ -8,15 +8,16 @@ import HttpClientInterface from "./Contracts/HttpClientInterface";
 import { applyMixins, ltrim } from '../Support/Utils';
 import HttpClient from './HttpClient';
 import HttpClientMethodsMixin from './Mixins/HttpClientMethodsMixin';
-import { HttpClientFailureJudgeClosure } from '../../Types/global';
+import { HttpClientFailureJudgeClosure, LogHandler } from '../../Types/global';
 import HttpClientResponse from './HttpClientResponse';
+import PresetMixin from './Mixins/PresetMixin';
 
 class AccessTokenAwareClient implements AccessTokenAwareHttpClientInterface, HttpClientInterface
 {
   protected client: HttpClientInterface = null;
   protected accessToken: AccessTokenInterface = null;
 
-  constructor(client: HttpClientInterface, accessToken: AccessTokenInterface, failureJudge: HttpClientFailureJudgeClosure = null, throwError: boolean = true) {
+  constructor(client: HttpClientInterface, accessToken: AccessTokenInterface = null, failureJudge: HttpClientFailureJudgeClosure = null, throwError: boolean = true) {
     this.client = client || HttpClient.create(null, failureJudge, throwError);
     this.accessToken = accessToken;
   }
@@ -35,18 +36,25 @@ class AccessTokenAwareClient implements AccessTokenAwareHttpClientInterface, Htt
     return this;
   }
 
+  setLogger(logger: LogHandler): this {
+    this.client.setLogger(logger);
+    return this;
+  }
+
   async request(method: Method, url: string, payload: AxiosRequestConfig<any> = {}): Promise<HttpClientResponse> {
     if (this.accessToken) {
       payload.params = merge(true, payload.params || {}, await this.accessToken.toQuery());
     }
 
-    return this.client.request(method, ltrim(url, '\\/+'), payload);
+    let options = this.mergeThenResetPrepends(payload, method);
+
+    return this.client.request(method, ltrim(url, '\\/+'), options);
   }
 
 }
 
-interface AccessTokenAwareClient extends HttpClientMethodsMixin { };
+interface AccessTokenAwareClient extends HttpClientMethodsMixin, PresetMixin { };
 
-applyMixins(AccessTokenAwareClient, [HttpClientMethodsMixin]);
+applyMixins(AccessTokenAwareClient, [HttpClientMethodsMixin, PresetMixin]);
 
 export = AccessTokenAwareClient;

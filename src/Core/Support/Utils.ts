@@ -250,6 +250,16 @@ export const strCamel = function (value: string): string
 };
 
 /**
+ * 蛇形（下划线分隔，全小写），'helloWorld' => 'hello_world'
+ * @param value
+ * @returns
+ */
+export const strSnake = function (value: string): string
+{
+  return value.replace(/([A-Z])/g, "_$1").toLowerCase().substring(1);
+};
+
+/**
  * 如果只有一个同名、同级节点，则不当作数组
  * @param obj
  * @returns

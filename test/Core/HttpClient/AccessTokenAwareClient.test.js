@@ -74,6 +74,33 @@ class TestUnit extends BaseTestUnit {
 
     });
 
+    it('Should request with presets', async () => {
+      let client = new AccessTokenAwareClient();
+      client.setPresets({
+        'app_id': 'mock-app_id',
+        'foo': 'mock-foo',
+      });
+      client = this.getMockedHttpClient(client);
+      client.mock('get', 'https://example.com/test/api')
+        .reply(200, {
+          'foo': 'bar',
+        });
+
+      client.withAppId().with('foo');
+
+      let response = await client.get('https://example.com/test/api', {
+        params: {
+          'bar': 'mock-bar',
+        },
+      });
+      this.assert.deepStrictEqual(response.getInfo()['params'], {
+        app_id: 'mock-app_id',
+        foo: 'mock-foo',
+        bar: 'mock-bar',
+      });
+
+    });
+
   }
 }
 

@@ -204,8 +204,8 @@ class Application implements ApplicationInterface
   }
 
   createClient(): AccessTokenAwareClient {
-    let httpClient = this.getHttpClient();
-    return new AccessTokenAwareClient(httpClient, this.getAccessToken());
+    return (new AccessTokenAwareClient(this.getHttpClient(), this.getAccessToken()))
+      .setPresets(this.getConfig().all());
   }
 
   /**
