@@ -2,15 +2,24 @@
 
 import AccessTokenAwareClient from "../HttpClient/AccessTokenAwareClient";
 
-class ClientMixin
+abstract class ClientMixin
 {
   protected client: AccessTokenAwareClient;
+
+  /**
+   * 创建客户端实例
+   * @returns
+   */
+  abstract createClient(): AccessTokenAwareClient
 
   /**
    * 获取客户端实例
    * @returns
    */
   getClient(): AccessTokenAwareClient {
+    if (!this.client) {
+      this.client = this.createClient();
+    }
     return this.client;
   }
 
