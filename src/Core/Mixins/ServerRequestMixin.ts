@@ -12,6 +12,9 @@ class ServerRequestMixin
    */
   getRequest(): ServerRequestInterface
   {
+    if (!this.request) {
+      throw new Error('Please set request instance before use.');
+    }
     return this.request;
   }
 

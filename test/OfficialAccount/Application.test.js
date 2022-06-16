@@ -51,7 +51,7 @@ class TestUnit extends BaseTestUnit {
       this.assert.deepStrictEqual(app.getEncryptor(), encryptor);
     });
 
-    it('Should set and get server successful', async () => {
+    it('Should throw error when getServer before set ServerRequest', async () => {
       let app = new Application({
         app_id: 'mock-appid',
         secret: 'mock-secret',
@@ -59,7 +59,21 @@ class TestUnit extends BaseTestUnit {
         aes_key: 'mock-aeskey',
       });
 
-      this.assert.strictEqual(app.getServer() instanceof Server, true);
+      try {
+        app.getServer();
+      }
+      catch (e) {
+        this.assert.strictEqual(e.message, 'Please set request instance before use.');
+      }
+    });
+
+    it('Should set and get server successful', async () => {
+      let app = new Application({
+        app_id: 'mock-appid',
+        secret: 'mock-secret',
+        token: 'mock-token',
+        aes_key: 'mock-aeskey',
+      });
 
       let request = new ServerRequest('GET', 'http://www.easywechat.com/?echostr=mock-echostr');
       let server = new Server(request);
