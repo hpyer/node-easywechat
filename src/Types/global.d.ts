@@ -70,9 +70,24 @@ export declare interface CacheFileConfig {
 }
 
 /**
+ * 基础配置
+ */
+export declare interface BaseConfig {
+  /**
+   * 网络请求相关配置
+   */
+  http?: AxiosRequestConfig;
+
+  /**
+   * 文件缓存相关配置
+   */
+  file_cache?: CacheFileConfig;
+}
+
+/**
  * 公众号配置
  */
-export declare interface OfficialAccountConfig {
+export declare interface OfficialAccountConfig extends BaseConfig {
   /**
    * 公众号 app_id
    */
@@ -97,22 +112,12 @@ export declare interface OfficialAccountConfig {
    * 网页授权相关配置
    */
   oauth?: OauthConfig;
-
-  /**
-   * 网络请求相关配置
-   */
-  http?: AxiosRequestConfig;
-
-  /**
-   * 文件缓存相关配置
-   */
-  file_cache?: CacheFileConfig;
 }
 
 /**
  * 小程序配置
  */
-export declare interface MiniAppConfig {
+export declare interface MiniAppConfig extends BaseConfig {
   /**
    * 小程序 app_id
    */
@@ -132,22 +137,12 @@ export declare interface MiniAppConfig {
    * 服务端消息加解密密钥 aes_key
    */
   aes_key?: string;
-
-  /**
-   * 网络请求相关配置
-   */
-  http?: AxiosRequestConfig;
-
-  /**
-   * 文件缓存相关配置
-   */
-  file_cache?: CacheFileConfig;
 }
 
 /**
  * 微信支付配置
  */
-export declare interface PayConfig {
+export declare interface PayConfig extends BaseConfig {
   /**
    * 商户号
    */
@@ -167,22 +162,12 @@ export declare interface PayConfig {
    * v2 API密钥
    */
   v2_secret_key?: string;
-
-  /**
-   * 网络请求相关配置
-   */
-  http?: AxiosRequestConfig;
-
-  /**
-   * 文件缓存相关配置
-   */
-  file_cache?: CacheFileConfig;
 }
 
 /**
  * 开发平台配置
  */
-export declare interface OpenPlatformConfig {
+export declare interface OpenPlatformConfig extends BaseConfig {
   /**
    * 开发平台 app_id
    */
@@ -202,22 +187,12 @@ export declare interface OpenPlatformConfig {
    * 开发平台服务端消息加解密密钥 aes_key
    */
   aes_key?: string;
-
-  /**
-   * 网络请求相关配置
-   */
-  http?: AxiosRequestConfig;
-
-  /**
-   * 文件缓存相关配置
-   */
-  file_cache?: CacheFileConfig;
 }
 
 /**
  * 企业微信配置
  */
-export declare interface WorkConfig {
+export declare interface WorkConfig extends BaseConfig {
   /**
    * 企业微信 corp_id
    */
@@ -237,22 +212,12 @@ export declare interface WorkConfig {
    * 企业微信服务端消息加解密密钥 aes_key
    */
   aes_key?: string;
-
-  /**
-   * 网络请求相关配置
-   */
-  http?: AxiosRequestConfig;
-
-  /**
-   * 文件缓存相关配置
-   */
-  file_cache?: CacheFileConfig;
 }
 
 /**
  * 企业微信开放平台配置
  */
-export declare interface OpenWorkConfig {
+export declare interface OpenWorkConfig extends BaseConfig {
   /**
    * 企业微信 corp_id
    */
@@ -272,16 +237,6 @@ export declare interface OpenWorkConfig {
    * 企业微信服务端消息加解密密钥 aes_key
    */
   aes_key?: string;
-
-  /**
-   * 网络请求相关配置
-   */
-  http?: AxiosRequestConfig;
-
-  /**
-   * 文件缓存相关配置
-   */
-  file_cache?: CacheFileConfig;
 }
 
 /**
