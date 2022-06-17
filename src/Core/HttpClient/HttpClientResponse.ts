@@ -179,7 +179,7 @@ class HttpClientResponse implements HttpClientResponseInterface {
     }
     return headers;
   }
-  getContent(throwError?: boolean): string {
+  getContent(throwError?: boolean): any {
     return this.response.data;
   }
   cancel(): void {
