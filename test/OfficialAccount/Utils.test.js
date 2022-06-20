@@ -1,5 +1,5 @@
 const BaseTestUnit = require('../BaseTestUnit');
-const Application = require('../../dist/OfficialAccount/Application');
+const { OfficialAccount } = require('../../dist/');
 const JsApiTicket = require('../../dist/OfficialAccount/JsApiTicket');
 const Utils = require('../../dist/OfficialAccount/Utils');
 
@@ -23,7 +23,7 @@ class TestUnit extends BaseTestUnit {
         }
       };
 
-      let app = new Application({
+      let app = new OfficialAccount({
         app_id: 'mock-appid',
         secret: 'mock-secret',
         token: 'mock-token',

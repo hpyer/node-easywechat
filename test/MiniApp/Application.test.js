@@ -1,10 +1,9 @@
 const BaseTestUnit = require('../BaseTestUnit');
-const Application = require('../../dist/MiniApp/Application');
+const { MiniApp, ServerRequest } = require('../../dist/');
 const Account = require('../../dist/MiniApp/Account');
 const AccessTokenAwareClient = require('../../dist/Core/HttpClient/AccessTokenAwareClient');
 const Server = require('../../dist/MiniApp/Server');
 const Encryptor = require('../../dist/Core/Encryptor');
-const ServerRequest = require('../../dist/Core/Http/ServerRequest');
 const AccessToken = require('../../dist/MiniApp/AccessToken');
 const Utils = require('../../dist/MiniApp/Utils');
 
@@ -13,17 +12,17 @@ class TestUnit extends BaseTestUnit {
   test() {
 
     it('Should create correct instance', async () => {
-      let app = new Application({
+      let app = new MiniApp({
         app_id: 'mock-appid',
         secret: 'mock-secret',
         token: 'mock-token',
       });
 
-      this.assert.strictEqual(app instanceof Application, true);
+      this.assert.strictEqual(app instanceof MiniApp, true);
     });
 
     it('Should set and get account successful', async () => {
-      let app = new Application({
+      let app = new MiniApp({
         app_id: 'mock-appid',
         secret: 'mock-secret',
         token: 'mock-token',
@@ -37,7 +36,7 @@ class TestUnit extends BaseTestUnit {
     });
 
     it('Should set and get client successful', async () => {
-      let app = new Application({
+      let app = new MiniApp({
         app_id: 'mock-appid',
         secret: 'mock-secret',
         token: 'mock-token',
@@ -51,7 +50,7 @@ class TestUnit extends BaseTestUnit {
     });
 
     it('Should set and get encryptor successful', async () => {
-      let app = new Application({
+      let app = new MiniApp({
         app_id: 'mock-appid',
         secret: 'mock-secret',
         token: 'mock-token',
@@ -66,7 +65,7 @@ class TestUnit extends BaseTestUnit {
     });
 
     it('Should throw error when getServer before set ServerRequest', async () => {
-      let app = new Application({
+      let app = new MiniApp({
         app_id: 'mock-appid',
         secret: 'mock-secret',
         token: 'mock-token',
@@ -82,7 +81,7 @@ class TestUnit extends BaseTestUnit {
     });
 
     it('Should set and get server successful', async () => {
-      let app = new Application({
+      let app = new MiniApp({
         app_id: 'mock-appid',
         secret: 'mock-secret',
         token: 'mock-token',
@@ -96,7 +95,7 @@ class TestUnit extends BaseTestUnit {
     });
 
     it('Should set and get access_token successful', async () => {
-      let app = new Application({
+      let app = new MiniApp({
         app_id: 'mock-appid',
         secret: 'mock-secret',
         token: 'mock-token',
@@ -111,7 +110,7 @@ class TestUnit extends BaseTestUnit {
     });
 
     it('Should get utils successful', async () => {
-      let app = new Application({
+      let app = new MiniApp({
         app_id: 'mock-appid',
         secret: 'mock-secret',
         token: 'mock-token',

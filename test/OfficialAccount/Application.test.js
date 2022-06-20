@@ -1,10 +1,9 @@
 const BaseTestUnit = require('../BaseTestUnit');
-const Application = require('../../dist/OfficialAccount/Application');
+const { OfficialAccount, ServerRequest } = require('../../dist/');
 const Account = require('../../dist/OfficialAccount/Account');
 const AccessTokenAwareClient = require('../../dist/Core/HttpClient/AccessTokenAwareClient');
 const Server = require('../../dist/OfficialAccount/Server');
 const Encryptor = require('../../dist/Core/Encryptor');
-const ServerRequest = require('../../dist/Core/Http/ServerRequest');
 const AccessToken = require('../../dist/OfficialAccount/AccessToken');
 const JsApiTicket = require('../../dist/OfficialAccount/JsApiTicket');
 const Utils = require('../../dist/OfficialAccount/Utils');
@@ -14,17 +13,17 @@ class TestUnit extends BaseTestUnit {
   test() {
 
     it('Should create correct instance', async () => {
-      let app = new Application({
+      let app = new OfficialAccount({
         app_id: 'mock-appid',
         secret: 'mock-secret',
         token: 'mock-token',
       });
 
-      this.assert.strictEqual(app instanceof Application, true);
+      this.assert.strictEqual(app instanceof OfficialAccount, true);
     });
 
     it('Should set and get account successful', async () => {
-      let app = new Application({
+      let app = new OfficialAccount({
         app_id: 'mock-appid',
         secret: 'mock-secret',
         token: 'mock-token',
@@ -38,7 +37,7 @@ class TestUnit extends BaseTestUnit {
     });
 
     it('Should set and get client successful', async () => {
-      let app = new Application({
+      let app = new OfficialAccount({
         app_id: 'mock-appid',
         secret: 'mock-secret',
         token: 'mock-token',
@@ -52,7 +51,7 @@ class TestUnit extends BaseTestUnit {
     });
 
     it('Should set and get encryptor successful', async () => {
-      let app = new Application({
+      let app = new OfficialAccount({
         app_id: 'mock-appid',
         secret: 'mock-secret',
         token: 'mock-token',
@@ -67,7 +66,7 @@ class TestUnit extends BaseTestUnit {
     });
 
     it('Should throw error when getServer before set ServerRequest', async () => {
-      let app = new Application({
+      let app = new OfficialAccount({
         app_id: 'mock-appid',
         secret: 'mock-secret',
         token: 'mock-token',
@@ -83,7 +82,7 @@ class TestUnit extends BaseTestUnit {
     });
 
     it('Should set and get server successful', async () => {
-      let app = new Application({
+      let app = new OfficialAccount({
         app_id: 'mock-appid',
         secret: 'mock-secret',
         token: 'mock-token',
@@ -97,7 +96,7 @@ class TestUnit extends BaseTestUnit {
     });
 
     it('Should set and get access_token successful', async () => {
-      let app = new Application({
+      let app = new OfficialAccount({
         app_id: 'mock-appid',
         secret: 'mock-secret',
         token: 'mock-token',
@@ -112,7 +111,7 @@ class TestUnit extends BaseTestUnit {
     });
 
     it('Should set and get js_tiket successful', async () => {
-      let app = new Application({
+      let app = new OfficialAccount({
         app_id: 'mock-appid',
         secret: 'mock-secret',
         token: 'mock-token',
@@ -127,7 +126,7 @@ class TestUnit extends BaseTestUnit {
     });
 
     it('Should get utils successful', async () => {
-      let app = new Application({
+      let app = new OfficialAccount({
         app_id: 'mock-appid',
         secret: 'mock-secret',
         token: 'mock-token',

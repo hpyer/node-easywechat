@@ -1,5 +1,5 @@
 const BaseTestUnit = require('../BaseTestUnit');
-const Application = require('../../dist/OfficialAccount/Application');
+const { OfficialAccount } = require('../../dist/');
 const Account = require('../../dist/OfficialAccount/Account');
 
 class TestUnit extends BaseTestUnit {
@@ -13,7 +13,7 @@ class TestUnit extends BaseTestUnit {
         token: 'mock-token',
         aes_key: 'mock-aes_key',
       };
-      let app = new Application(appConfig);
+      let app = new OfficialAccount(appConfig);
       let appAccount = app.getAccount();
       this.assert.strictEqual(appAccount.getAppId(), appConfig.app_id);
       this.assert.strictEqual(appAccount.getSecret(), appConfig.secret);

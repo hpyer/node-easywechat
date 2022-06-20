@@ -1,6 +1,6 @@
 const BaseTestUnit = require('../BaseTestUnit');
 const Server = require('../../dist/MiniApp/Server');
-const ServerRequest = require('../../dist/Core/Http/ServerRequest');
+const { ServerRequest } = require('../../dist/');
 const { parseXml } = require('../../dist/Core/Support/Utils');
 
 class TestUnit extends BaseTestUnit {

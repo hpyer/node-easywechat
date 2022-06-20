@@ -1,5 +1,5 @@
 const BaseTestUnit = require('../BaseTestUnit');
-const Application = require('../../dist/OfficialAccount/Application');
+const { OfficialAccount } = require('../../dist/');
 const Config = require('../../dist/OfficialAccount/Config');
 
 class TestUnit extends BaseTestUnit {
@@ -7,7 +7,7 @@ class TestUnit extends BaseTestUnit {
   test() {
 
     it('Should fetch correct config from application', () => {
-      let app = new Application({
+      let app = new OfficialAccount({
         app_id: 'mock-appid',
         secret: 'mock-secret',
         token: 'mock-token',

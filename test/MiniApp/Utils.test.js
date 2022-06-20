@@ -1,6 +1,6 @@
 const BaseTestUnit = require('../BaseTestUnit');
 const HttpClient = require('../../dist/Core/HttpClient/HttpClient')
-const Application = require('../../dist/MiniApp/Application');
+const { MiniApp } = require('../../dist/');
 const Utils = require('../../dist/MiniApp/Utils');
 
 class TestUnit extends BaseTestUnit {
@@ -21,7 +21,7 @@ class TestUnit extends BaseTestUnit {
       client = this.getMockedHttpClient(client);
       client.mock('get', '/sns/jscode2session').reply(200, result);
 
-      let app = new Application({
+      let app = new MiniApp({
         app_id: 'mock-appid',
         secret: 'mock-secret',
         token: 'mock-token',
@@ -58,7 +58,7 @@ oKlaRv85IfVunYzO0IKXsyl7JCUjCpoG
 Db/XcxxmK01EpqOyuxINew==`;
       let iv = 'r7BXXKkLb8qrSNn05n0qiA==';
 
-      let app = new Application({
+      let app = new MiniApp({
         app_id: 'mock-appid',
         secret: 'mock-secret',
         token: 'mock-token',
