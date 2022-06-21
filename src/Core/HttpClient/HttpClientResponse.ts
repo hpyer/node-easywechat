@@ -118,7 +118,7 @@ class HttpClientResponse implements HttpClientResponseInterface {
    * @returns
    */
   toDataUrl(): string {
-    return 'data:' + this.getHeader('content-type') + ';base64,' + this.response.data;
+    return 'data:' + this.getHeader('content-type') + ';base64,' + this.response.data.toString('base64');
   }
 
   /**

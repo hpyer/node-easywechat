@@ -1,24 +1,19 @@
 'use strict';
 
-import ResponseInterface from '../Core/Http/Contracts/ResponseInterface';
 import ServerRequestInterface from '../Core/Http/Contracts/ServerRequestInterface';
 import Encryptor from '../Core/Encryptor';
 import ServerInterface from '../Core/Contracts/ServerInterface';
 import Response from '../Core/Http/Response';
 import Message from './Message';
-import HandlersMixin from '../Core/Mixins/HandlersMixin';
-import { applyMixins } from '../Core/Support/Utils';
-import DecryptXmlMessageMixin from '../Core/Mixins/DecryptXmlMessageMixin';
 import { ServerEventType, ServerHandlerClosure, ServerMessageType } from '../Types/global';
-import ResponseXmlMessageMixin from '../Core/Mixins/ResponseXmlMessageMixin';
 
-class Server implements ServerInterface
+class Server extends ServerInterface
 {
   constructor(
     protected request: ServerRequestInterface = null,
     protected encryptor: Encryptor = null
   ) {
-    this.handlers = [];
+    super();
   }
 
   /**
@@ -96,9 +91,5 @@ class Server implements ServerInterface
   }
 
 };
-
-interface Server extends HandlersMixin, DecryptXmlMessageMixin, ResponseXmlMessageMixin { };
-
-applyMixins(Server, [HandlersMixin, DecryptXmlMessageMixin, ResponseXmlMessageMixin]);
 
 export = Server;
