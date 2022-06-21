@@ -6,9 +6,9 @@ test/
 .gitignore
 .npmignore
 yarn.lock
-yarn-error.log
-npm-debug.log
 .travis.yml
+*.cache
+*.log
 
 # Editor directories and files
 .idea
