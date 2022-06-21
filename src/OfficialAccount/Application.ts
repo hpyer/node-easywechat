@@ -24,6 +24,9 @@ import JsApiTicket from './JsApiTicket';
 import Server from './Server';
 import Utils from './Utils';
 
+/**
+ * 公众号应用
+ */
 class Application implements ApplicationInterface
 {
   constructor(config: ConfigInterface | OfficialAccountConfig) {

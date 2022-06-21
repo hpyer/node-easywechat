@@ -4,6 +4,9 @@ import ServerRequestInterface from "./Http/Contracts/ServerRequestInterface";
 import HasAttributesMixin from "./Mixins/HasAttributesMixin";
 import { applyMixins, parseXml } from "./Support/Utils";
 
+/**
+ * 消息对象
+ */
 class Message
 {
   /**

@@ -21,6 +21,9 @@ import Server from './Server';
 import Utils from './Utils';
 import Config from '../OfficialAccount/Config';
 
+/**
+ * 小程序应用
+ */
 class Application implements ApplicationInterface
 {
   constructor(config: ConfigInterface | MiniAppConfig) {

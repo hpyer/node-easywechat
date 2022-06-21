@@ -1,5 +1,8 @@
 'use strict';
 
+/**
+ * 缓存接口
+ */
 abstract class CacheInterface
 {
   /**

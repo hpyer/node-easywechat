@@ -9,6 +9,9 @@ import ServerRequestInterface from "./Contracts/ServerRequestInterface";
 import MessageMixin from "./Minxins/MessageMixin";
 import RequestMixin from "./Minxins/RequestMixin";
 
+/**
+ * 服务器收到的请求对象
+ */
 class ServerRequest implements ServerRequestInterface
 {
   protected attributes: Record<string, any> = {};
