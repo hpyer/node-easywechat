@@ -184,7 +184,7 @@ class Application implements ApplicationInterface
         this.getAccount().getSecret(),
         null,
         this.getCache(),
-        this.getHttpClient()
+        this.getClient()
       );
     }
     return this.ticket;
