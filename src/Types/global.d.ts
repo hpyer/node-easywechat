@@ -1,4 +1,4 @@
-import { AxiosRequestConfig } from 'axios';
+import { AxiosRequestConfig, AxiosResponse } from 'axios';
 import ProviderInterface from 'node-socialite/dist/Core/ProviderInterface';
 import OfficialAccountApplicationInterface from '../OfficialAccount/Contracts/ApplicationInterface';
 import Message from '../Core/Message';
