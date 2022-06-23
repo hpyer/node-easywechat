@@ -1,8 +1,6 @@
 'use strict';
 
 import { AxiosRequestConfig, Method } from "axios";
-import merge from "merge";
-import { strSnake } from "../../Support/Utils";
 
 class PresetMixin
 {
@@ -141,7 +139,7 @@ class PresetMixin
   mergeThenResetPrepends(payload: AxiosRequestConfig, method: Method = 'get') {
     let field = method.toLowerCase() === 'get' ? 'params' : 'data';
 
-    let options = merge.recursive(true, payload);
+    let options: AxiosRequestConfig = { ...payload };
     if (!options.headers) options.headers = {};
 
     if ((options.headers['Content-Type'] ?? options.headers['content-type'] ?? null) === 'application/json' || !!options.json) {

@@ -1,11 +1,11 @@
 'use strict';
 
-import merge from 'merge';
 import Axios, { AxiosInstance, AxiosRequestConfig, Method } from 'axios';
 import HttpClientInterface from './Contracts/HttpClientInterface';
 import HttpClientResponse from './HttpClientResponse';
 import { HttpClientFailureJudgeClosure, LogHandler } from '../../Types/global';
 import { buildXml } from '../Support/Utils';
+import FormData from 'form-data';
 
 class HttpClient implements HttpClientInterface
 {
@@ -30,7 +30,8 @@ class HttpClient implements HttpClientInterface
   }
 
   async request(method: Method, url: string, payload: AxiosRequestConfig<any> = {}): Promise<HttpClientResponse> {
-    let options: AxiosRequestConfig = merge.recursive(true, payload);
+    let options: AxiosRequestConfig = { ...payload };
+    if (!options.headers) options.headers = {};
     options.method = method;
     options.url = url;
 
@@ -46,7 +47,6 @@ class HttpClient implements HttpClientInterface
         throw new Error('The type of `xml` must be string or object.');
       }
 
-      if (!options.headers) options.headers = {};
       if (!options.headers['Content-Type'] && !options.headers['content-type']) {
         options.headers['content-type'] = 'text/xml';
       }
@@ -67,7 +67,6 @@ class HttpClient implements HttpClientInterface
         throw new Error('The type of `json` must be string or object.');
       }
 
-      if (!options.headers) options.headers = {};
       if (!options.headers['Content-Type'] && !options.headers['content-type']) {
         options.headers['content-type'] = 'application/json';
       }
@@ -75,6 +74,11 @@ class HttpClient implements HttpClientInterface
       options.data = json;
       options['json'] = undefined;
       delete options['json'];
+    }
+
+    // 如果 data 是 FormData 对象，则从中提取 headers
+    if (options.data && options.data instanceof FormData) {
+      options.headers = { ...(await this.getFormDataHeaders(options.data)), ...options.headers };
     }
 
     let starttime = Date.now();
@@ -96,6 +100,26 @@ class HttpClient implements HttpClientInterface
   setInstance(instance: AxiosInstance): this {
     this.axios = instance;
     return this;
+  }
+
+  /**
+   * 获取 FormData 对象的 headers
+   * @param formData
+   * @returns
+   */
+  protected getFormDataHeaders(formData: FormData): Promise<Record<string, string | number>> {
+    return new Promise((resolve, reject) => {
+      let headers = formData.getHeaders();
+      formData.getLength(function (err, length) {
+        if (err) {
+          headers['content-length'] = 0;
+        }
+        else {
+          headers['content-length'] = length;
+        }
+        resolve(headers);
+      });
+    });
   }
 
   /**
