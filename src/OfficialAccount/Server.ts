@@ -23,7 +23,7 @@ class Server extends ServerInterface
   async serve(): Promise<Response> {
     let echostr: string = this.request.getQueryParams()['echostr'] || '';
     if (!!echostr) {
-      return new Response(200, {}, echostr);
+      return new Response(200, { 'Content-Type': 'text/html' }, echostr);
     }
 
     let message = await this.getRequestMessage(this.request);
