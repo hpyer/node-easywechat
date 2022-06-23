@@ -75,6 +75,18 @@ class HttpClient implements HttpClientInterface
       options['json'] = undefined;
       delete options['json'];
     }
+    if (options['formData'] && Object.keys(options['formData']).length > 0) {
+      let formData = new FormData();
+      for (let key in options['formData']) {
+        formData.append(key, options['formData'][key]);
+      }
+      if (options.data) for (let key in options.data) {
+        formData.append(key, options.data[key]);
+      }
+      options.data = formData;
+      options['formData'] = undefined;
+      delete options['formData'];
+    }
 
     // 如果 data 是 FormData 对象，则从中提取 headers
     if (options.data && options.data instanceof FormData) {

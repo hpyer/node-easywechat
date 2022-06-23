@@ -1,6 +1,7 @@
 'use strict';
 
 import { AxiosRequestConfig, Method } from "axios";
+import fs from "fs";
 
 class PresetMixin
 {
@@ -17,6 +18,10 @@ class PresetMixin
    * 存储预置数据
    */
   protected prependData: Record<string, any> = {};
+  /**
+   * 存储预置文件数据
+   */
+  protected prependFiles: Record<string, fs.ReadStream> = {};
 
   /**
    * 设置预置参数
@@ -131,6 +136,37 @@ class PresetMixin
   }
 
   /**
+   * 预设置文件
+   * @param file  文件路径或可读文件流
+   * @param key 参数名，默认：'file'
+   * @returns
+   */
+  withFile(file: string | fs.ReadStream, key: string = 'file') {
+    if (typeof this.prependFiles !== 'object') {
+      this.prependFiles = {};
+    }
+    if (file instanceof fs.ReadStream) {
+      this.prependFiles[key] = file;
+    }
+    else if (typeof file === 'string') {
+      this.prependFiles[key] = fs.createReadStream(file);
+    }
+    return this;
+  }
+
+  /**
+   * 预设置多个文件
+   * @param files  键名：文件名，键值：文件路径或可读文件流
+   * @returns
+   */
+  withFiles(files: Record<string, string | fs.ReadStream>) {
+    for (const key in files) {
+      this.withFile(files[key], key);
+    }
+    return this;
+  }
+
+  /**
    * 合并预置参数并清空预置数据
    * @param payload
    * @param method
@@ -141,6 +177,7 @@ class PresetMixin
 
     let options: AxiosRequestConfig = { ...payload };
     if (!options.headers) options.headers = {};
+    if (!options.formData) options.formData = {};
 
     if ((options.headers['Content-Type'] ?? options.headers['content-type'] ?? null) === 'application/json' || !!options.json) {
       field = 'json';
@@ -157,8 +194,13 @@ class PresetMixin
       options.headers = { ...this.prependHeaders, ...options.headers };
     }
 
+    if (this.prependFiles && Object.keys(this.prependFiles).length > 0) {
+      options.formData = { ...this.prependFiles, ...options.formData };
+    }
+
     this.prependData = {};
     this.prependHeaders = {};
+    this.prependFiles = {};
 
     return options;
   }

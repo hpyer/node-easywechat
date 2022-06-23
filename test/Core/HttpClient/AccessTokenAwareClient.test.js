@@ -1,6 +1,8 @@
 const BaseTestUnit = require('../../BaseTestUnit');
+const { FormData } = require('../../../dist/');
 const AccessTokenInterface = require('../../../dist/Core/Contracts/AccessTokenInterface');
 const AccessTokenAwareClient = require('../../../dist/Core/HttpClient/AccessTokenAwareClient');
+const path = require('path');
 
 class TestUnit extends BaseTestUnit {
 
@@ -86,13 +88,15 @@ class TestUnit extends BaseTestUnit {
           'foo': 'bar',
         });
 
-      client.withAppId().with('foo');
+      let file = path.join(__dirname, '../../temp/blank.png');
+      client.withAppId().with('foo').withFile(file);
 
       let response = await client.get('https://example.com/test/api', {
         params: {
           'bar': 'mock-bar',
         },
       });
+      this.assert.strictEqual(response.getInfo()['data'] instanceof FormData, true);
       this.assert.deepStrictEqual(response.getInfo()['params'], {
         app_id: 'mock-app_id',
         foo: 'mock-foo',
