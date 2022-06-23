@@ -1,6 +1,10 @@
 # CHANGELOG
 
 
+## v3.0.0-beta.4 (2022-06-24)
+
+- Feat: 请求接口数据增加 FormData 实例的支持
+
 ## v3.0.0-beta.3 (2022-06-22)
 
 - Fix: 修复获取js ticket时无法自动获取access_token的问题
