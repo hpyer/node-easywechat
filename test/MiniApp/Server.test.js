@@ -27,7 +27,9 @@ class TestUnit extends BaseTestUnit {
           'content-type': 'text/xml',
         },
       };
-      let request = ServerRequest.createFromIncomingMessage(req);
+      let request = await ServerRequest.createFromIncomingMessage(req, {
+        foo: 'bar',
+      });
 
       let server = new Server(request);
       let response = await server.serve();

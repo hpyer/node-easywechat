@@ -132,13 +132,12 @@ class ServerRequest implements ServerRequestInterface
    * @param body 支持 Buffer、object对象、JSON字符串、XML字符串、QueryString格式的 body 内容字符串
    * @returns
    */
-  static createFromIncomingMessage(req: IncomingMessage, body: Buffer | Record<string, any> | string = null): ServerRequest {
-    let request = new ServerRequest(req.method, req.url, req.headers || {}, body, req.httpVersion, parse(req.url, true).query || {});
+  static async createFromIncomingMessage(req: IncomingMessage, body: Buffer | Record<string, any> | string = null): Promise<ServerRequest> {
+    let request = new ServerRequest(req.method, req.url, req.headers || {}, body, req.httpVersion);
 
     if (!body) {
-      rawbody(req).then(res => {
-        request.withBody(res);
-      });
+      let res = await rawbody(req);
+      request.withBody(res);
     }
 
     return request;

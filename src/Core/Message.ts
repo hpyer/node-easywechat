@@ -43,7 +43,11 @@ class Message
    * @returns
    */
   static async createFromRequest(request: ServerRequestInterface): Promise<Message> {
-    let originContent = request.getBody().toString();
+    let originContent = '';
+    let body = request.getBody();
+    if (body) {
+      originContent = body.toString();
+    }
     let attributes: Record<string, any> = {};
     if ('<' === originContent.substring(0, 1)) {
       attributes = await parseXml(originContent);

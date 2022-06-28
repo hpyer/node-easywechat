@@ -101,11 +101,6 @@ class Application implements ApplicationInterface
   getServer(): ServerInterface
   {
     if (!this.server) {
-      let token = this.getAccount().getToken();
-      let aesKey = this.getAccount().getAesKey();
-      if (!token || !aesKey) {
-        throw new Error('token or aes_key cannot be empty.');
-      }
       this.server = new Server(
         this.getRequest(),
         this.getAccount().getAesKey() ? this.getEncryptor() : null
