@@ -1,7 +1,6 @@
 'use strict';
 
 import merge from 'merge';
-import AccessTokenInterface from '../Core/Contracts/AccessTokenInterface';
 import ConfigInterface from '../Core/Contracts/ConfigInterface';
 import ServerInterface from '../Core/Contracts/ServerInterface';
 import Encryptor from '../Core/Encryptor';
@@ -20,6 +19,7 @@ import ApplicationInterface from './Contracts/ApplicationInterface';
 import Server from './Server';
 import Utils from './Utils';
 import Config from '../OfficialAccount/Config';
+import RefreshableAccessTokenInterface from '../Core/Contracts/RefreshableAccessTokenInterface';
 
 /**
  * 小程序应用
@@ -38,7 +38,7 @@ class Application implements ApplicationInterface
   protected account: AccountInterface = null;
   protected encryptor: Encryptor = null;
   protected server: ServerInterface = null;
-  protected accessToken: AccessTokenInterface = null;
+  protected accessToken: RefreshableAccessTokenInterface = null;
 
   getAccount(): AccountInterface
   {
@@ -120,7 +120,7 @@ class Application implements ApplicationInterface
     return this;
   }
 
-  getAccessToken(): AccessTokenInterface
+  getAccessToken(): RefreshableAccessTokenInterface
   {
     if (!this.accessToken) {
       this.accessToken = new AccessToken(
@@ -139,7 +139,7 @@ class Application implements ApplicationInterface
    * @param accessToken
    * @returns
    */
-  setAccessToken(accessToken: AccessTokenInterface): this
+  setAccessToken(accessToken: RefreshableAccessTokenInterface): this
   {
     this.accessToken = accessToken;
     return this;

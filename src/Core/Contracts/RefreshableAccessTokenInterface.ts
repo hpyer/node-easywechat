@@ -2,7 +2,7 @@
 
 import AccessTokenInterface from "./AccessTokenInterface";
 
-abstract class RefreshableAccessToken extends AccessTokenInterface
+abstract class RefreshableAccessTokenInterface extends AccessTokenInterface
 {
   /**
    * 刷新token
@@ -11,4 +11,4 @@ abstract class RefreshableAccessToken extends AccessTokenInterface
   async refresh(): Promise<string> { return null; }
 };
 
-export = RefreshableAccessToken;
+export = RefreshableAccessTokenInterface;

@@ -1,7 +1,6 @@
 'use strict';
 
 import ProviderInterface from "node-socialite/dist/Core/ProviderInterface";
-import AccessTokenInterface from "../../Core/Contracts/AccessTokenInterface";
 import CacheInterface from "../../Core/Contracts/CacheInterface";
 import ConfigInterface from "../../Core/Contracts/ConfigInterface";
 import AccessTokenAwareClient from "../../Core/HttpClient/AccessTokenAwareClient";
@@ -13,6 +12,7 @@ import AccountInterface from "./AccountInterface";
 import { OfficialAccountOAuthFactory } from "../../Types/global";
 import JsApiTicket from "../JsApiTicket";
 import Utils from "../Utils";
+import RefreshableAccessTokenInterface from "../../Core/Contracts/RefreshableAccessTokenInterface";
 
 abstract class ApplicationInterface
 {
@@ -68,7 +68,7 @@ abstract class ApplicationInterface
    * 获取AccessToken实例
    * @returns
    */
-  getAccessToken(): AccessTokenInterface { return null; }
+  getAccessToken(): RefreshableAccessTokenInterface { return null; }
 
   /**
    * 获取缓存实例

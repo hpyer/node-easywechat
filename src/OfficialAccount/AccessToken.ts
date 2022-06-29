@@ -2,11 +2,11 @@
 
 import CacheInterface from "../Core/Contracts/CacheInterface";
 import HttpClientInterface from "../Core/HttpClient/Contracts/HttpClientInterface";
-import RefreshableAccessToken from "../Core/Contracts/RefreshableAccessTokenInterface";
+import RefreshableAccessTokenInterface from "../Core/Contracts/RefreshableAccessTokenInterface";
 import HttpClient from "../Core/HttpClient/HttpClient";
 import FileCache from "../Core/Cache/FileCache";
 
-class AccessToken implements RefreshableAccessToken
+class AccessToken implements RefreshableAccessTokenInterface
 {
   constructor(
     protected appId: string,

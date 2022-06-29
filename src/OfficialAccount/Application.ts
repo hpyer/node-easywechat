@@ -4,7 +4,6 @@ import merge from 'merge';
 import ProviderInterface from 'node-socialite/dist/Core/ProviderInterface';
 import WeChat from 'node-socialite/dist/Providers/WeChat';
 import Config from './Config';
-import AccessTokenInterface from '../Core/Contracts/AccessTokenInterface';
 import ConfigInterface from '../Core/Contracts/ConfigInterface';
 import ServerInterface from '../Core/Contracts/ServerInterface';
 import Encryptor from '../Core/Encryptor';
@@ -23,6 +22,7 @@ import ApplicationInterface from './Contracts/ApplicationInterface';
 import JsApiTicket from './JsApiTicket';
 import Server from './Server';
 import Utils from './Utils';
+import RefreshableAccessTokenInterface from '../Core/Contracts/RefreshableAccessTokenInterface';
 
 /**
  * 公众号应用
@@ -41,7 +41,7 @@ class Application implements ApplicationInterface
   protected account: AccountInterface = null;
   protected encryptor: Encryptor = null;
   protected server: ServerInterface = null;
-  protected accessToken: AccessTokenInterface = null;
+  protected accessToken: RefreshableAccessTokenInterface = null;
   protected oauthFactory: OfficialAccountOAuthFactory = null;
   protected ticket: JsApiTicket = null;
 
@@ -120,7 +120,7 @@ class Application implements ApplicationInterface
     return this;
   }
 
-  getAccessToken(): AccessTokenInterface
+  getAccessToken(): RefreshableAccessTokenInterface
   {
     if (!this.accessToken) {
       this.accessToken = new AccessToken(
@@ -139,7 +139,7 @@ class Application implements ApplicationInterface
    * @param accessToken
    * @returns
    */
-  setAccessToken(accessToken: AccessTokenInterface): this
+  setAccessToken(accessToken: RefreshableAccessTokenInterface): this
   {
     this.accessToken = accessToken;
     return this;
