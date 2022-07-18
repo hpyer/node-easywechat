@@ -37,11 +37,11 @@ class RSA {
    * 加密
    * @param plaintext 待加密文本
    * @param encoding 编码，默认：'base64'
-   * @param hashType 哈希方式，默认：'sha1'
+   * @param hashType 哈希方式，默认：'sha256'
    * @param padding 补位方式，默认：crypto.constants.RSA_PKCS1_OAEP_PADDING
    * @returns
    */
-  encrypt(plaintext: string, encoding: BufferEncoding = 'base64', hashType: string = 'sha1', padding: number = crypto.constants.RSA_PKCS1_OAEP_PADDING): string {
+  encrypt(plaintext: string, encoding: BufferEncoding = 'base64', hashType: string = 'sha256', padding: number = crypto.constants.RSA_PKCS1_OAEP_PADDING): string {
     let encryptedData = crypto.publicEncrypt(
       {
         key: this.publicKey,
@@ -58,11 +58,11 @@ class RSA {
    * 解密
    * @param ciphertext 待解密文本
    * @param encoding 编码，默认：'base64'
-   * @param hashType 哈希方式，默认：'sha1'
+   * @param hashType 哈希方式，默认：'sha256'
    * @param padding 补位方式，默认：crypto.constants.RSA_PKCS1_OAEP_PADDING
    * @returns
    */
-  decrypt(ciphertext: string, encoding: BufferEncoding = 'base64', hashType: string = 'sha1', padding: number = crypto.constants.RSA_PKCS1_OAEP_PADDING): string {
+  decrypt(ciphertext: string, encoding: BufferEncoding = 'base64', hashType: string = 'sha256', padding: number = crypto.constants.RSA_PKCS1_OAEP_PADDING): string {
     let decryptedData = crypto.privateDecrypt(
       {
         key: this.privateKey,
