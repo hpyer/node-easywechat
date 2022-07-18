@@ -4,7 +4,6 @@ import OfficialAccount from './OfficialAccount/Application';
 import MiniApp from './MiniApp/Application';
 import CacheInterface from './Core/Contracts/CacheInterface';
 import ServerRequest from './Core/Http/ServerRequest';
-import Message from './Core/Message';
 import FormData from 'form-data';
 
 export {
@@ -19,7 +18,6 @@ export {
   LogHandler,
   ServerEventType,
   ServerHandlerClosure,
-  Message,
 
   /**
    * 表单对象
