@@ -324,3 +324,97 @@ export declare type PaymentScannedHandler = (message: Message, fail: PaymentFail
  * @param response 响应对象，仅在 type 为 after 时返回
  */
 export declare type LogHandler = (type: 'before' | 'after', options: AxiosRequestConfig, usedTime?: number, response?: AxiosResponse) => void | Promise<void>;
+
+/**
+ * 支付参数 JsBridge
+ */
+export declare interface PayBridgeConfig {
+  /**
+   * 应用id
+   */
+  appId: string;
+  /**
+   * 时间戳
+   */
+  timeStamp: number;
+  /**
+   * 随机字符串
+   */
+  nonceStr: string;
+  /**
+   * 订单详情扩展字符串
+   */
+  package: string;
+  /**
+   * 签名方式
+   */
+  signType: string;
+  /**
+   * 签名
+   */
+  paySign: string;
+}
+
+/**
+ * 支付参数 JsSdk
+ */
+export declare interface PaySdkConfig {
+  /**
+   * 应用id
+   */
+  appId: string;
+  /**
+   * 时间戳
+   */
+  timestamp: number;
+  /**
+   * 随机字符串
+   */
+  nonceStr: string;
+  /**
+   * 订单详情扩展字符串
+   */
+  package: string;
+  /**
+   * 签名方式
+   */
+  signType: string;
+  /**
+   * 签名
+   */
+  paySign: string;
+}
+
+/**
+ * 支付参数 App
+ */
+export declare interface PayAppConfig {
+  /**
+   * 应用id
+   */
+  appId: string;
+  /**
+   * 商户id
+   */
+  partnerid: string;
+  /**
+   * 预支付交易会话ID
+   */
+  prepayid: string;
+  /**
+   * 订单详情扩展字符串
+   */
+  package: string;
+  /**
+   * 随机字符串
+   */
+  nonceStr: string;
+  /**
+   * 时间戳
+   */
+  timestamp: number;
+  /**
+   * 签名
+   */
+  sign: string;
+}

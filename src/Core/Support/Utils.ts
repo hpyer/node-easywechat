@@ -5,6 +5,7 @@ import Qs from 'qs';
 import Xml2js from 'xml2js';
 import Stream from 'stream';
 import Fs from 'fs';
+import axios from 'axios';
 
 export const createHash = function (str: string, type: string = 'sha1'): any
 {
@@ -317,4 +318,18 @@ export const buildXml = function(data: Record<string, any>, rootName: string = '
     }
   });
   return XmlBuilder.buildObject(data).replace('<?xml version="1.0"?>', '');
+}
+
+/**
+ * 创建UserAgent
+ * @param appends 可选，附加的字符串列表
+ * @returns
+ */
+export const createUserAgent = function(appends: string[] = []): string
+{
+  let values: string[] = [];
+  values.push(`node-easywechat/${require('../../../packages.json').version}`);
+  values.push(`axios/${axios.VERSION}`);
+  values = values.concat(appends);
+  return values.join(' ');
 }
