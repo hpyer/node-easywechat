@@ -20,8 +20,8 @@ class ResponseXmlMessageMixin
     }
 
     let attributes = merge.recursive({
-      ToUserName: message.FromUserName,
-      FromUserName: message.ToUserName,
+      ToUserName: message['FromUserName'],
+      FromUserName: message['ToUserName'],
       CreateTime: getTimestamp(),
     }, await this.normalizeResponse(response));
 

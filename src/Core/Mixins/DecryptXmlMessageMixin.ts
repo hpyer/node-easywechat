@@ -12,7 +12,7 @@ class DecryptXmlMessageMixin
    */
   async decryptMessage(message: Message, encryptor: Encryptor, signature: string, timestamp: number, nonce: string): Promise<Message>
   {
-    let ciphertext = message.Encrypt;
+    let ciphertext = message['Encrypt'];
 
     this.validateSignature(encryptor.getToken(), ciphertext, signature, timestamp, nonce);
 
