@@ -9,7 +9,7 @@ import ConfigMixin from '../Core/Mixins/ConfigMixin';
 import HttpClientMixin from '../Core/Mixins/HttpClientMixin';
 import ServerRequestMixin from '../Core/Mixins/ServerRequestMixin';
 import { applyMixins } from '../Core/Support/Utils';
-import { MiniAppConfig } from '../Types/global';
+import { PayConfig } from '../Types/global';
 import Merchant from './Merchant';
 import MerchantInterface from './Contracts/MerchantInterface';
 import ApplicationInterface from './Contracts/ApplicationInterface';
@@ -22,11 +22,11 @@ import HttpClientInterface from '../Core/HttpClient/Contracts/HttpClientInterfac
 import Client from './Client';
 
 /**
- * 小程序应用
+ * 微信支付应用
  */
 class Application implements ApplicationInterface
 {
-  constructor(config: ConfigInterface | MiniAppConfig) {
+  constructor(config: ConfigInterface | PayConfig) {
     if (config instanceof ConfigInterface) {
       this.setConfig(config);
     }

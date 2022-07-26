@@ -3,6 +3,7 @@ import ProviderInterface from 'node-socialite/dist/Core/ProviderInterface';
 import OfficialAccountApplicationInterface from '../OfficialAccount/Contracts/ApplicationInterface';
 import Message from '../Core/Message';
 import HttpClientResponseInterface from '../Core/HttpClient/Contracts/HttpClientResponseInterface';
+import { PublicKey } from "../Core/Support/PublicKey";
 
 declare module 'axios' {
   export interface AxiosRequestConfig {
@@ -153,9 +154,23 @@ export declare interface PayConfig extends BaseConfig {
   mch_id?: string;
 
   /**
-   * pfx 证书路径（敏感接口（如退款、发送红包等）需要）
+   * 商户证书路径
    */
   certificate?: string;
+
+  /**
+   * 商户证书私钥路径
+   */
+  private_key?: string;
+
+  /**
+   * 平台证书（v3接口需要）
+   *
+   * 支持路径列表或者PublicKey对象列表或者，以serial_no为key，证书内容或PublicKey对象为value的对象
+   *
+   * 下载工具：https://github.com/wechatpay-apiv3/CertificateDownloader
+   */
+  platform_certs?: string[] | PublicKey[] | Record<string, string | PublicKey>;
 
   /**
    * v3 API密钥
