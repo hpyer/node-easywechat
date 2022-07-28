@@ -328,7 +328,7 @@ export const buildXml = function(data: Record<string, any>, rootName: string = '
 export const createUserAgent = function(appends: string[] = []): string
 {
   let values: string[] = [];
-  values.push(`node-easywechat/${require('../../../packages.json').version}`);
+  values.push(`node-easywechat/${require('../../../package.json').version}`);
   values.push(`axios/${axios.VERSION}`);
   values = values.concat(appends);
   return values.join(' ');
