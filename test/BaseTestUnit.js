@@ -35,9 +35,9 @@ module.exports = class BaseTestUnit {
      * 模拟请求
      * @param method 请求方式，如：get, post
      * @param url 请求地址
-     * @param data 请求参数，默认：null
+     * @param data 请求参数，默认：undefined
      */
-    client.mock = function (method, url, data = null) {
+    client.mock = function (method, url, data = undefined) {
       method = method.toLowerCase();
       method = 'on' + method.substring(0, 1).toUpperCase() + method.substring(1);
       return this.__mockedAxios[method](url, data);
