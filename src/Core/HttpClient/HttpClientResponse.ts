@@ -91,8 +91,9 @@ class HttpClientResponse implements HttpClientResponseInterface {
    * 返回字符串
    * @returns
    */
-  toString(): Promise<string> {
-    return this.toJson();
+  async toString(throwError: boolean = null): Promise<string> {
+    let obj = await this.toObject(throwError);
+    return (typeof obj === 'object' && obj !== null) ? JSON.stringify(obj) : String(obj);
   }
 
   /**
@@ -128,6 +129,7 @@ class HttpClientResponse implements HttpClientResponseInterface {
    */
   is(type: 'json' | 'xml' | 'html' | 'image' | 'audio' | 'video' | 'text'): boolean {
     let contentType = this.getHeader('content-type');
+    if (!contentType) return false;
     let res = false;
     switch (type.toLowerCase()) {
       case 'json':
