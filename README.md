@@ -50,10 +50,18 @@ let app = new Pay({
 let client = app.getClient();
 
 // 请求 api
+// 注意，这里返回的是 HttpClientResponse 对象
 let response = await client.post('/cgi-bin/user/info/updateremark', {
   openid: 'xxxx',
   remark: 'xxxx',
 });
+// 获取具体数据
+let data = response.toObject();
+// 另外还有以下方法：
+// toJson() 转json字符串
+// toString() 转字符串
+// saveAs(filename) 保存为文件
+// toDataUrl() 转base64字符串
 ```
 
 ### 配置项示例
