@@ -1,7 +1,8 @@
 
-import { OfficialAccountConfig, MiniAppConfig, LogHandler, ServerEventType, ServerHandlerClosure } from './Types/global';
+import { OfficialAccountConfig, MiniAppConfig, LogHandler, ServerEventType, ServerHandlerClosure, PayConfig } from './Types/global';
 import OfficialAccount from './OfficialAccount/Application';
 import MiniApp from './MiniApp/Application';
+import Pay from './Pay/Application';
 import CacheInterface from './Core/Contracts/CacheInterface';
 import ServerRequest from './Core/Http/ServerRequest';
 import FormData from 'form-data';
@@ -12,6 +13,9 @@ export {
 
   MiniApp,
   MiniAppConfig,
+
+  Pay,
+  PayConfig,
 
   CacheInterface,
   ServerRequest,
