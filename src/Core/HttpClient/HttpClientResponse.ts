@@ -65,7 +65,7 @@ class HttpClientResponse implements HttpClientResponseInterface {
         }
       }
     }
-    else {
+    else if (!Buffer.isBuffer(content)) {
       this.parsedContent = content;
     }
   }
