@@ -61,7 +61,7 @@ class AccessToken implements RefreshableAccessTokenInterface
   }
 
   async refresh(): Promise<string> {
-    let response = await (await this.httpClient.request(
+    let response = (await this.httpClient.request(
       'get',
       'cgi-bin/token',
       {
@@ -71,7 +71,7 @@ class AccessToken implements RefreshableAccessTokenInterface
           secret: this.secret,
         }
       }
-    )).toObject(false);
+    )).toObject();
 
     if (!response['access_token']) {
       throw new Error('Failed to get access_token: ' + JSON.stringify(response));

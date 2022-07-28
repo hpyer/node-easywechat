@@ -28,7 +28,7 @@ class JsApiTicket extends AccessToken
       return ticket;
     }
 
-    let response = await (await this.httpClient.request(
+    let response = (await this.httpClient.request(
       'get',
       '/cgi-bin/ticket/getticket',
       {
@@ -36,7 +36,7 @@ class JsApiTicket extends AccessToken
           type: 'jsapi',
         }
       }
-    )).toObject(false);
+    )).toObject();
 
     if (!response['ticket']) {
       throw new Error('Failed to get jssdk_ticket: ' + JSON.stringify(response));

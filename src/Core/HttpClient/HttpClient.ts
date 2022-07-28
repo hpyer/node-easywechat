@@ -102,7 +102,9 @@ class HttpClient implements HttpClientInterface
       let usedTime = Date.now() - starttime;
       await this.logger('after', options, usedTime, response);
     }
-    return new HttpClientResponse(response, this.failureJudge, this.throwError);
+    let resp = new HttpClientResponse(response, this.failureJudge, this.throwError);
+    await resp.parseContent(this.throwError);
+    return resp;
   }
 
   getInstance(): AxiosInstance {

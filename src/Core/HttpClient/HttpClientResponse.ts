@@ -5,14 +5,70 @@ import merge from "merge";
 import { AxiosResponse } from "axios";
 import { HttpClientFailureJudgeClosure, WeixinResponse } from "../../Types/global";
 import HttpClientResponseInterface from "./Contracts/HttpClientResponseInterface";
-import { parseXml } from "../Support/Utils";
+import { parseQueryString, parseXml } from "../Support/Utils";
 
 class HttpClientResponse implements HttpClientResponseInterface {
+  protected parsedContent: Record<string, any> = null;
   constructor(
     protected response: AxiosResponse,
     protected failureJudge: HttpClientFailureJudgeClosure = null,
-    protected throwError: boolean = true
+    protected throwError: boolean = false
   ) {}
+
+  /**
+   * 设置解析后的body内容
+   * @param content
+   * @returns
+   */
+  setParsedContent(content: Record<string, any>): this {
+    this.parsedContent = content;
+    return this;
+  }
+
+  /**
+   * 解析body内容
+   * @param throwError
+   * @returns
+   */
+  async parseContent(throwError: boolean = false) {
+    throwError = throwError ?? this.throwError;
+
+    let content = this.response.data;
+    if (!content) {
+      if (throwError) {
+        throw new Error('Response body is empty.');
+      }
+      return;
+    }
+    if (typeof content === 'string') {
+      if (this.is('xml') && content.indexOf('<xml>') > -1) {
+        this.parsedContent = await parseXml(content);
+      }
+      else if (this.is('json')) {
+        try {
+          this.parsedContent = JSON.parse(content);
+        }
+        catch (e) {
+          if (throwError) {
+            throw new Error('Fail to parse JSON content.');
+          }
+        }
+      }
+      else if (this.is('text')) {
+        try {
+          this.parsedContent = parseQueryString(content);
+        }
+        catch (e) {
+          if (throwError) {
+            throw new Error('Fail to parse QueryString content.');
+          }
+        }
+      }
+    }
+    else {
+      this.parsedContent = content;
+    }
+  }
 
   withThrowError(throwError: boolean): this {
     this.throwError = throwError;
@@ -58,41 +114,26 @@ class HttpClientResponse implements HttpClientResponseInterface {
   }
   /**
    * 返回对象格式
-   * @param throwError
    * @returns
    */
-  async toObject<T = WeixinResponse>(throwError: boolean = null): Promise<T> {
-    throwError = throwError === null ? this.throwError : throwError;
-
-    let content = this.response.data;
-    if (!content) {
-      throw new Error('Response body is empty.');
-    }
-
-    if (typeof content === 'string') {
-      if (this.is('xml') && content.indexOf('<xml>') > -1) {
-        return parseXml(content) as any;
-      }
-    }
-
-    return content;
+  toObject<T = WeixinResponse>(): T {
+    return this.parsedContent as T;
   }
 
   /**
    * 返回json字符串
-   * @param throwError
    * @returns
    */
-  async toJson(throwError: boolean = null): Promise<string> {
-    return JSON.stringify(await this.toObject(throwError));
+  toJson(): string {
+    return JSON.stringify(this.toObject());
   }
 
   /**
    * 返回字符串
    * @returns
    */
-  async toString(throwError: boolean = null): Promise<string> {
-    let obj = await this.toObject(throwError);
+  toString(): string {
+    let obj = this.getContent();
     return (typeof obj === 'object' && obj !== null) ? JSON.stringify(obj) : String(obj);
   }
 
