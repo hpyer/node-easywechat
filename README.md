@@ -37,6 +37,13 @@ let app = new MiniApp({
   // 配置项
 });
 
+// 微信支付
+const { Pay } = require('node-easywechat');
+// 实例化应用
+let app = new Pay({
+  // 配置项
+});
+
 // ----- 以下为通用的 api 调用方法 -----
 
 // 获取 api 调用客户端
@@ -100,6 +107,26 @@ let response = await client.post('/cgi-bin/user/info/updateremark', {
   token: '',
   // EncodingAESKey
   aes_key: ''
+}
+```
+
+``` js
+// 微信支付配置
+{
+  // 商户号
+  mch_id: '',
+  // 商户证书路径
+  certificate: '',
+  // 商户证书私钥路径
+  private_key: '',
+  // 平台证书（v3接口需要）
+  // 持路径列表或者PublicKey对象列表或者，以serial_no为key，证书内容或PublicKey对象为value的对象
+  // 下载工具：https://github.com/wechatpay-apiv3/CertificateDownloader
+  platform_certs: '',
+  // v3 API密钥
+  secret_key: '',
+  // v2 API密钥
+  v2_secret_key: '',
 }
 ```
 
@@ -214,7 +241,7 @@ app.setRequest(request);
 ### 模块支持情况
 
 - [x] 公众号模块
-- [ ] 微信支付
+- [x] 微信支付
 - [x] 小程序
 - [ ] 开放平台
 - [ ] 企业微信
