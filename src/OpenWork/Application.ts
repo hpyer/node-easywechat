@@ -13,6 +13,7 @@ import Encryptor from '../Core/Encryptor';
 import OpenWorkGuard from './Server/OpenWorkGuard';
 import { EasyWechatConfig } from '../Core/Types';
 import FinallResult from '../Core/Decorators/FinallResult';
+import DeviceClient from './Device/DeviceClient';
 
 export default class OpenWork extends BaseApplication
 {
@@ -34,6 +35,7 @@ export default class OpenWork extends BaseApplication
   public encryptor_corp: Encryptor;
   public encryptor: Encryptor;
   public server: OpenWorkGuard;
+  public device: DeviceClient;
 
   constructor(config: EasyWechatConfig = {}, prepends: Object = {}, id: String = null)
   {
@@ -106,6 +108,11 @@ export default class OpenWork extends BaseApplication
           return null;
         });
         return guard;
+      });
+    }
+    if (!this.device) {
+      this.offsetSet('device', function (app) {
+        return new DeviceClient(app);
       });
     }
   }
