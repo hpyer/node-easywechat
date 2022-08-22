@@ -1,7 +1,6 @@
 'use strict';
 
 import BaseClient from '../../Core/BaseClient';
-import { buildQueryString, randomString } from '../../Core/Utils';
 
 export default class DeviceClient extends BaseClient
 {
