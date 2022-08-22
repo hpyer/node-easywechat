@@ -18,6 +18,7 @@ import LicenseOrderClient from './License/LicenseOrderClient';
 import LicenseAccountClient from './License/LicenseAccountClient';
 import LicenseAppClient from './License/LicenseAppClient';
 import LicenseAutoActiveClient from './License/LicenseAutoActiveClient';
+import MediaClient from './Media/MediaClient';
 
 export default class OpenWork extends BaseApplication
 {
@@ -44,6 +45,7 @@ export default class OpenWork extends BaseApplication
   public license_account: LicenseAccountClient;
   public license_app: LicenseAppClient;
   public license_auto_active: LicenseAutoActiveClient;
+  public media: MediaClient;
 
   constructor(config: EasyWechatConfig = {}, prepends: Object = {}, id: String = null)
   {
@@ -141,6 +143,11 @@ export default class OpenWork extends BaseApplication
     if (!this.license_auto_active) {
       this.offsetSet('license_auto_active', function (app) {
         return new LicenseAutoActiveClient(app);
+      });
+    }
+    if (!this.media) {
+      this.offsetSet('media', function (app) {
+        return new MediaClient(app);
       });
     }
   }
