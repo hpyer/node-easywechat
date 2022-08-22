@@ -14,6 +14,10 @@ import OpenWorkGuard from './Server/OpenWorkGuard';
 import { EasyWechatConfig } from '../Core/Types';
 import FinallResult from '../Core/Decorators/FinallResult';
 import DeviceClient from './Device/DeviceClient';
+import LicenseOrderClient from './License/LicenseOrderClient';
+import LicenseAccountClient from './License/LicenseAccountClient';
+import LicenseAppClient from './License/LicenseAppClient';
+import LicenseAutoActiveClient from './License/LicenseAutoActiveClient';
 
 export default class OpenWork extends BaseApplication
 {
@@ -36,6 +40,10 @@ export default class OpenWork extends BaseApplication
   public encryptor: Encryptor;
   public server: OpenWorkGuard;
   public device: DeviceClient;
+  public license_order: LicenseOrderClient;
+  public license_account: LicenseAccountClient;
+  public license_app: LicenseAppClient;
+  public license_auto_active: LicenseAutoActiveClient;
 
   constructor(config: EasyWechatConfig = {}, prepends: Object = {}, id: String = null)
   {
@@ -113,6 +121,26 @@ export default class OpenWork extends BaseApplication
     if (!this.device) {
       this.offsetSet('device', function (app) {
         return new DeviceClient(app);
+      });
+    }
+    if (!this.license_order) {
+      this.offsetSet('license_order', function (app) {
+        return new LicenseOrderClient(app);
+      });
+    }
+    if (!this.license_account) {
+      this.offsetSet('license_account', function (app) {
+        return new LicenseAccountClient(app);
+      });
+    }
+    if (!this.license_app) {
+      this.offsetSet('license_app', function (app) {
+        return new LicenseAppClient(app);
+      });
+    }
+    if (!this.license_auto_active) {
+      this.offsetSet('license_auto_active', function (app) {
+        return new LicenseAutoActiveClient(app);
       });
     }
   }
