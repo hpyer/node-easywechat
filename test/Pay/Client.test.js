@@ -35,35 +35,35 @@ class TestUnit extends BaseTestUnit {
       let result = 'mock-get';
       httpclient.mock('get', '/test-url').reply(200, result, { 'Content-Type': 'text/plain' });
       let response = await client.get('/test-url');
-      this.assert.strictEqual(await response.toString(), result);
+      this.assert.strictEqual(response.toString(), result);
     });
 
     it('Should fetch correct response with POST method', async () => {
       let result = 'mock-post';
       httpclient.mock('post', '/test-url').reply(200, result, { 'Content-Type': 'text/plain' });
       let response = await client.post('/test-url');
-      this.assert.strictEqual(await response.toString(), result);
+      this.assert.strictEqual(response.toString(), result);
     });
 
     it('Should fetch correct response with PATCH method', async () => {
       let result = 'mock-patch';
       httpclient.mock('patch', '/test-url').reply(200, result, { 'Content-Type': 'text/plain' });
       let response = await client.patch('/test-url');
-      this.assert.strictEqual(await response.toString(), result);
+      this.assert.strictEqual(response.toString(), result);
     });
 
     it('Should fetch correct response with PUT method', async () => {
       let result = 'mock-put';
       httpclient.mock('put', '/test-url').reply(200, result, { 'Content-Type': 'text/plain' });
       let response = await client.put('/test-url');
-      this.assert.strictEqual(await response.toString(), result);
+      this.assert.strictEqual(response.toString(), result);
     });
 
     it('Should fetch correct response with DELETE method', async () => {
       let result = 'mock-delete';
       httpclient.mock('delete', '/test-url').reply(200, result, { 'Content-Type': 'text/plain' });
       let response = await client.delete('/test-url');
-      this.assert.strictEqual(await response.toString(), result);
+      this.assert.strictEqual(response.toString(), result);
     });
 
   }
