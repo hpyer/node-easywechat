@@ -7,6 +7,7 @@ const Encryptor = require('../../dist/Core/Encryptor');
 const AccessToken = require('../../dist/OfficialAccount/AccessToken');
 const JsApiTicket = require('../../dist/OfficialAccount/JsApiTicket');
 const Utils = require('../../dist/OfficialAccount/Utils');
+const HttpClient = require('../../dist/Core/HttpClient/HttpClient');
 
 class TestUnit extends BaseTestUnit {
 
@@ -134,6 +135,29 @@ class TestUnit extends BaseTestUnit {
       });
 
       this.assert.strictEqual(app.getUtils() instanceof Utils, true);
+    });
+
+    it('Should set data successful by using with()', async () => {
+      let app = new OfficialAccount({
+        app_id: 'mock-appid',
+        secret: 'mock-secret',
+        token: 'mock-token',
+        aes_key: 'mock-aeskey',
+      });
+
+      let cache = this.getMockedCacheClient();
+      cache.mock('mock-access_token');
+      app.setCache(cache);
+
+      let client = app.createClient();
+      client = this.getMockedHttpClient(client);
+
+      let result = 'mock-post';
+      client.mock('post', '/test-url').reply(200, result, { 'Content-Type': 'text/plain' });
+
+      let response = await client.withAppId().with('foo', 'bar').post('/test-url');
+      this.assert.strictEqual(response.response.config.data, '{"app_id":"mock-appid","foo":"bar"}');
+      this.assert.strictEqual(response.toString(), result);
     });
 
   }
