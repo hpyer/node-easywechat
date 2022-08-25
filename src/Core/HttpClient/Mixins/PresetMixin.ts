@@ -116,26 +116,6 @@ class PresetMixin
   }
 
   /**
-   * 预设置mch_id（因nodejs不支持魔术方法，只好预先设置几个常用的方法）
-   * @param new_mch_id
-   * @returns
-   */
-  withMchId(new_mch_id: string = null) {
-    this.with('mch_id', new_mch_id);
-    return this;
-  }
-
-  /**
-   * 预设置mch_id别名（因nodejs不支持魔术方法，只好预先设置几个常用的方法）
-   * @param new_alias
-   * @returns
-   */
-  withMchIdAs(new_alias: string = null) {
-    this.with(new_alias, this.presets['mch_id']);
-    return this;
-  }
-
-  /**
    * 预设置文件
    * @param file  文件路径或可读文件流
    * @param key 参数名，默认：'file'

@@ -90,6 +90,10 @@ class Client implements HttpClientInterface
       }
     }
 
+    if (this.prependData && Object.keys(this.prependData).length > 0) {
+      payload.data = { ...this.prependData, ...payload.data };
+    }
+
     if (this.prependHeaders && Object.keys(this.prependHeaders).length > 0) {
       payload.headers = { ...this.prependHeaders, ...payload.headers };
     }
@@ -132,6 +136,26 @@ class Client implements HttpClientInterface
    */
   protected attachLegacySignature(body: Record<string, any>) {
     return (new LegacySignature(this.merchant)).sign(body);
+  }
+
+  /**
+   * 预设置mch_id（因nodejs不支持魔术方法，只好预先设置几个常用的方法）
+   * @param new_mch_id
+   * @returns
+   */
+  withMchId(new_mch_id: string = null) {
+    this.with('mch_id', new_mch_id);
+    return this;
+  }
+
+  /**
+   * 预设置mch_id别名（因nodejs不支持魔术方法，只好预先设置几个常用的方法）
+   * @param new_alias
+   * @returns
+   */
+  withMchIdAs(new_alias: string = null) {
+    this.with(new_alias, this.presets['mch_id']);
+    return this;
   }
 
 }

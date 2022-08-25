@@ -38,7 +38,7 @@ class Application implements ApplicationInterface
   protected merchant: MerchantInterface = null;
   protected encryptor: Encryptor = null;
   protected server: ServerInterface = null;
-  protected client: HttpClientInterface;
+  protected client: Client;
 
   getMerchant(): MerchantInterface
   {
@@ -93,7 +93,7 @@ class Application implements ApplicationInterface
     return new Utils(this.getMerchant());
   }
 
-  getClient(): HttpClientInterface {
+  getClient() {
     if (!this.client) {
       this.client = (new Client(
         this.getMerchant(),
@@ -109,9 +109,9 @@ class Application implements ApplicationInterface
    * @param client
    * @returns
    */
-  setClient(client: HttpClientInterface): this
+  setClient(client: Client): this
   {
-    this.client = client;
+    this.client = client.setPresets(this.config.all());
     return this;
   }
 
