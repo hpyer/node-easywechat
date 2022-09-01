@@ -22,7 +22,7 @@ export default class PrivacyClient extends BaseClient
    */
   set(params: object): Promise<any>
   {
-    return this.httpPostJson('wxa/setwebviewdomain', params);
+    return this.httpPostJson('cgi-bin/component/setprivacysetting', params);
   }
 
   /**
