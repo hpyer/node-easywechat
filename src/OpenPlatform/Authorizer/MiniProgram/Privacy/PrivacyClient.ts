@@ -10,9 +10,9 @@ export default class PrivacyClient extends BaseClient
    * 查询小程序用户隐私保护指引
    * @see https://developers.weixin.qq.com/doc/oplatform/Third-party_Platforms/2.0/api/privacy_config/get_privacy_setting.html
    */
-  get(): Promise<any>
+  get(params: object = {}): Promise<any>
   {
-    return this.httpPostJson('cgi-bin/component/getprivacysetting');
+    return this.httpPostJson('cgi-bin/component/getprivacysetting', params);
   }
 
   /**
