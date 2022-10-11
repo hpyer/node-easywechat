@@ -1,7 +1,7 @@
 'use strict';
 
 import { Method, AxiosRequestConfig, AxiosInstance } from 'axios';
-import { LogHandler } from '../../../Types/global';
+import { HttpClientFailureJudgeClosure, LogHandler } from '../../../Types/global';
 import HttpClientResponse from '../HttpClientResponse';
 
 abstract class HttpClientInterface
@@ -22,6 +22,13 @@ abstract class HttpClientInterface
    * 设置日志方法
    */
   setLogger(logger: LogHandler): this { return this; }
+
+  /**
+   * 设置错误判断方法
+   * @param closure
+   * @returns
+   */
+  judgeFailureUsing(closure: HttpClientFailureJudgeClosure): this { return this; }
 
   /**
    * 发起http请求

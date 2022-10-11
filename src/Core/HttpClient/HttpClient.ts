@@ -20,12 +20,13 @@ class HttpClient implements HttpClientInterface
     protected throwError: boolean = false
   ) {}
 
-  /**
-   * 设置日志处理方法
-   * @param logger
-   */
   setLogger(logger: LogHandler): this {
     this.logger = logger;
+    return this;
+  }
+
+  judgeFailureUsing(closure: HttpClientFailureJudgeClosure): this {
+    this.failureJudge = closure;
     return this;
   }
 
