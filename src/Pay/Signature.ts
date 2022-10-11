@@ -1,9 +1,8 @@
 'use strict';
 
-import { buildQueryString, createHash, createHmac, getTimestamp, parseQueryString, randomString } from "../Core/Support/Utils";
+import { buildQueryString, getTimestamp, randomString } from "../Core/Support/Utils";
 import MerchantInterface from "./Contracts/MerchantInterface";
 import merge from 'merge';
-import Url from 'url';
 import { AxiosRequestConfig } from "axios";
 import RSA from "../Core/Support/RSA";
 
@@ -22,12 +21,15 @@ class Signature
    */
   createHeader(method: string, url: string, payload: AxiosRequestConfig<any>): string
   {
-    let uri = Url.parse(url);
-    let query = parseQueryString(uri.query);
-    uri.query = buildQueryString(merge(true, query, payload.params));
+    let pathname = url;
+    if (url.startsWith('https://') || url.startsWith('http://')) {
+      let urlObj = new URL(url);
+      let search = buildQueryString(merge(true, urlObj.searchParams, payload.params));
+      pathname = urlObj.pathname + (search ? '?' + search : '');
+    }
+
     let nonce = randomString();
     let timestamp = getTimestamp();
-    let path = uri.pathname + (uri.query ? '?' + uri.query : '');
     let body = '';
     if (payload.data) {
       if (typeof payload.data === 'object') {
@@ -38,7 +40,7 @@ class Signature
       }
     }
 
-    let signString = `${method.toUpperCase()}\n${path}\n${timestamp}\n${nonce}\n${body}`;
+    let signString = `${method.toUpperCase()}\n${pathname}\n${timestamp}\n${nonce}\n${body}`;
 
     let rsa = new RSA;
     rsa.setPublicKey(this.merchant.getCertificate().toString());

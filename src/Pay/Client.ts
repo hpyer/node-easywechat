@@ -9,7 +9,6 @@ import HttpClientMethodsMixin from '../Core/HttpClient/Mixins/HttpClientMethodsM
 import { LogHandler } from '../Types/global';
 import HttpClientResponse from '../Core/HttpClient/HttpClientResponse';
 import PresetMixin from '../Core/HttpClient/Mixins/PresetMixin';
-import Url from 'url';
 import Signature from './Signature';
 import LegacySignature from './LegacySignature';
 import MerchantInterface from './Contracts/MerchantInterface';
@@ -107,10 +106,14 @@ class Client implements HttpClientInterface
    * @returns
    */
   protected isV3Request(url: string) {
-    let urlObj = Url.parse(url);
+    let pathname = url;
+    if (url.startsWith('https://') || url.startsWith('http://')) {
+      let urlObj = new URL(url);
+      pathname = urlObj.pathname;
+    }
 
     for (let i=0; i<this.V3_URI_PREFIXES.length; i++) {
-      if (urlObj.pathname.startsWith(this.V3_URI_PREFIXES[i])) {
+      if (pathname.startsWith(this.V3_URI_PREFIXES[i])) {
         return true;
       }
     }
