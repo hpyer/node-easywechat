@@ -21,14 +21,16 @@ class Obj
     }
 
     let newObj = merge.recursive(true, obj);
-    key.split('.').forEach((segment: string): any => {
+    let keys = key.split('.');
+    for (let i = 0; i < keys.length; i++) {
+      let segment = keys[i];
       if (Obj.exists(newObj, segment)) {
         newObj = newObj[segment];
       }
       else {
         return defaultValue;
       }
-    });
+    }
 
     return newObj;
   }
