@@ -12,7 +12,7 @@ import AccountInterface from "./AccountInterface";
 import { OfficialAccountOAuthFactory } from "../../Types/global";
 import JsApiTicket from "../JsApiTicket";
 import Utils from "../Utils";
-import RefreshableAccessTokenInterface from "../../Core/Contracts/RefreshableAccessTokenInterface";
+import AccessTokenInterface from "../../Core/Contracts/AccessTokenInterface";
 
 abstract class ApplicationInterface
 {
@@ -68,7 +68,7 @@ abstract class ApplicationInterface
    * 获取AccessToken实例
    * @returns
    */
-  getAccessToken(): RefreshableAccessTokenInterface { return null; }
+  getAccessToken(): AccessTokenInterface { return null; }
 
   /**
    * 获取缓存实例

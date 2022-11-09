@@ -22,7 +22,8 @@ import ApplicationInterface from './Contracts/ApplicationInterface';
 import JsApiTicket from './JsApiTicket';
 import Server from './Server';
 import Utils from './Utils';
-import RefreshableAccessTokenInterface from '../Core/Contracts/RefreshableAccessTokenInterface';
+import AccessTokenInterface from '../Core/Contracts/AccessTokenInterface';
+import HttpClientResponseInterface from '../Core/HttpClient/Contracts/HttpClientResponseInterface';
 
 /**
  * 公众号应用
@@ -41,7 +42,7 @@ class Application implements ApplicationInterface
   protected account: AccountInterface = null;
   protected encryptor: Encryptor = null;
   protected server: ServerInterface = null;
-  protected accessToken: RefreshableAccessTokenInterface = null;
+  protected accessToken: AccessTokenInterface = null;
   protected oauthFactory: OfficialAccountOAuthFactory = null;
   protected ticket: JsApiTicket = null;
 
@@ -120,7 +121,7 @@ class Application implements ApplicationInterface
     return this;
   }
 
-  getAccessToken(): RefreshableAccessTokenInterface
+  getAccessToken(): AccessTokenInterface
   {
     if (!this.accessToken) {
       this.accessToken = new AccessToken(
@@ -139,7 +140,7 @@ class Application implements ApplicationInterface
    * @param accessToken
    * @returns
    */
-  setAccessToken(accessToken: RefreshableAccessTokenInterface): this
+  setAccessToken(accessToken: AccessTokenInterface): this
   {
     this.accessToken = accessToken;
     return this;
@@ -202,8 +203,13 @@ class Application implements ApplicationInterface
   }
 
   createClient(): AccessTokenAwareClient {
-    return (new AccessTokenAwareClient(this.getHttpClient(), this.getAccessToken()))
-      .setPresets(this.getConfig().all());
+    return (new AccessTokenAwareClient(
+      this.getHttpClient(),
+      this.getAccessToken(),
+      (response: HttpClientResponseInterface) => response.toObject()['errcode'] ?? 0,
+      this.getConfig().get('http.throw', true),
+    ))
+    .setPresets(this.getConfig().all());
   }
 
   /**

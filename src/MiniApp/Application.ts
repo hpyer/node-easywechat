@@ -19,7 +19,8 @@ import ApplicationInterface from './Contracts/ApplicationInterface';
 import Server from './Server';
 import Utils from './Utils';
 import Config from '../OfficialAccount/Config';
-import RefreshableAccessTokenInterface from '../Core/Contracts/RefreshableAccessTokenInterface';
+import AccessTokenInterface from '../Core/Contracts/AccessTokenInterface';
+import HttpClientResponseInterface from '../Core/HttpClient/Contracts/HttpClientResponseInterface';
 
 /**
  * 小程序应用
@@ -38,7 +39,7 @@ class Application implements ApplicationInterface
   protected account: AccountInterface = null;
   protected encryptor: Encryptor = null;
   protected server: ServerInterface = null;
-  protected accessToken: RefreshableAccessTokenInterface = null;
+  protected accessToken: AccessTokenInterface = null;
 
   getAccount(): AccountInterface
   {
@@ -120,7 +121,7 @@ class Application implements ApplicationInterface
     return this;
   }
 
-  getAccessToken(): RefreshableAccessTokenInterface
+  getAccessToken(): AccessTokenInterface
   {
     if (!this.accessToken) {
       this.accessToken = new AccessToken(
@@ -139,7 +140,7 @@ class Application implements ApplicationInterface
    * @param accessToken
    * @returns
    */
-  setAccessToken(accessToken: RefreshableAccessTokenInterface): this
+  setAccessToken(accessToken: AccessTokenInterface): this
   {
     this.accessToken = accessToken;
     return this;
@@ -151,8 +152,13 @@ class Application implements ApplicationInterface
   }
 
   createClient(): AccessTokenAwareClient {
-    return (new AccessTokenAwareClient(this.getHttpClient(), this.getAccessToken()))
-      .setPresets(this.getConfig().all());
+    return (new AccessTokenAwareClient(
+      this.getHttpClient(),
+      this.getAccessToken(),
+      (response: HttpClientResponseInterface) => (response.toObject()['errcode'] ?? 0) || (response.toObject()['error'] !== null && response.toObject()['error'] !== undefined),
+      this.getConfig().get('http.throw', true),
+    ))
+    .setPresets(this.getConfig().all());
   }
 
   /**

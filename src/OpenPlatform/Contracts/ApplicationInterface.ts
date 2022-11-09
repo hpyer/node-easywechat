@@ -1,5 +1,6 @@
 'use strict';
 
+import ProviderInterface from "node-socialite/dist/Core/ProviderInterface";
 import CacheInterface from "../../Core/Contracts/CacheInterface";
 import ConfigInterface from "../../Core/Contracts/ConfigInterface";
 import AccessTokenAwareClient from "../../Core/HttpClient/AccessTokenAwareClient";
@@ -8,7 +9,6 @@ import ServerInterface from "../../Core/Contracts/ServerInterface";
 import ServerRequestInterface from "../../Core/Http/Contracts/ServerRequestInterface";
 import Encryptor from "../../Core/Encryptor";
 import AccountInterface from "./AccountInterface";
-import Utils from "../Utils";
 import AccessTokenInterface from "../../Core/Contracts/AccessTokenInterface";
 
 abstract class ApplicationInterface
@@ -74,10 +74,10 @@ abstract class ApplicationInterface
   getCache(): CacheInterface { return null; }
 
   /**
-   * 获取工具实例
+   * 获取OAuth实例
    * @returns
    */
-  getUtils(): Utils { return null; }
+  getOAuth(): ProviderInterface { return null; }
 
 };
 
