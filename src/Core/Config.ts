@@ -5,11 +5,12 @@ import { OfficialAccountConfig, MiniAppConfig, PayConfig, OpenPlatformConfig, Wo
 import ConfigInterface from "./Contracts/ConfigInterface";
 import Obj from "./Support/Obj";
 
-class Config implements ConfigInterface
+class Config extends ConfigInterface
 {
   protected requiredKeys: string[] = [];
 
   constructor(protected items: OfficialAccountConfig | MiniAppConfig |PayConfig |OpenPlatformConfig |WorkConfig |OpenWorkConfig = {}) {
+    super();
     this.items = merge.recursive(true, items);
     this.checkMissingKeys();
   }
