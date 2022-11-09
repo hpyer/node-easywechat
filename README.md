@@ -44,6 +44,13 @@ let app = new Pay({
   // 配置项
 });
 
+// 开放平台
+const { OpenPlatform } = require('node-easywechat');
+// 实例化应用
+let app = new OpenPlatform({
+  // 配置项
+});
+
 // ----- 以下为通用的 api 调用方法 -----
 
 // 获取 api 调用客户端
@@ -135,6 +142,20 @@ let data = response.toObject();
   secret_key: '',
   // v2 API密钥
   v2_secret_key: '',
+}
+```
+
+``` js
+// 开放平台配置
+{
+  // 开放平台的 app key
+  app_id: '',
+  // 开放平台的 app secret
+  secret: '',
+  // 开放平台的 token
+  token: '',
+  // EncodingAESKey
+  aes_key: '',
 }
 ```
 
@@ -251,7 +272,7 @@ app.setRequest(request);
 - [x] 公众号模块
 - [x] 微信支付
 - [x] 小程序
-- [ ] 开放平台
+- [x] 开放平台
 - [ ] 企业微信
 - [ ] 企业微信开放平台
 - [ ] 自定义
