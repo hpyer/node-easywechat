@@ -576,10 +576,10 @@ p-locate@^5.0.0:
   dependencies:
     p-limit "^3.0.2"
 
-package-release@^1.0.2:
-  version "1.0.2"
-  resolved "https://registry.npmmirror.com/package-release/-/package-release-1.0.2.tgz#1915cb40fe0e7b88ed6df6432a2c622fdd3ad7a9"
-  integrity sha512-/atN4NM66CZ89lxJg4WX6/vO2ycFlT2jBK+EVO0RRjOI40mFtGoUpjb0jILQ/Eu+6ni6TI4Og0/2yoCf3K/ljg==
+package-release@^1.0.3:
+  version "1.0.3"
+  resolved "https://registry.npmmirror.com/package-release/-/package-release-1.0.3.tgz#9142c7a45f019a6c29063c36c09417e614dd4225"
+  integrity sha512-EtcJhbuqoqbj1Vt9z5U2bHX4cqDXj0zgdoDRiL44rxUujMbCa2p0Om+xKgQMhGVsPwB8nM1J7yXVU+LHXuHLXA==
   dependencies:
     minimist "^1.2.6"
 
