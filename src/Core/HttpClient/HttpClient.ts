@@ -3,9 +3,10 @@
 import Axios, { AxiosInstance, AxiosRequestConfig, Method } from 'axios';
 import HttpClientInterface from './Contracts/HttpClientInterface';
 import HttpClientResponse from './HttpClientResponse';
-import { HttpClientFailureJudgeClosure, LogHandler } from '../../Types/global';
+import { HttpClientFailureJudgeClosure, HttpConfig, LogHandler } from '../../Types/global';
 import { buildXml } from '../Support/Utils';
 import FormData from 'form-data';
+import AxiosRetry from 'axios-retry';
 
 class HttpClient implements HttpClientInterface
 {
@@ -31,7 +32,7 @@ class HttpClient implements HttpClientInterface
   }
 
   async request(method: Method, url: string, payload: AxiosRequestConfig<any> = {}): Promise<HttpClientResponse> {
-    let options: AxiosRequestConfig = { ...payload };
+    let options: HttpConfig = { ...payload };
     if (!options.headers) options.headers = {};
     options.method = method;
     options.url = url;
@@ -142,8 +143,12 @@ class HttpClient implements HttpClientInterface
    * @param config
    * @returns
    */
-  static create(config: AxiosRequestConfig = null, failureJudge: HttpClientFailureJudgeClosure = null, throwError: boolean = false) {
-    return new HttpClient(Axios.create(config), failureJudge, throwError);
+  static create(config: HttpConfig = null, failureJudge: HttpClientFailureJudgeClosure = null, throwError: boolean = false) {
+    let axios = Axios.create(config);
+    if (config && config.retry) {
+      AxiosRetry(axios, config.retry);
+    }
+    return new HttpClient(axios, failureJudge, throwError);
   }
 }
 

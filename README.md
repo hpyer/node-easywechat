@@ -78,7 +78,11 @@ let data = response.toObject();
 {
   // axios 请求参数
   // 详见：https://github.com/axios/axios#request-config
-  http: {},
+  http: {
+    // 请求失败时，自动重试。默认不重试
+    // 详见：https://github.com/softonic/axios-retry#options
+    retry: {}
+  },
 
   // 缓存以文件(默认设置)存储时，需要的配置项
   file_cache: {

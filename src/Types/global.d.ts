@@ -75,13 +75,42 @@ export declare interface CacheFileConfig {
 }
 
 /**
+ * 网络请求配置
+ */
+export declare interface HttpConfig extends AxiosRequestConfig {
+  /**
+   * 是否抛出异常
+   */
+  throw?: boolean;
+  /**
+   * 是否抛出异常
+   * @see https://github.com/softonic/axios-retry#options
+   */
+  retry?: IAxiosRetry.IAxiosRetryConfig;
+  // retry?: {
+  //   /**
+  //    * 仅以下状态码重试
+  //    */
+  //   http_codes: number[];
+  //   /**
+  //    * 最大重试次数
+  //    */
+  //   max_retries: number;
+  //   /**
+  //    * 请求间隔 (毫秒)
+  //    */
+  //   delay: number;
+  // };
+}
+
+/**
  * 基础配置
  */
 export declare interface BaseConfig {
   /**
    * 网络请求相关配置
    */
-  http?: AxiosRequestConfig;
+  http?: HttpConfig;
 
   /**
    * 文件缓存相关配置
