@@ -43,8 +43,6 @@ class TestUnit extends BaseTestUnit {
       );
       app.setMerchant(newMerchant);
       appMerchant = app.getMerchant();
-      console.log('public', appMerchant.getCertificate());
-      console.log('private', appMerchant.getPrivateKey());
       this.assert.strictEqual(appMerchant.getMerchantId(), merchantConfig.mch_id);
       this.assert.strictEqual(appMerchant.getSecretKey(), merchantConfig.secret_key);
       this.assert.strictEqual(appMerchant.getV2SecretKey(), merchantConfig.v2_secret_key);
