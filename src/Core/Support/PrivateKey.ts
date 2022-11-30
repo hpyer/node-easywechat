@@ -4,16 +4,17 @@ import { X509Certificate } from 'crypto';
 
 export class PrivateKey
 {
+  protected key: Buffer;
 
-  constructor(protected key: string, protected passphrase?: string)
+  constructor(key: string, protected passphrase?: string)
   {
     if (fs.existsSync(key)) {
-      this.key = fs.readFileSync(key, 'utf8') || '';
+      this.key = fs.readFileSync(key) || Buffer.from('');
     }
   }
 
   /**
-   * 获取私钥
+   * 获取私钥内容
    * @returns
    */
   getKey()

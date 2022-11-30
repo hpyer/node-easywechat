@@ -16,9 +16,6 @@ import ApplicationInterface from './Contracts/ApplicationInterface';
 import Server from './Server';
 import Utils from './Utils';
 import Config from '../OfficialAccount/Config';
-import { PrivateKey } from '../Core/Support/PrivateKey';
-import { PublicKey } from '../Core/Support/PublicKey';
-import HttpClientInterface from '../Core/HttpClient/Contracts/HttpClientInterface';
 import Client from './Client';
 
 /**
@@ -45,8 +42,8 @@ class Application implements ApplicationInterface
     if (!this.merchant) {
       this.merchant = new Merchant(
         this.config.get('mch_id'),
-        new PrivateKey(this.config.get('private_key')),
-        new PublicKey(this.config.get('certificate')),
+        this.config.get('private_key'),
+        this.config.get('certificate'),
         this.config.get('secret_key'),
         this.config.get('v2_secret_key'),
         this.config.get('platform_certs') ?? [],

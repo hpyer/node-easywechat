@@ -11,8 +11,8 @@ class TestUnit extends BaseTestUnit {
     it('Should fetch correct merchant config from application', () => {
       let appConfig = {
         mch_id: 'mock-mch-id',
-        certificate: '../temp/test_public_key.pem',
-        private_key: '../temp/test_private_key.pem',
+        certificate: __dirname + '/../temp/test_rsa_cert.pem',
+        private_key: __dirname + '/../temp/test_rsa_private.key',
         v2_secret_key: 'mock-v2-secret-key',
         secret_key: 'mock-secret-key',
         platform_certs: [],
@@ -27,8 +27,8 @@ class TestUnit extends BaseTestUnit {
 
       let merchantConfig = {
         mch_id: 'mock-mch-id-new',
-        certificate: '../temp/test_public_key.pem',
-        private_key: '../temp/test_private_key.pem',
+        certificate: __dirname + '/../temp/test_rsa_cert.pem',
+        private_key: __dirname + '/../temp/test_rsa_private.key',
         v2_secret_key: 'mock-v2-secret-key-new',
         secret_key: 'mock-secret-key-new',
         platform_certs: [],
@@ -43,6 +43,8 @@ class TestUnit extends BaseTestUnit {
       );
       app.setMerchant(newMerchant);
       appMerchant = app.getMerchant();
+      console.log('public', appMerchant.getCertificate());
+      console.log('private', appMerchant.getPrivateKey());
       this.assert.strictEqual(appMerchant.getMerchantId(), merchantConfig.mch_id);
       this.assert.strictEqual(appMerchant.getSecretKey(), merchantConfig.secret_key);
       this.assert.strictEqual(appMerchant.getV2SecretKey(), merchantConfig.v2_secret_key);

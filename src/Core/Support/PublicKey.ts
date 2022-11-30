@@ -5,10 +5,12 @@ import { X509Certificate } from 'crypto';
 export class PublicKey
 {
 
-  constructor(public certificate: string)
+  protected certificate: Buffer;
+
+  constructor(certificate: string)
   {
     if (fs.existsSync(certificate)) {
-      this.certificate = fs.readFileSync(certificate, 'utf8') || '';
+      this.certificate = fs.readFileSync(certificate) || Buffer.from('');
     }
   }
 
@@ -27,11 +29,20 @@ export class PublicKey
   }
 
   /**
+   * 获取证书内容
+   * @returns
+   */
+  getValue()
+  {
+    return this.certificate;
+  }
+
+  /**
    * 转为字符串
    * @returns
    */
   toString()
   {
-    return this.certificate;
+    return this.certificate.toString();
   }
 }

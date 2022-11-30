@@ -7,8 +7,8 @@ class TestUnit extends BaseTestUnit {
 
   test() {
 
-    const publicKey = Fs.readFileSync(Path.resolve(__dirname, '../../temp/test_public_key.pem'));
-    const privateKey = Fs.readFileSync(Path.resolve(__dirname, '../../temp/test_private_key.pem'));
+    const publicKey = Fs.readFileSync(Path.resolve(__dirname, '../../temp/test_rsa_cert.pem'));
+    const privateKey = Fs.readFileSync(Path.resolve(__dirname, '../../temp/test_rsa_private.key'));
 
     let rsa = new RSA;
     rsa.setPublicKey(publicKey);

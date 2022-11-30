@@ -7,15 +7,29 @@ import MerchantInterface from "./Contracts/MerchantInterface";
 class Merchant implements MerchantInterface
 {
   protected platformCerts: Record<string, PublicKey> = {};
+  protected privateKey: PrivateKey;
+  protected certificate: PublicKey;
 
   constructor(
     protected mchId: string,
-    protected privateKey: PrivateKey,
-    protected certificate: PublicKey,
+    privateKey: string | PrivateKey,
+    certificate: string | PublicKey,
     protected secretKey: string,
     protected v2SecretKey: string = null,
     platformCerts: Record<string, string | PublicKey> | string[] | PublicKey[] = [],
   ) {
+    if (!(privateKey instanceof PrivateKey)) {
+      this.privateKey = new PrivateKey(privateKey);
+    }
+    else {
+      this.privateKey = privateKey;
+    }
+    if (!(certificate instanceof PublicKey)) {
+      this.certificate = new PublicKey(certificate);
+    }
+    else {
+      this.certificate = certificate;
+    }
     this.platformCerts = this.normalizePlatformCerts(platformCerts);
   }
 
