@@ -79,8 +79,13 @@ class HttpClient implements HttpClientInterface
     }
     if (options['formData'] && Object.keys(options['formData']).length > 0) {
       let formData = new FormData();
-      for (let key in options['formData']) {
-        formData.append(key, options['formData'][key]);
+      if (options['formData'] instanceof FormData) {
+        formData = options['formData'];
+      }
+      else {
+        for (let key in options['formData']) {
+          formData.append(key, options['formData'][key]);
+        }
       }
       if (options.data) for (let key in options.data) {
         formData.append(key, options.data[key]);

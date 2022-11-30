@@ -9,8 +9,8 @@ class TestUnit extends BaseTestUnit {
 
     let merchantConfig = {
       mch_id: 'mock-mch-id',
-      certificate: '../temp/test_public_key.pem',
-      private_key: '../temp/test_private_key.pem',
+      certificate: __dirname + '/../temp/test_rsa_cert.pem',
+      private_key: __dirname + '/../temp/test_rsa_private.key',
       v2_secret_key: 'mock-v2-secret-key',
       secret_key: 'mock-secret-key',
       platform_certs: [],
@@ -63,6 +63,13 @@ class TestUnit extends BaseTestUnit {
       let result = 'mock-delete';
       httpclient.mock('delete', '/test-url').reply(200, result, { 'Content-Type': 'text/plain' });
       let response = await client.delete('/test-url');
+      this.assert.strictEqual(response.toString(), result);
+    });
+
+    it('Should upload media correctly', async () => {
+      let result = 'mock-upload';
+      httpclient.mock('post', '/v3/merchant/media/upload').reply(200, result, { 'Content-Type': 'text/plain' });
+      let response = await client.uploadMedia('/v3/merchant/media/upload', __dirname + '/../temp/blank.png');
       this.assert.strictEqual(response.toString(), result);
     });
 

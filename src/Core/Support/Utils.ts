@@ -7,21 +7,21 @@ import Stream from 'stream';
 import Fs from 'fs';
 import axios from 'axios';
 
-export const createHash = function (str: string, type: string = 'sha1'): any
+export const createHash = function (str: Crypto.BinaryLike, type: string = 'sha1', target: Crypto.BinaryToTextEncoding = 'hex'): any
 {
-  return Crypto.createHash(type).update(str).digest('hex');
+  return Crypto.createHash(type).update(str).digest(target);
 };
 
-export const createHmac = function (str: string, key: string, type: string = 'sha256'): any
+export const createHmac = function (str: Crypto.BinaryLike, key: Crypto.BinaryLike, type: string = 'sha256', target: Crypto.BinaryToTextEncoding = 'hex'): any
 {
-  return Crypto.createHmac(type, key).update(str).digest('hex');
+  return Crypto.createHmac(type, key).update(str).digest(target);
 };
 
 /**
- * 计算文件的 md5 值
+ * 计算文件的哈希值
  * @param path 文件路径或文件可读流
  */
-export const md5File = function (path: string | Stream.Readable): Promise<string> {
+export const createFileHash = function (path: string | Stream.Readable, type: string = 'sha1', target: Crypto.BinaryToTextEncoding = 'hex'): Promise<string> {
   return new Promise((reslove, reject) => {
     let stream;
     if (isString(path)) {
@@ -31,12 +31,12 @@ export const md5File = function (path: string | Stream.Readable): Promise<string
       stream = new Stream.PassThrough();
       (path as Stream.Readable).pipe(stream);
     }
-    let md5sum = Crypto.createHash('md5');
+    let md5sum = Crypto.createHash(type);
     stream.on('data', function (chunk) {
       md5sum.update(chunk);
     });
     stream.on('end', function () {
-      let str = md5sum.digest('hex').toUpperCase();
+      let str = md5sum.digest(target).toUpperCase();
       reslove(str);
     });
   });

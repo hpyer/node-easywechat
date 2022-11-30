@@ -1,9 +1,10 @@
 'use strict';
 
+import fs from 'fs';
 import merge from 'merge';
 import { Method, AxiosRequestConfig, AxiosInstance } from "axios";
 import HttpClientInterface from "../Core/HttpClient/Contracts/HttpClientInterface";
-import { applyMixins, buildXml, createUserAgent, ltrim } from '../Core/Support/Utils';
+import { applyMixins, buildXml, createFileHash, createUserAgent, ltrim } from '../Core/Support/Utils';
 import HttpClient from '../Core/HttpClient/HttpClient';
 import HttpClientMethodsMixin from '../Core/HttpClient/Mixins/HttpClientMethodsMixin';
 import { LogHandler } from '../Types/global';
@@ -12,6 +13,7 @@ import PresetMixin from '../Core/HttpClient/Mixins/PresetMixin';
 import Signature from './Signature';
 import LegacySignature from './LegacySignature';
 import MerchantInterface from './Contracts/MerchantInterface';
+import FormData from 'form-data';
 
 class Client implements HttpClientInterface
 {
@@ -98,6 +100,43 @@ class Client implements HttpClientInterface
     }
 
     return this.client.request(method, ltrim(url, '\\/+'), payload);
+  }
+
+  /**
+   * 文件上传
+   * @see https://pay.weixin.qq.com/wiki/doc/apiv3/apis/chapter2_1_1.shtml
+   * @param uri 接口地址
+   * @param file 文件路径或文件可读流
+   * @param meta 文件元信息，包含 filename 和 sha256 两个字段
+   * @param filename 文件名，必须以 .jpg、.bmp、.png 为后缀
+   * @returns
+   */
+  async uploadMedia(uri: string, file: string | fs.ReadStream, meta: Record<string, any> = null, filename: string = null) {
+    if (typeof file === 'string') {
+      file = fs.createReadStream(file);
+    }
+    if (!meta) {
+      meta = {
+        filename: filename ?? 'file.jpg',
+        sha256: await createFileHash(file, 'sha256'),
+      };
+    }
+    let metaJson = JSON.stringify(meta);
+
+    let formData = new FormData();
+    formData.append('file', file);
+    formData.append('meta', metaJson, {
+      contentType: 'application/json',
+    });
+
+    return this.client.request('POST', ltrim(uri, '\\/+'), {
+      formData,
+      headers: {
+        'authorization': this.createSignature('POST', uri, {
+          data: metaJson,
+        }),
+      }
+    });
   }
 
   /**
