@@ -3,4 +3,6 @@
 !test.pfx
 !test_public_key.pem
 !test_private_key.pem
+!test_rsa_cert.pem
+!test_rsa_private.key
 !.gitignore
