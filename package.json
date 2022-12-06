@@ -19,7 +19,7 @@
   "author": "Hpyer",
   "license": "MIT",
   "engines": {
-    "node": "15.6.0"
+    "node": ">=15.6.0"
   },
   "devDependencies": {
     "@types/node": "^17.0.23",
