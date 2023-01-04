@@ -12,7 +12,7 @@ class TestUnit extends BaseClientTest {
 
     it(`Should redirect with custom data`, async () => {
       let url = await this.app.oauth.scopes('snsapi_base').withState('test_state').setAgentId(10000).redirect('http://www.test.com/wx/login/callback');
-      this.assert.strictEqual(url, 'https://open.weixin.qq.com/connect/oauth2/authorize?appid=abc%40123&redirect_uri=http%3A%2F%2Fwww.test.com%2Fwx%2Flogin%2Fcallback&response_type=code&scope=snsapi_base&state=test_state#wechat_redirect');
+      this.assert.strictEqual(url, 'https://open.weixin.qq.com/connect/oauth2/authorize?appid=abc%40123&redirect_uri=http%3A%2F%2Fwww.test.com%2Fwx%2Flogin%2Fcallback&response_type=code&scope=snsapi_base&agentid=10000&state=test_state#wechat_redirect');
     });
 
     it(`Should fetch user from code (with detailed)`, async () => {
