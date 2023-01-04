@@ -543,10 +543,10 @@ nise@^5.1.0:
     just-extend "^4.0.2"
     path-to-regexp "^1.7.0"
 
-node-socialite@^1.2.6:
-  version "1.2.6"
-  resolved "https://registry.npmmirror.com/node-socialite/-/node-socialite-1.2.6.tgz#a40d00815ea142c8d52e4ca65ee005a2119e40b6"
-  integrity sha512-wRqijpur+rTYClsh33KsK7CziMI2zTXwzmkMrwl0ruD6FB79USHz0hdh55RUgWzIjQSBSgE+Kk5iB97VdRl7Eg==
+node-socialite@^1.3.0:
+  version "1.3.0"
+  resolved "https://registry.npmmirror.com/node-socialite/-/node-socialite-1.3.0.tgz#122e6dfbfd56ab3d3f482e28843b5d7fe44085d1"
+  integrity sha512-etkYdQLFJV6/nsqLYjrv/VEWvXe/3by/jhpPXjKeipDyJC01pjivYqHdU3y96/lT66BlrryTQ7tDWdZ/UaqEDQ==
   dependencies:
     axios "^0.26.1"
     qs "^6.10.3"
@@ -582,10 +582,10 @@ p-locate@^5.0.0:
   dependencies:
     p-limit "^3.0.2"
 
-package-release@^1.0.2:
-  version "1.0.2"
-  resolved "https://registry.npmmirror.com/package-release/-/package-release-1.0.2.tgz#1915cb40fe0e7b88ed6df6432a2c622fdd3ad7a9"
-  integrity sha512-/atN4NM66CZ89lxJg4WX6/vO2ycFlT2jBK+EVO0RRjOI40mFtGoUpjb0jILQ/Eu+6ni6TI4Og0/2yoCf3K/ljg==
+package-release@^1.0.3:
+  version "1.0.3"
+  resolved "https://registry.npmmirror.com/package-release/-/package-release-1.0.3.tgz#9142c7a45f019a6c29063c36c09417e614dd4225"
+  integrity sha512-EtcJhbuqoqbj1Vt9z5U2bHX4cqDXj0zgdoDRiL44rxUujMbCa2p0Om+xKgQMhGVsPwB8nM1J7yXVU+LHXuHLXA==
   dependencies:
     minimist "^1.2.6"
 
