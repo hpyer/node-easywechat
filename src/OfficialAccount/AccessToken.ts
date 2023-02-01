@@ -4,7 +4,6 @@ import CacheInterface from "../Core/Contracts/CacheInterface";
 import HttpClientInterface from "../Core/HttpClient/Contracts/HttpClientInterface";
 import RefreshableAccessTokenInterface from "../Core/Contracts/RefreshableAccessTokenInterface";
 import HttpClient from "../Core/HttpClient/HttpClient";
-import FileCache from "../Core/Cache/FileCache";
 
 class AccessToken implements RefreshableAccessTokenInterface
 {
@@ -15,9 +14,6 @@ class AccessToken implements RefreshableAccessTokenInterface
     protected cache: CacheInterface = null,
     protected httpClient: HttpClientInterface = null
   ) {
-    if (!this.cache) {
-      this.cache = new FileCache();
-    }
     if (!this.httpClient) {
       this.httpClient = HttpClient.create({
         baseURL: 'https://api.weixin.qq.com/',
@@ -47,7 +43,10 @@ class AccessToken implements RefreshableAccessTokenInterface
   }
 
   async getToken(): Promise<string> {
-    let token = await this.cache.get(this.getKey());
+    let token: string = '';
+    if (this.cache) {
+      token = await this.cache.get(this.getKey());
+    }
     if (!!token && typeof token === 'string') {
       return token;
     }
@@ -77,7 +76,9 @@ class AccessToken implements RefreshableAccessTokenInterface
       throw new Error('Failed to get access_token: ' + JSON.stringify(response));
     }
 
-    await this.cache.set(this.getKey(), response['access_token'], parseInt(response['expires_in']));
+    if (this.cache) {
+      await this.cache.set(this.getKey(), response['access_token'], parseInt(response['expires_in']));
+    }
 
     return response['access_token'];
   }

@@ -2,6 +2,7 @@
 
 import CacheInterface from "../Contracts/CacheInterface";
 import FileCache from "../Cache/FileCache";
+import { CacheFileConfig } from "../../Types/global";
 
 class CacheMixin
 {
@@ -54,7 +55,11 @@ class CacheMixin
   getCache(): CacheInterface
   {
     if (!this.cache) {
-      this.cache = new FileCache();
+      let options: CacheFileConfig = null;
+      if (typeof this['getConfig'] === 'function') {
+        options = this['getConfig']()['get']('file_cache');
+      }
+      this.cache = new FileCache(options);
     }
     return this.cache;
   }

@@ -23,7 +23,10 @@ class JsApiTicket extends AccessToken
   async getTicket(): Promise<string>
   {
     let key = this.getKey();
-    let ticket = await this.cache.get(key);
+    let ticket: string = '';
+    if (this.cache) {
+      ticket = await this.cache.get(key);
+    }
     if (!!ticket && typeof ticket === 'string') {
       return ticket;
     }
@@ -42,7 +45,9 @@ class JsApiTicket extends AccessToken
       throw new Error('Failed to get jssdk_ticket: ' + JSON.stringify(response));
     }
 
-    await this.cache.set(key, response['ticket'], parseInt(response['expires_in']));
+    if (this.cache) {
+      await this.cache.set(key, response['ticket'], parseInt(response['expires_in']));
+    }
 
     return response['ticket'];
   }

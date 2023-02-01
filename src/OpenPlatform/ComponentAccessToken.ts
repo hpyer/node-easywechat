@@ -17,9 +17,6 @@ class ComponentAccessToken implements RefreshableAccessTokenInterface
     protected cache: CacheInterface = null,
     protected httpClient: HttpClientInterface = null
   ) {
-    if (!this.cache) {
-      this.cache = new FileCache();
-    }
     if (!this.httpClient) {
       this.httpClient = HttpClient.create({
         baseURL: 'https://api.weixin.qq.com/',
@@ -49,7 +46,10 @@ class ComponentAccessToken implements RefreshableAccessTokenInterface
   }
 
   async getToken(): Promise<string> {
-    let token = await this.cache.get(this.getKey());
+    let token: string = '';
+    if (this.cache) {
+      token = await this.cache.get(this.getKey());
+    }
     if (!!token && typeof token === 'string') {
       return token;
     }
@@ -79,7 +79,9 @@ class ComponentAccessToken implements RefreshableAccessTokenInterface
       throw new Error('Failed to get component_access_token: ' + JSON.stringify(response));
     }
 
-    await this.cache.set(this.getKey(), response['component_access_token'], parseInt(response['expires_in']) - 100);
+    if (this.cache) {
+      await this.cache.set(this.getKey(), response['component_access_token'], parseInt(response['expires_in']) - 100);
+    }
 
     return response['component_access_token'];
   }

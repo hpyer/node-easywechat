@@ -1,6 +1,5 @@
 'use strict';
 
-import FileCache from '../Core/Cache/FileCache';
 import CacheInterface from '../Core/Contracts/CacheInterface';
 import VerifyTicketInterface from './Contracts/VerifyTicketInterface';
 
@@ -11,7 +10,6 @@ class VerifyTicket implements VerifyTicketInterface
     protected key: string = null,
     protected cache: CacheInterface = null,
   ) {
-    this.cache = cache ?? new FileCache();
   }
 
   getKey(): string
@@ -30,13 +28,18 @@ class VerifyTicket implements VerifyTicketInterface
 
   async setTicket(ticket: string): Promise<this>
   {
-    await this.cache.set(this.getKey(), ticket, 6000);
+    if (this.cache) {
+      await this.cache.set(this.getKey(), ticket, 6000);
+    }
     return this;
   }
 
   async getTicket(): Promise<string>
   {
-    let ticket = await this.cache.get(this.getKey());
+    let ticket: string = '';
+    if (this.cache) {
+      ticket = await this.cache.get(this.getKey());
+    }
 
     if (!ticket || typeof ticket != 'string') {
       throw new Error('No component_verify_ticket found.');

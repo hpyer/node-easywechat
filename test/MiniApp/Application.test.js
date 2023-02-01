@@ -100,9 +100,20 @@ class TestUnit extends BaseTestUnit {
         secret: 'mock-secret',
         token: 'mock-token',
         aes_key: 'mock-aeskey',
+        file_cache: {
+          path: './test/temp/'
+        },
       });
 
       this.assert.strictEqual(app.getAccessToken() instanceof AccessToken, true);
+
+      let result = {
+        'access_token': 'mock-access_token',
+        'expires_in': '1500',
+      };
+      let client = this.getMockedHttpClient(app.getHttpClient());
+      client.mock('get', 'cgi-bin/token').reply(200, result);
+      this.assert.strictEqual(await app.getAccessToken().getToken(), result.access_token);
 
       let access_token = new AccessToken('mock-access_token-appid', 'mock-access_token-secret');
       app.setAccessToken(access_token);
