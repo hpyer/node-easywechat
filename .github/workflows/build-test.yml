@@ -1,8 +1,10 @@
 
-name: 所有提交自动构建并测试
+name: 2.x所有提交自动构建并测试
 
 on:
-  push
+  push:
+    branches:
+      - '2.x'
 
 jobs:
   build:
@@ -13,5 +15,6 @@ jobs:
         with:
           node-version: 16
       - run: npm install
+      - run: npm build
       - run: npm test
 
