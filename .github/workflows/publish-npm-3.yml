@@ -1,11 +1,11 @@
-# 构建、测试并发布2.x分支到latest
+# 构建、测试并发布3.x分支
 
-name: Publish 2.x to npm
+name: Publish 3.x to npm
 
 on:
   push:
     tags:
-      - 'v2.*'
+      - 'v3.*'
 
 jobs:
   publish-npm:
@@ -19,6 +19,6 @@ jobs:
       - run: npm install
       - run: npm run build
       - run: npm test
-      - run: npm publish --tag latest
+      - run: npm publish --tag next
         env:
           NODE_AUTH_TOKEN: ${{secrets.npm_token}}
