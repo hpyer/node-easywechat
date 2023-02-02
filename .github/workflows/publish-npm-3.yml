@@ -1,4 +1,4 @@
-# 构建、测试并发布3.x分支到next
+# 构建、测试并发布3.x分支
 
 name: Publish 3.x to npm
 
