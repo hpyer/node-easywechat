@@ -1,5 +1,6 @@
+# 构建、测试并发布2.x分支到latest
 
-name: 构建、测试并发布2.x分支到latest
+name: Publish 2.x to npm
 
 on:
   push:
