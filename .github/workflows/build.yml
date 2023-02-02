@@ -1,5 +1,6 @@
+# 2.x 所有提交自动构建并测试
 
-name: 2.x所有提交自动构建并测试
+name: Build 2.x
 
 on:
   push:
