@@ -1,7 +1,7 @@
 
 ## EasyWechat for Node.js
 
-![build.yml](https://github.com/hpyer/node-easywechat/actions/workflows/build.yml/badge.svg?branch=2.x)
+![Build 2.x](https://github.com/hpyer/node-easywechat/actions/workflows/build-2.yml/badge.svg)
  [![npm](https://img.shields.io/npm/v/node-easywechat.svg)](https://www.npmjs.com/package/node-easywechat) [![License](https://img.shields.io/npm/l/node-easywechat.svg)](LICENSE)
 
 **注：2.x分支针对 EasyWechat 的 5.x版本(由于4.x与5.x的结构基本一致，就不升级大版本了)。**
