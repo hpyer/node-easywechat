@@ -1,0 +1,21 @@
+# 3.x 所有提交自动构建并测试
+
+name: Build 3.x
+
+on:
+  push:
+    branches:
+      - '3.x'
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 16
+      - run: npm install
+      - run: npm run build
+      - run: npm test
+
