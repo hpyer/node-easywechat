@@ -1,0 +1,25 @@
+
+name: 构建、测试并发布2.x分支到latest
+
+on:
+  push:
+    branches:
+      - 2.x
+    tags:
+      - 'v*'
+
+jobs:
+  publish-npm:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 16
+          registry-url: https://registry.npmjs.org/
+      - run: npm ci
+      - run: npm build
+      - run: npm test
+      - run: npm publish --tag latest
+        env:
+          NODE_AUTH_TOKEN: ${{secrets.npm_token}}
