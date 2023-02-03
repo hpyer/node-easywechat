@@ -100,20 +100,9 @@ class TestUnit extends BaseTestUnit {
         secret: 'mock-secret',
         token: 'mock-token',
         aes_key: 'mock-aeskey',
-        file_cache: {
-          path: './test/temp/'
-        },
       });
 
       this.assert.strictEqual(app.getAccessToken() instanceof AccessToken, true);
-
-      let result = {
-        'access_token': 'mock-access_token',
-        'expires_in': '1500',
-      };
-      let client = this.getMockedHttpClient(app.getHttpClient());
-      client.mock('get', 'cgi-bin/token').reply(200, result);
-      this.assert.strictEqual(await app.getAccessToken().getToken(), result.access_token);
 
       let access_token = new AccessToken('mock-access_token-appid', 'mock-access_token-secret');
       app.setAccessToken(access_token);
@@ -129,6 +118,46 @@ class TestUnit extends BaseTestUnit {
       });
 
       this.assert.strictEqual(app.getUtils() instanceof Utils, true);
+    });
+
+    it('Should mock client request successful', async () => {
+      let app = new MiniApp({
+        app_id: 'wx298ee3e964cafbf1',
+        secret: '4bd70932ee9b72a7341af9eb82258eae',
+        token: 'mock-token',
+        file_cache: {
+          path: './test/temp/'
+        },
+      });
+
+      let httpClient = this.getMockedHttpClient(app.getHttpClient());
+      app.setHttpClient(httpClient);
+
+      httpClient.mock('get', 'cgi-bin/token').reply(200, {
+        "access_token": "mock-access_token",
+        "expires_in": "1500",
+      });
+
+      httpClient.mock('get', 'sns/jscode2session').reply(200, {
+        "openid": "mock-openid",
+        "session_key": "mock-session_key",
+        "unionid": "mock-unionid",
+        "errcode": 0,
+        "errmsg": "ok"
+      });
+
+      let client = app.getClient();
+      let response = await client.get('sns/jscode2session', {
+        params: {
+          code: 'mock-code',
+        }
+      });
+      let info = response.getInfo();
+      let resp = response.toObject();
+
+      this.assert.strictEqual(info.params.code, 'mock-code');
+      this.assert.strictEqual(resp.openid, 'mock-openid');
+      this.assert.strictEqual(resp.session_key, 'mock-session_key');
     });
 
   }
