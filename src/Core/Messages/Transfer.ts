@@ -10,7 +10,7 @@ export class Transfer extends Message
     'account',
   ];
 
-  constructor(account: string)
+  constructor(account?: string)
   {
     super({ account });
   }
