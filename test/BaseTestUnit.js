@@ -1,7 +1,8 @@
 const MockAdapter = require('axios-mock-adapter');
 const assert = require('assert');
 const CacheInterface = require('../dist/Core/Contracts/CacheInterface');
-const merge = require('merge');
+const { parseXml } = require('../dist/Core/Support/Utils');
+const { ServerRequest } = require('../dist/');
 
 /**
  * 通用模块测试
@@ -87,6 +88,30 @@ module.exports = class BaseTestUnit {
    * 具体的测试方法，需要被继承
    */
   test() {
+  }
+
+  async createEncryptedMessageRequest(plainMessage, encryptor, query = {}) {
+    let body = encryptor.encrypt(plainMessage);
+
+    let xml = await parseXml(body);
+    let request = (new ServerRequest('POST', 'http://www.easywechat.com/', {}, body)).withQueryParams({
+      msg_signature: xml['MsgSignature'],
+      timestamp: xml['TimeStamp'],
+      nonce: xml['Nonce'],
+      ...query,
+    });
+
+    return request;
+  }
+
+  async decryptMessage(body, encryptor) {
+    let message = await parseXml(body);
+    return await parseXml(encryptor.decrypt(
+      message['Encrypt'],
+      message['MsgSignature'],
+      message['Nonce'],
+      message['TimeStamp'],
+    ));
   }
 
 }
