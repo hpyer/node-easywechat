@@ -1,6 +1,7 @@
 import { AxiosRequestConfig, AxiosResponse } from 'axios';
 import ProviderInterface from 'node-socialite/dist/Core/ProviderInterface';
 import OfficialAccountApplicationInterface from '../OfficialAccount/Contracts/ApplicationInterface';
+import WorkApplicationInterface from '../Work/Contracts/ApplicationInterface';
 import Message from '../Core/Message';
 import HttpClientResponseInterface from '../Core/HttpClient/Contracts/HttpClientResponseInterface';
 import { PublicKey } from "../Core/Support/PublicKey";
@@ -293,6 +294,13 @@ export declare interface OpenWorkConfig extends BaseConfig {
  * @returns OAuth服务供应商实例
  */
 export declare type OfficialAccountOAuthFactory = (app: OfficialAccountApplicationInterface) => ProviderInterface;
+
+/**
+ * 企业微信OAuth工厂方法
+ * @param app 企业微信应用实例
+ * @returns OAuth服务供应商实例
+ */
+export declare type WorkOAuthFactory = (app: WorkApplicationInterface) => ProviderInterface;
 
 /**
  * 服务端通知处理项
