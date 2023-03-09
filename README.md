@@ -53,6 +53,13 @@ let app = new OpenPlatform({
   // 配置项
 });
 
+// 企业微信
+const { Work } = require('node-easywechat');
+// 实例化应用
+let app = new Work({
+  // 配置项
+});
+
 // ----- 以下为通用的 api 调用方法 -----
 
 // 获取 api 调用客户端
@@ -159,6 +166,20 @@ let data = response.toObject();
   // 开放平台的 app secret
   secret: '',
   // 开放平台的 token
+  token: '',
+  // EncodingAESKey
+  aes_key: '',
+}
+```
+
+``` js
+// 企业微信配置
+{
+  // 企业微信的 corp id
+  corp_id: '',
+  // 企业微信的 secret
+  secret: '',
+  // 企业微信的 token
   token: '',
   // EncodingAESKey
   aes_key: '',
@@ -279,6 +300,6 @@ app.setRequest(request);
 - [x] 微信支付
 - [x] 小程序
 - [x] 开放平台
-- [ ] 企业微信
+- [x] 企业微信
 - [ ] 企业微信开放平台
 - [ ] 自定义
