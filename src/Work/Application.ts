@@ -5,7 +5,6 @@ import ProviderInterface from 'node-socialite/dist/Core/ProviderInterface';
 import WeWork from 'node-socialite/dist/Providers/WeWork';
 import Config from './Config';
 import ConfigInterface from '../Core/Contracts/ConfigInterface';
-import ServerInterface from '../Core/Contracts/ServerInterface';
 import Encryptor from './Encryptor';
 import AccessTokenAwareClient from '../Core/HttpClient/AccessTokenAwareClient';
 import CacheMixin from '../Core/Mixins/CacheMixin';
@@ -41,7 +40,7 @@ class Application implements ApplicationInterface
 
   protected account: AccountInterface = null;
   protected encryptor: Encryptor = null;
-  protected server: ServerInterface = null;
+  protected server: Server = null;
   protected accessToken: AccessTokenInterface = null;
   protected oauthFactory: WorkOAuthFactory = null;
   protected ticket: JsApiTicket = null;
@@ -98,7 +97,7 @@ class Application implements ApplicationInterface
     return this;
   }
 
-  getServer(): ServerInterface
+  getServer(): Server
   {
     if (!this.server) {
       this.server = new Server(
@@ -114,7 +113,7 @@ class Application implements ApplicationInterface
    * @param server
    * @returns
    */
-  setServer(server: ServerInterface): this
+  setServer(server: Server): this
   {
     this.server = server;
     return this;

@@ -38,7 +38,7 @@ class Application implements ApplicationInterface
 
   protected account: AccountInterface = null;
   protected encryptor: Encryptor = null;
-  protected server: ServerInterface = null;
+  protected server: Server = null;
   protected accessToken: AccessTokenInterface = null;
 
   getAccount(): AccountInterface
@@ -94,7 +94,7 @@ class Application implements ApplicationInterface
     return this;
   }
 
-  getServer(): ServerInterface
+  getServer(): Server
   {
     if (!this.server) {
       let token = this.getAccount().getToken();
@@ -115,7 +115,7 @@ class Application implements ApplicationInterface
    * @param server
    * @returns
    */
-  setServer(server: ServerInterface): this
+  setServer(server: Server): this
   {
     this.server = server;
     return this;
