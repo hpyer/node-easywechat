@@ -5,7 +5,6 @@ import ProviderInterface from 'node-socialite/dist/Core/ProviderInterface';
 import OpenWeWork from 'node-socialite/dist/Providers/OpenWeWork';
 import Config from './Config';
 import ConfigInterface from '../Core/Contracts/ConfigInterface';
-import ServerInterface from '../Core/Contracts/ServerInterface';
 import Encryptor from './Encryptor';
 import AccessTokenAwareClient from '../Core/HttpClient/AccessTokenAwareClient';
 import CacheMixin from '../Core/Mixins/CacheMixin';
@@ -13,13 +12,12 @@ import ClientMixin from '../Core/Mixins/ClientMixin';
 import ConfigMixin from '../Core/Mixins/ConfigMixin';
 import HttpClientMixin from '../Core/Mixins/HttpClientMixin';
 import ServerRequestMixin from '../Core/Mixins/ServerRequestMixin';
-import { applyMixins, createHash } from '../Core/Support/Utils';
-import { OfficialAccountConfig, OfficialAccountOAuthFactory, MiniAppConfig, ServerHandlerClosure } from '../Types/global';
+import { applyMixins } from '../Core/Support/Utils';
+import { OpenWorkConfig, ServerHandlerClosure } from '../Types/global';
 import Account from './Account';
 import AccountInterface from './Contracts/AccountInterface';
 import ApplicationInterface from './Contracts/ApplicationInterface';
 import Server from './Server';
-import AccessTokenInterface from '../Core/Contracts/AccessTokenInterface';
 import SuiteTicketInterface from './Contracts/SuiteTicketInterface';
 import SuiteTicket from './SuiteTicket';
 import SuiteEncryptor from './SuiteEncryptor';
@@ -32,11 +30,11 @@ import Message from './Message';
 import JsApiTicket from './JsApiTicket';
 
 /**
- * 公众号应用
+ * 企业微信开放平台应用
  */
 class Application implements ApplicationInterface
 {
-  constructor(config: ConfigInterface | OfficialAccountConfig) {
+  constructor(config: ConfigInterface | OpenWorkConfig) {
     if (config instanceof ConfigInterface) {
       this.setConfig(config);
     }
