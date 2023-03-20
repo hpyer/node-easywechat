@@ -25,7 +25,7 @@ import AccessTokenInterface from '../Core/Contracts/AccessTokenInterface';
 import HttpClientResponseInterface from '../Core/HttpClient/Contracts/HttpClientResponseInterface';
 
 /**
- * 公众号应用
+ * 企业微信应用
  */
 class Application implements ApplicationInterface
 {

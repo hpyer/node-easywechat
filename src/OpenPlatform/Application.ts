@@ -29,7 +29,7 @@ import AuthorizerAccessToken from './AuthorizerAccessToken';
 import HttpClientResponseInterface from '../Core/HttpClient/Contracts/HttpClientResponseInterface';
 
 /**
- * 公众号应用
+ * 开放平台应用
  */
 class Application implements ApplicationInterface
 {

@@ -2,7 +2,6 @@
 
 import merge from 'merge';
 import ConfigInterface from '../Core/Contracts/ConfigInterface';
-import ServerInterface from '../Core/Contracts/ServerInterface';
 import Encryptor from '../Core/Encryptor';
 import AccessTokenAwareClient from '../Core/HttpClient/AccessTokenAwareClient';
 import CacheMixin from '../Core/Mixins/CacheMixin';
