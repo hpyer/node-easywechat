@@ -275,7 +275,17 @@ export declare interface OpenWorkConfig extends BaseConfig {
   /**
    * 企业微信 secret
    */
-  secret?: string;
+  provider_secret?: string;
+
+  /**
+   * 第三方应用的 app_id
+   */
+  suite_id?: string;
+
+  /**
+   * 第三方应用的 secret
+   */
+  suite_secret?: string;
 
   /**
    * 企业微信服务端接口验证 token
