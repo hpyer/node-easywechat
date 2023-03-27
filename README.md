@@ -14,7 +14,7 @@
 
 ### 安装
 
-`npm install -S node-easywechat@next`
+`npm install -S node-easywechat`
 
 **注：3.x 版本需要 Node.js 15.6.0 及以上版本**
 
@@ -301,5 +301,5 @@ app.setRequest(request);
 - [x] 小程序
 - [x] 开放平台
 - [x] 企业微信
-- [ ] 企业微信开放平台
-- [ ] 自定义
+- [x] 企业微信开放平台
+- [x] 自定义
