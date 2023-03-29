@@ -411,11 +411,11 @@ class Application implements ApplicationInterface
     let cacheKey = `open-platform.authorizer_access_token.${appId}.${md5RefreshToken}`;
 
     let cache = this.getCache();
-    let authorizerAccessToken = await cache.get(cacheKey);
+    let authorizerAccessToken: string = await cache.get(cacheKey);
 
     if (!authorizerAccessToken) {
       let response = await this.refreshAuthorizerToken(appId, refreshToken);
-      let authorizerAccessToken = response['authorizer_access_token'];
+      authorizerAccessToken = response['authorizer_access_token'];
       await cache.set(cacheKey, authorizerAccessToken, (parseInt(response['expires_in']) ?? 7200) - 500);
     }
 
