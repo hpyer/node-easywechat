@@ -12,7 +12,7 @@ import ClientMixin from '../Core/Mixins/ClientMixin';
 import ConfigMixin from '../Core/Mixins/ConfigMixin';
 import HttpClientMixin from '../Core/Mixins/HttpClientMixin';
 import ServerRequestMixin from '../Core/Mixins/ServerRequestMixin';
-import { applyMixins, createHash } from '../Core/Support/Utils';
+import { applyMixins, buildQueryString, createHash } from '../Core/Support/Utils';
 import OfficialAccountApplication from '../OfficialAccount/Application';
 import MiniAppApplication from '../MiniApp/Application';
 import { OfficialAccountConfig, OfficialAccountOAuthFactory, MiniAppConfig } from '../Types/global';
@@ -228,7 +228,24 @@ class Application implements ApplicationInterface
    * @see https://developers.weixin.qq.com/doc/oplatform/Third-party_Platforms/2.0/api/ThirdParty/token/pre_auth_code.html
    * @returns
    */
-  async createPreAuthorizationCode() {
+  async createPreAuthorizationCode(): Promise<{
+    /**
+     * 错误代码
+     */
+    errcode?: string,
+    /**
+     * 错误信息
+     */
+    errmsg?: string,
+    /**
+     * 预授权码
+     */
+    pre_auth_code?: string,
+    /**
+     * 有效期，单位：秒
+     */
+    expires_in?: number
+  }> {
     let response = (await this.getClient().request(
       'post',
       'cgi-bin/component/api_create_preauthcode',
@@ -244,6 +261,32 @@ class Application implements ApplicationInterface
     }
 
     return response;
+  }
+
+  /**
+   * 生成授权页地址
+   * @param callbackUrl 授权后的回调地址
+   * @param optional 预授权码，不传
+   * @returns
+   */
+  async createPreAuthorizationUrl(callbackUrl: string, optional?: string | { pre_auth_code: string }) {
+    if (typeof optional === 'string') {
+      optional = {
+        pre_auth_code: optional,
+      };
+    }
+    else if (!optional || !optional['pre_auth_code']) {
+      optional = {
+        pre_auth_code: (await this.createPreAuthorizationCode()).pre_auth_code,
+      };
+    }
+
+    let queries = merge({
+      component_appid: this.getAccount().getAppId(),
+      redirect_uri: callbackUrl,
+    }, optional);
+
+    return `https://mp.weixin.qq.com/cgi-bin/componentloginpage?${buildQueryString(queries)}`;
   }
 
   getOAuth(): ProviderInterface
