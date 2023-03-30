@@ -233,6 +233,58 @@ class TestUnit extends BaseTestUnit {
       this.assert.strictEqual(ma_app.getAccount().getSecret(), 'mock-authorizer-secret');
     });
 
+    it('Should create preAuthorizationCode correctly', async () => {
+      let app = new OpenPlatform({
+        app_id: 'mock-appid',
+        secret: 'mock-secret',
+        token: 'mock-token',
+        aes_key: 'mock-aeskey',
+      });
+
+      let client = this.getMockedHttpClient(HttpClient.create());
+      client.mock('post', '/cgi-bin/component/api_create_preauthcode').reply(200, {
+        pre_auth_code: 'fake-pre_auth_code',
+        expires_in: 7200,
+      });
+      app.setHttpClient(client);
+
+      let cache = this.getMockedCacheClient();
+      cache.mock('cached-verify_ticket', 'key-verify_ticket');
+      cache.mock('cached-component_access_token', 'key-component_access_token');
+
+      let ticket = new VerifyTicket('mock-appid', 'key-verify_ticket', cache);
+      app.setVerifyTicket(ticket);
+
+      let token = new ComponentAccessToken(
+        'mock-appid',
+        'mock-secret',
+        ticket,
+        'key-component_access_token',
+        cache,
+        client,
+      );
+      app.setComponentAccessToken(token);
+
+      let res = await app.createPreAuthorizationCode();
+
+      this.assert.strictEqual(res.pre_auth_code, 'fake-pre_auth_code');
+    });
+
+    it('Should create preAuthorizationUrl correctly', async () => {
+      let app = new OpenPlatform({
+        app_id: 'mock-appid',
+        secret: 'mock-secret',
+        token: 'mock-token',
+        aes_key: 'mock-aeskey',
+      });
+
+      let callback = 'https://www.example.com/callback';
+      let preAuthCode = 'fake-pre_auth_code';
+      let url = await app.createPreAuthorizationUrl(callback, preAuthCode);
+
+      this.assert.strictEqual(url, 'https://mp.weixin.qq.com/cgi-bin/componentloginpage?component_appid=mock-appid&redirect_uri=https%3A%2F%2Fwww.example.com%2Fcallback&pre_auth_code=fake-pre_auth_code');
+    });
+
   }
 }
 
