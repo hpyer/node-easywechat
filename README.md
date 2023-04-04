@@ -1,15 +1,15 @@
 
-## EasyWechat for Node.js
+## EasyWeChat for Node.js
 
 ![Build 3.x](https://github.com/hpyer/node-easywechat/actions/workflows/build-3.yml/badge.svg) [![npm](https://img.shields.io/npm/v/node-easywechat.svg)](https://www.npmjs.com/package/node-easywechat) [![License](https://img.shields.io/npm/l/node-easywechat.svg)](LICENSE)
 
-**注：3.x分支针对 EasyWechat 的 6.x版本。**
+**注：3.x分支针对 EasyWeChat 的 6.x版本。**
 
-若您需要 EasyWechat 的 5.x版本，请切换到 [2.x](https://github.com/hpyer/node-easywechat/tree/2.x) 分支。
+若您需要 EasyWeChat 的 5.x版本，请切换到 [2.x](https://github.com/hpyer/node-easywechat/tree/2.x) 分支。
 
-[EasyWechat](https://github.com/w7corp/easywechat) 是一个由 `安正超` 大神用 PHP 开发的开源的微信非官方 SDK（现由微擎团队团队维护）。其功能强大，使用方便，个人一直很喜欢，所以近日将其在 Node.js 上实现。本人会尽量还原其配置项以及接口的调用方式，但毕竟语言环境不同，具体的实现方式会有些许差别，还请各位开发者见谅。
+[EasyWeChat](https://github.com/w7corp/easywechat) 是一个由 `安正超` 大神用 PHP 开发的开源的微信非官方 SDK。其功能强大，使用方便，个人一直很喜欢，所以将其在 Node.js 上实现。本项目基本还原其配置项以及接口的调用方式，但毕竟语言环境不同，会有些许差别，还请各位开发者理解。
 
-> 注：虽然也使用了 EasyWechat 这个名称，但是和 `安正超` 大神没有任何关系，请各位开发者不要因使用本包产生的疑惑而去打扰大神，如有疑问请在本项目中提 issue，谢谢~
+> 注：虽然也使用了 EasyWeChat 这个名称，但是 `安正超` 大神并未参与本项目的开发，请各位开发者不要因使用本包产生的疑惑而去打扰大神，如有疑问请在本项目中提 issue，谢谢~
 
 
 ### 安装
@@ -20,9 +20,9 @@
 
 ### 使用说明
 
-绝大部分API都可以根据 [EasyWechat 的文档](https://www.easywechat.com/5.x/) 来使用。小部分（如获取请求相关数据、返回响应数据、支付证书等）的操作，由于语言环境的不同，会有不同处理。具体可以查看 [node-easywechat-demo](https://github.com/hpyer/node-easywechat-demo/) 以及下方的[自定义模块说明](#自定义模块模块替换使用方法) 。如果仍有疑问，请提issue，谢谢～
+绝大部分API都可以根据 [EasyWeChat 的文档](https://www.easywechat.com/5.x/) 来使用。小部分（如获取请求相关数据、返回响应数据、支付证书等）的操作，由于语言环境的不同，会有不同处理。具体可以查看 [node-easywechat-demo](https://github.com/hpyer/node-easywechat-demo/) 以及下方的[自定义模块说明](#自定义模块模块替换使用方法) 。如果仍有疑问，请提issue，谢谢～
 
-从 `3.x` 起 SDK 中不再内置具体业务的接口，仅封装底层基础部分，如认证、授权和 API 客户端。至于为什么不再封装业务接口，可以查看 [EasyWechat 给出说明](https://easywechat.com/6.x/introduction.html#不再封装业务接口)。
+从 `3.x` 起 SDK 中不再内置具体业务的接口，仅封装底层基础部分，如认证、授权和 API 客户端。至于为什么不再封装业务接口，可以查看 [EasyWeChat 给出说明](https://easywechat.com/6.x/introduction.html#不再封装业务接口)。
 
 ```js
 // 公众号
@@ -57,6 +57,13 @@ let app = new OpenPlatform({
 const { Work } = require('node-easywechat');
 // 实例化应用
 let app = new Work({
+  // 配置项
+});
+
+// 企业微信开放平台
+const { OpenWork } = require('node-easywechat');
+// 实例化应用
+let app = new OpenWork({
   // 配置项
 });
 
@@ -182,6 +189,24 @@ let data = response.toObject();
   // 企业微信的 token
   token: '',
   // EncodingAESKey
+  aes_key: '',
+}
+```
+
+``` js
+// 企业微信开放平台配置
+{
+  // 企业微信的 corp id
+  corp_id: '',
+  // 企业微信的 secret
+  provider_secret: '',
+  // 第三方应用的 corp id
+  suite_id: '',
+  // 第三方应用的 secret
+  suite_secret: '',
+  // 企业微信服务端接口验证 token
+  token: '',
+  // 企业微信服务端消息加解密密钥
   aes_key: '',
 }
 ```
