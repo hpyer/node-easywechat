@@ -294,6 +294,8 @@ export const singleItem = function (obj: any): any
 export const parseXml = async function(xml: string): Promise<Record<string, any>>
 {
   let res = await Xml2js.parseStringPromise(xml);
+  // fix [Object: null prototype]
+  res = JSON.parse(JSON.stringify(res));
   res = singleItem(res);
   if(res['xml']) res = res['xml'];
   return res;
