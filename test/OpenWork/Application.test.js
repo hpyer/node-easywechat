@@ -184,8 +184,6 @@ class TestUnit extends BaseTestUnit {
       });
       app.setHttpClient(client);
 
-      console.log('ssss', await token.getToken());
-
       let authorization = await app.getAuthorization('mock-corpid', 'mock-permanent_code', token);
 
       this.assert.strictEqual(authorization instanceof Authorization, true);
