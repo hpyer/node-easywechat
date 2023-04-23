@@ -543,10 +543,10 @@ nise@^5.1.0:
     just-extend "^4.0.2"
     path-to-regexp "^1.7.0"
 
-node-socialite@^1.3.0:
-  version "1.3.0"
-  resolved "https://registry.npmmirror.com/node-socialite/-/node-socialite-1.3.0.tgz#122e6dfbfd56ab3d3f482e28843b5d7fe44085d1"
-  integrity sha512-etkYdQLFJV6/nsqLYjrv/VEWvXe/3by/jhpPXjKeipDyJC01pjivYqHdU3y96/lT66BlrryTQ7tDWdZ/UaqEDQ==
+node-socialite@^1.3.2:
+  version "1.3.2"
+  resolved "https://registry.npmmirror.com/node-socialite/-/node-socialite-1.3.2.tgz#db3b216b7da5841975c513babe937e43d6a01056"
+  integrity sha512-f4Yhu3QJPqa28GaerpCDpvteP4SJs4EgAZ1azrF6AeYC7jZfBTTgatC3BQaUwb+4u5a6Jkk/urOYWmwrtsCp2Q==
   dependencies:
     axios "^0.26.1"
     qs "^6.10.3"
