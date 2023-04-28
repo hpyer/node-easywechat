@@ -66,7 +66,7 @@ class SuiteAccessToken implements RefreshableAccessTokenInterface
       'post',
       'cgi-bin/service/get_suite_token',
       {
-        params: {
+        json: {
           suite_id: this.suiteId,
           suite_secret: this.suiteSecret,
           suite_ticket: await this.suiteTicket.getTicket(),

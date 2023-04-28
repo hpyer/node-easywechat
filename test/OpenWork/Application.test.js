@@ -232,7 +232,7 @@ class TestUnit extends BaseTestUnit {
       );
       app.setSuiteAccessToken(token);
 
-      client.mock('post', '/cgi-bin/service/get_pre_auth_code').reply(200, {
+      client.mock('get', '/cgi-bin/service/get_pre_auth_code').reply(200, {
         errcode: 0,
         errmsg: 'ok',
         pre_auth_code: 'fake-pre_auth_code',

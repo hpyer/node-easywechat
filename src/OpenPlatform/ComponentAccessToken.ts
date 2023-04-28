@@ -67,7 +67,7 @@ class ComponentAccessToken implements RefreshableAccessTokenInterface
       'post',
       'cgi-bin/component/api_component_token',
       {
-        params: {
+        data: {
           component_appid: this.appId,
           component_appsecret: this.secret,
           component_verify_ticket: await this.verifyTicket.getTicket(),

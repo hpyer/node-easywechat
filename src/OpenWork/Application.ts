@@ -277,7 +277,7 @@ class Application implements ApplicationInterface
     if (!suiteAccessToken) suiteAccessToken = this.getSuiteAccessToken();
 
     let response = (await this.getClient().request(
-      'post',
+      'get',
       'cgi-bin/service/get_pre_auth_code',
       {
         params: {

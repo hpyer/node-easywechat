@@ -182,7 +182,7 @@ class Application implements ApplicationInterface
       'post',
       'cgi-bin/component/api_query_auth',
       {
-        params: {
+        json: {
           component_appid: this.getAccount().getAppId(),
           authorization_code: authorizationCode,
         }
@@ -208,7 +208,7 @@ class Application implements ApplicationInterface
       'post',
       'cgi-bin/component/api_authorizer_token',
       {
-        params: {
+        json: {
           component_appid: this.getAccount().getAppId(),
           authorizer_appid: authorizerAppId,
           authorizer_refresh_token: authorizerRefreshToken,
@@ -250,7 +250,7 @@ class Application implements ApplicationInterface
       'post',
       'cgi-bin/component/api_create_preauthcode',
       {
-        params: {
+        json: {
           component_appid: this.getAccount().getAppId(),
         }
       }
