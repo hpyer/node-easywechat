@@ -32,10 +32,10 @@ class BaseClient implements HttpMixin
     };
 
     if (this.app.config.sub_mch_id) {
-      base['sub_mch_id'] = '';
+      base['sub_mch_id'] = this.app.config.sub_mch_id;
     }
     if (this.app.config.sub_appid) {
-      base['sub_appid'] = '';
+      base['sub_appid'] = this.app.config.sub_appid;
     }
 
     let localParams = merge(merge(base, this.prepends()), params);
