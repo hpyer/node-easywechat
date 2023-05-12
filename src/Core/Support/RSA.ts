@@ -1,6 +1,6 @@
 'use strict';
 
-import crypto from 'crypto';
+import crypto, { BinaryToTextEncoding } from 'crypto';
 
 class RSA {
 
@@ -78,41 +78,29 @@ class RSA {
   /**
    * 计算签名
    * @param data 待解密文本
-   * @param hashType 哈希方式，默认：'sha256'
+   * @param hashType 哈希方式，默认：'RSA-SHA256'
    * @param encoding 编码，默认：'base64'
-   * @param padding 补位方式，默认：crypto.constants.RSA_PKCS1_PSS_PADDING
    * @returns
    */
-  sign(data: string, hashType: string = 'sha256', encoding: BufferEncoding = 'base64', padding: number = crypto.constants.RSA_PKCS1_PSS_PADDING): string {
-    let signature = crypto.sign(hashType, Buffer.from(data), {
-      key: this.privateKey,
-      padding,
-    });
-
-    return signature.toString(encoding);
+  sign(data: string, hashType: string = 'RSA-SHA256', encoding: BinaryToTextEncoding = 'base64'): string {
+    return crypto
+      .createSign(hashType)
+      .update(data)
+      .sign(this.privateKey, encoding);
   }
 
   /**
    * 验证签名
    * @param signature 待验证签名字符串
    * @param data 待解密文本
-   * @param hashType 哈希方式，默认：'sha256'
+   * @param hashType 哈希方式，默认：'RSA-SHA256'
    * @param encoding 编码，默认：'base64'
-   * @param padding 补位方式，默认：crypto.constants.RSA_PKCS1_PSS_PADDING
    * @returns
    */
-  verify(signature: string, data: string, hashType: string, encoding: BufferEncoding = 'base64', padding: number = crypto.constants.RSA_PKCS1_PSS_PADDING): boolean {
-    let isVerified = crypto.verify(
-      hashType,
-      Buffer.from(data),
-      {
-        key: this.publicKey,
-        padding,
-      },
-      Buffer.from(signature, encoding)
-    );
-
-    return !!isVerified;
+  verify(signature: string, data: string, hashType: string = 'RSA-SHA256', encoding: BinaryToTextEncoding = 'base64'): boolean {
+    const verify = crypto.createVerify(hashType);
+    verify.update(data);
+    return verify.verify(this.publicKey, signature, encoding);
   }
 
 };
