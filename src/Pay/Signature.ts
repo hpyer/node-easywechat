@@ -6,11 +6,10 @@ import merge from 'merge';
 import { AxiosRequestConfig } from "axios";
 import RSA from "../Core/Support/RSA";
 
-class Signature
-{
+class Signature {
   constructor(
     protected merchant: MerchantInterface,
-  ) {}
+  ) { }
 
   /**
    * V3版本的签名计算
@@ -19,8 +18,7 @@ class Signature
    * @param payload 请求载荷
    * @returns
    */
-  createHeader(method: string, url: string, payload: AxiosRequestConfig<any>): string
-  {
+  createHeader(method: string, url: string, payload: AxiosRequestConfig<any>): string {
     let pathname = url;
     if (url.startsWith('https://') || url.startsWith('http://')) {
       let urlObj = new URL(url);
@@ -40,7 +38,7 @@ class Signature
       }
     }
 
-    let signString = `${method.toUpperCase()}\n${pathname}\n${timestamp}\n${nonce}\n${body}`;
+    let signString = `${method.toUpperCase()}\n${pathname}\n${timestamp}\n${nonce}\n${body}\n`;
 
     let rsa = new RSA;
     rsa.setPublicKey(this.merchant.getCertificate().getValue());

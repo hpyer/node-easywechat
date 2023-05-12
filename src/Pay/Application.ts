@@ -20,8 +20,7 @@ import Client from './Client';
 /**
  * 微信支付应用
  */
-class Application implements ApplicationInterface
-{
+class Application implements ApplicationInterface {
   constructor(config: ConfigInterface | PayConfig) {
     if (config instanceof ConfigInterface) {
       this.setConfig(config);
@@ -36,8 +35,7 @@ class Application implements ApplicationInterface
   protected server: Server = null;
   protected client: Client;
 
-  getMerchant(): MerchantInterface
-  {
+  getMerchant(): MerchantInterface {
     if (!this.merchant) {
       this.merchant = new Merchant(
         this.config.get('mch_id'),
@@ -56,14 +54,12 @@ class Application implements ApplicationInterface
    * @param merchant
    * @returns
    */
-  setMerchant(merchant: MerchantInterface): this
-  {
+  setMerchant(merchant: MerchantInterface): this {
     this.merchant = merchant;
     return this;
   }
 
-  getServer(): Server
-  {
+  getServer(): Server {
     if (!this.server) {
       this.server = new Server(
         this.getMerchant(),
@@ -78,14 +74,12 @@ class Application implements ApplicationInterface
    * @param server
    * @returns
    */
-  setServer(server: Server): this
-  {
+  setServer(server: Server): this {
     this.server = server;
     return this;
   }
 
-  getUtils(): Utils
-  {
+  getUtils(): Utils {
     return new Utils(this.getMerchant());
   }
 
@@ -105,8 +99,7 @@ class Application implements ApplicationInterface
    * @param client
    * @returns
    */
-  setClient(client: Client): this
-  {
+  setClient(client: Client): this {
     this.client = client.setPresets(this.config.all());
     return this;
   }
@@ -115,16 +108,15 @@ class Application implements ApplicationInterface
    * 获取请求默认配置
    * @returns
    */
-  protected getHttpClientDefaultOptions(): Record<string, any>
-  {
+  protected getHttpClientDefaultOptions(): Record<string, any> {
     return merge(true, {
-      baseURL: 'https://api.weixin.qq.com/',
+      baseURL: 'https://api.mch.weixin.qq.com',
     }, this.getConfig().get('http'));
   }
 
 };
 
-interface Application extends ConfigMixin, CacheMixin, ServerRequestMixin, HttpClientMixin {};
+interface Application extends ConfigMixin, CacheMixin, ServerRequestMixin, HttpClientMixin { };
 
 applyMixins(Application, [ConfigMixin, CacheMixin, ServerRequestMixin, HttpClientMixin]);
 
