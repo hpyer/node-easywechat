@@ -12,7 +12,8 @@ class AccessToken implements RefreshableAccessTokenInterface
     protected secret: string,
     protected key: string = null,
     protected cache: CacheInterface = null,
-    protected httpClient: HttpClientInterface = null
+    protected httpClient: HttpClientInterface = null,
+    protected stable: boolean = false
   ) {
     if (!this.httpClient) {
       this.httpClient = HttpClient.create({
@@ -59,7 +60,43 @@ class AccessToken implements RefreshableAccessTokenInterface
     };
   }
 
-  async refresh(): Promise<string> {
+  refresh() {
+    return this.stable ? this.getStableAccessToken() : this.getAccessToken();
+  }
+
+  /**
+   * 获取稳定版接口调用凭据
+   * @param forceRefresh 是否强制刷新，默认：false
+   */
+  async getStableAccessToken(forceRefresh: boolean = false): Promise<string> {
+    let response = (await this.httpClient.request(
+      'post',
+      'cgi-bin/stable_token',
+      {
+        json: {
+          grant_type: 'client_credential',
+          appid: this.appId,
+          secret: this.secret,
+          force_refresh: forceRefresh,
+        }
+      }
+    )).toObject();
+
+    if (!response['access_token']) {
+      throw new Error('Failed to get stable access_token: ' + JSON.stringify(response));
+    }
+
+    if (this.cache) {
+      await this.cache.set(this.getKey(), response['access_token'], parseInt(response['expires_in']));
+    }
+
+    return response['access_token'];
+  }
+
+  /**
+   * 获取接口调用凭据
+   */
+  async getAccessToken(): Promise<string> {
     let response = (await this.httpClient.request(
       'get',
       'cgi-bin/token',

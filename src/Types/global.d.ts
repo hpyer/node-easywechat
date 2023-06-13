@@ -147,6 +147,12 @@ export declare interface OfficialAccountConfig extends BaseConfig {
    * 网页授权相关配置
    */
   oauth?: OauthConfig;
+
+  /**
+   * 是否使用稳定版接口调用凭据，默认：false
+   * @see https://developers.weixin.qq.com/doc/offiaccount/Basic_Information/getStableAccessToken.html
+   */
+  use_stable_access_token?: boolean;
 }
 
 /**
@@ -172,6 +178,12 @@ export declare interface MiniAppConfig extends BaseConfig {
    * 服务端消息加解密密钥 aes_key
    */
   aes_key?: string;
+
+  /**
+   * 是否使用稳定版接口调用凭据，默认：false
+   * @see https://developers.weixin.qq.com/miniprogram/dev/OpenApiDoc/mp-access-token/getStableAccessToken.html
+   */
+  use_stable_access_token?: boolean;
 }
 
 /**

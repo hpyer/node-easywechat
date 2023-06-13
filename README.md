@@ -127,7 +127,9 @@ let data = response.toObject();
     scope: 'snsapi_userinfo',
     // 网页授权回调地址，完整的URL
     redirect: 'http://node-easywechat.hpyer.cn/wxlogin/callback'
-  }
+  },
+  // 是否使用稳定版接口调用凭据，默认：false
+  use_stable_access_token: false
 }
 ```
 
@@ -141,7 +143,9 @@ let data = response.toObject();
   // 小程序的 token
   token: '',
   // EncodingAESKey
-  aes_key: ''
+  aes_key: '',
+  // 是否使用稳定版接口调用凭据，默认：false
+  use_stable_access_token: false
 }
 ```
 

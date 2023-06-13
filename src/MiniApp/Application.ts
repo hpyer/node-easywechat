@@ -128,7 +128,8 @@ class Application implements ApplicationInterface
         this.getAccount().getSecret(),
         null,
         this.getCache(),
-        this.getHttpClient()
+        this.getHttpClient(),
+        this.config.get('use_stable_access_token', false)
       );
     }
     return this.accessToken;
