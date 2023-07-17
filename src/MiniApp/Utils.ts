@@ -43,7 +43,7 @@ class Utils
    * @param ciphertext
    * @returns
    */
-  public decryptSession(sessionKey: string, iv: string, ciphertext: string): object
+  public decryptSession(sessionKey: string, iv: string, ciphertext: string): Record<string, any>
   {
     return Decryptor.decrypt(sessionKey, iv, ciphertext);
   }

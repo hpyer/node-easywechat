@@ -3,30 +3,18 @@ import ProviderInterface from 'node-socialite/dist/Core/ProviderInterface';
 import OfficialAccountApplicationInterface from '../OfficialAccount/Contracts/ApplicationInterface';
 import WorkApplicationInterface from '../Work/Contracts/ApplicationInterface';
 import Message from '../Core/Message';
+import OfficialAccountMessage from '../OfficialAccount/Message';
+import PayMessage from '../Pay/Message';
+import WorkMessage from '../Work/Message';
+import OpenPlatformMessage from '../OpenPlatform/Message';
+import OpenWorkMessage from '../OpenWork/Message';
 import HttpClientResponseInterface from '../Core/HttpClient/Contracts/HttpClientResponseInterface';
 import { PublicKey } from "../Core/Support/PublicKey";
-
-declare module 'axios' {
-  export interface AxiosRequestConfig {
-    /**
-     * 要发送的xml数据，会自动解析并赋值到data属性，同时设置content-type=text/xml
-     */
-    xml?: string | Record<string, any>;
-    /**
-     * 要发送的json数据，会自动解析并赋值到data属性，同时设置content-type=application/json
-     */
-    json?: string | Record<string, any>;
-    /**
-     * 要发送的FormData数据，会自动解析并赋值到data属性，同时设置根据内容提取headers
-     */
-    formData?: Record<string, any>;
-  }
-}
 
 /**
  * 微信接口响应数据格式
  */
-export declare interface WeixinResponse extends Record<string, any> {
+export interface WeixinResponse extends Record<string, any> {
   /**
    * 错误代码
    */
@@ -41,7 +29,7 @@ export declare interface WeixinResponse extends Record<string, any> {
 /**
  * 公众号网页授权相关配置
  */
-export declare interface OauthConfig {
+export interface OauthConfig {
   /**
    * 网页授权权限，可选值：snsapi_userinfo、snsapi_base
    */
@@ -56,7 +44,7 @@ export declare interface OauthConfig {
 /**
  * 文件缓存相关配置
  */
-export declare interface CacheFileConfig {
+export interface CacheFileConfig {
   /**
    * 缓存文件保存路径，默认：./
    */
@@ -78,7 +66,7 @@ export declare interface CacheFileConfig {
 /**
  * 网络请求配置
  */
-export declare interface HttpConfig extends AxiosRequestConfig {
+export interface HttpConfig extends AxiosRequestConfig {
   /**
    * 是否抛出异常
    */
@@ -107,7 +95,7 @@ export declare interface HttpConfig extends AxiosRequestConfig {
 /**
  * 基础配置
  */
-export declare interface BaseConfig {
+export interface BaseConfig {
   /**
    * 网络请求相关配置
    */
@@ -122,7 +110,7 @@ export declare interface BaseConfig {
 /**
  * 公众号配置
  */
-export declare interface OfficialAccountConfig extends BaseConfig {
+export interface OfficialAccountConfig extends BaseConfig {
   /**
    * 公众号 app_id
    */
@@ -158,7 +146,7 @@ export declare interface OfficialAccountConfig extends BaseConfig {
 /**
  * 小程序配置
  */
-export declare interface MiniAppConfig extends BaseConfig {
+export interface MiniAppConfig extends BaseConfig {
   /**
    * 小程序 app_id
    */
@@ -189,7 +177,7 @@ export declare interface MiniAppConfig extends BaseConfig {
 /**
  * 微信支付配置
  */
-export declare interface PayConfig extends BaseConfig {
+export interface PayConfig extends BaseConfig {
   /**
    * 商户号
    */
@@ -228,7 +216,7 @@ export declare interface PayConfig extends BaseConfig {
 /**
  * 开发平台配置
  */
-export declare interface OpenPlatformConfig extends BaseConfig {
+export interface OpenPlatformConfig extends BaseConfig {
   /**
    * 开发平台 app_id
    */
@@ -253,7 +241,7 @@ export declare interface OpenPlatformConfig extends BaseConfig {
 /**
  * 企业微信配置
  */
-export declare interface WorkConfig extends BaseConfig {
+export interface WorkConfig extends BaseConfig {
   /**
    * 企业微信 corp_id
    */
@@ -278,7 +266,7 @@ export declare interface WorkConfig extends BaseConfig {
 /**
  * 企业微信开放平台配置
  */
-export declare interface OpenWorkConfig extends BaseConfig {
+export interface OpenWorkConfig extends BaseConfig {
   /**
    * 企业微信 corp_id
    */
@@ -315,19 +303,19 @@ export declare interface OpenWorkConfig extends BaseConfig {
  * @param app 公众号应用实例
  * @returns OAuth服务供应商实例
  */
-export declare type OfficialAccountOAuthFactory = (app: OfficialAccountApplicationInterface) => ProviderInterface;
+export type OfficialAccountOAuthFactory = (app: OfficialAccountApplicationInterface) => ProviderInterface;
 
 /**
  * 企业微信OAuth工厂方法
  * @param app 企业微信应用实例
  * @returns OAuth服务供应商实例
  */
-export declare type WorkOAuthFactory = (app: WorkApplicationInterface) => ProviderInterface;
+export type WorkOAuthFactory = (app: WorkApplicationInterface) => ProviderInterface;
 
 /**
  * 服务端通知处理项
  */
-export declare interface ServerHandlerItem {
+export interface ServerHandlerItem {
   hash: string;
   handler: ServerHandlerClosure;
 };
@@ -335,44 +323,44 @@ export declare interface ServerHandlerItem {
 /**
  * 服务端普通消息类型
  */
-export declare type ServerMessageType = 'text' | 'image' | 'voice' | 'video' | 'shortvideo' | 'location';
+export type ServerMessageType = 'text' | 'image' | 'voice' | 'video' | 'shortvideo' | 'location';
 
 /**
  * 服务端事件消息类型
  */
-export declare type ServerEventType = 'subscribe' | 'unsubscribe' | 'SCAN' | 'LOCATION' | 'CLICK' | 'VIEW';
+export type ServerEventType = 'subscribe' | 'unsubscribe' | 'SCAN' | 'LOCATION' | 'CLICK' | 'VIEW';
 
 /**
  * 服务端消息处理器
  * @param message 微信信息
  * @param next 下一个消息处理器
  */
-export declare type ServerHandlerClosure = (message: Message, next?: ServerHandlerClosure) => any;
+export type ServerHandlerClosure<T = Message> = (message: T extends OfficialAccountMessage | PayMessage | WorkMessage | OpenPlatformMessage | OpenWorkMessage ? T : Message, next?: ServerHandler<T>) => any;
 
 /**
  * HttpClient错误判定回调
  * @param response 响应对象
  */
-export declare type HttpClientFailureJudgeClosure = (response: HttpClientResponseInterface) => boolean;
+export type HttpClientFailureJudgeClosure = (response: HttpClientResponseInterface) => boolean;
 
 /**
  * Payment通知错误处理
  * @param error 错误信息
  */
-export declare type PaymentFailHandler = (error: string) => void;
+export type PaymentFailHandler = (error: string) => void;
 
 /**
  * Payment业务错误处理
  * @param error 错误信息
  */
-export declare type PaymentAlertHandler = (error: string) => void;
+export type PaymentAlertHandler = (error: string) => void;
 
 /**
  * Payment支付结果处理回调函数
  * @param message 微信通知信息
  * @param fail 通知错误处理函数
  */
-export declare type PaymentPaidHandler = (message: Message, fail: PaymentFailHandler) => void;
+export type PaymentPaidHandler = (message: PayMessage, fail: PaymentFailHandler) => void;
 
 /**
  * Payment退款结果处理回调函数
@@ -380,7 +368,7 @@ export declare type PaymentPaidHandler = (message: Message, fail: PaymentFailHan
  * @param reqInfo 微信通知信息中 req_info 解密后的信息
  * @param fail 通知错误处理函数
  */
-export declare type PaymentRefundedHandler = (message: Message, reqInfo: object, fail: PaymentFailHandler) => void;
+export type PaymentRefundedHandler = (message: PayMessage, reqInfo: Record<string, any>, fail: PaymentFailHandler) => void;
 
 /**
  * Payment扫码支付结果处理回调函数
@@ -388,7 +376,7 @@ export declare type PaymentRefundedHandler = (message: Message, reqInfo: object,
  * @param fail 通知错误处理函数
  * @param alert 业务错误处理函数
  */
-export declare type PaymentScannedHandler = (message: Message, fail: PaymentFailHandler, alert: PaymentAlertHandler) => void;
+export type PaymentScannedHandler = (message: PayMessage, fail: PaymentFailHandler, alert: PaymentAlertHandler) => void;
 
 /**
  * 日志处理方法
@@ -397,12 +385,12 @@ export declare type PaymentScannedHandler = (message: Message, fail: PaymentFail
  * @param usedTime 请求耗时，单位ms，仅在 type 为 after 时返回
  * @param response 响应对象，仅在 type 为 after 时返回
  */
-export declare type LogHandler = (type: 'before' | 'after', options: AxiosRequestConfig, usedTime?: number, response?: AxiosResponse) => void | Promise<void>;
+export type LogHandler = (type: 'before' | 'after', options: AxiosRequestConfig, usedTime?: number, response?: AxiosResponse) => void | Promise<void>;
 
 /**
  * 支付参数 JsBridge
  */
-export declare interface PayBridgeConfig {
+export interface PayBridgeConfig {
   /**
    * 应用id
    */
@@ -432,7 +420,7 @@ export declare interface PayBridgeConfig {
 /**
  * 支付参数 JsSdk
  */
-export declare interface PaySdkConfig {
+export interface PaySdkConfig {
   /**
    * 应用id
    */
@@ -462,7 +450,7 @@ export declare interface PaySdkConfig {
 /**
  * 支付参数 App
  */
-export declare interface PayAppConfig {
+export interface PayAppConfig {
   /**
    * 应用id
    */

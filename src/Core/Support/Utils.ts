@@ -74,7 +74,7 @@ export const randomString = function (len: number = 16): string
   return str;
 };
 
-export const makeSignature = function (params: object, key: string = '', type: string = 'md5'): string
+export const makeSignature = function (params: Record<string, any>, key: string = '', type: string = 'md5'): string
 {
   let paramsString = '';
   let sparator = '';

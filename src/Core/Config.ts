@@ -38,7 +38,7 @@ class Config extends ConfigInterface
    * 获取所有配置项
    * @returns
    */
-  all(): object {
+  all(): Record<string, any> {
     return merge.recursive(true, this.items);
   }
 
@@ -81,7 +81,7 @@ class Config extends ConfigInterface
    * @param keys 键名列表 或者 {键名:默认值} 格式的对象
    * @returns
    */
-  getMany(keys: string[] | Record<string, any>): object {
+  getMany(keys: string[] | Record<string, any>): Record<string, any> {
     let config = {};
     if (!keys || typeof keys.map === undefined) return config;
 

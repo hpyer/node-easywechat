@@ -15,7 +15,7 @@ import ServerRequestMixin from '../Core/Mixins/ServerRequestMixin';
 import { applyMixins, buildQueryString, createHash } from '../Core/Support/Utils';
 import OfficialAccountApplication from '../OfficialAccount/Application';
 import MiniAppApplication from '../MiniApp/Application';
-import { OfficialAccountConfig, OfficialAccountOAuthFactory, MiniAppConfig } from '../Types/global';
+import { OpenPlatformConfig, OfficialAccountConfig, OfficialAccountOAuthFactory, MiniAppConfig } from '../Types/global';
 import Account from './Account';
 import AccountInterface from './Contracts/AccountInterface';
 import ApplicationInterface from './Contracts/ApplicationInterface';
@@ -33,7 +33,7 @@ import HttpClientResponseInterface from '../Core/HttpClient/Contracts/HttpClient
  */
 class Application implements ApplicationInterface
 {
-  constructor(config: ConfigInterface | OfficialAccountConfig) {
+  constructor(config: ConfigInterface | OpenPlatformConfig) {
     if (config instanceof ConfigInterface) {
       this.setConfig(config);
     }

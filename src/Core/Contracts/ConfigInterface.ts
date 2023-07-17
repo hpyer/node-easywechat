@@ -8,7 +8,7 @@ abstract class ConfigInterface extends ObjectAccessInterface
    * 获取全部配置项
    * @returns
    */
-  all(): object { return null; }
+  all(): Record<string, any> { return null; }
 
   /**
    * 判断配置项是否存在

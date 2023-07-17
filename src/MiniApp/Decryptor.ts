@@ -4,7 +4,7 @@ import { AES } from '../Core/Support/AES';
 
 class Decryptor
 {
-  static decrypt(sessionKey: string, iv: string, ciphertext: string): object
+  static decrypt(sessionKey: string, iv: string, ciphertext: string): Record<string, any>
   {
     let decrypted = null;
     try {
