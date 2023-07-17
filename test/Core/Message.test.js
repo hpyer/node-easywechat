@@ -1,5 +1,6 @@
 const BaseTestUnit = require('../BaseTestUnit');
 const Message = require('../../dist/Core/Message');
+const { defineWorkServerHandler } = require('../../dist');
 
 class TestUnit extends BaseTestUnit {
 
@@ -12,6 +13,7 @@ class TestUnit extends BaseTestUnit {
 
       this.assert.strictEqual(message.test, 1);
       this.assert.strictEqual(message['test'], 1);
+      this.assert.strictEqual(message.get('test'), 1);
     });
 
     it('Should return corrected string via the method `toJson()`.', async () => {
