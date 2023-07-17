@@ -67,6 +67,20 @@ let app = new OpenWork({
   // 配置项
 });
 
+// ----- 定义配置项（v3.5.0+） -----
+
+// 这种方式设置配置项时可获得编辑器的代码提示（如：VS Code）
+
+// 公众号配置
+const config = defineOfficialAccountConfig({
+  // 配置项
+});
+// 小程序: defineMiniAppConfig()
+// 支付: definePayConfig()
+// 开放平台: defineOpenPlatformConfig()
+// 企业微信: defineWorkConfig()
+// 企业微信开放平台: defineOpenWorkConfig()
+
 // ----- 以下为通用的 api 调用方法 -----
 
 // 获取 api 调用客户端
