@@ -69,7 +69,7 @@ let app = new OpenWork({
 
 // ----- 定义配置项（v3.5.0+） -----
 
-// 这种方式设置配置项时可获得编辑器的代码提示（如：VS Code）
+// 这种方式可以让你在需要单独设置配置项时，也能获得编辑器的代码提示
 
 // 公众号配置
 const config = defineOfficialAccountConfig({
