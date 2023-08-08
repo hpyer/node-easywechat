@@ -2,7 +2,6 @@
 
 import { Message, Text, Raw as RawMessage } from "../../Core/Messages";
 import CustomerServiceClient from "./CustomerServiceClient";
-import { isString } from "../../Core/Utils";
 
 export default class Messenger
 {
@@ -19,9 +18,9 @@ export default class Messenger
     this.client = client;
   }
 
-  message(message: any): this
+  message(message: string | Message): this
   {
-    if (isString(message)) {
+    if (typeof message === 'string') {
       message = new Text(message);
     }
     this._message = message;

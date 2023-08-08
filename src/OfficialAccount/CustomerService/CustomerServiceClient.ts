@@ -1,6 +1,7 @@
 'use strict';
 
 import BaseClient from '../../Core/BaseClient';
+import { Message } from '../../Core/Messages/Message';
 import { getTimestamp } from '../../Core/Utils';
 import Messenger from './Messenger';
 
@@ -61,7 +62,7 @@ export default class CustomerServiceClient extends BaseClient
     });
   }
 
-  message(message: object): object
+  message(message: string | Message): Messenger
   {
     let messager = new Messenger(this);
     return messager.message(message);
