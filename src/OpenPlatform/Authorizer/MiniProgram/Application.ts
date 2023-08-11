@@ -1,6 +1,7 @@
 'use strict';
 
 import BaseApplication from '../../../MiniProgram/Application';
+import MiniProgramBaseClient from './Base/MiniProgramBaseClient';
 import CodeClient from './Code/CodeClient';
 import DomainClient from './Domain/DomainClient';
 import MaterialClient from './Material/MaterialClient';
@@ -13,6 +14,7 @@ import TesterClient from './Tester/TesterClient';
 export default class MiniProgram extends BaseApplication
 {
 
+  public base: MiniProgramBaseClient;
   public code: CodeClient;
   public domain: DomainClient;
   public material: MaterialClient;
@@ -31,6 +33,9 @@ export default class MiniProgram extends BaseApplication
 
   registerExtraProviders(): void
   {
+    this.offsetSet('base', function (app) {
+      return new MiniProgramBaseClient(app);
+    });
     this.offsetSet('code', function (app) {
       return new CodeClient(app);
     });
@@ -55,6 +60,11 @@ export default class MiniProgram extends BaseApplication
     this.offsetSet('tester', function (app) {
       return new TesterClient(app);
     });
+  }
+
+  // map to `base` module
+  getVersionInfo(): Promise<any> {
+    return this.base.getVersionInfo.apply(this.base, arguments);
   }
 
 };
