@@ -7,6 +7,11 @@ import HttpClient from "../Core/HttpClient/HttpClient";
 
 class AccessToken implements RefreshableAccessTokenInterface
 {
+  /**
+   * 缓存前缀
+   */
+  protected CACHE_KEY_PREFIX = 'official_account';
+
   constructor(
     protected appId: string,
     protected secret: string,
@@ -28,7 +33,7 @@ class AccessToken implements RefreshableAccessTokenInterface
    */
   getKey(): string {
     if (!this.key) {
-      this.key = `official_account.access_token.${this.appId}`;
+      this.key = `${this.CACHE_KEY_PREFIX}.access_token.${this.appId}`;
     }
     return this.key;
   }

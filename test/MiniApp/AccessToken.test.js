@@ -43,6 +43,14 @@ class TestUnit extends BaseTestUnit {
       this.assert.strictEqual(await accessToken.getToken(), result.access_token);
     });
 
+    it('Should return default key for cache correctly', () => {
+      let accessToken = new AccessToken(
+        'mock-appid',
+        'mock-secret',
+      );
+      this.assert.strictEqual(accessToken.getKey(), 'mini_app.access_token.mock-appid');
+    });
+
     it('Should use custom key for cache correctly', () => {
       let key = 'mock-access_token-cache-key';
 
