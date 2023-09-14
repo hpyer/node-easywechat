@@ -5,12 +5,14 @@ export default class Response
   protected content: Buffer = null;
   protected statusCode: number = 200;
   protected headers: object = {};
+  protected config: object = {};
 
-  constructor(content: Buffer, statusCode: number = 200, headers: object = {})
+  constructor(content: Buffer, statusCode: number = 200, headers: object = {}, config: object = {})
   {
     this.content = content;
     this.statusCode = statusCode;
     this.headers = headers;
+    this.config = config;
   }
 
   setContent(content: Buffer): void
@@ -51,6 +53,14 @@ export default class Response
   getHeader(key: string): string
   {
     return this.headers[key] || '';
+  }
+
+  setConfig(config: object): void {
+    this.config = config;
+  }
+
+  getConfig(): object {
+    return this.config;
   }
 
 };

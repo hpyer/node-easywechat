@@ -24,7 +24,7 @@ class BaseClient implements HttpMixin
     return {};
   }
 
-  protected async request(endpoint: string, params: object = {}, method: string = 'post', options: AxiosRequestConfig = {}, returnResponse: boolean = false): Promise<AxiosResponse<any>>
+  async request(endpoint: string, params: object = {}, method: string = 'post', options: AxiosRequestConfig = {}, returnResponse: boolean = false): Promise<AxiosResponse<any>>
   {
     let base = {
       mch_id: this.app.config.mch_id,
@@ -64,7 +64,7 @@ class BaseClient implements HttpMixin
     }
   }
 
-  protected safeRequest(endpoint: string, params: object = {}, method: string = 'post', options: AxiosRequestConfig = {}): Promise<any>
+  safeRequest(endpoint: string, params: object = {}, method: string = 'post', options: AxiosRequestConfig = {}): Promise<any>
   {
     options = merge(merge({}, options), {
       httpsAgent: new Https.Agent({
@@ -75,14 +75,29 @@ class BaseClient implements HttpMixin
     return this.request(endpoint, params, method, options);
   }
 
-  protected async requestRaw(endpoint: string, params: object = {}, method: string = 'post', options: AxiosRequestConfig = {}): Promise<any>
+  async requestRaw(endpoint: string, params: object = {}, method: string = 'post', options: AxiosRequestConfig = {}): Promise<any>
   {
     options.responseType = 'arraybuffer';
     let res = await this.request(endpoint, params, method, options, true);
-    return new Response(res.data, res.status, res.headers);
+    let config: object = {};
+    let keys: string[] = ['url', 'baseURL', 'method', 'params', 'headers'];
+    keys.map(key => {
+      if (typeof options[key] === 'string' || typeof options[key] === 'number') {
+        config[key] = options[key];
+      }
+      else if (typeof options[key] === 'object') {
+        if (options[key] === null) {
+          config[key] = null;
+        }
+        else {
+          config[key] = JSON.parse(JSON.stringify(options[key]));
+        }
+      }
+    });
+    return new Response(res.data, res.status, res.headers, config);
   }
 
-  protected wrap(endpoint: string): string
+  wrap(endpoint: string): string
   {
     return this.app.inSandbox() ? `sandboxnew/${endpoint}` : endpoint;
   }

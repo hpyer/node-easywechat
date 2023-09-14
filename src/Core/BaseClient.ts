@@ -32,6 +32,11 @@ abstract class BaseClient implements HttpMixin
     return this.accessToken;
   }
 
+  /**
+   * 发送请求
+   * @param payload axios请求参数
+   * @param returnResponse 是否返回axios响应对象，默认false表示直接返回数据
+   */
   async request(payload: AxiosRequestConfig, returnResponse: Boolean = false): Promise<AxiosResponse<any>>
   {
     payload = payload || {};
@@ -48,6 +53,13 @@ abstract class BaseClient implements HttpMixin
     return returnResponse ? response : response.data;
   }
 
+  /**
+   * 上传文件请求
+   * @param url 地址
+   * @param files 文件键值对，键名为文件字段，键值为文件路径或可读流
+   * @param form 其它表单参数键值对
+   * @param query querystring参数键值对
+   */
   httpUpload(url: string, files: object = {}, form: object = {}, query: object = {}): Promise<any>
   {
     let formData = new FormData;
@@ -73,6 +85,11 @@ abstract class BaseClient implements HttpMixin
     });
   }
 
+  /**
+   * Get请求
+   * @param url 地址
+   * @param query querystring参数键值对
+   */
   httpGet(url: string, query: object = {}): Promise<any>
   {
     return this.request({
@@ -82,15 +99,26 @@ abstract class BaseClient implements HttpMixin
     });
   }
 
-  httpPost(url: string, formData: object = {}): Promise<any>
+  /**
+   * Post请求
+   * @param url 地址
+   * @param data body数据，详见 axios 请求配置的 data 参数
+   */
+  httpPost(url: string, data: object = {}): Promise<any>
   {
     return this.request({
       url,
       method: 'POST',
-      data: formData,
+      data: data,
     });
   }
 
+  /**
+   * Post请求（JSON数据）
+   * @param url 地址
+   * @param data body数据，详见 axios 请求配置的 data 参数
+   * @param query querystring参数键值对
+   */
   httpPostJson(url: string, data: object = {}, query: object = {}): Promise<any>
   {
     return this.request({
@@ -101,12 +129,31 @@ abstract class BaseClient implements HttpMixin
     });
   }
 
+  /**
+   * 发送请求并返回原始数据，主要用于下载文件等。返回封装过的Response对象
+   * @param payload axios请求参数
+   */
   async requestRaw(payload: AxiosRequestConfig): Promise<Response>
   {
     payload = payload || {};
     payload.responseType = 'arraybuffer';
     let res = await this.request(payload, true);
-    return new Response(res.data, res.status, res.headers);
+    let config: object = {};
+    let keys: string[] = ['url', 'baseURL', 'method', 'params', 'headers'];
+    keys.map(key => {
+      if (typeof payload[key] === 'string' || typeof payload[key] === 'number') {
+        config[key] = payload[key];
+      }
+      else if (typeof payload[key] === 'object') {
+        if (payload[key] === null) {
+          config[key] = null;
+        }
+        else {
+          config[key] = JSON.parse(JSON.stringify(payload[key]));
+        }
+      }
+    });
+    return new Response(res.data, res.status, res.headers, config);
   }
 
 

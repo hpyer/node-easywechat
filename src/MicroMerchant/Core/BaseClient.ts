@@ -1,5 +1,6 @@
 'use strict';
 
+import BaseApplication from '../Application';
 import PaymentBaseClient from '../../Payment/Core/BaseClient';
 import { merge, makeSignature, inArray, isString, buildXml, parseXml } from '../../Core/Utils';
 import { AxiosRequestConfig, AxiosResponse } from 'axios';
@@ -9,6 +10,10 @@ import FormData from 'form-data';
 
 class BaseClient extends PaymentBaseClient
 {
+  constructor(app: BaseApplication) {
+    super(app as any);
+  }
+
 
   httpUpload(url: string, files: object = {}, form: object = {}, query: object = {}, returnResponse: boolean = false): Promise<any>
   {
@@ -35,7 +40,7 @@ class BaseClient extends PaymentBaseClient
     });
   }
 
-  protected async request(endpoint: string, params: object = {}, method: string = 'post', options: AxiosRequestConfig = {}, returnResponse: boolean = false): Promise<AxiosResponse<any>>
+  async request(endpoint: string, params: object = {}, method: string = 'post', options: AxiosRequestConfig = {}, returnResponse: boolean = false): Promise<AxiosResponse<any>>
   {
     let base = {
       mch_id: this.app.config.mch_id,
