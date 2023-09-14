@@ -111,7 +111,7 @@ let payload = { url: '/example-url', method: 'post', data: { foo: 'bar' } };
 let data = client.requestRaw(payload); // 参数为 axios 的请求参数
 ```
 
-**注意**：如果是 `Payment` 支付应用，则只有 `request`、`requestRaw` 方法，以及 `safeRequest` 方法（该方法请求时会携带支付证书），切请求参数也不一样
+**注意**：如果是 `Payment`、`MicroMerchant` 应用，则只有 `request`、`requestRaw` 方法，以及 `safeRequest` 方法（该方法请求时会携带支付证书），且请求参数也不一样
 
 ```js
 // 1. 创建公众号应用
