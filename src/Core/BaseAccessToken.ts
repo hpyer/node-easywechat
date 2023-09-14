@@ -209,7 +209,8 @@ abstract class BaseAccessToken implements HttpMixin
   {
     payload.params = payload.params || {};
     if (!payload.params[this.queryName || this.tokenKey]) {
-      payload.params[this.queryName || this.tokenKey] = (await this.getToken())[this.tokenKey];
+      let token = await this.getToken();
+      payload.params[this.queryName || this.tokenKey] = token[this.tokenKey];
     }
     return payload;
   }
