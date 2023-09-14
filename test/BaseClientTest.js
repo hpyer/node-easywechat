@@ -4,6 +4,29 @@ const Sinon = require('sinon');
 const axios = require('axios');
 const assert = require('assert');
 
+class MockCache extends EasyWechat.CacheInterface {
+  constructor() {
+    super();
+    this.__mockData = {};
+  }
+  async get(key) {
+    if (!this.has(key)) return null;
+    return this.__mockData[key] || this.__mockData['*'];
+  }
+  async has(key) {
+    return typeof this.__mockData[key] !== 'undefined' || typeof this.__mockData['*'] !== 'undefined';
+  }
+  async set(key, value, lifetime) {
+    this.__mockData[key] = value;
+    return true;
+  }
+  async delete(key) {
+    this.__mockData[key] = undefined;
+    delete this.__mockData[key];
+    return true;
+  }
+}
+
 /**
  * 通用模块测试
  */
@@ -38,9 +61,20 @@ module.exports = class BaseClientTest {
      */
     this.app = EasyWechat.Factory.getInstance(service, config);
 
+    this.app.rebind('cache', new MockCache);
+
     if (autoRun) {
       this.run();
     }
+  }
+
+  /**
+   * 模拟缓存数据
+   * @param value 数据值
+   * @param key 键名，默认：'*' 表示所有
+   */
+  mockCache(value, key = '*') {
+    this.app.cache.set(key, value);
   }
 
   /**

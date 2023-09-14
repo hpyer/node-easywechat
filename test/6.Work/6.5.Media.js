@@ -8,6 +8,13 @@ class TestUnit extends BaseClientTest {
   test() {
 
     it('media.get()', async () => {
+
+      let key = await this.app.access_token.getCacheKey();
+      this.mockCache({
+        access_token: 'mock-access_token',
+        expires_in: 7200,
+      }, key);
+
       // 错误时
       let media_id = 'invalid-media-id';
       this.mockResponse({

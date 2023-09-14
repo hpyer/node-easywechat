@@ -7,6 +7,13 @@ class TestUnit extends BaseClientTest {
   test() {
 
     it('Should return correct URL of getPreAuthorizationUrl()', async () => {
+
+      let key = this.app.suite_ticket.getCacheKey();
+      this.mockCache({
+        ticket: 'mock-suite_ticket',
+        expires_in: 7200,
+      }, key);
+
       this.mockResponse({
         errcode: 0,
         errmsg: 'ok',
