@@ -19,6 +19,9 @@ import LicenseAccountClient from './License/LicenseAccountClient';
 import LicenseAppClient from './License/LicenseAppClient';
 import LicenseAutoActiveClient from './License/LicenseAutoActiveClient';
 import MediaClient from './Media/MediaClient';
+import BaseClient from '../Core/BaseClient';
+
+class Client extends BaseClient { };
 
 export default class OpenWork extends BaseApplication
 {
@@ -31,6 +34,10 @@ export default class OpenWork extends BaseApplication
     },
   };
 
+  /**
+   * 客户端实例
+   */
+  public client: Client = null;
   public provider_access_token: ProviderAccessToken;
   public suite_access_token: SuiteAccessToken;
   public suite_ticket: SuiteTicket;
@@ -169,6 +176,17 @@ export default class OpenWork extends BaseApplication
   work(authCorpId: string, permanentCode: string)
   {
     return new Work(authCorpId, permanentCode, this);
+  }
+
+  /**
+   * 获取客户端实例
+   */
+  getClient(): Client {
+    if (this.client) {
+      return this.client;
+    }
+
+    return this.client = new Client(this);
   }
 
 };

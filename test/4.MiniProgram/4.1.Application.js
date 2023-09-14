@@ -19,6 +19,23 @@ class TestUnit extends BaseClientTest {
       });
     })
 
+    it('Should get client and send request correctly', async () => {
+      let client = this.app.getClient();
+      this.assert.strictEqual(client.httpGet && typeof client.httpGet == 'function', true);
+
+      let key = await this.app.access_token.getCacheKey();
+      this.mockCache({
+        access_token: 'mock-access_token',
+        expires_in: 7200,
+      }, key);
+
+      this.mockResponse({
+        foo: 'bar',
+      });
+      let resp = await client.httpGet('/mock-url');
+      this.assert.deepStrictEqual(resp, { foo: 'bar' });
+    });
+
   }
 }
 

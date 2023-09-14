@@ -63,6 +63,69 @@ let app = EasyWechat.Factory.getInstance('OficialAccount', {
 });
 ```
 
+### 发起请求
+
+本工具包封装了大部分常用的微信api，您可以直接使用，而不用考虑具体的接口地址。
+
+以公众号获取用户信息为例：
+
+```js
+// 1. 创建公众号应用
+let officialAccount = new EasyWechat.Factory.OfficialAccount({
+  // ...
+});
+// 2. 获取用户信息
+let user = await officialAccount.user.get('user_openid');
+```
+
+但是，微信的api实在太多，有时可能不能及时更新，因此，自`2.13.0`版本开始，本工具提供通用的发送请求的客户端（感谢`ValueLan`的建议），具体使用方法如下：
+
+```js
+// 1. 创建公众号应用
+let officialAccount = new EasyWechat.Factory.OfficialAccount({
+  // ...
+});
+// 2. 获取客户端实例
+let client = officialAccount.getClient();
+// 3. 发送请求
+// get
+let querystring = { foo: 'bar' };
+let data = client.httpGet('/example-url', querystring);
+
+// post
+let data = { foo: 'bar' };
+let data = client.httpPost('/example-url', data);
+
+// 上传文件
+let files = { file1: '/path/to/file1', file2: fs.createReadStream('/path/to/file2') };
+let data = { foo: 'bar' };
+let querystring = { foo: 'bar' };
+let data = client.httpUpload('/example-url', files, data, querystring);
+
+// 通用请求
+let payload = { url: '/example-url', method: 'post', data: { foo: 'bar' } };
+let data = client.request(payload); // 参数为 axios 的请求参数
+
+// 通用请求（返回原始数据，可用于下载文件等）
+let payload = { url: '/example-url', method: 'post', data: { foo: 'bar' } };
+let data = client.requestRaw(payload); // 参数为 axios 的请求参数
+```
+
+**注意**：如果是 `Payment` 支付应用，则只有 `request`、`requestRaw` 方法，以及 `safeRequest` 方法（该方法请求时会携带支付证书），切请求参数也不一样
+
+```js
+// 1. 创建公众号应用
+let payment = new EasyWechat.Factory.Payment({
+  // ...
+});
+// 2. 获取客户端实例
+let client = payment.getClient();
+// 3. 发送请求 request、safeRequest、requestRaw 三个方法参数一样
+let data = { foo: 'bar' };
+let payload = {}; // axios 的请求参数
+let data = client.request('/example-url', data, 'post', payload);
+```
+
 ### 配置项示例
 
 ``` js

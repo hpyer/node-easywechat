@@ -22,6 +22,9 @@ import TransferClient from './Transfer/TransferClient';
 import SecurityClient from './Security/SecurityClient';
 import ProfitSharingClient from './ProfitSharing/ProfitSharingClient';
 import { EasyWechatConfig, PaymentPaidHandler, PaymentRefundedHandler, PaymentScannedHandler } from '../Core/Types';
+import BaseClient from './Core/BaseClient';
+
+class PaymentClient extends BaseClient { };
 
 export default class Payment extends BaseApplication
 {
@@ -35,6 +38,7 @@ export default class Payment extends BaseApplication
     },
   };
 
+  public client: PaymentClient;
   public base: PaymentBase;
   public bill: BillClient;
   public coupon: CouponClient;
@@ -219,6 +223,18 @@ export default class Payment extends BaseApplication
   authCodeToOpenid(): Promise<any>
   {
     return this.base.authCodeToOpenid.apply(this.base, arguments);
+  }
+
+  /**
+   * 获取客户端实例
+   */
+  getClient(): PaymentClient
+  {
+    if (this.client) {
+      return this.client;
+    }
+
+    return this.client = new PaymentClient(this);
   }
 
 };

@@ -5,10 +5,13 @@ import { EasyWechatConfig } from '../Core/Types';
 import { makeSignature } from '../Core/Utils';
 import MicroMerchantBase from './Base/MicroMerchantBase';
 import CertficatesClient from './Certficates/CertficatesClient';
+import BaseClient from './Core/BaseClient';
 import MediaClient from './Media/MediaClient';
 import MerchantConfigClient from './MerchantConfig/MerchantConfigClient';
 import MeterialClient from './Meterial/MeterialClient';
 import WithdrawClient from './Withdraw/WithdrawClient';
+
+class Client extends BaseClient { };
 
 export default class MicroMerchant extends BaseApplication
 {
@@ -22,6 +25,10 @@ export default class MicroMerchant extends BaseApplication
     },
   };
 
+  /**
+   * 客户端实例
+   */
+  public client: Client = null;
   public base: MicroMerchantBase;
   public certficates: CertficatesClient;
   public media: MediaClient;
@@ -130,6 +137,17 @@ export default class MicroMerchant extends BaseApplication
   getUpgradeStatus(): Promise<any>
   {
     return this.base.getUpgradeStatus.apply(this.base, arguments);
+  }
+
+  /**
+   * 获取客户端实例
+   */
+  getClient(): Client {
+    if (this.client) {
+      return this.client;
+    }
+
+    return this.client = new Client(this);
   }
 
 };

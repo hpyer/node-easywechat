@@ -40,10 +40,17 @@ import RiskControlClient from './RiskControl/RiskControlClient';
 import LiveClient from './Live/LiveClient';
 import BroadcastClient from './Broadcast/BroadcastClient';
 import UnionClient from './Union/UnionClient';
+import BaseClient from '../Core/BaseClient';
+
+class Client extends BaseClient { };
 
 export default class MiniProgram extends BaseApplication
 {
 
+  /**
+   * 客户端实例
+   */
+  public client: Client = null;
   public access_token: AccessToken;
   public auth: AuthClient;
   public encryptor: Encryptor;
@@ -231,6 +238,17 @@ export default class MiniProgram extends BaseApplication
   getPaidUnionid(): Promise<any>
   {
     return this.base.getPaidUnionid.apply(this.base, arguments);
+  }
+
+  /**
+   * 获取客户端实例
+   */
+  getClient(): Client {
+    if (this.client) {
+      return this.client;
+    }
+
+    return this.client = new Client(this);
   }
 
 };

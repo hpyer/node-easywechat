@@ -42,6 +42,9 @@ import ExternalMomentClient from './ExternalContact/MomentClient';
 import CorpGroupClient from './CorpGroup/CorpGroupClient';
 import { SocialiteManager } from 'node-socialite';
 import WeWork from 'node-socialite/dist/Providers/WeWork';
+import BaseClient from '../Core/BaseClient';
+
+class Client extends BaseClient { };
 
 export default class Work extends BaseApplication
 {
@@ -51,6 +54,10 @@ export default class Work extends BaseApplication
     },
   };
 
+  /**
+   * 客户端实例
+   */
+  public client: Client = null;
   public oa: OAClient;
   public access_token: AccessToken;
   public agent: AgentClient;
@@ -274,6 +281,17 @@ export default class Work extends BaseApplication
   getCallbackIp(): Promise<any>
   {
     return this.base.getCallbackIp.apply(this.base, arguments);
+  }
+
+  /**
+   * 获取客户端实例
+   */
+  getClient(): Client {
+    if (this.client) {
+      return this.client;
+    }
+
+    return this.client = new Client(this);
   }
 
 };

@@ -16,10 +16,17 @@ import OpenPlatformGuard from './Server/OpenPlatformGuard';
 import CodeTemplateClient from './CodeTemplate/CodeTemplateClient';
 import ComponentClient from './Component/ComponentClient';
 import { EasyWechatConfig } from '../Core/Types';
+import BaseClient from '../Core/BaseClient';
+
+class Client extends BaseClient { };
 
 export default class OpenPlatform extends BaseApplication
 {
 
+  /**
+   * 客户端实例
+   */
+  public client: Client = null;
   public verify_ticket: VerifyTicket;
   public access_token: AccessToken;
   public base: OpenPlatformBase;
@@ -240,4 +247,16 @@ export default class OpenPlatform extends BaseApplication
   {
     return this.base.clearQuota.apply(this.base, arg);
   }
+
+  /**
+   * 获取客户端实例
+   */
+  getClient(): Client {
+    if (this.client) {
+      return this.client;
+    }
+
+    return this.client = new Client(this);
+  }
+
 };

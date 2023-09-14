@@ -33,6 +33,9 @@ import UrlClient from '../BaseService/Url/UrlClient';
 import { EasyWechatConfig } from '../Core/Types';
 import { SocialiteManager } from 'node-socialite';
 import WeChat from 'node-socialite/dist/Providers/WeChat';
+import BaseClient from '../Core/BaseClient';
+
+class Client extends BaseClient { };
 
 export default class OfficialAccount extends BaseApplication
 {
@@ -45,6 +48,10 @@ export default class OfficialAccount extends BaseApplication
     },
   };
 
+  /**
+   * 客户端实例
+   */
+  public client: Client = null;
   public access_token: AccessToken;
   public encryptor: Encryptor;
   public server: Guard;
@@ -243,4 +250,16 @@ export default class OfficialAccount extends BaseApplication
   {
     return this.base.checkCallbackUrl.apply(this.base, arguments);
   }
+
+  /**
+   * 获取客户端实例
+   */
+  getClient(): Client {
+    if (this.client) {
+      return this.client;
+    }
+
+    return this.client = new Client(this);
+  }
+
 };

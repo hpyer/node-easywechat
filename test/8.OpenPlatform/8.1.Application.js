@@ -98,6 +98,67 @@ class TestUnit extends BaseClientTest {
       this.assert.strictEqual(res.phone_info.phoneNumber, 'mock-phone-number');
     });
 
+    it('Should get client and send request correctly', async () => {
+      let client = this.app.getClient();
+      this.assert.strictEqual(client.httpGet && typeof client.httpGet == 'function', true);
+
+      let key = await this.app.access_token.getCacheKey();
+      this.mockCache({
+        access_token: 'mock-access_token',
+        expires_in: 7200,
+      }, key);
+
+      this.mockResponse({
+        foo: 'bar',
+      });
+      let resp = await client.httpGet('/mock-url');
+      this.assert.deepStrictEqual(resp, { foo: 'bar' });
+    });
+
+    it('Should get client and send request correctly with proxy OfficialAccount', async () => {
+      let oa_appid = 'mock-oa_appid';
+      let oa_app = this.app.officialAccount(oa_appid);
+      let oa_client = oa_app.getClient();
+
+      let oa_key = await oa_app.access_token.getCacheKey();
+      this.mockCache({
+        authorizer_access_token: 'mock-oa_access_token',
+        authorizer_refresh_token: 'mock-oa_refresh_token',
+        expires_in: 7200,
+      }, oa_key);
+
+      this.mockResponse({
+        oa_foo: 'oa_bar',
+      });
+      let oa_resp = await oa_client.requestRaw({
+        url: '/mock-oa_url',
+      });
+      this.assert.deepStrictEqual(oa_resp.getContent(), { oa_foo: 'oa_bar' });
+      this.assert.deepStrictEqual(oa_resp.getConfig().params, { access_token: 'mock-oa_access_token' });
+    });
+
+    it('Should get client and send request correctly with proxy MiniProgram', async () => {
+      let mp_appid = 'mock-mp_appid';
+      let mp_app = this.app.officialAccount(mp_appid);
+      let mp_client = mp_app.getClient();
+
+      let mp_key = await mp_app.access_token.getCacheKey();
+      this.mockCache({
+        authorizer_access_token: 'mock-mp_access_token',
+        authorizer_refresh_token: 'mock-mp_refresh_token',
+        expires_in: 7200,
+      }, mp_key);
+
+      this.mockResponse({
+        mp_foo: 'mp_bar',
+      });
+      let mp_resp = await mp_client.requestRaw({
+        url: '/mock-mp_url',
+      });
+      this.assert.deepStrictEqual(mp_resp.getContent(), { mp_foo: 'mp_bar' });
+      this.assert.deepStrictEqual(mp_resp.getConfig().params, { access_token: 'mock-mp_access_token' });
+    });
+
   }
 }
 

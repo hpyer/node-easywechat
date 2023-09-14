@@ -4,6 +4,14 @@ const BaseClientTest = require('../BaseClientTest');
 
 class TestUnit extends BaseClientTest {
 
+  /**
+   *
+   * @returns {import('../../dist/MicroMerchant/Application').default}
+   */
+  getApp() {
+    return this.app;
+  }
+
   test() {
 
     [
@@ -13,6 +21,17 @@ class TestUnit extends BaseClientTest {
         this.assert.strictEqual(this.app[module] && typeof this.app[module] == 'object', true);
       });
     })
+
+    it('Should get client and send request correctly', async () => {
+      let client = this.getApp().getClient();
+      this.assert.strictEqual(client.safeRequest && typeof client.safeRequest == 'function', true);
+
+      this.mockResponse({
+        foo: 'bar',
+      });
+      let resp = await client.request('/mock-url');
+      this.assert.deepStrictEqual(resp, { foo: 'bar' });
+    });
 
   }
 }
