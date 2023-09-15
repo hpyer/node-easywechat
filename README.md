@@ -90,28 +90,28 @@ let client = officialAccount.getClient();
 // 3. 发送请求
 // get
 let querystring = { foo: 'bar' };
-let data = client.httpGet('/example-url', querystring);
+let responseData = client.httpGet('/example-url', querystring);
 
 // post
 let data = { foo: 'bar' };
-let data = client.httpPost('/example-url', data);
+let responseData = client.httpPost('/example-url', data);
 
 // 上传文件
 let files = { file1: '/path/to/file1', file2: fs.createReadStream('/path/to/file2') };
 let data = { foo: 'bar' };
 let querystring = { foo: 'bar' };
-let data = client.httpUpload('/example-url', files, data, querystring);
+let responseData = client.httpUpload('/example-url', files, data, querystring);
 
 // 通用请求
 let payload = { url: '/example-url', method: 'post', data: { foo: 'bar' } };
-let data = client.request(payload); // 参数为 axios 的请求参数
+let responseData = client.request(payload); // 参数为 axios 的请求参数
 
 // 通用请求（返回原始数据，可用于下载文件等）
 let payload = { url: '/example-url', method: 'post', data: { foo: 'bar' } };
-let data = client.requestRaw(payload); // 参数为 axios 的请求参数
+let response = client.requestRaw(payload); // 参数为 axios 的请求参数
 ```
 
-**注意**：如果是 `Payment`、`MicroMerchant` 应用，则只有 `request`、`requestRaw` 方法，以及 `safeRequest` 方法（该方法请求时会携带支付证书），且请求参数也不一样
+**注意**：如果是 `Payment`、`MicroMerchant` 应用，则只有 `request`、`requestRaw` 方法，且请求参数也不一样。另外，还提供一个额外的 `safeRequest` 方法，该方法请求时会携带支付证书。
 
 ```js
 // 1. 创建公众号应用
@@ -123,7 +123,7 @@ let client = payment.getClient();
 // 3. 发送请求 request、safeRequest、requestRaw 三个方法参数一样
 let data = { foo: 'bar' };
 let payload = {}; // axios 的请求参数
-let data = client.request('/example-url', data, 'post', payload);
+let responseData = client.request('/example-url', data, 'post', payload);
 ```
 
 ### 配置项示例
