@@ -1,6 +1,5 @@
 
 import fs from 'fs';
-import { X509Certificate } from 'crypto';
 
 export class PrivateKey
 {
@@ -10,6 +9,9 @@ export class PrivateKey
   {
     if (fs.existsSync(key)) {
       this.key = fs.readFileSync(key) || Buffer.from('');
+    }
+    else {
+      throw new Error('Fail to read PrivateKey file');
     }
   }
 

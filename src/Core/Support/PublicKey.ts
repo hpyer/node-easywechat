@@ -12,6 +12,9 @@ export class PublicKey
     if (fs.existsSync(certificate)) {
       this.certificate = fs.readFileSync(certificate) || Buffer.from('');
     }
+    else {
+      throw new Error('Fail to read PublicKey file');
+    }
   }
 
   /**
