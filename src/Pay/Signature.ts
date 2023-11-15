@@ -41,8 +41,8 @@ class Signature {
     let signString = `${method.toUpperCase()}\n${pathname}\n${timestamp}\n${nonce}\n${body}\n`;
 
     let rsa = new RSA;
-    rsa.setPublicKey(this.merchant.getCertificate().getValue());
-    rsa.setPrivateKey(this.merchant.getPrivateKey().getKey());
+    rsa.setPublicKey(this.merchant.getCertificate().toString());
+    rsa.setPrivateKey(this.merchant.getPrivateKey().toString());
 
     let sign = rsa.sign(signString);
 
