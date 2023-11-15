@@ -398,7 +398,7 @@ export interface PayBridgeConfig {
   /**
    * 时间戳
    */
-  timeStamp: number;
+  timeStamp: string;
   /**
    * 随机字符串
    */
@@ -428,7 +428,7 @@ export interface PaySdkConfig {
   /**
    * 时间戳
    */
-  timestamp: number;
+  timestamp: string;
   /**
    * 随机字符串
    */
@@ -474,7 +474,7 @@ export interface PayAppConfig {
   /**
    * 时间戳
    */
-  timestamp: number;
+  timestamp: string;
   /**
    * 签名
    */

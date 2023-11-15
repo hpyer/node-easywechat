@@ -78,10 +78,10 @@ class Utils
    * @param signType v3仅支持RSA，V2支持MD5、HMAC-SHA256
    * @returns
    */
-  buildBridgeConfig(prepayId: string, appId: string, signType: string = 'RSA'): PayBridgeConfig {
+  buildBridgeConfig(prepayId: string, appId: string, signType: 'RSA' | 'MD5' | 'HMAC-SHA256' = 'RSA'): PayBridgeConfig {
     let params = {
       appId,
-      timeStamp: getTimestamp(),
+      timeStamp: '' + getTimestamp(),
       nonceStr: randomString(),
       package: 'prepay_id=' + prepayId,
       signType,
@@ -108,7 +108,7 @@ class Utils
    * @param appId 应用id
    * @param signType v3仅支持RSA，V2支持MD5、HMAC-SHA256
    */
-  buildSdkConfig(prepayId: string, appId: string, signType: string = 'RSA'): PaySdkConfig {
+  buildSdkConfig(prepayId: string, appId: string, signType: 'RSA' | 'MD5' | 'HMAC-SHA256' = 'RSA'): PaySdkConfig {
     let config = this.buildBridgeConfig(prepayId, appId, signType);
 
     return {
@@ -129,7 +129,7 @@ class Utils
    * @param signType v3仅支持RSA，V2支持MD5、HMAC-SHA256
    * @returns
    */
-  buildMiniAppConfig(prepayId: string, appId: string, signType: string = 'RSA'): PayBridgeConfig {
+  buildMiniAppConfig(prepayId: string, appId: string, signType: 'RSA' | 'MD5' | 'HMAC-SHA256' = 'RSA'): PayBridgeConfig {
     return this.buildBridgeConfig(prepayId, appId, signType);
   }
 
@@ -146,7 +146,7 @@ class Utils
       partnerid: this.merchant.getMerchantId(),
       prepayid: prepayId,
       nonceStr: randomString(),
-      timestamp: getTimestamp(),
+      timestamp: '' + getTimestamp(),
       package: 'Sign=WXPay',
       sign: '',
     };

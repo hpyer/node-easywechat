@@ -42,6 +42,20 @@ class TestUnit extends BaseTestUnit {
       this.assert.deepStrictEqual(utils.createV2Signature(params), 'BAC9240577E86EDC7753264E502196C61F78F24777E9E7CCE82A7BD97F906EED');
     });
 
+    it('Should create payment config correctly', async () => {
+      let appId = 'mock-appid';
+      let prepayId = 'mock-prepayId';
+
+      let config = utils.buildBridgeConfig(prepayId, appId, 'RSA');
+
+      this.assert.strictEqual(config.appId, appId);
+      this.assert.strictEqual(config.package, `prepay_id=${prepayId}`);
+      this.assert.strictEqual(typeof config.timeStamp, 'string');
+      this.assert.strictEqual(typeof config.nonceStr, 'string');
+      this.assert.strictEqual(config.signType, 'RSA');
+      this.assert.strictEqual(config.paySign.length > 0, true);
+    });
+
   }
 }
 
