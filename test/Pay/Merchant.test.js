@@ -3,6 +3,7 @@ const Application = require('../../dist/Pay/Application');
 const Merchant = require('../../dist/Pay/Merchant');
 const { PublicKey } = require('../../dist/Core/Support/PublicKey');
 const { PrivateKey } = require('../../dist/Core/Support/PrivateKey');
+const Path = require('path');
 
 class TestUnit extends BaseTestUnit {
 
@@ -11,8 +12,8 @@ class TestUnit extends BaseTestUnit {
     it('Should fetch correct merchant config from application', () => {
       let appConfig = {
         mch_id: 'mock-mch-id',
-        certificate: __dirname + '/../temp/test_rsa_cert.pem',
-        private_key: __dirname + '/../temp/test_rsa_private.key',
+        certificate: Path.resolve(__dirname, '../temp/test_rsa_cert.pem'),
+        private_key: Path.resolve(__dirname, '../temp/test_rsa_private.key'),
         v2_secret_key: 'mock-v2-secret-key',
         secret_key: 'mock-secret-key',
         platform_certs: [],

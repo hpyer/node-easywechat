@@ -2,6 +2,7 @@ const BaseTestUnit = require('../BaseTestUnit');
 const Merchant = require('../../dist/Pay/Merchant');
 const Client = require('../../dist/Pay/Client');
 const HttpClient = require('../../dist/Core/HttpClient/HttpClient');
+const Path = require('path');
 
 class TestUnit extends BaseTestUnit {
 
@@ -9,8 +10,8 @@ class TestUnit extends BaseTestUnit {
 
     let merchantConfig = {
       mch_id: 'mock-mch-id',
-      certificate: __dirname + '/../temp/test_rsa_cert.pem',
-      private_key: __dirname + '/../temp/test_rsa_private.key',
+      certificate: Path.resolve(__dirname, '../temp/test_rsa_cert.pem'),
+      private_key: Path.resolve(__dirname, '../temp/test_rsa_private.key'),
       v2_secret_key: 'mock-v2-secret-key',
       secret_key: 'mock-secret-key',
       platform_certs: [],

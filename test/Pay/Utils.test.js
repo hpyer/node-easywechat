@@ -1,8 +1,7 @@
 const BaseTestUnit = require('../BaseTestUnit');
-const HttpClient = require('../../dist/Core/HttpClient/HttpClient')
-const { Pay } = require('../../dist/');
 const Utils = require('../../dist/Pay/Utils');
 const Merchant = require('../../dist/Pay/Merchant');
+const Path = require('path');
 
 class TestUnit extends BaseTestUnit {
 
@@ -10,8 +9,8 @@ class TestUnit extends BaseTestUnit {
 
     let merchantConfig = {
       mch_id: 'mock-mch-id',
-      certificate: '../temp/test_public_key.pem',
-      private_key: '../temp/test_private_key.pem',
+      certificate: Path.resolve(__dirname, '../temp/test_rsa_cert.pem'),
+      private_key: Path.resolve(__dirname, '../temp/test_rsa_private.key'),
       v2_secret_key: 'mock-v2-secret-key',
       secret_key: 'mock-secret-key',
       platform_certs: [],
@@ -25,17 +24,17 @@ class TestUnit extends BaseTestUnit {
       merchantConfig.platform_certs,
     );
 
+    const utils = new Utils(merchant);
+
     it('Should return correctly signature', async () => {
 
       let params = {
         appId: 'mock-appid',
-        timeStamp: 1601234567,
+        timeStamp: '1601234567',
         nonceStr: 'mock-nonce',
         package: "prepay_id=mock-prepay-id",
         signType: 'MD5',
       };
-
-      let utils = new Utils(merchant);
 
       this.assert.deepStrictEqual(utils.createV2Signature(params), 'C52D6B09E8A039D6E8696A014BB37160');
 
