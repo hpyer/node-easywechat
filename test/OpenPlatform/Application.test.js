@@ -70,6 +70,7 @@ class TestUnit extends BaseTestUnit {
 
       let encryptor = new Encryptor('mock-encryptor-appid', 'mock-encryptor-secret', 'mock-encryptor-token', 'mock-encryptor-aeskey');
       let request = new ServerRequest('GET', 'http://www.easywechat.com/?echostr=mock-echostr');
+      app.setRequest(request);
       let server = new Server(encryptor, request);
       app.setServer(server);
       this.assert.deepStrictEqual(app.getServer(), server);

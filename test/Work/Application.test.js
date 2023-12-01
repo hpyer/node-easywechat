@@ -91,6 +91,7 @@ class TestUnit extends BaseTestUnit {
       });
 
       let request = new ServerRequest('GET', 'http://www.easywechat.com/?echostr=mock-echostr');
+      app.setRequest(request);
       let server = new Server(request);
       app.setServer(server);
       this.assert.deepStrictEqual(app.getServer(), server);

@@ -34,6 +34,7 @@ class TestUnit extends BaseTestUnit {
 
     it('Should set and get server successful', async () => {
       let request = new ServerRequest('GET', 'http://www.easywechat.com/?echostr=mock-echostr');
+      app.setRequest(request);
       let server = new Server(request);
       app.setServer(server);
       this.assert.deepStrictEqual(app.getServer(), server);
