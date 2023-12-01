@@ -106,6 +106,9 @@ class Application implements ApplicationInterface
         this.getAccount().getAesKey() ? this.getEncryptor() : null
       );
     }
+    else {
+      this.server.setRequest(this.getRequest());
+    }
     return this.server;
   }
 

@@ -66,6 +66,9 @@ class Application implements ApplicationInterface {
         this.getRequest(),
       );
     }
+    else {
+      this.server.setRequest(this.getRequest());
+    }
     return this.server;
   }
 

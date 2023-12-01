@@ -4,6 +4,7 @@ import ResponseInterface from "../Http/Contracts/ResponseInterface";
 import DecryptXmlMessageMixin from "../Mixins/DecryptXmlMessageMixin";
 import HandlersMixin from "../Mixins/HandlersMixin";
 import ResponseXmlMessageMixin from "../Mixins/ResponseXmlMessageMixin";
+import ServerRequestMixin from "../Mixins/ServerRequestMixin";
 import { applyMixins } from "../Support/Utils";
 
 abstract class ServerInterface
@@ -18,8 +19,8 @@ abstract class ServerInterface
   async serve(): Promise<ResponseInterface> { return null; }
 };
 
-interface ServerInterface extends HandlersMixin, DecryptXmlMessageMixin, ResponseXmlMessageMixin { };
+interface ServerInterface extends HandlersMixin, DecryptXmlMessageMixin, ResponseXmlMessageMixin, ServerRequestMixin { };
 
-applyMixins(ServerInterface, [HandlersMixin, DecryptXmlMessageMixin, ResponseXmlMessageMixin]);
+applyMixins(ServerInterface, [HandlersMixin, DecryptXmlMessageMixin, ResponseXmlMessageMixin, ServerRequestMixin]);
 
 export = ServerInterface;

@@ -149,6 +149,9 @@ class Application implements ApplicationInterface
         return next(message);
       });
     }
+    else {
+      this.server.setRequest(this.getRequest());
+    }
     return this.server;
   }
 
