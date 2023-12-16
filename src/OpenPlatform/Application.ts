@@ -129,6 +129,15 @@ class Application implements ApplicationInterface
     else {
       this.server.setRequest(this.getRequest());
     }
+    if (this.server instanceof Server) {
+      this.server.withDefaultVerifyTicketHandler((message, next) => {
+        const ticket = this.getVerifyTicket();
+        if (typeof ticket.setTicket === 'function') {
+          ticket.setTicket(message.get('ComponentVerifyTicket'));
+        }
+        return next(message);
+      });
+    }
     return this.server;
   }
 

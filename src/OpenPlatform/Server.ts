@@ -79,8 +79,8 @@ class Server extends ServerInterface
    * @returns
    */
   withDefaultVerifyTicketHandler(handler: ServerHandlerClosure) {
-    this.defaultVerifyTicketHandler = () => {
-      return handler.call(this, arguments);
+    this.defaultVerifyTicketHandler = function () {
+      return handler.apply(this, arguments);
     };
     this.handleVerifyTicketRefreshed(this.defaultVerifyTicketHandler);
   }
