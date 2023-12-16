@@ -326,7 +326,7 @@ class Application implements ApplicationInterface
    * @param config
    * @returns
    */
-  async getOfficialAccountWithRefreshToken(appId: string, refreshToken: string, config: ConfigInterface | OfficialAccountConfig = null) {
+  async getOfficialAccountWithRefreshToken(appId: string, refreshToken: string, config: ConfigInterface | OfficialAccountConfig = {}) {
     return this.getOfficialAccountWithAccessToken(
       appId,
       await this.getAuthorizerAccessToken(appId, refreshToken),
@@ -341,7 +341,7 @@ class Application implements ApplicationInterface
    * @param config
    * @returns
    */
-  getOfficialAccountWithAccessToken(appId: string, accessToken: string, config: ConfigInterface | OfficialAccountConfig = null) {
+  getOfficialAccountWithAccessToken(appId: string, accessToken: string, config: ConfigInterface | OfficialAccountConfig = {}) {
     return this.getOfficialAccount(
       new AuthorizerAccessToken(appId, accessToken),
       config,
@@ -354,8 +354,9 @@ class Application implements ApplicationInterface
    * @param config
    * @returns
    */
-  getOfficialAccount(authorizerAccessToken: AuthorizerAccessToken, config: ConfigInterface | OfficialAccountConfig = null) {
+  getOfficialAccount(authorizerAccessToken: AuthorizerAccessToken, config: ConfigInterface | OfficialAccountConfig = {}) {
     if (!(config instanceof ConfigInterface)) {
+      if (typeof config !== 'object' || config === null) config = {};
       config.app_id = authorizerAccessToken.getAppId();
       config.token = this.config.get('token');
       config.aes_key = this.config.get('aes_key');
@@ -404,7 +405,7 @@ class Application implements ApplicationInterface
    * @param config
    * @returns
    */
-  async getMiniAppWithRefreshToken(appId: string, refreshToken: string, config: ConfigInterface | MiniAppConfig = null) {
+  async getMiniAppWithRefreshToken(appId: string, refreshToken: string, config: ConfigInterface | MiniAppConfig = {}) {
     return this.getMiniAppWithAccessToken(
       appId,
       await this.getAuthorizerAccessToken(appId, refreshToken),
@@ -419,7 +420,7 @@ class Application implements ApplicationInterface
    * @param config
    * @returns
    */
-  getMiniAppWithAccessToken(appId: string, accessToken: string, config: ConfigInterface | MiniAppConfig = null) {
+  getMiniAppWithAccessToken(appId: string, accessToken: string, config: ConfigInterface | MiniAppConfig = {}) {
     return this.getMiniApp(
       new AuthorizerAccessToken(appId, accessToken),
       config,
@@ -432,8 +433,9 @@ class Application implements ApplicationInterface
    * @param config
    * @returns
    */
-  getMiniApp(authorizerAccessToken: AuthorizerAccessToken, config: ConfigInterface | MiniAppConfig = null) {
+  getMiniApp(authorizerAccessToken: AuthorizerAccessToken, config: ConfigInterface | MiniAppConfig = {}) {
     if (!(config instanceof ConfigInterface)) {
+      if (typeof config !== 'object' || config === null) config = {};
       config.app_id = authorizerAccessToken.getAppId();
       config.token = this.config.get('token');
       config.aes_key = this.config.get('aes_key');
