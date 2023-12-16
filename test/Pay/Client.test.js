@@ -40,10 +40,13 @@ class TestUnit extends BaseTestUnit {
     });
 
     it('Should fetch correct response with POST method', async () => {
-      let result = 'mock-post';
-      httpclient.mock('post', '/test-url').reply(200, result, { 'Content-Type': 'text/plain' });
+      let result = '<xml><foo>123</foo><bar>abc</bar></xml>';
+      httpclient.mock('post', '/test-url').reply(200, result, { 'Content-Type': 'text/xml' });
       let response = await client.post('/test-url');
-      this.assert.strictEqual(response.toString(), result);
+      this.assert.deepStrictEqual(response.toObject(), {
+        foo: '123',
+        bar: 'abc',
+      });
     });
 
     it('Should fetch correct response with PATCH method', async () => {

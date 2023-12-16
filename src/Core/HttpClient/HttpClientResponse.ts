@@ -1,7 +1,6 @@
 'use strict';
 
 import fs from "fs";
-import merge from "merge";
 import { AxiosResponse } from "axios";
 import { HttpClientFailureJudgeClosure, WeixinResponse } from "../../Types/global";
 import HttpClientResponseInterface from "./Contracts/HttpClientResponseInterface";
@@ -41,7 +40,7 @@ class HttpClientResponse implements HttpClientResponseInterface {
       return;
     }
     if (typeof content === 'string') {
-      if (this.is('xml') && content.indexOf('<xml>') > -1) {
+      if (this.is('xml') || content.indexOf('<xml>') > -1) {
         this.parsedContent = await parseXml(content);
       }
       else if (this.is('json')) {
@@ -54,7 +53,7 @@ class HttpClientResponse implements HttpClientResponseInterface {
           }
         }
       }
-      else if (this.is('text')) {
+      else {
         try {
           this.parsedContent = parseQueryString(content);
         }
@@ -62,6 +61,7 @@ class HttpClientResponse implements HttpClientResponseInterface {
           if (throwError) {
             throw new Error('Fail to parse QueryString content.');
           }
+          this.parsedContent = {};
         }
       }
     }
@@ -214,13 +214,12 @@ class HttpClientResponse implements HttpClientResponseInterface {
     return this.response.status;
   }
   getHeaders(throwError?: boolean): Record<string, any> {
-    let headers = merge.recursive(true, this.response.headers);
     for (let key in this.response.headers) {
       if (key !== key.toLowerCase()) {
         this.response.headers[key.toLowerCase()] = this.response.headers[key];
       }
     }
-    return headers;
+    return this.response.headers;
   }
   getContent(throwError?: boolean): any {
     return this.response.data;
