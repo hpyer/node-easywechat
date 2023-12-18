@@ -44,6 +44,7 @@ class Application implements ApplicationInterface
   protected accessToken: AccessTokenInterface = null;
   protected oauthFactory: WorkOAuthFactory = null;
   protected ticket: JsApiTicket = null;
+  protected utils: Utils = null;
 
   getAccount(): AccountInterface
   {
@@ -205,9 +206,19 @@ class Application implements ApplicationInterface
     return this;
   }
 
-  getUtils(): Utils
-  {
-    return new Utils(this);
+  /**
+   * 设置工具实例
+   * @param utils
+   */
+  setUtils(utils: Utils) {
+    this.utils = utils;
+  }
+
+  getUtils(): Utils {
+    if (!this.utils) {
+      this.utils = new Utils(this);
+    }
+    return this.utils;
   }
 
   createClient(): AccessTokenAwareClient {

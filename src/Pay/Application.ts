@@ -33,7 +33,8 @@ class Application implements ApplicationInterface {
   protected merchant: MerchantInterface = null;
   protected encryptor: Encryptor = null;
   protected server: Server = null;
-  protected client: Client;
+  protected client: Client = null;
+  protected utils: Utils = null;
 
   getMerchant(): MerchantInterface {
     if (!this.merchant) {
@@ -82,8 +83,19 @@ class Application implements ApplicationInterface {
     return this;
   }
 
+  /**
+   * 设置工具实例
+   * @param utils
+   */
+  setUtils(utils: Utils) {
+    this.utils = utils;
+  }
+
   getUtils(): Utils {
-    return new Utils(this.getMerchant());
+    if (!this.utils) {
+      this.utils = new Utils(this.getMerchant());
+    }
+    return this.utils;
   }
 
   getClient() {
