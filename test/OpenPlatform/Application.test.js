@@ -222,7 +222,20 @@ class TestUnit extends BaseTestUnit {
         aes_key: 'mock-aeskey',
       });
 
-      let ma_app = await app.getMiniApp(
+      let cache = this.getMockedCacheClient();
+      cache.mock('cached-verify_ticket', 'key-verify_ticket');
+
+      let ticket = new VerifyTicket('mock-appid', 'key-verify_ticket', cache);
+      app.setVerifyTicket(ticket);
+
+      let client = this.getMockedHttpClient(HttpClient.create());
+      client.mock('post', '/cgi-bin/component/api_component_token').reply(200, {
+        component_access_token: 'fake-component_access_token',
+        expires_in: 7200,
+      });
+      app.setHttpClient(client);
+
+      const ma_app = app.getMiniApp(
         new AuthorizerAccessToken('mock-authorizer-appid', 'mock-authorizer-token'),
         {
           'secret': 'mock-authorizer-secret',
@@ -232,6 +245,19 @@ class TestUnit extends BaseTestUnit {
       this.assert.strictEqual(ma_app instanceof MiniApp, true);
       this.assert.strictEqual(ma_app.getAccount().getAppId(), 'mock-authorizer-appid');
       this.assert.strictEqual(ma_app.getAccount().getSecret(), 'mock-authorizer-secret');
+
+      client.mock('get', '/sns/component/jscode2session').reply(200, {
+        openid: 'fake-openid',
+        session_key: 'fake-session_key',
+        unionid: 'fake-unionid',
+      });
+      ma_app.setHttpClient(client);
+
+      const utils = ma_app.getUtils();
+      const res = await utils.thirdpartyCode2Session('xxx');
+      this.assert.strictEqual(res.openid, 'fake-openid');
+      this.assert.strictEqual(res.session_key, 'fake-session_key');
+      this.assert.strictEqual(res.unionid, 'fake-unionid');
     });
 
     it('Should create preAuthorizationCode correctly', async () => {

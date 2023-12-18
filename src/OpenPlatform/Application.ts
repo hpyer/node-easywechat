@@ -14,7 +14,7 @@ import HttpClientMixin from '../Core/Mixins/HttpClientMixin';
 import ServerRequestMixin from '../Core/Mixins/ServerRequestMixin';
 import { applyMixins, buildQueryString, createHash } from '../Core/Support/Utils';
 import OfficialAccountApplication from '../OfficialAccount/Application';
-import MiniAppApplication from '../MiniApp/Application';
+import MiniAppApplication from './Authorizer/MiniApp/Application';
 import { OpenPlatformConfig, OfficialAccountConfig, OfficialAccountOAuthFactory, MiniAppConfig } from '../Types/global';
 import Account from './Account';
 import AccountInterface from './Contracts/AccountInterface';
@@ -449,7 +449,7 @@ class Application implements ApplicationInterface
       config.set('http', this.config.get('http'));
     }
 
-    let app = new MiniAppApplication(config);
+    const app = new MiniAppApplication(config, this);
 
     app.setAccessToken(authorizerAccessToken);
     app.setEncryptor(this.getEncryptor());
