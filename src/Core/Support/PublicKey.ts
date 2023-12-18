@@ -6,10 +6,18 @@ export class PublicKey
 {
 
   protected certificate: Buffer;
+  protected serialNo: string;
 
-  constructor(certificate: string)
+  constructor(certificate: string, serialNo: string = '')
   {
-    if (fs.existsSync(certificate)) {
+    if (serialNo) {
+      if (!certificate) {
+        throw new Error('Invalid PublicKey content');
+      }
+      this.certificate = Buffer.from(certificate);
+      this.serialNo = serialNo;
+    }
+    else if (fs.existsSync(certificate)) {
       this.certificate = fs.readFileSync(certificate) || Buffer.from('');
     }
     else {
@@ -23,12 +31,15 @@ export class PublicKey
    */
   getSerialNo()
   {
-    try {
-      return new X509Certificate(this.certificate).serialNumber;
+    if (!this.serialNo) {
+      try {
+        this.serialNo = new X509Certificate(this.certificate).serialNumber;
+      }
+      catch (e) {
+        throw new Error('Read the $certificate failed, please check it whether or nor correct');
+      }
     }
-    catch (e) {
-      throw new Error('Read the $certificate failed, please check it whether or nor correct');
-    }
+    return this.serialNo;
   }
 
   /**
@@ -47,5 +58,14 @@ export class PublicKey
   toString()
   {
     return this.certificate.toString();
+  }
+
+  /**
+   * 通过内容创建实例
+   * @param content 证书内容
+   * @param serialNo 证书序列号
+   */
+  static createByCertificateContent(content: string, serialNo: string) {
+    return new PublicKey(content, serialNo);
   }
 }

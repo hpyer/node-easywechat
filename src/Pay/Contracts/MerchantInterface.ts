@@ -40,6 +40,12 @@ abstract class MerchantInterface
    * @returns
    */
   getPlatformCert(serial: string): PublicKey { return null; }
+
+  /**
+   * 设置平台证书
+   * @param certs 键名：序列号，键值：PublicKey实例
+   */
+  setPlatformCerts(certs: Record<string, PublicKey>): void { }
 };
 
 export = MerchantInterface;

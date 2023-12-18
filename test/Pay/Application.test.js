@@ -103,6 +103,35 @@ class TestUnit extends BaseTestUnit {
       this.assert.strictEqual(resultV2, true);
     });
 
+    it('Should use load platform certs correctly', async () => {
+      delete payConfig.platform_certs;
+      payConfig.secret_key = 'mock-secret-key1mock-secret-key1';
+      let app = new Pay(payConfig);
+
+      let httpclient = this.getMockedHttpClient(app.getHttpClient());
+      httpclient.mock('get', '/v3/certificates').reply(200, [
+        {
+          serial_no: 'fake-serial_no',
+          effective_time: '2018-06-08T10:34:56+08:00',
+          expire_time: '2018-06-08T10:34:56+08:00',
+          encrypt_certificate: {
+            algorithm: 'AEAD_AES_256_GCM',
+            nonce: '61f9c719728a',
+            associated_data: 'certificate',
+            ciphertext: 'uSoUWvLdxCjDQgZd6pTFmnSGS2ifBGdw5awOgYejbg==',
+          },
+        }
+      ]);
+      app.setHttpClient(httpclient);
+
+      await app.loadPlatformCerts();
+
+      let merchant = app.getMerchant();
+      let cert = merchant.getPlatformCert('fake-serial_no');
+
+      this.assert.strictEqual(cert.getValue().toString(), 'fake-ciphertext');
+    });
+
   }
 }
 

@@ -77,6 +77,9 @@ class Merchant implements MerchantInterface
   getPlatformCert(serial: string): PublicKey {
     return this.platformCerts[serial] ?? null;
   }
+  setPlatformCerts(certs: Record<string, PublicKey>): void {
+    this.platformCerts = certs;
+  }
 
 }
 

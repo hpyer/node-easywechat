@@ -91,8 +91,8 @@ export class AES_GCM {
       buf = Buffer.from(ciphertext);
     }
 
-    let tag = buf.slice(-16);
-    let payload = buf.slice(0, -16);
+    let tag = buf.subarray(-16);
+    let payload = buf.subarray(0, -16);
 
     let decipher = createDecipheriv(method, key, iv).setAuthTag(tag).setAAD(Buffer.from(aad));
 
