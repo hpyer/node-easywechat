@@ -75,7 +75,7 @@ export interface HttpConfig extends AxiosRequestConfig {
    * 是否抛出异常
    * @see https://github.com/softonic/axios-retry#options
    */
-  retry?: IAxiosRetry.IAxiosRetryConfig;
+  retry?: axiosRetry.IAxiosRetryConfig;
   // retry?: {
   //   /**
   //    * 仅以下状态码重试
@@ -318,7 +318,7 @@ export type WorkOAuthFactory = (app: WorkApplicationInterface) => ProviderInterf
 export interface ServerHandlerItem {
   hash: string;
   handler: ServerHandlerClosure;
-};
+}
 
 /**
  * 服务端普通消息类型
@@ -335,7 +335,7 @@ export type ServerEventType = 'subscribe' | 'unsubscribe' | 'SCAN' | 'LOCATION' 
  * @param message 微信信息
  * @param next 下一个消息处理器
  */
-export type ServerHandlerClosure<T = Message> = (message: T extends OfficialAccountMessage | PayMessage | WorkMessage | OpenPlatformMessage | OpenWorkMessage ? T : Message, next?: ServerHandler<T>) => any;
+export type ServerHandlerClosure<T = Message> = (message: T extends OfficialAccountMessage | PayMessage | WorkMessage | OpenPlatformMessage | OpenWorkMessage ? T : Message, next?: ServerHandlerClosure<T>) => any;
 
 /**
  * HttpClient错误判定回调

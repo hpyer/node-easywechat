@@ -4,14 +4,14 @@ import axios from 'axios';
 declare module 'axios' {
 
   interface AxiosInstance {
-    <T = Recordable, R = ApiResponse<T>>(config: AxiosRequestConfig): Promise<R>;
-    request<T = Recordable, R = ApiResponse<T>>(config: AxiosRequestConfig): Promise<R>;
-    get<T = Recordable, R = ApiResponse<T>>(url: string, config?: AxiosRequestConfig): Promise<R>;
-    delete<T = Recordable, R = ApiResponse<T>>(url: string, config?: AxiosRequestConfig): Promise<R>;
-    head<T = Recordable, R = ApiResponse<T>>(url: string, config?: AxiosRequestConfig): Promise<R>;
-    post<T = Recordable, R = ApiResponse<T>>(url: string, data?: Recordable, config?: AxiosRequestConfig): Promise<R>;
-    put<T = Recordable, R = ApiResponse<T>>(url: string, data?: Recordable, config?: AxiosRequestConfig): Promise<R>;
-    patch<T = Recordable, R = ApiResponse<T>>(url: string, data?: Recordable, config?: AxiosRequestConfig): Promise<R>;
+    <T = Recordable, R = AxiosResponse<T>>(config: AxiosRequestConfig): Promise<R>;
+    request<T = Recordable, R = AxiosResponse<T>>(config: AxiosRequestConfig): Promise<R>;
+    get<T = Recordable, R = AxiosResponse<T>>(url: string, config?: AxiosRequestConfig): Promise<R>;
+    delete<T = Recordable, R = AxiosResponse<T>>(url: string, config?: AxiosRequestConfig): Promise<R>;
+    head<T = Recordable, R = AxiosResponse<T>>(url: string, config?: AxiosRequestConfig): Promise<R>;
+    post<T = Recordable, R = AxiosResponse<T>>(url: string, data?: Recordable, config?: AxiosRequestConfig): Promise<R>;
+    put<T = Recordable, R = AxiosResponse<T>>(url: string, data?: Recordable, config?: AxiosRequestConfig): Promise<R>;
+    patch<T = Recordable, R = AxiosResponse<T>>(url: string, data?: Recordable, config?: AxiosRequestConfig): Promise<R>;
   }
 
   interface AxiosRequestConfig {
