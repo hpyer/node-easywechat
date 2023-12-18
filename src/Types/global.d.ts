@@ -10,6 +10,7 @@ import OpenPlatformMessage from '../OpenPlatform/Message';
 import OpenWorkMessage from '../OpenWork/Message';
 import HttpClientResponseInterface from '../Core/HttpClient/Contracts/HttpClientResponseInterface';
 import { PublicKey } from "../Core/Support/PublicKey";
+import { IAxiosRetryConfig } from 'axios-retry';
 
 /**
  * 微信接口响应数据格式
@@ -75,7 +76,7 @@ export interface HttpConfig extends AxiosRequestConfig {
    * 是否抛出异常
    * @see https://github.com/softonic/axios-retry#options
    */
-  retry?: axiosRetry.IAxiosRetryConfig;
+  retry?: IAxiosRetryConfig;
   // retry?: {
   //   /**
   //    * 仅以下状态码重试
