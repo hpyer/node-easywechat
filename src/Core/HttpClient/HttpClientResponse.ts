@@ -5,6 +5,7 @@ import { AxiosResponse } from "axios";
 import { HttpClientFailureJudgeClosure, WeixinResponse } from "../../Types/global";
 import HttpClientResponseInterface from "./Contracts/HttpClientResponseInterface";
 import { parseQueryString, parseXml } from "../Support/Utils";
+import Response from "../Http/Response";
 
 class HttpClientResponse implements HttpClientResponseInterface {
   protected parsedContent: Record<string, any> = null;
@@ -235,6 +236,17 @@ class HttpClientResponse implements HttpClientResponseInterface {
   }
   async offsetGet(key: any) {
     return (await this.toObject())[key] || null;
+  }
+
+  /**
+   * 转换为标准的 http 响应类
+   */
+  toHttpResponse() {
+    return new Response(
+      this.response.status,
+      this.getHeaders(),
+      this.toString(),
+    );
   }
 }
 
