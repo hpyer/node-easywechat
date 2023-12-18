@@ -1,6 +1,15 @@
 # CHANGELOG
 
 
+## v3.5.8 (2023-12-18)
+
+- Feat: thirdpartyCode2Session方法重命名为code2Session (#54)
+- Feat: 新增将请求响应类转换为标准http响应类的方法toHttpResponse
+
+- Fix: 修复验证器类型错误 (#58)
+- Fix: 修复验证器类型错误的问题 (#56)
+- Fix: 修复ts类型错误
+
 ## v3.5.7 (2023-12-18)
 
 - Feat: 企业微信工具类增加encrypt、decrypt加解密方法 (#58)
