@@ -100,6 +100,11 @@ class HttpClient implements HttpClientInterface
       options.headers = { ...(await this.getFormDataHeaders(options.data)), ...options.headers };
     }
 
+    // 是否抛出异常
+    options.validateStatus = (status) => {
+      return this.throwError ? status >= 200 && status < 300 : true;
+    };
+
     let starttime = Date.now();
     if (typeof this.logger === 'function') {
       await this.logger('before', options);

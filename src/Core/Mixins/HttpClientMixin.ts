@@ -15,7 +15,12 @@ class HttpClientMixin
   getHttpClient(): HttpClientInterface
   {
     if (!this.httpClient) {
-      this.httpClient = this.createHttpClient();
+      if (typeof this['createHttpClient'] === 'function') {
+        this.httpClient = this['createHttpClient']();
+      }
+      else {
+        this.httpClient = this.createDefaultHttpClient();
+      }
     }
     return this.httpClient;
   }
@@ -32,10 +37,10 @@ class HttpClientMixin
   }
 
   /**
-   * 创建请求客户端实例
+   * 创建默认请求客户端实例
    * @returns
    */
-  protected createHttpClient(): HttpClientInterface
+  protected createDefaultHttpClient(): HttpClientInterface
   {
     return HttpClient.create(this.getHttpClientDefaultOptions());
   }

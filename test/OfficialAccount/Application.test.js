@@ -172,6 +172,41 @@ class TestUnit extends BaseTestUnit {
       this.assert.strictEqual(response.toString(), result);
     });
 
+    it('Should not throw error when `http.throw` set FALSE', async () => {
+      let oaApp = new OfficialAccount({
+        app_id: 'mock-appid',
+        secret: 'mock-secret',
+        token: 'mock-token',
+        aes_key: 'mock-aeskey',
+        http: {
+          throw: false,
+        }
+      });
+
+      let client = oaApp.getHttpClient();
+      client = this.getMockedHttpClient(client);
+      client.mock('get', 'https://example.com/test/api')
+        .reply(500, {
+          'foo': 'bar',
+        });
+
+      let isThrow = false;
+      let response;
+      try {
+        response = await client.request('get', 'https://example.com/test/api', {
+          headers: {
+            accept: 'application/json'
+          }
+        });
+      }
+      catch (e) {
+        isThrow = true;
+      }
+      this.assert.strictEqual(isThrow, false);
+      this.assert.strictEqual(response.getStatusCode(), 500);
+
+    });
+
   }
 }
 
