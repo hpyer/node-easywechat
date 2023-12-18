@@ -7,6 +7,7 @@ import ServerInterface from "../../Core/Contracts/ServerInterface";
 import ServerRequestInterface from "../../Core/Http/Contracts/ServerRequestInterface";
 import MerchantInterface from "./MerchantInterface";
 import Utils from "../Utils";
+import ValidatorInterface from "./ValidatorInterface";
 
 abstract class ApplicationInterface
 {
@@ -57,6 +58,12 @@ abstract class ApplicationInterface
    * @returns
    */
   getUtils(): Utils { return null; }
+
+  /**
+   * 获取验证器实例
+   * @returns
+   */
+  getValidator(): ValidatorInterface { return null; }
 
 };
 

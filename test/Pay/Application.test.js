@@ -5,6 +5,8 @@ const Server = require('../../dist/Pay/Server');
 const Utils = require('../../dist/Pay/Utils');
 const HttpClient = require('../../dist/Core/HttpClient/HttpClient');
 const Path = require('path');
+const RSA = require('../../dist/Core/Support/RSA');
+const { getTimestamp, randomString } = require('../../dist/Core/Support/Utils');
 
 class TestUnit extends BaseTestUnit {
 
@@ -16,7 +18,9 @@ class TestUnit extends BaseTestUnit {
       private_key: Path.resolve(__dirname, '../temp/test_rsa_private.key'),
       v2_secret_key: 'mock-v2-secret-key',
       secret_key: 'mock-secret-key',
-      platform_certs: [],
+      platform_certs: [
+        Path.resolve(__dirname, '../temp/test_rsa_cert.pem'),
+      ],
     };
     const app = new Pay(payConfig);
 
@@ -54,6 +58,34 @@ class TestUnit extends BaseTestUnit {
       let response = await client.withMchId().with('foo', 'bar').post('/test-url');
       this.assert.strictEqual(response.response.config.data, '{"mch_id":"mock-mch-id","foo":"bar"}');
       this.assert.strictEqual(response.toString(), result);
+    });
+
+    it('Should use Validator correctly', async () => {
+      let app = new Pay(payConfig);
+      let merchant = app.getMerchant();
+
+      let timestamp = getTimestamp();
+      let nonce = randomString(8);
+      let serial = merchant.getCertificate().getSerialNo();
+      let body = 'mock-body';
+      let message = `${timestamp}\n${nonce}\n${body}\n`;
+
+      let rsa = new RSA;
+      rsa.setPublicKey(merchant.getCertificate().toString());
+      rsa.setPrivateKey(merchant.getPrivateKey().toString());
+      let sign = rsa.sign(message);
+
+      let validator = app.getValidator();
+      let request = new ServerRequest('GET', 'http://www.easywechat.com/', {
+        'Wechatpay-Timestamp': timestamp,
+        'Wechatpay-Nonce': nonce,
+        'Wechatpay-Serial': serial,
+        'Wechatpay-Signature': sign,
+      }, body);
+
+      let result = validator.validate(request);
+
+      this.assert.strictEqual(result, true);
     });
 
   }
