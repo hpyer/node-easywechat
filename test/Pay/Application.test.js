@@ -7,6 +7,7 @@ const HttpClient = require('../../dist/Core/HttpClient/HttpClient');
 const Path = require('path');
 const RSA = require('../../dist/Core/Support/RSA');
 const { getTimestamp, randomString } = require('../../dist/Core/Support/Utils');
+const Message = require('../../dist/Pay/Message');
 
 class TestUnit extends BaseTestUnit {
 
@@ -64,6 +65,7 @@ class TestUnit extends BaseTestUnit {
       let app = new Pay(payConfig);
       let merchant = app.getMerchant();
 
+      // v3
       let timestamp = getTimestamp();
       let nonce = randomString(8);
       let serial = merchant.getCertificate().getSerialNo();
@@ -86,6 +88,19 @@ class TestUnit extends BaseTestUnit {
       let result = validator.validate(request);
 
       this.assert.strictEqual(result, true);
+
+      // v2
+      let messageV2 = new Message({
+        appId: 'mock-appid',
+        timeStamp: '1601234567',
+        nonceStr: 'mock-nonce',
+        package: "prepay_id=mock-prepay-id",
+        signType: 'MD5',
+        sign: 'C52D6B09E8A039D6E8696A014BB37160',
+      });
+      let resultV2 = validator.validateV2(messageV2);
+
+      this.assert.strictEqual(resultV2, true);
     });
 
   }

@@ -5,6 +5,8 @@ import MessageInterface from "../Core/Http/Contracts/MessageInterface";
 import MerchantInterface from "./Contracts/MerchantInterface";
 import { getTimestamp } from "../Core/Support/Utils";
 import RSA from "../Core/Support/RSA";
+import Message from "./Message";
+import Utils from "./Utils";
 
 class Validator implements ValidatorInterface {
 
@@ -49,6 +51,21 @@ class Validator implements ValidatorInterface {
     let rsa = new RSA;
     rsa.setPublicKey(publicKey.getValue());
     if (false === rsa.verify(signature, message)) {
+      throw new Error('Invalid Signature');
+    }
+
+    return true;
+  }
+
+  validateV2(message: Message) {
+    let messageSign = (message.get('sign') + '' || '').toUpperCase();
+    if (!messageSign) {
+      throw new Error('Missing Signature');
+    }
+
+    const utils = new Utils(this.merchant);
+    let calculateSign = utils.createV2Signature(message.toObject());
+    if (messageSign !== calculateSign) {
       throw new Error('Invalid Signature');
     }
 
