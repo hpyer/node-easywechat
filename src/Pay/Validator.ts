@@ -1,7 +1,7 @@
 'use strict';
 
 import ValidatorInterface from "./Contracts/ValidatorInterface";
-import RequestInterface from "../Core/Http/Contracts/RequestInterface";
+import MessageInterface from "../Core/Http/Contracts/MessageInterface";
 import MerchantInterface from "./Contracts/MerchantInterface";
 import { getTimestamp } from "../Core/Support/Utils";
 import RSA from "../Core/Support/RSA";
@@ -18,7 +18,7 @@ class Validator implements ValidatorInterface {
     protected merchant: MerchantInterface,
   ) { }
 
-  validate(request: RequestInterface): boolean {
+  validate(request: MessageInterface): boolean {
     [
       Validator.HEADER_TIMESTAMP,
       Validator.HEADER_NONCE,
