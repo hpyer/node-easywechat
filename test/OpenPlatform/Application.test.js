@@ -254,7 +254,7 @@ class TestUnit extends BaseTestUnit {
       ma_app.setHttpClient(client);
 
       const utils = ma_app.getUtils();
-      const res = await utils.thirdpartyCode2Session('xxx');
+      const res = await utils.code2Session('xxx');
       this.assert.strictEqual(res.openid, 'fake-openid');
       this.assert.strictEqual(res.session_key, 'fake-session_key');
       this.assert.strictEqual(res.unionid, 'fake-unionid');

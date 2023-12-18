@@ -16,7 +16,7 @@ class Utils extends BaseUtils {
    * @param code
    * @returns
    */
-  async thirdpartyCode2Session(code: string) {
+  async code2Session(code: string) {
     let client = this.app.getHttpClient();
     let response = await client.request('GET', '/sns/component/jscode2session', {
       params: {
