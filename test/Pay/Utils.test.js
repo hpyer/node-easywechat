@@ -26,6 +26,14 @@ class TestUnit extends BaseTestUnit {
 
     const utils = new Utils(merchant);
 
+    it('Should encrypt and decrypt correctly', async () => {
+      let data = 'Abc123';
+      let ciphertext = utils.encrypt(data);
+      let plaintext = utils.decrypt(ciphertext);
+
+      this.assert.strictEqual(plaintext, data);
+    });
+
     it('Should return correctly signature', async () => {
 
       let params = {

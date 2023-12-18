@@ -12,16 +12,38 @@ class Utils
   ) { }
 
   /**
+   * 加密字符串
+   * @param plaintext 原文
+   * @param encoding 密文的编码格式，默认：base64
+   * @param hashType 哈希算法，默认：sha256
+   */
+  encrypt(plaintext: string, encoding: BufferEncoding = 'base64', hashType: string = 'sha256'): string {
+    let rsa = new RSA;
+    rsa.setPublicKey(this.merchant.getCertificate().toString());
+    return rsa.encrypt(plaintext, encoding, hashType);
+  }
+
+  /**
+   * 解密字符串
+   * @param ciphertext 密文
+   * @param encoding 密文的编码格式，默认：base64
+   * @param hashType 哈希算法，默认：sha256
+   */
+  decrypt(ciphertext: string, encoding: BufferEncoding = 'base64', hashType: string = 'sha256'): string {
+    let rsa = new RSA;
+    rsa.setPrivateKey(this.merchant.getPrivateKey().toString());
+    return rsa.decrypt(ciphertext, encoding, hashType);
+  }
+
+  /**
    * 创建签名（V3），并返回签名字符串
    * @param params 参数集合
    * @returns
    */
-  protected createSignature(message: string): string
+  createSignature(message: string): string
   {
     let rsa = new RSA;
-    rsa.setPublicKey(this.merchant.getCertificate().toString());
     rsa.setPrivateKey(this.merchant.getPrivateKey().toString());
-
     return rsa.sign(message);
   }
 
