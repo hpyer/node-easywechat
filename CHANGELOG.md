@@ -1,6 +1,11 @@
 # CHANGELOG
 
 
+## v3.5.9 (2023-12-18)
+
+- Feat: 微信支付增加读取平台证书的方法loadPlatformCerts，并自动写入商户配置 (#57)
+- Feat: 微信支付增加v2版本的消息验证方法validateV2 (#56)
+
 ## v3.5.8 (2023-12-18)
 
 - Feat: thirdpartyCode2Session方法重命名为code2Session (#54)
