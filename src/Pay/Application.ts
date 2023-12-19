@@ -157,10 +157,10 @@ class Application implements ApplicationInterface {
     if (force || !exists_certs || exists_certs.length === 0) {
       let response = await this.getClient().get('/v3/certificates');
       let data = response.toObject();
-      if (data && data.length > 0) {
+      if (data.data && data.data.length > 0) {
         let certs: Record<string, PublicKey> = {};
         let key = this.config.get('secret_key');
-        data.forEach((item: any) => {
+        data.data.forEach((item: any) => {
           let content = AES_GCM.decrypt(
             item.encrypt_certificate.ciphertext,
             key,
