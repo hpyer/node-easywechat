@@ -15,7 +15,7 @@ class Merchant implements MerchantInterface
     privateKey: string | PrivateKey,
     certificate: string | PublicKey,
     protected secretKey: string,
-    protected v2SecretKey: string = null,
+    protected v2SecretKey: string,
     platformCerts: Record<string, string | PublicKey> | string[] | PublicKey[] = [],
   ) {
     if (!(privateKey instanceof PrivateKey)) {

@@ -5,8 +5,9 @@ import Response from '../Core/Http/Response';
 import ServerRequestInterface from '../Core/Http/Contracts/ServerRequestInterface';
 import MerchantInterface from './Contracts/MerchantInterface';
 import Message from './Message';
-import { AES_GCM } from '../Core/Support/AES';
+import { AES, AES_GCM } from '../Core/Support/AES';
 import { ServerHandlerClosure } from '../Types/global';
+import { buildXml, createHash, parseXml } from '../Core/Support/Utils';
 
 class Server extends ServerInterface
 {
@@ -24,10 +25,16 @@ class Server extends ServerInterface
   async serve(): Promise<Response> {
     let message = await this.getRequestMessage();
 
+    let isV2Message = message.getOriginalContents().startsWith('<xml');
+
     try {
-      let defaultResponse = new Response(200, {}, JSON.stringify({
-        code: 'SUCCESS', message: '成功',
-      }));
+      let defaultResponse: Response;
+      if (isV2Message) {
+        defaultResponse = new Response(200, {}, buildXml({ return_code: 'SUCCESS', return_msg: '' }));
+      }
+      else {
+        defaultResponse = new Response(200, {}, JSON.stringify({ code: 'SUCCESS', message: '成功' }));
+      }
       let response = await this.handle(defaultResponse, message);
 
       if (!(response instanceof Response)) {
@@ -37,9 +44,12 @@ class Server extends ServerInterface
       return response;
     }
     catch (e) {
-      return new Response(200, {}, JSON.stringify({
-        code: 'ERROR', message: e.message,
-      }));
+      if (isV2Message) {
+        return new Response(200, {}, buildXml({ return_code: 'ERROR', return_msg: e.message }));
+      }
+      else {
+        return new Response(200, {}, JSON.stringify({ code: 'ERROR', message: e.message }));
+      }
     }
   }
 
@@ -57,13 +67,40 @@ class Server extends ServerInterface
     if (body) {
       originContent = body.toString();
     }
-    let attributes: Record<string, any> = {};
-    try {
-      attributes = JSON.parse(originContent);
-    }
-    catch (e) { }
+    let attributes = await request.getParsedBody();
 
-    if (Object.keys(attributes).length === 0) {
+    if (originContent.startsWith('<xml')) {
+      attributes = await this.decodeXmlMessage(attributes);
+    }
+    else {
+      attributes = this.decodeJsonMessage(attributes);
+    }
+
+    return new Message(attributes, originContent);
+  }
+
+  protected async decodeXmlMessage(attributes: Record<string, any>) {
+    if (attributes['req_info']) {
+      let key = this.merchant.getV2SecretKey();
+      if (!key) {
+        throw new Error('V2 secret key is required');
+      }
+      attributes = await parseXml(AES.decrypt(
+        attributes['req_info'],
+        createHash(key, 'md5'),
+        '',
+        true,
+        'aes-256-ecb'
+      ).toString());
+    }
+    if (!attributes || Object.keys(attributes).length === 0) {
+      throw new Error('Failed to decrypt request message');
+    }
+    return attributes;
+  }
+
+  protected decodeJsonMessage(attributes: Record<string, any>) {
+    if (!attributes || Object.keys(attributes).length === 0) {
       throw new Error('Invalid request body.');
     }
     if (!attributes['resource']['ciphertext']) {
@@ -82,8 +119,7 @@ class Server extends ServerInterface
     catch (e) {
       throw new Error('Failed to decrypt request message.');
     }
-
-    return new Message(attributes, originContent);
+    return attributes;
   }
 
   /**

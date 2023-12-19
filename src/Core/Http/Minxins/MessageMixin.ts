@@ -63,7 +63,8 @@ class MessageMixin
   }
   withBody(body: any): this {
     if (Buffer.isBuffer(body)) {
-      this.content = body;
+      this.content = Buffer.from('');
+      this.content.copy(body);
     }
     else if (typeof body === 'string') {
       this.content = Buffer.from(body);

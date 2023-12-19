@@ -32,42 +32,38 @@ class ServerRequest implements ServerRequestInterface
     .withQueryParams(parse(url, true).query || {});
 
     if (body) {
-      this.parseBody(body);
+      this.withBody(body);
     }
   }
 
   /**
    * 解析 body 内容
-   * @param body 支持 Buffer、object对象、JSON字符串、XML字符串、QueryString等格式
+   * 支持 JSON字符串、XML字符串、QueryString等格式
    */
-  protected parseBody(body: Buffer | Record<string, any> | string) {
-    if (Buffer.isBuffer(body)) {
-      this.content = Buffer.from('');
-      this.content.copy(body);
+  protected async parseBody() {
+    let body = this.content.toString();
+    if (body.startsWith('<xml')) {
+      let res = await parseXml(body);
+      this.parsedBody = res;
+      this.headers['content-type'] = 'text/xml';
     }
-    else if (typeof body === 'object' && Object.keys(body).length > 0) {
-      this.parsedBody = body;
-      this.content = Buffer.from(JSON.stringify(body));
-      this.headers['content-type'] = 'application/json';
-    }
-    else if (typeof body === 'string') {
+    else if (body.startsWith('{') || body.startsWith('[')) {
       try {
         this.parsedBody = JSON.parse(body);
         this.headers['content-type'] = 'application/json';
       }
       catch (e) {
-        if (body.substring(0, 1) === '<') {
-          parseXml(body).then(res => {
-            this.parsedBody = res;
-            this.headers['content-type'] = 'text/xml';
-          });
-        }
-        else {
-          this.parsedBody = parseQueryString(body);
-          this.headers['content-type'] = 'application/x-www-form-urlencoded';
-        }
+        this.parsedBody = {};
       }
-      this.content = Buffer.from(body);
+    }
+    else {
+      try {
+        this.parsedBody = parseQueryString(body);
+        this.headers['content-type'] = 'application/x-www-form-urlencoded';
+      }
+      catch (e) {
+        this.parsedBody = {};
+      }
     }
   }
 
@@ -95,7 +91,10 @@ class ServerRequest implements ServerRequestInterface
     this.uploadedFiles = merge.recursive(true, files);
     return this;
   }
-  getParsedBody(): Record<string, any> {
+  async getParsedBody(): Promise<Record<string, any>> {
+    if (!this.parsedBody || Object.keys(this.parsedBody).length === 0) {
+      await this.parseBody();
+    }
     return this.parsedBody;
   }
   withParsedBody(data: Record<string, any>): this {

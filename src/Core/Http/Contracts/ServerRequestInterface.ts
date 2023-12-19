@@ -53,7 +53,7 @@ abstract class ServerRequestInterface extends RequestInterface
    * 获取所有post参数
    * @returns
    */
-  getParsedBody(): Record<string, any> { return null; }
+  getParsedBody(): Promise<Record<string, any>> { return null; }
 
   /**
    * 设置post参数
