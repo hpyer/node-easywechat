@@ -138,6 +138,10 @@ class Server extends ServerInterface
    */
   handlePaid(handler: ServerHandlerClosure<Message>): this {
     this.with(async (message: Message, next: ServerHandlerClosure<Message>) => {
+      let isV2Message = message.getOriginalContents().startsWith('<xml');
+      if (isV2Message) {
+        return handler(message, next);
+      }
       return message.getEventType() === 'TRANSACTION.SUCCESS' && message.trade_state === 'SUCCESS'
         ? handler(message, next) : next(message);
     });
