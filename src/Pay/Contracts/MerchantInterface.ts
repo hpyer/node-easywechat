@@ -54,9 +54,9 @@ abstract class MerchantInterface
 
   /**
    * 获取平台证书
-   * @param force 是否强制刷新缓存
+   * @param force 是否强制刷新缓存，默认：false
    */
-  loadPlatformCerts(force: boolean): void { }
+  loadPlatformCerts(force: boolean = false): Promise<void> { return; }
 
   /**
    * 设置平台证书

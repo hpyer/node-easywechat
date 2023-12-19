@@ -116,18 +116,18 @@ class Merchant implements MerchantInterface
       certs = {};
       let response = await this.app.getClient().get('/v3/certificates');
       let data = response.toObject();
-      if (!data || !data.data || data.data.length === 0) return certs;
-
-      data.data.forEach((item: any) => {
-        let content = AES_GCM.decrypt(
-          item.encrypt_certificate.ciphertext,
-          this.app.getConfig().get('secret_key'),
-          item.encrypt_certificate.nonce,
-          item.encrypt_certificate.associated_data,
-        ).toString();
-        certs[item.serial_no] = content;
-      });
-      await cache.set(cacheKey, certs, 36000); // 缓存10小时
+      if (data && data.data && data.data.length > 0) {
+        data.data.forEach((item: any) => {
+          let content = AES_GCM.decrypt(
+            item.encrypt_certificate.ciphertext,
+            this.app.getConfig().get('secret_key'),
+            item.encrypt_certificate.nonce,
+            item.encrypt_certificate.associated_data,
+          ).toString();
+          certs[item.serial_no] = content;
+        });
+        await cache.set(cacheKey, certs, 36000); // 缓存10小时
+      }
     }
     this.setPlatformCerts(certs);
   }

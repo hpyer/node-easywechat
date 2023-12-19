@@ -17,6 +17,7 @@ import Utils from './Utils';
 import Config from '../OfficialAccount/Config';
 import Client from './Client';
 import Validator from './Validator';
+import ValidatorInterface from './Contracts/ValidatorInterface';
 
 /**
  * 微信支付应用
@@ -36,9 +37,9 @@ class Application implements ApplicationInterface {
   protected server: Server = null;
   protected client: Client = null;
   protected utils: Utils = null;
-  protected validator: Validator = null;
+  protected validator: ValidatorInterface = null;
 
-  getMerchant(): MerchantInterface {
+  getMerchant(): Merchant {
     if (!this.merchant) {
       this.merchant = new Merchant(
         this.config.get('mch_id'),
@@ -50,7 +51,7 @@ class Application implements ApplicationInterface {
         this,
       );
     }
-    return this.merchant;
+    return this.merchant as Merchant;
   }
 
   /**
@@ -105,7 +106,7 @@ class Application implements ApplicationInterface {
    * 设置验证器实例
    * @param validator
    */
-  setValidator(validator: Validator) {
+  setValidator(validator: ValidatorInterface) {
     this.validator = validator;
   }
 
@@ -113,7 +114,7 @@ class Application implements ApplicationInterface {
     if (!this.validator) {
       this.validator = new Validator(this.getMerchant());
     }
-    return this.validator;
+    return this.validator as Validator;
   }
 
   getClient() {
