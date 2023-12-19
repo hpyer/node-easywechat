@@ -7,7 +7,7 @@ abstract class ValidatorInterface {
   /**
    * 验证请求是否正确
    */
-  validate(request: Request): boolean { return true; }
+  validate(request: Request): Promise<boolean> { return Promise.resolve(true); }
   /**
    * 验证请求是否正确（v2）
    */

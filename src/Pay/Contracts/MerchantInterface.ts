@@ -35,17 +35,34 @@ abstract class MerchantInterface
   getCertificate(): PublicKey { return null; }
 
   /**
-   * 获取平台证书
+   * 获取平台证书缓存名称
+   */
+  getPlatformCertKey(): string { return null; }
+
+  /**
+   * 设置平台证书缓存名称
+   * @param key
+   */
+  setPlatformCertKey(key: string): this { return this; }
+
+  /**
+   * 更具证书序列号获取平台证书
    * @param serial
    * @returns
    */
-  getPlatformCert(serial: string): PublicKey { return null; }
+  getPlatformCert(serial: string): Promise<PublicKey> { return null; }
+
+  /**
+   * 获取平台证书
+   * @param force 是否强制刷新缓存
+   */
+  loadPlatformCerts(force: boolean): void { }
 
   /**
    * 设置平台证书
-   * @param certs 键名：序列号，键值：PublicKey实例
+   * @param certs 键名：序列号，键值：PublicKey实例或者文件内容字符串
    */
-  setPlatformCerts(certs: Record<string, PublicKey>): void { }
+  setPlatformCerts(certs: Record<string, PublicKey | string>): void { }
 };
 
 export = MerchantInterface;

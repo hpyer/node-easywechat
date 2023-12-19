@@ -20,7 +20,7 @@ class Validator implements ValidatorInterface {
     protected merchant: MerchantInterface,
   ) { }
 
-  validate(request: MessageInterface): boolean {
+  async validate(request: MessageInterface): Promise<boolean> {
     [
       Validator.HEADER_TIMESTAMP,
       Validator.HEADER_NONCE,
@@ -43,7 +43,7 @@ class Validator implements ValidatorInterface {
       throw new Error('Clock Offset Exceeded');
     }
 
-    let publicKey = this.merchant.getPlatformCert(serial);
+    let publicKey = await this.merchant.getPlatformCert(serial);
     if (!publicKey) {
       throw new Error(`No platform certs found for serial: ${serial}, please download from wechat pay and set it in merchant config with key \`platform_certs\`.`);
     }

@@ -17,8 +17,6 @@ import Utils from './Utils';
 import Config from '../OfficialAccount/Config';
 import Client from './Client';
 import Validator from './Validator';
-import { PublicKey } from '../Core/Support/PublicKey';
-import { AES_GCM } from '../Core/Support/AES';
 
 /**
  * 微信支付应用
@@ -49,6 +47,7 @@ class Application implements ApplicationInterface {
         this.config.get('secret_key'),
         this.config.get('v2_secret_key'),
         this.config.get('platform_certs') ?? [],
+        this,
       );
     }
     return this.merchant;
@@ -146,32 +145,6 @@ class Application implements ApplicationInterface {
     return merge(true, {
       baseURL: 'https://api.mch.weixin.qq.com',
     }, this.getConfig().get('http'));
-  }
-
-  /**
-   * 如果未配置平台证书，则尝试从接口读取
-   * @param force 是否强制读取，默认：false
-   */
-  async loadPlatformCerts(force: boolean = false) {
-    let exists_certs = this.config.get('platform_certs', []);
-    if (force || !exists_certs || exists_certs.length === 0) {
-      let response = await this.getClient().get('/v3/certificates');
-      let data = response.toObject();
-      if (data.data && data.data.length > 0) {
-        let certs: Record<string, PublicKey> = {};
-        let key = this.config.get('secret_key');
-        data.data.forEach((item: any) => {
-          let content = AES_GCM.decrypt(
-            item.encrypt_certificate.ciphertext,
-            key,
-            item.encrypt_certificate.nonce,
-            item.encrypt_certificate.associated_data,
-          ).toString();
-          certs[item.serial_no] = PublicKey.createByCertificateContent(content, item.serial_no);
-        });
-        this.getMerchant().setPlatformCerts(certs);
-      }
-    }
   }
 
 };

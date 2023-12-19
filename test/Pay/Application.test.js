@@ -85,7 +85,7 @@ class TestUnit extends BaseTestUnit {
         'Wechatpay-Signature': sign,
       }, body);
 
-      let result = validator.validate(request);
+      let result = await validator.validate(request);
 
       this.assert.strictEqual(result, true);
 
@@ -126,11 +126,9 @@ class TestUnit extends BaseTestUnit {
       });
       app.setHttpClient(httpclient);
 
-      await app.loadPlatformCerts();
-
       let merchant = app.getMerchant();
-      let cert = merchant.getPlatformCert('fake-serial_no');
-
+      await merchant.loadPlatformCerts();
+      let cert = await merchant.getPlatformCert('fake-serial_no');
       this.assert.strictEqual(cert.getValue().toString(), 'fake-ciphertext');
     });
 
