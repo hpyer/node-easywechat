@@ -28,7 +28,18 @@ class Signature {
       pathname = urlObj.pathname + (search ? '?' + search : '');
     }
     else {
-      pathname += (pathname.indexOf('?') > -1 ? '&' : '?') + buildQueryString(payload.params);
+      let search = '';
+      if (payload.params) {
+        if (typeof payload.params === 'string') {
+          search = payload.params.replace(/^\?|&/, '');
+        }
+        else if (Object.keys(payload.params).length > 0) {
+          search = buildQueryString(payload.params);
+        }
+      }
+      if (search) {
+        pathname += (pathname.indexOf('?') > -1 ? '&' : '?') + search;
+      }
     }
 
     if (!nonce) nonce = randomString();
