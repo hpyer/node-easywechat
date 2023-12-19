@@ -16,18 +16,23 @@ class Signature {
    * @param method 请求方式
    * @param url 请求地址
    * @param payload 请求载荷
+   * @param nonce 随机串，默认：随机生成
+   * @param timestamp 时间戳，默认：当前时间
    * @returns
    */
-  createHeader(method: string, url: string, payload: AxiosRequestConfig<any>): string {
+  createHeader(method: string, url: string, payload: AxiosRequestConfig<any>, nonce: string = null, timestamp: number = null): string {
     let pathname = url;
     if (url.startsWith('https://') || url.startsWith('http://')) {
       let urlObj = new URL(url);
       let search = buildQueryString(merge(true, urlObj.searchParams, payload.params));
       pathname = urlObj.pathname + (search ? '?' + search : '');
     }
+    else {
+      pathname += (pathname.indexOf('?') > -1 ? '&' : '?') + buildQueryString(payload.params);
+    }
 
-    let nonce = randomString();
-    let timestamp = getTimestamp();
+    if (!nonce) nonce = randomString();
+    if (!timestamp) timestamp = getTimestamp();
     let body = '';
     if (payload.data) {
       if (typeof payload.data === 'object') {
