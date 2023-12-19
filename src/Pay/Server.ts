@@ -100,8 +100,8 @@ class Server extends ServerInterface
    * @param handler 消息处理器，需要接受两个参数，参数1是消息，参数2是下一个消息处理器
    * @returns
    */
-  handlePaid(handler: ServerHandlerClosure): this {
-    this.with(async (message: Message, next: ServerHandlerClosure) => {
+  handlePaid(handler: ServerHandlerClosure<Message>): this {
+    this.with(async (message: Message, next: ServerHandlerClosure<Message>) => {
       return message.getEventType() === 'TRANSACTION.SUCCESS' && message.trade_state === 'SUCCESS'
         ? handler(message, next) : next(message);
     });
@@ -114,8 +114,8 @@ class Server extends ServerInterface
    * @param handler 消息处理器，需要接受两个参数，参数1是消息，参数2是下一个消息处理器
    * @returns
    */
-  handleRefunded(handler: ServerHandlerClosure): this {
-    this.with(async (message: Message, next: ServerHandlerClosure) => {
+  handleRefunded(handler: ServerHandlerClosure<Message>): this {
+    this.with(async (message: Message, next: ServerHandlerClosure<Message>) => {
       let eventType = message.getEventType();
       return [
         'REFUND.SUCCESS',
@@ -128,5 +128,14 @@ class Server extends ServerInterface
   }
 
 };
+
+interface Server {
+  with(next: ServerHandlerClosure<Message>): this;
+  withHandler(next: ServerHandlerClosure<Message>): this;
+  prepend(next: ServerHandlerClosure<Message>): this;
+  prependHandler(next: ServerHandlerClosure<Message>): this;
+  without(next: ServerHandlerClosure<Message>): this;
+  withoutHandler(next: ServerHandlerClosure<Message>): this;
+}
 
 export = Server;

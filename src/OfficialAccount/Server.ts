@@ -48,8 +48,8 @@ class Server extends ServerInterface
    * @param handler
    * @returns
    */
-  addMessageListener(type: ServerMessageType, handler: ServerHandlerClosure): this {
-    return this.withHandler(async function (message: Message, next: ServerHandlerClosure) {
+  addMessageListener(type: ServerMessageType, handler: ServerHandlerClosure<Message>): this {
+    return this.withHandler(async function (message: Message, next: ServerHandlerClosure<Message>) {
       return message.MsgType === type ? handler(message, next) : next(message);
     })
   }
@@ -60,8 +60,8 @@ class Server extends ServerInterface
    * @param handler
    * @returns
    */
-  addEventListener(event: ServerEventType, handler: ServerHandlerClosure): this {
-    return this.withHandler(async function (message: Message, next: ServerHandlerClosure) {
+  addEventListener(event: ServerEventType, handler: ServerHandlerClosure<Message>): this {
+    return this.withHandler(async function (message: Message, next: ServerHandlerClosure<Message>) {
       return message.Event === event ? handler(message, next) : next(message);
     })
   }
@@ -75,8 +75,8 @@ class Server extends ServerInterface
     return Message.createFromRequest(request || this.request);
   }
 
-  protected decryptRequestMessage(query: Record<string, any>): ServerHandlerClosure {
-    return async (message: Message, next: ServerHandlerClosure) => {
+  protected decryptRequestMessage(query: Record<string, any>): ServerHandlerClosure<Message> {
+    return async (message: Message, next: ServerHandlerClosure<Message>) => {
       if (!this.encryptor) return null;
       await this.decryptMessage(
         message,
@@ -91,5 +91,14 @@ class Server extends ServerInterface
   }
 
 };
+
+interface Server {
+  with(next: ServerHandlerClosure<Message>): this;
+  withHandler(next: ServerHandlerClosure<Message>): this;
+  prepend(next: ServerHandlerClosure<Message>): this;
+  prependHandler(next: ServerHandlerClosure<Message>): this;
+  without(next: ServerHandlerClosure<Message>): this;
+  withoutHandler(next: ServerHandlerClosure<Message>): this;
+}
 
 export = Server;

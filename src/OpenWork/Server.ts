@@ -9,7 +9,7 @@ import { ServerEventType, ServerHandlerClosure, ServerMessageType } from '../Typ
 
 class Server extends ServerInterface
 {
-  protected defaultSuiteTicketHandler: ServerHandlerClosure = null;
+  protected defaultSuiteTicketHandler: ServerHandlerClosure<Message> = null;
 
   constructor(
     protected encryptor: Encryptor,
@@ -48,7 +48,7 @@ class Server extends ServerInterface
     return response;
   }
 
-  withDefaultSuiteTicketHandler(handler: ServerHandlerClosure): this {
+  withDefaultSuiteTicketHandler(handler: ServerHandlerClosure<Message>): this {
     this.defaultSuiteTicketHandler = function() {
       return handler.call(null, arguments);
     }
@@ -59,12 +59,12 @@ class Server extends ServerInterface
    * 设置联系人变化的消息处理器
    * @param handler
    */
-  handleSuiteTicketRefreshed(handler: ServerHandlerClosure): this {
+  handleSuiteTicketRefreshed(handler: ServerHandlerClosure<Message>): this {
     if (this.defaultSuiteTicketHandler) {
       this.withoutHandler(this.defaultSuiteTicketHandler);
     }
 
-    return this.with(async function (message: Message, next: ServerHandlerClosure) {
+    return this.with(async function (message: Message, next: ServerHandlerClosure<Message>) {
       return message.InfoType === 'suite_ticket' ? handler(message, next) : next(message);
     });
   }
@@ -73,8 +73,8 @@ class Server extends ServerInterface
    * 设置授权成功的消息处理器
    * @param handler
    */
-  handleAuthCreated(handler: ServerHandlerClosure): this {
-    return this.with(async function (message: Message, next: ServerHandlerClosure) {
+  handleAuthCreated(handler: ServerHandlerClosure<Message>): this {
+    return this.with(async function (message: Message, next: ServerHandlerClosure<Message>) {
       return message.InfoType === 'create_auth' ? handler(message, next) : next(message);
     });
   }
@@ -83,8 +83,8 @@ class Server extends ServerInterface
    * 设置变更授权的消息处理器
    * @param handler
    */
-  handleAuthUpdated(handler: ServerHandlerClosure): this {
-    return this.with(async function (message: Message, next: ServerHandlerClosure) {
+  handleAuthUpdated(handler: ServerHandlerClosure<Message>): this {
+    return this.with(async function (message: Message, next: ServerHandlerClosure<Message>) {
       return message.InfoType === 'change_auth' ? handler(message, next) : next(message);
     });
   }
@@ -93,8 +93,8 @@ class Server extends ServerInterface
    * 设置取消授权的消息处理器
    * @param handler
    */
-  handleAuthCancelled(handler: ServerHandlerClosure): this {
-    return this.with(async function (message: Message, next: ServerHandlerClosure) {
+  handleAuthCancelled(handler: ServerHandlerClosure<Message>): this {
+    return this.with(async function (message: Message, next: ServerHandlerClosure<Message>) {
       return message.InfoType === 'cancel_auth' ? handler(message, next) : next(message);
     });
   }
@@ -103,8 +103,8 @@ class Server extends ServerInterface
    * 设置用户创建的消息处理器
    * @param handler
    */
-  handleUserCreated(handler: ServerHandlerClosure): this {
-    return this.with(async function (message: Message, next: ServerHandlerClosure) {
+  handleUserCreated(handler: ServerHandlerClosure<Message>): this {
+    return this.with(async function (message: Message, next: ServerHandlerClosure<Message>) {
       return message.InfoType === 'change_contact' && message.ChangeType === 'create_user' ? handler(message, next) : next(message);
     });
   }
@@ -113,8 +113,8 @@ class Server extends ServerInterface
    * 设置用户更新的消息处理器
    * @param handler
    */
-  handleUserUpdated(handler: ServerHandlerClosure): this {
-    return this.with(async function (message: Message, next: ServerHandlerClosure) {
+  handleUserUpdated(handler: ServerHandlerClosure<Message>): this {
+    return this.with(async function (message: Message, next: ServerHandlerClosure<Message>) {
       return message.InfoType === 'change_contact' && message.ChangeType === 'update_user' ? handler(message, next) : next(message);
     });
   }
@@ -123,8 +123,8 @@ class Server extends ServerInterface
    * 设置用户删除的消息处理器
    * @param handler
    */
-  handleUserDeleted(handler: ServerHandlerClosure): this {
-    return this.with(async function (message: Message, next: ServerHandlerClosure) {
+  handleUserDeleted(handler: ServerHandlerClosure<Message>): this {
+    return this.with(async function (message: Message, next: ServerHandlerClosure<Message>) {
       return message.InfoType === 'change_contact' && message.ChangeType === 'delete_user' ? handler(message, next) : next(message);
     });
   }
@@ -133,8 +133,8 @@ class Server extends ServerInterface
    * 设置部门创建的消息处理器
    * @param handler
    */
-  handlePartyCreated(handler: ServerHandlerClosure): this {
-    return this.with(async function (message: Message, next: ServerHandlerClosure) {
+  handlePartyCreated(handler: ServerHandlerClosure<Message>): this {
+    return this.with(async function (message: Message, next: ServerHandlerClosure<Message>) {
       return message.InfoType === 'change_contact' && message.ChangeType === 'create_party' ? handler(message, next) : next(message);
     });
   }
@@ -143,8 +143,8 @@ class Server extends ServerInterface
    * 设置部门更新的消息处理器
    * @param handler
    */
-  handlePartyUpdated(handler: ServerHandlerClosure): this {
-    return this.with(async function (message: Message, next: ServerHandlerClosure) {
+  handlePartyUpdated(handler: ServerHandlerClosure<Message>): this {
+    return this.with(async function (message: Message, next: ServerHandlerClosure<Message>) {
       return message.InfoType === 'change_contact' && message.ChangeType === 'update_party' ? handler(message, next) : next(message);
     });
   }
@@ -153,8 +153,8 @@ class Server extends ServerInterface
    * 设置部门删除的消息处理器
    * @param handler
    */
-  handlePartyDeleted(handler: ServerHandlerClosure): this {
-    return this.with(async function (message: Message, next: ServerHandlerClosure) {
+  handlePartyDeleted(handler: ServerHandlerClosure<Message>): this {
+    return this.with(async function (message: Message, next: ServerHandlerClosure<Message>) {
       return message.InfoType === 'change_contact' && message.ChangeType === 'delete_party' ? handler(message, next) : next(message);
     });
   }
@@ -163,8 +163,8 @@ class Server extends ServerInterface
    * 设置用户标签变化的消息处理器
    * @param handler
    */
-  handleUserTagUpdated(handler: ServerHandlerClosure): this {
-    return this.with(async function (message: Message, next: ServerHandlerClosure) {
+  handleUserTagUpdated(handler: ServerHandlerClosure<Message>): this {
+    return this.with(async function (message: Message, next: ServerHandlerClosure<Message>) {
       return message.InfoType === 'change_contact' && message.ChangeType === 'update_tag' ? handler(message, next) : next(message);
     });
   }
@@ -173,8 +173,8 @@ class Server extends ServerInterface
    * 设置共享应用事件的消息处理器
    * @param handler
    */
-  handleShareAgentChanged(handler: ServerHandlerClosure): this {
-    return this.with(async function (message: Message, next: ServerHandlerClosure) {
+  handleShareAgentChanged(handler: ServerHandlerClosure<Message>): this {
+    return this.with(async function (message: Message, next: ServerHandlerClosure<Message>) {
       return message.InfoType === 'share_agent_change' ? handler(message, next) : next(message);
     });
   }
@@ -183,8 +183,8 @@ class Server extends ServerInterface
    * 设置重置永久授权码的消息处理器
    * @param handler
    */
-  handleResetPermanentCode(handler: ServerHandlerClosure): this {
-    return this.with(async function (message: Message, next: ServerHandlerClosure) {
+  handleResetPermanentCode(handler: ServerHandlerClosure<Message>): this {
+    return this.with(async function (message: Message, next: ServerHandlerClosure<Message>) {
       return message.InfoType === 'reset_permanent_code' ? handler(message, next) : next(message);
     });
   }
@@ -193,8 +193,8 @@ class Server extends ServerInterface
    * 设置应用管理员变更的消息处理器
    * @param handler
    */
-  handleChangeAppAdmin(handler: ServerHandlerClosure): this {
-    return this.with(async function (message: Message, next: ServerHandlerClosure) {
+  handleChangeAppAdmin(handler: ServerHandlerClosure<Message>): this {
+    return this.with(async function (message: Message, next: ServerHandlerClosure<Message>) {
       return message.MsgType === 'event' && message.Event === 'change_app_admin' ? handler(message, next) : next(message);
     });
   }
@@ -208,8 +208,8 @@ class Server extends ServerInterface
     return Message.createFromRequest(request ?? this.request);
   }
 
-  protected decryptRequestMessage(query: Record<string, any>): ServerHandlerClosure {
-    return async (message: Message, next: ServerHandlerClosure) => {
+  protected decryptRequestMessage(query: Record<string, any>): ServerHandlerClosure<Message> {
+    return async (message: Message, next: ServerHandlerClosure<Message>) => {
       if (!this.encryptor) return null;
       await this.decryptMessage(
         message,
@@ -243,5 +243,14 @@ class Server extends ServerInterface
   }
 
 };
+
+interface Server {
+  with(next: ServerHandlerClosure<Message>): this;
+  withHandler(next: ServerHandlerClosure<Message>): this;
+  prepend(next: ServerHandlerClosure<Message>): this;
+  prependHandler(next: ServerHandlerClosure<Message>): this;
+  without(next: ServerHandlerClosure<Message>): this;
+  withoutHandler(next: ServerHandlerClosure<Message>): this;
+}
 
 export = Server;

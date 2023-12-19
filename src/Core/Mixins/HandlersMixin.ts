@@ -21,7 +21,7 @@ class HandlersMixin
    * @param handler
    * @returns
    */
-  createHandlerItem(handler: ServerHandlerClosure): ServerHandlerItem {
+  createHandlerItem(handler: ServerHandlerClosure<Message>): ServerHandlerItem {
     return {
       hash: this.getHandlerHash(handler),
       handler: handler,
@@ -33,14 +33,14 @@ class HandlersMixin
    * @param handler
    * @returns
    */
-  protected getHandlerHash(handler: ServerHandlerClosure): string {
+  protected getHandlerHash(handler: ServerHandlerClosure<Message>): string {
     return createHash(handler.toString(), 'md5');
   }
 
   /**
    * @alias withHandler()
    */
-  with(handler: ServerHandlerClosure): this {
+  with(handler: ServerHandlerClosure<Message>): this {
     return this.withHandler(handler);
   }
 
@@ -49,7 +49,7 @@ class HandlersMixin
    * @param handler
    * @returns
    */
-  withHandler(handler: ServerHandlerClosure): this {
+  withHandler(handler: ServerHandlerClosure<Message>): this {
     this.handlers.push(this.createHandlerItem(handler));
     return this;
   }
@@ -57,7 +57,7 @@ class HandlersMixin
   /**
    * @alias prependHandler()
    */
-  prepend(handler: ServerHandlerClosure): this {
+  prepend(handler: ServerHandlerClosure<Message>): this {
     return this.prependHandler(handler);
   }
 
@@ -66,7 +66,7 @@ class HandlersMixin
    * @param handler
    * @returns
    */
-  prependHandler(handler: ServerHandlerClosure): this {
+  prependHandler(handler: ServerHandlerClosure<Message>): this {
     this.handlers.unshift(this.createHandlerItem(handler));
     return this;
   }
@@ -74,7 +74,7 @@ class HandlersMixin
   /**
    * @alias withoutHandler()
    */
-  without(handler: ServerHandlerClosure): this {
+  without(handler: ServerHandlerClosure<Message>): this {
     return this.withoutHandler(handler);
   }
 
@@ -83,7 +83,7 @@ class HandlersMixin
    * @param handler
    * @returns
    */
-  withoutHandler(handler: ServerHandlerClosure): this {
+  withoutHandler(handler: ServerHandlerClosure<Message>): this {
     let index = this.indexOf(handler);
     if (index > -1) {
       this.handlers.splice(index, 1);
@@ -96,7 +96,7 @@ class HandlersMixin
    * @param handler
    * @returns
    */
-  indexOf(handler: ServerHandlerClosure): number {
+  indexOf(handler: ServerHandlerClosure<Message>): number {
     return this.handlers.findIndex((item: ServerHandlerItem) => {
       return item.hash === this.getHandlerHash(handler);
     });
@@ -108,7 +108,7 @@ class HandlersMixin
    * @param handler
    * @returns
    */
-  when(value: boolean | Function | Promise<boolean>, handler: ServerHandlerClosure) {
+  when(value: boolean | Function | Promise<boolean>, handler: ServerHandlerClosure<Message>) {
     if (typeof value === 'function') {
       value = value.call(this) as boolean | Promise<boolean>;
     }

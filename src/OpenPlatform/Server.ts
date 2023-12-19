@@ -9,7 +9,7 @@ import { ServerHandlerClosure } from '../Types/global';
 
 class Server extends ServerInterface
 {
-  protected defaultVerifyTicketHandler: ServerHandlerClosure = null;
+  protected defaultVerifyTicketHandler: ServerHandlerClosure<Message> = null;
 
   constructor(
     protected encryptor: Encryptor,
@@ -45,8 +45,8 @@ class Server extends ServerInterface
    * @param handler
    * @returns
    */
-  handleAuthorized(handler: ServerHandlerClosure): this {
-    return this.with(async function (message: Message, next: ServerHandlerClosure) {
+  handleAuthorized(handler: ServerHandlerClosure<Message>): this {
+    return this.with(async function (message: Message, next: ServerHandlerClosure<Message>) {
       return message.InfoType === 'authorized' ? handler(message, next) : next(message);
     })
   }
@@ -56,8 +56,8 @@ class Server extends ServerInterface
    * @param handler
    * @returns
    */
-  handleUnauthorized(handler: ServerHandlerClosure): this {
-    return this.with(async function (message: Message, next: ServerHandlerClosure) {
+  handleUnauthorized(handler: ServerHandlerClosure<Message>): this {
+    return this.with(async function (message: Message, next: ServerHandlerClosure<Message>) {
       return message.InfoType === 'unauthorized' ? handler(message, next) : next(message);
     })
   }
@@ -67,8 +67,8 @@ class Server extends ServerInterface
    * @param handler
    * @returns
    */
-  handleAuthorizeUpdated(handler: ServerHandlerClosure): this {
-    return this.with(async function (message: Message, next: ServerHandlerClosure) {
+  handleAuthorizeUpdated(handler: ServerHandlerClosure<Message>): this {
+    return this.with(async function (message: Message, next: ServerHandlerClosure<Message>) {
       return message.InfoType === 'updateauthorized' ? handler(message, next) : next(message);
     })
   }
@@ -78,7 +78,7 @@ class Server extends ServerInterface
    * @param handler
    * @returns
    */
-  withDefaultVerifyTicketHandler(handler: ServerHandlerClosure) {
+  withDefaultVerifyTicketHandler(handler: ServerHandlerClosure<Message>) {
     this.defaultVerifyTicketHandler = function () {
       return handler.apply(this, arguments);
     };
@@ -90,19 +90,19 @@ class Server extends ServerInterface
    * @param handler
    * @returns
    */
-  handleVerifyTicketRefreshed(handler: ServerHandlerClosure): this {
+  handleVerifyTicketRefreshed(handler: ServerHandlerClosure<Message>): this {
     if (this.defaultVerifyTicketHandler) {
       this.withoutHandler(this.defaultVerifyTicketHandler);
     }
 
-    return this.with(async function (message: Message, next: ServerHandlerClosure) {
+    return this.with(async function (message: Message, next: ServerHandlerClosure<Message>) {
       return message.InfoType === 'component_verify_ticket' ? handler(message, next) : next(message);
     })
   }
 
-  protected decryptRequestMessage(): ServerHandlerClosure {
+  protected decryptRequestMessage(): ServerHandlerClosure<Message> {
     let query = this.request.getQueryParams();
-    return async (message: Message, next: ServerHandlerClosure) => {
+    return async (message: Message, next: ServerHandlerClosure<Message>) => {
       await this.decryptMessage(
         message,
         this.encryptor,
@@ -144,5 +144,14 @@ class Server extends ServerInterface
   }
 
 };
+
+interface Server {
+  with(next: ServerHandlerClosure<Message>): this;
+  withHandler(next: ServerHandlerClosure<Message>): this;
+  prepend(next: ServerHandlerClosure<Message>): this;
+  prependHandler(next: ServerHandlerClosure<Message>): this;
+  without(next: ServerHandlerClosure<Message>): this;
+  withoutHandler(next: ServerHandlerClosure<Message>): this;
+}
 
 export = Server;

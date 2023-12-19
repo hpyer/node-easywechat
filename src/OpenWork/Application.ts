@@ -142,7 +142,7 @@ class Application implements ApplicationInterface
         this.getEncryptor(),
         this.getRequest()
       );
-      this.server.withDefaultSuiteTicketHandler(async (message: Message, next: ServerHandlerClosure) => {
+      this.server.withDefaultSuiteTicketHandler(async (message: Message, next: ServerHandlerClosure<Message>) => {
         if (message.SuiteId === this.getAccount().getSuiteId()) {
           await this.getSuiteTicket().setTicket(message.SuiteTicket);
         }

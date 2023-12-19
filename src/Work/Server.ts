@@ -219,4 +219,13 @@ class Server extends ServerInterface
 
 };
 
+interface Server {
+  with(next: ServerHandlerClosure<Message>): this;
+  withHandler(next: ServerHandlerClosure<Message>): this;
+  prepend(next: ServerHandlerClosure<Message>): this;
+  prependHandler(next: ServerHandlerClosure<Message>): this;
+  without(next: ServerHandlerClosure<Message>): this;
+  withoutHandler(next: ServerHandlerClosure<Message>): this;
+}
+
 export = Server;
