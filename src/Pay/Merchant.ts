@@ -123,7 +123,12 @@ class Merchant implements MerchantInterface
       let response = await this.app.getClient().get('/v3/certificates');
       let data = response.toObject();
       if (data && data.data && data.data.length > 0) {
+        let nowTime = Math.round((new Date()).getTime() / 1000);
         data.data.forEach((item: any) => {
+          // 跳过有效期少于1天的证书
+          let expireTime = Math.round((new Date(item.expire_time)).getTime() / 1000) - 86400;
+          if (expireTime < nowTime) return;
+
           let content = AES_GCM.decrypt(
             item.encrypt_certificate.ciphertext,
             this.app.getConfig().get('secret_key'),
@@ -132,7 +137,9 @@ class Merchant implements MerchantInterface
           ).toString();
           certs[item.serial_no] = content;
         });
-        await cache.set(cacheKey, certs, 36000); // 缓存10小时
+        if (Object.keys(certs).length > 0) {
+          await cache.set(cacheKey, certs, 36000); // 缓存10小时
+        }
       }
     }
     this.setPlatformCerts(certs);

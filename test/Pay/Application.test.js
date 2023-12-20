@@ -8,6 +8,7 @@ const Path = require('path');
 const RSA = require('../../dist/Core/Support/RSA');
 const { getTimestamp, randomString } = require('../../dist/Core/Support/Utils');
 const Message = require('../../dist/Pay/Message');
+const { PublicKey } = require('../../dist/Core/Support/PublicKey');
 
 class TestUnit extends BaseTestUnit {
 
@@ -108,13 +109,16 @@ class TestUnit extends BaseTestUnit {
       payConfig.secret_key = 'mock-secret-key1mock-secret-key1';
       let app = new Pay(payConfig);
 
+      let now = new Date;
+      now.setTime(now.getTime() + 87000*1000);  // 确保默认证书有效期一天以上
+      console.log('now.toISOString()', now.toISOString())
       let httpclient = this.getMockedHttpClient(app.getHttpClient());
       httpclient.mock('get', '/v3/certificates').reply(200, {
         data: [
           {
             serial_no: 'fake-serial_no',
             effective_time: '2018-06-08T10:34:56+08:00',
-            expire_time: '2018-06-08T10:34:56+08:00',
+            expire_time: now.toISOString(),
             encrypt_certificate: {
               algorithm: 'AEAD_AES_256_GCM',
               nonce: '61f9c719728a',
@@ -129,6 +133,7 @@ class TestUnit extends BaseTestUnit {
       let merchant = app.getMerchant();
       await merchant.loadPlatformCerts();
       let cert = await merchant.getPlatformCert('fake-serial_no');
+      this.assert.strictEqual(cert instanceof PublicKey, true);
       this.assert.strictEqual(cert.getValue().toString(), 'fake-ciphertext');
     });
 
