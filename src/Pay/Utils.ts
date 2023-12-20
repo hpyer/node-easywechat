@@ -5,6 +5,7 @@ import RSA from '../Core/Support/RSA';
 import { createHash, createHmac, getTimestamp, randomString } from '../Core/Support/Utils';
 import { PayAppConfig, PayBridgeConfig, PaySdkConfig } from '../Types/global';
 import MerchantInterface from './Contracts/MerchantInterface';
+import Encryptor from './Encryptor';
 
 class Utils
 {
@@ -30,13 +31,12 @@ class Utils
    * @returns
    */
   async getEncryptor(platformCert: PublicKey = null) {
-    let rsa = new RSA;
     if (!platformCert || !(platformCert instanceof PublicKey)) {
       platformCert = await this.getPlatformCert();
     }
-    rsa.setPublicKey(platformCert.toString());
-    rsa.setPrivateKey(this.merchant.getPrivateKey().toString());
-    return rsa;
+    let encryptor = new Encryptor;
+    encryptor.setCerts(platformCert, this.merchant.getPrivateKey());
+    return encryptor;
   }
 
   /**
