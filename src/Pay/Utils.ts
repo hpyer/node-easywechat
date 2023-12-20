@@ -1,5 +1,6 @@
 'use strict';
 
+import { PublicKey } from '../Core/Support/PublicKey';
 import RSA from '../Core/Support/RSA';
 import { createHash, createHmac, getTimestamp, randomString } from '../Core/Support/Utils';
 import { PayAppConfig, PayBridgeConfig, PaySdkConfig } from '../Types/global';
@@ -7,9 +8,33 @@ import MerchantInterface from './Contracts/MerchantInterface';
 
 class Utils
 {
+  protected platformCert: PublicKey;
   constructor(
     protected merchant: MerchantInterface,
   ) { }
+
+  /**
+   * 设置加密所用的平台证书
+   * @param platformCert
+   */
+  setPlatformCert(platformCert: PublicKey): this {
+    this.platformCert = platformCert;
+    return this;
+  }
+  /**
+   * 获取加密所用的平台证书
+   * @returns
+   */
+  async getPlatformCert(): Promise<PublicKey> {
+    if (!this.platformCert) {
+      let certs = await this.merchant.getPlatformCerts();
+      if (!certs || Object.keys(certs).length === 0) {
+        throw new Error('Fail to get platform certs');
+      }
+      this.platformCert = certs[Object.keys(certs)[0]];
+    }
+    return this.platformCert;
+  }
 
   /**
    * 加密字符串
@@ -17,9 +42,10 @@ class Utils
    * @param encoding 密文的编码格式，默认：base64
    * @param hashType 哈希算法，默认：sha256
    */
-  encrypt(plaintext: string, encoding: BufferEncoding = 'base64', hashType: string = 'sha256'): string {
+  async encrypt(plaintext: string, encoding: BufferEncoding = 'base64', hashType: string = 'sha256'): Promise<string> {
     let rsa = new RSA;
-    rsa.setPublicKey(this.merchant.getCertificate().toString());
+    let cert = await this.getPlatformCert();
+    rsa.setPublicKey(cert.toString());
     return rsa.encrypt(plaintext, encoding, hashType);
   }
 

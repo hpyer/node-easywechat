@@ -13,7 +13,9 @@ class TestUnit extends BaseTestUnit {
       private_key: Path.resolve(__dirname, '../temp/test_rsa_private.key'),
       v2_secret_key: 'mock-v2-secret-key',
       secret_key: 'mock-secret-key',
-      platform_certs: [],
+      platform_certs: [
+        Path.resolve(__dirname, '../temp/test_rsa_cert.pem'),
+      ],
     };
     let merchant = new Merchant(
       merchantConfig.mch_id,
@@ -28,9 +30,11 @@ class TestUnit extends BaseTestUnit {
 
     it('Should encrypt and decrypt correctly', async () => {
       let data = 'Abc123';
-      let ciphertext = utils.encrypt(data);
-      let plaintext = utils.decrypt(ciphertext);
+      let ciphertext = await utils.encrypt(data);
+      let cert = await utils.getPlatformCert();
+      this.assert.strictEqual(cert.getSerialNo(), '0DC0DF83');
 
+      let plaintext = utils.decrypt(ciphertext);
       this.assert.strictEqual(plaintext, data);
     });
 

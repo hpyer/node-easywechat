@@ -84,6 +84,12 @@ class Merchant implements MerchantInterface
     }
     return this.platformCerts[serial] ?? null;
   }
+  async getPlatformCerts(): Promise<Record<string, PublicKey>> {
+    if (!this.platformCerts || Object.keys(this.platformCerts).length === 0) {
+      await this.loadPlatformCerts();
+    }
+    return this.platformCerts;
+  }
   setPlatformCerts(certs: Record<string, PublicKey | string>): void {
     let newCerts: Record<string, PublicKey> = {};
     for (let key of Object.keys(certs)) {
