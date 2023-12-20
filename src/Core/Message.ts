@@ -20,6 +20,7 @@ class Message
 
     return new Proxy<Message>(this, {
       set: function (obj, key, val) {
+        if (typeof key === 'symbol') key = key.toString();
         if (typeof obj[key] !== 'undefined') {
           obj[key] = val;
         }
@@ -29,6 +30,7 @@ class Message
         return true;
       },
       get: function (obj, key) {
+        if (typeof key === 'symbol') key = key.toString();
         if (typeof obj[key] !== 'undefined') {
           return obj[key];
         }
@@ -85,7 +87,7 @@ class Message
 
 };
 
-interface Message extends HasAttributesMixin {
+interface Message extends Recordable, HasAttributesMixin {
 };
 
 applyMixins(Message, [HasAttributesMixin]);
