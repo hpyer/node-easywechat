@@ -87,7 +87,7 @@ class Message
 
 };
 
-interface Message extends Recordable, HasAttributesMixin {
+interface Message extends Record<string, any>, HasAttributesMixin {
 };
 
 applyMixins(Message, [HasAttributesMixin]);
