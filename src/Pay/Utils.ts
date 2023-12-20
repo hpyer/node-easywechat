@@ -8,57 +8,35 @@ import MerchantInterface from './Contracts/MerchantInterface';
 
 class Utils
 {
-  protected platformCert: PublicKey;
   constructor(
     protected merchant: MerchantInterface,
   ) { }
 
   /**
-   * 设置加密所用的平台证书
-   * @param platformCert
-   */
-  setPlatformCert(platformCert: PublicKey): this {
-    this.platformCert = platformCert;
-    return this;
-  }
-  /**
    * 获取加密所用的平台证书
    * @returns
    */
   async getPlatformCert(): Promise<PublicKey> {
-    if (!this.platformCert) {
-      let certs = await this.merchant.getPlatformCerts();
-      if (!certs || Object.keys(certs).length === 0) {
-        throw new Error('Fail to get platform certs');
-      }
-      this.platformCert = certs[Object.keys(certs)[0]];
+    let certs = await this.merchant.getPlatformCerts();
+    if (!certs || Object.keys(certs).length === 0) {
+      throw new Error('Fail to get platform certs');
     }
-    return this.platformCert;
+    return certs[Object.keys(certs)[0]];
   }
 
   /**
-   * 加密字符串
-   * @param plaintext 原文
-   * @param encoding 密文的编码格式，默认：base64
-   * @param hashType 哈希算法，默认：sha256
+   * 获取敏感信息加密机
+   * @param platformCert PublicKey封装过的平台证书
+   * @returns
    */
-  async encrypt(plaintext: string, encoding: BufferEncoding = 'base64', hashType: string = 'sha256'): Promise<string> {
+  async getEncryptor(platformCert: PublicKey = null) {
     let rsa = new RSA;
-    let cert = await this.getPlatformCert();
-    rsa.setPublicKey(cert.toString());
-    return rsa.encrypt(plaintext, encoding, hashType);
-  }
-
-  /**
-   * 解密字符串
-   * @param ciphertext 密文
-   * @param encoding 密文的编码格式，默认：base64
-   * @param hashType 哈希算法，默认：sha256
-   */
-  decrypt(ciphertext: string, encoding: BufferEncoding = 'base64', hashType: string = 'sha256'): string {
-    let rsa = new RSA;
+    if (!platformCert || !(platformCert instanceof PublicKey)) {
+      platformCert = await this.getPlatformCert();
+    }
+    rsa.setPublicKey(platformCert.toString());
     rsa.setPrivateKey(this.merchant.getPrivateKey().toString());
-    return rsa.decrypt(ciphertext, encoding, hashType);
+    return rsa;
   }
 
   /**

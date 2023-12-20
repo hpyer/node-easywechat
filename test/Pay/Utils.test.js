@@ -30,11 +30,12 @@ class TestUnit extends BaseTestUnit {
 
     it('Should encrypt and decrypt correctly', async () => {
       let data = 'Abc123';
-      let ciphertext = await utils.encrypt(data);
       let cert = await utils.getPlatformCert();
+      let encryptor = await utils.getEncryptor(cert);
+      let ciphertext = encryptor.encrypt(data);
       this.assert.strictEqual(cert.getSerialNo(), '0DC0DF83');
 
-      let plaintext = utils.decrypt(ciphertext);
+      let plaintext = encryptor.decrypt(ciphertext);
       this.assert.strictEqual(plaintext, data);
     });
 

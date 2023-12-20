@@ -62,7 +62,7 @@ abstract class MerchantInterface
    * 从缓存或者接口获取平台证书
    * @param force 是否强制刷新缓存，默认：false
    */
-  loadPlatformCerts(force: boolean = false): Promise<void> { return; }
+  loadPlatformCerts(force: boolean = false): Promise<Record<string, string>> { return null; }
 
   /**
    * 设置平台证书

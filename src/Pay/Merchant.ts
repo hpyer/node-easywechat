@@ -8,6 +8,7 @@ import MerchantInterface from "./Contracts/MerchantInterface";
 
 class Merchant implements MerchantInterface
 {
+  protected isConfigPlatformCerts: boolean = false;
   protected platformCerts: Record<string, PublicKey> = {};
   protected privateKey: PrivateKey;
   protected certificate: PublicKey;
@@ -60,6 +61,9 @@ class Merchant implements MerchantInterface
       certs[isArray ? publicKey.getSerialNo() : key] = publicKey;
     }
 
+    if (Object.keys(certs).length > 0) {
+      this.isConfigPlatformCerts = true;
+    }
     return certs;
   }
 
@@ -79,14 +83,18 @@ class Merchant implements MerchantInterface
     return this.certificate;
   }
   async getPlatformCert(serial: string): Promise<PublicKey> {
-    if (!this.platformCerts || Object.keys(this.platformCerts).length === 0) {
-      await this.loadPlatformCerts();
+    if (!this.isConfigPlatformCerts) {
+      // 如果不是通过配置文件设置的平台证书，则每次都从缓存或者接口获取证书
+      let certs = await this.loadPlatformCerts();
+      this.setPlatformCerts(certs);
     }
     return this.platformCerts[serial] ?? null;
   }
   async getPlatformCerts(): Promise<Record<string, PublicKey>> {
-    if (!this.platformCerts || Object.keys(this.platformCerts).length === 0) {
-      await this.loadPlatformCerts();
+    if (!this.isConfigPlatformCerts) {
+      // 如果不是通过配置文件设置的平台证书，则每次都从缓存或者接口获取证书
+      let certs = await this.loadPlatformCerts();
+      this.setPlatformCerts(certs);
     }
     return this.platformCerts;
   }
@@ -95,6 +103,7 @@ class Merchant implements MerchantInterface
     for (let key of Object.keys(certs)) {
       let cert = certs[key];
       if (typeof cert === 'string') {
+        // 将证书内容封装为 PublicKey
         newCerts[key] = PublicKey.createByCertificateContent(cert, key);
       }
       else {
@@ -142,7 +151,7 @@ class Merchant implements MerchantInterface
         }
       }
     }
-    this.setPlatformCerts(certs);
+    return certs;
   }
 
 }
