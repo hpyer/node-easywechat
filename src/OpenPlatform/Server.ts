@@ -100,6 +100,17 @@ class Server extends ServerInterface
     })
   }
 
+  /**
+   * 处理快速注册企业小程序审核通知
+   * @param handler
+   * @returns
+   */
+  handleThirdFastRegister(handler: ServerHandlerClosure<Message>): this {
+    return this.with(async function (message: Message, next: ServerHandlerClosure<Message>) {
+      return message.InfoType === 'notify_third_fasteregister' ? handler(message, next) : next(message);
+    })
+  }
+
   protected decryptRequestMessage(): ServerHandlerClosure<Message> {
     let query = this.request.getQueryParams();
     return async (message: Message, next: ServerHandlerClosure<Message>) => {
