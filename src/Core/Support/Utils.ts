@@ -335,3 +335,27 @@ export const createUserAgent = function(appends: string[] = []): string
   values = values.concat(appends);
   return values.join(' ');
 }
+
+/**
+ * 流转Buffer
+ * @param stream 可读流
+ */
+export const streamToBuffer = function (stream: Fs.ReadStream): Promise<Buffer> {
+  return new Promise((resolve, reject) => {
+    let buffers = [];
+    stream.on('error', reject);
+    stream.on('data', data => buffers.push(data));
+    stream.on('end', () => resolve(Buffer.concat(buffers)));
+  });
+}
+
+/**
+ * Buffer转流
+ * @param buffer Buffer对象
+ */
+export const bufferToStream = function (buffer: Buffer) {
+  let stream = new Stream.Duplex();
+  stream.push(buffer);
+  stream.push(null);
+  return stream;
+}

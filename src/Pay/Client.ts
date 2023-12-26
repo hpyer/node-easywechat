@@ -4,7 +4,7 @@ import fs from 'fs';
 import merge from 'merge';
 import { Method, AxiosRequestConfig, AxiosInstance } from "axios";
 import HttpClientInterface from "../Core/HttpClient/Contracts/HttpClientInterface";
-import { applyMixins, buildXml, createFileHash, createUserAgent, ltrim } from '../Core/Support/Utils';
+import { applyMixins, buildXml, createHash, createUserAgent, ltrim, streamToBuffer } from '../Core/Support/Utils';
 import HttpClient from '../Core/HttpClient/HttpClient';
 import HttpClientMethodsMixin from '../Core/HttpClient/Mixins/HttpClientMethodsMixin';
 import { LogHandler } from '../Types/global';
@@ -65,7 +65,7 @@ class Client implements HttpClientInterface
       payload.headers['user-agent'] = createUserAgent();
     }
 
-    if (this.isV3Request(url)) {
+    if (this.isV3Request(url) && !payload.headers['authorization']) {
       payload.headers['authorization'] = this.createSignature(method, url, payload);
     }
     else {
@@ -106,25 +106,29 @@ class Client implements HttpClientInterface
    * 文件上传
    * @see https://pay.weixin.qq.com/wiki/doc/apiv3/apis/chapter2_1_1.shtml
    * @param uri 接口地址
-   * @param file 文件路径或文件可读流
+   * @param file 文件路径、文件Buffer或文件可读流
    * @param meta 文件元信息，包含 filename 和 sha256 两个字段
    * @param filename 文件名，必须以 .jpg、.bmp、.png 为后缀
    * @returns
    */
-  async uploadMedia(uri: string, file: string | fs.ReadStream, meta: Record<string, any> = null, filename: string = null) {
+  async uploadMedia(uri: string, file: string | fs.ReadStream | Buffer, meta: Record<string, any> = null, filename: string = null) {
     if (typeof file === 'string') {
-      file = fs.createReadStream(file);
+      file = fs.readFileSync(file);
     }
+    else if (typeof file !== 'string' && !Buffer.isBuffer(file)) {
+      file = await streamToBuffer(file);
+    }
+    filename = filename ?? 'file.jpg';
     if (!meta) {
       meta = {
-        filename: filename ?? 'file.jpg',
-        sha256: await createFileHash(file, 'sha256'),
+        filename: filename,
+        sha256: await createHash(file, 'sha256'),
       };
     }
     let metaJson = JSON.stringify(meta);
 
     let formData = new FormData();
-    formData.append('file', file);
+    formData.append('file', file, filename);
     formData.append('meta', metaJson, {
       contentType: 'application/json',
     });
@@ -167,7 +171,7 @@ class Client implements HttpClientInterface
    * @param payload 请求载荷
    * @returns
    */
-  protected createSignature(method: string, url: string, payload: AxiosRequestConfig<any>) {
+  createSignature(method: string, url: string, payload: AxiosRequestConfig<any>) {
     return (new Signature(this.merchant)).createHeader(method, url, payload);
   }
 
