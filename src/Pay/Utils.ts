@@ -27,6 +27,7 @@ class Utils
 
   /**
    * 获取敏感信息加密机
+   * @see https://pay.weixin.qq.com/docs/merchant/development/interface-rules/sensitive-data-encryption.html
    * @param platformCert PublicKey封装过的平台证书
    * @returns
    */
