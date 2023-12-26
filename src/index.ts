@@ -13,6 +13,8 @@ import OfficialAccountMessage from './OfficialAccount/Message';
 import WorkMessage from './Work/Message';
 import OpenPlatformMessage from './OpenPlatform/Message';
 import OpenWorkMessage from './OpenWork/Message';
+import { PublicKey } from './Core/Support/PublicKey';
+import { PrivateKey } from './Core/Support/PrivateKey';
 
 export {
   OfficialAccount,
@@ -38,6 +40,8 @@ export {
   LogHandler,
   ServerEventType,
   ServerHandlerClosure,
+  PublicKey,
+  PrivateKey,
 
   /**
    * 表单对象
