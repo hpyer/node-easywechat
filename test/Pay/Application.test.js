@@ -111,7 +111,6 @@ class TestUnit extends BaseTestUnit {
 
       let now = new Date;
       now.setTime(now.getTime() + 87000*1000);  // 确保默认证书有效期一天以上
-      console.log('now.toISOString()', now.toISOString())
       let httpclient = this.getMockedHttpClient(app.getHttpClient());
       httpclient.mock('get', '/v3/certificates').reply(200, {
         data: [
