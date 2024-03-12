@@ -134,7 +134,7 @@ class ServerRequest implements ServerRequestInterface
   static async createFromIncomingMessage(req: IncomingMessage, body: Buffer | Record<string, any> | string = null): Promise<ServerRequest> {
     let request = new ServerRequest(req.method, req.url, req.headers || {}, body, req.httpVersion);
 
-    if (!body) {
+    if (req.method.toUpperCase() === 'POST' && !body) {
       let res = await rawbody(req);
       request.withBody(res);
     }
