@@ -1,6 +1,10 @@
 # CHANGELOG
 
 
+## v3.5.20 (2024-03-12)
+
+- Fix: 限制仅post请求才解析请求体
+
 ## v3.5.19 (2023-12-26)
 
 - Fix: 工具包对外暴露PublicKey和PrivateKey
