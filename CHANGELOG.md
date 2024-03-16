@@ -1,6 +1,8 @@
 # CHANGELOG
 
 
+## v3.6.1 (2024-03-16)
+
 ## v3.6.0 (2024-03-16)
 
 - Feat: 调整postJson请求参数，与easywechat一致；同时增加patchJson、postXml两个方法 (#69)
