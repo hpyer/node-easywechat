@@ -76,33 +76,44 @@ class TestUnit extends BaseTestUnit {
 
     });
 
-    it('Should request with presets', async () => {
+    it('Should send correctly data with postJson', async () => {
       let client = new AccessTokenAwareClient();
-      client.setPresets({
-        'app_id': 'mock-app_id',
-        'foo': 'mock-foo',
-      });
       client = this.getMockedHttpClient(client);
-      client.mock('get', 'https://example.com/test/api')
-        .reply(200, {
-          'foo': 'bar',
-        });
+      client.mock('post', 'https://example.com/test/api').reply(200, 'success');
 
-      let file = path.join(__dirname, '../../temp/blank.png');
-      client.withAppId().with('foo').withFile(file);
-
-      let response = await client.get('https://example.com/test/api', {
-        params: {
-          'bar': 'mock-bar',
-        },
+      let response = await client.postJson('https://example.com/test/api', {
+        'foo': 'bar',
       });
-      this.assert.strictEqual(response.getInfo()['data'] instanceof FormData, true);
-      this.assert.deepStrictEqual(response.getInfo()['params'], {
-        app_id: 'mock-app_id',
-        foo: 'mock-foo',
-        bar: 'mock-bar',
-      });
+      this.assert.deepStrictEqual(response.getInfo()['data'], '{"foo":"bar"}');
+      this.assert.deepStrictEqual(response.getInfo()['method'], 'post');
+    });
 
+    it('Should send correctly data with patchJson', async () => {
+      let client = new AccessTokenAwareClient();
+      client = this.getMockedHttpClient(client);
+      client.mock('patch', 'https://example.com/test/api').reply(200, 'success');
+
+      let response = await client.patchJson('https://example.com/test/api', {
+        'foo': 'bar',
+      });
+      this.assert.deepStrictEqual(response.getInfo()['data'], '{"foo":"bar"}');
+      this.assert.deepStrictEqual(response.getInfo()['method'], 'patch');
+    });
+
+    it('Should send correctly data with postXml', async () => {
+      let client = new AccessTokenAwareClient();
+      client = this.getMockedHttpClient(client);
+      client.mock('post', 'https://example.com/test/api').reply(200, 'success');
+
+      let response = await client.postXml('https://example.com/test/api', {
+        'foo': 'bar',
+      });
+      this.assert.deepStrictEqual(response.getInfo()['data'], '<xml><foo>bar</foo></xml>');
+      this.assert.deepStrictEqual(response.getInfo()['method'], 'post');
+
+      let response2 = await client.postXml('https://example.com/test/api', '<foo>bar</foo>');
+      this.assert.deepStrictEqual(response2.getInfo()['data'], '<foo>bar</foo>');
+      this.assert.deepStrictEqual(response2.getInfo()['method'], 'post');
     });
 
   }

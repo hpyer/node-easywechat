@@ -83,19 +83,17 @@ class TestUnit extends BaseTestUnit {
       };
       httpclient.mock('post', '/v3/pay/transactions/jsapi').reply(200, result, { 'Content-Type': 'text/plain' });
       let response = await client.postJson('/v3/pay/transactions/jsapi', {
-        data: {
-          mchid: 'mock-mch-id',
-          out_trade_no: 'mock-out_trade_no',
-          appid: 'mock-appid',
-          description: 'mock-description',
-          notify_url: 'https://example.com/pay/callback',
-          amount: {
-            total: 1,
-            currency: 'CNY',
-          },
-          payer: {
-            openid: 'mock-openid',
-          }
+        mchid: 'mock-mch-id',
+        out_trade_no: 'mock-out_trade_no',
+        appid: 'mock-appid',
+        description: 'mock-description',
+        notify_url: 'https://example.com/pay/callback',
+        amount: {
+          total: 1,
+          currency: 'CNY',
+        },
+        payer: {
+          openid: 'mock-openid',
         }
       });
       this.assert.deepStrictEqual(response.toObject(), result);

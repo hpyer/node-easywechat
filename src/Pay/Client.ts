@@ -70,7 +70,7 @@ class Client implements HttpClientInterface
     }
     else {
       if (payload.xml) {
-        if (Array.isArray(payload.xml)) {
+        if (typeof payload.xml === 'object') {
           payload.xml = buildXml(this.attachLegacySignature(payload.xml));
         }
 
