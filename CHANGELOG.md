@@ -1,6 +1,10 @@
 # CHANGELOG
 
 
+## v3.6.0 (2024-03-16)
+
+- Feat: 调整postJson请求参数，与easywechat一致；同时增加patchJson、postXml两个方法 (#69)
+
 ## v3.5.20 (2024-03-12)
 
 - Fix: 限制仅post请求才解析请求体
