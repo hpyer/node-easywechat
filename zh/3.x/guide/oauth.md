@@ -74,7 +74,7 @@ const user = await oauth.userFromCode(code);
 * `user.raw`： 接口返回的原始用户信息
 
 
-## 参考阅读
+### 参考阅读
 
 本模块基于 `node-socialite` 包实现，如需更多信息，请参阅 [node-socialite](https://github.com/hpyer/node-socialite#使用说明)。
 
