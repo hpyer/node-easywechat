@@ -1,6 +1,6 @@
 # node-easywechat 3.x
 
-🚨 使用本SDK工具包前，请务必熟读 [微信官方文档](https://developers.weixin.qq.com/doc/offiaccount/Getting_Started/Overview.html)。
+🚨 使用本SDK工具包前，请务必熟读 [微信官方文档：公众号](https://developers.weixin.qq.com/doc/offiaccount/Getting_Started/Overview.html)。
 
 ## 配置项
 

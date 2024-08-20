@@ -120,8 +120,6 @@ console.log(`Server running at http://127.0.0.1:${ServerPort}/`);
 
 ## 获取微信图片，并保存到文件
 
-如：`http://example.com/server`
-
 ```js
 const koa = require('koa');
 const { OfficialAccount } = require('node-easywechat');
