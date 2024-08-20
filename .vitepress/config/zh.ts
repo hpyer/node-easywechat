@@ -108,6 +108,17 @@ function sidebarGuide(version: string): DefaultTheme.SidebarItem[] {
         { text: '示例代码', link: 'official-account/examples' }
       ]
     },
+    {
+      text: '小程序',
+      collapsed: false,
+      items: [
+        { text: '入门', link: 'mini-app/index' },
+        { text: 'API调用', link: 'client' },
+        { text: '服务端', link: 'mini-app/server' },
+        { text: '工具', link: 'mini-app/utils' },
+        { text: '示例代码', link: 'mini-app/examples' }
+      ]
+    },
   ]
 }
 
