@@ -21,6 +21,8 @@ koa.use(async (ctx, next) => {
 
   if (ctx.path === '/getWxacode') {
 
+    const client = app.getClient();
+
     const response = await client.postJson('/wxa/getwxacodeunlimit', {
       scene: '123',
       page: 'pages/index/index',
@@ -69,6 +71,8 @@ koa.use(async (ctx, next) => {
 
   if (ctx.path === '/getMobile') {
     const code = ctx.query.code;
+
+    const client = app.getClient();
 
     const response = await client.postJson('/wxa/business/getuserphonenumber', {
       code,

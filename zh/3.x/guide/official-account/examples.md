@@ -138,6 +138,8 @@ koa.use(async (ctx, next) => {
   if (ctx.path === '/getImage') {
     const media_id = ctx.query.media_id;
 
+    const client = app.getClient();
+
     const response = await client.get('cgi-bin/media/get', {
       responseType: 'arraybuffer',  // 返回数据类型必须改为 arraybuffer
 

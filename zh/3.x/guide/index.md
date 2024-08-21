@@ -1,4 +1,4 @@
-# node-easywechat 3.x
+# node-easywechat
 
 `3.x` 适配的是 EasyWeChat 的 `6.x` 版本。
 
