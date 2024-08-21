@@ -119,6 +119,17 @@ function sidebarGuide(version: string): DefaultTheme.SidebarItem[] {
         { text: '示例代码', link: 'mini-app/examples' }
       ]
     },
+    {
+      text: '微信支付',
+      collapsed: false,
+      items: [
+        { text: '入门', link: 'pay/index' },
+        { text: 'API调用', link: 'client' },
+        { text: '服务端', link: 'pay/server' },
+        { text: '工具', link: 'pay/utils' },
+        { text: '示例代码', link: 'pay/examples' }
+      ]
+    },
   ]
 }
 
