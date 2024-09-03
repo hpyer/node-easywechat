@@ -130,6 +130,16 @@ function sidebarGuide(version: string): DefaultTheme.SidebarItem[] {
         { text: '示例代码', link: 'pay/examples' }
       ]
     },
+    {
+      text: '开放平台',
+      collapsed: false,
+      items: [
+        { text: '入门', link: 'open-platform/index' },
+        { text: 'API调用', link: 'client' },
+        { text: '服务端', link: 'open-platform/server' },
+        { text: '示例代码', link: 'open-platform/examples' }
+      ]
+    },
   ]
 }
 
