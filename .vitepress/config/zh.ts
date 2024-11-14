@@ -140,6 +140,16 @@ function sidebarGuide(version: string): DefaultTheme.SidebarItem[] {
         { text: '示例代码', link: 'open-platform/examples' }
       ]
     },
+    {
+      text: '企业微信',
+      collapsed: false,
+      items: [
+        { text: '入门', link: 'work/index' },
+        { text: 'API调用', link: 'client' },
+        { text: '服务端', link: 'work/server' },
+        { text: '网页授权', link: 'work/oauth' }
+      ]
+    },
   ]
 }
 
