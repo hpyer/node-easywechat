@@ -77,6 +77,32 @@ const response = await client.get(`/v3/pay/transactions/out-trade-no/${out_trade
 const { prepay_id } = response.getBody();
 ```
 
+## 包含敏感信息接口的调用
+
+一些接口需要使用商户平台证书对敏感信息进行加密，如：[商家转账到零钱](https://pay.weixin.qq.com/docs/merchant/apis/batch-transfer-to-balance/transfer-batch/initiate-batch-transfer.html)，具体算法参考：[微信支付 - 如何加解密敏感信息](https://pay.weixin.qq.com/docs/merchant/development/interface-rules/sensitive-data-encryption.html)。
+
+```js
+const client = app.getClient();
+const utils = app.getUtils();
+
+// 获取加密机
+const encryptor = await utils.getEncryptor();
+
+let headers = {
+  'Wechatpay-Serial': encryptor.getSerialNo(), // 加密证书序列号
+};
+let data = {
+  aaa: '123',
+  bbb: encryptor.encrypt('456'), // 加密的数据
+};
+
+const response = await client.postJson('/v3/transfer/batches', data, {
+  headers,
+});
+
+const result = response.getBody();
+```
+
 ## 统一下单（V2）
 
 > 微信文档
