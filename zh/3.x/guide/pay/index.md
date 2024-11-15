@@ -71,7 +71,7 @@ const app = new Pay({
 
 ## 请求客户端
 
-该功能封装了常用的请求方法，可以请求公众号的任意API。通过 `client` 发送请求时，SDK包会自动处理 `access_token`，因此您只需要传递各API所需的业务参数即可。
+该功能封装了常用的请求方法，可以请求微信支付的任意API。通过 `client` 发送请求时，SDK包会自动处理 `access_token`，因此您只需要传递各API所需的业务参数即可。
 
 ```js
 const client = app.getClient();
@@ -87,7 +87,7 @@ const response = await client.get('/cgi-bin/user/info', {
 
 ## 商户账号
 
-商户账号模块，提供一系列 API 获取支付的基本信息。如果要获取它的值，可以通过如下方式获取：
+商户账号模块，提供一系列 API 获取微信支付的基本信息。如果要获取它的值，可以通过如下方式获取：
 
 ```js
 const merchant = app.getMerchant();

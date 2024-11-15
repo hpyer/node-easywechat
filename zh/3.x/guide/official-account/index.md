@@ -90,7 +90,7 @@ const response = await client.get('/cgi-bin/user/info', {
 
 ## AccessToken
 
-`access_token` 是公众号API调用的必备条件，SDK包会自动获取并缓存它以供使用。如果要获取它的值，可以通过如下方式获取：
+`access_token` 是API调用的必备条件，SDK包会自动获取并缓存它以供使用。如果要获取它的值，可以通过如下方式获取：
 
 ```js
 const accessToken = app.getAccessToken();
