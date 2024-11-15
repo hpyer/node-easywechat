@@ -45,10 +45,14 @@ const oauth = app.getOAuth();
 const code = ctx.query.code;
 
 // 获取用户信息
-const user = await oauth.userFromCode(code);
+const user = await oauth.detailed().userFromCode(code);
 ```
 
 `user` 对象包含以下属性：
 
 * `user.id`： 对应企业微信英文名（userid）
 * `user.raw`： 获取企业微信接口返回的原始信息
+
+## 参考阅读
+
+本模块基于 [node-socialite](https://github.com/hpyer/node-socialite) 实现，更多的使用说明请阅读该依赖包的文档。
