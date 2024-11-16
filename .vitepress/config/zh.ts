@@ -150,6 +150,17 @@ function sidebarGuide(version: string): DefaultTheme.SidebarItem[] {
         { text: '网页授权', link: 'work/oauth' }
       ]
     },
+    {
+      text: '企业微信开放平台',
+      collapsed: false,
+      items: [
+        { text: '入门', link: 'open-work/index' },
+        { text: 'API调用', link: 'client' },
+        { text: '服务端', link: 'open-work/server' },
+        { text: '网页授权', link: 'open-work/oauth' },
+        { text: '示例代码', link: 'open-work/examples' }
+      ]
+    },
   ]
 }
 
