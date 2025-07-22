@@ -1,5 +1,6 @@
 'use strict';
 
+import { WithImplicitCoercion } from 'buffer';
 import { createCipheriv, createDecipheriv, CipherGCMTypes, BinaryLike, CipherKey } from 'crypto';
 
 export class AES {
