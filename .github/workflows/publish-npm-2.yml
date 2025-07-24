@@ -10,15 +10,19 @@ on:
 jobs:
   publish-npm:
     runs-on: ubuntu-latest
+    permissions:
+      id-token: write
     steps:
-      - uses: actions/checkout@v3
-      - uses: actions/setup-node@v3
+      - uses: actions/checkout@v4
         with:
-          node-version: 16
-          registry-url: https://registry.npmjs.org/
+          show-progress: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          registry-url: 'https://registry.npmjs.org'
       - run: npm install
       - run: npm run build
       - run: npm test
-      - run: npm publish --tag second
+      - run: npm publish --tag latest --provenance --access public
         env:
           NODE_AUTH_TOKEN: ${{secrets.npm_token}}
