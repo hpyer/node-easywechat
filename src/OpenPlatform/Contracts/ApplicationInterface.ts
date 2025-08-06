@@ -1,6 +1,5 @@
 'use strict';
 
-import ProviderInterface from "node-socialite/dist/Core/ProviderInterface";
 import CacheInterface from "../../Core/Contracts/CacheInterface";
 import ConfigInterface from "../../Core/Contracts/ConfigInterface";
 import AccessTokenAwareClient from "../../Core/HttpClient/AccessTokenAwareClient";
@@ -10,6 +9,7 @@ import ServerRequestInterface from "../../Core/Http/Contracts/ServerRequestInter
 import Encryptor from "../../Core/Encryptor";
 import AccountInterface from "./AccountInterface";
 import AccessTokenInterface from "../../Core/Contracts/AccessTokenInterface";
+import { WeChat } from "node-socialite/dist/Providers/WeChat";
 
 abstract class ApplicationInterface
 {
@@ -77,7 +77,7 @@ abstract class ApplicationInterface
    * 获取OAuth实例
    * @returns
    */
-  getOAuth(): ProviderInterface { return null; }
+  getOAuth(): WeChat { return null; }
 
 };
 

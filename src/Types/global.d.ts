@@ -1,5 +1,5 @@
 import { AxiosRequestConfig, AxiosResponse } from 'axios';
-import ProviderInterface from 'node-socialite/dist/Core/ProviderInterface';
+import { BaseProvider } from 'node-socialite';
 import OfficialAccountApplicationInterface from '../OfficialAccount/Contracts/ApplicationInterface';
 import WorkApplicationInterface from '../Work/Contracts/ApplicationInterface';
 import Message from '../Core/Message';
@@ -304,14 +304,14 @@ export interface OpenWorkConfig extends BaseConfig {
  * @param app 公众号应用实例
  * @returns OAuth服务供应商实例
  */
-export type OfficialAccountOAuthFactory = (app: OfficialAccountApplicationInterface) => ProviderInterface;
+export type OfficialAccountOAuthFactory = (app: OfficialAccountApplicationInterface) => BaseProvider;
 
 /**
  * 企业微信OAuth工厂方法
  * @param app 企业微信应用实例
  * @returns OAuth服务供应商实例
  */
-export type WorkOAuthFactory = (app: WorkApplicationInterface) => ProviderInterface;
+export type WorkOAuthFactory = (app: WorkApplicationInterface) => BaseProvider;
 
 /**
  * 服务端通知处理项

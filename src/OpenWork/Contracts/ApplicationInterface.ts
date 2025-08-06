@@ -1,6 +1,5 @@
 'use strict';
 
-import ProviderInterface from "node-socialite/dist/Core/ProviderInterface";
 import CacheInterface from "../../Core/Contracts/CacheInterface";
 import ConfigInterface from "../../Core/Contracts/ConfigInterface";
 import AccessTokenAwareClient from "../../Core/HttpClient/AccessTokenAwareClient";
@@ -14,6 +13,7 @@ import AccessTokenInterface from "../../Core/Contracts/AccessTokenInterface";
 import SuiteTicketInterface from "./SuiteTicketInterface";
 import SuiteAccessToken from "../SuiteAccessToken";
 import JsApiTicket from "../JsApiTicket";
+import { OpenWeWork } from "node-socialite/dist/Providers/OpenWeWork";
 
 abstract class ApplicationInterface
 {
@@ -114,7 +114,7 @@ abstract class ApplicationInterface
    * @https://developer.work.weixin.qq.com/document/path/91120#构造第三方应用oauth2链接
    * @returns
    */
-  getOAuth(suiteId: string, suiteAccessToken: SuiteAccessToken = null): Promise<ProviderInterface> { return null; }
+  getOAuth(suiteId: string, suiteAccessToken: SuiteAccessToken = null): Promise<OpenWeWork> { return null; }
 
   /**
    * 获取企业的OAuth实例
@@ -123,7 +123,7 @@ abstract class ApplicationInterface
    * @see https://developer.work.weixin.qq.com/document/path/91120#构造企业oauth2链接
    * @returns
    */
-  getCorpOAuth(corpId: string, suiteAccessToken: SuiteAccessToken = null): Promise<ProviderInterface> { return null; }
+  getCorpOAuth(corpId: string, suiteAccessToken: SuiteAccessToken = null): Promise<OpenWeWork> { return null; }
 
 };
 

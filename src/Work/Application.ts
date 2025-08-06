@@ -1,8 +1,7 @@
 'use strict';
 
 import merge from 'merge';
-import ProviderInterface from 'node-socialite/dist/Core/ProviderInterface';
-import WeWork from 'node-socialite/dist/Providers/WeWork';
+import { WeWork } from 'node-socialite/dist/Providers/WeWork';
 import Config from './Config';
 import ConfigInterface from '../Core/Contracts/ConfigInterface';
 import Encryptor from './Encryptor';
@@ -154,10 +153,10 @@ class Application implements ApplicationInterface
     return this;
   }
 
-  async getOAuth(): Promise<ProviderInterface>
+  async getOAuth(): Promise<WeWork>
   {
     if (!this.oauthFactory) {
-      this.oauthFactory = ((app: ApplicationInterface): ProviderInterface => {
+      this.oauthFactory = ((app: ApplicationInterface): WeWork => {
         return new WeWork({
           client_id: app.getAccount().getCorpId(),
           client_secret: app.getAccount().getSecret(),
@@ -168,7 +167,7 @@ class Application implements ApplicationInterface
 
     let provider = this.oauthFactory.call(null, this);
     if (!(provider instanceof WeWork)) {
-      throw new Error(`The factory must return a \`ProviderInterface\` instance.`);
+      throw new Error(`The factory must return a \`WeWork\` instance.`);
     }
     provider.withApiAccessToken(await this.getAccessToken().getToken());
     provider.scopes(this.getConfig().get('oauth.scopes', 'snsapi_userinfo'));

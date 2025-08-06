@@ -1,8 +1,7 @@
 'use strict';
 
 import merge from 'merge';
-import ProviderInterface from 'node-socialite/dist/Core/ProviderInterface';
-import OpenWeWork from 'node-socialite/dist/Providers/OpenWeWork';
+import { OpenWeWork } from 'node-socialite/dist/Providers/OpenWeWork';
 import Config from './Config';
 import ConfigInterface from '../Core/Contracts/ConfigInterface';
 import Encryptor from './Encryptor';
@@ -398,7 +397,7 @@ class Application implements ApplicationInterface
     );
   }
 
-  async getOAuth(suiteId: string, suiteAccessToken: SuiteAccessToken = null): Promise<ProviderInterface> {
+  async getOAuth(suiteId: string, suiteAccessToken: SuiteAccessToken = null): Promise<OpenWeWork> {
     if (!suiteAccessToken) suiteAccessToken = this.getSuiteAccessToken();
 
     return (new OpenWeWork({
@@ -411,7 +410,7 @@ class Application implements ApplicationInterface
       .scopes(this.getConfig().get('oauth.scopes', 'snsapi_base'));
   }
 
-  async getCorpOAuth(corpId: string, suiteAccessToken: SuiteAccessToken = null): Promise<ProviderInterface> {
+  async getCorpOAuth(corpId: string, suiteAccessToken: SuiteAccessToken = null): Promise<OpenWeWork> {
     if (!suiteAccessToken) suiteAccessToken = this.getSuiteAccessToken();
 
     return (new OpenWeWork({

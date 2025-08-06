@@ -1,8 +1,7 @@
 'use strict';
 
 import merge from 'merge';
-import ProviderInterface from 'node-socialite/dist/Core/ProviderInterface';
-import WeChat from 'node-socialite/dist/Providers/WeChat';
+import { WeChat } from 'node-socialite/dist/Providers/WeChat';
 import Config from './Config';
 import ConfigInterface from '../Core/Contracts/ConfigInterface';
 import Encryptor from '../Core/Encryptor';
@@ -156,10 +155,10 @@ class Application implements ApplicationInterface
     return this;
   }
 
-  getOAuth(): ProviderInterface
+  getOAuth(): WeChat
   {
     if (!this.oauthFactory) {
-      this.oauthFactory = ((app: ApplicationInterface): ProviderInterface => {
+      this.oauthFactory = ((app: ApplicationInterface): WeChat => {
         return (new WeChat({
           client_id: app.getAccount().getAppId(),
           client_secret: app.getAccount().getSecret(),
@@ -169,8 +168,8 @@ class Application implements ApplicationInterface
     }
 
     let provider = this.oauthFactory.call(null, this);
-    if (!(provider instanceof ProviderInterface)) {
-      throw new Error(`The factory must return a \`ProviderInterface\` instance.`);
+    if (!(provider instanceof WeChat)) {
+      throw new Error(`The factory must return a \`BaseProvider\` instance.`);
     }
 
     return provider;
