@@ -26,6 +26,7 @@ import ComponentAccessToken from './ComponentAccessToken';
 import Authorization from './Authorization';
 import AuthorizerAccessToken from './AuthorizerAccessToken';
 import HttpClientResponseInterface from '../Core/HttpClient/Contracts/HttpClientResponseInterface';
+import Utils from './Utils';
 
 /**
  * 开放平台应用
@@ -46,7 +47,8 @@ class Application implements ApplicationInterface
   protected server: Server = null;
   protected componentAccessToken: AccessTokenInterface = null;
   protected verifyTicket: VerifyTicketInterface = null;
-
+  protected utils: Utils = null;
+  
   getAccount(): AccountInterface
   {
     if (!this.account) {
@@ -497,6 +499,21 @@ class Application implements ApplicationInterface
     return merge(true, {
       baseURL: 'https://api.weixin.qq.com/',
     }, this.getConfig().get('http', {}));
+  }
+
+  /**
+   * 设置工具实例
+   * @param utils
+   */
+  setUtils(utils: Utils) {
+    this.utils = utils;
+  }
+
+  getUtils(): Utils {
+    if (!this.utils) {
+      this.utils = new Utils(this);
+    }
+    return this.utils;
   }
 
 };
