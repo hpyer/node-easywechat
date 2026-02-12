@@ -1,6 +1,10 @@
 # CHANGELOG
 
 
+## v3.7.12 (2026-02-12)
+
+- Fix: update dependencies
+
 ## v3.7.11 (2025-09-15)
 
 - Fix: 更新依赖包
