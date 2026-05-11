@@ -11,6 +11,7 @@ jobs:
   publish-npm:
     runs-on: ubuntu-latest
     permissions:
+      contents: write
       id-token: write
     steps:
       - uses: actions/checkout@v4
@@ -26,3 +27,26 @@ jobs:
       - run: npm publish --tag latest --provenance --access public
         env:
           NODE_AUTH_TOKEN: ${{secrets.npm_token}}
+      - name: Generate release notes
+        run: |
+          tag="${GITHUB_REF_NAME}"
+          awk -v tag="$tag" '
+            $1 == "##" && $2 == tag { found = 1; next }
+            found && /^## / { exit }
+            found && !emitted && $0 == "" { next }
+            found { emitted = 1; print }
+          ' CHANGELOG.md > release-notes.md
+
+          if [ ! -s release-notes.md ]; then
+            echo "No changelog entry found for ${tag}" > release-notes.md
+          fi
+      - name: Publish GitHub release
+        run: |
+          tag="${GITHUB_REF_NAME}"
+          if gh release view "$tag" > /dev/null 2>&1; then
+            gh release edit "$tag" --title "$tag" --notes-file release-notes.md
+          else
+            gh release create "$tag" --title "$tag" --notes-file release-notes.md
+          fi
+        env:
+          GH_TOKEN: ${{ github.token }}
