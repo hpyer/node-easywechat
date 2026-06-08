@@ -22,19 +22,19 @@
     "node": ">=15.6.0"
   },
   "devDependencies": {
-    "@types/node": "^20.19.40",
+    "@types/node": "^20.19.42",
     "axios-mock-adapter": "^1.22.0",
-    "mocha": "^11.7.5",
+    "mocha": "^11.7.6",
     "package-release": "^1.0.4",
     "typescript": "^5.9.3"
   },
   "dependencies": {
-    "axios": "^1.16.0",
+    "axios": "^1.17.0",
     "axios-retry": "^4.5.0",
     "form-data": "^4.0.5",
     "merge": "^2.1.1",
-    "node-socialite": "^1.5.4",
-    "qs": "^6.15.1",
+    "node-socialite": "^1.5.5",
+    "qs": "^6.15.2",
     "raw-body": "^2.5.3",
     "xml2js": "^0.6.2"
   }
