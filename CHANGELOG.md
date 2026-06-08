@@ -1,6 +1,10 @@
 # CHANGELOG
 
 
+## v3.7.14 (2026-06-08)
+
+- Fix: update dependencies
+
 ## v3.7.13 (2026-05-11)
 
 - Fix: update dependencies
