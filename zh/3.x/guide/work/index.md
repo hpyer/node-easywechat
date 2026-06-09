@@ -18,8 +18,8 @@
   // 网页授权登录
   // 现在的应用基本都是前后端分离的方式，所以这块功能也可以不用配置
   oauth: {
-    // 可选值：snsapi_privateinfo / snsapi_base
-    scopes: ['snsapi_base'],
+    // 可选值：snsapi_privateinfo / snsapi_base，默认：snsapi_base
+    scopes: 'snsapi_base',
     // 授权登录后的回调地址
     redirect_url: 'https://example.com/oauth/callback',
   },

@@ -14,6 +14,15 @@
   token: '',  // token
   aes_key: '',// aes_key，如果是明文模式，请不要填写
 
+  // 网页授权登录
+  // 现在的应用基本都是前后端分离的方式，所以这块功能也可以不用配置
+  oauth: {
+    // 可选值：snsapi_userinfo / snsapi_base，默认：snsapi_userinfo
+    scopes: 'snsapi_userinfo',
+    // 授权登录后的回调地址
+    redirect_url: '/examples/oauth_callback',
+  },
+
   // 文件缓存配置
   // SDK包默认使用文件缓存
   file_cache: {
