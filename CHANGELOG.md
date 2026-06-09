@@ -1,6 +1,12 @@
 # CHANGELOG
 
 
+## v3.7.15 (2026-06-09)
+
+- Fix: 更新依赖包
+- Fix: 修复获取企业微信代理应用jsapi签名错误的问题
+- Fix: 修改企业微信网页授权的默认scope
+
 ## v3.7.14 (2026-06-08)
 
 - Fix: update dependencies
