@@ -170,7 +170,7 @@ class Application implements ApplicationInterface
       throw new Error(`The factory must return a \`WeWork\` instance.`);
     }
     provider.withApiAccessToken(await this.getAccessToken().getToken());
-    provider.scopes(this.getConfig().get('oauth.scopes', 'snsapi_userinfo'));
+    provider.scopes(this.getConfig().get('oauth.scopes', 'snsapi_base'));
 
     let agent_id = parseInt(this.config.get('agent_id')) || null;
     if (agent_id) {
