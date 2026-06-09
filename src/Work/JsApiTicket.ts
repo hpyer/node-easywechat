@@ -89,7 +89,7 @@ class JsApiTicket extends AccessToken
   {
     nonce = nonce || randomString(10);
     timestamp = timestamp || getTimestamp();
-    let ticket = await this.getTicket();
+    let ticket = await this.getAgentTicket(agentId);
 
     return {
       corpid: this.corpId,
