@@ -407,6 +407,7 @@ class Application implements ApplicationInterface
     }))
       .withSuiteTicket(await this.getSuiteTicket().getTicket())
       .withSuiteAccessToken(await suiteAccessToken.getToken())
+      .withRedirectUrl(this.getConfig().get('oauth.redirect_url'))
       .scopes(this.getConfig().get('oauth.scopes', 'snsapi_base'));
   }
 
@@ -420,6 +421,7 @@ class Application implements ApplicationInterface
     }))
       .withSuiteTicket(await this.getSuiteTicket().getTicket())
       .withSuiteAccessToken(await suiteAccessToken.getToken())
+      .withRedirectUrl(this.getConfig().get('oauth.redirect_url'))
       .scopes(this.getConfig().get('oauth.scopes', 'snsapi_base'));
   }
 

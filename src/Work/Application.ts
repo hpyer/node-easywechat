@@ -169,10 +169,11 @@ class Application implements ApplicationInterface
     if (!(provider instanceof WeWork)) {
       throw new Error(`The factory must return a \`WeWork\` instance.`);
     }
-    provider.withApiAccessToken(await this.getAccessToken().getToken());
-    provider.scopes(this.getConfig().get('oauth.scopes', 'snsapi_base'));
+    provider.withApiAccessToken(await this.getAccessToken().getToken())
+      .withRedirectUrl(this.getConfig().get('oauth.redirect_url'))
+      .scopes(this.getConfig().get('oauth.scopes', 'snsapi_base'));
 
-    let agent_id = parseInt(this.config.get('agent_id')) || null;
+    let agent_id = parseInt(this.getConfig().get('agent_id')) || null;
     if (agent_id) {
       provider.setAgentId(agent_id);
     }

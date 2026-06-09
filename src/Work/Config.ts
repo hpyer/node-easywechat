@@ -6,6 +6,7 @@ class Config extends BaseConfig
 {
   protected requiredKeys: string[] = [
     'corp_id',
+    'agent_id',
     'secret',
     'token',
     'aes_key',

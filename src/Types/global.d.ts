@@ -28,21 +28,6 @@ export interface WeixinResponse extends Record<string, any> {
 }
 
 /**
- * 公众号网页授权相关配置
- */
-export interface OauthConfig {
-  /**
-   * 网页授权权限，可选值：snsapi_userinfo、snsapi_base
-   */
-  scope: string;
-
-  /**
-   * 网页授权回调地址，完整URL
-   */
-  redirect_url: string;
-}
-
-/**
  * 文件缓存相关配置
  */
 export interface CacheFileConfig {
@@ -135,7 +120,17 @@ export interface OfficialAccountConfig extends BaseConfig {
   /**
    * 网页授权相关配置
    */
-  oauth?: OauthConfig;
+  oauth?: {
+    /**
+     * 网页授权权限，可选值：snsapi_userinfo、snsapi_base，默认：snsapi_userinfo
+     */
+    scopes: string;
+
+    /**
+     * 网页授权回调地址，完整URL
+     */
+    redirect_url?: string;
+  };
 
   /**
    * 是否使用稳定版接口调用凭据，默认：false
@@ -237,6 +232,21 @@ export interface OpenPlatformConfig extends BaseConfig {
    * 开发平台服务端消息加解密密钥 aes_key
    */
   aes_key?: string;
+
+  /**
+   * 网页授权相关配置
+   */
+  oauth?: {
+    /**
+     * 网页授权权限，可选值：snsapi_userinfo、snsapi_base，默认：snsapi_userinfo
+     */
+    scopes: string;
+
+    /**
+     * 网页授权回调地址，完整URL
+     */
+    redirect_url?: string;
+  };
 }
 
 /**
@@ -247,6 +257,11 @@ export interface WorkConfig extends BaseConfig {
    * 企业微信 corp_id
    */
   corp_id?: string;
+
+  /**
+   * 应用ID（AgentId）
+   */
+  agent_id?: string;
 
   /**
    * 企业微信 secret
@@ -262,6 +277,21 @@ export interface WorkConfig extends BaseConfig {
    * 企业微信服务端消息加解密密钥 aes_key
    */
   aes_key?: string;
+
+  /**
+   * 网页授权相关配置
+   */
+  oauth?: {
+    /**
+     * 网页授权权限，可选值：snsapi_privateinfo、snsapi_base，默认：snsapi_base
+     */
+    scopes: string;
+
+    /**
+     * 网页授权回调地址，完整URL
+     */
+    redirect_url?: string;
+  };
 }
 
 /**
@@ -297,6 +327,21 @@ export interface OpenWorkConfig extends BaseConfig {
    * 企业微信服务端消息加解密密钥 aes_key
    */
   aes_key?: string;
+
+  /**
+   * 网页授权相关配置
+   */
+  oauth?: {
+    /**
+     * 网页授权权限，可选值：snsapi_privateinfo、snsapi_base，默认：snsapi_base
+     */
+    scopes: string;
+
+    /**
+     * 网页授权回调地址，完整URL
+     */
+    redirect_url?: string;
+  };
 }
 
 /**

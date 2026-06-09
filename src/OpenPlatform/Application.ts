@@ -303,17 +303,19 @@ class Application implements ApplicationInterface
   getOAuth(): WeChat
   {
     let oauthFactory = ((app: ApplicationInterface): WeChat => {
-      return (new WeChat({
+      return new WeChat({
         client_id: app.getAccount().getAppId(),
         client_secret: app.getAccount().getSecret(),
         redirect: app.getConfig().get('oauth.redirect_url'),
-      })).scopes(this.getConfig().get('oauth.scopes', 'snsapi_userinfo'));
+      });
     });
 
     let provider = oauthFactory.call(null, this);
     if (!(provider instanceof WeChat)) {
       throw new Error(`The factory must return a \`WeChat\` instance.`);
     }
+    provider.withRedirectUrl(this.getConfig().get('oauth.redirect_url'))
+      .scopes(this.getConfig().get('oauth.scopes', 'snsapi_userinfo'));
 
     return provider;
   }
@@ -360,6 +362,7 @@ class Application implements ApplicationInterface
       config.token = this.config.get('token');
       config.aes_key = this.config.get('aes_key');
       config.http = this.config.get('http', {});
+      config.oauth = this.config.get('oauth', {});
       config = new Config(config);
     }
     else {
@@ -367,6 +370,7 @@ class Application implements ApplicationInterface
       config.set('token', this.config.get('token'));
       config.set('aes_key', this.config.get('aes_key'));
       config.set('http', this.config.get('http', {}));
+      config.set('oauth', this.config.get('oauth', {}));
     }
 
     let app = new OfficialAccountApplication(config);
@@ -392,8 +396,9 @@ class Application implements ApplicationInterface
           component_app_id: this.getAccount().getSecret(),
           component_access_token: this.getComponentAccessToken().getToken(),
         },
-        redirect: this.config.get('oauth.redirect_url'),
-      })).scopes(config.get('oauth.scopes', 'snsapi_userinfo'));
+        redirect: config.get('oauth.redirect_url'),
+      }))
+      .scopes(config.get('oauth.scopes', 'snsapi_userinfo'));
     });
   }
 

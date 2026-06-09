@@ -159,11 +159,11 @@ class Application implements ApplicationInterface
   {
     if (!this.oauthFactory) {
       this.oauthFactory = ((app: ApplicationInterface): WeChat => {
-        return (new WeChat({
+        return new WeChat({
           client_id: app.getAccount().getAppId(),
           client_secret: app.getAccount().getSecret(),
           redirect: app.getConfig().get('oauth.redirect_url'),
-        })).scopes(this.getConfig().get('oauth.scopes', 'snsapi_userinfo'));
+        });
       });
     }
 
@@ -171,6 +171,8 @@ class Application implements ApplicationInterface
     if (!(provider instanceof WeChat)) {
       throw new Error(`The factory must return a \`BaseProvider\` instance.`);
     }
+    provider.withRedirectUrl(this.getConfig().get('oauth.redirect_url'))
+      .scopes(this.getConfig().get('oauth.scopes', 'snsapi_userinfo'));
 
     return provider;
   }
