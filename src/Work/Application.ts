@@ -41,7 +41,7 @@ import ExternalSchoolClient from './ExternalContact/SchoolClient';
 import ExternalMomentClient from './ExternalContact/MomentClient';
 import CorpGroupClient from './CorpGroup/CorpGroupClient';
 import { SocialiteManager } from 'node-socialite';
-import WeWork from 'node-socialite/dist/Providers/WeWork';
+import { WeWork } from 'node-socialite/dist/Providers/WeWork';
 import BaseClient from '../Core/BaseClient';
 
 class Client extends BaseClient { };

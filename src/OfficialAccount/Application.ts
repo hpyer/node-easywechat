@@ -32,7 +32,7 @@ import QrcodeClient from '../BaseService/Qrcode/QrcodeClient';
 import UrlClient from '../BaseService/Url/UrlClient';
 import { EasyWechatConfig } from '../Core/Types';
 import { SocialiteManager } from 'node-socialite';
-import WeChat from 'node-socialite/dist/Providers/WeChat';
+import { WeChat} from 'node-socialite/dist/Providers/WeChat';
 import BaseClient from '../Core/BaseClient';
 
 class Client extends BaseClient { };
