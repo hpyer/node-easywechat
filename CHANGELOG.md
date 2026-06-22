@@ -1,6 +1,12 @@
 # CHANGELOG
 
 
+## v2.13.5 (2026-06-22)
+
+- Fix: update test scripts
+- Fix: ts error
+- Fix: update dependencies
+
 ## v2.13.4 (2025-07-24)
 
 - Fix: 修复workflow发布错误的标签的问题
