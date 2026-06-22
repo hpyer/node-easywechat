@@ -100,7 +100,7 @@ module.exports = class BaseClientTest {
   mockResponseMulti(responses) {
     for (let i = 0; i < responses.length; i++) {
       let response = responses[i];
-      if (typeof response.body == 'undefined' && typeof response.status == 'undefined' && typeof response.headers == 'undefined') {
+      if (typeof response.body == 'undefined') {
         response = {
           body: response,
           status: 200,

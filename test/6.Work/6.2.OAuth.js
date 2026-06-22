@@ -20,31 +20,54 @@ class TestUnit extends BaseClientTest {
 
       this.mockResponseMulti([
         {
-          errcode: 0,
-          access_token: 'fake-access-token',
-          expires_in: 7200,
+          "errcode": 0,
+          "errmsg": "ok",
+          "access_token": "fake-access-token",
+          "expires_in": 7200,
         },
         {
-          errcode: 0,
-          UserId: 'fake-user-id',
-          DeviceId: 'fake-device-id',
+          "errcode": 0,
+          "errmsg": "ok",
+          "userid": "fake-userid",
+          "user_ticket": "fake-user-ticket",
+          "user_doc_ticket": "fake-user-doc-ticket"
         },
         {
-          errcode: 0,
-          userid: 'fake-user-id',
-          name: 'fake-name',
-          email: 'fake-email',
-          avatar: 'fake-avatar',
+          "errcode": 0,
+          "errmsg": "ok",
+          "userid": "fake-userid",
+          "name": "fake-name",
+          "department": [1, 2],
+          "order": [1, 2],
+          "position": "后台工程师",
+          "is_leader_in_dept": [1, 0],
+          "direct_leader":["lisi"],
+          "alias": "fake-alias",
+          "open_userid": "xxxxxx",
+          "main_department": 1,
+          "status": 1,
+          "external_position": "产品经理"
+        },
+        {
+          "errcode": 0,
+          "errmsg": "ok",
+          "userid": "fake-userid",
+          "gender": "1",
+          "avatar": "fake-avatar",
+          "mobile": "13800000000",
+          "email": "fake-email",
         },
       ]);
 
       let user = await this.app.oauth.detailed().userFromCode('123456');
 
-      this.assert.strictEqual(user.id, 'fake-user-id');
+      this.assert.strictEqual(user.id, 'fake-userid');
       this.assert.strictEqual(user.nickname, '');
       this.assert.strictEqual(user.name, 'fake-name');
       this.assert.strictEqual(user.email, 'fake-email');
       this.assert.strictEqual(user.avatar, 'fake-avatar');
+      this.assert.strictEqual(user.raw.alias, 'fake-alias');
+      this.assert.strictEqual(user.raw.mobile, '13800000000');
     });
 
     it(`Should throw error while calling old APIs.`, async () => {
