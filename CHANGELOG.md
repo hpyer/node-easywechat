@@ -1,6 +1,10 @@
 # CHANGELOG
 
 
+## v3.7.17 (2026-06-22)
+
+- Fix: update dependencies
+
 ## v3.7.16 (2026-06-09)
 
 - Fix: 统一与补全oauth的配置参数
